@@ -1,0 +1,59 @@
+/home/users/oscar/Agent_Training/agent_training/.pixi/envs/default/lib/python3.11/site-packages/metaworld/policies/policy.py:49: UserWarning: Constant(s) may be too high. Environments clip response to [-1, 1]
+  warnings.warn(
+CALIBRATION drawer IID 20 /20
+CALIBRATION drawer C 20 /20
+CALIBRATION drawer E 20 /20
+COLLECT drawer 1 LL 88
+COLLECT drawer 2 HH 90
+D2_EVIDENCE_READY drawer /home/users/oscar/Agent_Training/agent_training/round3/evidence/drawer
+COLLECT drawer 3 LL 89
+COLLECT drawer 4 HH 88
+COLLECT drawer 5 LL 88
+COLLECT drawer 6 HH 88
+COLLECT drawer 7 LL 90
+COLLECT drawer 8 HH 90
+COLLECT drawer 9 LL 89
+COLLECT drawer 10 HH 89
+COLLECT drawer 11 LL 88
+COLLECT drawer 12 HH 89
+COLLECT drawer 13 LL 88
+COLLECT drawer 14 HH 89
+COLLECT drawer 15 LL 88
+COLLECT drawer 16 HH 89
+COLLECT drawer 17 LL 88
+COLLECT drawer 18 HH 88
+COLLECT drawer 19 LL 88
+COLLECT drawer 20 HH 90
+FROZEN_STATES drawer dev IID 10
+FROZEN_STATES drawer dev C 20
+FROZEN_STATES drawer dev E 20
+FROZEN_STATES drawer test IID 20
+FROZEN_STATES drawer test C 40
+FROZEN_STATES drawer test E 40
+TASK_DATA_READY drawer 20 demos; 50 dev; 100 sealed test; all demos replayed
+CALIBRATION door IID 20 /20
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/users/oscar/Agent_Training/agent_training/src/round3/prepare.py", line 211, in <module>
+    parser=argparse.ArgumentParser();parser.add_argument('--task',choices=TASKS,action='append');args=parser.parse_args();prepare(args.task)
+                                                                                                                          ^^^^^^^^^^^^^^^^^^
+  File "/home/users/oscar/Agent_Training/agent_training/src/round3/prepare.py", line 208, in prepare
+    def prepare(tasks=None):return {task:prepare_task(task) for task in (tasks or TASKS)}
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/users/oscar/Agent_Training/agent_training/src/round3/prepare.py", line 208, in <dictcomp>
+    def prepare(tasks=None):return {task:prepare_task(task) for task in (tasks or TASKS)}
+                                         ^^^^^^^^^^^^^^^^^^
+  File "/home/users/oscar/Agent_Training/agent_training/src/round3/prepare.py", line 153, in prepare_task
+    calibration=calibrate(task,env)
+                ^^^^^^^^^^^^^^^^^^^
+  File "/home/users/oscar/Agent_Training/agent_training/src/round3/prepare.py", line 85, in calibrate
+    o,info=env.reset(rec);before=o.copy();zero_success=False
+           ^^^^^^^^^^^^^^
+  File "/home/users/oscar/Agent_Training/agent_training/src/round3/environment.py", line 46, in reset
+    obs,info=self.geometry.reset(rec)
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/users/oscar/Agent_Training/agent_training/src/round2/geometry.py", line 89, in reset
+    self.model = spec.compile()
+                 ^^^^^^^^^^^^^^
+KeyboardInterrupt

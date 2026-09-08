@@ -1,0 +1,151 @@
+{
+  "data_collection_seconds": 17.679636120796204,
+  "dataset_audit_seconds": 16.69814827479422,
+  "development_seconds": 185.9165992848575,
+  "expert_rollout_seconds": 9.812133813276887,
+  "final_test_seconds": 131.06769683770835,
+  "notes": "training_seconds is measured optimizer update time including first compilation and the preserved slow 65-update prefix; training_loop_wall_seconds additionally includes checkpoint/log I/O but excludes model/data setup. Evaluation times sum per-episode reset/inference/simulation, excluding policy loading/first inference compilation outside episodes. Missing durations are unknown, not zero. These nested measurements must not be added to pipeline invocation wall time. Recovery replay is separate diagnostic time, not formal updates. No purchased cloud resources.",
+  "pipeline_round1_invocations": [
+    {
+      "command": "round1",
+      "elapsed_seconds": 652.2449688911438,
+      "error": "RuntimeError: drawer_relative_n20_s0 paused at 65; resume from /home/users/oscar/Agent_Training/agent_training/runs/drawer_relative_n20_s0/latest.pt",
+      "finished": false,
+      "path": "artifacts/invocation_804594.json",
+      "pid": 804594,
+      "sha256": "7314d07d4602f01f85a970b97b34e2854db802e8c5e4b15ca8804390e20dbfb8",
+      "stages": [
+        {
+          "elapsed_seconds": 2.6659770533442497,
+          "stage": "doctor"
+        },
+        {
+          "elapsed_seconds": 0.020242907106876373,
+          "stage": "collect / validate frozen data"
+        },
+        {
+          "elapsed_seconds": 18.17969704605639,
+          "stage": "correctness checks and independent debug training / rollout"
+        }
+      ],
+      "started_utc": "2026-09-07T06:58:33Z"
+    },
+    {
+      "command": "round1",
+      "elapsed_seconds": 1623.7551937103271,
+      "error": null,
+      "finished": true,
+      "path": "artifacts/invocation_822128.json",
+      "pid": 822128,
+      "sha256": "3c1ba626d28e40dd46d0d3316d9e72aee5620c8b91dffe50f7db929178d4cd39",
+      "stages": [
+        {
+          "elapsed_seconds": 2.6540334187448025,
+          "stage": "doctor"
+        },
+        {
+          "elapsed_seconds": 0.019619783386588097,
+          "stage": "collect / validate frozen data"
+        },
+        {
+          "elapsed_seconds": 1.0959663186222315,
+          "stage": "correctness checks and independent debug training / rollout"
+        },
+        {
+          "elapsed_seconds": 1279.5409928485751,
+          "stage": "four formal trainings"
+        },
+        {
+          "elapsed_seconds": 338.84867110289633,
+          "stage": "development checkpoint selection, final IID/OOD evaluation, videos"
+        },
+        {
+          "elapsed_seconds": 1.5951907206326723,
+          "stage": "result verification and report"
+        }
+      ],
+      "started_utc": "2026-09-07T07:10:55Z"
+    },
+    {
+      "command": "round1",
+      "elapsed_seconds": 7.931108713150024,
+      "error": null,
+      "finished": true,
+      "path": "artifacts/invocation_864337.json",
+      "pid": 864337,
+      "sha256": "8be6e71bc38e8268c3663abb3c7a30dfa850d7e38f7862a9322c8b0627bf3c84",
+      "stages": [
+        {
+          "elapsed_seconds": 2.158893832936883,
+          "stage": "doctor"
+        },
+        {
+          "elapsed_seconds": 0.019946040585637093,
+          "stage": "collect / validate frozen data"
+        },
+        {
+          "elapsed_seconds": 1.133795665577054,
+          "stage": "correctness checks and independent debug training / rollout"
+        },
+        {
+          "elapsed_seconds": 0.6185595914721489,
+          "stage": "four formal trainings"
+        },
+        {
+          "elapsed_seconds": 2.2870584055781364,
+          "stage": "development checkpoint selection, final IID/OOD evaluation, videos"
+        },
+        {
+          "elapsed_seconds": 1.7120681516826153,
+          "stage": "result verification and report"
+        }
+      ],
+      "started_utc": "2026-09-07T07:42:16Z"
+    }
+  ],
+  "pipeline_round1_wall_seconds": 2283.931271314621,
+  "pipeline_timing": {
+    "command": "round1",
+    "elapsed_seconds": 7.931108713150024,
+    "error": null,
+    "finished": true,
+    "pid": 864337,
+    "stages": [
+      {
+        "elapsed_seconds": 2.158893832936883,
+        "stage": "doctor"
+      },
+      {
+        "elapsed_seconds": 0.019946040585637093,
+        "stage": "collect / validate frozen data"
+      },
+      {
+        "elapsed_seconds": 1.133795665577054,
+        "stage": "correctness checks and independent debug training / rollout"
+      },
+      {
+        "elapsed_seconds": 0.6185595914721489,
+        "stage": "four formal trainings"
+      },
+      {
+        "elapsed_seconds": 2.2870584055781364,
+        "stage": "development checkpoint selection, final IID/OOD evaluation, videos"
+      },
+      {
+        "elapsed_seconds": 1.7120681516826153,
+        "stage": "result verification and report"
+      }
+    ],
+    "started_utc": "2026-09-07T07:42:16Z"
+  },
+  "pipeline_wall_scope": "Only finalized artifacts/invocation_*.json with command=round1; includes failed/paused and resumed invocations, excludes overlapping child train/report commands and pipeline_timing aliases. An active invocation is absent until its finally block writes a timing artifact.",
+  "preflight_seconds": 17.09061916358769,
+  "recorded_training_gpu_hours": 0.5206775634239117,
+  "render_check_seconds": 0.7703303191810846,
+  "runtime_recovery_diagnostic_seconds": 5.636264327913523,
+  "runtime_recovery_slow_prefix_update_seconds": 227.93173924088478,
+  "training_loop_wall_seconds": 1895.903815554455,
+  "training_loop_wall_seconds_complete": true,
+  "training_seconds": 1874.4392283260822,
+  "video_replay_seconds": 12.294305391609669
+}

@@ -1,0 +1,36 @@
+{
+  "compiled_default": {
+    "ddim16_batch1_seconds": 0.03388883899897337,
+    "gpu": "NVIDIA RTX A6000",
+    "mode": "compiled_float32_synthetic",
+    "parameter_count": 4696644,
+    "peak_allocated_gb": 0.194883584,
+    "training_100_updates_seconds": 3.2409972604364157,
+    "training_updates_per_second": 30.85470056415121
+  },
+  "compiled_reduce_overhead": {
+    "mode": "compiled_reduce_overhead_float32_real_train20",
+    "parameter_count": 4696644,
+    "peak_allocated_gb": 0.160823808,
+    "steady_100_update_seconds": 1.9877017866820097
+  },
+  "eager": {
+    "ddim16_batch1_seconds": 0.09757478022947907,
+    "gpu": "NVIDIA RTX A6000",
+    "mode": "eager_float32_synthetic",
+    "parameter_count": 4696644,
+    "peak_allocated_gb": 0.20033536,
+    "training_100_updates_seconds": 4.481523863971233,
+    "training_updates_per_second": 22.313838559232067
+  },
+  "estimated_training_80000_updates_seconds": 1590.1614293456078,
+  "estimated_worst_case_400_episode_sampling_seconds": 1694.4419499486683,
+  "notes": "Synthetic eager/default benchmarks, real train20 reduce-overhead benchmark. Estimates are not actual formal training/evaluation elapsed time; compilation and simulator overhead excluded.",
+  "selected": {
+    "effective_batch": 128,
+    "inference": "torch.compile(mode=reduce-overhead)",
+    "precision": "float32",
+    "tf32": false,
+    "training": "torch.compile(mode=reduce-overhead)"
+  }
+}

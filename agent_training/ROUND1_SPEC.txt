@@ -1,0 +1,443 @@
+给 Codex 的完整执行任务：第一轮相对坐标先验实验
+
+请把本文作为当前仓库的实施规格，完成代码、环境配置、数据采集、四次正式训练、闭环评测和结果报告。本文自包含，不需要之前的聊天记录。阅读后直接开始执行；不要只返回计划、伪代码或供我手工执行的命令。
+
+0. 目标、范围和完成标准
+
+研究问题：在同一批有限机器人示范、相同可用状态信息、相同网络与训练预算下，把交互相关的相对位置关系显式提供给 Diffusion Policy，是否改善原分布成功率或未见位置上的泛化？
+
+本轮只做四个正式训练：
+
+run_id
+
+MetaWorld 任务
+
+表示
+
+训练示范数
+
+训练 seed
+
+正式 updates
+
+drawer_raw_n20_s0
+
+drawer-open-v3
+
+原始坐标
+
+20
+
+0
+
+20,000
+
+drawer_relative_n20_s0
+
+drawer-open-v3
+
+可逆相对坐标
+
+20
+
+0
+
+20,000
+
+door_raw_n20_s0
+
+door-open-v3
+
+原始坐标
+
+20
+
+0
+
+20,000
+
+door_relative_n20_s0
+
+door-open-v3
+
+可逆相对坐标
+
+20
+
+0
+
+20,000
+
+完成意味着：四次正式训练全部完成、独立开发集选好 checkpoint、每个模型完成 20 个 IID 和 20 个位置 OOD 测试 episode，并生成可核对的结果文件与报告。
+
+本轮不加入 VLM/Agent 自动选结构、层级策略、额外损失、关节轴硬约束、RGB 输入、机构旋转、其他机器人或 PickPlace。不要为获得正结果悄悄增加示范数、训练预算或改变测试分布。
+
+代码运行正常但先验没有收益，也是合法结果。不得编造成功率、耗时、训练完成状态或失败视频。
+
+1. 自主执行与环境管理
+
+在当前仓库工作。先读取现有 AGENTS.md、README 和项目配置；保留用户改动及无关文件。空仓库就建立完成本实验所需的最小结构。
+
+本项目统一使用 Pixi。先验证 pixi --version，创建/更新 pixi.toml 和 pixi.lock。Python 包可以由 Pixi 的 PyPI 依赖管理；不要创建 Conda/venv 环境，不用系统 Python 或裸 pip 形成另一个环境。
+
+所有项目运行命令通过 pixi run ...。在合适的项目文档或 AGENTS.md 中记录该约定，不覆盖已有其他指令。
+
+优先 Python 3.11；若固定的依赖组合要求其他版本，依据官方元信息选择兼容版本并记录。固定 MetaWorld、MuJoCo、PyTorch、diffusers 的实际版本；Git 依赖固定 commit，不能让结果依赖浮动的 main。
+
+查明操作系统、可用 CUDA/MPS/CPU 和渲染后端。使用当前可用资源，不自行购买云资源、不修改系统驱动、不推送到远端。
+
+四次正式训练已包含在任务中。代码完成或 smoke test 通过后继续采集、训练、评测，不再询问“是否开始训练”。
+
+依赖/API/实现问题尽量根据官方源码自主修复。只有确实缺少访问权限、无法获得必要依赖或计算任务无法继续等真实阻塞，才说明具体错误、已尝试方案和最小缺失条件。
+
+长任务写日志、保存 checkpoint 并保持可恢复；按工具要求合理轮询，定期报告当前阶段、已完成项和剩余项。不要因为一次工具超时就重复启动同一个训练。
+
+若当前会话不能持续到结束，保存完整状态和精确恢复命令，并明确标记未完成项。不能把仍在运行或仅完成短测试的 run 标成完成。
+
+2. 可信实现来源
+
+首先核对官方资料及安装版本源码，避免猜测 API：
+
+MetaWorld：https://github.com/Farama-Foundation/Metaworld
+
+官方专家数据示例：https://metaworld.farama.org/benchmark/expert_trajectories/
+
+动作接口：https://metaworld.farama.org/benchmark/action_space/
+
+Drawer 源码：https://github.com/Farama-Foundation/Metaworld/blob/main/metaworld/envs/sawyer_drawer_open_v3.py
+
+Door 源码：https://github.com/Farama-Foundation/Metaworld/blob/main/metaworld/envs/sawyer_door_v3.py
+
+DP 官方实现：https://github.com/real-stanford/diffusion_policy
+
+Pixi Python 文档：https://pixi.prefix.dev/latest/python/tutorial/
+
+当前官方示例使用：
+
+gym.make('Meta-World/MT1', env_name='drawer-open-v3')
+gym.make('Meta-World/MT1', env_name='door-open-v3')
+
+优先复用已有可靠 DP 模块；没有则基于官方 ConditionalUnet1D 等必要组件建立精简实现，保留来源和许可证。无需安装 DP 原仓库所有真实机器人、视觉或其他环境依赖，也不要照搬其 Conda 环境。
+
+3. 第一个里程碑：弄清状态、动作和 reset
+
+为两个任务分别输出 artifacts/observation_schema.json 中的完整字段定义：位置、夹爪、姿态、历史字段、目标、空占位字段及切片索引。字段解释必须依据安装版本源码和运行时验证。
+
+要求：
+
+显式使用目标可观察的任务设置；不要误用隐藏 goal 的 meta-learning 环境。
+
+不假设 observation 永远是某个固定维度。特别检查 native observation 是否已经包含前一时刻状态。
+
+确定 p_hand、交互点 p_handle、p_goal 的真实含义。若源码中的对象位置含固定交互 offset，写清并对两方法一致处理。
+
+不把四元数、夹爪数值或第二个不存在物体的零占位误当 xyz。
+
+核对原生动作是 4 维归一化末端 Cartesian 增量加夹爪；记录环境内部缩放，不要二次缩放。
+
+核对 Gymnasium step 返回顺序：observation、reward、terminated、truncated、info。
+
+使用原生控制频率和物理步长；本实验最大 episode 长度设为 500 个 env.step，若当前原生 TimeLimit 更短则统一使用较短上限并记录。不得只对一个方法改 horizon。
+
+默认使用标量环境以减少复杂度。训练与评测均不依赖自动 reset 的向量环境语义。
+
+先运行两任务的官方脚本专家，确认动作有效且 info['success'] 可以正常触发。调用 expert 时必须传 obs.copy()，先保存未被修改的 observation，避免专家对切片的原地操作污染数据。
+
+采集时将专家输出显式裁剪到环境 action_space 边界后再调用 env.step，并将这个实际输入动作作为训练标签；可额外保存专家未裁剪输出用于诊断。不能用超范围标签训练，却在推理时要求模型只生成 [-1,1]。
+
+4. 固定数据切分：根据真实初始物体基座位置
+
+以下区间来自当前任务源码的原生工作范围。先检查固定版本是否一致。
+
+任务
+
+train_pool / dev / IID test
+
+OOD test
+
+保持不变
+
+drawer-open-v3
+
+基座 x∈[-0.04,0.04] m
+
+x∈[-0.10,-0.06] 或 [0.06,0.10] m
+
+原生 y、z、姿态、初始开度
+
+door-open-v3
+
+基座 x∈[0.03,0.07] m，y∈[0.88,0.92] m
+
+x∈[0,0.02] 或 [0.08,0.10] m，y仍∈[0.88,0.92] m
+
+原生 z、姿态、初始开度
+
+实现方法：使用当前版本可用的任务设置接口，或一个小型、有文档的 reset/task 采样适配层；也可以先采样任务再按真实位置筛选。不要假装存在 x_range= 等未经核对的 API。若必须处理内部 reset 参数，要理解并测试目标、缓存和观测如何更新；不要在 reset 之后只移动模型、却留下原来的目标与奖励状态。
+
+如果版本中的原生范围与上述区间不同：在该原生 x 区间中取中间 40% 作为训练范围、两端各 20% 作为 OOD，留出间隔；其他维度维持相同分布。必须在采集和训练前记录真实区间及调整依据，之后冻结。不能扩展到原生工作空间之外。
+
+每个任务固定：
+
+train_pool：100 条成功专家示范，用于建立可复现的数据池。
+
+train20：从 train_pool 中按预先固定的 RNG 选择 20 条，所有模型使用同一份索引。不能根据训练结果挑轨迹。
+
+dev：20 个独立初始条件，在训练范围内，用于选 checkpoint。
+
+test_iid：20 个独立初始条件，在训练范围内。
+
+test_ood：20 个独立初始条件，左右两端各 10 个。
+
+建议采样 seed 命名空间：drawer=1000、door=2000；分别给 train/dev/IID/OOD 使用独立 RNG 流并保存实际种子。训练 RNG seed 固定 0。对同一任务，相同物体布局/任务参数不能以不同 seed 冒充独立样本进入多个 split；用任务参数和初始状态摘要检查重复。
+
+统计采样的真实位置，不只记录申请的位置。如果有限任务池不足以提供所需独立初始条件，扩充原生参数范围内的任务实例；不要重复少数任务凑数量。
+
+允许用专家预检查开发/测试环境可解性，但评测轨迹不得进入训练、归一化或调参输入。不要根据模型失败删除测试 episode；专家预检查失败应保留清单和原因，先判断是环境/reset bug 还是专家本身失败。只有确定物理无效且按预定规则排除的状态，才可在正式模型测试前重采样并记录。
+
+为采集设置上限，例如每任务最多 1000 次符合训练位置条件的专家尝试来获得成功池。若成功率异常低，先修 reset/专家/动作接口并记录失败率，不能无限循环。
+
+5. 数据格式与复现
+
+采用简单 HDF5 或等价的明确数组格式；不要先建设复杂数据平台。每个 episode 至少保存：
+
+obs：形状 [T+1, D] 的原始状态；
+
+actions：形状 [T, 4]，与产生下一状态的实际 env.step 动作一致；
+
+rewards、success、terminated、truncated：长度 T；
+
+episode_id、task_name、seed、采样任务参数、真实初始基座位置；
+
+能恢复 episode 的任务设置和初始模拟器状态；
+
+固定版本、数据 schema 版本和文件 hash。
+
+对初始状态复现，不能只假定保存 qpos/qvel 就足够。任务目标、模型位置、mocap/控制状态、时间限制、环境历史缓存也可能相关。优先让“固定任务参数 + reset seed + 必要 snapshot”的组合确定地恢复状态，并通过测试证明。
+
+dataset_manifest.json 应列出所有 split、20 条训练轨迹 ID、初始条件 ID、位置范围、hash 和排除项。正式训练开始前冻结 manifest。原始数据保持不变，表示变换在 loader 中完成。
+
+首轮只允许 train20 进入正式优化器和 normalization。train_pool 中剩余 80 条不能悄悄参与训练、预训练、标注学习或统计估计。
+
+6. 两种表示的精确定义
+
+raw：使用选定并记录的原生可观察状态向量。
+
+relative：对位置块做如下可逆替换：
+
+[
+(p_{hand},p_{handle},p_{goal})
+\mapsto
+(p_{hand}-p_{handle},\ p_{handle},\ p_{goal}-p_{handle}).
+]
+
+具体要求：
+
+保留 handle 的世界坐标；机器人本体、夹爪、四元数和其他原始信息不丢失。
+
+若原生向量包含历史状态块，每个历史块用自己对应时刻的 handle 进行变换。单个当前 goal 相对当前 handle 表示。
+
+Native reset 的历史 padding/占位必须按照已核实 schema 处理，不能无条件将零填充当真实过去位置。需要改变 padding 策略时，两方法一致，并记录其属于环境输入适配。
+
+DP 另外使用 2 步 observation history；两方法均保留同样的 native packed history，避免只在一边重复/删除历史。
+
+实现正向和逆向变换，验证 raw→relative→raw 在 float32 下近似恢复，容差 1e-6 或经数据尺度说明后的等效容差。
+
+两方法输入维度相同，网络架构和参数量完全相同。只有 representation 和由其训练数据计算的 observation normalizer 不同。
+
+变换先于 normalization。每个表示的 per-dimension mean/std 仅从同一份 train20 的输入状态计算；std 下限设 1e-3 并记录常量字段。不用 dev/test 或整个 100 条池的统计，不将 OOD normalized observations 强行裁剪到训练范围。
+
+动作保持环境原生 [-1,1] 约定，不从示范 min/max 再做一遍 action normalization。平移原点不改变增量动作，不旋转或平移 action labels。
+
+不引入 success、剩余步数、专家阶段标签、未来真实状态等额外 policy input。success 仅用于采集、评价与结束。
+
+7. 模型和训练配置
+
+使用 conditional 1D U-Net 的 action diffusion。优先复用仓库已有可靠实现；若没有，用官方 DP 必要模块或遵守许可的精简实现。
+
+正式配置起点固定为：
+
+n_obs_steps: 2
+prediction_horizon: 16
+n_action_steps: 4
+action_dim: 4
+unet_down_dims: [64, 128, 256]
+diffusion_step_embed_dim: 128
+kernel_size: 5
+n_groups: 8
+batch_size: 128
+optimizer: AdamW
+learning_rate: 0.0001
+weight_decay: 0.000001
+betas: [0.9, 0.999]
+max_grad_norm: 1.0
+train_updates: 20000
+lr_schedule: constant
+diffusion_train_timesteps: 100
+beta_schedule: squaredcos_cap_v2
+prediction_type: epsilon
+inference_scheduler: DDIM
+inference_steps: 16
+ddim_eta: 0.0
+clip_predicted_clean_actions: true
+ema_decay: 0.995
+train_seed: 0
+checkpoint_updates: [5000, 10000, 20000]
+
+确保 scheduler 的训练与推理噪声参数完全一致，不依赖未记录的库默认值。Loss 为 valid action entries 上的 epsilon MSE，不增加其他 regularizer 或 auxiliary head。使用同样的 EMA 更新规则，开发与测试均评价 EMA 权重。
+
+若现有可靠模块的接口不能直接接受以上命名，可以映射到等价参数并记录；不要为省事替换成 MLP regression 再称其为 DP。必要的兼容性调整在四次正式训练前统一冻结。
+
+时间对齐必须明确
+
+在时刻 t，条件为 (o[t-1], o[t])。
+
+预测目标为 (a[t], ..., a[t+15])。
+
+闭环执行预测结果的 [0:4]，随后重新观测和生成。
+
+episode 起点重复最早可用 observation；episode 尾部 padding 不能跨到下一 episode，缺失 action targets 使用 valid mask，不计入 loss。
+
+不直接沿用假设 action sequence 从 t-1 开始的第三方切片代码。用人工构造的时间索引样本检验实际对齐。
+
+一个 chunk 执行中若 success 或 terminated/truncated 发生，立即结束该 episode；不能把剩余动作施加到自动 reset 后的新 episode。
+
+公平配对
+
+同一任务的 raw/relative 使用相同 train20、网络初始权重、窗口采样流、diffusion timestep 和训练噪声 RNG 流、batch size、更新次数、optimizer 和 EMA 配置。使用独立 RNG 管理 loader、训练 diffusion、开发采样和测试采样，避免视频或额外日志改变随机序列。
+
+正式训练默认单进程按可用 GPU 顺序运行；无需引入多 GPU 框架。若显存不足，优先通过一致的 microbatch/gradient accumulation 保持有效 batch=128。所有资源相关调整必须在配对模型上相同；不能只给一个模型更长训练。
+
+8. 最少但必要的正确性验证
+
+正式训练前完成这些有意义的检查，不建设与实现逐行重复的大型测试集：
+
+两任务专家都能完成若干原生 episode；采集前后 observation 不被专家修改。
+
+实际 reset 位置符合 split，train/dev/test 任务参数不重复，20 条训练索引被冻结。
+
+同一初始条件在两次独立 reset/replay 中具有一致目标、原始 observation 和短动作序列后的状态，容差明确。
+
+raw/relative 同维、可逆，不改变 action labels；改变未来数据不影响当前输入变换。
+
+Loader 的时间对齐、episode padding、mask 正确，动作不跨 episode。
+
+Normalizer 只读取 train20，保存其来源 ID/hash；人工极端 OOD 值不会被输入裁剪吞掉。
+
+网络输出形状、scheduler 去噪、梯度、EMA、checkpoint 保存/恢复正确；恢复不丢 optimizer/RNG/采样位置。
+
+用独立 debug 输出目录做短训练和一次闭环 rollout，确认流程正常。Debug checkpoint 不能作为正式 run 的初始化。
+
+若发现实现 bug，修复后重新运行受影响的最小检查。不要用 smoke test 的成功假装完成正式四次训练。
+
+9. 正式执行、checkpoint 选择和测试
+
+按 run manifest 完成全部四次正式训练。每个 run 保存完整配置、数据 hash、normalizer、参数量、训练日志、EMA checkpoint、恢复状态、耗时和硬件信息。
+
+在 5k、10k、20k 各 checkpoint 上，用同一组 20 个 dev 初始条件和固定独立采样种子评价。选择规则固定：
+
+dev success rate 最高；
+
+并列时选成功 episode 的平均完成步数更少者；
+
+仍并列选更早 checkpoint；若没有成功 episode，完成步数记为空，直接用更早 checkpoint。
+
+四个选定 checkpoint 固定后，才运行最终 test_iid 与 test_ood。每个模型 20+20=40 个 episode，共 160 个正式测试 episode。每个初始条件使用固定的 diffusion 初始噪声 RNG；同任务的两个表示使用相同 episode seeds。
+
+成功定义：原生 info['success'] 在时间上限内触发即算成功，并记录首次成功步数。保留 terminated/truncated 与失败原因；不改变环境奖励/成功阈值来改善结果。
+
+不要因测试分数低就返回修改结构、数据量、checkpoint 选择规则或 OOD 范围后覆盖旧结果。真正代码错误可以修复，但必须保留旧记录、说明 invalidation 理由，并重跑受影响的完整配对比较。
+
+10. 日志、结果表和视频
+
+每个正式测试 episode 输出 CSV 或 JSONL，至少有：
+
+run_id、task、representation、train_n、train_seed；
+
+checkpoint_step、checkpoint_hash、data_manifest_hash；
+
+split、episode_id、初始位置、env seed、policy sampling seed；
+
+success、first_success_step、episode_length、return；
+
+terminated、truncated、运行异常和耗时。
+
+生成 results/summary.csv，四行，每行至少包含 IID 成功数/20、OOD 成功数/20、成功率、成功 episode 平均完成步数、所选 checkpoint、训练与评价耗时。
+
+生成两张主要图：IID 成功率比较、位置 OOD 成功率比较；另外保留 training loss 与 dev success 随 updates 的曲线。图中注明 n=20 evaluation episodes、1 training seed；不要把 episode 置信区间写成跨训练种子的稳定性证据。
+
+若渲染可用，按固定规则录制每个模型每种测试 split 的第一个成功和第一个失败 episode，用于诊断。没有相应类型就注明，不伪造。视频可以在测试记录冻结后用同一状态/seed重放录制；渲染不得改变主实验的随机序列。
+
+可视化不是 policy input。Headless 渲染失败时先修复可用 EGL/OSMesa/其他平台后端，但不要为了视频阻塞已经可运行的状态训练；若确实不可用，清楚交付数值结果和缺失视频原因。
+
+11. 仓库的最小交付接口
+
+保持实现简单，建议模块：environment adapter、schema/representation、dataset、diffusion model、train、evaluate、report。
+
+必须提供可重复运行的 Pixi tasks，名称可微调但 README 要给出完整顺序：
+
+pixi run doctor
+pixi run test
+pixi run collect-round1
+pixi run train-round1
+pixi run evaluate-round1
+pixi run report-round1
+pixi run round1
+
+最后一个任务顺序完成所需阶段，并根据完整产物/hash跳过已正确完成的阶段；不能仅因目录或空 checkpoint 文件存在就认为成功。训练任务应支持 resume 和单独运行某个 run_id。所有命令的退出码能真实反映失败。
+
+需要交付：
+
+pixi.toml、pixi.lock、Python 项目配置与源代码；
+
+README：安装、数据语义、四个 run、命令、恢复方法；
+
+有意义的正确性测试；
+
+冻结的 task/split/train20 manifest 与原始示范；
+
+四次正式训练的 checkpoint、日志和可恢复信息；
+
+逐 episode 测试数据、summary、图和可用视频；
+
+ROUND1_REPORT.md：设置、实际执行范围、真实结果、失败分析、限制和下一步建议；
+
+PROGRESS.md：阶段状态、完成/未完成项、后台任务标识与恢复命令；
+
+依赖来源、版本/commit、许可证与完整计算成本。
+
+生成数据、checkpoint、视频等大文件加入合适的 gitignore；源码、配置、lockfile和小型结果摘要应可纳入版本控制。不要删除已有文件、创建无关框架或自动 push。
+
+12. 报告怎么解释结果
+
+报告回答：
+
+同样 20 条示范和预算，relative 是否改善 IID 或位置 OOD？
+
+改善/退化发生在接近、建立交互还是持续打开阶段？若诊断依据不足，明确未知。
+
+四个 run 是否全部实际完成？有没有偏离预定配置？
+
+1 个训练 seed 和 20 个测试 episode 能支持哪些初步观察，哪些结论仍需复验？
+
+解释边界：本轮变换是可逆且大体为仿射重参数化。若网络第一层是充分自由的线性层，它未必缩小可表达的函数集合。正结果支持“有用表示使有限数据下的优化/泛化更有效”，不等于增加了传感信息、证明了任意组合能力或已经验证 Agent 选先验。
+
+如果两方法表现都差，完成并如实报告规定的四个 run，区分数据/实现问题与方法不足。不得自动把 20 demos 改成 100，或继续铺开下一轮实验。确需额外诊断时，可以完成廉价的代码/数据检查，正式增加训练预算列入后续建议。
+
+如果 relative 没有收益，保留负结果，不通过添加未经要求的 loss、约束或层级结构来强求胜出。
+
+13. 最终回复要求
+
+最后给我：
+
+实际完成状态，以及四行真实结果表；
+
+可直接打开的报告、图、关键失败视频和结果路径；
+
+可复现与恢复的 Pixi 命令；
+
+最重要的发现与一个有依据的下一步建议。
+
+只有执行了才能说“已运行/已训练/已验证”。如仍有真实阻塞，写清它阻塞哪一步，并尽量完成不依赖该阻塞的部分。
+
+现在请检查当前仓库与运行环境，建立简短执行计划，然后按上述步骤持续完成任务。

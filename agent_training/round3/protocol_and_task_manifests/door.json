@@ -1,0 +1,305 @@
+{
+  "action_schema": {
+    "control_dt_seconds": 0.0125,
+    "dim": 4,
+    "end_effector_rotation": "fixed native orientation",
+    "fields": [
+      "world_dx",
+      "world_dy",
+      "world_dz",
+      "gripper"
+    ],
+    "high": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "low": [
+      -1,
+      -1,
+      -1,
+      -1
+    ],
+    "native_xyz_scale_m": 0.01,
+    "world_clip": "after policy action decode, before env.step"
+  },
+  "distribution": {
+    "C_cells": [
+      "LH",
+      "HL"
+    ],
+    "E_cells": [
+      "LL",
+      "LH",
+      "HL",
+      "HH"
+    ],
+    "E_definition": "Both factor values are sampled in extrap_low/extrap_high outside training intervals; all four sign cells balanced.",
+    "balanced_training_sequence": [
+      "LL",
+      "HH",
+      "LL",
+      "HH",
+      "LL",
+      "HH",
+      "LL",
+      "HH",
+      "LL",
+      "HH",
+      "LL",
+      "HH",
+      "LL",
+      "HH",
+      "LL",
+      "HH",
+      "LL",
+      "HH",
+      "LL",
+      "HH"
+    ],
+    "factors": {
+      "a": {
+        "extrap_high": [
+          0.08,
+          0.1
+        ],
+        "extrap_low": [
+          0,
+          0.02
+        ],
+        "high": [
+          0.06,
+          0.07
+        ],
+        "low": [
+          0.03,
+          0.04
+        ],
+        "name": "door_x",
+        "units": "m"
+      },
+      "b": {
+        "extrap_high": [
+          33,
+          37
+        ],
+        "extrap_low": [
+          -37,
+          -33
+        ],
+        "high": [
+          5,
+          10
+        ],
+        "low": [
+          -10,
+          -5
+        ],
+        "name": "door_yaw",
+        "units": "degrees"
+      }
+    },
+    "nuisance_ranges": {
+      "door_y": [
+        0.88,
+        0.92
+      ],
+      "door_z": 0.15
+    },
+    "reset_range_extension": "none; native bounds, or previously calibrated Round 2 cabinet extension",
+    "train_cells": [
+      "LL",
+      "HH"
+    ],
+    "version": "round3-layout-v1"
+  },
+  "eval_counts": {
+    "dev": {
+      "C": 20,
+      "E": 20,
+      "IID": 10
+    },
+    "test": {
+      "C": 40,
+      "E": 40,
+      "IID": 20
+    }
+  },
+  "expert_version": {
+    "backend": "Round2 CanonicalExpert",
+    "commit": "6e01ad7e2ffb2302e4dca04f796fcd8837df8540",
+    "wrapper_sha256": "0f4e4c2a49f41d1ff93ce0fe5ad8d2eef116ad9338b82941dc6efdad5798aa49"
+  },
+  "max_steps": 500,
+  "metaworld_commit": "6e01ad7e2ffb2302e4dca04f796fcd8837df8540",
+  "native_id": "door-open-v3",
+  "observation_schema": {
+    "all_methods_receive_identical_raw_fields": true,
+    "dp_history": "two whole observations, initial repeated",
+    "extra_physical_pose_channels": "ring body center for assembly; pegHead site for peg-insert-side; same declared channel for B0 and all candidates",
+    "fields": [
+      {
+        "name": "current.hand_xyz",
+        "slice": [
+          0,
+          3
+        ],
+        "units": "m"
+      },
+      {
+        "name": "current.gripper",
+        "slice": [
+          3,
+          4
+        ],
+        "units": "unitless aperture / .1 m"
+      },
+      {
+        "name": "current.object_xyz",
+        "slice": [
+          4,
+          7
+        ],
+        "units": "m"
+      },
+      {
+        "name": "current.object_quaternion",
+        "slice": [
+          7,
+          11
+        ],
+        "units": "unit quaternion"
+      },
+      {
+        "name": "current.object2_xyz",
+        "slice": [
+          11,
+          14
+        ],
+        "units": "m or absent zeros"
+      },
+      {
+        "name": "current.object2_quaternion",
+        "slice": [
+          14,
+          18
+        ],
+        "units": "unit quaternion or absent zeros"
+      },
+      {
+        "name": "previous.hand_xyz",
+        "slice": [
+          18,
+          21
+        ],
+        "units": "m"
+      },
+      {
+        "name": "previous.gripper",
+        "slice": [
+          21,
+          22
+        ],
+        "units": "unitless aperture / .1 m"
+      },
+      {
+        "name": "previous.object_xyz",
+        "slice": [
+          22,
+          25
+        ],
+        "units": "m"
+      },
+      {
+        "name": "previous.object_quaternion",
+        "slice": [
+          25,
+          29
+        ],
+        "units": "unit quaternion"
+      },
+      {
+        "name": "previous.object2_xyz",
+        "slice": [
+          29,
+          32
+        ],
+        "units": "m or absent zeros"
+      },
+      {
+        "name": "previous.object2_quaternion",
+        "slice": [
+          32,
+          36
+        ],
+        "units": "unit quaternion or absent zeros"
+      },
+      {
+        "name": "goal_xyz",
+        "slice": [
+          36,
+          39
+        ],
+        "units": "m"
+      },
+      {
+        "name": "cabinet_sin_cos_yaw",
+        "slice": [
+          39,
+          41
+        ],
+        "units": "unitless"
+      }
+    ],
+    "frame": "world; native current18+previous18+goal3",
+    "native_history_reset": "current repeated as previous",
+    "object2_present": false,
+    "object_point": "handle geom center",
+    "policy": "state-input",
+    "quaternion_order": "xyzw",
+    "raw_dim": 41,
+    "runtime_oracles_provided": false,
+    "version": "round3-common-observation-v1"
+  },
+  "reset_method": "Canonical native Task+seed reset; fixed body placement precompiled to native requested position for assembly/peg box, no shape/dynamics changes.",
+  "seeds": {
+    "calibration_base": 30300000,
+    "dev_base": 32300000,
+    "test_base": "sealed, independent",
+    "train_base": 31300000
+  },
+  "source_file": "/home/users/oscar/Agent_Training/agent_training/.pixi/envs/default/lib/python3.11/site-packages/metaworld/envs/sawyer_door_v3.py",
+  "source_knowledge": {
+    "cabinet_yaw_from_shared_fields": [
+      39,
+      41
+    ],
+    "gravity": [
+      0.0,
+      0.0,
+      -9.81
+    ],
+    "joint_range": [
+      -2.0,
+      0.0
+    ],
+    "joint_type": "hinge",
+    "mechanism_axis": "world z",
+    "rear_rail_repair": "Round2 unchanged: retaining rail y=1.15 for both tasks/all yaw.",
+    "symmetry_caution": "Only cabinet rotates; robot, gravity and table remain fixed.",
+    "task": "Open the mechanism with fixed end-effector orientation."
+  },
+  "source_sha256": "8169e20d95a476d789c2fab312dc1cf403c27fe5d97fb4350f3d62c483d628c9",
+  "source_url": "https://github.com/Farama-Foundation/Metaworld/blob/6e01ad7e2ffb2302e4dca04f796fcd8837df8540/metaworld/envs/sawyer_door_v3.py",
+  "static_geometry_source": {
+    "sha256": "f14cdb95f214dc13959351585b8a41b77f8876b112405d05f3e927ecac74513a",
+    "xml": "/home/users/oscar/Agent_Training/agent_training/.pixi/envs/default/lib/python3.11/site-packages/metaworld/assets/sawyer_xyz/sawyer_door_pull.xml"
+  },
+  "stats_scope": "Only the current D_N observations/actions; never larger subsets.",
+  "success_definition": "Round2: progress in [.75,1.01] for 3 successive steps, with no progress outside [-.01,1.01] anywhere in episode.",
+  "success_hold_steps": 3,
+  "task": "door",
+  "termination_policy": "Check success after every env.step; stop at first success, native terminated or truncated, or 500 steps. Timeout alone is failure. Numerical exceptions are failure. Any joint validity violation makes the full cabinet episode failure.",
+  "version": "round3-task-v1"
+}

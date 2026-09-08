@@ -1,0 +1,300 @@
+{
+  "action_schema": {
+    "control_dt_seconds": 0.0125,
+    "dim": 4,
+    "end_effector_rotation": "fixed native orientation",
+    "fields": [
+      "world_dx",
+      "world_dy",
+      "world_dz",
+      "gripper"
+    ],
+    "high": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "low": [
+      -1,
+      -1,
+      -1,
+      -1
+    ],
+    "native_xyz_scale_m": 0.01,
+    "world_clip": "after policy action decode, before env.step"
+  },
+  "distribution": {
+    "C_cells": [
+      "LH",
+      "HL"
+    ],
+    "E_cells": [
+      "LL",
+      "LH",
+      "HL",
+      "HH"
+    ],
+    "E_definition": "Both factor values are sampled in extrap_low/extrap_high outside training intervals; all four sign cells balanced.",
+    "balanced_training_sequence": [
+      "LL",
+      "HH",
+      "LL",
+      "HH",
+      "LL",
+      "HH",
+      "LL",
+      "HH",
+      "LL",
+      "HH",
+      "LL",
+      "HH",
+      "LL",
+      "HH",
+      "LL",
+      "HH",
+      "LL",
+      "HH",
+      "LL",
+      "HH"
+    ],
+    "factors": {
+      "a": {
+        "extrap_high": [
+          0.06,
+          0.08
+        ],
+        "extrap_low": [
+          -0.08,
+          -0.06
+        ],
+        "high": [
+          0.02,
+          0.04
+        ],
+        "low": [
+          -0.04,
+          -0.02
+        ],
+        "name": "nut_x",
+        "units": "m"
+      },
+      "b": {
+        "extrap_high": [
+          0.08,
+          0.1
+        ],
+        "extrap_low": [
+          -0.1,
+          -0.08
+        ],
+        "high": [
+          0.03,
+          0.05
+        ],
+        "low": [
+          -0.05,
+          -0.03
+        ],
+        "name": "peg_goal_x",
+        "units": "m"
+      }
+    },
+    "nuisance_ranges": {
+      "goal_y": [
+        0.775,
+        0.825
+      ],
+      "goal_z": 0.1,
+      "nut_y": 0.6,
+      "nut_z": 0.02
+    },
+    "reset_range_extension": "Nut x extends the shipped degenerate x=0 bound using the native reset vector/set-object operation only; calibrated separately. No model size, dynamics or controller edits.",
+    "train_cells": [
+      "LL",
+      "HH"
+    ],
+    "version": "round3-layout-v1"
+  },
+  "eval_counts": {
+    "dev": {
+      "C": 20,
+      "E": 20,
+      "IID": 10
+    },
+    "test": {
+      "C": 40,
+      "E": 40,
+      "IID": 20
+    }
+  },
+  "expert_version": {
+    "backend": "official pinned MetaWorld scripted policy",
+    "commit": "6e01ad7e2ffb2302e4dca04f796fcd8837df8540",
+    "wrapper_sha256": "0f4e4c2a49f41d1ff93ce0fe5ad8d2eef116ad9338b82941dc6efdad5798aa49"
+  },
+  "max_steps": 500,
+  "metaworld_commit": "6e01ad7e2ffb2302e4dca04f796fcd8837df8540",
+  "native_id": "assembly-v3",
+  "observation_schema": {
+    "all_methods_receive_identical_raw_fields": true,
+    "dp_history": "two whole observations, initial repeated",
+    "extra_physical_pose_channels": "ring body center for assembly; pegHead site for peg-insert-side; same declared channel for B0 and all candidates",
+    "fields": [
+      {
+        "name": "current.hand_xyz",
+        "slice": [
+          0,
+          3
+        ],
+        "units": "m"
+      },
+      {
+        "name": "current.gripper",
+        "slice": [
+          3,
+          4
+        ],
+        "units": "unitless aperture / .1 m"
+      },
+      {
+        "name": "current.object_xyz",
+        "slice": [
+          4,
+          7
+        ],
+        "units": "m"
+      },
+      {
+        "name": "current.object_quaternion",
+        "slice": [
+          7,
+          11
+        ],
+        "units": "unit quaternion"
+      },
+      {
+        "name": "current.object2_xyz",
+        "slice": [
+          11,
+          14
+        ],
+        "units": "m or absent zeros"
+      },
+      {
+        "name": "current.object2_quaternion",
+        "slice": [
+          14,
+          18
+        ],
+        "units": "unit quaternion or absent zeros"
+      },
+      {
+        "name": "previous.hand_xyz",
+        "slice": [
+          18,
+          21
+        ],
+        "units": "m"
+      },
+      {
+        "name": "previous.gripper",
+        "slice": [
+          21,
+          22
+        ],
+        "units": "unitless aperture / .1 m"
+      },
+      {
+        "name": "previous.object_xyz",
+        "slice": [
+          22,
+          25
+        ],
+        "units": "m"
+      },
+      {
+        "name": "previous.object_quaternion",
+        "slice": [
+          25,
+          29
+        ],
+        "units": "unit quaternion"
+      },
+      {
+        "name": "previous.object2_xyz",
+        "slice": [
+          29,
+          32
+        ],
+        "units": "m or absent zeros"
+      },
+      {
+        "name": "previous.object2_quaternion",
+        "slice": [
+          32,
+          36
+        ],
+        "units": "unit quaternion or absent zeros"
+      },
+      {
+        "name": "goal_xyz",
+        "slice": [
+          36,
+          39
+        ],
+        "units": "m"
+      },
+      {
+        "name": "ring_center_xyz",
+        "slice": [
+          39,
+          42
+        ],
+        "units": "m"
+      }
+    ],
+    "frame": "world; native current18+previous18+goal3",
+    "native_history_reset": "current repeated as previous",
+    "object2_present": false,
+    "object_point": "RoundNut-8 site on nut handle; native quaternion is RoundNut body wxyz",
+    "policy": "state-input",
+    "quaternion_order": "wxyz",
+    "raw_dim": 42,
+    "runtime_oracles_provided": false,
+    "version": "round3-common-observation-v1"
+  },
+  "reset_method": "Canonical native Task+seed reset; fixed body placement precompiled to native requested position for assembly/peg box, no shape/dynamics changes.",
+  "seeds": {
+    "calibration_base": 30100000,
+    "dev_base": 32100000,
+    "test_base": "sealed, independent",
+    "train_base": 31100000
+  },
+  "source_file": "/home/users/oscar/Agent_Training/agent_training/.pixi/envs/default/lib/python3.11/site-packages/metaworld/envs/sawyer_assembly_peg_v3.py",
+  "source_knowledge": {
+    "nut_quaternion": "native wxyz",
+    "peg_axis": [
+      0,
+      0,
+      1
+    ],
+    "peg_halfheight": 0.05,
+    "peg_radius": 0.02,
+    "ring_center_observed": true,
+    "symmetry_caution": "Fixed robot and gravity remain in world coordinates.",
+    "task": "Lift the ring-shaped nut and place it over a fixed vertical peg."
+  },
+  "source_sha256": "df2be328f466f8eb21181c3109ab399a612a11117acd1a9628728726aa9380ea",
+  "source_url": "https://github.com/Farama-Foundation/Metaworld/blob/6e01ad7e2ffb2302e4dca04f796fcd8837df8540/metaworld/envs/sawyer_assembly_peg_v3.py",
+  "static_geometry_source": {
+    "sha256": "7c6595b9a3a67d59b31ca8090c1f05f6197853806a43d637ce9395c912448ff3",
+    "xml": "/home/users/oscar/Agent_Training/agent_training/.pixi/envs/default/lib/python3.11/site-packages/metaworld/assets/sawyer_xyz/sawyer_assembly_peg.xml"
+  },
+  "stats_scope": "Only the current D_N observations/actions; never larger subsets.",
+  "success_definition": "Native _reward_pos: xy distance from RoundNut ring-center site to target < .02 m AND target.z - ring_center.z > 0. There is no additional grasp or hold condition in native success.",
+  "success_hold_steps": 1,
+  "task": "assembly",
+  "termination_policy": "Check success after every env.step; stop at first success, native terminated or truncated, or 500 steps. Timeout alone is failure. Numerical exceptions are failure. Any joint validity violation makes the full cabinet episode failure.",
+  "version": "round3-task-v1"
+}

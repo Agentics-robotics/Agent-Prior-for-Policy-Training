@@ -1,0 +1,56 @@
+{
+  "checks": {
+    "diffusion_rng": {
+      "exact_equal": true,
+      "mismatches": []
+    },
+    "ema": {
+      "exact_equal": true,
+      "mismatches": []
+    },
+    "initial_weights_hash": {
+      "exact_equal": true,
+      "mismatches": []
+    },
+    "loader_rng": {
+      "exact_equal": true,
+      "mismatches": []
+    },
+    "model": {
+      "exact_equal": true,
+      "mismatches": []
+    },
+    "optimizer": {
+      "exact_equal": true,
+      "mismatches": []
+    },
+    "pairing_digest": {
+      "exact_equal": true,
+      "mismatches": []
+    },
+    "samples_drawn": {
+      "exact_equal": true,
+      "mismatches": []
+    }
+  },
+  "comparison": "Independent fresh-process replay from original initialization through update65, no extra formal optimizer updates.",
+  "diagnostic_wall_seconds": 5.636264327913523,
+  "fresh_ema_hash": "3f7e54907e2482604e4a81fae73bd6aba7431d6f05b8e29ad2b7a26e4d7bc2c3",
+  "fresh_model_hash": "2a44f4805e7f733475c6e31011adc3d005eb4294260562e9c4aacb3597ca2d48",
+  "fresh_pairing_digest": "da623d433685d34d19c9bc0d8c69bb18fa9eb0a7391ed932afd25d58000a5576",
+  "fresh_prefix_optimizer_update_seconds": 4.392456581816077,
+  "likely_cause": "PyTorch2.7.1 cudagraph_trees.get_curr_generation selects global nonzero MarkStepBox over automatic GenerationTracker after compiled debug inference; subsequent Trainer parameter allocations interact with retained graph trees. Source evidence, no attached stack due ptrace restriction.",
+  "passed": true,
+  "run_id": "drawer_relative_n20_s0",
+  "saved_checkpoint_hash": "6f589f4fd1f469d6b4c8d6a908c42a99980c5c2ce8dec3d93b40549511ec7606",
+  "saved_ema_hash": "3f7e54907e2482604e4a81fae73bd6aba7431d6f05b8e29ad2b7a26e4d7bc2c3",
+  "saved_model_hash": "2a44f4805e7f733475c6e31011adc3d005eb4294260562e9c4aacb3597ca2d48",
+  "saved_pairing_digest": "da623d433685d34d19c9bc0d8c69bb18fa9eb0a7391ed932afd25d58000a5576",
+  "saved_prefix_optimizer_update_seconds": 227.93173924088478,
+  "source_lines": [
+    "torch/_inductor/cudagraph_trees.py:2338",
+    "torch/_inductor/cudagraph_trees.py:2348",
+    "relative_dp/model.py:78"
+  ],
+  "step": 65
+}

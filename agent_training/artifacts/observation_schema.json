@@ -1,0 +1,306 @@
+{
+  "base_source_sha256": "4282580b80befc557f67d25acffffec737ad0dae2c440601be76fc09139f351d",
+  "base_source_url": "https://github.com/Farama-Foundation/Metaworld/blob/6e01ad7e2ffb2302e4dca04f796fcd8837df8540/metaworld/sawyer_xyz_env.py",
+  "dp_history": "two consecutive full native39 observations; earliest repeated at t=0",
+  "fields": [
+    {
+      "meaning": "world position of MuJoCo hand body COM; not tcp_center",
+      "name": "current.hand_xyz",
+      "slice": [
+        0,
+        3
+      ]
+    },
+    {
+      "meaning": "distance between rightclaw and leftclaw body COM / 0.1m, clipped [0,1]",
+      "name": "current.gripper",
+      "slice": [
+        3,
+        4
+      ]
+    },
+    {
+      "meaning": "task-specific interaction point in world coordinates",
+      "name": "current.handle_xyz",
+      "slice": [
+        4,
+        7
+      ]
+    },
+    {
+      "meaning": "task-specific quaternion ordering documented below; unchanged",
+      "name": "current.object_quaternion",
+      "slice": [
+        7,
+        11
+      ]
+    },
+    {
+      "meaning": "zero placeholder; not a physical position; unchanged",
+      "name": "current.absent_object2_xyz",
+      "slice": [
+        11,
+        14
+      ]
+    },
+    {
+      "meaning": "zero placeholder; unchanged",
+      "name": "current.absent_object2_quaternion",
+      "slice": [
+        14,
+        18
+      ]
+    },
+    {
+      "meaning": "world position of MuJoCo hand body COM; not tcp_center",
+      "name": "previous.hand_xyz",
+      "slice": [
+        18,
+        21
+      ]
+    },
+    {
+      "meaning": "distance between rightclaw and leftclaw body COM / 0.1m, clipped [0,1]",
+      "name": "previous.gripper",
+      "slice": [
+        21,
+        22
+      ]
+    },
+    {
+      "meaning": "task-specific interaction point in world coordinates",
+      "name": "previous.handle_xyz",
+      "slice": [
+        22,
+        25
+      ]
+    },
+    {
+      "meaning": "task-specific quaternion ordering documented below; unchanged",
+      "name": "previous.object_quaternion",
+      "slice": [
+        25,
+        29
+      ]
+    },
+    {
+      "meaning": "zero placeholder; not a physical position; unchanged",
+      "name": "previous.absent_object2_xyz",
+      "slice": [
+        29,
+        32
+      ]
+    },
+    {
+      "meaning": "zero placeholder; unchanged",
+      "name": "previous.absent_object2_quaternion",
+      "slice": [
+        32,
+        36
+      ]
+    },
+    {
+      "meaning": "native _target_pos; visible world xyz",
+      "name": "current.goal_xyz",
+      "slice": [
+        36,
+        39
+      ]
+    }
+  ],
+  "input_adaptation": "No history padding change; canonical simulator/model reset only",
+  "metaworld_commit": "6e01ad7e2ffb2302e4dca04f796fcd8837df8540",
+  "metaworld_version": "3.1.1",
+  "native_history": "current18 + previous18 + current goal3; native reset repeats current18 into previous18",
+  "observation_dim": 39,
+  "raw_selection": "entire native goal-observable vector",
+  "relative_mapping": "For each 18-block hand -= its handle; current goal -= current handle; all other fields preserved",
+  "reproduction": "Task+seed+canonical reset with full mjSTATE_INTEGRATION/model/target/history diagnostic snapshot; independent and reused replay tolerance 1e-9",
+  "reset_procedure": "restore initial body_pos/site_pos/eq_data, mj_resetData+forward, clear exception/history caches, set Task, seed, native reset",
+  "schema_version": "relative-dp-round1-v1",
+  "step_return_order": [
+    "observation",
+    "reward",
+    "terminated",
+    "truncated",
+    "info"
+  ],
+  "storage": "NPZ obs float32; reset snapshots float64; policy casts to float32",
+  "task_interface": "public Task/set_task, env_cls + rand_vec + partially_observable=False; env.seed(seed), native reset()",
+  "tasks": {
+    "door": {
+      "action_dim": 4,
+      "action_high": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "action_low": [
+        -1.0,
+        -1.0,
+        -1.0,
+        -1.0
+      ],
+      "action_meaning": "normalized Cartesian mocap increments xyz, native scale then workspace clip; gripper control [a3,-a3]",
+      "action_scale_metres": 0.01,
+      "control_frequency_hz": 80.0,
+      "control_timestep_seconds": 0.0125,
+      "expert_offsets": "expert subtracts 0.05m from handle x in its private observation copy; representation retains native handle",
+      "extra_action_scaling": false,
+      "frame_skip": 5,
+      "goal": "base+[-0.3,-0.45,0]m",
+      "goal_observable": true,
+      "handle": "handle geometry center, no extra offset",
+      "max_episode_steps": 500,
+      "native_reset_high": [
+        0.1,
+        0.95,
+        0.15
+      ],
+      "native_reset_low": [
+        0.0,
+        0.85,
+        0.15
+      ],
+      "native_success": "abs(observed_handle.x-target.x)<=0.08",
+      "native_terminated_on_success": false,
+      "physics_timestep_seconds": 0.0025,
+      "quaternion": "scipy Rotation(handle xmat).as_quat(): x,y,z,w",
+      "runtime_checks_passed": true,
+      "runtime_observation_dim": 39,
+      "runtime_reset_observation": [
+        0.004584200424389423,
+        0.6013881136259892,
+        0.19514345491770416,
+        1.0,
+        0.24072163014972991,
+        0.6928601045245201,
+        0.15003594872010784,
+        0.6907584981379647,
+        -0.15062096865140917,
+        0.6908786606941268,
+        0.15117108602568133,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.004584200424389423,
+        0.6013881136259892,
+        0.19514345491770416,
+        1.0,
+        0.24072163014972991,
+        0.6928601045245201,
+        0.15003594872010784,
+        0.6907584981379647,
+        -0.15062096865140917,
+        0.6908786606941268,
+        0.15117108602568133,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        -0.25,
+        0.4499999999999999,
+        0.15
+      ],
+      "source_file": "/home/users/oscar/Agent_Training/agent_training/.pixi/envs/default/lib/python3.11/site-packages/metaworld/envs/sawyer_door_v3.py",
+      "source_sha256": "8169e20d95a476d789c2fab312dc1cf403c27fe5d97fb4350f3d62c483d628c9",
+      "source_url": "https://github.com/Farama-Foundation/Metaworld/blob/6e01ad7e2ffb2302e4dca04f796fcd8837df8540/metaworld/envs/sawyer_door_v3.py",
+      "task_name": "door-open-v3"
+    },
+    "drawer": {
+      "action_dim": 4,
+      "action_high": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "action_low": [
+        -1.0,
+        -1.0,
+        -1.0,
+        -1.0
+      ],
+      "action_meaning": "normalized Cartesian mocap increments xyz, native scale then workspace clip; gripper control [a3,-a3]",
+      "action_scale_metres": 0.01,
+      "control_frequency_hz": 80.0,
+      "control_timestep_seconds": 0.0125,
+      "expert_offsets": "handle+[0,0,-0.02] target adjustment",
+      "extra_action_scaling": false,
+      "frame_skip": 5,
+      "goal": "base+[0,-0.36,0.09]m",
+      "goal_observable": true,
+      "handle": "drawer_link body COM + [0,-0.16,0]m",
+      "max_episode_steps": 500,
+      "native_reset_high": [
+        0.1,
+        0.9,
+        0.0
+      ],
+      "native_reset_low": [
+        -0.1,
+        0.9,
+        0.0
+      ],
+      "native_success": "norm(observed_handle-target)<=0.03",
+      "native_terminated_on_success": false,
+      "physics_timestep_seconds": 0.0025,
+      "quaternion": "MuJoCo drawer_link body xquat: w,x,y,z",
+      "runtime_checks_passed": true,
+      "runtime_observation_dim": 39,
+      "runtime_reset_observation": [
+        0.004562983774825093,
+        0.6014653573605453,
+        0.19518841952242938,
+        1.0,
+        0.0,
+        0.729999999999998,
+        0.09000000000000001,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.004562983774825093,
+        0.6014653573605453,
+        0.19518841952242938,
+        1.0,
+        0.0,
+        0.729999999999998,
+        0.09000000000000001,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.54,
+        0.09
+      ],
+      "source_file": "/home/users/oscar/Agent_Training/agent_training/.pixi/envs/default/lib/python3.11/site-packages/metaworld/envs/sawyer_drawer_open_v3.py",
+      "source_sha256": "412196bd16b1e0990d7d4c03e21608fdb654de40976347a05adae12d418f5aa1",
+      "source_url": "https://github.com/Farama-Foundation/Metaworld/blob/6e01ad7e2ffb2302e4dca04f796fcd8837df8540/metaworld/envs/sawyer_drawer_open_v3.py",
+      "task_name": "drawer-open-v3"
+    }
+  }
+}

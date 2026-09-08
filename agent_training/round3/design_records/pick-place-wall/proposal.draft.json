@@ -1,0 +1,53 @@
+{
+  "task": "pick-place-wall",
+  "status": "DRAFT_NOT_FROZEN_NOT_FINAL",
+  "preserved_at": "2026-09-08T04:53:45.714954+00:00",
+  "agent_backend": "codex_session",
+  "designer": {
+    "name": "/root/r3_design_pickwall",
+    "model": "unavailable",
+    "session": "unavailable",
+    "tokens": "unavailable",
+    "cost": "unavailable"
+  },
+  "stop_reason": "Coordinator relayed user request to stop immediately and migrate server.",
+  "context_exposure": {
+    "scope": "Only round3/DESIGN_CONTRACT.md and files under round3/evidence/pick-place-wall/. No source, expert, reward implementation, historical reports, extra demonstrations, or development/test states read.",
+    "text_read": [
+      "round3/DESIGN_CONTRACT.md",
+      "round3/evidence/pick-place-wall/bundle.json",
+      "round3/evidence/pick-place-wall/DESIGN_INTERFACE.md",
+      "round3/evidence/pick-place-wall/task_materials.json",
+      "round3/evidence/pick-place-wall/D2_summary.json",
+      "round3/evidence/pick-place-wall/frames.json"
+    ],
+    "text_read_note": "D2_summary.json output was partly truncated by tool output budget; no claim of full numerical inspection.",
+    "numerical_read": [
+      "round3/evidence/pick-place-wall/demo_1_trajectory.npz",
+      "round3/evidence/pick-place-wall/demo_2_trajectory.npz"
+    ],
+    "numerical_read_note": "NPZ files loaded to inspect keys, array shapes, and dtypes only; detailed trajectory event analysis was pending.",
+    "visual_read_note": "All 16 supplied PNG frames viewed individually, all 8 in each demonstration."
+  },
+  "observations_so_far": [
+    "Demo 1 arrays: obs (80,45), actions (79,4), time_seconds (80,). Demo 2 arrays: obs (85,45), actions (84,4), time_seconds (85,).",
+    "Frames show approach, grasp, lift, then transport over the wall; late demo 2 frames show lowering toward its lower target.",
+    "Bundled static geometry places wall x extent at approximately [-0.02,0.22] m and top at z=0.12 m; the fixed wall is not symmetric in x around the training factors.",
+    "Summary endpoint object positions remain short of target y; no release sequence is visible in supplied frames. Exact placement or release labels must not be invented.",
+    "Object and goal x factors co-vary in LL and HH evidence; applicability to unseen cross-factor cells remains prospective."
+  ],
+  "provisional_mechanism_notes_NOT_CANDIDATES": [
+    "Potential P1: world-frame structured relation conditioning with separate hand-object, object-goal, and wall geometry features; no hierarchy.",
+    "Potential P2: learned event-conditioned diffusion with phases or soft routing supervised by training-only physical progress labels. Exact labels, schedule, and runtime decisions unresolved.",
+    "Potential P3: consider joint action/future-state diffusion with geometry auxiliary losses, possibly combined with P1 relation features. No mechanism selected or quantitative loss specification completed."
+  ],
+  "pending": [
+    "Detailed D2 numerical event and clearance analysis.",
+    "Exactly three fully specified, meaningfully distinct mechanisms and serious combination decision.",
+    "Quantitative losses, units, scaling, schedules, labels, runtime decisions, chunk handling and parameter budgets.",
+    "Actual evidence SHA256 verification.",
+    "Required complete proposal.json and concise rationale.md; neither exists from this agent."
+  ],
+  "implementation_or_training_performed": false,
+  "final_proposal_created": false
+}

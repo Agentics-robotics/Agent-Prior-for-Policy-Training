@@ -1,0 +1,84 @@
+{
+  "debug_checkpoint_hashes": {
+    "debug/drawer_raw_n20_s0/checkpoints/step_000010.pt": "cfe0738b4de4abac218c42169e4cb6c628a2f1b2cc824e70824c4cf24d8e8817"
+  },
+  "debug_rollout": {
+    "diagnostic_maxima": {
+      "grasp_success": 1.0,
+      "in_place_reward": 0.13328890369877,
+      "near_object": 0.0
+    },
+    "elapsed_seconds": 4.572272375226021,
+    "env_seed": 900001,
+    "episode_id": "drawer_debug_midpoint",
+    "episode_length": 500,
+    "exception": null,
+    "failure_reason": "environment_truncated",
+    "final_info": {
+      "grasp_reward": 0.00942804354269612,
+      "grasp_success": 1.0,
+      "in_place_reward": 0.13328890369877,
+      "near_object": 0.0,
+      "obj_to_target": 0.18999999999999784,
+      "success": 0.0,
+      "unscaled_reward": 0.7135847362073305
+    },
+    "first_success_step": null,
+    "initial_base_position": [
+      -1.3877787807814457e-17,
+      0.9,
+      0.0
+    ],
+    "initial_condition_hash": "75258810f1bebeea96d3d20061d455e5613d23181e05e55ada8ec46a40bc3d62",
+    "policy_sampling_seed": 5866488645731180335,
+    "reached_step_limit": true,
+    "restored_initial_base_position": [
+      -1.3877787807814457e-17,
+      0.9,
+      0.0
+    ],
+    "return": 434.5712503782552,
+    "success": false,
+    "task_params": {
+      "base_position": [
+        -1.3877787807814457e-17,
+        0.9,
+        0.0
+      ],
+      "partially_observable": false
+    },
+    "terminated": false,
+    "trajectory_sha256": "b87998f51c8dc8758e4e1aefc18edbea3da037109fc9b647d6b49b684d0d90e3",
+    "truncated": true
+  },
+  "elapsed_seconds": 17.09061916358769,
+  "file_hashes": {
+    "artifacts/observation_schema.json": "b43311c3cec384fd696c38573070dce5a1ff6f920cc5154cc225d0718ef8744e",
+    "data/dataset_manifest.json": "1695e14b53a8602343a640bc04cff53cfdc53a3e2230e6c64b9249c4622f6ec3",
+    "pixi.lock": "a47fbce71bc6e30a1ede8406c2a8af12d901c2534635e82c3632d66a5658e520",
+    "pixi.toml": "cb7b37d4e6287acce7414c56535de228eea4bc8ba839f7a76f643447be6a3ede",
+    "pyproject.toml": "15079afc6b263551c32f433efeacba2e5189cfd0d972cfbefd69e74e056774e9",
+    "src/relative_dp/__init__.py": "3bb2bf83da8b2c0c1d48873a00f243374064ce129397ce4b219f9dd1875e0b75",
+    "src/relative_dp/collection.py": "148a624c00ec35000e77fbcd64ec3084c3960fdf6ec28366d8f99ccf0a78ac89",
+    "src/relative_dp/config.py": "1dc8779534ac9abb8a16c5cdc9214911439f8fd22e99d1993ed8becc1f5bdf5f",
+    "src/relative_dp/dataset.py": "ea08e1979f2be2b7a02b740439e30eaa271970c5c8479863b921f2006522a3de",
+    "src/relative_dp/environment.py": "36f97bba7ba4316a54e396d459c24482af15b4b8f0637707c1012c80982688a6",
+    "src/relative_dp/evaluate.py": "21cb1997aed76812592af506143080d41442bf345de34cba1f459a87b8ba6b37",
+    "src/relative_dp/model.py": "20de4713507957d84d5237ed318dedeab16f87aa3ee00d6b6123ab5ac5a61908",
+    "src/relative_dp/representation.py": "b842cc74812253380b1820874d80c563c7ca56f84c7474ff7755eea1fc00b772",
+    "src/relative_dp/train.py": "d7c1f4a08bfe22c3f3ecb5f1e03a0b714230b139edd4383457a552d4a4904eca",
+    "src/relative_dp/utils.py": "236b21cedb205b314e38ea0a0fecf094523a21c775801954eaef0f0ebdf3c1f1",
+    "src/relative_dp/vendor/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/relative_dp/vendor/diffusion_policy/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/relative_dp/vendor/diffusion_policy/conditional_unet1d.py": "f78f3c77eea5ab1b59e210837cfdeab8d0a85bbf82c72efa4c39d640bfa50137",
+    "src/relative_dp/vendor/diffusion_policy/conv1d_components.py": "ea2aa10e297cf253bc1a1919ba47fe6ae32049b5eaaab292ed9cc145d8d2adc0",
+    "src/relative_dp/vendor/diffusion_policy/positional_embedding.py": "2266c75ecc9c9ac8ca126839d39a7bafbdd7af8800d6de903f66815e64cc366c",
+    "tests/test_dataset.py": "5a8cf7ac70be578936b65a98380a15dfc757b96d8033cf9ac3e682545f080a50",
+    "tests/test_environment.py": "07c22e9b07ccdd75f8ae1d5e5c922879d73f1631eb305a0ac7ce55489bf7fe08",
+    "tests/test_evaluate.py": "3c955dbeea9f74521156e5c9a9dc6e76061b8767e09f7275d5c8e2bead3b959e",
+    "tests/test_model.py": "c52f46967e3af779473be77311667f2502855d0b93c518274fef89d0f739838f",
+    "tests/test_representation.py": "97983deec04aba417f597e8a91a1b6359520d4b5bbbf8bc02f2d91c4261ef98c"
+  },
+  "passed": true,
+  "test_exit_code": 0
+}
