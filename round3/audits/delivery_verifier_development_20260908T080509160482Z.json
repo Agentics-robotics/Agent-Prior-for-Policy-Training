@@ -1,0 +1,38 @@
+{
+  "audit_scope_complete": false,
+  "audit_version": 1,
+  "auditor_sha256": "3a29a098596faf0bbea295414d962086b184aec60a3cc4e74827a56108460e30",
+  "completed_utc": "2026-09-08T08:05:09.160451+00:00",
+  "context": "peg-insert-side: one feedback cycle",
+  "counts": {
+    "archived_operational_evidence_checked": 1,
+    "bytes_hashed": 18220958883,
+    "cpu_checkpoints_checked": 225,
+    "demonstrations_checked": 120,
+    "dev_episodes_checked": 3700,
+    "normalizers_refit_from_current_DN": 75,
+    "physical_files_hashed": 9780,
+    "reset_snapshots_checked": 420
+  },
+  "elapsed_seconds": 72.19210764102172,
+  "error": "ValueError: P4 plan does not match single feedback decision",
+  "global_freeze_validated": false,
+  "limits": [
+    "CPU artifact verification only; no policy inference, new rollouts, or simulator replay.",
+    "Success and other totals are recomputed from recorded trajectory flags and infos; no unrecorded simulator outcomes are inferred.",
+    "Current-DN normalizers and configured model initialization are recomputed; historical optimizer execution is supported by checkpoint/log evidence, not independently replayed.",
+    "Source, checkpoint, reset, standalone record, and aggregate identities are checked; no claim of adversarially tamper-proof historical provenance.",
+    "The mutable run ledger is snapshotted at audit start; runs completed afterwards may remain pending in this audit.",
+    "A passing dev subset is not complete training, complete evaluation, or final delivery.",
+    "Final report prose, figures, videos, and cross-training-seed stability are outside this numerical audit."
+  ],
+  "locked_test_contents_accessed": false,
+  "numerical_delivery_complete": false,
+  "passed": false,
+  "pending_counts": {
+    "dev": 22,
+    "test": 0,
+    "training": 21
+  },
+  "stage": "dev"
+}

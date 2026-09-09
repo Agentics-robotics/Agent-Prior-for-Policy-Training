@@ -1,0 +1,42 @@
+{
+  "decision": "Retain all predeclared distributions and every frozen state. Peg E scripted expert succeeded18/20; two timeout failures with finite native simulation do not prove infeasibility. Other tasks/splits20/20. All120 successful training demonstrations replay exactly; no failed calibration is deleted.",
+  "failed_calibration_episodes": [
+    {
+      "episode_id": "r3_peg-insert-side_calibration_E_005_30402005",
+      "exception": null,
+      "final_info": {
+        "grasp_reward": 0.43543461429635677,
+        "grasp_success": 0.0,
+        "in_place_reward": 0.04109778674635495,
+        "near_object": 1.0,
+        "obj_to_target": 0.5829829141479049,
+        "success": 0.0,
+        "unscaled_reward": 0.039018654922129324,
+        "valid_joint": true
+      },
+      "invalid_joint": false,
+      "steps": 500,
+      "termination_reason": "native_truncated"
+    },
+    {
+      "episode_id": "r3_peg-insert-side_calibration_E_017_30402017",
+      "exception": null,
+      "final_info": {
+        "grasp_reward": 0.3951412850260878,
+        "grasp_success": 0.0,
+        "in_place_reward": 0.03949820090741521,
+        "near_object": 0.0,
+        "obj_to_target": 0.5721337219735785,
+        "success": 0.0,
+        "unscaled_reward": 0.0372462378519461,
+        "valid_joint": true
+      },
+      "invalid_joint": false,
+      "steps": 500,
+      "termination_reason": "native_truncated"
+    }
+  ],
+  "physical_scope": "Locked source reset parameters and geometry audit; unchanged robot/control/dynamics; no adaptation to learned policy outcomes",
+  "policy_scores_used": false,
+  "time": "2026-09-08T05:24:26.377058+00:00"
+}

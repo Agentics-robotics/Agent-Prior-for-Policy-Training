@@ -1,0 +1,423 @@
+{
+  "task": "assembly",
+  "decision": "no_revision",
+  "version": 1,
+  "record_type": "sole_N5_development_feedback_decision",
+  "created_at": "2026-09-08T06:14:08.579785Z",
+  "agent_backend": "codex_session",
+  "designer": "/root/feedback_assembly",
+  "designer_metadata": {
+    "role": "Actual Codex N5 development-feedback design subagent",
+    "exact_model": null,
+    "session_id": null,
+    "token_count": null,
+    "cost": null,
+    "availability_note": "Exact model identifier, session ID, token accounting and cost are not exposed to this subagent; not estimated."
+  },
+  "original_proposal_sha256": "191a05c3b94c5077f7a5bc3d0fbe168759ca634f9f4caa5040ea5bb19bb087d6",
+  "initial_feasibility_revision_sha256": "17fff5fb1ef886bf6b1a7c157805410f2555b6f86feea564d8a61e45f3af6ed8",
+  "context_exposure": {
+    "semantic_input_scope": [
+      "round3/DESIGN_CONTRACT.md",
+      "round3/evidence/assembly/task_materials.json",
+      "round3/evidence/assembly/DESIGN_INTERFACE.md",
+      "round3/design_records/assembly/proposal.json",
+      "round3/design_records/assembly/rationale.md",
+      "round3/design_records/assembly/initial_feasibility_revision.json",
+      "round3/design_records/assembly/feedback/ files enumerated in feedback_hashes"
+    ],
+    "inherited_instruction_scope": "Coordinator assignment, user AGENTS/environment instructions and platform/developer/tool instructions. Coordinator assignment authorizes only this assembly N5 packet for this decision.",
+    "visual_review": "All eight original feedback frame PNGs individually rendered through tools.view_image, plus training_curves.png. P2_step_200.png visibly and in metadata is the terminal step 91 frame, not step 200; the episode-success overlay at step 50 denotes the episode outcome, not proof that success occurred at step 50.",
+    "numerical_review": "Pixi Python parsed all four complete training-curve JSON arrays (201 records each) and all four complete diagnostics (50 episodes each). Inspected interval statistics across all updates, final values and full plot, a table covering every diagnostic episode for all four candidates, failed-episode ranges/quantiles, all bundle scores and confidence intervals. Initial broad textual displays were partly truncated; subsequent targeted summaries and the full diagnostic table resolved the feedback needed for this decision.",
+    "hash_scope": "Read bytes only from the six permitted design/material files and every file inside assembly/feedback. Verified all feedback-local bound_files entries. Paths/hashes referring outside the packet occur in bundle metadata; their target files were not opened.",
+    "excluded_content": "No N2/N10/N20 model results, other-task results, expert/reward/source implementations, current-D5-or-larger demonstration trajectories, locked-test states/results, raw development rollout arrays, checkpoint contents, original task plugin, shared training source or unlisted design files were opened before this decision.",
+    "runtime_information": "No runtime inputs or policy modules changed. Images, scores and offline diagnostics are design-only evidence.",
+    "output_scope": "Only this immutable single decision record is written. No P4 implementation, new configuration, training process, development feedback cycle or evaluation is created by this decision."
+  },
+  "evidence_hashes": {
+    "round3/DESIGN_CONTRACT.md": "d3fe292220813dd805d0be8d330f215ab5da3da9a83669e9e54501509f10338d",
+    "round3/evidence/assembly/task_materials.json": "ef7889dd002a550ddae332660f91a5488b9df7f6c14148638ecd71bf2ae8141a",
+    "round3/evidence/assembly/DESIGN_INTERFACE.md": "fe0a1c4a12c4bd170d432f48cf1cb3ae98028cc37a5d1ad0f4cff6d0d14f0101",
+    "round3/design_records/assembly/proposal.json": "191a05c3b94c5077f7a5bc3d0fbe168759ca634f9f4caa5040ea5bb19bb087d6",
+    "round3/design_records/assembly/rationale.md": "0f07d5aea9be45fa0f697a44b27a40caf44b70f70fddf9ca4a254472f57c7a5f",
+    "round3/design_records/assembly/initial_feasibility_revision.json": "17fff5fb1ef886bf6b1a7c157805410f2555b6f86feea564d8a61e45f3af6ed8"
+  },
+  "feedback_hashes": {
+    "round3/design_records/assembly/feedback/B0_offline_diagnostics.json": "3ea9ed52df5427ffc9f046d54bd48bc1538a10576f4860d6cf9821a235f78704",
+    "round3/design_records/assembly/feedback/B0_step_050.png": "dbc11714f9f7eb4ac2ddb0f7288301fa62d6614d82ffad66d2059f4425c9c153",
+    "round3/design_records/assembly/feedback/B0_step_200.png": "8bddb23fb2acb24c60ae752c64664857b77dd38a54236f2e28929a19ac9d3af4",
+    "round3/design_records/assembly/feedback/B0_training_curve.json": "428963952ce4f7e9c9e373acd743dcaa97c94d4af33383537218b481b1a878ba",
+    "round3/design_records/assembly/feedback/P1_offline_diagnostics.json": "bd4fcbdd2d2e3eae28d25a1fdd830f2fe97b6273ef130218b53468e90e75bfa1",
+    "round3/design_records/assembly/feedback/P1_step_050.png": "6796510a0463e6353a4d04a021754d8f40c0c3ca437b67cdf1b6b15b153c98d4",
+    "round3/design_records/assembly/feedback/P1_step_200.png": "4c3e1e5b3e419b14bdf41646aa591ae5e3099eee74f4a324e938af6f31d9265c",
+    "round3/design_records/assembly/feedback/P1_training_curve.json": "e3d8b4632dbd4e0e45c9de1836c4c4025007a9c35a4783f63bf17b3b8c93cb52",
+    "round3/design_records/assembly/feedback/P2_offline_diagnostics.json": "c7973f92191ee9ef2d466f4292e68ed5d675ee110d7ec86f707870a7af27b885",
+    "round3/design_records/assembly/feedback/P2_step_050.png": "81820d7d889ca794ea0e94310f02be1a8d0694a9937380ec179454d9ac5bc435",
+    "round3/design_records/assembly/feedback/P2_step_200.png": "836c92123405529e80847017d4ab004ff97be6eb017c2a5e5d9a9c96be4e125a",
+    "round3/design_records/assembly/feedback/P2_training_curve.json": "015993d9edb1dd434473666142a15d989b362f0f7b3650774b14ff5abfaf63d2",
+    "round3/design_records/assembly/feedback/P3_offline_diagnostics.json": "b6f7752726e70bb78d11fda8341dba9f1573e7e3db146a3e9138cd830fe7713e",
+    "round3/design_records/assembly/feedback/P3_step_050.png": "c5ebe4fed36d72aa7585b2dfee41a6753a60efb18ea600b6434bc5b8884eb9ca",
+    "round3/design_records/assembly/feedback/P3_step_200.png": "c79763799f1a60578ec7306ff0d1e039b060bc161256767833157918cf0abbe8",
+    "round3/design_records/assembly/feedback/P3_training_curve.json": "4cdce47dd7d39fab43b72e3a0fb549e7043c868751922c46c5f79dfbf44b4622",
+    "round3/design_records/assembly/feedback/bundle.json": "69396cf21c0d4b5e0acdebf7ad2b7c18cb6d5f0fe86476585553c6efdd565811",
+    "round3/design_records/assembly/feedback/training_curves.png": "46b2a2eeb9fe4c8859ee765820b23317957573009cb01ba5278da450f36afe30"
+  },
+  "feedback_integrity": {
+    "all_feedback_local_bound_hashes_match": true,
+    "bundle_task": "assembly",
+    "train_n": 5,
+    "stage": "dev",
+    "contains_locked_test_reported": false,
+    "invalid_entries_reported": [],
+    "frames_viewed": 8,
+    "diagnostic_records_inspected": 200,
+    "training_curve_records_inspected": 804
+  },
+  "evidence_assessment": {
+    "supports": [
+      "On this allowed seed-0 N5 development packet, P2 has the highest observed C+E success rate: 17/40 (42.5%), versus B0 2/40 (5%), P1 10/40 (25%), P3 10/40 (25%). P2 achieves 7/20 C, 10/20 E and 10/10 IID. This is an observed development comparison, not a held-out final conclusion.",
+      "All four complete curves have finite logged losses/gradients through 20,000 updates, falling losses and identical logged step/pairing-digest sequences. There is no observed numerical divergence or unfinished optimization in these curve artifacts that motivates a protocol change. Low training loss does not establish off-distribution action quality.",
+      "All 13 P2 C failures and all 10 P2 E failures have zero recorded fraction within the descriptive 5 cm hand-to-handle band, low peak ring lift and the descriptive never_near_interaction_point label. This localizes its recorded failure pattern broadly to obtaining the interaction, rather than furnishing evidence of a near-goal coordinate branch problem.",
+      "The selected matched C episode frames show the ring raised in P2 at step 50 and around the peg at terminal step 91; B0/P1/P3 leave the ring near the table/start at the two displayed times. These snapshots support the numerical difference for that one episode only.",
+      "P3 learns its training auxiliary targets (final event cross entropy about 0.00245 and future SmoothL1 about 0.0000738), but achieves 0/20 C, while some of its failed C records have substantial lift. Auxiliary target fitting alone therefore supplies no empirical reason to add this mechanism to P2."
+    ],
+    "cannot_support": [
+      "This packet contains one training seed and only 10 IID, 20 C and 20 E cases per policy, with wide binomial intervals. It cannot establish a population ranking, run-to-run robustness, an N20 result or locked-test generalization.",
+      "The three candidates are not a factorial ablation. P2 changes both its anchored input representation and action coordinates; the scores cannot attribute its benefit uniquely to a moving action frame, a particular anchor, dimensions or another interaction.",
+      "Descriptive 5 cm labels are not contact or phase ground truth: some successful P2 C episodes have min-hand distances above 5 cm, and some P1/P3 episodes labeled never-near nevertheless lift substantially. No runtime switch or phase classifier should be designed by treating these labels as an oracle.",
+      "Two frames from one matched episode do not show the complete failed approach trajectory, gripper timing, contact cause, or a representative failure distribution. The selected episode is a P2 success, so its images do not visually diagnose P2 failures.",
+      "The records show no P2 failed near-goal transition or evidence that its 2 cm frame fallback is the current bottleneck. They also do not determine whether absolute-goal dependence, learned action correlations, grasp geometry or diffusion extrapolation causes failed interaction.",
+      "No additional training budget, runtime oracle/controller, speculative extra feedback cycle or positive generalization claim follows from these observations."
+    ],
+    "score_review": {
+      "B0": {
+        "train_n": 5,
+        "ood_success_rate": 0.05,
+        "splits": {
+          "C": {
+            "successes": 0,
+            "n": 20,
+            "success_rate": 0.0,
+            "binomial_95ci": [
+              0.0,
+              0.16112515805281938
+            ]
+          },
+          "E": {
+            "successes": 2,
+            "n": 20,
+            "success_rate": 0.1,
+            "binomial_95ci": [
+              0.027866481213768224,
+              0.3010336452284873
+            ]
+          },
+          "IID": {
+            "successes": 8,
+            "n": 10,
+            "success_rate": 0.8,
+            "binomial_95ci": [
+              0.49016247153664183,
+              0.9433178485456247
+            ]
+          }
+        },
+        "parameter_count": 4718148
+      },
+      "P1": {
+        "train_n": 5,
+        "ood_success_rate": 0.25,
+        "splits": {
+          "C": {
+            "successes": 0,
+            "n": 20,
+            "success_rate": 0.0,
+            "binomial_95ci": [
+              0.0,
+              0.16112515805281938
+            ]
+          },
+          "E": {
+            "successes": 10,
+            "n": 20,
+            "success_rate": 0.5,
+            "binomial_95ci": [
+              0.2992980081982123,
+              0.7007019918017877
+            ]
+          },
+          "IID": {
+            "successes": 10,
+            "n": 10,
+            "success_rate": 1.0,
+            "binomial_95ci": [
+              0.7224672001371107,
+              0.9999999999999999
+            ]
+          }
+        },
+        "parameter_count": 4761156
+      },
+      "P2": {
+        "train_n": 5,
+        "ood_success_rate": 0.425,
+        "splits": {
+          "C": {
+            "successes": 7,
+            "n": 20,
+            "success_rate": 0.35,
+            "binomial_95ci": [
+              0.18119182410108206,
+              0.5671457233147638
+            ]
+          },
+          "E": {
+            "successes": 10,
+            "n": 20,
+            "success_rate": 0.5,
+            "binomial_95ci": [
+              0.2992980081982123,
+              0.7007019918017877
+            ]
+          },
+          "IID": {
+            "successes": 10,
+            "n": 10,
+            "success_rate": 1.0,
+            "binomial_95ci": [
+              0.7224672001371107,
+              0.9999999999999999
+            ]
+          }
+        },
+        "parameter_count": 4840004
+      },
+      "P3": {
+        "train_n": 5,
+        "ood_success_rate": 0.25,
+        "splits": {
+          "C": {
+            "successes": 0,
+            "n": 20,
+            "success_rate": 0.0,
+            "binomial_95ci": [
+              0.0,
+              0.16112515805281938
+            ]
+          },
+          "E": {
+            "successes": 10,
+            "n": 20,
+            "success_rate": 0.5,
+            "binomial_95ci": [
+              0.2992980081982123,
+              0.7007019918017877
+            ]
+          },
+          "IID": {
+            "successes": 10,
+            "n": 10,
+            "success_rate": 1.0,
+            "binomial_95ci": [
+              0.7224672001371107,
+              0.9999999999999999
+            ]
+          }
+        },
+        "parameter_count": 4936660
+      }
+    },
+    "training_curve_review": {
+      "B0": {
+        "records_inspected": 201,
+        "first_step": 1,
+        "final_step": 20000,
+        "all_steps_strictly_increasing": true,
+        "all_logged_losses_gradients_auxiliaries_finite": true,
+        "first_logged_loss": 1.1587258577346802,
+        "final_logged_loss": 0.0024283858947455883,
+        "last_20_logged_losses_mean": 0.003353782993508503,
+        "final_grad_norm": 0.32405656576156616,
+        "inspection_method": "All records parsed; every 2,000-update interval summarized for loss and gradient minima/means/maxima; full combined plot viewed. No checkpoint or model implementation opened."
+      },
+      "P1": {
+        "records_inspected": 201,
+        "first_step": 1,
+        "final_step": 20000,
+        "all_steps_strictly_increasing": true,
+        "all_logged_losses_gradients_auxiliaries_finite": true,
+        "first_logged_loss": 1.1741877794265747,
+        "final_logged_loss": 0.0024959405418485403,
+        "last_20_logged_losses_mean": 0.0036734046356286854,
+        "final_grad_norm": 0.38448891043663025,
+        "inspection_method": "All records parsed; every 2,000-update interval summarized for loss and gradient minima/means/maxima; full combined plot viewed. No checkpoint or model implementation opened."
+      },
+      "P2": {
+        "records_inspected": 201,
+        "first_step": 1,
+        "final_step": 20000,
+        "all_steps_strictly_increasing": true,
+        "all_logged_losses_gradients_auxiliaries_finite": true,
+        "first_logged_loss": 1.3027387857437134,
+        "final_logged_loss": 0.0022095353342592716,
+        "last_20_logged_losses_mean": 0.0034789091732818633,
+        "final_grad_norm": 0.40933752059936523,
+        "inspection_method": "All records parsed; every 2,000-update interval summarized for loss and gradient minima/means/maxima; full combined plot viewed. No checkpoint or model implementation opened."
+      },
+      "P3": {
+        "records_inspected": 201,
+        "first_step": 1,
+        "final_step": 20000,
+        "all_steps_strictly_increasing": true,
+        "all_logged_losses_gradients_auxiliaries_finite": true,
+        "first_logged_loss": 1.1431576013565063,
+        "final_logged_loss": 0.0024394646752625704,
+        "last_20_logged_losses_mean": 0.004292437923140824,
+        "final_grad_norm": 0.37736326456069946,
+        "inspection_method": "All records parsed; every 2,000-update interval summarized for loss and gradient minima/means/maxima; full combined plot viewed. No checkpoint or model implementation opened.",
+        "final_auxiliary": {
+          "auxiliary_ramp": 1.0,
+          "event_cross_entropy": 0.0024497350677847862,
+          "future_relation_smooth_l1": 7.382740295724943e-05
+        }
+      }
+    },
+    "diagnostics_review": {
+      "records_per_candidate": 50,
+      "P2_failure_ranges": {
+        "C": {
+          "n": 13,
+          "all_descriptive_label_never_near_interaction_point": true,
+          "min_hand_to_interaction_m_range": [
+            0.06073562143912514,
+            0.06983417294223497
+          ],
+          "peak_lift_m_range": [
+            0.0013484172523021698,
+            0.021797794848680496
+          ],
+          "all_fraction_observations_within_5cm_zero": true
+        },
+        "E": {
+          "n": 10,
+          "all_descriptive_label_never_near_interaction_point": true,
+          "min_hand_to_interaction_m_range": [
+            0.07461070019177546,
+            0.1158176338628326
+          ],
+          "peak_lift_m_range": [
+            0.0,
+            0.003201168030500412
+          ],
+          "all_fraction_observations_within_5cm_zero": true
+        }
+      },
+      "all_candidates_E_success_episode_sets_identical_except_B0": true,
+      "interpretation": "Raw common-observation summaries supplied by the packet; thresholds are descriptive and do not change scored success."
+    },
+    "visual_assessment": {
+      "episode_id": "r3_assembly_dev_C_004_32101004",
+      "frames_reviewed": [
+        {
+          "actual_step": 50,
+          "candidate_id": "B0",
+          "episode_id": "r3_assembly_dev_C_004_32101004",
+          "path": "round3/design_records/assembly/feedback/B0_step_050.png",
+          "requested_step": 50,
+          "sha256": "dbc11714f9f7eb4ac2ddb0f7288301fa62d6614d82ffad66d2059f4425c9c153",
+          "success": false
+        },
+        {
+          "actual_step": 200,
+          "candidate_id": "B0",
+          "episode_id": "r3_assembly_dev_C_004_32101004",
+          "path": "round3/design_records/assembly/feedback/B0_step_200.png",
+          "requested_step": 200,
+          "sha256": "8bddb23fb2acb24c60ae752c64664857b77dd38a54236f2e28929a19ac9d3af4",
+          "success": false
+        },
+        {
+          "actual_step": 50,
+          "candidate_id": "P1",
+          "episode_id": "r3_assembly_dev_C_004_32101004",
+          "path": "round3/design_records/assembly/feedback/P1_step_050.png",
+          "requested_step": 50,
+          "sha256": "6796510a0463e6353a4d04a021754d8f40c0c3ca437b67cdf1b6b15b153c98d4",
+          "success": false
+        },
+        {
+          "actual_step": 200,
+          "candidate_id": "P1",
+          "episode_id": "r3_assembly_dev_C_004_32101004",
+          "path": "round3/design_records/assembly/feedback/P1_step_200.png",
+          "requested_step": 200,
+          "sha256": "4c3e1e5b3e419b14bdf41646aa591ae5e3099eee74f4a324e938af6f31d9265c",
+          "success": false
+        },
+        {
+          "actual_step": 50,
+          "candidate_id": "P2",
+          "episode_id": "r3_assembly_dev_C_004_32101004",
+          "path": "round3/design_records/assembly/feedback/P2_step_050.png",
+          "requested_step": 50,
+          "sha256": "81820d7d889ca794ea0e94310f02be1a8d0694a9937380ec179454d9ac5bc435",
+          "success": true
+        },
+        {
+          "actual_step": 91,
+          "candidate_id": "P2",
+          "episode_id": "r3_assembly_dev_C_004_32101004",
+          "path": "round3/design_records/assembly/feedback/P2_step_200.png",
+          "requested_step": 200,
+          "sha256": "836c92123405529e80847017d4ab004ff97be6eb017c2a5e5d9a9c96be4e125a",
+          "success": true
+        },
+        {
+          "actual_step": 50,
+          "candidate_id": "P3",
+          "episode_id": "r3_assembly_dev_C_004_32101004",
+          "path": "round3/design_records/assembly/feedback/P3_step_050.png",
+          "requested_step": 50,
+          "sha256": "c5ebe4fed36d72aa7585b2dfee41a6753a60efb18ea600b6434bc5b8884eb9ca",
+          "success": false
+        },
+        {
+          "actual_step": 200,
+          "candidate_id": "P3",
+          "episode_id": "r3_assembly_dev_C_004_32101004",
+          "path": "round3/design_records/assembly/feedback/P3_step_200.png",
+          "requested_step": 200,
+          "sha256": "c79763799f1a60578ec7306ff0d1e039b060bc161256767833157918cf0abbe8",
+          "success": false
+        }
+      ],
+      "note": "The same episode is compared across all four candidates. Step 50 P2 shows elevation of the nut; terminal step 91 shows placement around the peg. B0/P1/P3 frame pairs show the ring near the table while the hand changes position. No unobserved contact sequence is inferred."
+    }
+  },
+  "alternatives_considered": [
+    {
+      "revision": "Combine P2 anchored representation with P3 soft events/future supervision",
+      "reason_not_adopted": "P3 auxiliary labels fit in training but do not yield C success, and P2 failures have no validated phase diagnosis. Combination could help, but this feedback does not isolate why it would resolve the failed interaction; it would add several coupled learned mechanisms."
+    },
+    {
+      "revision": "Smooth or remove the P2 near-goal basis fallback",
+      "reason_not_adopted": "P2 remaining failed episodes have little lift and stay far from the goal. The packet does not identify the near-goal branch as the failure location, while every P2 episode with substantial demonstrated-style lift in this packet succeeds."
+    },
+    {
+      "revision": "Mask goal dependence or force a grasp-first representation/route",
+      "reason_not_adopted": "There is a plausible spurious-correlation hypothesis, but the packet cannot separate it from grasp/action-distribution error. A stage boundary or phase-based masking rule would require a newly assumed intervention and could disrupt learned transport. Diagnostic distance thresholds are explicitly insufficient contact/phase labels."
+    }
+  ],
+  "rationale": "Choose no_revision. The allowed feedback is informative about current candidate performance and broad failure patterns, but it does not justify one concrete corrective mechanism strongly enough to spend the sole development revision on an assumed cause. P2 already tests the promising anchored-coordinate hypothesis and remains part of the preserved initial experiment. Retaining the original candidates keeps the observed mixed/negative findings intact. This is not a claim that no better assembly prior exists or that P2 will generalize; it records that this one permitted packet does not warrant a specific additional P4 design.",
+  "revision_control": {
+    "decision_final": true,
+    "remaining_development_feedback_cycles": 0,
+    "candidate": null,
+    "implementation_changes": [],
+    "new_formal_runs": [],
+    "original_proposal_preserved": true,
+    "training_or_evaluation_completion_claimed": false,
+    "gpu_work_performed": false,
+    "gpu_authorization_acknowledged": "Current coordinator/user instruction permits physical GPUs 0-5 with at most one formal training process per GPU; this design-only decision launches none."
+  }
+}

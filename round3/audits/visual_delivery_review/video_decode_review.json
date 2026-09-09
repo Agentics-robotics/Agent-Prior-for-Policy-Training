@@ -1,0 +1,393 @@
+{
+  "reviewed_at": "2026-09-08T10:24:08.068673+00:00",
+  "test_gate_validated": true,
+  "physical_gpu_use": false,
+  "policy_calls": 0,
+  "simulator_replay_steps": 0,
+  "scope": "Decode existing MP4s and extract actual frames; no environment or policy execution",
+  "source_report_sha256": "7261ff567747e77bce2822b47f1759857e0f4951c4d55aa4d4c3ba00d88c26a9",
+  "render_complete_sha256": "bcf315ec6026b83f19350ef0dca410c67c67e1c260da60d3e3fb1d722141e7c0",
+  "records": [
+    {
+      "path": "round3/videos/pick-place-wall_fixed_C_N20.mp4",
+      "metadata_path": "round3/videos/pick-place-wall_fixed_C_N20.json",
+      "metadata_sha256": "36024055337db3c21acffb40b10f6973411c11b5d9e2d4d1a79ddfca6d5eb1aa",
+      "video_sha256": "f7a7d192bdbbd187da2049e69ebaeaf17ccdafbedbba1f32ced9a70758835f35",
+      "matching_record_and_metadata": true,
+      "full_decode_success": true,
+      "fps": 20.0,
+      "dimensions": [
+        960,
+        558
+      ],
+      "duration_seconds": 6.3,
+      "decoded_frame_count": 126,
+      "size_bytes": 388510,
+      "maximum_mean_adjacent_frame_delta": 1.6385397998805258,
+      "success": [
+        false,
+        true
+      ],
+      "termination": [
+        "native_truncated",
+        "success"
+      ],
+      "episode_id": "r3_pick-place-wall_test_C_000_33001000",
+      "extracted_frames": [
+        "round3/audits/visual_delivery_review/pick-place-wall_fixed_C_N20_frame_0000.png",
+        "round3/audits/visual_delivery_review/pick-place-wall_fixed_C_N20_frame_0063.png",
+        "round3/audits/visual_delivery_review/pick-place-wall_fixed_C_N20_frame_0125.png"
+      ]
+    },
+    {
+      "path": "round3/videos/pick-place-wall_first_failure_N20.mp4",
+      "metadata_path": "round3/videos/pick-place-wall_first_failure_N20.json",
+      "metadata_sha256": "f52c0307073036d15e4213f106b9e49b770604c88fd74dca7e27300b98c23c05",
+      "video_sha256": "3ad26c4f260bd3ab0ffc49479ba1fc7b12ae35837e4ff83235dd32ec4ad5d78b",
+      "matching_record_and_metadata": true,
+      "full_decode_success": true,
+      "fps": 20.0,
+      "dimensions": [
+        960,
+        558
+      ],
+      "duration_seconds": 6.3,
+      "decoded_frame_count": 126,
+      "size_bytes": 400691,
+      "maximum_mean_adjacent_frame_delta": 1.4988201911589007,
+      "success": [
+        false,
+        true
+      ],
+      "termination": [
+        "native_truncated",
+        "success"
+      ],
+      "episode_id": "r3_pick-place-wall_test_C_005_33001005",
+      "extracted_frames": [
+        "round3/audits/visual_delivery_review/pick-place-wall_first_failure_N20_frame_0000.png",
+        "round3/audits/visual_delivery_review/pick-place-wall_first_failure_N20_frame_0063.png",
+        "round3/audits/visual_delivery_review/pick-place-wall_first_failure_N20_frame_0125.png"
+      ]
+    },
+    {
+      "path": "round3/videos/peg-insert-side_fixed_C_N20.mp4",
+      "metadata_path": "round3/videos/peg-insert-side_fixed_C_N20.json",
+      "metadata_sha256": "d91acf4990f45699b8bb0fa58e5cb37bf2c1fd7b47e2910a9a4ba0c08548f3b4",
+      "video_sha256": "0c628586527b37c677e901cf9c70f69b0c5623821efe095f39872514c9c75590",
+      "matching_record_and_metadata": true,
+      "full_decode_success": true,
+      "fps": 20.0,
+      "dimensions": [
+        960,
+        558
+      ],
+      "duration_seconds": 1.35,
+      "decoded_frame_count": 27,
+      "size_bytes": 224048,
+      "maximum_mean_adjacent_frame_delta": 1.2457555505774591,
+      "success": [
+        true,
+        true
+      ],
+      "termination": [
+        "success",
+        "success"
+      ],
+      "episode_id": "r3_peg-insert-side_test_C_000_33401000",
+      "extracted_frames": [
+        "round3/audits/visual_delivery_review/peg-insert-side_fixed_C_N20_frame_0000.png",
+        "round3/audits/visual_delivery_review/peg-insert-side_fixed_C_N20_frame_0013.png",
+        "round3/audits/visual_delivery_review/peg-insert-side_fixed_C_N20_frame_0026.png"
+      ]
+    },
+    {
+      "path": "round3/videos/peg-insert-side_first_failure_N20.mp4",
+      "metadata_path": "round3/videos/peg-insert-side_first_failure_N20.json",
+      "metadata_sha256": "72b096191340262a73e0178c86585ce551b71d79d1084bb571362d040a9bf10c",
+      "video_sha256": "54970868dcc0b77ebc33e1e8cf0e9d928519a2b09184b14571d6ac432adda61b",
+      "matching_record_and_metadata": true,
+      "full_decode_success": true,
+      "fps": 20.0,
+      "dimensions": [
+        960,
+        558
+      ],
+      "duration_seconds": 6.3,
+      "decoded_frame_count": 126,
+      "size_bytes": 338145,
+      "maximum_mean_adjacent_frame_delta": 2.0803919006371965,
+      "success": [
+        false,
+        true
+      ],
+      "termination": [
+        "native_truncated",
+        "success"
+      ],
+      "episode_id": "r3_peg-insert-side_test_C_001_33401001",
+      "extracted_frames": [
+        "round3/audits/visual_delivery_review/peg-insert-side_first_failure_N20_frame_0000.png",
+        "round3/audits/visual_delivery_review/peg-insert-side_first_failure_N20_frame_0063.png",
+        "round3/audits/visual_delivery_review/peg-insert-side_first_failure_N20_frame_0125.png"
+      ]
+    },
+    {
+      "path": "round3/videos/assembly_fixed_C_N20.mp4",
+      "metadata_path": "round3/videos/assembly_fixed_C_N20.json",
+      "metadata_sha256": "ebd660edba9a7e4c26ac58c8d2c8f87b077b74ee4acb030736ce7ffa3ba60a8b",
+      "video_sha256": "a6226adf43e851022ac644486be2189a27441008ad147f9715d18f7dc2148d79",
+      "matching_record_and_metadata": true,
+      "full_decode_success": true,
+      "fps": 20.0,
+      "dimensions": [
+        960,
+        558
+      ],
+      "duration_seconds": 1.15,
+      "decoded_frame_count": 23,
+      "size_bytes": 217753,
+      "maximum_mean_adjacent_frame_delta": 1.9697437524890482,
+      "success": [
+        true,
+        true
+      ],
+      "termination": [
+        "success",
+        "success"
+      ],
+      "episode_id": "r3_assembly_test_C_000_33101000",
+      "extracted_frames": [
+        "round3/audits/visual_delivery_review/assembly_fixed_C_N20_frame_0000.png",
+        "round3/audits/visual_delivery_review/assembly_fixed_C_N20_frame_0011.png",
+        "round3/audits/visual_delivery_review/assembly_fixed_C_N20_frame_0022.png"
+      ]
+    },
+    {
+      "path": "round3/videos/assembly_first_failure_N20.mp4",
+      "metadata_path": "round3/videos/assembly_first_failure_N20.json",
+      "metadata_sha256": "daafea74221eb59d8694220e5976a8beb23ac79dbdd7e5567a9de04ed3b50415",
+      "video_sha256": "afbe3e245e5c444aedc717284dbfaf160ef62b5750c859b7639480d1873103eb",
+      "matching_record_and_metadata": true,
+      "full_decode_success": true,
+      "fps": 20.0,
+      "dimensions": [
+        960,
+        558
+      ],
+      "duration_seconds": 6.3,
+      "decoded_frame_count": 126,
+      "size_bytes": 569711,
+      "maximum_mean_adjacent_frame_delta": 1.439244200517722,
+      "success": [
+        false,
+        false
+      ],
+      "termination": [
+        "native_truncated",
+        "native_truncated"
+      ],
+      "episode_id": "r3_assembly_test_C_001_33101001",
+      "extracted_frames": [
+        "round3/audits/visual_delivery_review/assembly_first_failure_N20_frame_0000.png",
+        "round3/audits/visual_delivery_review/assembly_first_failure_N20_frame_0063.png",
+        "round3/audits/visual_delivery_review/assembly_first_failure_N20_frame_0125.png"
+      ]
+    },
+    {
+      "path": "round3/videos/stick-push_fixed_C_N20.mp4",
+      "metadata_path": "round3/videos/stick-push_fixed_C_N20.json",
+      "metadata_sha256": "44ca4a24a7c755366ed17454a2a1953a2b500e9c5490c7b017d038d755789491",
+      "video_sha256": "5254b9b01fc3ba17365d6cf217005e13fc50cc30733cb4b01742598660b64c39",
+      "matching_record_and_metadata": true,
+      "full_decode_success": true,
+      "fps": 20.0,
+      "dimensions": [
+        960,
+        558
+      ],
+      "duration_seconds": 1.0,
+      "decoded_frame_count": 20,
+      "size_bytes": 179609,
+      "maximum_mean_adjacent_frame_delta": 1.3834913878932695,
+      "success": [
+        true,
+        true
+      ],
+      "termination": [
+        "success",
+        "success"
+      ],
+      "episode_id": "r3_stick-push_test_C_000_33501000",
+      "extracted_frames": [
+        "round3/audits/visual_delivery_review/stick-push_fixed_C_N20_frame_0000.png",
+        "round3/audits/visual_delivery_review/stick-push_fixed_C_N20_frame_0010.png",
+        "round3/audits/visual_delivery_review/stick-push_fixed_C_N20_frame_0019.png"
+      ]
+    },
+    {
+      "path": "round3/videos/stick-push_first_failure_N20.mp4",
+      "metadata_path": "round3/videos/stick-push_first_failure_N20.json",
+      "metadata_sha256": "1f197f7943c6944fb809aee6a8978c7a1b273348474d39fc7c1ba510dea4f05a",
+      "video_sha256": "58acdd1ac721013ac1ed5dfdad3cb392522b3d56caa5ba822a14465861cc00ff",
+      "matching_record_and_metadata": true,
+      "full_decode_success": true,
+      "fps": 20.0,
+      "dimensions": [
+        960,
+        558
+      ],
+      "duration_seconds": 6.3,
+      "decoded_frame_count": 126,
+      "size_bytes": 314413,
+      "maximum_mean_adjacent_frame_delta": 0.9686392373556352,
+      "success": [
+        false,
+        true
+      ],
+      "termination": [
+        "native_truncated",
+        "success"
+      ],
+      "episode_id": "r3_stick-push_test_C_003_33501003",
+      "extracted_frames": [
+        "round3/audits/visual_delivery_review/stick-push_first_failure_N20_frame_0000.png",
+        "round3/audits/visual_delivery_review/stick-push_first_failure_N20_frame_0063.png",
+        "round3/audits/visual_delivery_review/stick-push_first_failure_N20_frame_0125.png"
+      ]
+    },
+    {
+      "path": "round3/videos/drawer_fixed_C_N20.mp4",
+      "metadata_path": "round3/videos/drawer_fixed_C_N20.json",
+      "metadata_sha256": "02f17092d4a13564cad302d97497e5b4b22b34e14b57e241f703c1a2c01dc9be",
+      "video_sha256": "abc5d32b324496275aa929001a0c153f2c82562c5d2c8aef9682e78a81351e10",
+      "matching_record_and_metadata": true,
+      "full_decode_success": true,
+      "fps": 20.0,
+      "dimensions": [
+        960,
+        558
+      ],
+      "duration_seconds": 1.2,
+      "decoded_frame_count": 24,
+      "size_bytes": 204734,
+      "maximum_mean_adjacent_frame_delta": 1.2729415571485463,
+      "success": [
+        true,
+        true
+      ],
+      "termination": [
+        "success",
+        "success"
+      ],
+      "episode_id": "r3_drawer_test_C_000_33201000",
+      "extracted_frames": [
+        "round3/audits/visual_delivery_review/drawer_fixed_C_N20_frame_0000.png",
+        "round3/audits/visual_delivery_review/drawer_fixed_C_N20_frame_0012.png",
+        "round3/audits/visual_delivery_review/drawer_fixed_C_N20_frame_0023.png"
+      ]
+    },
+    {
+      "path": "round3/videos/drawer_first_failure_N20.mp4",
+      "metadata_path": "round3/videos/drawer_first_failure_N20.json",
+      "metadata_sha256": "9bb60afc8d3af4a2f3610cf04656c5fd1e51d2b6511b56c12b62c9e96f47e4e0",
+      "video_sha256": "e509629d5fb105bddce7cd98cdcc0dbe25a02ba538d898140c98272083b1f4a9",
+      "matching_record_and_metadata": true,
+      "full_decode_success": true,
+      "fps": 20.0,
+      "dimensions": [
+        960,
+        558
+      ],
+      "duration_seconds": 1.3,
+      "decoded_frame_count": 26,
+      "size_bytes": 212219,
+      "maximum_mean_adjacent_frame_delta": 1.2384956192751893,
+      "success": [
+        false,
+        true
+      ],
+      "termination": [
+        "success_threshold_with_joint_violation",
+        "success"
+      ],
+      "episode_id": "r3_drawer_test_C_005_33201005",
+      "extracted_frames": [
+        "round3/audits/visual_delivery_review/drawer_first_failure_N20_frame_0000.png",
+        "round3/audits/visual_delivery_review/drawer_first_failure_N20_frame_0013.png",
+        "round3/audits/visual_delivery_review/drawer_first_failure_N20_frame_0025.png"
+      ]
+    },
+    {
+      "path": "round3/videos/door_fixed_C_N20.mp4",
+      "metadata_path": "round3/videos/door_fixed_C_N20.json",
+      "metadata_sha256": "0da87121fe4e8deaa42c6247f53d733c1df33140ff8d4c17e94839292b4ce61c",
+      "video_sha256": "596f2a0d69166a59d855234010a12841c5d5463a172a7d7ce84a1fd2d8d77ef0",
+      "matching_record_and_metadata": true,
+      "full_decode_success": true,
+      "fps": 20.0,
+      "dimensions": [
+        960,
+        558
+      ],
+      "duration_seconds": 1.5,
+      "decoded_frame_count": 30,
+      "size_bytes": 279000,
+      "maximum_mean_adjacent_frame_delta": 2.506884085025886,
+      "success": [
+        true,
+        true
+      ],
+      "termination": [
+        "success",
+        "success"
+      ],
+      "episode_id": "r3_door_test_C_000_33301000",
+      "extracted_frames": [
+        "round3/audits/visual_delivery_review/door_fixed_C_N20_frame_0000.png",
+        "round3/audits/visual_delivery_review/door_fixed_C_N20_frame_0015.png",
+        "round3/audits/visual_delivery_review/door_fixed_C_N20_frame_0029.png"
+      ]
+    },
+    {
+      "path": "round3/videos/door_first_failure_N20.mp4",
+      "metadata_path": "round3/videos/door_first_failure_N20.json",
+      "metadata_sha256": "530407f6b2e5df37dfef2ce33ea74c11f730fe8d4c940d7dce85ec61b8b3a9c3",
+      "video_sha256": "78c73f8bfc9a950a1876972095e4cd8d73f817e829f4368fd9f94a371409ff89",
+      "matching_record_and_metadata": true,
+      "full_decode_success": true,
+      "fps": 20.0,
+      "dimensions": [
+        960,
+        558
+      ],
+      "duration_seconds": 6.3,
+      "decoded_frame_count": 126,
+      "size_bytes": 345264,
+      "maximum_mean_adjacent_frame_delta": 1.6179479042214258,
+      "success": [
+        false,
+        true
+      ],
+      "termination": [
+        "native_truncated",
+        "success"
+      ],
+      "episode_id": "r3_door_test_E_002_33302002",
+      "extracted_frames": [
+        "round3/audits/visual_delivery_review/door_first_failure_N20_frame_0000.png",
+        "round3/audits/visual_delivery_review/door_first_failure_N20_frame_0063.png",
+        "round3/audits/visual_delivery_review/door_first_failure_N20_frame_0125.png"
+      ]
+    }
+  ],
+  "contact_sheets": [
+    "round3/audits/visual_delivery_review/pick-place-wall_contact_sheet.png",
+    "round3/audits/visual_delivery_review/peg-insert-side_contact_sheet.png",
+    "round3/audits/visual_delivery_review/assembly_contact_sheet.png",
+    "round3/audits/visual_delivery_review/stick-push_contact_sheet.png",
+    "round3/audits/visual_delivery_review/drawer_contact_sheet.png",
+    "round3/audits/visual_delivery_review/door_contact_sheet.png"
+  ],
+  "passed_automated_video_checks": true
+}

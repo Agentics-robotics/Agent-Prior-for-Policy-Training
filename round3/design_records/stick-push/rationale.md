@@ -1,0 +1,9 @@
+# Stick-push isolated initial design
+
+The evidence comprised exactly the two bundled trajectories and all sixteen listed real frames. Both show acquisition of a separate stick, lift, then transport and late container motion. Numeric hand–stick offsets become stable after grasp; initial tool x and target y are correlated only by the LL/HH training sampling. No learned results or additional demonstrations informed this proposal. Images inform this reasoning; the policies consume numerical state only.
+
+P1 exposes world-coordinate pair relations and finite motions with fixed physical scales. P2 tests a horizontal container-to-goal frame for both inputs and displacement actions, retaining world anchor and heading because the robot and gravity remain fixed. Its frame is held at the current replan for both observation rows and all future chunk actions. P3 combines P1 with joint action–future-motion diffusion: nine supervised hand/tool/container displacement channels at weight0.15 accompany the unchanged weight1 action loss. Runtime jointly samples and discards the motion channels; it never consults future state or applies a geometric controller.
+
+The P1+P3 combination is deliberate. Combining P2 and P3 was considered but rejected because two demonstrations give weak evidence for goal-directed lateral push motion, and keeping separate hypotheses makes the comparison interpretable. No geometric data augmentation is assumed valid. All candidates share the fixed 20,000-system-update diffusion protocol, masked zero tails and fresh current-D_N training.
+
+These are prospective hypotheses. Missed grasps, sparse contact changes, unseen states and the short successful demonstrations may cause priors to fail. Quaternion fields are numerical world orientation; container quaternion is an absent zero placeholder. No success, phase, hidden simulator state, runtime future state or episode clock is introduced.

@@ -1,0 +1,301 @@
+{
+  "action_schema": {
+    "control_dt_seconds": 0.0125,
+    "dim": 4,
+    "end_effector_rotation": "fixed native orientation",
+    "fields": [
+      "world_dx",
+      "world_dy",
+      "world_dz",
+      "gripper"
+    ],
+    "high": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "low": [
+      -1,
+      -1,
+      -1,
+      -1
+    ],
+    "native_xyz_scale_m": 0.01,
+    "world_clip": "after policy action decode, before env.step"
+  },
+  "distribution": {
+    "C_cells": [
+      "LH",
+      "HL"
+    ],
+    "E_cells": [
+      "LL",
+      "LH",
+      "HL",
+      "HH"
+    ],
+    "E_definition": "Both factor values are sampled in extrap_low/extrap_high outside training intervals; all four sign cells balanced.",
+    "balanced_training_sequence": [
+      "LL",
+      "HH",
+      "LL",
+      "HH",
+      "LL",
+      "HH",
+      "LL",
+      "HH",
+      "LL",
+      "HH",
+      "LL",
+      "HH",
+      "LL",
+      "HH",
+      "LL",
+      "HH",
+      "LL",
+      "HH",
+      "LL",
+      "HH"
+    ],
+    "factors": {
+      "a": {
+        "extrap_high": [
+          0.675,
+          0.7
+        ],
+        "extrap_low": [
+          0.5,
+          0.525
+        ],
+        "high": [
+          0.625,
+          0.65
+        ],
+        "low": [
+          0.55,
+          0.575
+        ],
+        "name": "peg_y",
+        "units": "m"
+      },
+      "b": {
+        "extrap_high": [
+          0.65,
+          0.675
+        ],
+        "extrap_low": [
+          0.425,
+          0.45
+        ],
+        "high": [
+          0.575,
+          0.6
+        ],
+        "low": [
+          0.5,
+          0.525
+        ],
+        "name": "box_y",
+        "units": "m"
+      }
+    },
+    "nuisance_ranges": {
+      "box_x": [
+        -0.325,
+        -0.275
+      ],
+      "box_z": 0.0,
+      "peg_x": [
+        0.075,
+        0.125
+      ],
+      "peg_z": 0.02
+    },
+    "reset_range_extension": "none; native bounds, or previously calibrated Round 2 cabinet extension",
+    "train_cells": [
+      "LL",
+      "HH"
+    ],
+    "version": "round3-layout-v1"
+  },
+  "eval_counts": {
+    "dev": {
+      "C": 20,
+      "E": 20,
+      "IID": 10
+    },
+    "test": {
+      "C": 40,
+      "E": 40,
+      "IID": 20
+    }
+  },
+  "expert_version": {
+    "backend": "official pinned MetaWorld scripted policy",
+    "commit": "6e01ad7e2ffb2302e4dca04f796fcd8837df8540",
+    "wrapper_sha256": "0f4e4c2a49f41d1ff93ce0fe5ad8d2eef116ad9338b82941dc6efdad5798aa49"
+  },
+  "max_steps": 500,
+  "metaworld_commit": "6e01ad7e2ffb2302e4dca04f796fcd8837df8540",
+  "native_id": "peg-insert-side-v3",
+  "observation_schema": {
+    "all_methods_receive_identical_raw_fields": true,
+    "dp_history": "two whole observations, initial repeated",
+    "extra_physical_pose_channels": "ring body center for assembly; pegHead site for peg-insert-side; same declared channel for B0 and all candidates",
+    "fields": [
+      {
+        "name": "current.hand_xyz",
+        "slice": [
+          0,
+          3
+        ],
+        "units": "m"
+      },
+      {
+        "name": "current.gripper",
+        "slice": [
+          3,
+          4
+        ],
+        "units": "unitless aperture / .1 m"
+      },
+      {
+        "name": "current.object_xyz",
+        "slice": [
+          4,
+          7
+        ],
+        "units": "m"
+      },
+      {
+        "name": "current.object_quaternion",
+        "slice": [
+          7,
+          11
+        ],
+        "units": "unit quaternion"
+      },
+      {
+        "name": "current.object2_xyz",
+        "slice": [
+          11,
+          14
+        ],
+        "units": "m or absent zeros"
+      },
+      {
+        "name": "current.object2_quaternion",
+        "slice": [
+          14,
+          18
+        ],
+        "units": "unit quaternion or absent zeros"
+      },
+      {
+        "name": "previous.hand_xyz",
+        "slice": [
+          18,
+          21
+        ],
+        "units": "m"
+      },
+      {
+        "name": "previous.gripper",
+        "slice": [
+          21,
+          22
+        ],
+        "units": "unitless aperture / .1 m"
+      },
+      {
+        "name": "previous.object_xyz",
+        "slice": [
+          22,
+          25
+        ],
+        "units": "m"
+      },
+      {
+        "name": "previous.object_quaternion",
+        "slice": [
+          25,
+          29
+        ],
+        "units": "unit quaternion"
+      },
+      {
+        "name": "previous.object2_xyz",
+        "slice": [
+          29,
+          32
+        ],
+        "units": "m or absent zeros"
+      },
+      {
+        "name": "previous.object2_quaternion",
+        "slice": [
+          32,
+          36
+        ],
+        "units": "unit quaternion or absent zeros"
+      },
+      {
+        "name": "goal_xyz",
+        "slice": [
+          36,
+          39
+        ],
+        "units": "m"
+      },
+      {
+        "name": "peg_head_xyz",
+        "slice": [
+          39,
+          42
+        ],
+        "units": "m"
+      }
+    ],
+    "frame": "world; native current18+previous18+goal3",
+    "native_history_reset": "current repeated as previous",
+    "object2_present": false,
+    "object_point": "pegGrasp site",
+    "policy": "state-input",
+    "quaternion_order": "xyzw",
+    "raw_dim": 42,
+    "runtime_oracles_provided": false,
+    "version": "round3-common-observation-v1"
+  },
+  "reset_method": "Canonical native Task+seed reset; fixed body placement precompiled to native requested position for assembly/peg box, no shape/dynamics changes.",
+  "seeds": {
+    "calibration_base": 30400000,
+    "dev_base": 32400000,
+    "test_base": "sealed, independent",
+    "train_base": 31400000
+  },
+  "source_file": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/.pixi/envs/default/lib/python3.11/site-packages/metaworld/envs/sawyer_peg_insertion_side_v3.py",
+  "source_knowledge": {
+    "box_position_from_goal": "goal - [.03,0,.13] metres",
+    "insertion_axis": [
+      1,
+      0,
+      0
+    ],
+    "peg_head_observed": true,
+    "symmetry_caution": "Fixed robot and gravity; insertion axis is fixed by native geometry.",
+    "task": "Grasp the peg and insert its head into the side opening of a fixed box."
+  },
+  "source_sha256": "27aae3fc1adb894493f649655d3515b71d2b1819c988513cadabf8d29ebbabf0",
+  "source_url": "https://github.com/Farama-Foundation/Metaworld/blob/6e01ad7e2ffb2302e4dca04f796fcd8837df8540/metaworld/envs/sawyer_peg_insertion_side_v3.py",
+  "static_geometry_source": {
+    "sha256": "a001c569cf11268ddad29a026ed3b1d00c81262139c5f0b9835f2c92a6d1434b",
+    "xml": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/.pixi/envs/default/lib/python3.11/site-packages/metaworld/assets/sawyer_xyz/sawyer_peg_insertion_side.xml"
+  },
+  "stats_scope": "Only the current D_N observations/actions; never larger subsets.",
+  "success_definition": "Native scaled Euclidean distance between pegHead and target with axis weights [1,2,2] <= .07 m.",
+  "success_hold_steps": 1,
+  "task": "peg-insert-side",
+  "termination_policy": "Check success after every env.step; stop at first success, native terminated or truncated, or 500 steps. Timeout alone is failure. Numerical exceptions are failure. Any joint validity violation makes the full cabinet episode failure.",
+  "version": "round3-task-v1"
+}

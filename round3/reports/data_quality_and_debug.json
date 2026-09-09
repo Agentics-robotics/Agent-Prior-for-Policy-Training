@@ -1,0 +1,290 @@
+{
+  "data_quality": [
+    {
+      "accepted_demonstrations": 20,
+      "calibration": {
+        "C": {
+          "episodes": 20,
+          "successes": 20
+        },
+        "E": {
+          "episodes": 20,
+          "successes": 20
+        },
+        "IID": {
+          "episodes": 20,
+          "successes": 20
+        }
+      },
+      "calibration_failures": [],
+      "collection_attempts": 20,
+      "collection_failure_reasons": {},
+      "complete": true,
+      "failed_collection_attempts": 0,
+      "full_replays": 20,
+      "maximum_replay_observation_error": 2.9794643530145493e-08,
+      "replay_passed": true,
+      "task": "pick-place-wall"
+    },
+    {
+      "accepted_demonstrations": 20,
+      "calibration": {
+        "C": {
+          "episodes": 20,
+          "successes": 20
+        },
+        "E": {
+          "episodes": 20,
+          "successes": 20
+        },
+        "IID": {
+          "episodes": 20,
+          "successes": 20
+        }
+      },
+      "calibration_failures": [],
+      "collection_attempts": 20,
+      "collection_failure_reasons": {},
+      "complete": true,
+      "failed_collection_attempts": 0,
+      "full_replays": 20,
+      "maximum_replay_observation_error": 2.9799133494101682e-08,
+      "replay_passed": true,
+      "task": "assembly"
+    },
+    {
+      "accepted_demonstrations": 20,
+      "calibration": {
+        "C": {
+          "episodes": 20,
+          "successes": 20
+        },
+        "E": {
+          "episodes": 20,
+          "successes": 20
+        },
+        "IID": {
+          "episodes": 20,
+          "successes": 20
+        }
+      },
+      "calibration_failures": [],
+      "collection_attempts": 20,
+      "collection_failure_reasons": {},
+      "complete": true,
+      "failed_collection_attempts": 0,
+      "full_replays": 20,
+      "maximum_replay_observation_error": 2.9749189334182802e-08,
+      "replay_passed": true,
+      "task": "drawer"
+    },
+    {
+      "accepted_demonstrations": 20,
+      "calibration": {
+        "C": {
+          "episodes": 20,
+          "successes": 20
+        },
+        "E": {
+          "episodes": 20,
+          "successes": 20
+        },
+        "IID": {
+          "episodes": 20,
+          "successes": 20
+        }
+      },
+      "calibration_failures": [],
+      "collection_attempts": 20,
+      "collection_failure_reasons": {},
+      "complete": true,
+      "failed_collection_attempts": 0,
+      "full_replays": 20,
+      "maximum_replay_observation_error": 2.9796717204710887e-08,
+      "replay_passed": true,
+      "task": "door"
+    },
+    {
+      "accepted_demonstrations": 20,
+      "calibration": {
+        "C": {
+          "episodes": 20,
+          "successes": 20
+        },
+        "E": {
+          "episodes": 20,
+          "successes": 18
+        },
+        "IID": {
+          "episodes": 20,
+          "successes": 20
+        }
+      },
+      "calibration_failures": [
+        {
+          "episode_id": "r3_peg-insert-side_calibration_E_005_30402005",
+          "reason": "native_truncated"
+        },
+        {
+          "episode_id": "r3_peg-insert-side_calibration_E_017_30402017",
+          "reason": "native_truncated"
+        }
+      ],
+      "collection_attempts": 20,
+      "collection_failure_reasons": {},
+      "complete": true,
+      "failed_collection_attempts": 0,
+      "full_replays": 20,
+      "maximum_replay_observation_error": 2.9798488565546677e-08,
+      "replay_passed": true,
+      "task": "peg-insert-side"
+    },
+    {
+      "accepted_demonstrations": 20,
+      "calibration": {
+        "C": {
+          "episodes": 20,
+          "successes": 20
+        },
+        "E": {
+          "episodes": 20,
+          "successes": 20
+        },
+        "IID": {
+          "episodes": 20,
+          "successes": 20
+        }
+      },
+      "calibration_failures": [],
+      "collection_attempts": 20,
+      "collection_failure_reasons": {},
+      "complete": true,
+      "failed_collection_attempts": 0,
+      "full_replays": 20,
+      "maximum_replay_observation_error": 2.9793336131511694e-08,
+      "replay_passed": true,
+      "task": "stick-push"
+    }
+  ],
+  "debug": {
+    "accounted_optimizer_updates": 980,
+    "completed_session_updates": 780,
+    "completed_session_wall_seconds": 498.56729608320165,
+    "independent_reference_active_seconds": 11.374955515842885,
+    "independent_reference_updates": 200,
+    "infrastructure_closed_loop_steps": 16,
+    "scope": "Debug session ledger plus separate uninterrupted recovery reference; CPU one-update mathematical checks and test-suite optimizer work are additional unaggregated diagnostics. No debug work counts as formal training.",
+    "sessions": [
+      {
+        "path": "round3/debug/r3_assembly_B0_n5_s0/sessions.jsonl",
+        "updates": 200,
+        "wall_seconds": 31.757659499999136
+      },
+      {
+        "path": "round3/debug/r3_assembly_P1_n5_s0/sessions.jsonl",
+        "updates": 20,
+        "wall_seconds": 22.913980078068562
+      },
+      {
+        "path": "round3/debug/r3_assembly_P2_n5_s0/sessions.jsonl",
+        "updates": 20,
+        "wall_seconds": 23.370674925041385
+      },
+      {
+        "path": "round3/debug/r3_assembly_P3_n5_s0/sessions.jsonl",
+        "updates": 20,
+        "wall_seconds": 23.34874932898674
+      },
+      {
+        "path": "round3/debug/r3_door_P1_n5_s0/sessions.jsonl",
+        "updates": 20,
+        "wall_seconds": 25.11660837905947
+      },
+      {
+        "path": "round3/debug/r3_door_P2_n5_s0/sessions.jsonl",
+        "updates": 20,
+        "wall_seconds": 23.54896404000465
+      },
+      {
+        "path": "round3/debug/r3_door_P3_n5_s0/sessions.jsonl",
+        "updates": 20,
+        "wall_seconds": 22.242432303959504
+      },
+      {
+        "path": "round3/debug/r3_drawer_P1_n5_s0/sessions.jsonl",
+        "updates": 20,
+        "wall_seconds": 25.263544735033065
+      },
+      {
+        "path": "round3/debug/r3_drawer_P2_n5_s0/sessions.jsonl",
+        "updates": 20,
+        "wall_seconds": 23.16684824693948
+      },
+      {
+        "path": "round3/debug/r3_drawer_P3_n5_s0/sessions.jsonl",
+        "updates": 20,
+        "wall_seconds": 22.38858457992319
+      },
+      {
+        "path": "round3/debug/r3_peg-insert-side_P1_n5_s0/sessions.jsonl",
+        "updates": 20,
+        "wall_seconds": 24.270916532026604
+      },
+      {
+        "path": "round3/debug/r3_peg-insert-side_P2_n5_s0/sessions.jsonl",
+        "updates": 20,
+        "wall_seconds": 22.305803430033848
+      },
+      {
+        "path": "round3/debug/r3_peg-insert-side_P3_n5_s0/sessions.jsonl",
+        "updates": 20,
+        "wall_seconds": 23.172615244984627
+      },
+      {
+        "path": "round3/debug/r3_peg-insert-side_P4_n5_s0/sessions.jsonl",
+        "updates": 20,
+        "wall_seconds": 5.409772131941281
+      },
+      {
+        "path": "round3/debug/r3_pick-place-wall_B0_n5_s0/sessions.jsonl",
+        "updates": 100,
+        "wall_seconds": 29.272630671970546
+      },
+      {
+        "path": "round3/debug/r3_pick-place-wall_B0_n5_s0/sessions.jsonl",
+        "updates": 100,
+        "wall_seconds": 10.699064117041416
+      },
+      {
+        "path": "round3/debug/r3_pick-place-wall_P1_n5_s0/sessions.jsonl",
+        "updates": 20,
+        "wall_seconds": 26.26605578896124
+      },
+      {
+        "path": "round3/debug/r3_pick-place-wall_P2_n5_s0/sessions.jsonl",
+        "updates": 20,
+        "wall_seconds": 21.738279914017767
+      },
+      {
+        "path": "round3/debug/r3_pick-place-wall_P3_n5_s0/sessions.jsonl",
+        "updates": 20,
+        "wall_seconds": 22.77998908108566
+      },
+      {
+        "path": "round3/debug/r3_stick-push_P1_n5_s0/sessions.jsonl",
+        "updates": 20,
+        "wall_seconds": 22.809791447012685
+      },
+      {
+        "path": "round3/debug/r3_stick-push_P2_n5_s0/sessions.jsonl",
+        "updates": 20,
+        "wall_seconds": 23.973221436026506
+      },
+      {
+        "path": "round3/debug/r3_stick-push_P3_n5_s0/sessions.jsonl",
+        "updates": 20,
+        "wall_seconds": 22.751110171084292
+      }
+    ]
+  }
+}

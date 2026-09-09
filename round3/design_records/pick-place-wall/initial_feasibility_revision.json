@@ -1,0 +1,41 @@
+{
+  "task": "pick-place-wall",
+  "version": 2,
+  "initial_proposal_version": 1,
+  "revision_kind": "sole_initial_feasibility_revision",
+  "created_at": "2026-09-08T05:33:48.078379+00:00",
+  "agent_backend": "codex_session",
+  "designer": "/root/design_pickwall",
+  "original_proposal_sha256": "e4a14e7d2e0d6edf5624d5df9eeb201d84b5e13437f0cb094262972c6fd09b56",
+  "original_proposal_preserved": true,
+  "original_initial_freeze_preserved": true,
+  "reason": "After the original isolated design was saved/frozen, implementation source inspection showed the inherited locked WindowDataset uses zero-padding for invalid action tails. Coordinator required reuse of that common trajectory mask/history path. This padding detail was not given in the isolated contract; this is a feasibility alignment, not feedback from model scores or extra demonstrations.",
+  "source_inspected_after_original_save": [
+    "src/round3/plugins.py",
+    "src/round3/learning.py",
+    "src/round3/proposals.py",
+    "src/round2/learning.py",
+    "src/relative_dp/model.py",
+    "src/relative_dp/dataset.py",
+    "src/relative_dp/config.py",
+    "round3/configs/pick-place-wall/B0.json"
+  ],
+  "changes": [
+    {
+      "scope": "P1/P2/P3 shared chunk_sampling and any duplicate candidate wording",
+      "before": "Invalid action tail positions repeat the final recorded action; every invalid position is excluded from losses.",
+      "after": "Invalid action tail positions are zero-padded by the shared WindowDataset; every invalid position remains excluded from losses."
+    },
+    {
+      "scope": "P3 action_transform and future supervision",
+      "before": "Invalid future channels repeat the terminal state relative to the current replan anchors; every invalid position is excluded from losses.",
+      "after": "Invalid future-displacement channels are zero-padded; auxiliary future-position storage is also zero-padded. Every invalid position remains excluded from losses."
+    }
+  ],
+  "unchanged": "All valid recorded targets, candidate mechanisms, observation transforms, labels, loss formulas/weights, frozen world/replan frames, parameter cap, optimizer/update budget and runtime sampling/decoding remain as the original proposal. No new environment/controller channel.",
+  "inherited_scheduler_verified": "Shared100-step squaredcos_cap_v2 DDPM;16-step leading DDIM indices90,84,78,72,66,60,54,48,42,36,30,24,18,12,6,0. This documents the original shared-scheduler inheritance, not a scheduler change.",
+  "extra_demonstrations_or_model_scores_used": false,
+  "substantive_feasibility_revisions_used": 1,
+  "substantive_feasibility_revisions_remaining": 0,
+  "training_or_evaluation_outcome_claimed": false
+}

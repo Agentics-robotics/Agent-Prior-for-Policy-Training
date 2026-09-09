@@ -1,0 +1,38 @@
+{
+  "frame_count": 2,
+  "locked_states_read": 0,
+  "passed": true,
+  "policy_calls": 0,
+  "scored_rollouts_added": 0,
+  "source": "Existing first D2 training expert demonstration only; no dev/test state or model evaluation",
+  "terminal_hold_at": 79,
+  "video": {
+    "fps": 20.0,
+    "identity": {
+      "episode_id": "r3_pick-place-wall_train_IID_000_31000000",
+      "initial_state_hash": "03aec5a389df96ddb091f00c37e7133a771b8a13371426e66a3943ce23768663",
+      "renderer_sha256": "6bcdc6385d45aeb71ee198a865465efc38a654edf9055ada0a85fcfd18fa9731",
+      "selection": "Fixed C manifest order plus first available failure; no outcome maximization",
+      "task": "pick-place-wall",
+      "trajectories": [
+        "79800928ed795f02b1e074f8e8146ed775f6d87bc8abed32774183ae1dff9e38",
+        "79800928ed795f02b1e074f8e8146ed775f6d87bc8abed32774183ae1dff9e38"
+      ]
+    },
+    "path": "round3/audits/visual_smoke/d2_expert_replay_pair_audit.mp4",
+    "physical_dt": 0.0125,
+    "policy_calls": 0,
+    "rendering_stride": 4,
+    "scored_evaluation_episodes_added": 0,
+    "success": [
+      true,
+      true
+    ],
+    "termination": [
+      "expert_demonstration_success",
+      "expert_demonstration_success"
+    ],
+    "video_sha256": "d646061b4d83aed97c8d74f2dd47a297290495dbed5d0ddd6cab45eef171f461",
+    "visualization_replay_steps": 158
+  }
+}

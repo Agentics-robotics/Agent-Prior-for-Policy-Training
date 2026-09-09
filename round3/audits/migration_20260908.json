@@ -1,0 +1,70 @@
+{
+  "formal_runs_at_migration": 0,
+  "historical_checkpoints": "runs directory not present in received repository; existing historical reports and other files preserved",
+  "new_root": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training",
+  "old_root": "/home/users/oscar/Agent_Training/agent_training",
+  "operation": "Moved all entries including dotfiles from agent_training to repository root; contents preserved",
+  "pixi_locked_install": "passed",
+  "prior_config": {
+    "agent_backend": "codex_session",
+    "api_cost": "unavailable",
+    "batch_chunks_per_system_update": 128,
+    "candidates": [
+      "B0",
+      "P1",
+      "P2",
+      "P3"
+    ],
+    "demonstration_counts": [
+      2,
+      5,
+      10,
+      20
+    ],
+    "design_model": "unavailable",
+    "dev_episodes": {
+      "C": 20,
+      "E": 20,
+      "IID": 10
+    },
+    "gpu_devices": [
+      0,
+      2
+    ],
+    "initial_design_exposure": "D2 evidence bundle for isolated subagents; infrastructure root has historical exposure",
+    "initial_runs": 96,
+    "maximum_episode_steps": 500,
+    "maximum_formal_runs": 108,
+    "maximum_simultaneous_gpus": 2,
+    "primary_checkpoint": "20k EMA",
+    "revisions": {
+      "dev_feedback": 1,
+      "feedback_feasibility": 1,
+      "initial_feasibility": 1
+    },
+    "session_id": "unavailable",
+    "specification_sha256": "425a43cd7d99948f823725ccd36d012c7ee3594651737213f59216968d555156",
+    "split_version": "round3-diagonal-v1",
+    "tasks": [
+      "pick-place-wall",
+      "assembly",
+      "drawer",
+      "door",
+      "peg-insert-side",
+      "stick-push"
+    ],
+    "test_episodes": {
+      "C": 40,
+      "E": 40,
+      "IID": 20
+    },
+    "token_count": "unavailable",
+    "train_seeds": [
+      0
+    ],
+    "updates_per_system": 20000
+  },
+  "runtime_imports": "Python3.11 torch2.7.1+cu126 MuJoCo3.3.0 diffusers0.35.1; four CUDA devices work",
+  "time": "2026-09-08T05:19:16.573002+00:00",
+  "user_authorization": "Continue Round3, simultaneously use physical GPUs0-3, move project into repo root"
+}

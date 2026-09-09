@@ -1,0 +1,722 @@
+{
+  "task": "pick-place-wall",
+  "version": 1,
+  "status": "ORIGINAL_INITIAL_PROPOSAL_SAVED_BEFORE_IMPLEMENTATION",
+  "created_at": "2026-09-08T05:27:54Z",
+  "agent_backend": "codex_session",
+  "designer": {
+    "name": "/root/design_pickwall",
+    "model": "unavailable: exact model identifier not exposed",
+    "session": "unavailable",
+    "tokens": "unavailable",
+    "cost": "unavailable"
+  },
+  "context_exposure": {
+    "scope": "Task-isolated initial design. Read only the design contract, this task's evidence bundle, and the explicitly authorized unfinished historical proposal.draft.json. No implementation/source/expert/reward, old model results, D_N with N>2, other task artifacts, or concrete development/test states read before this save.",
+    "administrative_context": "Inherited user AGENTS/environment instructions and coordinator messages about task isolation, environment repair, authorized draft continuation, and abstract available policy/plugin interfaces. Coordinator has authorized implementation after this actual proposal is saved; that later phase has not begun. No learning source was inspected for design. Before saving, coordinator also reported infrastructure parity/recovery checks and data readiness, without showing model scores, source or additional demonstration contents; these reports did not inform candidate mechanisms.",
+    "text_read": [
+      "round3/DESIGN_CONTRACT.md",
+      "round3/evidence/pick-place-wall/DESIGN_INTERFACE.md",
+      "round3/evidence/pick-place-wall/task_materials.json",
+      "round3/evidence/pick-place-wall/bundle.json",
+      "round3/evidence/pick-place-wall/frames.json",
+      "round3/evidence/pick-place-wall/D2_summary.json",
+      "round3/design_records/pick-place-wall/proposal.draft.json"
+    ],
+    "text_read_detail": "Initial D2_summary cat output was truncated; complete JSON was subsequently loaded with Pixi Python and its factors, actions, sampled state rows and identifiers were summarized. No claim that every scalar in the raw JSON was individually examined.",
+    "numerical_read": [
+      "round3/evidence/pick-place-wall/demo_1_trajectory.npz",
+      "round3/evidence/pick-place-wall/demo_2_trajectory.npz"
+    ],
+    "numerical_read_detail": "Loaded only these two NPZs using allow_pickle=False. Inspected every key/shape/dtype, extrema, starts/ends, sampled-frame states, every-fourth-step event rows, and exact full-trajectory persistent-event calculations. D1 arrays:obs(80,45)float32,actions(79,4)float32,time_seconds(80)float64. D2:obs(85,45),actions(84,4),time_seconds(85) with the same dtypes.",
+    "visual_read": [
+      {
+        "camera": "corner2",
+        "display_flipud": true,
+        "episode_id": "r3_pick-place-wall_train_IID_000_31000000",
+        "file": "round3/evidence/pick-place-wall/demo_1_frame_00_step_000.png",
+        "step": 0,
+        "time_seconds": 0,
+        "viewed": true,
+        "view_method": "view_image on the actual PNG, individually displayed in four batches of four",
+        "visible_dimensions": [
+          480,
+          480
+        ]
+      },
+      {
+        "camera": "corner2",
+        "display_flipud": true,
+        "episode_id": "r3_pick-place-wall_train_IID_000_31000000",
+        "file": "round3/evidence/pick-place-wall/demo_1_frame_01_step_011.png",
+        "step": 11,
+        "time_seconds": 0.1375,
+        "viewed": true,
+        "view_method": "view_image on the actual PNG, individually displayed in four batches of four",
+        "visible_dimensions": [
+          480,
+          480
+        ]
+      },
+      {
+        "camera": "corner2",
+        "display_flipud": true,
+        "episode_id": "r3_pick-place-wall_train_IID_000_31000000",
+        "file": "round3/evidence/pick-place-wall/demo_1_frame_02_step_023.png",
+        "step": 23,
+        "time_seconds": 0.28750000000000003,
+        "viewed": true,
+        "view_method": "view_image on the actual PNG, individually displayed in four batches of four",
+        "visible_dimensions": [
+          480,
+          480
+        ]
+      },
+      {
+        "camera": "corner2",
+        "display_flipud": true,
+        "episode_id": "r3_pick-place-wall_train_IID_000_31000000",
+        "file": "round3/evidence/pick-place-wall/demo_1_frame_03_step_034.png",
+        "step": 34,
+        "time_seconds": 0.42500000000000004,
+        "viewed": true,
+        "view_method": "view_image on the actual PNG, individually displayed in four batches of four",
+        "visible_dimensions": [
+          480,
+          480
+        ]
+      },
+      {
+        "camera": "corner2",
+        "display_flipud": true,
+        "episode_id": "r3_pick-place-wall_train_IID_000_31000000",
+        "file": "round3/evidence/pick-place-wall/demo_1_frame_04_step_045.png",
+        "step": 45,
+        "time_seconds": 0.5625,
+        "viewed": true,
+        "view_method": "view_image on the actual PNG, individually displayed in four batches of four",
+        "visible_dimensions": [
+          480,
+          480
+        ]
+      },
+      {
+        "camera": "corner2",
+        "display_flipud": true,
+        "episode_id": "r3_pick-place-wall_train_IID_000_31000000",
+        "file": "round3/evidence/pick-place-wall/demo_1_frame_05_step_056.png",
+        "step": 56,
+        "time_seconds": 0.7000000000000001,
+        "viewed": true,
+        "view_method": "view_image on the actual PNG, individually displayed in four batches of four",
+        "visible_dimensions": [
+          480,
+          480
+        ]
+      },
+      {
+        "camera": "corner2",
+        "display_flipud": true,
+        "episode_id": "r3_pick-place-wall_train_IID_000_31000000",
+        "file": "round3/evidence/pick-place-wall/demo_1_frame_06_step_068.png",
+        "step": 68,
+        "time_seconds": 0.8500000000000001,
+        "viewed": true,
+        "view_method": "view_image on the actual PNG, individually displayed in four batches of four",
+        "visible_dimensions": [
+          480,
+          480
+        ]
+      },
+      {
+        "camera": "corner2",
+        "display_flipud": true,
+        "episode_id": "r3_pick-place-wall_train_IID_000_31000000",
+        "file": "round3/evidence/pick-place-wall/demo_1_frame_07_step_079.png",
+        "step": 79,
+        "time_seconds": 0.9875,
+        "viewed": true,
+        "view_method": "view_image on the actual PNG, individually displayed in four batches of four",
+        "visible_dimensions": [
+          480,
+          480
+        ]
+      },
+      {
+        "camera": "corner2",
+        "display_flipud": true,
+        "episode_id": "r3_pick-place-wall_train_IID_001_31000100",
+        "file": "round3/evidence/pick-place-wall/demo_2_frame_00_step_000.png",
+        "step": 0,
+        "time_seconds": 0,
+        "viewed": true,
+        "view_method": "view_image on the actual PNG, individually displayed in four batches of four",
+        "visible_dimensions": [
+          480,
+          480
+        ]
+      },
+      {
+        "camera": "corner2",
+        "display_flipud": true,
+        "episode_id": "r3_pick-place-wall_train_IID_001_31000100",
+        "file": "round3/evidence/pick-place-wall/demo_2_frame_01_step_012.png",
+        "step": 12,
+        "time_seconds": 0.15000000000000002,
+        "viewed": true,
+        "view_method": "view_image on the actual PNG, individually displayed in four batches of four",
+        "visible_dimensions": [
+          480,
+          480
+        ]
+      },
+      {
+        "camera": "corner2",
+        "display_flipud": true,
+        "episode_id": "r3_pick-place-wall_train_IID_001_31000100",
+        "file": "round3/evidence/pick-place-wall/demo_2_frame_02_step_024.png",
+        "step": 24,
+        "time_seconds": 0.30000000000000004,
+        "viewed": true,
+        "view_method": "view_image on the actual PNG, individually displayed in four batches of four",
+        "visible_dimensions": [
+          480,
+          480
+        ]
+      },
+      {
+        "camera": "corner2",
+        "display_flipud": true,
+        "episode_id": "r3_pick-place-wall_train_IID_001_31000100",
+        "file": "round3/evidence/pick-place-wall/demo_2_frame_03_step_036.png",
+        "step": 36,
+        "time_seconds": 0.45,
+        "viewed": true,
+        "view_method": "view_image on the actual PNG, individually displayed in four batches of four",
+        "visible_dimensions": [
+          480,
+          480
+        ]
+      },
+      {
+        "camera": "corner2",
+        "display_flipud": true,
+        "episode_id": "r3_pick-place-wall_train_IID_001_31000100",
+        "file": "round3/evidence/pick-place-wall/demo_2_frame_04_step_048.png",
+        "step": 48,
+        "time_seconds": 0.6000000000000001,
+        "viewed": true,
+        "view_method": "view_image on the actual PNG, individually displayed in four batches of four",
+        "visible_dimensions": [
+          480,
+          480
+        ]
+      },
+      {
+        "camera": "corner2",
+        "display_flipud": true,
+        "episode_id": "r3_pick-place-wall_train_IID_001_31000100",
+        "file": "round3/evidence/pick-place-wall/demo_2_frame_05_step_060.png",
+        "step": 60,
+        "time_seconds": 0.75,
+        "viewed": true,
+        "view_method": "view_image on the actual PNG, individually displayed in four batches of four",
+        "visible_dimensions": [
+          480,
+          480
+        ]
+      },
+      {
+        "camera": "corner2",
+        "display_flipud": true,
+        "episode_id": "r3_pick-place-wall_train_IID_001_31000100",
+        "file": "round3/evidence/pick-place-wall/demo_2_frame_06_step_072.png",
+        "step": 72,
+        "time_seconds": 0.9,
+        "viewed": true,
+        "view_method": "view_image on the actual PNG, individually displayed in four batches of four",
+        "visible_dimensions": [
+          480,
+          480
+        ]
+      },
+      {
+        "camera": "corner2",
+        "display_flipud": true,
+        "episode_id": "r3_pick-place-wall_train_IID_001_31000100",
+        "file": "round3/evidence/pick-place-wall/demo_2_frame_07_step_084.png",
+        "step": 84,
+        "time_seconds": 1.05,
+        "viewed": true,
+        "view_method": "view_image on the actual PNG, individually displayed in four batches of four",
+        "visible_dimensions": [
+          480,
+          480
+        ]
+      }
+    ],
+    "external_browsing": "None. Source URL and historical XML path are only provenance supplied in task_materials.json; neither linked implementation nor XML was opened. External/common geometry statements are explicitly labeled and grounded in supplied dimensions plus elementary geometry.",
+    "historical_draft": "The pre-migration proposal.draft.json was explicitly marked DRAFT_NOT_FROZEN_NOT_FINAL. It contained provisional mechanisms but no completed candidates. It is preserved unchanged; this is the first actual proposal, not a retrospective claim that the draft had been frozen."
+  },
+  "evidence_hashes": {
+    "round3/evidence/pick-place-wall/D2_summary.json": "1a849ad1d45d7d1d35fd34da503a604fe918b6d41d240d04839e024b662b17f1",
+    "round3/evidence/pick-place-wall/DESIGN_INTERFACE.md": "fe0a1c4a12c4bd170d432f48cf1cb3ae98028cc37a5d1ad0f4cff6d0d14f0101",
+    "round3/evidence/pick-place-wall/bundle.json": "085e37bf6c28c2bb32f1fe87dcfdea8a22d7a8daec3ee274d0e9b1076c778378",
+    "round3/evidence/pick-place-wall/demo_1_frame_00_step_000.png": "a31e0c2c68b30c7f4eb76d948d1a41f7a26d25e88a0e6f9b2c06eb486648f0d3",
+    "round3/evidence/pick-place-wall/demo_1_frame_01_step_011.png": "d11a83d90d4aa271d20423d28404c1be65c6e76cb9151bb23d20ea646f354849",
+    "round3/evidence/pick-place-wall/demo_1_frame_02_step_023.png": "e01e03a69d4fc4abd183d585fe8d671a0d2ec1bbe8e39696cfc0a67d3bac0b0d",
+    "round3/evidence/pick-place-wall/demo_1_frame_03_step_034.png": "32c63b40502c5cf6881c4263ba821b130357d5c1764563898b3088a2f413fd00",
+    "round3/evidence/pick-place-wall/demo_1_frame_04_step_045.png": "f80f9856f44c0aea0bea19187070fe0974fff8ab49ce65ff9713e326e0c958e9",
+    "round3/evidence/pick-place-wall/demo_1_frame_05_step_056.png": "797c96786c268c64f029830469a84946c8b498cddc2917ebbbff34b7e558e878",
+    "round3/evidence/pick-place-wall/demo_1_frame_06_step_068.png": "b083545b521f1453f3b8f68fd3e033a5c713c71fcafa6f04948706b8791b114d",
+    "round3/evidence/pick-place-wall/demo_1_frame_07_step_079.png": "4efc1a0dba8de23054f83e76da410c715d09250d5e712688b2d5dd1b4bf83862",
+    "round3/evidence/pick-place-wall/demo_1_trajectory.npz": "8684215072a3d9d9017a3a7943d094f41db8bbb365e855db942e9332c37f6101",
+    "round3/evidence/pick-place-wall/demo_2_frame_00_step_000.png": "aafaaf8060a4adf006eeed0698755753a94abde092bad3d9b5bbe3ec0391e1c3",
+    "round3/evidence/pick-place-wall/demo_2_frame_01_step_012.png": "e112a2c99b27bff764947ca0ad9fa601620df27ff0b710483050049f8015716e",
+    "round3/evidence/pick-place-wall/demo_2_frame_02_step_024.png": "e01c5a449f850dc815a945ecdb3c43448a805b9ebb136b09f95e9c1f036a773b",
+    "round3/evidence/pick-place-wall/demo_2_frame_03_step_036.png": "9f1c526841c78bec732b0f20950780e92cec38081aa6b5db4969934c147ffe31",
+    "round3/evidence/pick-place-wall/demo_2_frame_04_step_048.png": "3a359059c4b79da19b6d7624f582a3be77a62d41543fbe4edf59546b75a74ff1",
+    "round3/evidence/pick-place-wall/demo_2_frame_05_step_060.png": "f0e24664511ebfb0bd2d6c7d7af961908dff0b87b9bb1b2507f31f7797b1807e",
+    "round3/evidence/pick-place-wall/demo_2_frame_06_step_072.png": "221da6a5ba4ef8688231b41366fad555216520aa881031f294067e5fcf98ecdb",
+    "round3/evidence/pick-place-wall/demo_2_frame_07_step_084.png": "8fcf5ba64fb092ad7cd1da48c0073aff0c4fb501350db748751dd7912127d59a",
+    "round3/evidence/pick-place-wall/demo_2_trajectory.npz": "0841fe7cdfe8f8e0d94c684e8fe46686cbefe5a17004860f4414473023e847b3",
+    "round3/evidence/pick-place-wall/frames.json": "3445b3b91647aecfa3f06e4f2d218224aadf8a49d9a90a6317ee8d6708a86295",
+    "round3/evidence/pick-place-wall/task_materials.json": "d79a6ad3223c1e2d58f525373c8fb5413a8263e26d96120b3038646321a982e4"
+  },
+  "additional_context_hashes": {
+    "round3/DESIGN_CONTRACT.md": "d3fe292220813dd805d0be8d330f215ab5da3da9a83669e9e54501509f10338d",
+    "round3/design_records/pick-place-wall/proposal.draft.json": "1bd7b29ed69f8fa099d014cbe7e5f74194c92a700c44ca285b659c96c220bae0"
+  },
+  "evidence_verification": {
+    "bundle_hash_field": "838f000361474720cf274778505be85a8d1b3cab89fa69ab64cafa2605ff583a",
+    "bundle_hash_field_note": "This is the bundle manifest's visible internal hash value, not a claim that it equals the bundle.json file SHA256.",
+    "manifest_entries_checked": 22,
+    "all_manifest_file_hashes_match": true,
+    "actual_bundle_json_sha256": "085e37bf6c28c2bb32f1fe87dcfdea8a22d7a8daec3ee274d0e9b1076c778378",
+    "bundle_created_unix": 1788843078.5383203,
+    "episodes": [
+      "r3_pick-place-wall_train_IID_000_31000000",
+      "r3_pick-place-wall_train_IID_001_31000100"
+    ],
+    "frame_count": 16,
+    "demo_count": 2,
+    "forbidden_content_flags": {
+      "contains_dev_test_states": false,
+      "contains_expert_source": false,
+      "contains_larger_datasets": false,
+      "contains_reward_rules": false
+    }
+  },
+  "evidence_observations": [
+    "Wall supplied world extent is x[-0.02,0.22],y[0.74,0.76],z[0,0.12] meters; it is asymmetric around the object/goal x factor range. The source-derived values are not newly read simulator source.",
+    "Both trajectories approach the table object, reduce aperture, lift to approximately0.25 m object-center height and transport toward positive y across the wall.",
+    "D1 first object_z>0.04 at step33, first object center above0.15 at44, first center y>=0.74 at69; D2 respective steps35,46,67. These descriptive single-state statistics differ intentionally from P2's more conservative persistent label rules.",
+    "D1 ends at object[-0.02214199,0.81934434,0.24599403], goal[-0.02545464,0.88787091,0.24961688], distance0.06870218 m; D2 ends at object[0.02700604,0.82773530,0.19370463], goal[0.02315846,0.89113700,0.16766322], distance0.06864936 m.",
+    "Bundle/interface describes the two episodes as successful. Neither exact goal coincidence nor release is visible; last aperture is approximately0.4545/0.4565 and recorded gripper commands never become negative. No outcome-rule conclusion is inferred.",
+    "D2's late lowering is larger because its goal height0.16766 m is lower than D1's0.24962 m. This is an observed co-occurrence, not evidence of independently identified goal-height control.",
+    "There are only LL/HH demonstrations; all statements about cross-factor C cells or outside-training E values are prospective."
+  ],
+  "shared_definitions": {
+    "coordinates": {
+      "axes": "All x, y, z are the supplied simulator world axes. Positive z opposes gravity. In the two demos, transport is mainly positive world y across a wall centered at y=0.75 m; world x is the varying object/goal factor. No object rotation defines the action frame.",
+      "units": "Positions, half sizes and geometric margins are meters; dt=0.0125 seconds; native xyz command 1 corresponds to the declared 0.01 m command scale. Gripper is the native unitless command, not aperture.",
+      "symbols": "h=raw[0:3], aperture=raw[3], o=raw[4:7], q=raw[7:11], hp=raw[18:21], ap=raw[21], op=raw[22:25], g=raw[36:39], c=raw[39:42], b=raw[42:45]. rho=sqrt(0.02^2+0.02^2)=0.0282842712474619 m is a conservative orientation-independent enclosing-sphere radius for the declared cylinder; it is not a measured contact radius."
+    },
+    "observation_history": "Encode two whole raw 45-dimensional observations in oldest-to-newest order, [raw[t-1],raw[t]], with initial raw[0] repetition. Each raw row itself retains the declared native previous18 fields; do not silently substitute a different history length.",
+    "base_scale": "Per raw row, divide meter-valued xyz entries at slices [0:3],[4:7],[11:14],[18:21],[22:25],[29:32],[36:39],[39:42] by 0.30 m; divide wall half sizes [42:45] by 0.10 m; aperture and quaternion components remain unitless. Leave absent object2 zeros as zeros. Canonicalize each nonzero quaternion sign using the first nonzero component in order w,x,y,z as positive; zero absent quaternions remain zero. No data mean/variance or range fitting, no clipping of observations.",
+    "action": "P1/P2 and the first four P3 channels directly use native world dx,dy,dz,gripper commands, identity encode/decode with fixed unitless scale 1. Do not min-max fit actions. At runtime clip each decoded native action coordinate to [-1,1] exactly once after decoding, then env.step. No clean diffusion-sample clipping.",
+    "diffusion": "One conditional temporal U-Net, widths [64,128,256], time embedding128, kernel5, groups8. Preserve the common baseline's 100-step cosine DDPM schedule, epsilon parameterization, and 16-step eta0 DDIM sampling, without a candidate-specific scheduler. Predict16, execute first4, replan. Independent standard Gaussian noise per channel; draw one uniformly distributed diffusion timestep per chunk per optimizer update.",
+    "training": "For each N in [2,5,10,20], initialize every learned parameter and optimizer/EMA from scratch with seed0. Use only that nested D_N for chunks, labels and any statistics. 20,000 joint AdamW optimizer steps across the entire candidate, total batch128 chunks/step, lr=1e-4 constant, weight_decay=1e-6, betas=[0.9,0.999], global trainable-gradient L2 clipping1, EMA decay0.995 from initialization. No auxiliary pretraining or additional optimizer steps. All trainable modules share the one optimizer.",
+    "chunk_sampling": "Choose action-anchor t uniformly with replacement over valid anchors 0<=t<T across all complete D_N episodes, where obs has T+1 rows and actions T rows. For j=0..15, target action is actions[min(t+j,T-1)]. Define valid[j]=(t+j<T). Pad beyond end by last recorded action solely to form the input tensor; exclude those positions from every loss. Each loss mean divides by the number of valid scalar entries in its group. Never create release/no-op targets after the recorded end. History before episode start repeats the first raw row.",
+    "runtime": "Only the shared declared raw numerical observations and private model parameters/standard sampler randomness. No images, future observations, training labels, expert actions, hidden phase, success/reward, factor-cell IDs or episode clock as policy input. Episode clock belongs to the normal rollout harness and never resets at replans or phase changes. Stop only on the common environment/horizon protocol, not on a candidate success detector.",
+    "augmentation": "None. Quaternion sign canonicalization is a representation identity, not additional training data. No translation, reflection, rotation, goal swapping, time warping or synthetic successful trajectories.",
+    "parameter_budget": "Hard cap: actual total trainable parameters <=3 times the actual raw-input B0 count (B0 approximately4.7 million; indicative ceiling14.1 million). Count all encoders, router/embeddings and denoiser parameters before training; EMA copies are nontrainable. Estimates below are prospective, not measured counts. If unexpectedly over cap, stop before training and request the permitted recorded feasibility revision, rather than silently alter the design."
+  },
+  "combination_consideration": {
+    "considered": [
+      "P1 relation conditioning plus P2 learned soft event conditioning",
+      "P1 relation conditioning plus joint action/future motion diffusion",
+      "All three mechanisms together"
+    ],
+    "adopted": "P3 combines P1 with joint motion/action diffusion: current geometric relations and supervised future physical motion address complementary input and training-target structure while retaining one denoiser and no runtime controller.",
+    "rejected_for_initial_design": "Do not combine P2 router with P1/P3 initially. D2 has only13 goal-side action anchors and labels are approximate; adding both routing and joint prediction would entangle label errors with motion prediction and reduce interpretability. P2 remains a separate prospective test of event conditioning.",
+    "limitation": "This is an evidence-based design preference, not a selected winner or a claim that combination will outperform simpler candidates."
+  },
+  "candidates": [
+    {
+      "candidate_id": "P1",
+      "knowledge_hypotheses": [
+        {
+          "source": "external geometry/common knowledge",
+          "claim": "Relative displacements separate hand-to-object acquisition geometry from object-to-goal transport geometry. A finite fixed wall makes absolute positions and obstacle clearances relevant.",
+          "reference": "round3/evidence/pick-place-wall/task_materials.json: source_knowledge, observation_schema and action_schema; displacement arithmetic and finite-box geometry are common geometry, not a consulted controller."
+        },
+        {
+          "source": "observation from D2",
+          "claim": "The LL and HH demos covary object_x with goal_x, yet show acquisition followed by lift and positive-y transport. D1 object is initially x=-0.02395 and goal x=-0.02545; D2 x=0.01853 and goal x=0.02316.",
+          "reference": "round3/evidence/pick-place-wall/D2_summary.json: both factors; all16 frames"
+        },
+        {
+          "source": "unverified inference",
+          "claim": "Separate grasp, goal and wall branches may encourage reuse when object_x and goal_x recombine, while retaining world context avoids an incorrect symmetry assumption.",
+          "reference": "Prospective C/E generalization hypothesis only."
+        }
+      ],
+      "evidence_refs": [
+        "round3/evidence/pick-place-wall/task_materials.json",
+        "round3/evidence/pick-place-wall/D2_summary.json",
+        "round3/evidence/pick-place-wall/demo_1_trajectory.npz: steps0,23,45,56,68,79",
+        "round3/evidence/pick-place-wall/demo_2_trajectory.npz: steps0,24,48,60,72,84",
+        "round3/evidence/pick-place-wall/demo_1_frame_02_step_023.png",
+        "round3/evidence/pick-place-wall/demo_1_frame_06_step_068.png",
+        "round3/evidence/pick-place-wall/demo_2_frame_06_step_072.png"
+      ],
+      "predicted_generalization_gain": "Prospectively modest C-cell gain if raw diffusion overfits the LL/HH co-variation. E-cell gain is more uncertain: negative extrapolated x can lie outside the wall's left extent, changing which clearance relations matter. No expected numeric score or claim that priors must help.",
+      "applicability": "Declared state schema, fixed gravity/robot/wall, cylinder geometry from bundle, displacement control and two-frame history. Intended to expose factor relations without generating routes or actions analytically.",
+      "failure_conditions": [
+        "Only two initial demos do not identify how much goal_x should influence acquisition; branches may still learn the original factor correlation.",
+        "More negative x may permit a side route never demonstrated; descriptors do not supply that behavior.",
+        "D2 has no release demonstration, and branch factorization cannot invent it.",
+        "Conservative sphere face distances may be less informative than exact tilted-cylinder contacts.",
+        "Redundant inputs or the learned fusion may make no improvement or degrade low-data fitting."
+      ],
+      "architecture": {
+        "kind": "Four separately parameterized relation branches, shared across the two outer history rows.",
+        "per_row_branches": {
+          "world": {
+            "input_dim": 45,
+            "input": "base_scale(raw)",
+            "network": "Linear45->64, SiLU, Linear64->32, SiLU"
+          },
+          "grasp": {
+            "input_dim": 15,
+            "input": "concat((h-o)/0.10, aperture, canonical_q[4], (h-hp)/0.01, (o-op)/0.01, aperture-ap). Motion entries are per-native-step displacement, not m/s.",
+            "network": "Linear15->64, SiLU, Linear64->32, SiLU"
+          },
+          "goal": {
+            "input_dim": 6,
+            "input": "concat((g-o)/0.10, (g-h)/0.10)",
+            "network": "Linear6->64, SiLU, Linear64->32, SiLU"
+          },
+          "wall": {
+            "input_dim": 14,
+            "input": "concat((h-c)/0.10, (o-c)/0.10, b/0.10, [o_z-(c_z+b_z)-rho, o_y-(c_y+b_y)-rho, (c_y-b_y)-o_y-rho, o_x-(c_x+b_x)-rho, (c_x-b_x)-o_x-rho]/0.10). Signed quantities describe world face clearances; no positive value is treated as a collision/success oracle.",
+            "network": "Linear14->64, SiLU, Linear64->32, SiLU"
+          }
+        },
+        "fusion": "Concatenate branch outputs in world,grasp,goal,wall order to128 per raw row; concatenate older then current to256; Linear256->128, SiLU supplies the U-Net global condition128.",
+        "retained_information": "World branch retains every common raw field, including fixed robot/world pose information. Relation branches do not assert whole-environment translation or rotation equivariance.",
+        "denoiser": "Shared_definitions.diffusion with action channels4 and condition128. One denoiser, no expert mixture."
+      },
+      "modules": [
+        "Fixed state/geometry feature transform",
+        "Four small MLP relation branches and history fusion",
+        "One shared conditional action diffusion U-Net"
+      ],
+      "observation_transform": {
+        "shared": "shared_definitions.observation_history, base_scale and coordinates",
+        "exact_features": {
+          "kind": "Four separately parameterized relation branches, shared across the two outer history rows.",
+          "per_row_branches": {
+            "world": {
+              "input_dim": 45,
+              "input": "base_scale(raw)",
+              "network": "Linear45->64, SiLU, Linear64->32, SiLU"
+            },
+            "grasp": {
+              "input_dim": 15,
+              "input": "concat((h-o)/0.10, aperture, canonical_q[4], (h-hp)/0.01, (o-op)/0.01, aperture-ap). Motion entries are per-native-step displacement, not m/s.",
+              "network": "Linear15->64, SiLU, Linear64->32, SiLU"
+            },
+            "goal": {
+              "input_dim": 6,
+              "input": "concat((g-o)/0.10, (g-h)/0.10)",
+              "network": "Linear6->64, SiLU, Linear64->32, SiLU"
+            },
+            "wall": {
+              "input_dim": 14,
+              "input": "concat((h-c)/0.10, (o-c)/0.10, b/0.10, [o_z-(c_z+b_z)-rho, o_y-(c_y+b_y)-rho, (c_y-b_y)-o_y-rho, o_x-(c_x+b_x)-rho, (c_x-b_x)-o_x-rho]/0.10). Signed quantities describe world face clearances; no positive value is treated as a collision/success oracle.",
+              "network": "Linear14->64, SiLU, Linear64->32, SiLU"
+            }
+          },
+          "fusion": "Concatenate branch outputs in world,grasp,goal,wall order to128 per raw row; concatenate older then current to256; Linear256->128, SiLU supplies the U-Net global condition128.",
+          "retained_information": "World branch retains every common raw field, including fixed robot/world pose information. Relation branches do not assert whole-environment translation or rotation equivariance."
+        }
+      },
+      "action_transform": {
+        "encode": "Identity world chunk [16,4].",
+        "decode": "Identity then common world/native cube clipping.",
+        "frame": "World axes remain fixed throughout all16 predicted steps; no moving-frame recentering."
+      },
+      "losses_and_weights": [
+        {
+          "name": "action_epsilon_MSE",
+          "target": "The actual standard Gaussian noise added to each valid native action channel at the sampled DDPM timestep.",
+          "scale": "Native action scale1; mean over valid batch,time,4 channels.",
+          "weight": 1,
+          "application": "Every joint update and all valid target actions. No auxiliary losses."
+        }
+      ],
+      "augmentation": "None. Quaternion sign canonicalization is a representation identity, not additional training data. No translation, reflection, rotation, goal swapping, time warping or synthetic successful trajectories.",
+      "training_schedule": "For each N in [2,5,10,20], initialize every learned parameter and optimizer/EMA from scratch with seed0. Use only that nested D_N for chunks, labels and any statistics. 20,000 joint AdamW optimizer steps across the entire candidate, total batch128 chunks/step, lr=1e-4 constant, weight_decay=1e-6, betas=[0.9,0.999], global trainable-gradient L2 clipping1, EMA decay0.995 from initialization. No auxiliary pretraining or additional optimizer steps. All trainable modules share the one optimizer. Choose action-anchor t uniformly with replacement over valid anchors 0<=t<T across all complete D_N episodes, where obs has T+1 rows and actions T rows. For j=0..15, target action is actions[min(t+j,T-1)]. Define valid[j]=(t+j<T). Pad beyond end by last recorded action solely to form the input tensor; exclude those positions from every loss. Each loss mean divides by the number of valid scalar entries in its group. Never create release/no-op targets after the recorded end. History before episode start repeats the first raw row.",
+      "hierarchy_selection_and_termination": "No hierarchy or learned selector. One shared denoiser at each regular replan; only the common episode protocol terminates the rollout.",
+      "chunk_transition_handling": "Condition on the two raw rows available at current replan; keep that condition fixed for the entire DDIM denoising chain and 16-step action chunk. Execute4 without intra-chunk geometric switching, then discard remaining actions and replan. No clock reset.",
+      "required_train_labels": [
+        "Recorded actions and raw history in the current D_N only.",
+        "Valid-time loss mask from each episode length. No phase, contact, reward or future-state labels."
+      ],
+      "required_runtime_inputs": "The common two raw45 observations only, with the static geometry already contained in each observation. The object radius/halfheight are fixed sourced design constants; no added pose channels.",
+      "parameter_budget": {
+        "hard_cap": "Hard cap: actual total trainable parameters <=3 times the actual raw-input B0 count (B0 approximately4.7 million; indicative ceiling14.1 million). Count all encoders, router/embeddings and denoiser parameters before training; EMA copies are nontrainable. Estimates below are prospective, not measured counts. If unexpectedly over cap, stop before training and request the permitted recorded feasibility revision, rather than silently alter the design.",
+        "estimate": "Approximately1.0-1.2x B0, primarily the shared U-Net; exact count unmeasured until implementation."
+      },
+      "implementation_steps": [
+        "Implement base_scale and exact branch features from the declared slices.",
+        "Build the four relation MLPs, fusion and one action4 U-Net with the shared scheduler.",
+        "Implement identity action transformation and valid-time epsilon loss.",
+        "Audit all source inputs and actual parameter count; check fixed feature dimensions and action decode invariants before any formal training.",
+        "Train only the prescribed N/seed/update budget after proposal persistence."
+      ],
+      "confidence": {
+        "level": "medium-low",
+        "basis": "Geometry and channel availability are clear; benefit under unseen factor recombination is unverified."
+      }
+    },
+    {
+      "candidate_id": "P2",
+      "knowledge_hypotheses": [
+        {
+          "source": "observation from D2",
+          "claim": "Acquisition, lift, crossing, and arrival on the goal side are visible and numerically distinguishable, while no opening/release action occurs (gripper commands range0..0.9).",
+          "reference": "round3/evidence/pick-place-wall/demo_1_trajectory.npz and demo_2_trajectory.npz; all16 real frames"
+        },
+        {
+          "source": "external geometry/common knowledge",
+          "claim": "A carried finite object needs clearance from the finite wall, and persistent physical events can be defined from observed position/aperture sequences without using expert or reward phase logic.",
+          "reference": "round3/evidence/pick-place-wall/task_materials.json: wall half-size and cylinder dimensions; persistence is a design choice."
+        },
+        {
+          "source": "unverified inference",
+          "claim": "A learned soft progress variable can organize the shared denoiser and adapt event timing to nuisance variation more effectively than unstructured conditioning; D2 cannot establish this.",
+          "reference": "Training-only labels and thresholds below are prospective design choices, not source-controller rules."
+        }
+      ],
+      "evidence_refs": [
+        "round3/evidence/pick-place-wall/task_materials.json",
+        "round3/evidence/pick-place-wall/demo_1_trajectory.npz: event steps33,45,76 under the exact rules below",
+        "round3/evidence/pick-place-wall/demo_2_trajectory.npz: event steps35,47,74 under the exact rules below",
+        "round3/evidence/pick-place-wall/demo_1_frame_03_step_034.png",
+        "round3/evidence/pick-place-wall/demo_2_frame_04_step_048.png",
+        "round3/evidence/pick-place-wall/demo_2_frame_07_step_084.png"
+      ],
+      "predicted_generalization_gain": "Potentially better timing under different initial hand/object offsets and goal heights, with uncertain C/E benefit. The router might instead memorize demonstration progress or impair rare final-phase behavior.",
+      "applicability": "A shared policy with learned soft event conditioning, trained from complete D_N episodes. No phase is required from the environment. Fixed world y orientation is explicit and restricts transfer to the specified task distribution.",
+      "failure_conditions": [
+        "Only13 action anchors in D2 are labeled goal-side (3 in D1,10 in D2); that phase is weakly supported.",
+        "Labels are coarse: clear-wall height is reached before the demonstrator stops lifting. They do not prescribe when an action must switch.",
+        "A slipped object or an around-the-wall route may violate the demonstrated monotonic event order.",
+        "The .04/.08/.65 thresholds and three-state persistence are deliberately imperfect proxies; no actual contact/grasp label is available.",
+        "The soft router may be ignored, collapse to common phases, or overfit, causing no gain or a loss.",
+        "No release phase or success detector can be inferred from the endpoint evidence."
+      ],
+      "architecture": {
+        "state_encoder": "Flatten base_scale on older/current raw rows to90; Linear90->128, SiLU, Linear128->128, SiLU gives z.",
+        "router": "Linear128->4 logits; p=softmax(logits) at temperature1. Learn a4x32 phase embedding E; phase context=p@E.",
+        "denoiser": "One shared action4 U-Net with condition concat(z,p@E) of dimension160; default diffusion architecture. All action-loss gradients pass through p and E; do not stop-gradient router probabilities.",
+        "restriction": "Always predicted soft probabilities condition the denoiser during both training and inference; no true-phase teacher forcing or externally gated action controller."
+      },
+      "modules": [
+        "Fixed base_scale transform",
+        "Shared state encoder",
+        "Learned4-class soft event router and4x32 embedding",
+        "One shared action diffusion U-Net"
+      ],
+      "observation_transform": "Use shared_definitions.base_scale and observation_history only:90 base state inputs. P1's extra relation branches are deliberately omitted from P2 so the learned event mechanism is a distinct design.",
+      "action_transform": {
+        "encode": "Identity world [16,4] commands.",
+        "decode": "Identity followed by common native world cube clipping.",
+        "frame": "World axes and conditioning snapshot stay fixed for the chunk."
+      },
+      "losses_and_weights": [
+        {
+          "name": "action_epsilon_MSE",
+          "target": "Actual injected Gaussian noise for the4 action coordinates.",
+          "scale": "Mean over valid batch,time,4 channels; native action scale1.",
+          "weight": 1,
+          "application": "Every update; gradients also train the router through its predicted phase context."
+        },
+        {
+          "name": "phase_cross_entropy",
+          "target": "Training-only 4-class label at chunk anchor t, calculated by the exact persistent-event rules below.",
+          "scale": "Standard categorical cross-entropy in nats, mean over128 anchor labels; no class reweighting or label smoothing.",
+          "weight": 0.2,
+          "application": "Every update from1 through20,000; same batch, no auxiliary-only steps. Even if a phase is absent in D_N keep4 logits and the unchanged loss."
+        }
+      ],
+      "augmentation": "None. Quaternion sign canonicalization is a representation identity, not additional training data. No translation, reflection, rotation, goal swapping, time warping or synthetic successful trajectories.",
+      "training_schedule": "For each N in [2,5,10,20], initialize every learned parameter and optimizer/EMA from scratch with seed0. Use only that nested D_N for chunks, labels and any statistics. 20,000 joint AdamW optimizer steps across the entire candidate, total batch128 chunks/step, lr=1e-4 constant, weight_decay=1e-6, betas=[0.9,0.999], global trainable-gradient L2 clipping1, EMA decay0.995 from initialization. No auxiliary pretraining or additional optimizer steps. All trainable modules share the one optimizer. Choose action-anchor t uniformly with replacement over valid anchors 0<=t<T across all complete D_N episodes, where obs has T+1 rows and actions T rows. For j=0..15, target action is actions[min(t+j,T-1)]. Define valid[j]=(t+j<T). Pad beyond end by last recorded action solely to form the input tensor; exclude those positions from every loss. Each loss mean divides by the number of valid scalar entries in its group. Never create release/no-op targets after the recorded end. History before episode start repeats the first raw row. Phase cross-entropy weight0.2 is constant; no router pretraining, warm start, teacher forcing or extra curriculum.",
+      "hierarchy_selection_and_termination": "At each ordinary4-step replan, recompute p from the latest allowed history and use its continuous weighted embedding. There is no discrete option selection, hard geometric gate, monotonic latch, extra termination head or control override. A phase's influence ends only as its learned probability falls at a later replan; reversion is allowed. Label boundaries are never evaluated to choose runtime actions. Common rollout termination only.",
+      "chunk_transition_handling": "Hold the one predicted probability vector and observation condition fixed for all16 denoising positions, including training chunks that span several labeled phases. Future phase labels do not condition future actions. Execute4 without phase-triggered early replanning, then recompute from fresh history. No clock reset.",
+      "required_train_labels": {
+        "inputs": "Complete current D_N raw sequences and their lengths only; no expert phase, reward, success flag or current/future expert action thresholds.",
+        "definitions": "For episode obs[0:T+1], define Persist(mask,start) as the smallest integer t>=start with t+2<=T and mask[t],mask[t+1],mask[t+2] all true; if absent return T+1. All equalities below are inclusive. e1=Persist((o_z>=0.04 m) AND (norm(h-o)<=0.08 m) AND (aperture<=0.65),0). e2=Persist(o_z-rho >= c_z+b_z+0.01 m,e1). e3=Persist(o_y-rho >= c_y+b_y+0.01 m,e2). If an earlier event is absent, later events are T+1. For any valid anchor t<T: label0 if t<e1; else1 if t<e2; else2 if t<e3; else3. Names: acquire, lifted, clear-height/transport, goal-side approach. None means release, exact placement or success.",
+        "provenance": "Thresholds are fixed from the current D2 geometry/behavior and then frozen for all N. Consecutive future states are training labels only. D2 audit: D1[e1,e2,e3]=[33,45,76], class counts[33,12,31,3]; D2=[35,47,74], counts[35,12,27,10].",
+        "masks": "Action validity mask as shared; every valid anchor receives a phase label even when some events are absent."
+      },
+      "required_runtime_inputs": "Only the same two raw45 observations; neither phase labels nor persistence buffers, demo time, future states or cell IDs enter the runtime policy.",
+      "parameter_budget": {
+        "hard_cap": "Hard cap: actual total trainable parameters <=3 times the actual raw-input B0 count (B0 approximately4.7 million; indicative ceiling14.1 million). Count all encoders, router/embeddings and denoiser parameters before training; EMA copies are nontrainable. Estimates below are prospective, not measured counts. If unexpectedly over cap, stop before training and request the permitted recorded feasibility revision, rather than silently alter the design.",
+        "estimate": "Approximately1.0-1.2x B0, one denoiser plus small encoder/router. No independently parameterized per-phase denoisers."
+      },
+      "implementation_steps": [
+        "Implement the fixed training-only persistent-event labeling function and preserve its thresholds in the audit.",
+        "Build90->128->128 state encoder,4-class router, soft embedding and shared160-conditioned action U-Net.",
+        "Ensure the training forward uses predicted phase probabilities exactly as inference does.",
+        "Return action epsilon and phase logits; add0.2 anchor CE to valid-time action epsilon loss with one optimizer.",
+        "Audit D2 event counts above, parameter cap and absence of phase-based runtime gates before training."
+      ],
+      "confidence": {
+        "level": "low-to-medium",
+        "basis": "Repeated sequence structure supports trying the mechanism; sparse final-phase data and heuristic labels limit confidence."
+      }
+    },
+    {
+      "candidate_id": "P3",
+      "knowledge_hypotheses": [
+        {
+          "source": "observation from D2",
+          "claim": "After acquisition, the object follows the hand with about0.038-0.042 m vertical offset through lift and crossing. The two trajectories have different goal heights and the second descends late.",
+          "reference": "round3/evidence/pick-place-wall/demo_1_trajectory.npz: steps34..79; round3/evidence/pick-place-wall/demo_2_trajectory.npz: steps36..84; corresponding frames"
+        },
+        {
+          "source": "external geometry/common knowledge",
+          "claim": "Future hand/object positions and finite-box signed distance provide supervised descriptions of motion and clearance; they can be learned jointly without serving as a runtime controller.",
+          "reference": "round3/evidence/pick-place-wall/task_materials.json: state/action units, wall box, cylinder dimensions; Euclidean norm and box signed-distance formula below are common geometry."
+        },
+        {
+          "source": "unverified inference",
+          "claim": "Joint diffusion over actions and short-horizon hand/object motion, combined with separate relation conditioning, may bias learning toward physically consistent factor recombination. Predicting extra channels may instead burden a small dataset.",
+          "reference": "Prospective multi-task hypothesis; no outcome is claimed."
+        }
+      ],
+      "evidence_refs": [
+        "round3/evidence/pick-place-wall/task_materials.json",
+        "round3/evidence/pick-place-wall/demo_1_trajectory.npz: steps34,45,56,68,79",
+        "round3/evidence/pick-place-wall/demo_2_trajectory.npz: steps36,48,60,72,84",
+        "round3/evidence/pick-place-wall/demo_1_frame_04_step_045.png",
+        "round3/evidence/pick-place-wall/demo_2_frame_05_step_060.png",
+        "round3/evidence/pick-place-wall/demo_2_frame_07_step_084.png"
+      ],
+      "predicted_generalization_gain": "Possible C/E gains from coupling action learning to relative physical motion and wall-clearance evolution. Greater risk than P1 from learning10-dimensional joint sequences with D2; no numerical prediction.",
+      "applicability": "Same state/action schema and enough recorded next states for each valid action. Future positions are training-only targets and latent model outputs; deployed observations remain identical.",
+      "failure_conditions": [
+        "Extra future channels can slow action learning within the fixed20,000-step budget or cause joint-sample inconsistency.",
+        "The scalar clearance target and enclosing-sphere approximation are not exact collision or grasp dynamics.",
+        "Predicting plausible positions does not guarantee the corresponding actions cause them; no dynamics oracle or test-time validation is available.",
+        "Only positive-y over-wall motion appears in D2; an extrapolated feasible side route is not demonstrated.",
+        "Joint diffusion may capture the same object_x/goal_x correlation despite relation features.",
+        "Predicted future states never authorize a success claim or release controller."
+      ],
+      "architecture": {
+        "conditioning": {
+          "kind": "Four separately parameterized relation branches, shared across the two outer history rows.",
+          "per_row_branches": {
+            "world": {
+              "input_dim": 45,
+              "input": "base_scale(raw)",
+              "network": "Linear45->64, SiLU, Linear64->32, SiLU"
+            },
+            "grasp": {
+              "input_dim": 15,
+              "input": "concat((h-o)/0.10, aperture, canonical_q[4], (h-hp)/0.01, (o-op)/0.01, aperture-ap). Motion entries are per-native-step displacement, not m/s.",
+              "network": "Linear15->64, SiLU, Linear64->32, SiLU"
+            },
+            "goal": {
+              "input_dim": 6,
+              "input": "concat((g-o)/0.10, (g-h)/0.10)",
+              "network": "Linear6->64, SiLU, Linear64->32, SiLU"
+            },
+            "wall": {
+              "input_dim": 14,
+              "input": "concat((h-c)/0.10, (o-c)/0.10, b/0.10, [o_z-(c_z+b_z)-rho, o_y-(c_y+b_y)-rho, (c_y-b_y)-o_y-rho, o_x-(c_x+b_x)-rho, (c_x-b_x)-o_x-rho]/0.10). Signed quantities describe world face clearances; no positive value is treated as a collision/success oracle.",
+              "network": "Linear14->64, SiLU, Linear64->32, SiLU"
+            }
+          },
+          "fusion": "Concatenate branch outputs in world,grasp,goal,wall order to128 per raw row; concatenate older then current to256; Linear256->128, SiLU supplies the U-Net global condition128.",
+          "retained_information": "World branch retains every common raw field, including fixed robot/world pose information. Relation branches do not assert whole-environment translation or rotation equivariance."
+        },
+        "denoiser": "One shared conditional U-Net with input/output10 sequence channels and condition128. Keep widths/time embedding/kernel/groups and all sampling defaults. Channel order: action4, future-hand-displacement3, future-object-displacement3.",
+        "runtime_sampler": "Initialize one[16,10] standard-Gaussian latent and run the common16-step DDIM process jointly. Return only channels0:4 to action_decode; discard future-state channels. Exactly one sample per replan, with no score-based selection, classifier guidance, optimization, trajectory search or collision rejection."
+      },
+      "modules": [
+        "P1 relation encoder",
+        "One10-channel joint action/motion diffusion U-Net",
+        "Training-only future target builder and differentiable geometric consistency loss"
+      ],
+      "observation_transform": {
+        "same_as": "P1.observation_transform",
+        "restriction": "Only current/history raw fields enter the condition; future targets never get concatenated to observations."
+      },
+      "action_transform": {
+        "encode": "action_encode returns native action4 unchanged. A training target packer appends dH[j]=(h[t+j+1]-h[t])/0.10 m and dO[j]=(o[t+j+1]-o[t])/0.10 m for valid j=0..15, yielding10 channels. For invalid j repeat the terminal state solely for padding; all losses mask it.",
+        "decode": "Take channels0:4, keep world xyz/gripper coordinates, then apply common native cube clipping. The other6 channels are not transformed into actions.",
+        "frame": "All future displacements use anchors h[t],o[t] from the current replan and unchanged world axes for the whole16-step chunk. No recursive integration, moving-frame update or multiplication by native0.01 m action scale for these0.10 m motion labels."
+      },
+      "losses_and_weights": [
+        {
+          "name": "action_epsilon_MSE",
+          "target": "Injected Gaussian noise on joint channels0:4.",
+          "scale": "Mean over valid batch,time,4 channels.",
+          "weight": 1,
+          "application": "Every update and all diffusion timesteps."
+        },
+        {
+          "name": "future_epsilon_MSE",
+          "target": "Injected Gaussian noise on the6 future displacement channels; targets themselves use0.10 m normalization.",
+          "scale": "0.5*mean(hand3 noise squared error over valid entries)+0.5*mean(object3 noise squared error over valid entries).",
+          "weight": 0.25,
+          "application": "Every update and all diffusion timesteps; same joint denoiser and optimizer."
+        },
+        {
+          "name": "geometry_consistency",
+          "target": "Recorded future object wall-clearance scalar and hand-object separation at t+j+1.",
+          "scale": "At sampled noise level with alpha_bar>=0.5, reconstruct clean joint xhat0=(x_noisy-sqrt(1-alpha_bar)*epsilon_hat)/sqrt(alpha_bar), without clipping. Reconstruct hhat=h[t]+0.10*xhat0[4:7], ohat=o[t]+0.10*xhat0[7:10]. For p in meters set v=abs(p-c)-b; sdf_box(p)=norm(max(v,0),2)+min(max(v_x,v_y,v_z),0); clearance(p)=sdf_box(p)-rho. Define A=(clearance(ohat)-clearance(o_true))/0.05 m and B=(norm(hhat-ohat)-norm(h_true-o_true))/0.05 m. Lgeom=0.5*mean(Huber_delta1(A))+0.5*mean(Huber_delta1(B)) over eligible valid entries. Huber_delta1(r)=0.5*r^2 if abs(r)<=1 else abs(r)-0.5.",
+          "weight": "0.05*min(1,update/1000), with update numbered1..20000.",
+          "application": "Only chunks whose sampled alpha_bar>=0.5, and valid times; if no eligible entries, loss is zero. Supervised matching, not a collision penalty or constraint: negative recorded clearances remain targets. No runtime geometric loss or guidance."
+        }
+      ],
+      "augmentation": "None. Quaternion sign canonicalization is a representation identity, not additional training data. No translation, reflection, rotation, goal swapping, time warping or synthetic successful trajectories.",
+      "training_schedule": "For each N in [2,5,10,20], initialize every learned parameter and optimizer/EMA from scratch with seed0. Use only that nested D_N for chunks, labels and any statistics. 20,000 joint AdamW optimizer steps across the entire candidate, total batch128 chunks/step, lr=1e-4 constant, weight_decay=1e-6, betas=[0.9,0.999], global trainable-gradient L2 clipping1, EMA decay0.995 from initialization. No auxiliary pretraining or additional optimizer steps. All trainable modules share the one optimizer. Choose action-anchor t uniformly with replacement over valid anchors 0<=t<T across all complete D_N episodes, where obs has T+1 rows and actions T rows. For j=0..15, target action is actions[min(t+j,T-1)]. Define valid[j]=(t+j<T). Pad beyond end by last recorded action solely to form the input tensor; exclude those positions from every loss. Each loss mean divides by the number of valid scalar entries in its group. Never create release/no-op targets after the recorded end. History before episode start repeats the first raw row. Joint10-channel diffusion uses one timestep per chunk across all10 channels with independent Gaussian components. Future epsilon weight0.25 is constant; geometric weight ramps linearly to0.05 over the first1000 of the same20,000 updates. No pretraining or model-based rollouts.",
+      "hierarchy_selection_and_termination": "No hierarchy, router or candidate-specific termination. Predicted future states are discarded; they are not success, phase, collision or action-selection oracles.",
+      "chunk_transition_handling": "Use current-replan hand/object anchors for every target/future channel throughout training and DDIM. Execute first4 native actions, discard all residual actions and motion outputs, then recompute relation condition/anchors from the next allowed observations. Never terminate a chunk based on predicted events; common episode clock continues.",
+      "required_train_labels": {
+        "targets": "For each valid action actions[t+j], use the actual next h/o from obs[t+j+1]. Build future displacements, true sdf_box(o)-rho, and norm(h-o) only from the current D_N. Repeated terminal padding carries valid=false; no labels beyond the recorded end.",
+        "auxiliary_masks": "Action-time valid mask and sampled-alpha_bar>=0.5 geometric eligibility; no contact/success/phase labels.",
+        "normalization": "All scales are fixed above; fit no statistics from larger datasets or held-out states."
+      },
+      "required_runtime_inputs": "Only the common two raw45 observations. h[t]/o[t] anchors derive from the current row. Static radius/halfheight constants are sourced from the bundle. No future-state input or runtime dynamics model.",
+      "parameter_budget": {
+        "hard_cap": "Hard cap: actual total trainable parameters <=3 times the actual raw-input B0 count (B0 approximately4.7 million; indicative ceiling14.1 million). Count all encoders, router/embeddings and denoiser parameters before training; EMA copies are nontrainable. Estimates below are prospective, not measured counts. If unexpectedly over cap, stop before training and request the permitted recorded feasibility revision, rather than silently alter the design.",
+        "estimate": "Approximately1.0-1.25x B0; increasing first/last temporal channel count from4 to10 adds little relative to the same internal U-Net. Exact count pending implementation."
+      },
+      "implementation_steps": [
+        "Reuse the exact P1 feature transform/encoder.",
+        "Add training target packing for action4 plus next-hand/object displacement6 and the valid mask, with explicit replan anchors.",
+        "Declare the diffusion sample dimension10 and implement inference output extraction of the first4 channels after ordinary joint sampling.",
+        "Compute grouped epsilon losses and low-noise geometric consistency from clean-sample reconstruction; retain the exact0.10 m and0.05 m scales.",
+        "Audit next-state index alignment, absence of runtime future leakage, one-sample inference, world clipping and actual parameter cap before prescribed training."
+      ],
+      "confidence": {
+        "level": "low-to-medium",
+        "basis": "D2 supports coupled hand/object motion but cannot establish that extra denoising targets improve action generalization."
+      }
+    }
+  ],
+  "implementation_interface_requirements": {
+    "common": "Allow a custom policy condition encoder and return auxiliary outputs; a valid-time mask must reach epsilon loss. Standard observation/action encode/decode and training supervision responsibilities remain as specified in the contract.",
+    "P2": "Training forward returns predicted action epsilon plus4 phase logits for extra_loss; runtime uses predicted soft probabilities without labels.",
+    "P3": "Need a target-packing hook that can append six training-only future motion channels to encoded action4, declare sample/denoiser dimension10, and extract action4 from sampled outputs. The loss needs noisy joint sample, predicted epsilon, alpha_bar, future targets and masks to reconstruct xhat0. This can be implemented by a custom policy subclass or generic hooks; it does not require new environment observations or new runtime capabilities."
+  },
+  "feasibility_revision_policy": "No substantive revision has occurred. At most one later substantive feasibility revision may create version2 with a reason before training; changing the initial design based on extra demos or model scores is prohibited. The separately allowed later N5 feedback revision is outside this initial proposal.",
+  "implementation_or_training_performed": false
+}

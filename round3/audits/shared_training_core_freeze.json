@@ -1,0 +1,27 @@
+{
+  "debug_note": "Existing 200-step debug checkpoint source snapshots predate additive candidate hooks and completion/identity checks; preserved as debug only.",
+  "evidence": [
+    "baseline_and_data_parity.json",
+    "cross_process_resume.json",
+    "debug_closed_loop.json",
+    "migration_replay.json",
+    "shared_tests.log"
+  ],
+  "formal_runs_started_before_this_freeze": 0,
+  "interface_additions": "Optional observation_history, training_actions, model_config; B0 keeps unchanged inherited update/data path",
+  "sources": {
+    "pixi.lock": "a47fbce71bc6e30a1ede8406c2a8af12d901c2534635e82c3632d66a5658e520",
+    "src/relative_dp/config.py": "1dc8779534ac9abb8a16c5cdc9214911439f8fd22e99d1993ed8becc1f5bdf5f",
+    "src/relative_dp/dataset.py": "ea08e1979f2be2b7a02b740439e30eaa271970c5c8479863b921f2006522a3de",
+    "src/relative_dp/model.py": "20de4713507957d84d5237ed318dedeab16f87aa3ee00d6b6123ab5ac5a61908",
+    "src/relative_dp/train.py": "d7c1f4a08bfe22c3f3ecb5f1e03a0b714230b139edd4383457a552d4a4904eca",
+    "src/relative_dp/vendor/diffusion_policy/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/relative_dp/vendor/diffusion_policy/conditional_unet1d.py": "f78f3c77eea5ab1b59e210837cfdeab8d0a85bbf82c72efa4c39d640bfa50137",
+    "src/relative_dp/vendor/diffusion_policy/conv1d_components.py": "ea2aa10e297cf253bc1a1919ba47fe6ae32049b5eaaab292ed9cc145d8d2adc0",
+    "src/relative_dp/vendor/diffusion_policy/positional_embedding.py": "2266c75ecc9c9ac8ca126839d39a7bafbdd7af8800d6de903f66815e64cc366c",
+    "src/round2/learning.py": "3a4bcefdfb9400b96f2d07a15c4ea80905150f6242c032917f44699e9be1edfe",
+    "src/round3/learning.py": "f9db514f4ba180441a552e0d7cfcc20db32b55bf9f149cfc4335896f73169a2b",
+    "src/round3/plugins.py": "c6d511c20facce572f2f305c5a04b161985a7dbb3c1c7ddfe1e6099b6acb96a6"
+  },
+  "time": "2026-09-08T05:31:06.781468+00:00"
+}

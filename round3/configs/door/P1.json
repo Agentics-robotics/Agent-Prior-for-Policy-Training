@@ -1,0 +1,21 @@
+{
+  "candidate_id": "P1",
+  "plugin_module": "round3.door_plugin",
+  "plugin_class": "DoorPlugin",
+  "plugin_config": {
+    "candidate_id": "P1"
+  },
+  "proposal_sha256": "03f70c459713735215f67b46f75fccfa6937ab9ecd9f416cec43b47ab704f849",
+  "observation_schema_sha256": "cc2159a0f9192da5c746ac769875ccbaf697f3733056bde38e63b2b690b89ab9",
+  "custom_loss": false,
+  "rationale": "Cabinet-axis relative conditioning and diffusion actions; all raw world inputs retained.",
+  "implementation_audit": "round3/audits/door_plugin_v1.json",
+  "fixed_specification": {
+    "observation_dim": 55,
+    "action_dim": 4,
+    "auxiliary_epsilon_weight": 0.0,
+    "normalization": "passthrough all dimensions; engineered relation scales frozen in original proposal",
+    "future_geometry_training_only": true,
+    "sampling": "unbounded16-step DDIM; shared world clipping only"
+  }
+}

@@ -1,0 +1,509 @@
+{
+  "additional_feedback_cycles_permitted": false,
+  "agent_backend": "codex_session",
+  "alternatives_considered_and_rejected": [
+    {
+      "alternative": "Add a hard proximity-based contact selector",
+      "reason": "The 5 cm descriptive threshold is inconsistent with many successful E records and is not a physical contact oracle; no P3 routing failure is observed."
+    },
+    {
+      "alternative": "Alter local/world action scaling to reduce clipping",
+      "reason": "Frequent clipping does not cause a demonstrated P3 failure here; scaling would change the learned action problem without causal support."
+    },
+    {
+      "alternative": "Increase or replace auxiliary supervision",
+      "reason": "The existing P3 gap-plus-rail combination succeeds throughout the packet; no identified residual weakness supports another label mechanism."
+    }
+  ],
+  "assessment": {
+    "development_success_counts": {
+      "B0": {
+        "C": {
+          "n": 20,
+          "successes": 19
+        },
+        "E": {
+          "n": 20,
+          "successes": 0
+        },
+        "IID": {
+          "n": 10,
+          "successes": 10
+        }
+      },
+      "P1": {
+        "C": {
+          "n": 20,
+          "successes": 20
+        },
+        "E": {
+          "n": 20,
+          "successes": 16
+        },
+        "IID": {
+          "n": 10,
+          "successes": 10
+        }
+      },
+      "P2": {
+        "C": {
+          "n": 20,
+          "successes": 20
+        },
+        "E": {
+          "n": 20,
+          "successes": 3
+        },
+        "IID": {
+          "n": 10,
+          "successes": 10
+        }
+      },
+      "P3": {
+        "C": {
+          "n": 20,
+          "successes": 20
+        },
+        "E": {
+          "n": 20,
+          "successes": 20
+        },
+        "IID": {
+          "n": 10,
+          "successes": 10
+        }
+      }
+    },
+    "diagnostic_summary": {
+      "B0": {
+        "records_consumed": 50,
+        "splits": {
+          "C": {
+            "descriptive_labels": {
+              "recorded_joint_violation": 1,
+              "scored_success": 19
+            },
+            "final_goal_distance_mean_m": 0.00233363618612804,
+            "min_hand_to_interaction_mean_m": 0.018465815252606516,
+            "n": 20,
+            "successes": 19,
+            "successful_records_never_within_5cm": 0
+          },
+          "E": {
+            "descriptive_labels": {
+              "never_near_interaction_point": 20
+            },
+            "final_goal_distance_mean_m": 0.12800000079862656,
+            "min_hand_to_interaction_mean_m": 0.1921957013581346,
+            "n": 20,
+            "successes": 0,
+            "successful_records_never_within_5cm": 0
+          },
+          "IID": {
+            "descriptive_labels": {
+              "scored_success": 10
+            },
+            "final_goal_distance_mean_m": 0.0014993054188728342,
+            "min_hand_to_interaction_mean_m": 0.016211596548133256,
+            "n": 10,
+            "successes": 10,
+            "successful_records_never_within_5cm": 0
+          }
+        }
+      },
+      "P1": {
+        "records_consumed": 50,
+        "splits": {
+          "C": {
+            "descriptive_labels": {
+              "scored_success": 20
+            },
+            "final_goal_distance_mean_m": 0.0017813173911250103,
+            "min_hand_to_interaction_mean_m": 0.016816967009631388,
+            "n": 20,
+            "successes": 20,
+            "successful_records_never_within_5cm": 0
+          },
+          "E": {
+            "descriptive_labels": {
+              "never_near_interaction_point": 1,
+              "recorded_joint_violation": 3,
+              "scored_success": 16
+            },
+            "final_goal_distance_mean_m": 0.008811459463132562,
+            "min_hand_to_interaction_mean_m": 0.04269410339845048,
+            "n": 20,
+            "successes": 16,
+            "successful_records_never_within_5cm": 9
+          },
+          "IID": {
+            "descriptive_labels": {
+              "scored_success": 10
+            },
+            "final_goal_distance_mean_m": 0.0016684730099013505,
+            "min_hand_to_interaction_mean_m": 0.016302326527243553,
+            "n": 10,
+            "successes": 10,
+            "successful_records_never_within_5cm": 0
+          }
+        }
+      },
+      "P2": {
+        "records_consumed": 50,
+        "splits": {
+          "C": {
+            "descriptive_labels": {
+              "scored_success": 20
+            },
+            "final_goal_distance_mean_m": 0.0032261100903327685,
+            "min_hand_to_interaction_mean_m": 0.017565627647756713,
+            "n": 20,
+            "successes": 20,
+            "successful_records_never_within_5cm": 0
+          },
+          "E": {
+            "descriptive_labels": {
+              "never_near_interaction_point": 12,
+              "recorded_joint_violation": 5,
+              "scored_success": 3
+            },
+            "final_goal_distance_mean_m": 0.08814734111853592,
+            "min_hand_to_interaction_mean_m": 0.06984783174843255,
+            "n": 20,
+            "successes": 3,
+            "successful_records_never_within_5cm": 3
+          },
+          "IID": {
+            "descriptive_labels": {
+              "scored_success": 10
+            },
+            "final_goal_distance_mean_m": 0.0021739678132886436,
+            "min_hand_to_interaction_mean_m": 0.015668523186841928,
+            "n": 10,
+            "successes": 10,
+            "successful_records_never_within_5cm": 0
+          }
+        }
+      },
+      "P3": {
+        "records_consumed": 50,
+        "splits": {
+          "C": {
+            "descriptive_labels": {
+              "scored_success": 20
+            },
+            "final_goal_distance_mean_m": 0.0017420864902384582,
+            "min_hand_to_interaction_mean_m": 0.01735297857028889,
+            "n": 20,
+            "successes": 20,
+            "successful_records_never_within_5cm": 0
+          },
+          "E": {
+            "descriptive_labels": {
+              "scored_success": 20
+            },
+            "final_goal_distance_mean_m": 0.0032425562464353953,
+            "min_hand_to_interaction_mean_m": 0.05660235101188213,
+            "n": 20,
+            "successes": 20,
+            "successful_records_never_within_5cm": 18
+          },
+          "IID": {
+            "descriptive_labels": {
+              "scored_success": 10
+            },
+            "final_goal_distance_mean_m": 0.0017062309797121855,
+            "min_hand_to_interaction_mean_m": 0.016344872838981082,
+            "n": 10,
+            "successes": 10,
+            "successful_records_never_within_5cm": 0
+          }
+        }
+      }
+    },
+    "does_not_support": [
+      "The packet cannot establish true population success probability of one, multi-seed reproducibility, locked-test performance, performance at other N, or visual-policy generalization. P3 E has only 20 trials; its supplied 95% interval is approximately [0.839,1].",
+      "P3 versus P1 is not a causal identification of the contact-gap target alone: joint diffusion dimensions and coupled denoising differ. The scores do not establish which P3 component caused the improvement.",
+      "The selected images all belong to one C episode, not the E failures of other candidates, and cannot establish extrapolation contact mechanics or a new recovery design.",
+      "Diagnostic distance thresholds are descriptive, not contact or phase oracles. Several successful E episodes never enter the 5 cm hand-to-observed-handle threshold, so a hard contact gate based on that diagnostic would be unsupported.",
+      "Raw reported loss totals differ in auxiliary terms across candidates and do not supply a common quality ranking. P3 world-action clipping is frequent in E (about 0.5904 of steps) but coexists with 20/20 successes; the packet does not establish clipping as a failure cause or justify a new action remapping."
+    ],
+    "supports": [
+      "On this fixed N5 seed0 development packet, the existing P3 cabinet-frame plus future-contact-gap/rail joint-diffusion combination succeeds on all 10 IID, all 20 C and all 20 E episodes, with zero recorded joint violations and zero exceptions.",
+      "Cabinet-frame candidates transfer more successfully to this E set: P1 succeeds on 16/20 and P3 on 20/20, compared with B0 0/20 and world-action plus rail-target P2 3/20. This supports retaining the existing local-geometry package for further fixed-protocol evaluation.",
+      "P3 has no observed failure mechanism in this packet requiring a new revision. Its E final observed goal-point distance averages 0.003242556246435395 m and its mean first-success step is 111.7.",
+      "All four 201-record training curves reach update 20000, contain finite reported values, and decline to small losses with modest late fluctuations. There is no evident divergence motivating an architectural repair.",
+      "The eight images consistently show approach and open-drawer endpoints in the single selected C episode. They are visually compatible with the scored endpoint summaries; B0 joint-limit failure remains a recorded numeric outcome, not something the images establish."
+    ],
+    "training_curve_summary": {
+      "B0": {
+        "all_reported_numeric_values_finite": true,
+        "final_loss": 0.003015301888808608,
+        "first_update": 1,
+        "initial_loss": 1.3024874925613403,
+        "last20_loss_mean": 0.004591524321585894,
+        "last20_loss_range": [
+          0.0025342265143990517,
+          0.008518217131495476
+        ],
+        "last_update": 20000,
+        "records_consumed": 201
+      },
+      "P1": {
+        "all_reported_numeric_values_finite": true,
+        "final_loss": 0.002362383296713233,
+        "first_update": 1,
+        "initial_loss": 1.1654824018478394,
+        "last20_loss_mean": 0.003600691701285541,
+        "last20_loss_range": [
+          0.002362383296713233,
+          0.00609944760799408
+        ],
+        "last_update": 20000,
+        "records_consumed": 201
+      },
+      "P2": {
+        "all_reported_numeric_values_finite": true,
+        "final_loss": 0.004407864063978195,
+        "first_update": 1,
+        "initial_loss": 1.4818780422210693,
+        "last20_auxiliary_epsilon_mse_mean": 0.002551495563238859,
+        "last20_loss_mean": 0.004724969679955393,
+        "last20_loss_range": [
+          0.0022704198490828276,
+          0.008016029372811317
+        ],
+        "last_update": 20000,
+        "records_consumed": 201
+      },
+      "P3": {
+        "all_reported_numeric_values_finite": true,
+        "final_loss": 0.008201210759580135,
+        "first_update": 1,
+        "initial_loss": 1.3957278728485107,
+        "last20_auxiliary_epsilon_mse_mean": 0.0034342668019235133,
+        "last20_loss_mean": 0.005350594571791589,
+        "last20_loss_range": [
+          0.003233191557228565,
+          0.00882121454924345
+        ],
+        "last_update": 20000,
+        "records_consumed": 201
+      }
+    }
+  },
+  "backend": "codex_session",
+  "consumed_file_hashes": {
+    "AGENTS.md": "86ddb87a2c885ced4f4b8cd24e48c26e0996c2ce9855f7522ec79f7e8601fa6c",
+    "round3/DESIGN_CONTRACT.md": "d3fe292220813dd805d0be8d330f215ab5da3da9a83669e9e54501509f10338d",
+    "round3/design_records/drawer/feedback/B0_offline_diagnostics.json": "509fe32bfc1354c289fe675754597ab642b9763656b6d4cf5ce04c519d67a314",
+    "round3/design_records/drawer/feedback/B0_step_050.png": "c965ea1edf2403a44c0ff9e5bc1e61c114c77ddde58e0a9dd74c6af41a2f71a7",
+    "round3/design_records/drawer/feedback/B0_step_200.png": "506d56defaca8a73fdb53c526fa86d879d55bb2bf483be6a2ac2f8f665b27217",
+    "round3/design_records/drawer/feedback/B0_training_curve.json": "68a69964bf87dc16e624d9b9e78c6d49e151ea520055ff6f0acf987a33bbd463",
+    "round3/design_records/drawer/feedback/P1_offline_diagnostics.json": "ebf6ac25ab989cafa65fb34b4e0b98c41fb4946d35d9111b63c723c0db592a43",
+    "round3/design_records/drawer/feedback/P1_step_050.png": "54e982de4993c0cc664638256d21d91b64a4f1357ca3c1ed835b1a068de5b819",
+    "round3/design_records/drawer/feedback/P1_step_200.png": "a74965679c0e97ee3c1727beef66441718ed18b5690c4239e507e7cbaf61d363",
+    "round3/design_records/drawer/feedback/P1_training_curve.json": "864034f9b4136fe76d85123558c8eb4441cbfb4ad0d75d595946a80dad6dd452",
+    "round3/design_records/drawer/feedback/P2_offline_diagnostics.json": "67a1a7ced80b0149949b1c8f974844369e48673450c443a1bf0a7f0260cd13d3",
+    "round3/design_records/drawer/feedback/P2_step_050.png": "780b48a7b7b83e54e4e9ca3f4efe0e90df4b266c99fae44930253e6c3f50b09c",
+    "round3/design_records/drawer/feedback/P2_step_200.png": "7513549b838a51f86444ce23fcf9d315884e5a5f5912ca4000048e344179b3b3",
+    "round3/design_records/drawer/feedback/P2_training_curve.json": "b5dd5078078bbbd473cd9e0110e02c8ebd61dc8832eee51c9c8d08ccab0d67c8",
+    "round3/design_records/drawer/feedback/P3_offline_diagnostics.json": "a3966cde4c4ab6176ca8b9d3bf846f3cac3903534704e8206d4c2a9a98c2a8e3",
+    "round3/design_records/drawer/feedback/P3_step_050.png": "471389d41f9303a6178c4cae7ca3a69495ed092ef371b267c8183c5b0eb864cf",
+    "round3/design_records/drawer/feedback/P3_step_200.png": "532c5ecc4e83090ac804f003cfae36951b394e5e803ea67265f1a051ddf0df4d",
+    "round3/design_records/drawer/feedback/P3_training_curve.json": "19b897c83246dfde47ab424f54e653ac0c390d89c06fb45418a56462643988cd",
+    "round3/design_records/drawer/feedback/bundle.json": "9d6ef3a3a26248d53ba40eede44ee484bac3beac44d9b3b1c661c777f9e5c4f3",
+    "round3/design_records/drawer/feedback/training_curves.png": "28804e127c1ec3e3e95e578259a69e3f485f078549ae738c0ccee22525dc7432",
+    "round3/design_records/drawer/proposal.json": "2c5e4da796ca7399195ac5df3b5103dca2d8f813366a08e39d231fdadda77b11",
+    "round3/design_records/drawer/rationale.md": "f300a7bb20de89c4373b5f7400ad17dc52feb51f4fc857443a53abda87d5c9cd",
+    "round3/evidence/drawer/DESIGN_INTERFACE.md": "fe0a1c4a12c4bd170d432f48cf1cb3ae98028cc37a5d1ad0f4cff6d0d14f0101",
+    "round3/evidence/drawer/task_materials.json": "881c8d54de03a502f491bc3b45ae7a70ea8226cce160bc5433d1e5c89fd37f10"
+  },
+  "context_exposure": {
+    "actual_simulator_frames_viewed": 8,
+    "additional_semantic_context": "Parent-provided isolated feedback instructions and inherited project execution constraints.",
+    "bound_external_files": "Integrity helper read bytes only for the 29 bound file hashes. Data manifest, N5 complete/selected NPZ records and common rule files outside feedback were not semantically parsed.",
+    "demonstrations_read_this_session": 0,
+    "discovery_metadata_exposure": "The initial rg --files command included the round3 directory and returned filenames of several other task evidence/proposal/revision files. Their contents were not opened, and no outcomes were exposed by that filename listing.",
+    "expert_or_reward_source_read": false,
+    "full_run_manifest_read": false,
+    "implementation_source_read": false,
+    "larger_demonstration_trajectories_read": false,
+    "locked_test_contents_read": false,
+    "n2_n10_n20_outcomes_read": false,
+    "n5_development_diagnostic_records_consumed": 200,
+    "other_task_semantic_results_read": false,
+    "semantic_read_scope": [
+      "AGENTS.md",
+      "round3/DESIGN_CONTRACT.md",
+      "round3/evidence/drawer/task_materials.json",
+      "round3/evidence/drawer/DESIGN_INTERFACE.md",
+      "round3/design_records/drawer/proposal.json",
+      "round3/design_records/drawer/rationale.md",
+      "round3/design_records/drawer/feedback/B0_offline_diagnostics.json",
+      "round3/design_records/drawer/feedback/B0_step_050.png",
+      "round3/design_records/drawer/feedback/B0_step_200.png",
+      "round3/design_records/drawer/feedback/B0_training_curve.json",
+      "round3/design_records/drawer/feedback/P1_offline_diagnostics.json",
+      "round3/design_records/drawer/feedback/P1_step_050.png",
+      "round3/design_records/drawer/feedback/P1_step_200.png",
+      "round3/design_records/drawer/feedback/P1_training_curve.json",
+      "round3/design_records/drawer/feedback/P2_offline_diagnostics.json",
+      "round3/design_records/drawer/feedback/P2_step_050.png",
+      "round3/design_records/drawer/feedback/P2_step_200.png",
+      "round3/design_records/drawer/feedback/P2_training_curve.json",
+      "round3/design_records/drawer/feedback/P3_offline_diagnostics.json",
+      "round3/design_records/drawer/feedback/P3_step_050.png",
+      "round3/design_records/drawer/feedback/P3_step_200.png",
+      "round3/design_records/drawer/feedback/P3_training_curve.json",
+      "round3/design_records/drawer/feedback/bundle.json",
+      "round3/design_records/drawer/feedback/training_curves.png"
+    ],
+    "training_curve_plot_viewed": true,
+    "training_curves_consumed": 4
+  },
+  "created_at": "2026-09-08T06:56:10.533639+00:00",
+  "decision": "no_revision",
+  "designer": {
+    "cost": null,
+    "model": "not exposed to agent",
+    "name": "/root/feedback_drawer",
+    "session": "isolated N5 feedback design subagent; exact session identifier unavailable",
+    "tokens": null
+  },
+  "explanation": "Choose no_revision independently. P3 already contains the combination supported by the allowed packet and has no observed failure in its 50 development records. Introducing a new contact gate, auxiliary target, coordinate rewrite, or clipping rule would add unsupported assumptions and adapt to a small development set without a concrete demonstrated P3 weakness. Keep the frozen initial candidates for the existing evaluation protocol. This decision does not claim P3 is universally reliable or that final training/evaluation is complete.",
+  "feedback_bundle": "round3/design_records/drawer/feedback/bundle.json",
+  "feedback_bundle_sha256": "9d6ef3a3a26248d53ba40eede44ee484bac3beac44d9b3b1c661c777f9e5c4f3",
+  "feedback_cycle": 1,
+  "frame_access_records": [
+    {
+      "access_completed": true,
+      "access_tool": "functions.exec -> tools.view_image",
+      "actual_step": 50,
+      "candidate_id": "B0",
+      "episode_id": "r3_drawer_dev_C_011_32201011",
+      "inspection_completed_by_utc": "2026-09-08T06:56:10.533639+00:00",
+      "inspection_note": "Step 50 image shows the hand above/in front of the closed drawer during approach.",
+      "path": "round3/design_records/drawer/feedback/B0_step_050.png",
+      "requested_step": 50,
+      "sha256": "c965ea1edf2403a44c0ff9e5bc1e61c114c77ddde58e0a9dd74c6af41a2f71a7",
+      "success": false
+    },
+    {
+      "access_completed": true,
+      "access_tool": "functions.exec -> tools.view_image",
+      "actual_step": 98,
+      "candidate_id": "B0",
+      "episode_id": "r3_drawer_dev_C_011_32201011",
+      "inspection_completed_by_utc": "2026-09-08T06:56:10.533639+00:00",
+      "inspection_note": "Terminal image shows the hand near the drawer handle and the drawer translated open. A still frame cannot visually adjudicate a robot joint-limit violation.",
+      "path": "round3/design_records/drawer/feedback/B0_step_200.png",
+      "requested_step": 200,
+      "sha256": "506d56defaca8a73fdb53c526fa86d879d55bb2bf483be6a2ac2f8f665b27217",
+      "success": false
+    },
+    {
+      "access_completed": true,
+      "access_tool": "functions.exec -> tools.view_image",
+      "actual_step": 50,
+      "candidate_id": "P1",
+      "episode_id": "r3_drawer_dev_C_011_32201011",
+      "inspection_completed_by_utc": "2026-09-08T06:56:10.533639+00:00",
+      "inspection_note": "Step 50 image shows the hand above/in front of the closed drawer during approach.",
+      "path": "round3/design_records/drawer/feedback/P1_step_050.png",
+      "requested_step": 50,
+      "sha256": "54e982de4993c0cc664638256d21d91b64a4f1357ca3c1ed835b1a068de5b819",
+      "success": true
+    },
+    {
+      "access_completed": true,
+      "access_tool": "functions.exec -> tools.view_image",
+      "actual_step": 88,
+      "candidate_id": "P1",
+      "episode_id": "r3_drawer_dev_C_011_32201011",
+      "inspection_completed_by_utc": "2026-09-08T06:56:10.533639+00:00",
+      "inspection_note": "Terminal image shows the hand near the drawer handle and the drawer translated open. A still frame cannot visually adjudicate a robot joint-limit violation.",
+      "path": "round3/design_records/drawer/feedback/P1_step_200.png",
+      "requested_step": 200,
+      "sha256": "a74965679c0e97ee3c1727beef66441718ed18b5690c4239e507e7cbaf61d363",
+      "success": true
+    },
+    {
+      "access_completed": true,
+      "access_tool": "functions.exec -> tools.view_image",
+      "actual_step": 50,
+      "candidate_id": "P2",
+      "episode_id": "r3_drawer_dev_C_011_32201011",
+      "inspection_completed_by_utc": "2026-09-08T06:56:10.533639+00:00",
+      "inspection_note": "Step 50 image shows the hand above/in front of the closed drawer during approach.",
+      "path": "round3/design_records/drawer/feedback/P2_step_050.png",
+      "requested_step": 50,
+      "sha256": "780b48a7b7b83e54e4e9ca3f4efe0e90df4b266c99fae44930253e6c3f50b09c",
+      "success": true
+    },
+    {
+      "access_completed": true,
+      "access_tool": "functions.exec -> tools.view_image",
+      "actual_step": 90,
+      "candidate_id": "P2",
+      "episode_id": "r3_drawer_dev_C_011_32201011",
+      "inspection_completed_by_utc": "2026-09-08T06:56:10.533639+00:00",
+      "inspection_note": "Terminal image shows the hand near the drawer handle and the drawer translated open. A still frame cannot visually adjudicate a robot joint-limit violation.",
+      "path": "round3/design_records/drawer/feedback/P2_step_200.png",
+      "requested_step": 200,
+      "sha256": "7513549b838a51f86444ce23fcf9d315884e5a5f5912ca4000048e344179b3b3",
+      "success": true
+    },
+    {
+      "access_completed": true,
+      "access_tool": "functions.exec -> tools.view_image",
+      "actual_step": 50,
+      "candidate_id": "P3",
+      "episode_id": "r3_drawer_dev_C_011_32201011",
+      "inspection_completed_by_utc": "2026-09-08T06:56:10.533639+00:00",
+      "inspection_note": "Step 50 image shows the hand above/in front of the closed drawer during approach.",
+      "path": "round3/design_records/drawer/feedback/P3_step_050.png",
+      "requested_step": 50,
+      "sha256": "471389d41f9303a6178c4cae7ca3a69495ed092ef371b267c8183c5b0eb864cf",
+      "success": true
+    },
+    {
+      "access_completed": true,
+      "access_tool": "functions.exec -> tools.view_image",
+      "actual_step": 88,
+      "candidate_id": "P3",
+      "episode_id": "r3_drawer_dev_C_011_32201011",
+      "inspection_completed_by_utc": "2026-09-08T06:56:10.533639+00:00",
+      "inspection_note": "Terminal image shows the hand near the drawer handle and the drawer translated open. A still frame cannot visually adjudicate a robot joint-limit violation.",
+      "path": "round3/design_records/drawer/feedback/P3_step_200.png",
+      "requested_step": 200,
+      "sha256": "532c5ecc4e83090ac804f003cfae36951b394e5e803ea67265f1a051ddf0df4d",
+      "success": true
+    }
+  ],
+  "implementation_scope": {
+    "formal_training_launched": false,
+    "gpu_work_performed": false,
+    "new_config": null,
+    "new_plugin": null,
+    "reason": "No revision chosen; no implementation is required.",
+    "source_files_modified": []
+  },
+  "initial_feasibility_revision": {
+    "exists": false
+  },
+  "original_proposal": "round3/design_records/drawer/proposal.json",
+  "original_proposal_sha256": "2c5e4da796ca7399195ac5df3b5103dca2d8f813366a08e39d231fdadda77b11",
+  "packet_integrity": {
+    "bound_files_verified": 29,
+    "bundle_and_proposal_hashes_independently_confirmed": true,
+    "checker": "/root/feedback_drawer/packet_hashes",
+    "frame_hash_assertions_verified": 8,
+    "mismatches": [],
+    "passed": true,
+    "scope": "All bundle.bound_files entries verified by SHA256 over bytes, plus all frame entries; no outside semantic parsing.",
+    "total_hash_assertions": 37
+  },
+  "task": "drawer",
+  "version": 1
+}

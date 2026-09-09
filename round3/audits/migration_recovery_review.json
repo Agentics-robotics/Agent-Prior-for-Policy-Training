@@ -1,0 +1,113 @@
+{
+  "changed_files": [
+    "src/round3/cli.py",
+    "tests/round3/test_process_cleanup.py",
+    "round3/audits/migration_recovery_review.json"
+  ],
+  "checkpoint_controls_reviewed": [
+    "Per-run flock blocks duplicate optimizers for a run.",
+    "Checkpoint restore validates metadata, config hash, normalizer provenance, initial weights, and sample count; restores optimizer, EMA, and random streams.",
+    "Latest/milestone checkpoints use atomic saves; uncommitted log tails are archived before resume.",
+    "Completed training/evaluation artifacts are identity/hash checked before reuse.",
+    "Training readiness requires complete frozen data, initial proposal freeze, and successful implementation audit."
+  ],
+  "checks": {
+    "all_moved_destination_files_exist": true,
+    "all_moved_destination_files_visible_in_git_index": true,
+    "cli_help_accepts_gpu_devices": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "focused_tests": {
+      "command": "pixi run --no-install --frozen python -m pytest -q tests/round3/test_process_cleanup.py tests/round3/test_integration.py -k \"process or interrupt or child or owned_group or partial_data or stale_recovery or authorized_devices or individual_worker or candidate_requires\" --disable-warnings -p no:cacheprovider",
+      "deselected": 4,
+      "passed": 9,
+      "seconds": 1.21
+    },
+    "frozen_training_core_mismatches": [],
+    "frozen_training_core_sha256_checked_after_fix": 12,
+    "git_status_snapshot": {
+      "staged_content_changes": 0,
+      "unstaged_additions": 2,
+      "unstaged_deletions": 2,
+      "unstaged_renames": 2595,
+      "untracked_entries": 99
+    },
+    "historical_sources_and_specs_changed": [],
+    "historical_sources_and_specs_compared_to_HEAD": 33,
+    "legacy_agent_training_directory_exists": false,
+    "manifest_and_common_gpu_devices": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "pixi_execution": "/home/users/oscar/.pixi/bin/pixi run --no-install --frozen",
+    "previously_tracked_moved_files": 2597,
+    "prior_cross_process_resume_evidence": "round3/audits/cross_process_resume.json: 100+100 debug updates matched an independent 200-update reference for model, EMA, loader RNG, diffusion RNG, and pairing; not repeated in this review.",
+    "resolved_project_root": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training",
+    "root_imports": [
+      "relative_dp",
+      "round2",
+      "round3",
+      "round3.cli"
+    ]
+  },
+  "findings": [
+    {
+      "before": "A mocked interrupt in _child confirmed SIGINT was sent but the exception escaped while its worker remained alive, permitting the parent GPU lease to unwind before checkpoint saving finished.",
+      "id": "orderly_interrupt_lease_release",
+      "location": "src/round3/cli.py:110",
+      "repair": "The CLI now waits for the launcher and all live members of its owned process group before propagating the original exception or clearing its launcher claim. Repeated interrupts, a group-exit signal race, and zombie group members are handled.",
+      "severity": "high",
+      "status": "fixed",
+      "validation": "Four synthetic cases plus five existing scheduler safety checks passed. No real process signal, optimizer update, or simulator episode was used."
+    },
+    {
+      "change_scope": "No SIGKILL recovery refactor was authorized for this bounded fix. Existing live schedulers retain their loaded earlier CLI and were not interrupted.",
+      "detail": "Workers launched under ROUND3_GPU_LEASE_PID rely on the scheduler-held GPU lock. Abrupt scheduler death can release that lock while its worker survives; stale-run reconciliation preserves a live run, but does not reserve its GPU against a different pending run.",
+      "id": "abrupt_parent_death",
+      "locations": [
+        "src/round3/cli.py:61",
+        "src/round3/cli.py:169"
+      ],
+      "recovery_requirement": "After abrupt parent termination, inspect recorded worker/launcher PIDs and actual GPU processes before launching replacement queues; wait for owned surviving workers to exit. Preserve unrelated processes. A future durable worker-owned/inherited lease can close this gap.",
+      "severity": "medium",
+      "status": "known_limit"
+    },
+    {
+      "detail": "Four migrated protocol manifests retain old source_file/XML paths as provenance. Runtime readers use observation schema and other metadata and do not open those old paths. Round1 progress output retains an old display-only project path, while ROOT is derived from the relocated source file. Historical handoff and recovery documents retain prior roots/GPU limits.",
+      "id": "retained_historical_path_strings",
+      "recommendation": "Keep immutable provenance and historical sources unchanged. Root README/AGENTS/LIVE_EXECUTION give current root and GPU0\u20135 commands. The Pixi workspace name agent_training is a package/workspace label, not a directory dependency.",
+      "severity": "info",
+      "status": "intentional_preservation"
+    },
+    {
+      "detail": "The migration audit records that historical runs/checkpoints were absent in the received repository. Existing historical reports are preserved; this review does not claim their missing checkpoints are recoverable from disk.",
+      "historical_runs_directory_present_now": false,
+      "id": "historical_checkpoints_absent_on_receipt",
+      "severity": "info",
+      "status": "preexisting_limit"
+    }
+  ],
+  "preserved": [
+    "Frozen training/model/plugin sources and configs",
+    "Data and split IDs",
+    "Existing run records/checkpoints/logs",
+    "Historical specifications and migration records",
+    "All existing live processes"
+  ],
+  "result": "migration_passed; orderly_interrupt_cleanup_fixed; abrupt_parent_death_limitation_documented",
+  "reviewed_at": "2026-09-08T06:28:16.900534+00:00",
+  "scope": "Root relocation, Git recoverability, runtime entry points, and orderly checkpoint/GPU cleanup; no training, evaluation, installation, or sealed test contents accessed.",
+  "source_sha256": {
+    "src/round3/cli.py": "d94fed5a81273e349d98f04028838fdf969c4f18436aebc533a144c496b62f17",
+    "tests/round3/test_process_cleanup.py": "fad9af2aa6e725c81a459b7254dff7c0c46db91ebdac6c3ae9496fee56d35971"
+  }
+}

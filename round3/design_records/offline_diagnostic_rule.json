@@ -1,0 +1,36 @@
+{
+  "created_at": "2026-09-08T05:50:56.653101+00:00",
+  "implementation_sha256": "0146746de3c6ca0ebd7c0649a2bcfeb515b70e6b9838b9165b6361e3217ffbdc",
+  "rule": {
+    "approach_point": "Current shared observation object/interaction point [4:7]; proximity does not establish contact or grasp",
+    "cabinet_progress": "Use recorded trajectory progress array when present, never re-query simulator; unavailable otherwise",
+    "geometry": "Euclidean distances in world metres; assembly also reports xy distance and signed ring_z-goal_z",
+    "goal_points": {
+      "assembly": "observed ring body center [39:42]",
+      "door": "observed handle [4:7]",
+      "drawer": "observed handle [4:7]",
+      "peg-insert-side": "observed peg head [39:42]",
+      "pick-place-wall": "object [4:7]",
+      "stick-push": "observed pushed-object point [11:14]"
+    },
+    "lift_points": {
+      "assembly": "ring body center [39:42]",
+      "other_manipulation": "object/tool observation [4:7]"
+    },
+    "low_recorded_cabinet_progress": 0.1,
+    "near_interaction_distance_m": 0.05,
+    "object_lift_threshold_m": 0.03,
+    "precedence": [
+      "scored_success",
+      "exception",
+      "recorded_joint_violation",
+      "never_near_interaction_point",
+      "near_handle_low_recorded_progress",
+      "near_handle_goal_not_completed",
+      "near_object_without_lift",
+      "lift_observed_goal_not_completed"
+    ],
+    "scope": "Descriptive thresholds, not contact detection, expert phases, success rules, model inputs, or causal failure diagnoses",
+    "version": "round3-offline-diagnostics-v1"
+  }
+}

@@ -1,0 +1,4550 @@
+{
+  "accounting": "One window starts at each actual transition. Overlapping future labels and repeated optimizer draws are not new demonstrations. Zero-valued labels are counted through explicit validity masks, not nonzero tests.",
+  "created_at": "2026-09-08T08:05:36.774246+00:00",
+  "limitations": "Counts describe materialized supervision, not stochastic per-update auxiliary-mask exposure or FLOPs. Definitions/units/weights remain in frozen proposals and plugins.",
+  "locked_test_contents_read": false,
+  "meaning": "Exact tensors reconstructed with frozen current-D_N data_for_run; inventory does not imply training completion.",
+  "optimizer_updates_performed": 0,
+  "passed": true,
+  "runs": [
+    {
+      "auxiliary_targets": {},
+      "candidate_id": "B0",
+      "complete_demonstrations": 2,
+      "data_manifest_sha256": "6f391a3f92fe93e9be7836d554e76ba2fb223273cff4371b516b228f8364d84d",
+      "diffusion_target_shape": [
+        163,
+        16,
+        4
+      ],
+      "formal_train_status_at_inventory": "completed",
+      "implementation_sha256": "234a3f6e2d9a2512538ad691de8eabb1f7534fb1438d36c24a4c4192bf349616",
+      "joint_auxiliary_channels": 0,
+      "native_executed_action_channels": 4,
+      "observation_tensor_shape": [
+        163,
+        2,
+        45
+      ],
+      "proposal_sha256": "425a43cd7d99948f823725ccd36d012c7ee3594651737213f59216968d555156",
+      "run_id": "r3_pick-place-wall_B0_n2_s0",
+      "source_episode_ids": [
+        "r3_pick-place-wall_train_IID_000_31000000",
+        "r3_pick-place-wall_train_IID_001_31000100"
+      ],
+      "stored_action_horizon_rows": 2608,
+      "task": "pick-place-wall",
+      "train_n": 2,
+      "train_seed": 0,
+      "transitions_and_distinct_window_starts": 163,
+      "valid_action_horizon_rows": 2368
+    },
+    {
+      "auxiliary_targets": {},
+      "candidate_id": "P1",
+      "complete_demonstrations": 2,
+      "data_manifest_sha256": "6f391a3f92fe93e9be7836d554e76ba2fb223273cff4371b516b228f8364d84d",
+      "diffusion_target_shape": [
+        163,
+        16,
+        4
+      ],
+      "formal_train_status_at_inventory": "completed",
+      "implementation_sha256": "2ec7737fccd28570b04c6d3112faebac684fd11d745dd4da3424d8c1b27b01b7",
+      "joint_auxiliary_channels": 0,
+      "native_executed_action_channels": 4,
+      "observation_tensor_shape": [
+        163,
+        2,
+        80
+      ],
+      "proposal_sha256": "e4a14e7d2e0d6edf5624d5df9eeb201d84b5e13437f0cb094262972c6fd09b56",
+      "run_id": "r3_pick-place-wall_P1_n2_s0",
+      "source_episode_ids": [
+        "r3_pick-place-wall_train_IID_000_31000000",
+        "r3_pick-place-wall_train_IID_001_31000100"
+      ],
+      "stored_action_horizon_rows": 2608,
+      "task": "pick-place-wall",
+      "train_n": 2,
+      "train_seed": 0,
+      "transitions_and_distinct_window_starts": 163,
+      "valid_action_horizon_rows": 2368
+    },
+    {
+      "auxiliary_targets": {
+        "phase": {
+          "class_counts": {
+            "0": 68,
+            "1": 24,
+            "2": 58,
+            "3": 13
+          },
+          "dtype": "int64",
+          "shape": [
+            163
+          ],
+          "stored_scalar_elements": 163,
+          "valid_label_rows": 163
+        }
+      },
+      "candidate_id": "P2",
+      "complete_demonstrations": 2,
+      "data_manifest_sha256": "6f391a3f92fe93e9be7836d554e76ba2fb223273cff4371b516b228f8364d84d",
+      "diffusion_target_shape": [
+        163,
+        16,
+        4
+      ],
+      "formal_train_status_at_inventory": "completed",
+      "implementation_sha256": "a76e0c54adee59c54d0834a66314d1073cfccb2781d0a1a68b3bd20db3a60712",
+      "joint_auxiliary_channels": 0,
+      "native_executed_action_channels": 4,
+      "observation_tensor_shape": [
+        163,
+        2,
+        45
+      ],
+      "proposal_sha256": "e4a14e7d2e0d6edf5624d5df9eeb201d84b5e13437f0cb094262972c6fd09b56",
+      "run_id": "r3_pick-place-wall_P2_n2_s0",
+      "source_episode_ids": [
+        "r3_pick-place-wall_train_IID_000_31000000",
+        "r3_pick-place-wall_train_IID_001_31000100"
+      ],
+      "stored_action_horizon_rows": 2608,
+      "task": "pick-place-wall",
+      "train_n": 2,
+      "train_seed": 0,
+      "transitions_and_distinct_window_starts": 163,
+      "valid_action_horizon_rows": 2368
+    },
+    {
+      "auxiliary_targets": {
+        "future_delta": {
+          "dtype": "float32",
+          "mask_source": "action_valid_mask",
+          "shape": [
+            163,
+            16,
+            6
+          ],
+          "stored_scalar_elements": 15648,
+          "valid_horizon_rows": 2368,
+          "valid_scalar_elements": 14208
+        },
+        "future_position": {
+          "dtype": "float32",
+          "mask_source": "action_valid_mask",
+          "shape": [
+            163,
+            16,
+            6
+          ],
+          "stored_scalar_elements": 15648,
+          "valid_horizon_rows": 2368,
+          "valid_scalar_elements": 14208
+        }
+      },
+      "candidate_id": "P3",
+      "complete_demonstrations": 2,
+      "data_manifest_sha256": "6f391a3f92fe93e9be7836d554e76ba2fb223273cff4371b516b228f8364d84d",
+      "diffusion_target_shape": [
+        163,
+        16,
+        10
+      ],
+      "formal_train_status_at_inventory": "completed",
+      "implementation_sha256": "e7083ef399ea38298ba65e14ddf825e7b1268572d53d25a60928d0184a1c2487",
+      "joint_auxiliary_channels": 6,
+      "native_executed_action_channels": 4,
+      "observation_tensor_shape": [
+        163,
+        2,
+        80
+      ],
+      "proposal_sha256": "e4a14e7d2e0d6edf5624d5df9eeb201d84b5e13437f0cb094262972c6fd09b56",
+      "run_id": "r3_pick-place-wall_P3_n2_s0",
+      "source_episode_ids": [
+        "r3_pick-place-wall_train_IID_000_31000000",
+        "r3_pick-place-wall_train_IID_001_31000100"
+      ],
+      "stored_action_horizon_rows": 2608,
+      "task": "pick-place-wall",
+      "train_n": 2,
+      "train_seed": 0,
+      "transitions_and_distinct_window_starts": 163,
+      "valid_action_horizon_rows": 2368
+    },
+    {
+      "auxiliary_targets": {},
+      "candidate_id": "B0",
+      "complete_demonstrations": 5,
+      "data_manifest_sha256": "6f391a3f92fe93e9be7836d554e76ba2fb223273cff4371b516b228f8364d84d",
+      "diffusion_target_shape": [
+        413,
+        16,
+        4
+      ],
+      "formal_train_status_at_inventory": "completed",
+      "implementation_sha256": "234a3f6e2d9a2512538ad691de8eabb1f7534fb1438d36c24a4c4192bf349616",
+      "joint_auxiliary_channels": 0,
+      "native_executed_action_channels": 4,
+      "observation_tensor_shape": [
+        413,
+        2,
+        45
+      ],
+      "proposal_sha256": "425a43cd7d99948f823725ccd36d012c7ee3594651737213f59216968d555156",
+      "run_id": "r3_pick-place-wall_B0_n5_s0",
+      "source_episode_ids": [
+        "r3_pick-place-wall_train_IID_000_31000000",
+        "r3_pick-place-wall_train_IID_001_31000100",
+        "r3_pick-place-wall_train_IID_002_31000200",
+        "r3_pick-place-wall_train_IID_003_31000300",
+        "r3_pick-place-wall_train_IID_004_31000400"
+      ],
+      "stored_action_horizon_rows": 6608,
+      "task": "pick-place-wall",
+      "train_n": 5,
+      "train_seed": 0,
+      "transitions_and_distinct_window_starts": 413,
+      "valid_action_horizon_rows": 6008
+    },
+    {
+      "auxiliary_targets": {},
+      "candidate_id": "P1",
+      "complete_demonstrations": 5,
+      "data_manifest_sha256": "6f391a3f92fe93e9be7836d554e76ba2fb223273cff4371b516b228f8364d84d",
+      "diffusion_target_shape": [
+        413,
+        16,
+        4
+      ],
+      "formal_train_status_at_inventory": "completed",
+      "implementation_sha256": "2ec7737fccd28570b04c6d3112faebac684fd11d745dd4da3424d8c1b27b01b7",
+      "joint_auxiliary_channels": 0,
+      "native_executed_action_channels": 4,
+      "observation_tensor_shape": [
+        413,
+        2,
+        80
+      ],
+      "proposal_sha256": "e4a14e7d2e0d6edf5624d5df9eeb201d84b5e13437f0cb094262972c6fd09b56",
+      "run_id": "r3_pick-place-wall_P1_n5_s0",
+      "source_episode_ids": [
+        "r3_pick-place-wall_train_IID_000_31000000",
+        "r3_pick-place-wall_train_IID_001_31000100",
+        "r3_pick-place-wall_train_IID_002_31000200",
+        "r3_pick-place-wall_train_IID_003_31000300",
+        "r3_pick-place-wall_train_IID_004_31000400"
+      ],
+      "stored_action_horizon_rows": 6608,
+      "task": "pick-place-wall",
+      "train_n": 5,
+      "train_seed": 0,
+      "transitions_and_distinct_window_starts": 413,
+      "valid_action_horizon_rows": 6008
+    },
+    {
+      "auxiliary_targets": {
+        "phase": {
+          "class_counts": {
+            "0": 169,
+            "1": 60,
+            "2": 146,
+            "3": 38
+          },
+          "dtype": "int64",
+          "shape": [
+            413
+          ],
+          "stored_scalar_elements": 413,
+          "valid_label_rows": 413
+        }
+      },
+      "candidate_id": "P2",
+      "complete_demonstrations": 5,
+      "data_manifest_sha256": "6f391a3f92fe93e9be7836d554e76ba2fb223273cff4371b516b228f8364d84d",
+      "diffusion_target_shape": [
+        413,
+        16,
+        4
+      ],
+      "formal_train_status_at_inventory": "completed",
+      "implementation_sha256": "a76e0c54adee59c54d0834a66314d1073cfccb2781d0a1a68b3bd20db3a60712",
+      "joint_auxiliary_channels": 0,
+      "native_executed_action_channels": 4,
+      "observation_tensor_shape": [
+        413,
+        2,
+        45
+      ],
+      "proposal_sha256": "e4a14e7d2e0d6edf5624d5df9eeb201d84b5e13437f0cb094262972c6fd09b56",
+      "run_id": "r3_pick-place-wall_P2_n5_s0",
+      "source_episode_ids": [
+        "r3_pick-place-wall_train_IID_000_31000000",
+        "r3_pick-place-wall_train_IID_001_31000100",
+        "r3_pick-place-wall_train_IID_002_31000200",
+        "r3_pick-place-wall_train_IID_003_31000300",
+        "r3_pick-place-wall_train_IID_004_31000400"
+      ],
+      "stored_action_horizon_rows": 6608,
+      "task": "pick-place-wall",
+      "train_n": 5,
+      "train_seed": 0,
+      "transitions_and_distinct_window_starts": 413,
+      "valid_action_horizon_rows": 6008
+    },
+    {
+      "auxiliary_targets": {
+        "future_delta": {
+          "dtype": "float32",
+          "mask_source": "action_valid_mask",
+          "shape": [
+            413,
+            16,
+            6
+          ],
+          "stored_scalar_elements": 39648,
+          "valid_horizon_rows": 6008,
+          "valid_scalar_elements": 36048
+        },
+        "future_position": {
+          "dtype": "float32",
+          "mask_source": "action_valid_mask",
+          "shape": [
+            413,
+            16,
+            6
+          ],
+          "stored_scalar_elements": 39648,
+          "valid_horizon_rows": 6008,
+          "valid_scalar_elements": 36048
+        }
+      },
+      "candidate_id": "P3",
+      "complete_demonstrations": 5,
+      "data_manifest_sha256": "6f391a3f92fe93e9be7836d554e76ba2fb223273cff4371b516b228f8364d84d",
+      "diffusion_target_shape": [
+        413,
+        16,
+        10
+      ],
+      "formal_train_status_at_inventory": "completed",
+      "implementation_sha256": "e7083ef399ea38298ba65e14ddf825e7b1268572d53d25a60928d0184a1c2487",
+      "joint_auxiliary_channels": 6,
+      "native_executed_action_channels": 4,
+      "observation_tensor_shape": [
+        413,
+        2,
+        80
+      ],
+      "proposal_sha256": "e4a14e7d2e0d6edf5624d5df9eeb201d84b5e13437f0cb094262972c6fd09b56",
+      "run_id": "r3_pick-place-wall_P3_n5_s0",
+      "source_episode_ids": [
+        "r3_pick-place-wall_train_IID_000_31000000",
+        "r3_pick-place-wall_train_IID_001_31000100",
+        "r3_pick-place-wall_train_IID_002_31000200",
+        "r3_pick-place-wall_train_IID_003_31000300",
+        "r3_pick-place-wall_train_IID_004_31000400"
+      ],
+      "stored_action_horizon_rows": 6608,
+      "task": "pick-place-wall",
+      "train_n": 5,
+      "train_seed": 0,
+      "transitions_and_distinct_window_starts": 413,
+      "valid_action_horizon_rows": 6008
+    },
+    {
+      "auxiliary_targets": {},
+      "candidate_id": "B0",
+      "complete_demonstrations": 10,
+      "data_manifest_sha256": "6f391a3f92fe93e9be7836d554e76ba2fb223273cff4371b516b228f8364d84d",
+      "diffusion_target_shape": [
+        810,
+        16,
+        4
+      ],
+      "formal_train_status_at_inventory": "completed",
+      "implementation_sha256": "234a3f6e2d9a2512538ad691de8eabb1f7534fb1438d36c24a4c4192bf349616",
+      "joint_auxiliary_channels": 0,
+      "native_executed_action_channels": 4,
+      "observation_tensor_shape": [
+        810,
+        2,
+        45
+      ],
+      "proposal_sha256": "425a43cd7d99948f823725ccd36d012c7ee3594651737213f59216968d555156",
+      "run_id": "r3_pick-place-wall_B0_n10_s0",
+      "source_episode_ids": [
+        "r3_pick-place-wall_train_IID_000_31000000",
+        "r3_pick-place-wall_train_IID_001_31000100",
+        "r3_pick-place-wall_train_IID_002_31000200",
+        "r3_pick-place-wall_train_IID_003_31000300",
+        "r3_pick-place-wall_train_IID_004_31000400",
+        "r3_pick-place-wall_train_IID_005_31000500",
+        "r3_pick-place-wall_train_IID_006_31000600",
+        "r3_pick-place-wall_train_IID_007_31000700",
+        "r3_pick-place-wall_train_IID_008_31000800",
+        "r3_pick-place-wall_train_IID_009_31000900"
+      ],
+      "stored_action_horizon_rows": 12960,
+      "task": "pick-place-wall",
+      "train_n": 10,
+      "train_seed": 0,
+      "transitions_and_distinct_window_starts": 810,
+      "valid_action_horizon_rows": 11760
+    },
+    {
+      "auxiliary_targets": {},
+      "candidate_id": "P1",
+      "complete_demonstrations": 10,
+      "data_manifest_sha256": "6f391a3f92fe93e9be7836d554e76ba2fb223273cff4371b516b228f8364d84d",
+      "diffusion_target_shape": [
+        810,
+        16,
+        4
+      ],
+      "formal_train_status_at_inventory": "completed",
+      "implementation_sha256": "2ec7737fccd28570b04c6d3112faebac684fd11d745dd4da3424d8c1b27b01b7",
+      "joint_auxiliary_channels": 0,
+      "native_executed_action_channels": 4,
+      "observation_tensor_shape": [
+        810,
+        2,
+        80
+      ],
+      "proposal_sha256": "e4a14e7d2e0d6edf5624d5df9eeb201d84b5e13437f0cb094262972c6fd09b56",
+      "run_id": "r3_pick-place-wall_P1_n10_s0",
+      "source_episode_ids": [
+        "r3_pick-place-wall_train_IID_000_31000000",
+        "r3_pick-place-wall_train_IID_001_31000100",
+        "r3_pick-place-wall_train_IID_002_31000200",
+        "r3_pick-place-wall_train_IID_003_31000300",
+        "r3_pick-place-wall_train_IID_004_31000400",
+        "r3_pick-place-wall_train_IID_005_31000500",
+        "r3_pick-place-wall_train_IID_006_31000600",
+        "r3_pick-place-wall_train_IID_007_31000700",
+        "r3_pick-place-wall_train_IID_008_31000800",
+        "r3_pick-place-wall_train_IID_009_31000900"
+      ],
+      "stored_action_horizon_rows": 12960,
+      "task": "pick-place-wall",
+      "train_n": 10,
+      "train_seed": 0,
+      "transitions_and_distinct_window_starts": 810,
+      "valid_action_horizon_rows": 11760
+    },
+    {
+      "auxiliary_targets": {
+        "phase": {
+          "class_counts": {
+            "0": 335,
+            "1": 120,
+            "2": 291,
+            "3": 64
+          },
+          "dtype": "int64",
+          "shape": [
+            810
+          ],
+          "stored_scalar_elements": 810,
+          "valid_label_rows": 810
+        }
+      },
+      "candidate_id": "P2",
+      "complete_demonstrations": 10,
+      "data_manifest_sha256": "6f391a3f92fe93e9be7836d554e76ba2fb223273cff4371b516b228f8364d84d",
+      "diffusion_target_shape": [
+        810,
+        16,
+        4
+      ],
+      "formal_train_status_at_inventory": "completed",
+      "implementation_sha256": "a76e0c54adee59c54d0834a66314d1073cfccb2781d0a1a68b3bd20db3a60712",
+      "joint_auxiliary_channels": 0,
+      "native_executed_action_channels": 4,
+      "observation_tensor_shape": [
+        810,
+        2,
+        45
+      ],
+      "proposal_sha256": "e4a14e7d2e0d6edf5624d5df9eeb201d84b5e13437f0cb094262972c6fd09b56",
+      "run_id": "r3_pick-place-wall_P2_n10_s0",
+      "source_episode_ids": [
+        "r3_pick-place-wall_train_IID_000_31000000",
+        "r3_pick-place-wall_train_IID_001_31000100",
+        "r3_pick-place-wall_train_IID_002_31000200",
+        "r3_pick-place-wall_train_IID_003_31000300",
+        "r3_pick-place-wall_train_IID_004_31000400",
+        "r3_pick-place-wall_train_IID_005_31000500",
+        "r3_pick-place-wall_train_IID_006_31000600",
+        "r3_pick-place-wall_train_IID_007_31000700",
+        "r3_pick-place-wall_train_IID_008_31000800",
+        "r3_pick-place-wall_train_IID_009_31000900"
+      ],
+      "stored_action_horizon_rows": 12960,
+      "task": "pick-place-wall",
+      "train_n": 10,
+      "train_seed": 0,
+      "transitions_and_distinct_window_starts": 810,
+      "valid_action_horizon_rows": 11760
+    },
+    {
+      "auxiliary_targets": {
+        "future_delta": {
+          "dtype": "float32",
+          "mask_source": "action_valid_mask",
+          "shape": [
+            810,
+            16,
+            6
+          ],
+          "stored_scalar_elements": 77760,
+          "valid_horizon_rows": 11760,
+          "valid_scalar_elements": 70560
+        },
+        "future_position": {
+          "dtype": "float32",
+          "mask_source": "action_valid_mask",
+          "shape": [
+            810,
+            16,
+            6
+          ],
+          "stored_scalar_elements": 77760,
+          "valid_horizon_rows": 11760,
+          "valid_scalar_elements": 70560
+        }
+      },
+      "candidate_id": "P3",
+      "complete_demonstrations": 10,
+      "data_manifest_sha256": "6f391a3f92fe93e9be7836d554e76ba2fb223273cff4371b516b228f8364d84d",
+      "diffusion_target_shape": [
+        810,
+        16,
+        10
+      ],
+      "formal_train_status_at_inventory": "completed",
+      "implementation_sha256": "e7083ef399ea38298ba65e14ddf825e7b1268572d53d25a60928d0184a1c2487",
+      "joint_auxiliary_channels": 6,
+      "native_executed_action_channels": 4,
+      "observation_tensor_shape": [
+        810,
+        2,
+        80
+      ],
+      "proposal_sha256": "e4a14e7d2e0d6edf5624d5df9eeb201d84b5e13437f0cb094262972c6fd09b56",
+      "run_id": "r3_pick-place-wall_P3_n10_s0",
+      "source_episode_ids": [
+        "r3_pick-place-wall_train_IID_000_31000000",
+        "r3_pick-place-wall_train_IID_001_31000100",
+        "r3_pick-place-wall_train_IID_002_31000200",
+        "r3_pick-place-wall_train_IID_003_31000300",
+        "r3_pick-place-wall_train_IID_004_31000400",
+        "r3_pick-place-wall_train_IID_005_31000500",
+        "r3_pick-place-wall_train_IID_006_31000600",
+        "r3_pick-place-wall_train_IID_007_31000700",
+        "r3_pick-place-wall_train_IID_008_31000800",
+        "r3_pick-place-wall_train_IID_009_31000900"
+      ],
+      "stored_action_horizon_rows": 12960,
+      "task": "pick-place-wall",
+      "train_n": 10,
+      "train_seed": 0,
+      "transitions_and_distinct_window_starts": 810,
+      "valid_action_horizon_rows": 11760
+    },
+    {
+      "auxiliary_targets": {},
+      "candidate_id": "B0",
+      "complete_demonstrations": 20,
+      "data_manifest_sha256": "6f391a3f92fe93e9be7836d554e76ba2fb223273cff4371b516b228f8364d84d",
+      "diffusion_target_shape": [
+        1590,
+        16,
+        4
+      ],
+      "formal_train_status_at_inventory": "completed",
+      "implementation_sha256": "234a3f6e2d9a2512538ad691de8eabb1f7534fb1438d36c24a4c4192bf349616",
+      "joint_auxiliary_channels": 0,
+      "native_executed_action_channels": 4,
+      "observation_tensor_shape": [
+        1590,
+        2,
+        45
+      ],
+      "proposal_sha256": "425a43cd7d99948f823725ccd36d012c7ee3594651737213f59216968d555156",
+      "run_id": "r3_pick-place-wall_B0_n20_s0",
+      "source_episode_ids": [
+        "r3_pick-place-wall_train_IID_000_31000000",
+        "r3_pick-place-wall_train_IID_001_31000100",
+        "r3_pick-place-wall_train_IID_002_31000200",
+        "r3_pick-place-wall_train_IID_003_31000300",
+        "r3_pick-place-wall_train_IID_004_31000400",
+        "r3_pick-place-wall_train_IID_005_31000500",
+        "r3_pick-place-wall_train_IID_006_31000600",
+        "r3_pick-place-wall_train_IID_007_31000700",
+        "r3_pick-place-wall_train_IID_008_31000800",
+        "r3_pick-place-wall_train_IID_009_31000900",
+        "r3_pick-place-wall_train_IID_010_31001000",
+        "r3_pick-place-wall_train_IID_011_31001100",
+        "r3_pick-place-wall_train_IID_012_31001200",
+        "r3_pick-place-wall_train_IID_013_31001300",
+        "r3_pick-place-wall_train_IID_014_31001400",
+        "r3_pick-place-wall_train_IID_015_31001500",
+        "r3_pick-place-wall_train_IID_016_31001600",
+        "r3_pick-place-wall_train_IID_017_31001700",
+        "r3_pick-place-wall_train_IID_018_31001800",
+        "r3_pick-place-wall_train_IID_019_31001900"
+      ],
+      "stored_action_horizon_rows": 25440,
+      "task": "pick-place-wall",
+      "train_n": 20,
+      "train_seed": 0,
+      "transitions_and_distinct_window_starts": 1590,
+      "valid_action_horizon_rows": 23040
+    },
+    {
+      "auxiliary_targets": {},
+      "candidate_id": "P1",
+      "complete_demonstrations": 20,
+      "data_manifest_sha256": "6f391a3f92fe93e9be7836d554e76ba2fb223273cff4371b516b228f8364d84d",
+      "diffusion_target_shape": [
+        1590,
+        16,
+        4
+      ],
+      "formal_train_status_at_inventory": "completed",
+      "implementation_sha256": "2ec7737fccd28570b04c6d3112faebac684fd11d745dd4da3424d8c1b27b01b7",
+      "joint_auxiliary_channels": 0,
+      "native_executed_action_channels": 4,
+      "observation_tensor_shape": [
+        1590,
+        2,
+        80
+      ],
+      "proposal_sha256": "e4a14e7d2e0d6edf5624d5df9eeb201d84b5e13437f0cb094262972c6fd09b56",
+      "run_id": "r3_pick-place-wall_P1_n20_s0",
+      "source_episode_ids": [
+        "r3_pick-place-wall_train_IID_000_31000000",
+        "r3_pick-place-wall_train_IID_001_31000100",
+        "r3_pick-place-wall_train_IID_002_31000200",
+        "r3_pick-place-wall_train_IID_003_31000300",
+        "r3_pick-place-wall_train_IID_004_31000400",
+        "r3_pick-place-wall_train_IID_005_31000500",
+        "r3_pick-place-wall_train_IID_006_31000600",
+        "r3_pick-place-wall_train_IID_007_31000700",
+        "r3_pick-place-wall_train_IID_008_31000800",
+        "r3_pick-place-wall_train_IID_009_31000900",
+        "r3_pick-place-wall_train_IID_010_31001000",
+        "r3_pick-place-wall_train_IID_011_31001100",
+        "r3_pick-place-wall_train_IID_012_31001200",
+        "r3_pick-place-wall_train_IID_013_31001300",
+        "r3_pick-place-wall_train_IID_014_31001400",
+        "r3_pick-place-wall_train_IID_015_31001500",
+        "r3_pick-place-wall_train_IID_016_31001600",
+        "r3_pick-place-wall_train_IID_017_31001700",
+        "r3_pick-place-wall_train_IID_018_31001800",
+        "r3_pick-place-wall_train_IID_019_31001900"
+      ],
+      "stored_action_horizon_rows": 25440,
+      "task": "pick-place-wall",
+      "train_n": 20,
+      "train_seed": 0,
+      "transitions_and_distinct_window_starts": 1590,
+      "valid_action_horizon_rows": 23040
+    },
+    {
+      "auxiliary_targets": {
+        "phase": {
+          "class_counts": {
+            "0": 664,
+            "1": 240,
+            "2": 586,
+            "3": 100
+          },
+          "dtype": "int64",
+          "shape": [
+            1590
+          ],
+          "stored_scalar_elements": 1590,
+          "valid_label_rows": 1590
+        }
+      },
+      "candidate_id": "P2",
+      "complete_demonstrations": 20,
+      "data_manifest_sha256": "6f391a3f92fe93e9be7836d554e76ba2fb223273cff4371b516b228f8364d84d",
+      "diffusion_target_shape": [
+        1590,
+        16,
+        4
+      ],
+      "formal_train_status_at_inventory": "completed",
+      "implementation_sha256": "a76e0c54adee59c54d0834a66314d1073cfccb2781d0a1a68b3bd20db3a60712",
+      "joint_auxiliary_channels": 0,
+      "native_executed_action_channels": 4,
+      "observation_tensor_shape": [
+        1590,
+        2,
+        45
+      ],
+      "proposal_sha256": "e4a14e7d2e0d6edf5624d5df9eeb201d84b5e13437f0cb094262972c6fd09b56",
+      "run_id": "r3_pick-place-wall_P2_n20_s0",
+      "source_episode_ids": [
+        "r3_pick-place-wall_train_IID_000_31000000",
+        "r3_pick-place-wall_train_IID_001_31000100",
+        "r3_pick-place-wall_train_IID_002_31000200",
+        "r3_pick-place-wall_train_IID_003_31000300",
+        "r3_pick-place-wall_train_IID_004_31000400",
+        "r3_pick-place-wall_train_IID_005_31000500",
+        "r3_pick-place-wall_train_IID_006_31000600",
+        "r3_pick-place-wall_train_IID_007_31000700",
+        "r3_pick-place-wall_train_IID_008_31000800",
+        "r3_pick-place-wall_train_IID_009_31000900",
+        "r3_pick-place-wall_train_IID_010_31001000",
+        "r3_pick-place-wall_train_IID_011_31001100",
+        "r3_pick-place-wall_train_IID_012_31001200",
+        "r3_pick-place-wall_train_IID_013_31001300",
+        "r3_pick-place-wall_train_IID_014_31001400",
+        "r3_pick-place-wall_train_IID_015_31001500",
+        "r3_pick-place-wall_train_IID_016_31001600",
+        "r3_pick-place-wall_train_IID_017_31001700",
+        "r3_pick-place-wall_train_IID_018_31001800",
+        "r3_pick-place-wall_train_IID_019_31001900"
+      ],
+      "stored_action_horizon_rows": 25440,
+      "task": "pick-place-wall",
+      "train_n": 20,
+      "train_seed": 0,
+      "transitions_and_distinct_window_starts": 1590,
+      "valid_action_horizon_rows": 23040
+    },
+    {
+      "auxiliary_targets": {
+        "future_delta": {
+          "dtype": "float32",
+          "mask_source": "action_valid_mask",
+          "shape": [
+            1590,
+            16,
+            6
+          ],
+          "stored_scalar_elements": 152640,
+          "valid_horizon_rows": 23040,
+          "valid_scalar_elements": 138240
+        },
+        "future_position": {
+          "dtype": "float32",
+          "mask_source": "action_valid_mask",
+          "shape": [
+            1590,
+            16,
+            6
+          ],
+          "stored_scalar_elements": 152640,
+          "valid_horizon_rows": 23040,
+          "valid_scalar_elements": 138240
+        }
+      },
+      "candidate_id": "P3",
+      "complete_demonstrations": 20,
+      "data_manifest_sha256": "6f391a3f92fe93e9be7836d554e76ba2fb223273cff4371b516b228f8364d84d",
+      "diffusion_target_shape": [
+        1590,
+        16,
+        10
+      ],
+      "formal_train_status_at_inventory": "completed",
+      "implementation_sha256": "e7083ef399ea38298ba65e14ddf825e7b1268572d53d25a60928d0184a1c2487",
+      "joint_auxiliary_channels": 6,
+      "native_executed_action_channels": 4,
+      "observation_tensor_shape": [
+        1590,
+        2,
+        80
+      ],
+      "proposal_sha256": "e4a14e7d2e0d6edf5624d5df9eeb201d84b5e13437f0cb094262972c6fd09b56",
+      "run_id": "r3_pick-place-wall_P3_n20_s0",
+      "source_episode_ids": [
+        "r3_pick-place-wall_train_IID_000_31000000",
+        "r3_pick-place-wall_train_IID_001_31000100",
+        "r3_pick-place-wall_train_IID_002_31000200",
+        "r3_pick-place-wall_train_IID_003_31000300",
+        "r3_pick-place-wall_train_IID_004_31000400",
+        "r3_pick-place-wall_train_IID_005_31000500",
+        "r3_pick-place-wall_train_IID_006_31000600",
+        "r3_pick-place-wall_train_IID_007_31000700",
+        "r3_pick-place-wall_train_IID_008_31000800",
+        "r3_pick-place-wall_train_IID_009_31000900",
+        "r3_pick-place-wall_train_IID_010_31001000",
+        "r3_pick-place-wall_train_IID_011_31001100",
+        "r3_pick-place-wall_train_IID_012_31001200",
+        "r3_pick-place-wall_train_IID_013_31001300",
+        "r3_pick-place-wall_train_IID_014_31001400",
+        "r3_pick-place-wall_train_IID_015_31001500",
+        "r3_pick-place-wall_train_IID_016_31001600",
+        "r3_pick-place-wall_train_IID_017_31001700",
+        "r3_pick-place-wall_train_IID_018_31001800",
+        "r3_pick-place-wall_train_IID_019_31001900"
+      ],
+      "stored_action_horizon_rows": 25440,
+      "task": "pick-place-wall",
+      "train_n": 20,
+      "train_seed": 0,
+      "transitions_and_distinct_window_starts": 1590,
+      "valid_action_horizon_rows": 23040
+    },
+    {
+      "auxiliary_targets": {},
+      "candidate_id": "B0",
+      "complete_demonstrations": 2,
+      "data_manifest_sha256": "55516c091e7b6c0c35e65f1b1af452b39b1cb09d686ffa76ad24b6f21974d78b",
+      "diffusion_target_shape": [
+        179,
+        16,
+        4
+      ],
+      "formal_train_status_at_inventory": "completed",
+      "implementation_sha256": "50d542fe6e66274ec631c4349eed2b9a7d38bd10627e5eef860e83b2cf50befc",
+      "joint_auxiliary_channels": 0,
+      "native_executed_action_channels": 4,
+      "observation_tensor_shape": [
+        179,
+        2,
+        42
+      ],
+      "proposal_sha256": "425a43cd7d99948f823725ccd36d012c7ee3594651737213f59216968d555156",
+      "run_id": "r3_assembly_B0_n2_s0",
+      "source_episode_ids": [
+        "r3_assembly_train_IID_000_31100000",
+        "r3_assembly_train_IID_001_31100100"
+      ],
+      "stored_action_horizon_rows": 2864,
+      "task": "assembly",
+      "train_n": 2,
+      "train_seed": 0,
+      "transitions_and_distinct_window_starts": 179,
+      "valid_action_horizon_rows": 2624
+    },
+    {
+      "auxiliary_targets": {},
+      "candidate_id": "P1",
+      "complete_demonstrations": 2,
+      "data_manifest_sha256": "55516c091e7b6c0c35e65f1b1af452b39b1cb09d686ffa76ad24b6f21974d78b",
+      "diffusion_target_shape": [
+        179,
+        16,
+        4
+      ],
+      "formal_train_status_at_inventory": "completed",
+      "implementation_sha256": "8dfb999181cce11a7af39338cad5e3e774dab799a24e4f194864f42437b96dd9",
+      "joint_auxiliary_channels": 0,
+      "native_executed_action_channels": 4,
+      "observation_tensor_shape": [
+        179,
+        2,
+        48
+      ],
+      "proposal_sha256": "191a05c3b94c5077f7a5bc3d0fbe168759ca634f9f4caa5040ea5bb19bb087d6",
+      "run_id": "r3_assembly_P1_n2_s0",
+      "source_episode_ids": [
+        "r3_assembly_train_IID_000_31100000",
+        "r3_assembly_train_IID_001_31100100"
+      ],
+      "stored_action_horizon_rows": 2864,
+      "task": "assembly",
+      "train_n": 2,
+      "train_seed": 0,
+      "transitions_and_distinct_window_starts": 179,
+      "valid_action_horizon_rows": 2624
+    },
+    {
+      "auxiliary_targets": {},
+      "candidate_id": "P2",
+      "complete_demonstrations": 2,
+      "data_manifest_sha256": "55516c091e7b6c0c35e65f1b1af452b39b1cb09d686ffa76ad24b6f21974d78b",
+      "diffusion_target_shape": [
+        179,
+        16,
+        4
+      ],
+      "formal_train_status_at_inventory": "completed",
+      "implementation_sha256": "313f4db5a074cf9c5038e9e121f04eda387834090a8cb48de7690c5bb70cbd69",
+      "joint_auxiliary_channels": 0,
+      "native_executed_action_channels": 4,
+      "observation_tensor_shape": [
+        179,
+        2,
+        59
+      ],
+      "proposal_sha256": "191a05c3b94c5077f7a5bc3d0fbe168759ca634f9f4caa5040ea5bb19bb087d6",
+      "run_id": "r3_assembly_P2_n2_s0",
+      "source_episode_ids": [
+        "r3_assembly_train_IID_000_31100000",
+        "r3_assembly_train_IID_001_31100100"
+      ],
+      "stored_action_horizon_rows": 2864,
+      "task": "assembly",
+      "train_n": 2,
+      "train_seed": 0,
+      "transitions_and_distinct_window_starts": 179,
+      "valid_action_horizon_rows": 2624
+    },
+    {
+      "auxiliary_targets": {
+        "event_class": {
+          "class_counts": {
+            "0": 47,
+            "1": 46,
+            "2": 58,
+            "3": 28
+          },
+          "dtype": "int64",
+          "shape": [
+            179
+          ],
+          "stored_scalar_elements": 179,
+          "valid_label_rows": 179
+        },
+        "future_relations": {
+          "dtype": "float32",
+          "mask_source": "extra_targets.future_valid",
+          "shape": [
+            179,
+            2,
+            6
+          ],
+          "stored_scalar_elements": 2148,
+          "valid_horizon_rows": 322,
+          "valid_scalar_elements": 1932
+        },
+        "future_valid": {
+          "dtype": "float32",
+          "eligible_horizon_rows": 322,
+          "eligible_rows_by_horizon_index": [
+            173,
+            149
+          ],
+          "shape": [
+            179,
+            2
+          ],
+          "stored_scalar_elements": 358
+        }
+      },
+      "candidate_id": "P3",
+      "complete_demonstrations": 2,
+      "data_manifest_sha256": "55516c091e7b6c0c35e65f1b1af452b39b1cb09d686ffa76ad24b6f21974d78b",
+      "diffusion_target_shape": [
+        179,
+        16,
+        4
+      ],
+      "formal_train_status_at_inventory": "completed",
+      "implementation_sha256": "b285205a5faca7dfe53c7f29a3cfb45d7a974a6a90f008c9c643e6004ac59325",
+      "joint_auxiliary_channels": 0,
+      "native_executed_action_channels": 4,
+      "observation_tensor_shape": [
+        179,
+        2,
+        48
+      ],
+      "proposal_sha256": "191a05c3b94c5077f7a5bc3d0fbe168759ca634f9f4caa5040ea5bb19bb087d6",
+      "run_id": "r3_assembly_P3_n2_s0",
+      "source_episode_ids": [
+        "r3_assembly_train_IID_000_31100000",
+        "r3_assembly_train_IID_001_31100100"
+      ],
+      "stored_action_horizon_rows": 2864,
+      "task": "assembly",
+      "train_n": 2,
+      "train_seed": 0,
+      "transitions_and_distinct_window_starts": 179,
+      "valid_action_horizon_rows": 2624
+    },
+    {
+      "auxiliary_targets": {},
+      "candidate_id": "B0",
+      "complete_demonstrations": 5,
+      "data_manifest_sha256": "55516c091e7b6c0c35e65f1b1af452b39b1cb09d686ffa76ad24b6f21974d78b",
+      "diffusion_target_shape": [
+        446,
+        16,
+        4
+      ],
+      "formal_train_status_at_inventory": "completed",
+      "implementation_sha256": "50d542fe6e66274ec631c4349eed2b9a7d38bd10627e5eef860e83b2cf50befc",
+      "joint_auxiliary_channels": 0,
+      "native_executed_action_channels": 4,
+      "observation_tensor_shape": [
+        446,
+        2,
+        42
+      ],
+      "proposal_sha256": "425a43cd7d99948f823725ccd36d012c7ee3594651737213f59216968d555156",
+      "run_id": "r3_assembly_B0_n5_s0",
+      "source_episode_ids": [
+        "r3_assembly_train_IID_000_31100000",
+        "r3_assembly_train_IID_001_31100100",
+        "r3_assembly_train_IID_002_31100200",
+        "r3_assembly_train_IID_003_31100300",
+        "r3_assembly_train_IID_004_31100400"
+      ],
+      "stored_action_horizon_rows": 7136,
+      "task": "assembly",
+      "train_n": 5,
+      "train_seed": 0,
+      "transitions_and_distinct_window_starts": 446,
+      "valid_action_horizon_rows": 6536
+    },
+    {
+      "auxiliary_targets": {},
+      "candidate_id": "P1",
+      "complete_demonstrations": 5,
+      "data_manifest_sha256": "55516c091e7b6c0c35e65f1b1af452b39b1cb09d686ffa76ad24b6f21974d78b",
+      "diffusion_target_shape": [
+        446,
+        16,
+        4
+      ],
+      "formal_train_status_at_inventory": "completed",
+      "implementation_sha256": "8dfb999181cce11a7af39338cad5e3e774dab799a24e4f194864f42437b96dd9",
+      "joint_auxiliary_channels": 0,
+      "native_executed_action_channels": 4,
+      "observation_tensor_shape": [
+        446,
+        2,
+        48
+      ],
+      "proposal_sha256": "191a05c3b94c5077f7a5bc3d0fbe168759ca634f9f4caa5040ea5bb19bb087d6",
+      "run_id": "r3_assembly_P1_n5_s0",
+      "source_episode_ids": [
+        "r3_assembly_train_IID_000_31100000",
+        "r3_assembly_train_IID_001_31100100",
+        "r3_assembly_train_IID_002_31100200",
+        "r3_assembly_train_IID_003_31100300",
+        "r3_assembly_train_IID_004_31100400"
+      ],
+      "stored_action_horizon_rows": 7136,
+      "task": "assembly",
+      "train_n": 5,
+      "train_seed": 0,
+      "transitions_and_distinct_window_starts": 446,
+      "valid_action_horizon_rows": 6536
+    },
+    {
+      "auxiliary_targets": {},
+      "candidate_id": "P2",
+      "complete_demonstrations": 5,
+      "data_manifest_sha256": "55516c091e7b6c0c35e65f1b1af452b39b1cb09d686ffa76ad24b6f21974d78b",
+      "diffusion_target_shape": [
+        446,
+        16,
+        4
+      ],
+      "formal_train_status_at_inventory": "completed",
+      "implementation_sha256": "313f4db5a074cf9c5038e9e121f04eda387834090a8cb48de7690c5bb70cbd69",
+      "joint_auxiliary_channels": 0,
+      "native_executed_action_channels": 4,
+      "observation_tensor_shape": [
+        446,
+        2,
+        59
+      ],
+      "proposal_sha256": "191a05c3b94c5077f7a5bc3d0fbe168759ca634f9f4caa5040ea5bb19bb087d6",
+      "run_id": "r3_assembly_P2_n5_s0",
+      "source_episode_ids": [
+        "r3_assembly_train_IID_000_31100000",
+        "r3_assembly_train_IID_001_31100100",
+        "r3_assembly_train_IID_002_31100200",
+        "r3_assembly_train_IID_003_31100300",
+        "r3_assembly_train_IID_004_31100400"
+      ],
+      "stored_action_horizon_rows": 7136,
+      "task": "assembly",
+      "train_n": 5,
+      "train_seed": 0,
+      "transitions_and_distinct_window_starts": 446,
+      "valid_action_horizon_rows": 6536
+    },
+    {
+      "auxiliary_targets": {
+        "event_class": {
+          "class_counts": {
+            "0": 117,
+            "1": 115,
+            "2": 145,
+            "3": 69
+          },
+          "dtype": "int64",
+          "shape": [
+            446
+          ],
+          "stored_scalar_elements": 446,
+          "valid_label_rows": 446
+        },
+        "future_relations": {
+          "dtype": "float32",
+          "mask_source": "extra_targets.future_valid",
+          "shape": [
+            446,
+            2,
+            6
+          ],
+          "stored_scalar_elements": 5352,
+          "valid_horizon_rows": 802,
+          "valid_scalar_elements": 4812
+        },
+        "future_valid": {
+          "dtype": "float32",
+          "eligible_horizon_rows": 802,
+          "eligible_rows_by_horizon_index": [
+            431,
+            371
+          ],
+          "shape": [
+            446,
+            2
+          ],
+          "stored_scalar_elements": 892
+        }
+      },
+      "candidate_id": "P3",
+      "complete_demonstrations": 5,
+      "data_manifest_sha256": "55516c091e7b6c0c35e65f1b1af452b39b1cb09d686ffa76ad24b6f21974d78b",
+      "diffusion_target_shape": [
+        446,
+        16,
+        4
+      ],
+      "formal_train_status_at_inventory": "completed",
+      "implementation_sha256": "b285205a5faca7dfe53c7f29a3cfb45d7a974a6a90f008c9c643e6004ac59325",
+      "joint_auxiliary_channels": 0,
+      "native_executed_action_channels": 4,
+      "observation_tensor_shape": [
+        446,
+        2,
+        48
+      ],
+      "proposal_sha256": "191a05c3b94c5077f7a5bc3d0fbe168759ca634f9f4caa5040ea5bb19bb087d6",
+      "run_id": "r3_assembly_P3_n5_s0",
+      "source_episode_ids": [
+        "r3_assembly_train_IID_000_31100000",
+        "r3_assembly_train_IID_001_31100100",
+        "r3_assembly_train_IID_002_31100200",
+        "r3_assembly_train_IID_003_31100300",
+        "r3_assembly_train_IID_004_31100400"
+      ],
+      "stored_action_horizon_rows": 7136,
+      "task": "assembly",
+      "train_n": 5,
+      "train_seed": 0,
+      "transitions_and_distinct_window_starts": 446,
+      "valid_action_horizon_rows": 6536
+    },
+    {
+      "auxiliary_targets": {},
+      "candidate_id": "B0",
+      "complete_demonstrations": 10,
+      "data_manifest_sha256": "55516c091e7b6c0c35e65f1b1af452b39b1cb09d686ffa76ad24b6f21974d78b",
+      "diffusion_target_shape": [
+        885,
+        16,
+        4
+      ],
+      "formal_train_status_at_inventory": "completed",
+      "implementation_sha256": "50d542fe6e66274ec631c4349eed2b9a7d38bd10627e5eef860e83b2cf50befc",
+      "joint_auxiliary_channels": 0,
+      "native_executed_action_channels": 4,
+      "observation_tensor_shape": [
+        885,
+        2,
+        42
+      ],
+      "proposal_sha256": "425a43cd7d99948f823725ccd36d012c7ee3594651737213f59216968d555156",
+      "run_id": "r3_assembly_B0_n10_s0",
+      "source_episode_ids": [
+        "r3_assembly_train_IID_000_31100000",
+        "r3_assembly_train_IID_001_31100100",
+        "r3_assembly_train_IID_002_31100200",
+        "r3_assembly_train_IID_003_31100300",
+        "r3_assembly_train_IID_004_31100400",
+        "r3_assembly_train_IID_005_31100500",
+        "r3_assembly_train_IID_006_31100600",
+        "r3_assembly_train_IID_007_31100700",
+        "r3_assembly_train_IID_008_31100800",
+        "r3_assembly_train_IID_009_31100900"
+      ],
+      "stored_action_horizon_rows": 14160,
+      "task": "assembly",
+      "train_n": 10,
+      "train_seed": 0,
+      "transitions_and_distinct_window_starts": 885,
+      "valid_action_horizon_rows": 12960
+    },
+    {
+      "auxiliary_targets": {},
+      "candidate_id": "P1",
+      "complete_demonstrations": 10,
+      "data_manifest_sha256": "55516c091e7b6c0c35e65f1b1af452b39b1cb09d686ffa76ad24b6f21974d78b",
+      "diffusion_target_shape": [
+        885,
+        16,
+        4
+      ],
+      "formal_train_status_at_inventory": "completed",
+      "implementation_sha256": "8dfb999181cce11a7af39338cad5e3e774dab799a24e4f194864f42437b96dd9",
+      "joint_auxiliary_channels": 0,
+      "native_executed_action_channels": 4,
+      "observation_tensor_shape": [
+        885,
+        2,
+        48
+      ],
+      "proposal_sha256": "191a05c3b94c5077f7a5bc3d0fbe168759ca634f9f4caa5040ea5bb19bb087d6",
+      "run_id": "r3_assembly_P1_n10_s0",
+      "source_episode_ids": [
+        "r3_assembly_train_IID_000_31100000",
+        "r3_assembly_train_IID_001_31100100",
+        "r3_assembly_train_IID_002_31100200",
+        "r3_assembly_train_IID_003_31100300",
+        "r3_assembly_train_IID_004_31100400",
+        "r3_assembly_train_IID_005_31100500",
+        "r3_assembly_train_IID_006_31100600",
+        "r3_assembly_train_IID_007_31100700",
+        "r3_assembly_train_IID_008_31100800",
+        "r3_assembly_train_IID_009_31100900"
+      ],
+      "stored_action_horizon_rows": 14160,
+      "task": "assembly",
+      "train_n": 10,
+      "train_seed": 0,
+      "transitions_and_distinct_window_starts": 885,
+      "valid_action_horizon_rows": 12960
+    },
+    {
+      "auxiliary_targets": {},
+      "candidate_id": "P2",
+      "complete_demonstrations": 10,
+      "data_manifest_sha256": "55516c091e7b6c0c35e65f1b1af452b39b1cb09d686ffa76ad24b6f21974d78b",
+      "diffusion_target_shape": [
+        885,
+        16,
+        4
+      ],
+      "formal_train_status_at_inventory": "completed",
+      "implementation_sha256": "313f4db5a074cf9c5038e9e121f04eda387834090a8cb48de7690c5bb70cbd69",
+      "joint_auxiliary_channels": 0,
+      "native_executed_action_channels": 4,
+      "observation_tensor_shape": [
+        885,
+        2,
+        59
+      ],
+      "proposal_sha256": "191a05c3b94c5077f7a5bc3d0fbe168759ca634f9f4caa5040ea5bb19bb087d6",
+      "run_id": "r3_assembly_P2_n10_s0",
+      "source_episode_ids": [
+        "r3_assembly_train_IID_000_31100000",
+        "r3_assembly_train_IID_001_31100100",
+        "r3_assembly_train_IID_002_31100200",
+        "r3_assembly_train_IID_003_31100300",
+        "r3_assembly_train_IID_004_31100400",
+        "r3_assembly_train_IID_005_31100500",
+        "r3_assembly_train_IID_006_31100600",
+        "r3_assembly_train_IID_007_31100700",
+        "r3_assembly_train_IID_008_31100800",
+        "r3_assembly_train_IID_009_31100900"
+      ],
+      "stored_action_horizon_rows": 14160,
+      "task": "assembly",
+      "train_n": 10,
+      "train_seed": 0,
+      "transitions_and_distinct_window_starts": 885,
+      "valid_action_horizon_rows": 12960
+    },
+    {
+      "auxiliary_targets": {
+        "event_class": {
+          "class_counts": {
+            "0": 238,
+            "1": 230,
+            "2": 279,
+            "3": 138
+          },
+          "dtype": "int64",
+          "shape": [
+            885
+          ],
+          "stored_scalar_elements": 885,
+          "valid_label_rows": 885
+        },
+        "future_relations": {
+          "dtype": "float32",
+          "mask_source": "extra_targets.future_valid",
+          "shape": [
+            885,
+            2,
+            6
+          ],
+          "stored_scalar_elements": 10620,
+          "valid_horizon_rows": 1590,
+          "valid_scalar_elements": 9540
+        },
+        "future_valid": {
+          "dtype": "float32",
+          "eligible_horizon_rows": 1590,
+          "eligible_rows_by_horizon_index": [
+            855,
+            735
+          ],
+          "shape": [
+            885,
+            2
+          ],
+          "stored_scalar_elements": 1770
+        }
+      },
+      "candidate_id": "P3",
+      "complete_demonstrations": 10,
+      "data_manifest_sha256": "55516c091e7b6c0c35e65f1b1af452b39b1cb09d686ffa76ad24b6f21974d78b",
+      "diffusion_target_shape": [
+        885,
+        16,
+        4
+      ],
+      "formal_train_status_at_inventory": "completed",
+      "implementation_sha256": "b285205a5faca7dfe53c7f29a3cfb45d7a974a6a90f008c9c643e6004ac59325",
+      "joint_auxiliary_channels": 0,
+      "native_executed_action_channels": 4,
+      "observation_tensor_shape": [
+        885,
+        2,
+        48
+      ],
+      "proposal_sha256": "191a05c3b94c5077f7a5bc3d0fbe168759ca634f9f4caa5040ea5bb19bb087d6",
+      "run_id": "r3_assembly_P3_n10_s0",
+      "source_episode_ids": [
+        "r3_assembly_train_IID_000_31100000",
+        "r3_assembly_train_IID_001_31100100",
+        "r3_assembly_train_IID_002_31100200",
+        "r3_assembly_train_IID_003_31100300",
+        "r3_assembly_train_IID_004_31100400",
+        "r3_assembly_train_IID_005_31100500",
+        "r3_assembly_train_IID_006_31100600",
+        "r3_assembly_train_IID_007_31100700",
+        "r3_assembly_train_IID_008_31100800",
+        "r3_assembly_train_IID_009_31100900"
+      ],
+      "stored_action_horizon_rows": 14160,
+      "task": "assembly",
+      "train_n": 10,
+      "train_seed": 0,
+      "transitions_and_distinct_window_starts": 885,
+      "valid_action_horizon_rows": 12960
+    },
+    {
+      "auxiliary_targets": {},
+      "candidate_id": "B0",
+      "complete_demonstrations": 20,
+      "data_manifest_sha256": "55516c091e7b6c0c35e65f1b1af452b39b1cb09d686ffa76ad24b6f21974d78b",
+      "diffusion_target_shape": [
+        1781,
+        16,
+        4
+      ],
+      "formal_train_status_at_inventory": "completed",
+      "implementation_sha256": "50d542fe6e66274ec631c4349eed2b9a7d38bd10627e5eef860e83b2cf50befc",
+      "joint_auxiliary_channels": 0,
+      "native_executed_action_channels": 4,
+      "observation_tensor_shape": [
+        1781,
+        2,
+        42
+      ],
+      "proposal_sha256": "425a43cd7d99948f823725ccd36d012c7ee3594651737213f59216968d555156",
+      "run_id": "r3_assembly_B0_n20_s0",
+      "source_episode_ids": [
+        "r3_assembly_train_IID_000_31100000",
+        "r3_assembly_train_IID_001_31100100",
+        "r3_assembly_train_IID_002_31100200",
+        "r3_assembly_train_IID_003_31100300",
+        "r3_assembly_train_IID_004_31100400",
+        "r3_assembly_train_IID_005_31100500",
+        "r3_assembly_train_IID_006_31100600",
+        "r3_assembly_train_IID_007_31100700",
+        "r3_assembly_train_IID_008_31100800",
+        "r3_assembly_train_IID_009_31100900",
+        "r3_assembly_train_IID_010_31101000",
+        "r3_assembly_train_IID_011_31101100",
+        "r3_assembly_train_IID_012_31101200",
+        "r3_assembly_train_IID_013_31101300",
+        "r3_assembly_train_IID_014_31101400",
+        "r3_assembly_train_IID_015_31101500",
+        "r3_assembly_train_IID_016_31101600",
+        "r3_assembly_train_IID_017_31101700",
+        "r3_assembly_train_IID_018_31101800",
+        "r3_assembly_train_IID_019_31101900"
+      ],
+      "stored_action_horizon_rows": 28496,
+      "task": "assembly",
+      "train_n": 20,
+      "train_seed": 0,
+      "transitions_and_distinct_window_starts": 1781,
+      "valid_action_horizon_rows": 26096
+    },
+    {
+      "auxiliary_targets": {},
+      "candidate_id": "P1",
+      "complete_demonstrations": 20,
+      "data_manifest_sha256": "55516c091e7b6c0c35e65f1b1af452b39b1cb09d686ffa76ad24b6f21974d78b",
+      "diffusion_target_shape": [
+        1781,
+        16,
+        4
+      ],
+      "formal_train_status_at_inventory": "completed",
+      "implementation_sha256": "8dfb999181cce11a7af39338cad5e3e774dab799a24e4f194864f42437b96dd9",
+      "joint_auxiliary_channels": 0,
+      "native_executed_action_channels": 4,
+      "observation_tensor_shape": [
+        1781,
+        2,
+        48
+      ],
+      "proposal_sha256": "191a05c3b94c5077f7a5bc3d0fbe168759ca634f9f4caa5040ea5bb19bb087d6",
+      "run_id": "r3_assembly_P1_n20_s0",
+      "source_episode_ids": [
+        "r3_assembly_train_IID_000_31100000",
+        "r3_assembly_train_IID_001_31100100",
+        "r3_assembly_train_IID_002_31100200",
+        "r3_assembly_train_IID_003_31100300",
+        "r3_assembly_train_IID_004_31100400",
+        "r3_assembly_train_IID_005_31100500",
+        "r3_assembly_train_IID_006_31100600",
+        "r3_assembly_train_IID_007_31100700",
+        "r3_assembly_train_IID_008_31100800",
+        "r3_assembly_train_IID_009_31100900",
+        "r3_assembly_train_IID_010_31101000",
+        "r3_assembly_train_IID_011_31101100",
+        "r3_assembly_train_IID_012_31101200",
+        "r3_assembly_train_IID_013_31101300",
+        "r3_assembly_train_IID_014_31101400",
+        "r3_assembly_train_IID_015_31101500",
+        "r3_assembly_train_IID_016_31101600",
+        "r3_assembly_train_IID_017_31101700",
+        "r3_assembly_train_IID_018_31101800",
+        "r3_assembly_train_IID_019_31101900"
+      ],
+      "stored_action_horizon_rows": 28496,
+      "task": "assembly",
+      "train_n": 20,
+      "train_seed": 0,
+      "transitions_and_distinct_window_starts": 1781,
+      "valid_action_horizon_rows": 26096
+    },
+    {
+      "auxiliary_targets": {},
+      "candidate_id": "P2",
+      "complete_demonstrations": 20,
+      "data_manifest_sha256": "55516c091e7b6c0c35e65f1b1af452b39b1cb09d686ffa76ad24b6f21974d78b",
+      "diffusion_target_shape": [
+        1781,
+        16,
+        4
+      ],
+      "formal_train_status_at_inventory": "completed",
+      "implementation_sha256": "313f4db5a074cf9c5038e9e121f04eda387834090a8cb48de7690c5bb70cbd69",
+      "joint_auxiliary_channels": 0,
+      "native_executed_action_channels": 4,
+      "observation_tensor_shape": [
+        1781,
+        2,
+        59
+      ],
+      "proposal_sha256": "191a05c3b94c5077f7a5bc3d0fbe168759ca634f9f4caa5040ea5bb19bb087d6",
+      "run_id": "r3_assembly_P2_n20_s0",
+      "source_episode_ids": [
+        "r3_assembly_train_IID_000_31100000",
+        "r3_assembly_train_IID_001_31100100",
+        "r3_assembly_train_IID_002_31100200",
+        "r3_assembly_train_IID_003_31100300",
+        "r3_assembly_train_IID_004_31100400",
+        "r3_assembly_train_IID_005_31100500",
+        "r3_assembly_train_IID_006_31100600",
+        "r3_assembly_train_IID_007_31100700",
+        "r3_assembly_train_IID_008_31100800",
+        "r3_assembly_train_IID_009_31100900",
+        "r3_assembly_train_IID_010_31101000",
+        "r3_assembly_train_IID_011_31101100",
+        "r3_assembly_train_IID_012_31101200",
+        "r3_assembly_train_IID_013_31101300",
+        "r3_assembly_train_IID_014_31101400",
+        "r3_assembly_train_IID_015_31101500",
+        "r3_assembly_train_IID_016_31101600",
+        "r3_assembly_train_IID_017_31101700",
+        "r3_assembly_train_IID_018_31101800",
+        "r3_assembly_train_IID_019_31101900"
+      ],
+      "stored_action_horizon_rows": 28496,
+      "task": "assembly",
+      "train_n": 20,
+      "train_seed": 0,
+      "transitions_and_distinct_window_starts": 1781,
+      "valid_action_horizon_rows": 26096
+    },
+    {
+      "auxiliary_targets": {
+        "event_class": {
+          "class_counts": {
+            "0": 478,
+            "1": 460,
+            "2": 569,
+            "3": 274
+          },
+          "dtype": "int64",
+          "shape": [
+            1781
+          ],
+          "stored_scalar_elements": 1781,
+          "valid_label_rows": 1781
+        },
+        "future_relations": {
+          "dtype": "float32",
+          "mask_source": "extra_targets.future_valid",
+          "shape": [
+            1781,
+            2,
+            6
+          ],
+          "stored_scalar_elements": 21372,
+          "valid_horizon_rows": 3202,
+          "valid_scalar_elements": 19212
+        },
+        "future_valid": {
+          "dtype": "float32",
+          "eligible_horizon_rows": 3202,
+          "eligible_rows_by_horizon_index": [
+            1721,
+            1481
+          ],
+          "shape": [
+            1781,
+            2
+          ],
+          "stored_scalar_elements": 3562
+        }
+      },
+      "candidate_id": "P3",
+      "complete_demonstrations": 20,
+      "data_manifest_sha256": "55516c091e7b6c0c35e65f1b1af452b39b1cb09d686ffa76ad24b6f21974d78b",
+      "diffusion_target_shape": [
+        1781,
+        16,
+        4
+      ],
+      "formal_train_status_at_inventory": "completed",
+      "implementation_sha256": "b285205a5faca7dfe53c7f29a3cfb45d7a974a6a90f008c9c643e6004ac59325",
+      "joint_auxiliary_channels": 0,
+      "native_executed_action_channels": 4,
+      "observation_tensor_shape": [
+        1781,
+        2,
+        48
+      ],
+      "proposal_sha256": "191a05c3b94c5077f7a5bc3d0fbe168759ca634f9f4caa5040ea5bb19bb087d6",
+      "run_id": "r3_assembly_P3_n20_s0",
+      "source_episode_ids": [
+        "r3_assembly_train_IID_000_31100000",
+        "r3_assembly_train_IID_001_31100100",
+        "r3_assembly_train_IID_002_31100200",
+        "r3_assembly_train_IID_003_31100300",
+        "r3_assembly_train_IID_004_31100400",
+        "r3_assembly_train_IID_005_31100500",
+        "r3_assembly_train_IID_006_31100600",
+        "r3_assembly_train_IID_007_31100700",
+        "r3_assembly_train_IID_008_31100800",
+        "r3_assembly_train_IID_009_31100900",
+        "r3_assembly_train_IID_010_31101000",
+        "r3_assembly_train_IID_011_31101100",
+        "r3_assembly_train_IID_012_31101200",
+        "r3_assembly_train_IID_013_31101300",
+        "r3_assembly_train_IID_014_31101400",
+        "r3_assembly_train_IID_015_31101500",
+        "r3_assembly_train_IID_016_31101600",
+        "r3_assembly_train_IID_017_31101700",
+        "r3_assembly_train_IID_018_31101800",
+        "r3_assembly_train_IID_019_31101900"
+      ],
+      "stored_action_horizon_rows": 28496,
+      "task": "assembly",
+      "train_n": 20,
+      "train_seed": 0,
+      "transitions_and_distinct_window_starts": 1781,
+      "valid_action_horizon_rows": 26096
+    },
+    {
+      "auxiliary_targets": {},
+      "candidate_id": "B0",
+      "complete_demonstrations": 2,
+      "data_manifest_sha256": "4e62257f11b2bc5c68713a5b15960398e4f7843a3d10e40fcd80f41d55555c26",
+      "diffusion_target_shape": [
+        178,
+        16,
+        4
+      ],
+      "formal_train_status_at_inventory": "completed",
+      "implementation_sha256": "14debc15f74565d99315268da078627604e5aa5a29776890d49ee24c875e100b",
+      "joint_auxiliary_channels": 0,
+      "native_executed_action_channels": 4,
+      "observation_tensor_shape": [
+        178,
+        2,
+        41
+      ],
+      "proposal_sha256": "425a43cd7d99948f823725ccd36d012c7ee3594651737213f59216968d555156",
+      "run_id": "r3_drawer_B0_n2_s0",
+      "source_episode_ids": [
+        "r3_drawer_train_IID_000_31200000",
+        "r3_drawer_train_IID_001_31200100"
+      ],
+      "stored_action_horizon_rows": 2848,
+      "task": "drawer",
+      "train_n": 2,
+      "train_seed": 0,
+      "transitions_and_distinct_window_starts": 178,
+      "valid_action_horizon_rows": 2608
+    },
+    {
+      "auxiliary_targets": {},
+      "candidate_id": "P1",
+      "complete_demonstrations": 2,
+      "data_manifest_sha256": "4e62257f11b2bc5c68713a5b15960398e4f7843a3d10e40fcd80f41d55555c26",
+      "diffusion_target_shape": [
+        178,
+        16,
+        4
+      ],
+      "formal_train_status_at_inventory": "completed",
+      "implementation_sha256": "2ff3a4a26f4c73cb3ce8a2b6e2ce8bc2da2dcab36b38c7f41b905a356e498a91",
+      "joint_auxiliary_channels": 0,
+      "native_executed_action_channels": 4,
+      "observation_tensor_shape": [
+        178,
+        2,
+        25
+      ],
+      "proposal_sha256": "2c5e4da796ca7399195ac5df3b5103dca2d8f813366a08e39d231fdadda77b11",
+      "run_id": "r3_drawer_P1_n2_s0",
+      "source_episode_ids": [
+        "r3_drawer_train_IID_000_31200000",
+        "r3_drawer_train_IID_001_31200100"
+      ],
+      "stored_action_horizon_rows": 2848,
+      "task": "drawer",
+      "train_n": 2,
+      "train_seed": 0,
+      "transitions_and_distinct_window_starts": 178,
+      "valid_action_horizon_rows": 2608
+    },
+    {
+      "auxiliary_targets": {
+        "future_relations": {
+          "dtype": "float32",
+          "mask_source": "action_valid_mask",
+          "shape": [
+            178,
+            16,
+            1
+          ],
+          "stored_scalar_elements": 2848,
+          "valid_horizon_rows": 2608,
+          "valid_scalar_elements": 2608
+        }
+      },
+      "candidate_id": "P2",
+      "complete_demonstrations": 2,
+      "data_manifest_sha256": "4e62257f11b2bc5c68713a5b15960398e4f7843a3d10e40fcd80f41d55555c26",
+      "diffusion_target_shape": [
+        178,
+        16,
+        5
+      ],
+      "formal_train_status_at_inventory": "completed",
+      "implementation_sha256": "b16f1dbe321f783fcc3d48840ac083e0bdb1021843a8158887ade2dfeb1e94be",
+      "joint_auxiliary_channels": 1,
+      "native_executed_action_channels": 4,
+      "observation_tensor_shape": [
+        178,
+        2,
+        53
+      ],
+      "proposal_sha256": "2c5e4da796ca7399195ac5df3b5103dca2d8f813366a08e39d231fdadda77b11",
+      "run_id": "r3_drawer_P2_n2_s0",
+      "source_episode_ids": [
+        "r3_drawer_train_IID_000_31200000",
+        "r3_drawer_train_IID_001_31200100"
+      ],
+      "stored_action_horizon_rows": 2848,
+      "task": "drawer",
+      "train_n": 2,
+      "train_seed": 0,
+      "transitions_and_distinct_window_starts": 178,
+      "valid_action_horizon_rows": 2608
+    },
+    {
+      "auxiliary_targets": {
+        "future_relations": {
+          "dtype": "float32",
+          "mask_source": "action_valid_mask",
+          "shape": [
+            178,
+            16,
+            4
+          ],
+          "stored_scalar_elements": 11392,
+          "valid_horizon_rows": 2608,
+          "valid_scalar_elements": 10432
+        }
+      },
+      "candidate_id": "P3",
+      "complete_demonstrations": 2,
+      "data_manifest_sha256": "4e62257f11b2bc5c68713a5b15960398e4f7843a3d10e40fcd80f41d55555c26",
+      "diffusion_target_shape": [
+        178,
+        16,
+        8
+      ],
+      "formal_train_status_at_inventory": "completed",
+      "implementation_sha256": "55c52b1a99a4539acacddfe9c848fc024b8183f2004094810a6c40f9faa572be",
+      "joint_auxiliary_channels": 4,
+      "native_executed_action_channels": 4,
+      "observation_tensor_shape": [
+        178,
+        2,
+        25
+      ],
+      "proposal_sha256": "2c5e4da796ca7399195ac5df3b5103dca2d8f813366a08e39d231fdadda77b11",
+      "run_id": "r3_drawer_P3_n2_s0",
+      "source_episode_ids": [
+        "r3_drawer_train_IID_000_31200000",
+        "r3_drawer_train_IID_001_31200100"
+      ],
+      "stored_action_horizon_rows": 2848,
+      "task": "drawer",
+      "train_n": 2,
+      "train_seed": 0,
+      "transitions_and_distinct_window_starts": 178,
+      "valid_action_horizon_rows": 2608
+    },
+    {
+      "auxiliary_targets": {},
+      "candidate_id": "B0",
+      "complete_demonstrations": 5,
+      "data_manifest_sha256": "4e62257f11b2bc5c68713a5b15960398e4f7843a3d10e40fcd80f41d55555c26",
+      "diffusion_target_shape": [
+        443,
+        16,
+        4
+      ],
+      "formal_train_status_at_inventory": "completed",
+      "implementation_sha256": "14debc15f74565d99315268da078627604e5aa5a29776890d49ee24c875e100b",
+      "joint_auxiliary_channels": 0,
+      "native_executed_action_channels": 4,
+      "observation_tensor_shape": [
+        443,
+        2,
+        41
+      ],
+      "proposal_sha256": "425a43cd7d99948f823725ccd36d012c7ee3594651737213f59216968d555156",
+      "run_id": "r3_drawer_B0_n5_s0",
+      "source_episode_ids": [
+        "r3_drawer_train_IID_000_31200000",
+        "r3_drawer_train_IID_001_31200100",
+        "r3_drawer_train_IID_002_31200200",
+        "r3_drawer_train_IID_003_31200300",
+        "r3_drawer_train_IID_004_31200400"
+      ],
+      "stored_action_horizon_rows": 7088,
+      "task": "drawer",
+      "train_n": 5,
+      "train_seed": 0,
+      "transitions_and_distinct_window_starts": 443,
+      "valid_action_horizon_rows": 6488
+    },
+    {
+      "auxiliary_targets": {},
+      "candidate_id": "P1",
+      "complete_demonstrations": 5,
+      "data_manifest_sha256": "4e62257f11b2bc5c68713a5b15960398e4f7843a3d10e40fcd80f41d55555c26",
+      "diffusion_target_shape": [
+        443,
+        16,
+        4
+      ],
+      "formal_train_status_at_inventory": "completed",
+      "implementation_sha256": "2ff3a4a26f4c73cb3ce8a2b6e2ce8bc2da2dcab36b38c7f41b905a356e498a91",
+      "joint_auxiliary_channels": 0,
+      "native_executed_action_channels": 4,
+      "observation_tensor_shape": [
+        443,
+        2,
+        25
+      ],
+      "proposal_sha256": "2c5e4da796ca7399195ac5df3b5103dca2d8f813366a08e39d231fdadda77b11",
+      "run_id": "r3_drawer_P1_n5_s0",
+      "source_episode_ids": [
+        "r3_drawer_train_IID_000_31200000",
+        "r3_drawer_train_IID_001_31200100",
+        "r3_drawer_train_IID_002_31200200",
+        "r3_drawer_train_IID_003_31200300",
+        "r3_drawer_train_IID_004_31200400"
+      ],
+      "stored_action_horizon_rows": 7088,
+      "task": "drawer",
+      "train_n": 5,
+      "train_seed": 0,
+      "transitions_and_distinct_window_starts": 443,
+      "valid_action_horizon_rows": 6488
+    },
+    {
+      "auxiliary_targets": {
+        "future_relations": {
+          "dtype": "float32",
+          "mask_source": "action_valid_mask",
+          "shape": [
+            443,
+            16,
+            1
+          ],
+          "stored_scalar_elements": 7088,
+          "valid_horizon_rows": 6488,
+          "valid_scalar_elements": 6488
+        }
+      },
+      "candidate_id": "P2",
+      "complete_demonstrations": 5,
+      "data_manifest_sha256": "4e62257f11b2bc5c68713a5b15960398e4f7843a3d10e40fcd80f41d55555c26",
+      "diffusion_target_shape": [
+        443,
+        16,
+        5
+      ],
+      "formal_train_status_at_inventory": "completed",
+      "implementation_sha256": "b16f1dbe321f783fcc3d48840ac083e0bdb1021843a8158887ade2dfeb1e94be",
+      "joint_auxiliary_channels": 1,
+      "native_executed_action_channels": 4,
+      "observation_tensor_shape": [
+        443,
+        2,
+        53
+      ],
+      "proposal_sha256": "2c5e4da796ca7399195ac5df3b5103dca2d8f813366a08e39d231fdadda77b11",
+      "run_id": "r3_drawer_P2_n5_s0",
+      "source_episode_ids": [
+        "r3_drawer_train_IID_000_31200000",
+        "r3_drawer_train_IID_001_31200100",
+        "r3_drawer_train_IID_002_31200200",
+        "r3_drawer_train_IID_003_31200300",
+        "r3_drawer_train_IID_004_31200400"
+      ],
+      "stored_action_horizon_rows": 7088,
+      "task": "drawer",
+      "train_n": 5,
+      "train_seed": 0,
+      "transitions_and_distinct_window_starts": 443,
+      "valid_action_horizon_rows": 6488
+    },
+    {
+      "auxiliary_targets": {
+        "future_relations": {
+          "dtype": "float32",
+          "mask_source": "action_valid_mask",
+          "shape": [
+            443,
+            16,
+            4
+          ],
+          "stored_scalar_elements": 28352,
+          "valid_horizon_rows": 6488,
+          "valid_scalar_elements": 25952
+        }
+      },
+      "candidate_id": "P3",
+      "complete_demonstrations": 5,
+      "data_manifest_sha256": "4e62257f11b2bc5c68713a5b15960398e4f7843a3d10e40fcd80f41d55555c26",
+      "diffusion_target_shape": [
+        443,
+        16,
+        8
+      ],
+      "formal_train_status_at_inventory": "completed",
+      "implementation_sha256": "55c52b1a99a4539acacddfe9c848fc024b8183f2004094810a6c40f9faa572be",
+      "joint_auxiliary_channels": 4,
+      "native_executed_action_channels": 4,
+      "observation_tensor_shape": [
+        443,
+        2,
+        25
+      ],
+      "proposal_sha256": "2c5e4da796ca7399195ac5df3b5103dca2d8f813366a08e39d231fdadda77b11",
+      "run_id": "r3_drawer_P3_n5_s0",
+      "source_episode_ids": [
+        "r3_drawer_train_IID_000_31200000",
+        "r3_drawer_train_IID_001_31200100",
+        "r3_drawer_train_IID_002_31200200",
+        "r3_drawer_train_IID_003_31200300",
+        "r3_drawer_train_IID_004_31200400"
+      ],
+      "stored_action_horizon_rows": 7088,
+      "task": "drawer",
+      "train_n": 5,
+      "train_seed": 0,
+      "transitions_and_distinct_window_starts": 443,
+      "valid_action_horizon_rows": 6488
+    },
+    {
+      "auxiliary_targets": {},
+      "candidate_id": "B0",
+      "complete_demonstrations": 10,
+      "data_manifest_sha256": "4e62257f11b2bc5c68713a5b15960398e4f7843a3d10e40fcd80f41d55555c26",
+      "diffusion_target_shape": [
+        889,
+        16,
+        4
+      ],
+      "formal_train_status_at_inventory": "completed",
+      "implementation_sha256": "14debc15f74565d99315268da078627604e5aa5a29776890d49ee24c875e100b",
+      "joint_auxiliary_channels": 0,
+      "native_executed_action_channels": 4,
+      "observation_tensor_shape": [
+        889,
+        2,
+        41
+      ],
+      "proposal_sha256": "425a43cd7d99948f823725ccd36d012c7ee3594651737213f59216968d555156",
+      "run_id": "r3_drawer_B0_n10_s0",
+      "source_episode_ids": [
+        "r3_drawer_train_IID_000_31200000",
+        "r3_drawer_train_IID_001_31200100",
+        "r3_drawer_train_IID_002_31200200",
+        "r3_drawer_train_IID_003_31200300",
+        "r3_drawer_train_IID_004_31200400",
+        "r3_drawer_train_IID_005_31200500",
+        "r3_drawer_train_IID_006_31200600",
+        "r3_drawer_train_IID_007_31200700",
+        "r3_drawer_train_IID_008_31200800",
+        "r3_drawer_train_IID_009_31200900"
+      ],
+      "stored_action_horizon_rows": 14224,
+      "task": "drawer",
+      "train_n": 10,
+      "train_seed": 0,
+      "transitions_and_distinct_window_starts": 889,
+      "valid_action_horizon_rows": 13024
+    },
+    {
+      "auxiliary_targets": {},
+      "candidate_id": "P1",
+      "complete_demonstrations": 10,
+      "data_manifest_sha256": "4e62257f11b2bc5c68713a5b15960398e4f7843a3d10e40fcd80f41d55555c26",
+      "diffusion_target_shape": [
+        889,
+        16,
+        4
+      ],
+      "formal_train_status_at_inventory": "completed",
+      "implementation_sha256": "2ff3a4a26f4c73cb3ce8a2b6e2ce8bc2da2dcab36b38c7f41b905a356e498a91",
+      "joint_auxiliary_channels": 0,
+      "native_executed_action_channels": 4,
+      "observation_tensor_shape": [
+        889,
+        2,
+        25
+      ],
+      "proposal_sha256": "2c5e4da796ca7399195ac5df3b5103dca2d8f813366a08e39d231fdadda77b11",
+      "run_id": "r3_drawer_P1_n10_s0",
+      "source_episode_ids": [
+        "r3_drawer_train_IID_000_31200000",
+        "r3_drawer_train_IID_001_31200100",
+        "r3_drawer_train_IID_002_31200200",
+        "r3_drawer_train_IID_003_31200300",
+        "r3_drawer_train_IID_004_31200400",
+        "r3_drawer_train_IID_005_31200500",
+        "r3_drawer_train_IID_006_31200600",
+        "r3_drawer_train_IID_007_31200700",
+        "r3_drawer_train_IID_008_31200800",
+        "r3_drawer_train_IID_009_31200900"
+      ],
+      "stored_action_horizon_rows": 14224,
+      "task": "drawer",
+      "train_n": 10,
+      "train_seed": 0,
+      "transitions_and_distinct_window_starts": 889,
+      "valid_action_horizon_rows": 13024
+    },
+    {
+      "auxiliary_targets": {
+        "future_relations": {
+          "dtype": "float32",
+          "mask_source": "action_valid_mask",
+          "shape": [
+            889,
+            16,
+            1
+          ],
+          "stored_scalar_elements": 14224,
+          "valid_horizon_rows": 13024,
+          "valid_scalar_elements": 13024
+        }
+      },
+      "candidate_id": "P2",
+      "complete_demonstrations": 10,
+      "data_manifest_sha256": "4e62257f11b2bc5c68713a5b15960398e4f7843a3d10e40fcd80f41d55555c26",
+      "diffusion_target_shape": [
+        889,
+        16,
+        5
+      ],
+      "formal_train_status_at_inventory": "completed",
+      "implementation_sha256": "b16f1dbe321f783fcc3d48840ac083e0bdb1021843a8158887ade2dfeb1e94be",
+      "joint_auxiliary_channels": 1,
+      "native_executed_action_channels": 4,
+      "observation_tensor_shape": [
+        889,
+        2,
+        53
+      ],
+      "proposal_sha256": "2c5e4da796ca7399195ac5df3b5103dca2d8f813366a08e39d231fdadda77b11",
+      "run_id": "r3_drawer_P2_n10_s0",
+      "source_episode_ids": [
+        "r3_drawer_train_IID_000_31200000",
+        "r3_drawer_train_IID_001_31200100",
+        "r3_drawer_train_IID_002_31200200",
+        "r3_drawer_train_IID_003_31200300",
+        "r3_drawer_train_IID_004_31200400",
+        "r3_drawer_train_IID_005_31200500",
+        "r3_drawer_train_IID_006_31200600",
+        "r3_drawer_train_IID_007_31200700",
+        "r3_drawer_train_IID_008_31200800",
+        "r3_drawer_train_IID_009_31200900"
+      ],
+      "stored_action_horizon_rows": 14224,
+      "task": "drawer",
+      "train_n": 10,
+      "train_seed": 0,
+      "transitions_and_distinct_window_starts": 889,
+      "valid_action_horizon_rows": 13024
+    },
+    {
+      "auxiliary_targets": {
+        "future_relations": {
+          "dtype": "float32",
+          "mask_source": "action_valid_mask",
+          "shape": [
+            889,
+            16,
+            4
+          ],
+          "stored_scalar_elements": 56896,
+          "valid_horizon_rows": 13024,
+          "valid_scalar_elements": 52096
+        }
+      },
+      "candidate_id": "P3",
+      "complete_demonstrations": 10,
+      "data_manifest_sha256": "4e62257f11b2bc5c68713a5b15960398e4f7843a3d10e40fcd80f41d55555c26",
+      "diffusion_target_shape": [
+        889,
+        16,
+        8
+      ],
+      "formal_train_status_at_inventory": "completed",
+      "implementation_sha256": "55c52b1a99a4539acacddfe9c848fc024b8183f2004094810a6c40f9faa572be",
+      "joint_auxiliary_channels": 4,
+      "native_executed_action_channels": 4,
+      "observation_tensor_shape": [
+        889,
+        2,
+        25
+      ],
+      "proposal_sha256": "2c5e4da796ca7399195ac5df3b5103dca2d8f813366a08e39d231fdadda77b11",
+      "run_id": "r3_drawer_P3_n10_s0",
+      "source_episode_ids": [
+        "r3_drawer_train_IID_000_31200000",
+        "r3_drawer_train_IID_001_31200100",
+        "r3_drawer_train_IID_002_31200200",
+        "r3_drawer_train_IID_003_31200300",
+        "r3_drawer_train_IID_004_31200400",
+        "r3_drawer_train_IID_005_31200500",
+        "r3_drawer_train_IID_006_31200600",
+        "r3_drawer_train_IID_007_31200700",
+        "r3_drawer_train_IID_008_31200800",
+        "r3_drawer_train_IID_009_31200900"
+      ],
+      "stored_action_horizon_rows": 14224,
+      "task": "drawer",
+      "train_n": 10,
+      "train_seed": 0,
+      "transitions_and_distinct_window_starts": 889,
+      "valid_action_horizon_rows": 13024
+    },
+    {
+      "auxiliary_targets": {},
+      "candidate_id": "B0",
+      "complete_demonstrations": 20,
+      "data_manifest_sha256": "4e62257f11b2bc5c68713a5b15960398e4f7843a3d10e40fcd80f41d55555c26",
+      "diffusion_target_shape": [
+        1774,
+        16,
+        4
+      ],
+      "formal_train_status_at_inventory": "completed",
+      "implementation_sha256": "14debc15f74565d99315268da078627604e5aa5a29776890d49ee24c875e100b",
+      "joint_auxiliary_channels": 0,
+      "native_executed_action_channels": 4,
+      "observation_tensor_shape": [
+        1774,
+        2,
+        41
+      ],
+      "proposal_sha256": "425a43cd7d99948f823725ccd36d012c7ee3594651737213f59216968d555156",
+      "run_id": "r3_drawer_B0_n20_s0",
+      "source_episode_ids": [
+        "r3_drawer_train_IID_000_31200000",
+        "r3_drawer_train_IID_001_31200100",
+        "r3_drawer_train_IID_002_31200200",
+        "r3_drawer_train_IID_003_31200300",
+        "r3_drawer_train_IID_004_31200400",
+        "r3_drawer_train_IID_005_31200500",
+        "r3_drawer_train_IID_006_31200600",
+        "r3_drawer_train_IID_007_31200700",
+        "r3_drawer_train_IID_008_31200800",
+        "r3_drawer_train_IID_009_31200900",
+        "r3_drawer_train_IID_010_31201000",
+        "r3_drawer_train_IID_011_31201100",
+        "r3_drawer_train_IID_012_31201200",
+        "r3_drawer_train_IID_013_31201300",
+        "r3_drawer_train_IID_014_31201400",
+        "r3_drawer_train_IID_015_31201500",
+        "r3_drawer_train_IID_016_31201600",
+        "r3_drawer_train_IID_017_31201700",
+        "r3_drawer_train_IID_018_31201800",
+        "r3_drawer_train_IID_019_31201900"
+      ],
+      "stored_action_horizon_rows": 28384,
+      "task": "drawer",
+      "train_n": 20,
+      "train_seed": 0,
+      "transitions_and_distinct_window_starts": 1774,
+      "valid_action_horizon_rows": 25984
+    },
+    {
+      "auxiliary_targets": {},
+      "candidate_id": "P1",
+      "complete_demonstrations": 20,
+      "data_manifest_sha256": "4e62257f11b2bc5c68713a5b15960398e4f7843a3d10e40fcd80f41d55555c26",
+      "diffusion_target_shape": [
+        1774,
+        16,
+        4
+      ],
+      "formal_train_status_at_inventory": "completed",
+      "implementation_sha256": "2ff3a4a26f4c73cb3ce8a2b6e2ce8bc2da2dcab36b38c7f41b905a356e498a91",
+      "joint_auxiliary_channels": 0,
+      "native_executed_action_channels": 4,
+      "observation_tensor_shape": [
+        1774,
+        2,
+        25
+      ],
+      "proposal_sha256": "2c5e4da796ca7399195ac5df3b5103dca2d8f813366a08e39d231fdadda77b11",
+      "run_id": "r3_drawer_P1_n20_s0",
+      "source_episode_ids": [
+        "r3_drawer_train_IID_000_31200000",
+        "r3_drawer_train_IID_001_31200100",
+        "r3_drawer_train_IID_002_31200200",
+        "r3_drawer_train_IID_003_31200300",
+        "r3_drawer_train_IID_004_31200400",
+        "r3_drawer_train_IID_005_31200500",
+        "r3_drawer_train_IID_006_31200600",
+        "r3_drawer_train_IID_007_31200700",
+        "r3_drawer_train_IID_008_31200800",
+        "r3_drawer_train_IID_009_31200900",
+        "r3_drawer_train_IID_010_31201000",
+        "r3_drawer_train_IID_011_31201100",
+        "r3_drawer_train_IID_012_31201200",
+        "r3_drawer_train_IID_013_31201300",
+        "r3_drawer_train_IID_014_31201400",
+        "r3_drawer_train_IID_015_31201500",
+        "r3_drawer_train_IID_016_31201600",
+        "r3_drawer_train_IID_017_31201700",
+        "r3_drawer_train_IID_018_31201800",
+        "r3_drawer_train_IID_019_31201900"
+      ],
+      "stored_action_horizon_rows": 28384,
+      "task": "drawer",
+      "train_n": 20,
+      "train_seed": 0,
+      "transitions_and_distinct_window_starts": 1774,
+      "valid_action_horizon_rows": 25984
+    },
+    {
+      "auxiliary_targets": {
+        "future_relations": {
+          "dtype": "float32",
+          "mask_source": "action_valid_mask",
+          "shape": [
+            1774,
+            16,
+            1
+          ],
+          "stored_scalar_elements": 28384,
+          "valid_horizon_rows": 25984,
+          "valid_scalar_elements": 25984
+        }
+      },
+      "candidate_id": "P2",
+      "complete_demonstrations": 20,
+      "data_manifest_sha256": "4e62257f11b2bc5c68713a5b15960398e4f7843a3d10e40fcd80f41d55555c26",
+      "diffusion_target_shape": [
+        1774,
+        16,
+        5
+      ],
+      "formal_train_status_at_inventory": "completed",
+      "implementation_sha256": "b16f1dbe321f783fcc3d48840ac083e0bdb1021843a8158887ade2dfeb1e94be",
+      "joint_auxiliary_channels": 1,
+      "native_executed_action_channels": 4,
+      "observation_tensor_shape": [
+        1774,
+        2,
+        53
+      ],
+      "proposal_sha256": "2c5e4da796ca7399195ac5df3b5103dca2d8f813366a08e39d231fdadda77b11",
+      "run_id": "r3_drawer_P2_n20_s0",
+      "source_episode_ids": [
+        "r3_drawer_train_IID_000_31200000",
+        "r3_drawer_train_IID_001_31200100",
+        "r3_drawer_train_IID_002_31200200",
+        "r3_drawer_train_IID_003_31200300",
+        "r3_drawer_train_IID_004_31200400",
+        "r3_drawer_train_IID_005_31200500",
+        "r3_drawer_train_IID_006_31200600",
+        "r3_drawer_train_IID_007_31200700",
+        "r3_drawer_train_IID_008_31200800",
+        "r3_drawer_train_IID_009_31200900",
+        "r3_drawer_train_IID_010_31201000",
+        "r3_drawer_train_IID_011_31201100",
+        "r3_drawer_train_IID_012_31201200",
+        "r3_drawer_train_IID_013_31201300",
+        "r3_drawer_train_IID_014_31201400",
+        "r3_drawer_train_IID_015_31201500",
+        "r3_drawer_train_IID_016_31201600",
+        "r3_drawer_train_IID_017_31201700",
+        "r3_drawer_train_IID_018_31201800",
+        "r3_drawer_train_IID_019_31201900"
+      ],
+      "stored_action_horizon_rows": 28384,
+      "task": "drawer",
+      "train_n": 20,
+      "train_seed": 0,
+      "transitions_and_distinct_window_starts": 1774,
+      "valid_action_horizon_rows": 25984
+    },
+    {
+      "auxiliary_targets": {
+        "future_relations": {
+          "dtype": "float32",
+          "mask_source": "action_valid_mask",
+          "shape": [
+            1774,
+            16,
+            4
+          ],
+          "stored_scalar_elements": 113536,
+          "valid_horizon_rows": 25984,
+          "valid_scalar_elements": 103936
+        }
+      },
+      "candidate_id": "P3",
+      "complete_demonstrations": 20,
+      "data_manifest_sha256": "4e62257f11b2bc5c68713a5b15960398e4f7843a3d10e40fcd80f41d55555c26",
+      "diffusion_target_shape": [
+        1774,
+        16,
+        8
+      ],
+      "formal_train_status_at_inventory": "completed",
+      "implementation_sha256": "55c52b1a99a4539acacddfe9c848fc024b8183f2004094810a6c40f9faa572be",
+      "joint_auxiliary_channels": 4,
+      "native_executed_action_channels": 4,
+      "observation_tensor_shape": [
+        1774,
+        2,
+        25
+      ],
+      "proposal_sha256": "2c5e4da796ca7399195ac5df3b5103dca2d8f813366a08e39d231fdadda77b11",
+      "run_id": "r3_drawer_P3_n20_s0",
+      "source_episode_ids": [
+        "r3_drawer_train_IID_000_31200000",
+        "r3_drawer_train_IID_001_31200100",
+        "r3_drawer_train_IID_002_31200200",
+        "r3_drawer_train_IID_003_31200300",
+        "r3_drawer_train_IID_004_31200400",
+        "r3_drawer_train_IID_005_31200500",
+        "r3_drawer_train_IID_006_31200600",
+        "r3_drawer_train_IID_007_31200700",
+        "r3_drawer_train_IID_008_31200800",
+        "r3_drawer_train_IID_009_31200900",
+        "r3_drawer_train_IID_010_31201000",
+        "r3_drawer_train_IID_011_31201100",
+        "r3_drawer_train_IID_012_31201200",
+        "r3_drawer_train_IID_013_31201300",
+        "r3_drawer_train_IID_014_31201400",
+        "r3_drawer_train_IID_015_31201500",
+        "r3_drawer_train_IID_016_31201600",
+        "r3_drawer_train_IID_017_31201700",
+        "r3_drawer_train_IID_018_31201800",
+        "r3_drawer_train_IID_019_31201900"
+      ],
+      "stored_action_horizon_rows": 28384,
+      "task": "drawer",
+      "train_n": 20,
+      "train_seed": 0,
+      "transitions_and_distinct_window_starts": 1774,
+      "valid_action_horizon_rows": 25984
+    },
+    {
+      "auxiliary_targets": {},
+      "candidate_id": "B0",
+      "complete_demonstrations": 2,
+      "data_manifest_sha256": "6da4ad26ad1b2b33ea64c3faa68c133c793b42f68b78267dd92ca3b28c7f2121",
+      "diffusion_target_shape": [
+        220,
+        16,
+        4
+      ],
+      "formal_train_status_at_inventory": "completed",
+      "implementation_sha256": "dfdeb34c3cf971689e6cd52123d7b50e436d8095d2b19146b755946ed03d55ce",
+      "joint_auxiliary_channels": 0,
+      "native_executed_action_channels": 4,
+      "observation_tensor_shape": [
+        220,
+        2,
+        41
+      ],
+      "proposal_sha256": "425a43cd7d99948f823725ccd36d012c7ee3594651737213f59216968d555156",
+      "run_id": "r3_door_B0_n2_s0",
+      "source_episode_ids": [
+        "r3_door_train_IID_000_31300000",
+        "r3_door_train_IID_001_31300100"
+      ],
+      "stored_action_horizon_rows": 3520,
+      "task": "door",
+      "train_n": 2,
+      "train_seed": 0,
+      "transitions_and_distinct_window_starts": 220,
+      "valid_action_horizon_rows": 3280
+    },
+    {
+      "auxiliary_targets": {},
+      "candidate_id": "P1",
+      "complete_demonstrations": 2,
+      "data_manifest_sha256": "6da4ad26ad1b2b33ea64c3faa68c133c793b42f68b78267dd92ca3b28c7f2121",
+      "diffusion_target_shape": [
+        220,
+        16,
+        4
+      ],
+      "formal_train_status_at_inventory": "completed",
+      "implementation_sha256": "3211c26fe4bec26cfc3764ed61feadd2899cb864f1a9a917515c75975662c8b5",
+      "joint_auxiliary_channels": 0,
+      "native_executed_action_channels": 4,
+      "observation_tensor_shape": [
+        220,
+        2,
+        55
+      ],
+      "proposal_sha256": "03f70c459713735215f67b46f75fccfa6937ab9ecd9f416cec43b47ab704f849",
+      "run_id": "r3_door_P1_n2_s0",
+      "source_episode_ids": [
+        "r3_door_train_IID_000_31300000",
+        "r3_door_train_IID_001_31300100"
+      ],
+      "stored_action_horizon_rows": 3520,
+      "task": "door",
+      "train_n": 2,
+      "train_seed": 0,
+      "transitions_and_distinct_window_starts": 220,
+      "valid_action_horizon_rows": 3280
+    },
+    {
+      "auxiliary_targets": {
+        "future_geometry": {
+          "dtype": "float32",
+          "mask_source": "action_valid_mask",
+          "shape": [
+            220,
+            16,
+            8
+          ],
+          "stored_scalar_elements": 28160,
+          "valid_horizon_rows": 3280,
+          "valid_scalar_elements": 26240
+        }
+      },
+      "candidate_id": "P2",
+      "complete_demonstrations": 2,
+      "data_manifest_sha256": "6da4ad26ad1b2b33ea64c3faa68c133c793b42f68b78267dd92ca3b28c7f2121",
+      "diffusion_target_shape": [
+        220,
+        16,
+        12
+      ],
+      "formal_train_status_at_inventory": "completed",
+      "implementation_sha256": "9dc5536a5582153fe62d932980753a037b72dd1e43dd943f80a8b6baef512c48",
+      "joint_auxiliary_channels": 8,
+      "native_executed_action_channels": 4,
+      "observation_tensor_shape": [
+        220,
+        2,
+        43
+      ],
+      "proposal_sha256": "03f70c459713735215f67b46f75fccfa6937ab9ecd9f416cec43b47ab704f849",
+      "run_id": "r3_door_P2_n2_s0",
+      "source_episode_ids": [
+        "r3_door_train_IID_000_31300000",
+        "r3_door_train_IID_001_31300100"
+      ],
+      "stored_action_horizon_rows": 3520,
+      "task": "door",
+      "train_n": 2,
+      "train_seed": 0,
+      "transitions_and_distinct_window_starts": 220,
+      "valid_action_horizon_rows": 3280
+    },
+    {
+      "auxiliary_targets": {
+        "future_geometry": {
+          "dtype": "float32",
+          "mask_source": "action_valid_mask",
+          "shape": [
+            220,
+            16,
+            8
+          ],
+          "stored_scalar_elements": 28160,
+          "valid_horizon_rows": 3280,
+          "valid_scalar_elements": 26240
+        }
+      },
+      "candidate_id": "P3",
+      "complete_demonstrations": 2,
+      "data_manifest_sha256": "6da4ad26ad1b2b33ea64c3faa68c133c793b42f68b78267dd92ca3b28c7f2121",
+      "diffusion_target_shape": [
+        220,
+        16,
+        12
+      ],
+      "formal_train_status_at_inventory": "completed",
+      "implementation_sha256": "489fdef7879cf64c05cdbf47d45348731ef37c988637c8064fd72f95a86229a7",
+      "joint_auxiliary_channels": 8,
+      "native_executed_action_channels": 4,
+      "observation_tensor_shape": [
+        220,
+        2,
+        55
+      ],
+      "proposal_sha256": "03f70c459713735215f67b46f75fccfa6937ab9ecd9f416cec43b47ab704f849",
+      "run_id": "r3_door_P3_n2_s0",
+      "source_episode_ids": [
+        "r3_door_train_IID_000_31300000",
+        "r3_door_train_IID_001_31300100"
+      ],
+      "stored_action_horizon_rows": 3520,
+      "task": "door",
+      "train_n": 2,
+      "train_seed": 0,
+      "transitions_and_distinct_window_starts": 220,
+      "valid_action_horizon_rows": 3280
+    },
+    {
+      "auxiliary_targets": {},
+      "candidate_id": "B0",
+      "complete_demonstrations": 5,
+      "data_manifest_sha256": "6da4ad26ad1b2b33ea64c3faa68c133c793b42f68b78267dd92ca3b28c7f2121",
+      "diffusion_target_shape": [
+        542,
+        16,
+        4
+      ],
+      "formal_train_status_at_inventory": "completed",
+      "implementation_sha256": "dfdeb34c3cf971689e6cd52123d7b50e436d8095d2b19146b755946ed03d55ce",
+      "joint_auxiliary_channels": 0,
+      "native_executed_action_channels": 4,
+      "observation_tensor_shape": [
+        542,
+        2,
+        41
+      ],
+      "proposal_sha256": "425a43cd7d99948f823725ccd36d012c7ee3594651737213f59216968d555156",
+      "run_id": "r3_door_B0_n5_s0",
+      "source_episode_ids": [
+        "r3_door_train_IID_000_31300000",
+        "r3_door_train_IID_001_31300100",
+        "r3_door_train_IID_002_31300200",
+        "r3_door_train_IID_003_31300300",
+        "r3_door_train_IID_004_31300400"
+      ],
+      "stored_action_horizon_rows": 8672,
+      "task": "door",
+      "train_n": 5,
+      "train_seed": 0,
+      "transitions_and_distinct_window_starts": 542,
+      "valid_action_horizon_rows": 8072
+    },
+    {
+      "auxiliary_targets": {},
+      "candidate_id": "P1",
+      "complete_demonstrations": 5,
+      "data_manifest_sha256": "6da4ad26ad1b2b33ea64c3faa68c133c793b42f68b78267dd92ca3b28c7f2121",
+      "diffusion_target_shape": [
+        542,
+        16,
+        4
+      ],
+      "formal_train_status_at_inventory": "completed",
+      "implementation_sha256": "3211c26fe4bec26cfc3764ed61feadd2899cb864f1a9a917515c75975662c8b5",
+      "joint_auxiliary_channels": 0,
+      "native_executed_action_channels": 4,
+      "observation_tensor_shape": [
+        542,
+        2,
+        55
+      ],
+      "proposal_sha256": "03f70c459713735215f67b46f75fccfa6937ab9ecd9f416cec43b47ab704f849",
+      "run_id": "r3_door_P1_n5_s0",
+      "source_episode_ids": [
+        "r3_door_train_IID_000_31300000",
+        "r3_door_train_IID_001_31300100",
+        "r3_door_train_IID_002_31300200",
+        "r3_door_train_IID_003_31300300",
+        "r3_door_train_IID_004_31300400"
+      ],
+      "stored_action_horizon_rows": 8672,
+      "task": "door",
+      "train_n": 5,
+      "train_seed": 0,
+      "transitions_and_distinct_window_starts": 542,
+      "valid_action_horizon_rows": 8072
+    },
+    {
+      "auxiliary_targets": {
+        "future_geometry": {
+          "dtype": "float32",
+          "mask_source": "action_valid_mask",
+          "shape": [
+            542,
+            16,
+            8
+          ],
+          "stored_scalar_elements": 69376,
+          "valid_horizon_rows": 8072,
+          "valid_scalar_elements": 64576
+        }
+      },
+      "candidate_id": "P2",
+      "complete_demonstrations": 5,
+      "data_manifest_sha256": "6da4ad26ad1b2b33ea64c3faa68c133c793b42f68b78267dd92ca3b28c7f2121",
+      "diffusion_target_shape": [
+        542,
+        16,
+        12
+      ],
+      "formal_train_status_at_inventory": "completed",
+      "implementation_sha256": "9dc5536a5582153fe62d932980753a037b72dd1e43dd943f80a8b6baef512c48",
+      "joint_auxiliary_channels": 8,
+      "native_executed_action_channels": 4,
+      "observation_tensor_shape": [
+        542,
+        2,
+        43
+      ],
+      "proposal_sha256": "03f70c459713735215f67b46f75fccfa6937ab9ecd9f416cec43b47ab704f849",
+      "run_id": "r3_door_P2_n5_s0",
+      "source_episode_ids": [
+        "r3_door_train_IID_000_31300000",
+        "r3_door_train_IID_001_31300100",
+        "r3_door_train_IID_002_31300200",
+        "r3_door_train_IID_003_31300300",
+        "r3_door_train_IID_004_31300400"
+      ],
+      "stored_action_horizon_rows": 8672,
+      "task": "door",
+      "train_n": 5,
+      "train_seed": 0,
+      "transitions_and_distinct_window_starts": 542,
+      "valid_action_horizon_rows": 8072
+    },
+    {
+      "auxiliary_targets": {
+        "future_geometry": {
+          "dtype": "float32",
+          "mask_source": "action_valid_mask",
+          "shape": [
+            542,
+            16,
+            8
+          ],
+          "stored_scalar_elements": 69376,
+          "valid_horizon_rows": 8072,
+          "valid_scalar_elements": 64576
+        }
+      },
+      "candidate_id": "P3",
+      "complete_demonstrations": 5,
+      "data_manifest_sha256": "6da4ad26ad1b2b33ea64c3faa68c133c793b42f68b78267dd92ca3b28c7f2121",
+      "diffusion_target_shape": [
+        542,
+        16,
+        12
+      ],
+      "formal_train_status_at_inventory": "completed",
+      "implementation_sha256": "489fdef7879cf64c05cdbf47d45348731ef37c988637c8064fd72f95a86229a7",
+      "joint_auxiliary_channels": 8,
+      "native_executed_action_channels": 4,
+      "observation_tensor_shape": [
+        542,
+        2,
+        55
+      ],
+      "proposal_sha256": "03f70c459713735215f67b46f75fccfa6937ab9ecd9f416cec43b47ab704f849",
+      "run_id": "r3_door_P3_n5_s0",
+      "source_episode_ids": [
+        "r3_door_train_IID_000_31300000",
+        "r3_door_train_IID_001_31300100",
+        "r3_door_train_IID_002_31300200",
+        "r3_door_train_IID_003_31300300",
+        "r3_door_train_IID_004_31300400"
+      ],
+      "stored_action_horizon_rows": 8672,
+      "task": "door",
+      "train_n": 5,
+      "train_seed": 0,
+      "transitions_and_distinct_window_starts": 542,
+      "valid_action_horizon_rows": 8072
+    },
+    {
+      "auxiliary_targets": {},
+      "candidate_id": "B0",
+      "complete_demonstrations": 10,
+      "data_manifest_sha256": "6da4ad26ad1b2b33ea64c3faa68c133c793b42f68b78267dd92ca3b28c7f2121",
+      "diffusion_target_shape": [
+        1090,
+        16,
+        4
+      ],
+      "formal_train_status_at_inventory": "completed",
+      "implementation_sha256": "dfdeb34c3cf971689e6cd52123d7b50e436d8095d2b19146b755946ed03d55ce",
+      "joint_auxiliary_channels": 0,
+      "native_executed_action_channels": 4,
+      "observation_tensor_shape": [
+        1090,
+        2,
+        41
+      ],
+      "proposal_sha256": "425a43cd7d99948f823725ccd36d012c7ee3594651737213f59216968d555156",
+      "run_id": "r3_door_B0_n10_s0",
+      "source_episode_ids": [
+        "r3_door_train_IID_000_31300000",
+        "r3_door_train_IID_001_31300100",
+        "r3_door_train_IID_002_31300200",
+        "r3_door_train_IID_003_31300300",
+        "r3_door_train_IID_004_31300400",
+        "r3_door_train_IID_005_31300500",
+        "r3_door_train_IID_006_31300600",
+        "r3_door_train_IID_007_31300700",
+        "r3_door_train_IID_008_31300800",
+        "r3_door_train_IID_009_31300900"
+      ],
+      "stored_action_horizon_rows": 17440,
+      "task": "door",
+      "train_n": 10,
+      "train_seed": 0,
+      "transitions_and_distinct_window_starts": 1090,
+      "valid_action_horizon_rows": 16240
+    },
+    {
+      "auxiliary_targets": {},
+      "candidate_id": "P1",
+      "complete_demonstrations": 10,
+      "data_manifest_sha256": "6da4ad26ad1b2b33ea64c3faa68c133c793b42f68b78267dd92ca3b28c7f2121",
+      "diffusion_target_shape": [
+        1090,
+        16,
+        4
+      ],
+      "formal_train_status_at_inventory": "completed",
+      "implementation_sha256": "3211c26fe4bec26cfc3764ed61feadd2899cb864f1a9a917515c75975662c8b5",
+      "joint_auxiliary_channels": 0,
+      "native_executed_action_channels": 4,
+      "observation_tensor_shape": [
+        1090,
+        2,
+        55
+      ],
+      "proposal_sha256": "03f70c459713735215f67b46f75fccfa6937ab9ecd9f416cec43b47ab704f849",
+      "run_id": "r3_door_P1_n10_s0",
+      "source_episode_ids": [
+        "r3_door_train_IID_000_31300000",
+        "r3_door_train_IID_001_31300100",
+        "r3_door_train_IID_002_31300200",
+        "r3_door_train_IID_003_31300300",
+        "r3_door_train_IID_004_31300400",
+        "r3_door_train_IID_005_31300500",
+        "r3_door_train_IID_006_31300600",
+        "r3_door_train_IID_007_31300700",
+        "r3_door_train_IID_008_31300800",
+        "r3_door_train_IID_009_31300900"
+      ],
+      "stored_action_horizon_rows": 17440,
+      "task": "door",
+      "train_n": 10,
+      "train_seed": 0,
+      "transitions_and_distinct_window_starts": 1090,
+      "valid_action_horizon_rows": 16240
+    },
+    {
+      "auxiliary_targets": {
+        "future_geometry": {
+          "dtype": "float32",
+          "mask_source": "action_valid_mask",
+          "shape": [
+            1090,
+            16,
+            8
+          ],
+          "stored_scalar_elements": 139520,
+          "valid_horizon_rows": 16240,
+          "valid_scalar_elements": 129920
+        }
+      },
+      "candidate_id": "P2",
+      "complete_demonstrations": 10,
+      "data_manifest_sha256": "6da4ad26ad1b2b33ea64c3faa68c133c793b42f68b78267dd92ca3b28c7f2121",
+      "diffusion_target_shape": [
+        1090,
+        16,
+        12
+      ],
+      "formal_train_status_at_inventory": "completed",
+      "implementation_sha256": "9dc5536a5582153fe62d932980753a037b72dd1e43dd943f80a8b6baef512c48",
+      "joint_auxiliary_channels": 8,
+      "native_executed_action_channels": 4,
+      "observation_tensor_shape": [
+        1090,
+        2,
+        43
+      ],
+      "proposal_sha256": "03f70c459713735215f67b46f75fccfa6937ab9ecd9f416cec43b47ab704f849",
+      "run_id": "r3_door_P2_n10_s0",
+      "source_episode_ids": [
+        "r3_door_train_IID_000_31300000",
+        "r3_door_train_IID_001_31300100",
+        "r3_door_train_IID_002_31300200",
+        "r3_door_train_IID_003_31300300",
+        "r3_door_train_IID_004_31300400",
+        "r3_door_train_IID_005_31300500",
+        "r3_door_train_IID_006_31300600",
+        "r3_door_train_IID_007_31300700",
+        "r3_door_train_IID_008_31300800",
+        "r3_door_train_IID_009_31300900"
+      ],
+      "stored_action_horizon_rows": 17440,
+      "task": "door",
+      "train_n": 10,
+      "train_seed": 0,
+      "transitions_and_distinct_window_starts": 1090,
+      "valid_action_horizon_rows": 16240
+    },
+    {
+      "auxiliary_targets": {
+        "future_geometry": {
+          "dtype": "float32",
+          "mask_source": "action_valid_mask",
+          "shape": [
+            1090,
+            16,
+            8
+          ],
+          "stored_scalar_elements": 139520,
+          "valid_horizon_rows": 16240,
+          "valid_scalar_elements": 129920
+        }
+      },
+      "candidate_id": "P3",
+      "complete_demonstrations": 10,
+      "data_manifest_sha256": "6da4ad26ad1b2b33ea64c3faa68c133c793b42f68b78267dd92ca3b28c7f2121",
+      "diffusion_target_shape": [
+        1090,
+        16,
+        12
+      ],
+      "formal_train_status_at_inventory": "completed",
+      "implementation_sha256": "489fdef7879cf64c05cdbf47d45348731ef37c988637c8064fd72f95a86229a7",
+      "joint_auxiliary_channels": 8,
+      "native_executed_action_channels": 4,
+      "observation_tensor_shape": [
+        1090,
+        2,
+        55
+      ],
+      "proposal_sha256": "03f70c459713735215f67b46f75fccfa6937ab9ecd9f416cec43b47ab704f849",
+      "run_id": "r3_door_P3_n10_s0",
+      "source_episode_ids": [
+        "r3_door_train_IID_000_31300000",
+        "r3_door_train_IID_001_31300100",
+        "r3_door_train_IID_002_31300200",
+        "r3_door_train_IID_003_31300300",
+        "r3_door_train_IID_004_31300400",
+        "r3_door_train_IID_005_31300500",
+        "r3_door_train_IID_006_31300600",
+        "r3_door_train_IID_007_31300700",
+        "r3_door_train_IID_008_31300800",
+        "r3_door_train_IID_009_31300900"
+      ],
+      "stored_action_horizon_rows": 17440,
+      "task": "door",
+      "train_n": 10,
+      "train_seed": 0,
+      "transitions_and_distinct_window_starts": 1090,
+      "valid_action_horizon_rows": 16240
+    },
+    {
+      "auxiliary_targets": {},
+      "candidate_id": "B0",
+      "complete_demonstrations": 20,
+      "data_manifest_sha256": "6da4ad26ad1b2b33ea64c3faa68c133c793b42f68b78267dd92ca3b28c7f2121",
+      "diffusion_target_shape": [
+        2171,
+        16,
+        4
+      ],
+      "formal_train_status_at_inventory": "completed",
+      "implementation_sha256": "dfdeb34c3cf971689e6cd52123d7b50e436d8095d2b19146b755946ed03d55ce",
+      "joint_auxiliary_channels": 0,
+      "native_executed_action_channels": 4,
+      "observation_tensor_shape": [
+        2171,
+        2,
+        41
+      ],
+      "proposal_sha256": "425a43cd7d99948f823725ccd36d012c7ee3594651737213f59216968d555156",
+      "run_id": "r3_door_B0_n20_s0",
+      "source_episode_ids": [
+        "r3_door_train_IID_000_31300000",
+        "r3_door_train_IID_001_31300100",
+        "r3_door_train_IID_002_31300200",
+        "r3_door_train_IID_003_31300300",
+        "r3_door_train_IID_004_31300400",
+        "r3_door_train_IID_005_31300500",
+        "r3_door_train_IID_006_31300600",
+        "r3_door_train_IID_007_31300700",
+        "r3_door_train_IID_008_31300800",
+        "r3_door_train_IID_009_31300900",
+        "r3_door_train_IID_010_31301000",
+        "r3_door_train_IID_011_31301100",
+        "r3_door_train_IID_012_31301200",
+        "r3_door_train_IID_013_31301300",
+        "r3_door_train_IID_014_31301400",
+        "r3_door_train_IID_015_31301500",
+        "r3_door_train_IID_016_31301600",
+        "r3_door_train_IID_017_31301700",
+        "r3_door_train_IID_018_31301800",
+        "r3_door_train_IID_019_31301900"
+      ],
+      "stored_action_horizon_rows": 34736,
+      "task": "door",
+      "train_n": 20,
+      "train_seed": 0,
+      "transitions_and_distinct_window_starts": 2171,
+      "valid_action_horizon_rows": 32336
+    },
+    {
+      "auxiliary_targets": {},
+      "candidate_id": "P1",
+      "complete_demonstrations": 20,
+      "data_manifest_sha256": "6da4ad26ad1b2b33ea64c3faa68c133c793b42f68b78267dd92ca3b28c7f2121",
+      "diffusion_target_shape": [
+        2171,
+        16,
+        4
+      ],
+      "formal_train_status_at_inventory": "completed",
+      "implementation_sha256": "3211c26fe4bec26cfc3764ed61feadd2899cb864f1a9a917515c75975662c8b5",
+      "joint_auxiliary_channels": 0,
+      "native_executed_action_channels": 4,
+      "observation_tensor_shape": [
+        2171,
+        2,
+        55
+      ],
+      "proposal_sha256": "03f70c459713735215f67b46f75fccfa6937ab9ecd9f416cec43b47ab704f849",
+      "run_id": "r3_door_P1_n20_s0",
+      "source_episode_ids": [
+        "r3_door_train_IID_000_31300000",
+        "r3_door_train_IID_001_31300100",
+        "r3_door_train_IID_002_31300200",
+        "r3_door_train_IID_003_31300300",
+        "r3_door_train_IID_004_31300400",
+        "r3_door_train_IID_005_31300500",
+        "r3_door_train_IID_006_31300600",
+        "r3_door_train_IID_007_31300700",
+        "r3_door_train_IID_008_31300800",
+        "r3_door_train_IID_009_31300900",
+        "r3_door_train_IID_010_31301000",
+        "r3_door_train_IID_011_31301100",
+        "r3_door_train_IID_012_31301200",
+        "r3_door_train_IID_013_31301300",
+        "r3_door_train_IID_014_31301400",
+        "r3_door_train_IID_015_31301500",
+        "r3_door_train_IID_016_31301600",
+        "r3_door_train_IID_017_31301700",
+        "r3_door_train_IID_018_31301800",
+        "r3_door_train_IID_019_31301900"
+      ],
+      "stored_action_horizon_rows": 34736,
+      "task": "door",
+      "train_n": 20,
+      "train_seed": 0,
+      "transitions_and_distinct_window_starts": 2171,
+      "valid_action_horizon_rows": 32336
+    },
+    {
+      "auxiliary_targets": {
+        "future_geometry": {
+          "dtype": "float32",
+          "mask_source": "action_valid_mask",
+          "shape": [
+            2171,
+            16,
+            8
+          ],
+          "stored_scalar_elements": 277888,
+          "valid_horizon_rows": 32336,
+          "valid_scalar_elements": 258688
+        }
+      },
+      "candidate_id": "P2",
+      "complete_demonstrations": 20,
+      "data_manifest_sha256": "6da4ad26ad1b2b33ea64c3faa68c133c793b42f68b78267dd92ca3b28c7f2121",
+      "diffusion_target_shape": [
+        2171,
+        16,
+        12
+      ],
+      "formal_train_status_at_inventory": "completed",
+      "implementation_sha256": "9dc5536a5582153fe62d932980753a037b72dd1e43dd943f80a8b6baef512c48",
+      "joint_auxiliary_channels": 8,
+      "native_executed_action_channels": 4,
+      "observation_tensor_shape": [
+        2171,
+        2,
+        43
+      ],
+      "proposal_sha256": "03f70c459713735215f67b46f75fccfa6937ab9ecd9f416cec43b47ab704f849",
+      "run_id": "r3_door_P2_n20_s0",
+      "source_episode_ids": [
+        "r3_door_train_IID_000_31300000",
+        "r3_door_train_IID_001_31300100",
+        "r3_door_train_IID_002_31300200",
+        "r3_door_train_IID_003_31300300",
+        "r3_door_train_IID_004_31300400",
+        "r3_door_train_IID_005_31300500",
+        "r3_door_train_IID_006_31300600",
+        "r3_door_train_IID_007_31300700",
+        "r3_door_train_IID_008_31300800",
+        "r3_door_train_IID_009_31300900",
+        "r3_door_train_IID_010_31301000",
+        "r3_door_train_IID_011_31301100",
+        "r3_door_train_IID_012_31301200",
+        "r3_door_train_IID_013_31301300",
+        "r3_door_train_IID_014_31301400",
+        "r3_door_train_IID_015_31301500",
+        "r3_door_train_IID_016_31301600",
+        "r3_door_train_IID_017_31301700",
+        "r3_door_train_IID_018_31301800",
+        "r3_door_train_IID_019_31301900"
+      ],
+      "stored_action_horizon_rows": 34736,
+      "task": "door",
+      "train_n": 20,
+      "train_seed": 0,
+      "transitions_and_distinct_window_starts": 2171,
+      "valid_action_horizon_rows": 32336
+    },
+    {
+      "auxiliary_targets": {
+        "future_geometry": {
+          "dtype": "float32",
+          "mask_source": "action_valid_mask",
+          "shape": [
+            2171,
+            16,
+            8
+          ],
+          "stored_scalar_elements": 277888,
+          "valid_horizon_rows": 32336,
+          "valid_scalar_elements": 258688
+        }
+      },
+      "candidate_id": "P3",
+      "complete_demonstrations": 20,
+      "data_manifest_sha256": "6da4ad26ad1b2b33ea64c3faa68c133c793b42f68b78267dd92ca3b28c7f2121",
+      "diffusion_target_shape": [
+        2171,
+        16,
+        12
+      ],
+      "formal_train_status_at_inventory": "completed",
+      "implementation_sha256": "489fdef7879cf64c05cdbf47d45348731ef37c988637c8064fd72f95a86229a7",
+      "joint_auxiliary_channels": 8,
+      "native_executed_action_channels": 4,
+      "observation_tensor_shape": [
+        2171,
+        2,
+        55
+      ],
+      "proposal_sha256": "03f70c459713735215f67b46f75fccfa6937ab9ecd9f416cec43b47ab704f849",
+      "run_id": "r3_door_P3_n20_s0",
+      "source_episode_ids": [
+        "r3_door_train_IID_000_31300000",
+        "r3_door_train_IID_001_31300100",
+        "r3_door_train_IID_002_31300200",
+        "r3_door_train_IID_003_31300300",
+        "r3_door_train_IID_004_31300400",
+        "r3_door_train_IID_005_31300500",
+        "r3_door_train_IID_006_31300600",
+        "r3_door_train_IID_007_31300700",
+        "r3_door_train_IID_008_31300800",
+        "r3_door_train_IID_009_31300900",
+        "r3_door_train_IID_010_31301000",
+        "r3_door_train_IID_011_31301100",
+        "r3_door_train_IID_012_31301200",
+        "r3_door_train_IID_013_31301300",
+        "r3_door_train_IID_014_31301400",
+        "r3_door_train_IID_015_31301500",
+        "r3_door_train_IID_016_31301600",
+        "r3_door_train_IID_017_31301700",
+        "r3_door_train_IID_018_31301800",
+        "r3_door_train_IID_019_31301900"
+      ],
+      "stored_action_horizon_rows": 34736,
+      "task": "door",
+      "train_n": 20,
+      "train_seed": 0,
+      "transitions_and_distinct_window_starts": 2171,
+      "valid_action_horizon_rows": 32336
+    },
+    {
+      "auxiliary_targets": {},
+      "candidate_id": "B0",
+      "complete_demonstrations": 2,
+      "data_manifest_sha256": "9b85cb6218a0a4d7460d8146eed7cd900d57ebf708bcc3a55df52be8f52bf90a",
+      "diffusion_target_shape": [
+        168,
+        16,
+        4
+      ],
+      "formal_train_status_at_inventory": "completed",
+      "implementation_sha256": "f94eb7ae06c5ea317cd71a90b01792519ef543d1893474c1432b33a1d5c6f6a1",
+      "joint_auxiliary_channels": 0,
+      "native_executed_action_channels": 4,
+      "observation_tensor_shape": [
+        168,
+        2,
+        42
+      ],
+      "proposal_sha256": "425a43cd7d99948f823725ccd36d012c7ee3594651737213f59216968d555156",
+      "run_id": "r3_peg-insert-side_B0_n2_s0",
+      "source_episode_ids": [
+        "r3_peg-insert-side_train_IID_000_31400000",
+        "r3_peg-insert-side_train_IID_001_31400100"
+      ],
+      "stored_action_horizon_rows": 2688,
+      "task": "peg-insert-side",
+      "train_n": 2,
+      "train_seed": 0,
+      "transitions_and_distinct_window_starts": 168,
+      "valid_action_horizon_rows": 2448
+    },
+    {
+      "auxiliary_targets": {},
+      "candidate_id": "P1",
+      "complete_demonstrations": 2,
+      "data_manifest_sha256": "9b85cb6218a0a4d7460d8146eed7cd900d57ebf708bcc3a55df52be8f52bf90a",
+      "diffusion_target_shape": [
+        168,
+        16,
+        4
+      ],
+      "formal_train_status_at_inventory": "completed",
+      "implementation_sha256": "ca5199d4a052c6bd152913fc09f417c8a7c115ee41971578f4372d32bc745469",
+      "joint_auxiliary_channels": 0,
+      "native_executed_action_channels": 4,
+      "observation_tensor_shape": [
+        168,
+        2,
+        62
+      ],
+      "proposal_sha256": "135cd9e6e8e3ee3c9ce86fec14178edc85f40329f1ac6851148d774e723f293f",
+      "run_id": "r3_peg-insert-side_P1_n2_s0",
+      "source_episode_ids": [
+        "r3_peg-insert-side_train_IID_000_31400000",
+        "r3_peg-insert-side_train_IID_001_31400100"
+      ],
+      "stored_action_horizon_rows": 2688,
+      "task": "peg-insert-side",
+      "train_n": 2,
+      "train_seed": 0,
+      "transitions_and_distinct_window_starts": 168,
+      "valid_action_horizon_rows": 2448
+    },
+    {
+      "auxiliary_targets": {
+        "future_relations": {
+          "dtype": "float32",
+          "mask_source": "action_valid_mask",
+          "shape": [
+            168,
+            16,
+            6
+          ],
+          "stored_scalar_elements": 16128,
+          "valid_horizon_rows": 2448,
+          "valid_scalar_elements": 14688
+        }
+      },
+      "candidate_id": "P2",
+      "complete_demonstrations": 2,
+      "data_manifest_sha256": "9b85cb6218a0a4d7460d8146eed7cd900d57ebf708bcc3a55df52be8f52bf90a",
+      "diffusion_target_shape": [
+        168,
+        16,
+        10
+      ],
+      "formal_train_status_at_inventory": "completed",
+      "implementation_sha256": "4124afe7bea610c4feb05230503c347a7556af7e3b459a429e1d03470baa3dd3",
+      "joint_auxiliary_channels": 6,
+      "native_executed_action_channels": 4,
+      "observation_tensor_shape": [
+        168,
+        2,
+        42
+      ],
+      "proposal_sha256": "135cd9e6e8e3ee3c9ce86fec14178edc85f40329f1ac6851148d774e723f293f",
+      "run_id": "r3_peg-insert-side_P2_n2_s0",
+      "source_episode_ids": [
+        "r3_peg-insert-side_train_IID_000_31400000",
+        "r3_peg-insert-side_train_IID_001_31400100"
+      ],
+      "stored_action_horizon_rows": 2688,
+      "task": "peg-insert-side",
+      "train_n": 2,
+      "train_seed": 0,
+      "transitions_and_distinct_window_starts": 168,
+      "valid_action_horizon_rows": 2448
+    },
+    {
+      "auxiliary_targets": {
+        "future_relations": {
+          "dtype": "float32",
+          "mask_source": "action_valid_mask",
+          "shape": [
+            168,
+            16,
+            6
+          ],
+          "stored_scalar_elements": 16128,
+          "valid_horizon_rows": 2448,
+          "valid_scalar_elements": 14688
+        }
+      },
+      "candidate_id": "P3",
+      "complete_demonstrations": 2,
+      "data_manifest_sha256": "9b85cb6218a0a4d7460d8146eed7cd900d57ebf708bcc3a55df52be8f52bf90a",
+      "diffusion_target_shape": [
+        168,
+        16,
+        10
+      ],
+      "formal_train_status_at_inventory": "running",
+      "implementation_sha256": "0958c3ee23afb4d03b8bbabc9141b011745e490cf2f6f391af27fcfb8cee41b1",
+      "joint_auxiliary_channels": 6,
+      "native_executed_action_channels": 4,
+      "observation_tensor_shape": [
+        168,
+        2,
+        62
+      ],
+      "proposal_sha256": "135cd9e6e8e3ee3c9ce86fec14178edc85f40329f1ac6851148d774e723f293f",
+      "run_id": "r3_peg-insert-side_P3_n2_s0",
+      "source_episode_ids": [
+        "r3_peg-insert-side_train_IID_000_31400000",
+        "r3_peg-insert-side_train_IID_001_31400100"
+      ],
+      "stored_action_horizon_rows": 2688,
+      "task": "peg-insert-side",
+      "train_n": 2,
+      "train_seed": 0,
+      "transitions_and_distinct_window_starts": 168,
+      "valid_action_horizon_rows": 2448
+    },
+    {
+      "auxiliary_targets": {},
+      "candidate_id": "B0",
+      "complete_demonstrations": 5,
+      "data_manifest_sha256": "9b85cb6218a0a4d7460d8146eed7cd900d57ebf708bcc3a55df52be8f52bf90a",
+      "diffusion_target_shape": [
+        415,
+        16,
+        4
+      ],
+      "formal_train_status_at_inventory": "completed",
+      "implementation_sha256": "f94eb7ae06c5ea317cd71a90b01792519ef543d1893474c1432b33a1d5c6f6a1",
+      "joint_auxiliary_channels": 0,
+      "native_executed_action_channels": 4,
+      "observation_tensor_shape": [
+        415,
+        2,
+        42
+      ],
+      "proposal_sha256": "425a43cd7d99948f823725ccd36d012c7ee3594651737213f59216968d555156",
+      "run_id": "r3_peg-insert-side_B0_n5_s0",
+      "source_episode_ids": [
+        "r3_peg-insert-side_train_IID_000_31400000",
+        "r3_peg-insert-side_train_IID_001_31400100",
+        "r3_peg-insert-side_train_IID_002_31400200",
+        "r3_peg-insert-side_train_IID_003_31400300",
+        "r3_peg-insert-side_train_IID_004_31400400"
+      ],
+      "stored_action_horizon_rows": 6640,
+      "task": "peg-insert-side",
+      "train_n": 5,
+      "train_seed": 0,
+      "transitions_and_distinct_window_starts": 415,
+      "valid_action_horizon_rows": 6040
+    },
+    {
+      "auxiliary_targets": {},
+      "candidate_id": "P1",
+      "complete_demonstrations": 5,
+      "data_manifest_sha256": "9b85cb6218a0a4d7460d8146eed7cd900d57ebf708bcc3a55df52be8f52bf90a",
+      "diffusion_target_shape": [
+        415,
+        16,
+        4
+      ],
+      "formal_train_status_at_inventory": "completed",
+      "implementation_sha256": "ca5199d4a052c6bd152913fc09f417c8a7c115ee41971578f4372d32bc745469",
+      "joint_auxiliary_channels": 0,
+      "native_executed_action_channels": 4,
+      "observation_tensor_shape": [
+        415,
+        2,
+        62
+      ],
+      "proposal_sha256": "135cd9e6e8e3ee3c9ce86fec14178edc85f40329f1ac6851148d774e723f293f",
+      "run_id": "r3_peg-insert-side_P1_n5_s0",
+      "source_episode_ids": [
+        "r3_peg-insert-side_train_IID_000_31400000",
+        "r3_peg-insert-side_train_IID_001_31400100",
+        "r3_peg-insert-side_train_IID_002_31400200",
+        "r3_peg-insert-side_train_IID_003_31400300",
+        "r3_peg-insert-side_train_IID_004_31400400"
+      ],
+      "stored_action_horizon_rows": 6640,
+      "task": "peg-insert-side",
+      "train_n": 5,
+      "train_seed": 0,
+      "transitions_and_distinct_window_starts": 415,
+      "valid_action_horizon_rows": 6040
+    },
+    {
+      "auxiliary_targets": {
+        "future_relations": {
+          "dtype": "float32",
+          "mask_source": "action_valid_mask",
+          "shape": [
+            415,
+            16,
+            6
+          ],
+          "stored_scalar_elements": 39840,
+          "valid_horizon_rows": 6040,
+          "valid_scalar_elements": 36240
+        }
+      },
+      "candidate_id": "P2",
+      "complete_demonstrations": 5,
+      "data_manifest_sha256": "9b85cb6218a0a4d7460d8146eed7cd900d57ebf708bcc3a55df52be8f52bf90a",
+      "diffusion_target_shape": [
+        415,
+        16,
+        10
+      ],
+      "formal_train_status_at_inventory": "completed",
+      "implementation_sha256": "4124afe7bea610c4feb05230503c347a7556af7e3b459a429e1d03470baa3dd3",
+      "joint_auxiliary_channels": 6,
+      "native_executed_action_channels": 4,
+      "observation_tensor_shape": [
+        415,
+        2,
+        42
+      ],
+      "proposal_sha256": "135cd9e6e8e3ee3c9ce86fec14178edc85f40329f1ac6851148d774e723f293f",
+      "run_id": "r3_peg-insert-side_P2_n5_s0",
+      "source_episode_ids": [
+        "r3_peg-insert-side_train_IID_000_31400000",
+        "r3_peg-insert-side_train_IID_001_31400100",
+        "r3_peg-insert-side_train_IID_002_31400200",
+        "r3_peg-insert-side_train_IID_003_31400300",
+        "r3_peg-insert-side_train_IID_004_31400400"
+      ],
+      "stored_action_horizon_rows": 6640,
+      "task": "peg-insert-side",
+      "train_n": 5,
+      "train_seed": 0,
+      "transitions_and_distinct_window_starts": 415,
+      "valid_action_horizon_rows": 6040
+    },
+    {
+      "auxiliary_targets": {
+        "future_relations": {
+          "dtype": "float32",
+          "mask_source": "action_valid_mask",
+          "shape": [
+            415,
+            16,
+            6
+          ],
+          "stored_scalar_elements": 39840,
+          "valid_horizon_rows": 6040,
+          "valid_scalar_elements": 36240
+        }
+      },
+      "candidate_id": "P3",
+      "complete_demonstrations": 5,
+      "data_manifest_sha256": "9b85cb6218a0a4d7460d8146eed7cd900d57ebf708bcc3a55df52be8f52bf90a",
+      "diffusion_target_shape": [
+        415,
+        16,
+        10
+      ],
+      "formal_train_status_at_inventory": "completed",
+      "implementation_sha256": "0958c3ee23afb4d03b8bbabc9141b011745e490cf2f6f391af27fcfb8cee41b1",
+      "joint_auxiliary_channels": 6,
+      "native_executed_action_channels": 4,
+      "observation_tensor_shape": [
+        415,
+        2,
+        62
+      ],
+      "proposal_sha256": "135cd9e6e8e3ee3c9ce86fec14178edc85f40329f1ac6851148d774e723f293f",
+      "run_id": "r3_peg-insert-side_P3_n5_s0",
+      "source_episode_ids": [
+        "r3_peg-insert-side_train_IID_000_31400000",
+        "r3_peg-insert-side_train_IID_001_31400100",
+        "r3_peg-insert-side_train_IID_002_31400200",
+        "r3_peg-insert-side_train_IID_003_31400300",
+        "r3_peg-insert-side_train_IID_004_31400400"
+      ],
+      "stored_action_horizon_rows": 6640,
+      "task": "peg-insert-side",
+      "train_n": 5,
+      "train_seed": 0,
+      "transitions_and_distinct_window_starts": 415,
+      "valid_action_horizon_rows": 6040
+    },
+    {
+      "auxiliary_targets": {},
+      "candidate_id": "B0",
+      "complete_demonstrations": 10,
+      "data_manifest_sha256": "9b85cb6218a0a4d7460d8146eed7cd900d57ebf708bcc3a55df52be8f52bf90a",
+      "diffusion_target_shape": [
+        834,
+        16,
+        4
+      ],
+      "formal_train_status_at_inventory": "running",
+      "implementation_sha256": "f94eb7ae06c5ea317cd71a90b01792519ef543d1893474c1432b33a1d5c6f6a1",
+      "joint_auxiliary_channels": 0,
+      "native_executed_action_channels": 4,
+      "observation_tensor_shape": [
+        834,
+        2,
+        42
+      ],
+      "proposal_sha256": "425a43cd7d99948f823725ccd36d012c7ee3594651737213f59216968d555156",
+      "run_id": "r3_peg-insert-side_B0_n10_s0",
+      "source_episode_ids": [
+        "r3_peg-insert-side_train_IID_000_31400000",
+        "r3_peg-insert-side_train_IID_001_31400100",
+        "r3_peg-insert-side_train_IID_002_31400200",
+        "r3_peg-insert-side_train_IID_003_31400300",
+        "r3_peg-insert-side_train_IID_004_31400400",
+        "r3_peg-insert-side_train_IID_005_31400500",
+        "r3_peg-insert-side_train_IID_006_31400600",
+        "r3_peg-insert-side_train_IID_007_31400700",
+        "r3_peg-insert-side_train_IID_008_31400800",
+        "r3_peg-insert-side_train_IID_009_31400900"
+      ],
+      "stored_action_horizon_rows": 13344,
+      "task": "peg-insert-side",
+      "train_n": 10,
+      "train_seed": 0,
+      "transitions_and_distinct_window_starts": 834,
+      "valid_action_horizon_rows": 12144
+    },
+    {
+      "auxiliary_targets": {},
+      "candidate_id": "P1",
+      "complete_demonstrations": 10,
+      "data_manifest_sha256": "9b85cb6218a0a4d7460d8146eed7cd900d57ebf708bcc3a55df52be8f52bf90a",
+      "diffusion_target_shape": [
+        834,
+        16,
+        4
+      ],
+      "formal_train_status_at_inventory": "running",
+      "implementation_sha256": "ca5199d4a052c6bd152913fc09f417c8a7c115ee41971578f4372d32bc745469",
+      "joint_auxiliary_channels": 0,
+      "native_executed_action_channels": 4,
+      "observation_tensor_shape": [
+        834,
+        2,
+        62
+      ],
+      "proposal_sha256": "135cd9e6e8e3ee3c9ce86fec14178edc85f40329f1ac6851148d774e723f293f",
+      "run_id": "r3_peg-insert-side_P1_n10_s0",
+      "source_episode_ids": [
+        "r3_peg-insert-side_train_IID_000_31400000",
+        "r3_peg-insert-side_train_IID_001_31400100",
+        "r3_peg-insert-side_train_IID_002_31400200",
+        "r3_peg-insert-side_train_IID_003_31400300",
+        "r3_peg-insert-side_train_IID_004_31400400",
+        "r3_peg-insert-side_train_IID_005_31400500",
+        "r3_peg-insert-side_train_IID_006_31400600",
+        "r3_peg-insert-side_train_IID_007_31400700",
+        "r3_peg-insert-side_train_IID_008_31400800",
+        "r3_peg-insert-side_train_IID_009_31400900"
+      ],
+      "stored_action_horizon_rows": 13344,
+      "task": "peg-insert-side",
+      "train_n": 10,
+      "train_seed": 0,
+      "transitions_and_distinct_window_starts": 834,
+      "valid_action_horizon_rows": 12144
+    },
+    {
+      "auxiliary_targets": {
+        "future_relations": {
+          "dtype": "float32",
+          "mask_source": "action_valid_mask",
+          "shape": [
+            834,
+            16,
+            6
+          ],
+          "stored_scalar_elements": 80064,
+          "valid_horizon_rows": 12144,
+          "valid_scalar_elements": 72864
+        }
+      },
+      "candidate_id": "P2",
+      "complete_demonstrations": 10,
+      "data_manifest_sha256": "9b85cb6218a0a4d7460d8146eed7cd900d57ebf708bcc3a55df52be8f52bf90a",
+      "diffusion_target_shape": [
+        834,
+        16,
+        10
+      ],
+      "formal_train_status_at_inventory": "running",
+      "implementation_sha256": "4124afe7bea610c4feb05230503c347a7556af7e3b459a429e1d03470baa3dd3",
+      "joint_auxiliary_channels": 6,
+      "native_executed_action_channels": 4,
+      "observation_tensor_shape": [
+        834,
+        2,
+        42
+      ],
+      "proposal_sha256": "135cd9e6e8e3ee3c9ce86fec14178edc85f40329f1ac6851148d774e723f293f",
+      "run_id": "r3_peg-insert-side_P2_n10_s0",
+      "source_episode_ids": [
+        "r3_peg-insert-side_train_IID_000_31400000",
+        "r3_peg-insert-side_train_IID_001_31400100",
+        "r3_peg-insert-side_train_IID_002_31400200",
+        "r3_peg-insert-side_train_IID_003_31400300",
+        "r3_peg-insert-side_train_IID_004_31400400",
+        "r3_peg-insert-side_train_IID_005_31400500",
+        "r3_peg-insert-side_train_IID_006_31400600",
+        "r3_peg-insert-side_train_IID_007_31400700",
+        "r3_peg-insert-side_train_IID_008_31400800",
+        "r3_peg-insert-side_train_IID_009_31400900"
+      ],
+      "stored_action_horizon_rows": 13344,
+      "task": "peg-insert-side",
+      "train_n": 10,
+      "train_seed": 0,
+      "transitions_and_distinct_window_starts": 834,
+      "valid_action_horizon_rows": 12144
+    },
+    {
+      "auxiliary_targets": {
+        "future_relations": {
+          "dtype": "float32",
+          "mask_source": "action_valid_mask",
+          "shape": [
+            834,
+            16,
+            6
+          ],
+          "stored_scalar_elements": 80064,
+          "valid_horizon_rows": 12144,
+          "valid_scalar_elements": 72864
+        }
+      },
+      "candidate_id": "P3",
+      "complete_demonstrations": 10,
+      "data_manifest_sha256": "9b85cb6218a0a4d7460d8146eed7cd900d57ebf708bcc3a55df52be8f52bf90a",
+      "diffusion_target_shape": [
+        834,
+        16,
+        10
+      ],
+      "formal_train_status_at_inventory": "running",
+      "implementation_sha256": "0958c3ee23afb4d03b8bbabc9141b011745e490cf2f6f391af27fcfb8cee41b1",
+      "joint_auxiliary_channels": 6,
+      "native_executed_action_channels": 4,
+      "observation_tensor_shape": [
+        834,
+        2,
+        62
+      ],
+      "proposal_sha256": "135cd9e6e8e3ee3c9ce86fec14178edc85f40329f1ac6851148d774e723f293f",
+      "run_id": "r3_peg-insert-side_P3_n10_s0",
+      "source_episode_ids": [
+        "r3_peg-insert-side_train_IID_000_31400000",
+        "r3_peg-insert-side_train_IID_001_31400100",
+        "r3_peg-insert-side_train_IID_002_31400200",
+        "r3_peg-insert-side_train_IID_003_31400300",
+        "r3_peg-insert-side_train_IID_004_31400400",
+        "r3_peg-insert-side_train_IID_005_31400500",
+        "r3_peg-insert-side_train_IID_006_31400600",
+        "r3_peg-insert-side_train_IID_007_31400700",
+        "r3_peg-insert-side_train_IID_008_31400800",
+        "r3_peg-insert-side_train_IID_009_31400900"
+      ],
+      "stored_action_horizon_rows": 13344,
+      "task": "peg-insert-side",
+      "train_n": 10,
+      "train_seed": 0,
+      "transitions_and_distinct_window_starts": 834,
+      "valid_action_horizon_rows": 12144
+    },
+    {
+      "auxiliary_targets": {},
+      "candidate_id": "B0",
+      "complete_demonstrations": 20,
+      "data_manifest_sha256": "9b85cb6218a0a4d7460d8146eed7cd900d57ebf708bcc3a55df52be8f52bf90a",
+      "diffusion_target_shape": [
+        1632,
+        16,
+        4
+      ],
+      "formal_train_status_at_inventory": "completed",
+      "implementation_sha256": "f94eb7ae06c5ea317cd71a90b01792519ef543d1893474c1432b33a1d5c6f6a1",
+      "joint_auxiliary_channels": 0,
+      "native_executed_action_channels": 4,
+      "observation_tensor_shape": [
+        1632,
+        2,
+        42
+      ],
+      "proposal_sha256": "425a43cd7d99948f823725ccd36d012c7ee3594651737213f59216968d555156",
+      "run_id": "r3_peg-insert-side_B0_n20_s0",
+      "source_episode_ids": [
+        "r3_peg-insert-side_train_IID_000_31400000",
+        "r3_peg-insert-side_train_IID_001_31400100",
+        "r3_peg-insert-side_train_IID_002_31400200",
+        "r3_peg-insert-side_train_IID_003_31400300",
+        "r3_peg-insert-side_train_IID_004_31400400",
+        "r3_peg-insert-side_train_IID_005_31400500",
+        "r3_peg-insert-side_train_IID_006_31400600",
+        "r3_peg-insert-side_train_IID_007_31400700",
+        "r3_peg-insert-side_train_IID_008_31400800",
+        "r3_peg-insert-side_train_IID_009_31400900",
+        "r3_peg-insert-side_train_IID_010_31401000",
+        "r3_peg-insert-side_train_IID_011_31401100",
+        "r3_peg-insert-side_train_IID_012_31401200",
+        "r3_peg-insert-side_train_IID_013_31401300",
+        "r3_peg-insert-side_train_IID_014_31401400",
+        "r3_peg-insert-side_train_IID_015_31401500",
+        "r3_peg-insert-side_train_IID_016_31401600",
+        "r3_peg-insert-side_train_IID_017_31401700",
+        "r3_peg-insert-side_train_IID_018_31401800",
+        "r3_peg-insert-side_train_IID_019_31401900"
+      ],
+      "stored_action_horizon_rows": 26112,
+      "task": "peg-insert-side",
+      "train_n": 20,
+      "train_seed": 0,
+      "transitions_and_distinct_window_starts": 1632,
+      "valid_action_horizon_rows": 23712
+    },
+    {
+      "auxiliary_targets": {},
+      "candidate_id": "P1",
+      "complete_demonstrations": 20,
+      "data_manifest_sha256": "9b85cb6218a0a4d7460d8146eed7cd900d57ebf708bcc3a55df52be8f52bf90a",
+      "diffusion_target_shape": [
+        1632,
+        16,
+        4
+      ],
+      "formal_train_status_at_inventory": "completed",
+      "implementation_sha256": "ca5199d4a052c6bd152913fc09f417c8a7c115ee41971578f4372d32bc745469",
+      "joint_auxiliary_channels": 0,
+      "native_executed_action_channels": 4,
+      "observation_tensor_shape": [
+        1632,
+        2,
+        62
+      ],
+      "proposal_sha256": "135cd9e6e8e3ee3c9ce86fec14178edc85f40329f1ac6851148d774e723f293f",
+      "run_id": "r3_peg-insert-side_P1_n20_s0",
+      "source_episode_ids": [
+        "r3_peg-insert-side_train_IID_000_31400000",
+        "r3_peg-insert-side_train_IID_001_31400100",
+        "r3_peg-insert-side_train_IID_002_31400200",
+        "r3_peg-insert-side_train_IID_003_31400300",
+        "r3_peg-insert-side_train_IID_004_31400400",
+        "r3_peg-insert-side_train_IID_005_31400500",
+        "r3_peg-insert-side_train_IID_006_31400600",
+        "r3_peg-insert-side_train_IID_007_31400700",
+        "r3_peg-insert-side_train_IID_008_31400800",
+        "r3_peg-insert-side_train_IID_009_31400900",
+        "r3_peg-insert-side_train_IID_010_31401000",
+        "r3_peg-insert-side_train_IID_011_31401100",
+        "r3_peg-insert-side_train_IID_012_31401200",
+        "r3_peg-insert-side_train_IID_013_31401300",
+        "r3_peg-insert-side_train_IID_014_31401400",
+        "r3_peg-insert-side_train_IID_015_31401500",
+        "r3_peg-insert-side_train_IID_016_31401600",
+        "r3_peg-insert-side_train_IID_017_31401700",
+        "r3_peg-insert-side_train_IID_018_31401800",
+        "r3_peg-insert-side_train_IID_019_31401900"
+      ],
+      "stored_action_horizon_rows": 26112,
+      "task": "peg-insert-side",
+      "train_n": 20,
+      "train_seed": 0,
+      "transitions_and_distinct_window_starts": 1632,
+      "valid_action_horizon_rows": 23712
+    },
+    {
+      "auxiliary_targets": {
+        "future_relations": {
+          "dtype": "float32",
+          "mask_source": "action_valid_mask",
+          "shape": [
+            1632,
+            16,
+            6
+          ],
+          "stored_scalar_elements": 156672,
+          "valid_horizon_rows": 23712,
+          "valid_scalar_elements": 142272
+        }
+      },
+      "candidate_id": "P2",
+      "complete_demonstrations": 20,
+      "data_manifest_sha256": "9b85cb6218a0a4d7460d8146eed7cd900d57ebf708bcc3a55df52be8f52bf90a",
+      "diffusion_target_shape": [
+        1632,
+        16,
+        10
+      ],
+      "formal_train_status_at_inventory": "completed",
+      "implementation_sha256": "4124afe7bea610c4feb05230503c347a7556af7e3b459a429e1d03470baa3dd3",
+      "joint_auxiliary_channels": 6,
+      "native_executed_action_channels": 4,
+      "observation_tensor_shape": [
+        1632,
+        2,
+        42
+      ],
+      "proposal_sha256": "135cd9e6e8e3ee3c9ce86fec14178edc85f40329f1ac6851148d774e723f293f",
+      "run_id": "r3_peg-insert-side_P2_n20_s0",
+      "source_episode_ids": [
+        "r3_peg-insert-side_train_IID_000_31400000",
+        "r3_peg-insert-side_train_IID_001_31400100",
+        "r3_peg-insert-side_train_IID_002_31400200",
+        "r3_peg-insert-side_train_IID_003_31400300",
+        "r3_peg-insert-side_train_IID_004_31400400",
+        "r3_peg-insert-side_train_IID_005_31400500",
+        "r3_peg-insert-side_train_IID_006_31400600",
+        "r3_peg-insert-side_train_IID_007_31400700",
+        "r3_peg-insert-side_train_IID_008_31400800",
+        "r3_peg-insert-side_train_IID_009_31400900",
+        "r3_peg-insert-side_train_IID_010_31401000",
+        "r3_peg-insert-side_train_IID_011_31401100",
+        "r3_peg-insert-side_train_IID_012_31401200",
+        "r3_peg-insert-side_train_IID_013_31401300",
+        "r3_peg-insert-side_train_IID_014_31401400",
+        "r3_peg-insert-side_train_IID_015_31401500",
+        "r3_peg-insert-side_train_IID_016_31401600",
+        "r3_peg-insert-side_train_IID_017_31401700",
+        "r3_peg-insert-side_train_IID_018_31401800",
+        "r3_peg-insert-side_train_IID_019_31401900"
+      ],
+      "stored_action_horizon_rows": 26112,
+      "task": "peg-insert-side",
+      "train_n": 20,
+      "train_seed": 0,
+      "transitions_and_distinct_window_starts": 1632,
+      "valid_action_horizon_rows": 23712
+    },
+    {
+      "auxiliary_targets": {
+        "future_relations": {
+          "dtype": "float32",
+          "mask_source": "action_valid_mask",
+          "shape": [
+            1632,
+            16,
+            6
+          ],
+          "stored_scalar_elements": 156672,
+          "valid_horizon_rows": 23712,
+          "valid_scalar_elements": 142272
+        }
+      },
+      "candidate_id": "P3",
+      "complete_demonstrations": 20,
+      "data_manifest_sha256": "9b85cb6218a0a4d7460d8146eed7cd900d57ebf708bcc3a55df52be8f52bf90a",
+      "diffusion_target_shape": [
+        1632,
+        16,
+        10
+      ],
+      "formal_train_status_at_inventory": "completed",
+      "implementation_sha256": "0958c3ee23afb4d03b8bbabc9141b011745e490cf2f6f391af27fcfb8cee41b1",
+      "joint_auxiliary_channels": 6,
+      "native_executed_action_channels": 4,
+      "observation_tensor_shape": [
+        1632,
+        2,
+        62
+      ],
+      "proposal_sha256": "135cd9e6e8e3ee3c9ce86fec14178edc85f40329f1ac6851148d774e723f293f",
+      "run_id": "r3_peg-insert-side_P3_n20_s0",
+      "source_episode_ids": [
+        "r3_peg-insert-side_train_IID_000_31400000",
+        "r3_peg-insert-side_train_IID_001_31400100",
+        "r3_peg-insert-side_train_IID_002_31400200",
+        "r3_peg-insert-side_train_IID_003_31400300",
+        "r3_peg-insert-side_train_IID_004_31400400",
+        "r3_peg-insert-side_train_IID_005_31400500",
+        "r3_peg-insert-side_train_IID_006_31400600",
+        "r3_peg-insert-side_train_IID_007_31400700",
+        "r3_peg-insert-side_train_IID_008_31400800",
+        "r3_peg-insert-side_train_IID_009_31400900",
+        "r3_peg-insert-side_train_IID_010_31401000",
+        "r3_peg-insert-side_train_IID_011_31401100",
+        "r3_peg-insert-side_train_IID_012_31401200",
+        "r3_peg-insert-side_train_IID_013_31401300",
+        "r3_peg-insert-side_train_IID_014_31401400",
+        "r3_peg-insert-side_train_IID_015_31401500",
+        "r3_peg-insert-side_train_IID_016_31401600",
+        "r3_peg-insert-side_train_IID_017_31401700",
+        "r3_peg-insert-side_train_IID_018_31401800",
+        "r3_peg-insert-side_train_IID_019_31401900"
+      ],
+      "stored_action_horizon_rows": 26112,
+      "task": "peg-insert-side",
+      "train_n": 20,
+      "train_seed": 0,
+      "transitions_and_distinct_window_starts": 1632,
+      "valid_action_horizon_rows": 23712
+    },
+    {
+      "auxiliary_targets": {},
+      "candidate_id": "B0",
+      "complete_demonstrations": 2,
+      "data_manifest_sha256": "a5613ec22f5cbeb4ba757d936088b644fc13de2599adb272bf035963ef25d713",
+      "diffusion_target_shape": [
+        148,
+        16,
+        4
+      ],
+      "formal_train_status_at_inventory": "pending",
+      "implementation_sha256": "b7142f71ebbd9d83103bd8ca364f34bab735de20eae7b062c1a8610e7c341b2f",
+      "joint_auxiliary_channels": 0,
+      "native_executed_action_channels": 4,
+      "observation_tensor_shape": [
+        148,
+        2,
+        39
+      ],
+      "proposal_sha256": "425a43cd7d99948f823725ccd36d012c7ee3594651737213f59216968d555156",
+      "run_id": "r3_stick-push_B0_n2_s0",
+      "source_episode_ids": [
+        "r3_stick-push_train_IID_000_31500000",
+        "r3_stick-push_train_IID_001_31500100"
+      ],
+      "stored_action_horizon_rows": 2368,
+      "task": "stick-push",
+      "train_n": 2,
+      "train_seed": 0,
+      "transitions_and_distinct_window_starts": 148,
+      "valid_action_horizon_rows": 2128
+    },
+    {
+      "auxiliary_targets": {},
+      "candidate_id": "P1",
+      "complete_demonstrations": 2,
+      "data_manifest_sha256": "a5613ec22f5cbeb4ba757d936088b644fc13de2599adb272bf035963ef25d713",
+      "diffusion_target_shape": [
+        148,
+        16,
+        4
+      ],
+      "formal_train_status_at_inventory": "pending",
+      "implementation_sha256": "5c2bf586c3c77d903a2eb73b450d6093b439b0e47b0945a0bf7710e7e98f229d",
+      "joint_auxiliary_channels": 0,
+      "native_executed_action_channels": 4,
+      "observation_tensor_shape": [
+        148,
+        2,
+        66
+      ],
+      "proposal_sha256": "0744d1fe9defe7a972d99c66ed028ee3d4c1955542690734a1b00fbac8f245b5",
+      "run_id": "r3_stick-push_P1_n2_s0",
+      "source_episode_ids": [
+        "r3_stick-push_train_IID_000_31500000",
+        "r3_stick-push_train_IID_001_31500100"
+      ],
+      "stored_action_horizon_rows": 2368,
+      "task": "stick-push",
+      "train_n": 2,
+      "train_seed": 0,
+      "transitions_and_distinct_window_starts": 148,
+      "valid_action_horizon_rows": 2128
+    },
+    {
+      "auxiliary_targets": {},
+      "candidate_id": "P2",
+      "complete_demonstrations": 2,
+      "data_manifest_sha256": "a5613ec22f5cbeb4ba757d936088b644fc13de2599adb272bf035963ef25d713",
+      "diffusion_target_shape": [
+        148,
+        16,
+        4
+      ],
+      "formal_train_status_at_inventory": "pending",
+      "implementation_sha256": "6b8c0d4e072d4c827c0aa3ef2a5e0a8f8aa7da802631c8e160010e67f8bb0639",
+      "joint_auxiliary_channels": 0,
+      "native_executed_action_channels": 4,
+      "observation_tensor_shape": [
+        148,
+        2,
+        71
+      ],
+      "proposal_sha256": "0744d1fe9defe7a972d99c66ed028ee3d4c1955542690734a1b00fbac8f245b5",
+      "run_id": "r3_stick-push_P2_n2_s0",
+      "source_episode_ids": [
+        "r3_stick-push_train_IID_000_31500000",
+        "r3_stick-push_train_IID_001_31500100"
+      ],
+      "stored_action_horizon_rows": 2368,
+      "task": "stick-push",
+      "train_n": 2,
+      "train_seed": 0,
+      "transitions_and_distinct_window_starts": 148,
+      "valid_action_horizon_rows": 2128
+    },
+    {
+      "auxiliary_targets": {
+        "future_motion": {
+          "dtype": "float32",
+          "mask_source": "action_valid_mask",
+          "shape": [
+            148,
+            16,
+            9
+          ],
+          "stored_scalar_elements": 21312,
+          "valid_horizon_rows": 2128,
+          "valid_scalar_elements": 19152
+        }
+      },
+      "candidate_id": "P3",
+      "complete_demonstrations": 2,
+      "data_manifest_sha256": "a5613ec22f5cbeb4ba757d936088b644fc13de2599adb272bf035963ef25d713",
+      "diffusion_target_shape": [
+        148,
+        16,
+        13
+      ],
+      "formal_train_status_at_inventory": "pending",
+      "implementation_sha256": "3f1251dbd0ee1a186b3588d5a08f65465d23ce2722199d78bedaed3a5924ad7f",
+      "joint_auxiliary_channels": 9,
+      "native_executed_action_channels": 4,
+      "observation_tensor_shape": [
+        148,
+        2,
+        66
+      ],
+      "proposal_sha256": "0744d1fe9defe7a972d99c66ed028ee3d4c1955542690734a1b00fbac8f245b5",
+      "run_id": "r3_stick-push_P3_n2_s0",
+      "source_episode_ids": [
+        "r3_stick-push_train_IID_000_31500000",
+        "r3_stick-push_train_IID_001_31500100"
+      ],
+      "stored_action_horizon_rows": 2368,
+      "task": "stick-push",
+      "train_n": 2,
+      "train_seed": 0,
+      "transitions_and_distinct_window_starts": 148,
+      "valid_action_horizon_rows": 2128
+    },
+    {
+      "auxiliary_targets": {},
+      "candidate_id": "B0",
+      "complete_demonstrations": 5,
+      "data_manifest_sha256": "a5613ec22f5cbeb4ba757d936088b644fc13de2599adb272bf035963ef25d713",
+      "diffusion_target_shape": [
+        370,
+        16,
+        4
+      ],
+      "formal_train_status_at_inventory": "running",
+      "implementation_sha256": "b7142f71ebbd9d83103bd8ca364f34bab735de20eae7b062c1a8610e7c341b2f",
+      "joint_auxiliary_channels": 0,
+      "native_executed_action_channels": 4,
+      "observation_tensor_shape": [
+        370,
+        2,
+        39
+      ],
+      "proposal_sha256": "425a43cd7d99948f823725ccd36d012c7ee3594651737213f59216968d555156",
+      "run_id": "r3_stick-push_B0_n5_s0",
+      "source_episode_ids": [
+        "r3_stick-push_train_IID_000_31500000",
+        "r3_stick-push_train_IID_001_31500100",
+        "r3_stick-push_train_IID_002_31500200",
+        "r3_stick-push_train_IID_003_31500300",
+        "r3_stick-push_train_IID_004_31500400"
+      ],
+      "stored_action_horizon_rows": 5920,
+      "task": "stick-push",
+      "train_n": 5,
+      "train_seed": 0,
+      "transitions_and_distinct_window_starts": 370,
+      "valid_action_horizon_rows": 5320
+    },
+    {
+      "auxiliary_targets": {},
+      "candidate_id": "P1",
+      "complete_demonstrations": 5,
+      "data_manifest_sha256": "a5613ec22f5cbeb4ba757d936088b644fc13de2599adb272bf035963ef25d713",
+      "diffusion_target_shape": [
+        370,
+        16,
+        4
+      ],
+      "formal_train_status_at_inventory": "running",
+      "implementation_sha256": "5c2bf586c3c77d903a2eb73b450d6093b439b0e47b0945a0bf7710e7e98f229d",
+      "joint_auxiliary_channels": 0,
+      "native_executed_action_channels": 4,
+      "observation_tensor_shape": [
+        370,
+        2,
+        66
+      ],
+      "proposal_sha256": "0744d1fe9defe7a972d99c66ed028ee3d4c1955542690734a1b00fbac8f245b5",
+      "run_id": "r3_stick-push_P1_n5_s0",
+      "source_episode_ids": [
+        "r3_stick-push_train_IID_000_31500000",
+        "r3_stick-push_train_IID_001_31500100",
+        "r3_stick-push_train_IID_002_31500200",
+        "r3_stick-push_train_IID_003_31500300",
+        "r3_stick-push_train_IID_004_31500400"
+      ],
+      "stored_action_horizon_rows": 5920,
+      "task": "stick-push",
+      "train_n": 5,
+      "train_seed": 0,
+      "transitions_and_distinct_window_starts": 370,
+      "valid_action_horizon_rows": 5320
+    },
+    {
+      "auxiliary_targets": {},
+      "candidate_id": "P2",
+      "complete_demonstrations": 5,
+      "data_manifest_sha256": "a5613ec22f5cbeb4ba757d936088b644fc13de2599adb272bf035963ef25d713",
+      "diffusion_target_shape": [
+        370,
+        16,
+        4
+      ],
+      "formal_train_status_at_inventory": "pending",
+      "implementation_sha256": "6b8c0d4e072d4c827c0aa3ef2a5e0a8f8aa7da802631c8e160010e67f8bb0639",
+      "joint_auxiliary_channels": 0,
+      "native_executed_action_channels": 4,
+      "observation_tensor_shape": [
+        370,
+        2,
+        71
+      ],
+      "proposal_sha256": "0744d1fe9defe7a972d99c66ed028ee3d4c1955542690734a1b00fbac8f245b5",
+      "run_id": "r3_stick-push_P2_n5_s0",
+      "source_episode_ids": [
+        "r3_stick-push_train_IID_000_31500000",
+        "r3_stick-push_train_IID_001_31500100",
+        "r3_stick-push_train_IID_002_31500200",
+        "r3_stick-push_train_IID_003_31500300",
+        "r3_stick-push_train_IID_004_31500400"
+      ],
+      "stored_action_horizon_rows": 5920,
+      "task": "stick-push",
+      "train_n": 5,
+      "train_seed": 0,
+      "transitions_and_distinct_window_starts": 370,
+      "valid_action_horizon_rows": 5320
+    },
+    {
+      "auxiliary_targets": {
+        "future_motion": {
+          "dtype": "float32",
+          "mask_source": "action_valid_mask",
+          "shape": [
+            370,
+            16,
+            9
+          ],
+          "stored_scalar_elements": 53280,
+          "valid_horizon_rows": 5320,
+          "valid_scalar_elements": 47880
+        }
+      },
+      "candidate_id": "P3",
+      "complete_demonstrations": 5,
+      "data_manifest_sha256": "a5613ec22f5cbeb4ba757d936088b644fc13de2599adb272bf035963ef25d713",
+      "diffusion_target_shape": [
+        370,
+        16,
+        13
+      ],
+      "formal_train_status_at_inventory": "pending",
+      "implementation_sha256": "3f1251dbd0ee1a186b3588d5a08f65465d23ce2722199d78bedaed3a5924ad7f",
+      "joint_auxiliary_channels": 9,
+      "native_executed_action_channels": 4,
+      "observation_tensor_shape": [
+        370,
+        2,
+        66
+      ],
+      "proposal_sha256": "0744d1fe9defe7a972d99c66ed028ee3d4c1955542690734a1b00fbac8f245b5",
+      "run_id": "r3_stick-push_P3_n5_s0",
+      "source_episode_ids": [
+        "r3_stick-push_train_IID_000_31500000",
+        "r3_stick-push_train_IID_001_31500100",
+        "r3_stick-push_train_IID_002_31500200",
+        "r3_stick-push_train_IID_003_31500300",
+        "r3_stick-push_train_IID_004_31500400"
+      ],
+      "stored_action_horizon_rows": 5920,
+      "task": "stick-push",
+      "train_n": 5,
+      "train_seed": 0,
+      "transitions_and_distinct_window_starts": 370,
+      "valid_action_horizon_rows": 5320
+    },
+    {
+      "auxiliary_targets": {},
+      "candidate_id": "B0",
+      "complete_demonstrations": 10,
+      "data_manifest_sha256": "a5613ec22f5cbeb4ba757d936088b644fc13de2599adb272bf035963ef25d713",
+      "diffusion_target_shape": [
+        734,
+        16,
+        4
+      ],
+      "formal_train_status_at_inventory": "pending",
+      "implementation_sha256": "b7142f71ebbd9d83103bd8ca364f34bab735de20eae7b062c1a8610e7c341b2f",
+      "joint_auxiliary_channels": 0,
+      "native_executed_action_channels": 4,
+      "observation_tensor_shape": [
+        734,
+        2,
+        39
+      ],
+      "proposal_sha256": "425a43cd7d99948f823725ccd36d012c7ee3594651737213f59216968d555156",
+      "run_id": "r3_stick-push_B0_n10_s0",
+      "source_episode_ids": [
+        "r3_stick-push_train_IID_000_31500000",
+        "r3_stick-push_train_IID_001_31500100",
+        "r3_stick-push_train_IID_002_31500200",
+        "r3_stick-push_train_IID_003_31500300",
+        "r3_stick-push_train_IID_004_31500400",
+        "r3_stick-push_train_IID_005_31500500",
+        "r3_stick-push_train_IID_006_31500600",
+        "r3_stick-push_train_IID_007_31500700",
+        "r3_stick-push_train_IID_008_31500800",
+        "r3_stick-push_train_IID_009_31500900"
+      ],
+      "stored_action_horizon_rows": 11744,
+      "task": "stick-push",
+      "train_n": 10,
+      "train_seed": 0,
+      "transitions_and_distinct_window_starts": 734,
+      "valid_action_horizon_rows": 10544
+    },
+    {
+      "auxiliary_targets": {},
+      "candidate_id": "P1",
+      "complete_demonstrations": 10,
+      "data_manifest_sha256": "a5613ec22f5cbeb4ba757d936088b644fc13de2599adb272bf035963ef25d713",
+      "diffusion_target_shape": [
+        734,
+        16,
+        4
+      ],
+      "formal_train_status_at_inventory": "pending",
+      "implementation_sha256": "5c2bf586c3c77d903a2eb73b450d6093b439b0e47b0945a0bf7710e7e98f229d",
+      "joint_auxiliary_channels": 0,
+      "native_executed_action_channels": 4,
+      "observation_tensor_shape": [
+        734,
+        2,
+        66
+      ],
+      "proposal_sha256": "0744d1fe9defe7a972d99c66ed028ee3d4c1955542690734a1b00fbac8f245b5",
+      "run_id": "r3_stick-push_P1_n10_s0",
+      "source_episode_ids": [
+        "r3_stick-push_train_IID_000_31500000",
+        "r3_stick-push_train_IID_001_31500100",
+        "r3_stick-push_train_IID_002_31500200",
+        "r3_stick-push_train_IID_003_31500300",
+        "r3_stick-push_train_IID_004_31500400",
+        "r3_stick-push_train_IID_005_31500500",
+        "r3_stick-push_train_IID_006_31500600",
+        "r3_stick-push_train_IID_007_31500700",
+        "r3_stick-push_train_IID_008_31500800",
+        "r3_stick-push_train_IID_009_31500900"
+      ],
+      "stored_action_horizon_rows": 11744,
+      "task": "stick-push",
+      "train_n": 10,
+      "train_seed": 0,
+      "transitions_and_distinct_window_starts": 734,
+      "valid_action_horizon_rows": 10544
+    },
+    {
+      "auxiliary_targets": {},
+      "candidate_id": "P2",
+      "complete_demonstrations": 10,
+      "data_manifest_sha256": "a5613ec22f5cbeb4ba757d936088b644fc13de2599adb272bf035963ef25d713",
+      "diffusion_target_shape": [
+        734,
+        16,
+        4
+      ],
+      "formal_train_status_at_inventory": "pending",
+      "implementation_sha256": "6b8c0d4e072d4c827c0aa3ef2a5e0a8f8aa7da802631c8e160010e67f8bb0639",
+      "joint_auxiliary_channels": 0,
+      "native_executed_action_channels": 4,
+      "observation_tensor_shape": [
+        734,
+        2,
+        71
+      ],
+      "proposal_sha256": "0744d1fe9defe7a972d99c66ed028ee3d4c1955542690734a1b00fbac8f245b5",
+      "run_id": "r3_stick-push_P2_n10_s0",
+      "source_episode_ids": [
+        "r3_stick-push_train_IID_000_31500000",
+        "r3_stick-push_train_IID_001_31500100",
+        "r3_stick-push_train_IID_002_31500200",
+        "r3_stick-push_train_IID_003_31500300",
+        "r3_stick-push_train_IID_004_31500400",
+        "r3_stick-push_train_IID_005_31500500",
+        "r3_stick-push_train_IID_006_31500600",
+        "r3_stick-push_train_IID_007_31500700",
+        "r3_stick-push_train_IID_008_31500800",
+        "r3_stick-push_train_IID_009_31500900"
+      ],
+      "stored_action_horizon_rows": 11744,
+      "task": "stick-push",
+      "train_n": 10,
+      "train_seed": 0,
+      "transitions_and_distinct_window_starts": 734,
+      "valid_action_horizon_rows": 10544
+    },
+    {
+      "auxiliary_targets": {
+        "future_motion": {
+          "dtype": "float32",
+          "mask_source": "action_valid_mask",
+          "shape": [
+            734,
+            16,
+            9
+          ],
+          "stored_scalar_elements": 105696,
+          "valid_horizon_rows": 10544,
+          "valid_scalar_elements": 94896
+        }
+      },
+      "candidate_id": "P3",
+      "complete_demonstrations": 10,
+      "data_manifest_sha256": "a5613ec22f5cbeb4ba757d936088b644fc13de2599adb272bf035963ef25d713",
+      "diffusion_target_shape": [
+        734,
+        16,
+        13
+      ],
+      "formal_train_status_at_inventory": "pending",
+      "implementation_sha256": "3f1251dbd0ee1a186b3588d5a08f65465d23ce2722199d78bedaed3a5924ad7f",
+      "joint_auxiliary_channels": 9,
+      "native_executed_action_channels": 4,
+      "observation_tensor_shape": [
+        734,
+        2,
+        66
+      ],
+      "proposal_sha256": "0744d1fe9defe7a972d99c66ed028ee3d4c1955542690734a1b00fbac8f245b5",
+      "run_id": "r3_stick-push_P3_n10_s0",
+      "source_episode_ids": [
+        "r3_stick-push_train_IID_000_31500000",
+        "r3_stick-push_train_IID_001_31500100",
+        "r3_stick-push_train_IID_002_31500200",
+        "r3_stick-push_train_IID_003_31500300",
+        "r3_stick-push_train_IID_004_31500400",
+        "r3_stick-push_train_IID_005_31500500",
+        "r3_stick-push_train_IID_006_31500600",
+        "r3_stick-push_train_IID_007_31500700",
+        "r3_stick-push_train_IID_008_31500800",
+        "r3_stick-push_train_IID_009_31500900"
+      ],
+      "stored_action_horizon_rows": 11744,
+      "task": "stick-push",
+      "train_n": 10,
+      "train_seed": 0,
+      "transitions_and_distinct_window_starts": 734,
+      "valid_action_horizon_rows": 10544
+    },
+    {
+      "auxiliary_targets": {},
+      "candidate_id": "B0",
+      "complete_demonstrations": 20,
+      "data_manifest_sha256": "a5613ec22f5cbeb4ba757d936088b644fc13de2599adb272bf035963ef25d713",
+      "diffusion_target_shape": [
+        1473,
+        16,
+        4
+      ],
+      "formal_train_status_at_inventory": "pending",
+      "implementation_sha256": "b7142f71ebbd9d83103bd8ca364f34bab735de20eae7b062c1a8610e7c341b2f",
+      "joint_auxiliary_channels": 0,
+      "native_executed_action_channels": 4,
+      "observation_tensor_shape": [
+        1473,
+        2,
+        39
+      ],
+      "proposal_sha256": "425a43cd7d99948f823725ccd36d012c7ee3594651737213f59216968d555156",
+      "run_id": "r3_stick-push_B0_n20_s0",
+      "source_episode_ids": [
+        "r3_stick-push_train_IID_000_31500000",
+        "r3_stick-push_train_IID_001_31500100",
+        "r3_stick-push_train_IID_002_31500200",
+        "r3_stick-push_train_IID_003_31500300",
+        "r3_stick-push_train_IID_004_31500400",
+        "r3_stick-push_train_IID_005_31500500",
+        "r3_stick-push_train_IID_006_31500600",
+        "r3_stick-push_train_IID_007_31500700",
+        "r3_stick-push_train_IID_008_31500800",
+        "r3_stick-push_train_IID_009_31500900",
+        "r3_stick-push_train_IID_010_31501000",
+        "r3_stick-push_train_IID_011_31501100",
+        "r3_stick-push_train_IID_012_31501200",
+        "r3_stick-push_train_IID_013_31501300",
+        "r3_stick-push_train_IID_014_31501400",
+        "r3_stick-push_train_IID_015_31501500",
+        "r3_stick-push_train_IID_016_31501600",
+        "r3_stick-push_train_IID_017_31501700",
+        "r3_stick-push_train_IID_018_31501800",
+        "r3_stick-push_train_IID_019_31501900"
+      ],
+      "stored_action_horizon_rows": 23568,
+      "task": "stick-push",
+      "train_n": 20,
+      "train_seed": 0,
+      "transitions_and_distinct_window_starts": 1473,
+      "valid_action_horizon_rows": 21168
+    },
+    {
+      "auxiliary_targets": {},
+      "candidate_id": "P1",
+      "complete_demonstrations": 20,
+      "data_manifest_sha256": "a5613ec22f5cbeb4ba757d936088b644fc13de2599adb272bf035963ef25d713",
+      "diffusion_target_shape": [
+        1473,
+        16,
+        4
+      ],
+      "formal_train_status_at_inventory": "pending",
+      "implementation_sha256": "5c2bf586c3c77d903a2eb73b450d6093b439b0e47b0945a0bf7710e7e98f229d",
+      "joint_auxiliary_channels": 0,
+      "native_executed_action_channels": 4,
+      "observation_tensor_shape": [
+        1473,
+        2,
+        66
+      ],
+      "proposal_sha256": "0744d1fe9defe7a972d99c66ed028ee3d4c1955542690734a1b00fbac8f245b5",
+      "run_id": "r3_stick-push_P1_n20_s0",
+      "source_episode_ids": [
+        "r3_stick-push_train_IID_000_31500000",
+        "r3_stick-push_train_IID_001_31500100",
+        "r3_stick-push_train_IID_002_31500200",
+        "r3_stick-push_train_IID_003_31500300",
+        "r3_stick-push_train_IID_004_31500400",
+        "r3_stick-push_train_IID_005_31500500",
+        "r3_stick-push_train_IID_006_31500600",
+        "r3_stick-push_train_IID_007_31500700",
+        "r3_stick-push_train_IID_008_31500800",
+        "r3_stick-push_train_IID_009_31500900",
+        "r3_stick-push_train_IID_010_31501000",
+        "r3_stick-push_train_IID_011_31501100",
+        "r3_stick-push_train_IID_012_31501200",
+        "r3_stick-push_train_IID_013_31501300",
+        "r3_stick-push_train_IID_014_31501400",
+        "r3_stick-push_train_IID_015_31501500",
+        "r3_stick-push_train_IID_016_31501600",
+        "r3_stick-push_train_IID_017_31501700",
+        "r3_stick-push_train_IID_018_31501800",
+        "r3_stick-push_train_IID_019_31501900"
+      ],
+      "stored_action_horizon_rows": 23568,
+      "task": "stick-push",
+      "train_n": 20,
+      "train_seed": 0,
+      "transitions_and_distinct_window_starts": 1473,
+      "valid_action_horizon_rows": 21168
+    },
+    {
+      "auxiliary_targets": {},
+      "candidate_id": "P2",
+      "complete_demonstrations": 20,
+      "data_manifest_sha256": "a5613ec22f5cbeb4ba757d936088b644fc13de2599adb272bf035963ef25d713",
+      "diffusion_target_shape": [
+        1473,
+        16,
+        4
+      ],
+      "formal_train_status_at_inventory": "pending",
+      "implementation_sha256": "6b8c0d4e072d4c827c0aa3ef2a5e0a8f8aa7da802631c8e160010e67f8bb0639",
+      "joint_auxiliary_channels": 0,
+      "native_executed_action_channels": 4,
+      "observation_tensor_shape": [
+        1473,
+        2,
+        71
+      ],
+      "proposal_sha256": "0744d1fe9defe7a972d99c66ed028ee3d4c1955542690734a1b00fbac8f245b5",
+      "run_id": "r3_stick-push_P2_n20_s0",
+      "source_episode_ids": [
+        "r3_stick-push_train_IID_000_31500000",
+        "r3_stick-push_train_IID_001_31500100",
+        "r3_stick-push_train_IID_002_31500200",
+        "r3_stick-push_train_IID_003_31500300",
+        "r3_stick-push_train_IID_004_31500400",
+        "r3_stick-push_train_IID_005_31500500",
+        "r3_stick-push_train_IID_006_31500600",
+        "r3_stick-push_train_IID_007_31500700",
+        "r3_stick-push_train_IID_008_31500800",
+        "r3_stick-push_train_IID_009_31500900",
+        "r3_stick-push_train_IID_010_31501000",
+        "r3_stick-push_train_IID_011_31501100",
+        "r3_stick-push_train_IID_012_31501200",
+        "r3_stick-push_train_IID_013_31501300",
+        "r3_stick-push_train_IID_014_31501400",
+        "r3_stick-push_train_IID_015_31501500",
+        "r3_stick-push_train_IID_016_31501600",
+        "r3_stick-push_train_IID_017_31501700",
+        "r3_stick-push_train_IID_018_31501800",
+        "r3_stick-push_train_IID_019_31501900"
+      ],
+      "stored_action_horizon_rows": 23568,
+      "task": "stick-push",
+      "train_n": 20,
+      "train_seed": 0,
+      "transitions_and_distinct_window_starts": 1473,
+      "valid_action_horizon_rows": 21168
+    },
+    {
+      "auxiliary_targets": {
+        "future_motion": {
+          "dtype": "float32",
+          "mask_source": "action_valid_mask",
+          "shape": [
+            1473,
+            16,
+            9
+          ],
+          "stored_scalar_elements": 212112,
+          "valid_horizon_rows": 21168,
+          "valid_scalar_elements": 190512
+        }
+      },
+      "candidate_id": "P3",
+      "complete_demonstrations": 20,
+      "data_manifest_sha256": "a5613ec22f5cbeb4ba757d936088b644fc13de2599adb272bf035963ef25d713",
+      "diffusion_target_shape": [
+        1473,
+        16,
+        13
+      ],
+      "formal_train_status_at_inventory": "pending",
+      "implementation_sha256": "3f1251dbd0ee1a186b3588d5a08f65465d23ce2722199d78bedaed3a5924ad7f",
+      "joint_auxiliary_channels": 9,
+      "native_executed_action_channels": 4,
+      "observation_tensor_shape": [
+        1473,
+        2,
+        66
+      ],
+      "proposal_sha256": "0744d1fe9defe7a972d99c66ed028ee3d4c1955542690734a1b00fbac8f245b5",
+      "run_id": "r3_stick-push_P3_n20_s0",
+      "source_episode_ids": [
+        "r3_stick-push_train_IID_000_31500000",
+        "r3_stick-push_train_IID_001_31500100",
+        "r3_stick-push_train_IID_002_31500200",
+        "r3_stick-push_train_IID_003_31500300",
+        "r3_stick-push_train_IID_004_31500400",
+        "r3_stick-push_train_IID_005_31500500",
+        "r3_stick-push_train_IID_006_31500600",
+        "r3_stick-push_train_IID_007_31500700",
+        "r3_stick-push_train_IID_008_31500800",
+        "r3_stick-push_train_IID_009_31500900",
+        "r3_stick-push_train_IID_010_31501000",
+        "r3_stick-push_train_IID_011_31501100",
+        "r3_stick-push_train_IID_012_31501200",
+        "r3_stick-push_train_IID_013_31501300",
+        "r3_stick-push_train_IID_014_31501400",
+        "r3_stick-push_train_IID_015_31501500",
+        "r3_stick-push_train_IID_016_31501600",
+        "r3_stick-push_train_IID_017_31501700",
+        "r3_stick-push_train_IID_018_31501800",
+        "r3_stick-push_train_IID_019_31501900"
+      ],
+      "stored_action_horizon_rows": 23568,
+      "task": "stick-push",
+      "train_n": 20,
+      "train_seed": 0,
+      "transitions_and_distinct_window_starts": 1473,
+      "valid_action_horizon_rows": 21168
+    },
+    {
+      "auxiliary_targets": {},
+      "candidate_id": "P4",
+      "complete_demonstrations": 5,
+      "data_manifest_sha256": "9b85cb6218a0a4d7460d8146eed7cd900d57ebf708bcc3a55df52be8f52bf90a",
+      "diffusion_target_shape": [
+        415,
+        16,
+        4
+      ],
+      "formal_train_status_at_inventory": "pending",
+      "implementation_sha256": "cfbe0e297ad9481da14e00f04aeb01f80806686254591071e9df1a343baf256b",
+      "joint_auxiliary_channels": 0,
+      "native_executed_action_channels": 4,
+      "observation_tensor_shape": [
+        415,
+        2,
+        62
+      ],
+      "proposal_sha256": "e49f4fe20d46727dd4973abcd83f3eb81ab558acfb68168f7a3773ce47f83b2b",
+      "run_id": "r3_peg-insert-side_P4_n5_s0",
+      "source_episode_ids": [
+        "r3_peg-insert-side_train_IID_000_31400000",
+        "r3_peg-insert-side_train_IID_001_31400100",
+        "r3_peg-insert-side_train_IID_002_31400200",
+        "r3_peg-insert-side_train_IID_003_31400300",
+        "r3_peg-insert-side_train_IID_004_31400400"
+      ],
+      "stored_action_horizon_rows": 6640,
+      "task": "peg-insert-side",
+      "train_n": 5,
+      "train_seed": 0,
+      "transitions_and_distinct_window_starts": 415,
+      "valid_action_horizon_rows": 6040
+    },
+    {
+      "auxiliary_targets": {},
+      "candidate_id": "P4",
+      "complete_demonstrations": 20,
+      "data_manifest_sha256": "9b85cb6218a0a4d7460d8146eed7cd900d57ebf708bcc3a55df52be8f52bf90a",
+      "diffusion_target_shape": [
+        1632,
+        16,
+        4
+      ],
+      "formal_train_status_at_inventory": "pending",
+      "implementation_sha256": "cfbe0e297ad9481da14e00f04aeb01f80806686254591071e9df1a343baf256b",
+      "joint_auxiliary_channels": 0,
+      "native_executed_action_channels": 4,
+      "observation_tensor_shape": [
+        1632,
+        2,
+        62
+      ],
+      "proposal_sha256": "e49f4fe20d46727dd4973abcd83f3eb81ab558acfb68168f7a3773ce47f83b2b",
+      "run_id": "r3_peg-insert-side_P4_n20_s0",
+      "source_episode_ids": [
+        "r3_peg-insert-side_train_IID_000_31400000",
+        "r3_peg-insert-side_train_IID_001_31400100",
+        "r3_peg-insert-side_train_IID_002_31400200",
+        "r3_peg-insert-side_train_IID_003_31400300",
+        "r3_peg-insert-side_train_IID_004_31400400",
+        "r3_peg-insert-side_train_IID_005_31400500",
+        "r3_peg-insert-side_train_IID_006_31400600",
+        "r3_peg-insert-side_train_IID_007_31400700",
+        "r3_peg-insert-side_train_IID_008_31400800",
+        "r3_peg-insert-side_train_IID_009_31400900",
+        "r3_peg-insert-side_train_IID_010_31401000",
+        "r3_peg-insert-side_train_IID_011_31401100",
+        "r3_peg-insert-side_train_IID_012_31401200",
+        "r3_peg-insert-side_train_IID_013_31401300",
+        "r3_peg-insert-side_train_IID_014_31401400",
+        "r3_peg-insert-side_train_IID_015_31401500",
+        "r3_peg-insert-side_train_IID_016_31401600",
+        "r3_peg-insert-side_train_IID_017_31401700",
+        "r3_peg-insert-side_train_IID_018_31401800",
+        "r3_peg-insert-side_train_IID_019_31401900"
+      ],
+      "stored_action_horizon_rows": 26112,
+      "task": "peg-insert-side",
+      "train_n": 20,
+      "train_seed": 0,
+      "transitions_and_distinct_window_starts": 1632,
+      "valid_action_horizon_rows": 23712
+    }
+  ],
+  "runs_inventoried": 98,
+  "scored_rollouts_performed": 0
+}

@@ -1,0 +1,46 @@
+{
+  "created_at": "2026-09-08T07:13:18.878202+00:00",
+  "devices": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "formal_matrix_and_training_budget_unchanged": true,
+  "later_utilization_sample": {
+    "note": "Training/evaluation mix; other users subsequently started unrelated jobs on4\u20137. Round3 remains only0\u20133.",
+    "percent": {
+      "0": 96,
+      "1": 66,
+      "2": 87,
+      "3": 92
+    },
+    "recorded_at": "2026-09-08T07:16:02.413932+00:00"
+  },
+  "latest_observed_utilization_percent": {
+    "0": 90,
+    "1": 94,
+    "2": 94,
+    "3": 36
+  },
+  "maximum_workers": 8,
+  "measurement_note": "Single utilization sample; per-worker synchronized times overlap and are not physical GPU-hours",
+  "process_isolation": true,
+  "queue_guards": "On-disk CLI guards improved; already running schedulers retain prior loaded cleanup logic. Per-run locks remain active; monitor errors and live PIDs.",
+  "reason": "User explicitly requested additional concurrent training on underutilized GPUs0\u20133",
+  "recovery_note": "Both interrupted GPU4/5 runs resumed on0/1 from saved optimizer/EMA/RNG states and completed20k; independent numerical acceptance launched.",
+  "saturated_four_card_sample": {
+    "independent_workers": 8,
+    "percent": {
+      "0": 95,
+      "1": 96,
+      "2": 91,
+      "3": 92
+    },
+    "recorded_at": "2026-09-08T07:49:59.826366+00:00"
+  },
+  "slot0_scheduler_pid": 227554,
+  "slot1_scheduler_pid": 630158,
+  "slot1_tool_session": 78363,
+  "workers_per_gpu": 2
+}

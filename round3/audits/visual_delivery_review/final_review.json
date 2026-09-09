@@ -1,0 +1,190 @@
+{
+  "reviewed_at": "2026-09-08T10:27:48.833036+00:00",
+  "passed": true,
+  "scope": "Independent CPU-only existing video decode, visual inspection, and light final report/CSV/summary/manifest consistency review; parent performs full numerical/raw-artifact audit",
+  "test_gate_validated": true,
+  "source_report_sha256": "7261ff567747e77bce2822b47f1759857e0f4951c4d55aa4d4c3ba00d88c26a9",
+  "video_decode_audit": "round3/audits/visual_delivery_review/video_decode_review.json",
+  "video_decode_audit_sha256": "5a2cd0011f9bc1c46f5ed13d3918b3c3a9f4c47a2780b871aefca01c98a66ce3",
+  "artifact_counts": {
+    "formal_runs": 98,
+    "main_runs": 96,
+    "p4_runs": 2,
+    "scored_test_episodes": 9800,
+    "videos": 12,
+    "tasks_with_fixed_and_failure_pairs": 6,
+    "final_png_figures": 14,
+    "markdown_candidate_rows_checked": 98,
+    "csv_summary_fields_checked": 2940
+  },
+  "main_candidate_delta_counts": {
+    "helped": 59,
+    "tied": 4,
+    "hurt": 9
+  },
+  "bound_reviewed_artifacts": {
+    "round3/reports/test_summary.json": "126961a46536b306cc490932ab7c5f437a83be6e2cf2aaf8e416ce8fae82a9ae",
+    "round3/ROUND3_REPORT.md": "527922ba3735a0b10ce83cee7ebb9f995652f7f92caa8c19f98004f2e321a322",
+    "round3/videos/manifest.json": "93c4d4e9c4d8abb41a74d66d124bcbe40572446212842b2107ffcb6384f9eabf",
+    "round3/reports/test_all_results.csv": "959fdbf20417a572458191aae442ae73ceecb17ea59121455d10ea7599af2c39",
+    "round3/reports/integrity.json": "60047575da7baf6b268cb333bae3a852f62fcff3b990a6600b899992f9efb8ce"
+  },
+  "figures": [
+    {
+      "path": "round3/figures/test/pick-place-wall_data_curve.png",
+      "sha256": "00292d152ed3c2b90cca67a17a2a7fd7c7a5c4400fc5c79a0f248639f559c806",
+      "size_bytes": 85978,
+      "dimensions": [
+        1560,
+        455
+      ],
+      "visually_reviewed": true
+    },
+    {
+      "path": "round3/figures/test/assembly_data_curve.png",
+      "sha256": "05e283e4785443e46f2f0a76b590b051602afb7375c9e4ebee4a661e11e3adaf",
+      "size_bytes": 77865,
+      "dimensions": [
+        1560,
+        455
+      ],
+      "visually_reviewed": true
+    },
+    {
+      "path": "round3/figures/test/drawer_data_curve.png",
+      "sha256": "a507cabceba6e550577d596de0f40931147e36e6f169e8f50400e7ad1d4a57b3",
+      "size_bytes": 66033,
+      "dimensions": [
+        1560,
+        455
+      ],
+      "visually_reviewed": true
+    },
+    {
+      "path": "round3/figures/test/door_data_curve.png",
+      "sha256": "0fd12a7842ce0b3f3d906aca9688553c6ee6cf7f57535499fd7594b64526665d",
+      "size_bytes": 57049,
+      "dimensions": [
+        1560,
+        455
+      ],
+      "visually_reviewed": true
+    },
+    {
+      "path": "round3/figures/test/peg-insert-side_data_curve.png",
+      "sha256": "09c762b19f91b7c30f63459dbb07af44ec337f630f744591bcde9781164af12b",
+      "size_bytes": 67339,
+      "dimensions": [
+        1560,
+        455
+      ],
+      "visually_reviewed": true
+    },
+    {
+      "path": "round3/figures/test/stick-push_data_curve.png",
+      "sha256": "4a7734868a4a295da78de4082ad2cea9cade4e28fd8b7f31121c5f2c6f5ed88d",
+      "size_bytes": 54793,
+      "dimensions": [
+        1560,
+        455
+      ],
+      "visually_reviewed": true
+    },
+    {
+      "path": "round3/figures/test/ood_delta_heatmap.png",
+      "sha256": "209ed93a546bfc43e2118c4369f728cf1fa23ffc5619d3b9bff1b2c07d8a2333",
+      "size_bytes": 133715,
+      "dimensions": [
+        910,
+        1430
+      ],
+      "visually_reviewed": true
+    },
+    {
+      "path": "round3/figures/test/feedback_revision_comparison.png",
+      "sha256": "536eb1480279b73f837a2ead47d48adf9659444e4923c1e5056c114598a6cb7f",
+      "size_bytes": 92451,
+      "dimensions": [
+        1560,
+        910
+      ],
+      "visually_reviewed": true
+    },
+    {
+      "path": "round3/figures/test/pick-place-wall_layout_coverage.png",
+      "sha256": "d00c8d3d309d4c1d56bab270b9af240e2e0f2f9cc4058f68e1421bc6dc211914",
+      "size_bytes": 73908,
+      "dimensions": [
+        1820,
+        455
+      ],
+      "visually_reviewed": true
+    },
+    {
+      "path": "round3/figures/test/assembly_layout_coverage.png",
+      "sha256": "6207034b3852a63f21ff292e2328c219b7a8e1e212afdf89ab6d5fe0150ddfdf",
+      "size_bytes": 77816,
+      "dimensions": [
+        1820,
+        455
+      ],
+      "visually_reviewed": true
+    },
+    {
+      "path": "round3/figures/test/drawer_layout_coverage.png",
+      "sha256": "8af5afdfde1bc625f5245bb95f7da352d77b8b0306844f66dcaa33f7f46857a1",
+      "size_bytes": 71543,
+      "dimensions": [
+        1820,
+        455
+      ],
+      "visually_reviewed": true
+    },
+    {
+      "path": "round3/figures/test/door_layout_coverage.png",
+      "sha256": "5c284d1dab9cd8050c84ebbbde5b00301b50c05378a0df680a028ae21839bc00",
+      "size_bytes": 69573,
+      "dimensions": [
+        1820,
+        455
+      ],
+      "visually_reviewed": true
+    },
+    {
+      "path": "round3/figures/test/peg-insert-side_layout_coverage.png",
+      "sha256": "96332063df2e3f76d1b66c297b52fdf8b607f7da01697ac69a09c10ad1582853",
+      "size_bytes": 68789,
+      "dimensions": [
+        1820,
+        455
+      ],
+      "visually_reviewed": true
+    },
+    {
+      "path": "round3/figures/test/stick-push_layout_coverage.png",
+      "sha256": "6209e3da27f79e111ab98b919d79d486cd955d69ad4e4b266dd95b65dce86ad0",
+      "size_bytes": 72653,
+      "dimensions": [
+        1820,
+        455
+      ],
+      "visually_reviewed": true
+    }
+  ],
+  "report_links_checked": 73,
+  "missing_report_links": [],
+  "visual_review_notes": [
+    "All 12 existing paired MP4 files fully decoded. First, midpoint and final decoded frame inspected for every file using six real-frame contact sheets; drawer and peg first-failure final frames additionally inspected at native 960x558 resolution.",
+    "Visible simulator scenes show the expected distinct task geometry and changing robot/object poses. First frame in each pair has visibly matched starting layout. Native-size overlays are readable and identify task, candidate, N20, C/E split, step/physical time, numerical goal, episode_success and route/phase.",
+    "All six first-failure files visibly retain episode_success=0 for B0. Assembly first-failure retains failure on both sides. Drawer failure has visually opened drawer but recorded success=0 due to success_threshold_with_joint_violation; this is a scoring condition, not missing motion.",
+    "Successful shorter trajectories explicitly say final held while the other side proceeds. The 1.0–6.3 second durations match decoded 20 fps frame counts; they are physical-time replays rather than slowed presentation.",
+    "All 14 final test PNGs were opened and visually inspected: six per-task IID/C/E curves, six sampled-factor coverage plots, one signed OOD delta heatmap, one optional-feedback comparison. Titles, axis units, candidate legends and initial-selected development-only wording are readable.",
+    "Heatmap preserves negative candidate effects and marks unrun P4 cells NA. Feedback graph shows only peg-insert-side P4 data and its lower OOD than initial-selected at N5 and N20. Main per-task plots contain only initial B0/P1/P2/P3 and initial-selected.",
+    "Figure numerical curves and representative heatmap extrema agree visually with the all-results table; all 98 Markdown candidate rows independently match summary JSON values and Wilson intervals, and all CSV fields match the same JSON. Raster plots are not independently numerically inverted.",
+    "Coverage legends sit within the N20 panels and obscure a small part of their point region; the N2/N5/N10 panels show the same fixed test points without legends. This is a minor presentation limitation and does not alter the underlying coverage records.",
+    "No training, policy inference, simulator replay, source modification or existing artifact rewriting was performed for this review."
+  ],
+  "policy_calls": 0,
+  "simulator_replay_steps": 0,
+  "gpu_use": false
+}

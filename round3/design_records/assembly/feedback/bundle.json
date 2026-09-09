@@ -1,0 +1,659 @@
+{
+  "additional_policy_calls_for_visuals": 0,
+  "bound_files": {
+    "round3/data/assembly/manifest.json": "55516c091e7b6c0c35e65f1b1af452b39b1cb09d686ffa76ad24b6f21974d78b",
+    "round3/design_records/assembly/feedback/B0_offline_diagnostics.json": "3ea9ed52df5427ffc9f046d54bd48bc1538a10576f4860d6cf9821a235f78704",
+    "round3/design_records/assembly/feedback/B0_step_050.png": "dbc11714f9f7eb4ac2ddb0f7288301fa62d6614d82ffad66d2059f4425c9c153",
+    "round3/design_records/assembly/feedback/B0_step_200.png": "8bddb23fb2acb24c60ae752c64664857b77dd38a54236f2e28929a19ac9d3af4",
+    "round3/design_records/assembly/feedback/B0_training_curve.json": "428963952ce4f7e9c9e373acd743dcaa97c94d4af33383537218b481b1a878ba",
+    "round3/design_records/assembly/feedback/P1_offline_diagnostics.json": "bd4fcbdd2d2e3eae28d25a1fdd830f2fe97b6273ef130218b53468e90e75bfa1",
+    "round3/design_records/assembly/feedback/P1_step_050.png": "6796510a0463e6353a4d04a021754d8f40c0c3ca437b67cdf1b6b15b153c98d4",
+    "round3/design_records/assembly/feedback/P1_step_200.png": "4c3e1e5b3e419b14bdf41646aa591ae5e3099eee74f4a324e938af6f31d9265c",
+    "round3/design_records/assembly/feedback/P1_training_curve.json": "e3d8b4632dbd4e0e45c9de1836c4c4025007a9c35a4783f63bf17b3b8c93cb52",
+    "round3/design_records/assembly/feedback/P2_offline_diagnostics.json": "c7973f92191ee9ef2d466f4292e68ed5d675ee110d7ec86f707870a7af27b885",
+    "round3/design_records/assembly/feedback/P2_step_050.png": "81820d7d889ca794ea0e94310f02be1a8d0694a9937380ec179454d9ac5bc435",
+    "round3/design_records/assembly/feedback/P2_step_200.png": "836c92123405529e80847017d4ab004ff97be6eb017c2a5e5d9a9c96be4e125a",
+    "round3/design_records/assembly/feedback/P2_training_curve.json": "015993d9edb1dd434473666142a15d989b362f0f7b3650774b14ff5abfaf63d2",
+    "round3/design_records/assembly/feedback/P3_offline_diagnostics.json": "b6f7752726e70bb78d11fda8341dba9f1573e7e3db146a3e9138cd830fe7713e",
+    "round3/design_records/assembly/feedback/P3_step_050.png": "c5ebe4fed36d72aa7585b2dfee41a6753a60efb18ea600b6434bc5b8884eb9ca",
+    "round3/design_records/assembly/feedback/P3_step_200.png": "c79763799f1a60578ec7306ff0d1e039b060bc161256767833157918cf0abbe8",
+    "round3/design_records/assembly/feedback/P3_training_curve.json": "4cdce47dd7d39fab43b72e3a0fb549e7043c868751922c46c5f79dfbf44b4622",
+    "round3/design_records/assembly/feedback/training_curves.png": "46b2a2eeb9fe4c8859ee765820b23317957573009cb01ba5278da450f36afe30",
+    "round3/design_records/assembly/proposal.json": "191a05c3b94c5077f7a5bc3d0fbe168759ca634f9f4caa5040ea5bb19bb087d6",
+    "round3/design_records/feedback_frame_rule.json": "e1f0c9186a5825f240abf479c5d8b92aac969e31de9e4b4b4b058ed21bb20207",
+    "round3/design_records/offline_diagnostic_rule.json": "b9c47487850405014b2593da8d29d21c4684b80b128b7d623cf33c25a5074cb6",
+    "round3/dev_results/r3_assembly_B0_n5_s0/complete.json": "c2fde0661151711072c3f1a36742082eae7b62f07384a9d6b131c72a83ed559a",
+    "round3/dev_results/r3_assembly_B0_n5_s0/r3_assembly_dev_C_004_32101004.npz": "5e2e3b53af9c8a5a8920e6878a521456cfe5336836e5b8fcd2981be56d34a772",
+    "round3/dev_results/r3_assembly_P1_n5_s0/complete.json": "bd6465ca37f4425793aaddf819010ce332953746a86b3f1c8257d91ac39794f0",
+    "round3/dev_results/r3_assembly_P1_n5_s0/r3_assembly_dev_C_004_32101004.npz": "2c61c86680a55a83c1d27508dbdb8b939b2d2a1e7aa88f0570fd6e4387fa1759",
+    "round3/dev_results/r3_assembly_P2_n5_s0/complete.json": "b8f661ffb0694b1c323c6d4e664c6edbaa0e8d815a5019e9fb7456b6249a8358",
+    "round3/dev_results/r3_assembly_P2_n5_s0/r3_assembly_dev_C_004_32101004.npz": "e8681c09c18bc076b27b7b4ecbb1930e25a63eadb7a1eaa012e65ce0be16724c",
+    "round3/dev_results/r3_assembly_P3_n5_s0/complete.json": "34b027376cf50c7088cb72bf05b0e841a8d08d096715f5edfb55ac4936553190",
+    "round3/dev_results/r3_assembly_P3_n5_s0/r3_assembly_dev_C_004_32101004.npz": "f02d05e923218a18bbc8671c8b89fc8ea56321a3a8ff27c70ff3686ee6984974"
+  },
+  "contains_locked_test": false,
+  "created_at": "2026-09-08T06:08:08.508209+00:00",
+  "frame_count": 8,
+  "frame_rule_sha256": "e1f0c9186a5825f240abf479c5d8b92aac969e31de9e4b4b4b058ed21bb20207",
+  "frames": [
+    {
+      "actual_step": 50,
+      "candidate_id": "B0",
+      "episode_id": "r3_assembly_dev_C_004_32101004",
+      "path": "round3/design_records/assembly/feedback/B0_step_050.png",
+      "requested_step": 50,
+      "sha256": "dbc11714f9f7eb4ac2ddb0f7288301fa62d6614d82ffad66d2059f4425c9c153",
+      "success": false
+    },
+    {
+      "actual_step": 200,
+      "candidate_id": "B0",
+      "episode_id": "r3_assembly_dev_C_004_32101004",
+      "path": "round3/design_records/assembly/feedback/B0_step_200.png",
+      "requested_step": 200,
+      "sha256": "8bddb23fb2acb24c60ae752c64664857b77dd38a54236f2e28929a19ac9d3af4",
+      "success": false
+    },
+    {
+      "actual_step": 50,
+      "candidate_id": "P1",
+      "episode_id": "r3_assembly_dev_C_004_32101004",
+      "path": "round3/design_records/assembly/feedback/P1_step_050.png",
+      "requested_step": 50,
+      "sha256": "6796510a0463e6353a4d04a021754d8f40c0c3ca437b67cdf1b6b15b153c98d4",
+      "success": false
+    },
+    {
+      "actual_step": 200,
+      "candidate_id": "P1",
+      "episode_id": "r3_assembly_dev_C_004_32101004",
+      "path": "round3/design_records/assembly/feedback/P1_step_200.png",
+      "requested_step": 200,
+      "sha256": "4c3e1e5b3e419b14bdf41646aa591ae5e3099eee74f4a324e938af6f31d9265c",
+      "success": false
+    },
+    {
+      "actual_step": 50,
+      "candidate_id": "P2",
+      "episode_id": "r3_assembly_dev_C_004_32101004",
+      "path": "round3/design_records/assembly/feedback/P2_step_050.png",
+      "requested_step": 50,
+      "sha256": "81820d7d889ca794ea0e94310f02be1a8d0694a9937380ec179454d9ac5bc435",
+      "success": true
+    },
+    {
+      "actual_step": 91,
+      "candidate_id": "P2",
+      "episode_id": "r3_assembly_dev_C_004_32101004",
+      "path": "round3/design_records/assembly/feedback/P2_step_200.png",
+      "requested_step": 200,
+      "sha256": "836c92123405529e80847017d4ab004ff97be6eb017c2a5e5d9a9c96be4e125a",
+      "success": true
+    },
+    {
+      "actual_step": 50,
+      "candidate_id": "P3",
+      "episode_id": "r3_assembly_dev_C_004_32101004",
+      "path": "round3/design_records/assembly/feedback/P3_step_050.png",
+      "requested_step": 50,
+      "sha256": "c5ebe4fed36d72aa7585b2dfee41a6753a60efb18ea600b6434bc5b8884eb9ca",
+      "success": false
+    },
+    {
+      "actual_step": 200,
+      "candidate_id": "P3",
+      "episode_id": "r3_assembly_dev_C_004_32101004",
+      "path": "round3/design_records/assembly/feedback/P3_step_200.png",
+      "requested_step": 200,
+      "sha256": "c79763799f1a60578ec7306ff0d1e039b060bc161256767833157918cf0abbe8",
+      "success": false
+    }
+  ],
+  "instructions": "First state what the evidence supports and cannot support; then save one concrete P4 or no_revision. P4 has one main revision intent and all actual changes. No more feedback cycles.",
+  "invalid": [],
+  "original_proposal": "round3/design_records/assembly/proposal.json",
+  "results": {
+    "B0": {
+      "diagnostic_file": "round3/design_records/assembly/feedback/B0_offline_diagnostics.json",
+      "metrics": {
+        "C": {
+          "binomial_95ci": [
+            0.0,
+            0.16112515805281938
+          ],
+          "clipping_step_rate": 0.0194,
+          "exceptions": 0,
+          "failure_categories": {
+            "native_truncated": 20
+          },
+          "inference_calls": 2500,
+          "inference_seconds": 86.84513549658004,
+          "invalid_joint_episodes": 0,
+          "mean_first_success_step": null,
+          "mean_inference_latency_ms": 34.738054198632014,
+          "mean_replans": 125.0,
+          "mean_steps": 500.0,
+          "n": 20,
+          "success_rate": 0.0,
+          "successes": 0,
+          "terminated_episodes": 0,
+          "truncated_episodes": 20,
+          "wall_seconds": 94.35620331286918
+        },
+        "E": {
+          "binomial_95ci": [
+            0.027866481213768224,
+            0.3010336452284873
+          ],
+          "clipping_step_rate": 0.022018748637453674,
+          "exceptions": 0,
+          "failure_categories": {
+            "native_truncated": 18,
+            "success": 2
+          },
+          "inference_calls": 2294,
+          "inference_seconds": 79.30599946936127,
+          "invalid_joint_episodes": 0,
+          "mean_first_success_step": 87.0,
+          "mean_inference_latency_ms": 34.57105469457771,
+          "mean_replans": 114.7,
+          "mean_steps": 458.7,
+          "n": 20,
+          "success_rate": 0.1,
+          "successes": 2,
+          "terminated_episodes": 0,
+          "truncated_episodes": 18,
+          "wall_seconds": 86.04368252796121
+        },
+        "IID": {
+          "binomial_95ci": [
+            0.49016247153664183,
+            0.9433178485456247
+          ],
+          "clipping_step_rate": 0.055944055944055944,
+          "exceptions": 0,
+          "failure_categories": {
+            "native_truncated": 2,
+            "success": 8
+          },
+          "inference_calls": 431,
+          "inference_seconds": 17.48879042477347,
+          "invalid_joint_episodes": 0,
+          "mean_first_success_step": 89.5,
+          "mean_inference_latency_ms": 40.57723996467163,
+          "mean_replans": 43.1,
+          "mean_steps": 171.6,
+          "n": 10,
+          "success_rate": 0.8,
+          "successes": 8,
+          "terminated_episodes": 0,
+          "truncated_episodes": 2,
+          "wall_seconds": 19.740505062858574
+        }
+      },
+      "offline_diagnostics": {
+        "C": {
+          "descriptive_labels": {
+            "lift_observed_goal_not_completed": 8,
+            "never_near_interaction_point": 12
+          },
+          "mean": {
+            "final_observed_goal_point_distance_m": 0.15654445486431018,
+            "maximum_recorded_cabinet_progress": null,
+            "min_hand_to_interaction_m": 0.052325051073238225,
+            "min_observed_goal_point_distance_m": 0.15467814045254896,
+            "peak_observed_object_or_tool_lift_m": 0.07397516062483192
+          },
+          "n": 20
+        },
+        "E": {
+          "descriptive_labels": {
+            "lift_observed_goal_not_completed": 3,
+            "never_near_interaction_point": 15,
+            "scored_success": 2
+          },
+          "mean": {
+            "final_observed_goal_point_distance_m": 0.19425873069168004,
+            "maximum_recorded_cabinet_progress": null,
+            "min_hand_to_interaction_m": 0.06693755571349794,
+            "min_observed_goal_point_distance_m": 0.1796932122814695,
+            "peak_observed_object_or_tool_lift_m": 0.06386050581932068
+          },
+          "n": 20
+        },
+        "IID": {
+          "descriptive_labels": {
+            "lift_observed_goal_not_completed": 2,
+            "scored_success": 8
+          },
+          "mean": {
+            "final_observed_goal_point_distance_m": 0.01726102743052024,
+            "maximum_recorded_cabinet_progress": null,
+            "min_hand_to_interaction_m": 0.04330267453631169,
+            "min_observed_goal_point_distance_m": 0.012943371775850077,
+            "peak_observed_object_or_tool_lift_m": 0.1770566798746586
+          },
+          "n": 10
+        }
+      },
+      "ood_success_rate": 0.05,
+      "parameter_count": 4718148,
+      "run_id": "r3_assembly_B0_n5_s0",
+      "selected_episode": {
+        "episode_id": "r3_assembly_dev_C_004_32101004",
+        "failure_category": "native_truncated",
+        "replans": 125,
+        "steps": 500,
+        "success": false,
+        "termination_reason": "native_truncated"
+      },
+      "training_curve": "round3/design_records/assembly/feedback/B0_training_curve.json"
+    },
+    "P1": {
+      "diagnostic_file": "round3/design_records/assembly/feedback/P1_offline_diagnostics.json",
+      "metrics": {
+        "C": {
+          "binomial_95ci": [
+            0.0,
+            0.16112515805281938
+          ],
+          "clipping_step_rate": 0.0115,
+          "exceptions": 0,
+          "failure_categories": {
+            "native_truncated": 20
+          },
+          "inference_calls": 2500,
+          "inference_seconds": 89.81175831041764,
+          "invalid_joint_episodes": 0,
+          "mean_first_success_step": null,
+          "mean_inference_latency_ms": 35.924703324167055,
+          "mean_replans": 125.0,
+          "mean_steps": 500.0,
+          "n": 20,
+          "success_rate": 0.0,
+          "successes": 0,
+          "terminated_episodes": 0,
+          "truncated_episodes": 20,
+          "wall_seconds": 97.59149960801005
+        },
+        "E": {
+          "binomial_95ci": [
+            0.2992980081982123,
+            0.7007019918017877
+          ],
+          "clipping_step_rate": 0.014837295565671893,
+          "exceptions": 0,
+          "failure_categories": {
+            "native_truncated": 10,
+            "success": 10
+          },
+          "inference_calls": 1485,
+          "inference_seconds": 53.10035765345674,
+          "invalid_joint_episodes": 0,
+          "mean_first_success_step": 93.1,
+          "mean_inference_latency_ms": 35.75781660165437,
+          "mean_replans": 74.25,
+          "mean_steps": 296.55,
+          "n": 20,
+          "success_rate": 0.5,
+          "successes": 10,
+          "terminated_episodes": 0,
+          "truncated_episodes": 10,
+          "wall_seconds": 58.558077259222046
+        },
+        "IID": {
+          "binomial_95ci": [
+            0.7224672001371107,
+            0.9999999999999999
+          ],
+          "clipping_step_rate": 0.13014460511679643,
+          "exceptions": 0,
+          "failure_categories": {
+            "success": 10
+          },
+          "inference_calls": 227,
+          "inference_seconds": 10.86027719010599,
+          "invalid_joint_episodes": 0,
+          "mean_first_success_step": 89.9,
+          "mean_inference_latency_ms": 47.84263079341846,
+          "mean_replans": 22.7,
+          "mean_steps": 89.9,
+          "n": 10,
+          "success_rate": 1.0,
+          "successes": 10,
+          "terminated_episodes": 0,
+          "truncated_episodes": 0,
+          "wall_seconds": 12.858756370958872
+        }
+      },
+      "offline_diagnostics": {
+        "C": {
+          "descriptive_labels": {
+            "lift_observed_goal_not_completed": 1,
+            "never_near_interaction_point": 19
+          },
+          "mean": {
+            "final_observed_goal_point_distance_m": 0.198236837161713,
+            "maximum_recorded_cabinet_progress": null,
+            "min_hand_to_interaction_m": 0.06796334206207166,
+            "min_observed_goal_point_distance_m": 0.19631535288828483,
+            "peak_observed_object_or_tool_lift_m": 0.026118176896125077
+          },
+          "n": 20
+        },
+        "E": {
+          "descriptive_labels": {
+            "never_near_interaction_point": 10,
+            "scored_success": 10
+          },
+          "mean": {
+            "final_observed_goal_point_distance_m": 0.14151978588728842,
+            "maximum_recorded_cabinet_progress": null,
+            "min_hand_to_interaction_m": 0.08897835412019664,
+            "min_observed_goal_point_distance_m": 0.14133103697171612,
+            "peak_observed_object_or_tool_lift_m": 0.08816139437258244
+          },
+          "n": 20
+        },
+        "IID": {
+          "descriptive_labels": {
+            "scored_success": 10
+          },
+          "mean": {
+            "final_observed_goal_point_distance_m": 0.009206154594376733,
+            "maximum_recorded_cabinet_progress": null,
+            "min_hand_to_interaction_m": 0.043719769130359944,
+            "min_observed_goal_point_distance_m": 0.008137850820430772,
+            "peak_observed_object_or_tool_lift_m": 0.18000875487923623
+          },
+          "n": 10
+        }
+      },
+      "ood_success_rate": 0.25,
+      "parameter_count": 4761156,
+      "run_id": "r3_assembly_P1_n5_s0",
+      "selected_episode": {
+        "episode_id": "r3_assembly_dev_C_004_32101004",
+        "failure_category": "native_truncated",
+        "replans": 125,
+        "steps": 500,
+        "success": false,
+        "termination_reason": "native_truncated"
+      },
+      "training_curve": "round3/design_records/assembly/feedback/P1_training_curve.json"
+    },
+    "P2": {
+      "diagnostic_file": "round3/design_records/assembly/feedback/P2_offline_diagnostics.json",
+      "metrics": {
+        "C": {
+          "binomial_95ci": [
+            0.18119182410108206,
+            0.5671457233147638
+          ],
+          "clipping_step_rate": 0.005607738679377541,
+          "exceptions": 0,
+          "failure_categories": {
+            "native_truncated": 13,
+            "success": 7
+          },
+          "inference_calls": 1785,
+          "inference_seconds": 64.98720007680822,
+          "invalid_joint_episodes": 0,
+          "mean_first_success_step": 90.42857142857143,
+          "mean_inference_latency_ms": 36.40739500101301,
+          "mean_replans": 89.25,
+          "mean_steps": 356.65,
+          "n": 20,
+          "success_rate": 0.35,
+          "successes": 7,
+          "terminated_episodes": 0,
+          "truncated_episodes": 13,
+          "wall_seconds": 71.03009626525454
+        },
+        "E": {
+          "binomial_95ci": [
+            0.2992980081982123,
+            0.7007019918017877
+          ],
+          "clipping_step_rate": 0.03602232369355657,
+          "exceptions": 0,
+          "failure_categories": {
+            "native_truncated": 10,
+            "success": 10
+          },
+          "inference_calls": 1482,
+          "inference_seconds": 53.910414744284935,
+          "invalid_joint_episodes": 0,
+          "mean_first_success_step": 91.3,
+          "mean_inference_latency_ms": 36.37679807306676,
+          "mean_replans": 74.1,
+          "mean_steps": 295.65,
+          "n": 20,
+          "success_rate": 0.5,
+          "successes": 10,
+          "terminated_episodes": 0,
+          "truncated_episodes": 10,
+          "wall_seconds": 59.404701672145166
+        },
+        "IID": {
+          "binomial_95ci": [
+            0.7224672001371107,
+            0.9999999999999999
+          ],
+          "clipping_step_rate": 0.22435174746335965,
+          "exceptions": 0,
+          "failure_categories": {
+            "success": 10
+          },
+          "inference_calls": 225,
+          "inference_seconds": 10.901232055388391,
+          "invalid_joint_episodes": 0,
+          "mean_first_success_step": 88.7,
+          "mean_inference_latency_ms": 48.44992024617063,
+          "mean_replans": 22.5,
+          "mean_steps": 88.7,
+          "n": 10,
+          "success_rate": 1.0,
+          "successes": 10,
+          "terminated_episodes": 0,
+          "truncated_episodes": 0,
+          "wall_seconds": 12.784664523089305
+        }
+      },
+      "offline_diagnostics": {
+        "C": {
+          "descriptive_labels": {
+            "never_near_interaction_point": 13,
+            "scored_success": 7
+          },
+          "mean": {
+            "final_observed_goal_point_distance_m": 0.14935418575989579,
+            "maximum_recorded_cabinet_progress": null,
+            "min_hand_to_interaction_m": 0.060703401903108724,
+            "min_observed_goal_point_distance_m": 0.14852097643272855,
+            "peak_observed_object_or_tool_lift_m": 0.061027415376156566
+          },
+          "n": 20
+        },
+        "E": {
+          "descriptive_labels": {
+            "never_near_interaction_point": 10,
+            "scored_success": 10
+          },
+          "mean": {
+            "final_observed_goal_point_distance_m": 0.13930039571860797,
+            "maximum_recorded_cabinet_progress": null,
+            "min_hand_to_interaction_m": 0.07511296184296477,
+            "min_observed_goal_point_distance_m": 0.1382326670926312,
+            "peak_observed_object_or_tool_lift_m": 0.08980567995458841
+          },
+          "n": 20
+        },
+        "IID": {
+          "descriptive_labels": {
+            "scored_success": 10
+          },
+          "mean": {
+            "final_observed_goal_point_distance_m": 0.0071223158148696715,
+            "maximum_recorded_cabinet_progress": null,
+            "min_hand_to_interaction_m": 0.0453446124726042,
+            "min_observed_goal_point_distance_m": 0.006028633890252471,
+            "peak_observed_object_or_tool_lift_m": 0.18015076592564583
+          },
+          "n": 10
+        }
+      },
+      "ood_success_rate": 0.425,
+      "parameter_count": 4840004,
+      "run_id": "r3_assembly_P2_n5_s0",
+      "selected_episode": {
+        "episode_id": "r3_assembly_dev_C_004_32101004",
+        "failure_category": "success",
+        "replans": 23,
+        "steps": 91,
+        "success": true,
+        "termination_reason": "success"
+      },
+      "training_curve": "round3/design_records/assembly/feedback/P2_training_curve.json"
+    },
+    "P3": {
+      "diagnostic_file": "round3/design_records/assembly/feedback/P3_offline_diagnostics.json",
+      "metrics": {
+        "C": {
+          "binomial_95ci": [
+            0.0,
+            0.16112515805281938
+          ],
+          "clipping_step_rate": 0.0018,
+          "exceptions": 0,
+          "failure_categories": {
+            "native_truncated": 20
+          },
+          "inference_calls": 2500,
+          "inference_seconds": 91.87446613691282,
+          "invalid_joint_episodes": 0,
+          "mean_first_success_step": null,
+          "mean_inference_latency_ms": 36.74978645476513,
+          "mean_replans": 125.0,
+          "mean_steps": 500.0,
+          "n": 20,
+          "success_rate": 0.0,
+          "successes": 0,
+          "terminated_episodes": 0,
+          "truncated_episodes": 20,
+          "wall_seconds": 99.88243927410804
+        },
+        "E": {
+          "binomial_95ci": [
+            0.2992980081982123,
+            0.7007019918017877
+          ],
+          "clipping_step_rate": 0.018458933107535987,
+          "exceptions": 0,
+          "failure_categories": {
+            "native_truncated": 10,
+            "success": 10
+          },
+          "inference_calls": 1478,
+          "inference_seconds": 54.715764300199226,
+          "invalid_joint_episodes": 0,
+          "mean_first_success_step": 90.5,
+          "mean_inference_latency_ms": 37.020138227469026,
+          "mean_replans": 73.9,
+          "mean_steps": 295.25,
+          "n": 20,
+          "success_rate": 0.5,
+          "successes": 10,
+          "terminated_episodes": 0,
+          "truncated_episodes": 10,
+          "wall_seconds": 60.15717497514561
+        },
+        "IID": {
+          "binomial_95ci": [
+            0.7224672001371107,
+            0.9999999999999999
+          ],
+          "clipping_step_rate": 0.21309655937846836,
+          "exceptions": 0,
+          "failure_categories": {
+            "success": 10
+          },
+          "inference_calls": 228,
+          "inference_seconds": 11.168765879003331,
+          "invalid_joint_episodes": 0,
+          "mean_first_success_step": 90.1,
+          "mean_inference_latency_ms": 48.98581525878654,
+          "mean_replans": 22.8,
+          "mean_steps": 90.1,
+          "n": 10,
+          "success_rate": 1.0,
+          "successes": 10,
+          "terminated_episodes": 0,
+          "truncated_episodes": 0,
+          "wall_seconds": 13.027935496764258
+        }
+      },
+      "offline_diagnostics": {
+        "C": {
+          "descriptive_labels": {
+            "lift_observed_goal_not_completed": 7,
+            "never_near_interaction_point": 13
+          },
+          "mean": {
+            "final_observed_goal_point_distance_m": 0.1657476460560214,
+            "maximum_recorded_cabinet_progress": null,
+            "min_hand_to_interaction_m": 0.054963437295525684,
+            "min_observed_goal_point_distance_m": 0.14158555529798045,
+            "peak_observed_object_or_tool_lift_m": 0.0754803379997611
+          },
+          "n": 20
+        },
+        "E": {
+          "descriptive_labels": {
+            "never_near_interaction_point": 10,
+            "scored_success": 10
+          },
+          "mean": {
+            "final_observed_goal_point_distance_m": 0.14130356528829488,
+            "maximum_recorded_cabinet_progress": null,
+            "min_hand_to_interaction_m": 0.07666221267714038,
+            "min_observed_goal_point_distance_m": 0.14084067827399155,
+            "peak_observed_object_or_tool_lift_m": 0.08868706785142422
+          },
+          "n": 20
+        },
+        "IID": {
+          "descriptive_labels": {
+            "scored_success": 10
+          },
+          "mean": {
+            "final_observed_goal_point_distance_m": 0.009486535231751202,
+            "maximum_recorded_cabinet_progress": null,
+            "min_hand_to_interaction_m": 0.043537463755077145,
+            "min_observed_goal_point_distance_m": 0.008689219809262301,
+            "peak_observed_object_or_tool_lift_m": 0.1814130239188671
+          },
+          "n": 10
+        }
+      },
+      "ood_success_rate": 0.25,
+      "parameter_count": 4936660,
+      "run_id": "r3_assembly_P3_n5_s0",
+      "selected_episode": {
+        "episode_id": "r3_assembly_dev_C_004_32101004",
+        "failure_category": "native_truncated",
+        "replans": 125,
+        "steps": 500,
+        "success": false,
+        "termination_reason": "native_truncated"
+      },
+      "training_curve": "round3/design_records/assembly/feedback/P3_training_curve.json"
+    }
+  },
+  "scored_development_rollouts": 200,
+  "selected_episode_id": "r3_assembly_dev_C_004_32101004",
+  "stage": "dev",
+  "task": "assembly",
+  "train_n": 5,
+  "visualization_replay_steps": 1591
+}

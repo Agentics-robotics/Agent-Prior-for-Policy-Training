@@ -1,0 +1,40 @@
+{
+  "task": "peg-insert-side",
+  "candidate_id": "P4",
+  "created_at": "2026-09-08T08:04:49.231897+00:00",
+  "implementation_status": "CPU audited, pending parent CUDA debug; no formal training performed by designer",
+  "actual_designer": "/root/feedback_peg",
+  "design_deviations": [],
+  "material_feasibility_revision": null,
+  "files": {
+    "round3/design_records/peg-insert-side/revision.json": "e49f4fe20d46727dd4973abcd83f3eb81ab558acfb68168f7a3773ce47f83b2b",
+    "round3/design_records/peg-insert-side/revision_rationale.md": "a651f4eba5bd5436c251c0e9b8651684c34b5f6b1f4045ad42c722dba9662d56",
+    "src/round3/peg_revision.py": "83feb12d6543926c7e88e6c3a23ac8d40b537fdc422bc6011a37a5b8d114d708",
+    "src/round3/peg_plugin.py": "83c272783e62e0810f3d1cec8c4a69da5b75702f25e002e575c0223d3a5783a0",
+    "round3/configs/peg-insert-side/P4.json": "cfbe0e297ad9481da14e00f04aeb01f80806686254591071e9df1a343baf256b",
+    "round3/audits/peg_revision_cpu_audit.py": "b5f36d02526247c7a37537823485311435074f07796b979de7de94de41f8bf3b",
+    "round3/audits/peg_revision_cpu.json": "7daf000bd4fa155fe5f27bc6dc7300e23be4d236e8debf3a2f345b76f01c37af",
+    "round3/audits/peg_revision_readiness.json": "1f26d99711667c55e2297e47fd9ef1ecbfd2b12b1478da755c408891d86b09de"
+  },
+  "original_proposal_sha256": "135cd9e6e8e3ee3c9ce86fec14178edc85f40329f1ac6851148d774e723f293f",
+  "feedback_bundle_sha256": "0a20eea15e162730ae662ae82f7ec1f915921d96f2818b71992c571da2b0fc06",
+  "cpu_parameter_count": 4861508,
+  "exact_b0_parameter_count": 4718148,
+  "permission_scope": "No GPU used; parent exclusively manages GPU0-3; original plugin and shared implementation files preserved",
+  "implementation_reads_after_frozen_decision": [
+    "src/round3/peg_plugin.py",
+    "round3/configs/peg-insert-side/P1.json",
+    "src/round3/plugins.py",
+    "src/round3/learning.py (necessary training and source identity interfaces)",
+    "src/round2/learning.py (shared Policy)",
+    "src/relative_dp/model.py (model and masked loss)",
+    "symbol search in shared evaluate.py; no scores or artifacts read"
+  ],
+  "cpu_data_scope": "Synthetic arrays only; no additional demonstration or development state parsing",
+  "next_required": [
+    "Parent registers P4 N5/N20",
+    "Parent 20-update CUDA debug and compiled inference validation",
+    "Parent promotes string-path final readiness only after validated CUDA artifacts",
+    "Parent schedules fixed formal P4 runs independently from scratch"
+  ]
+}

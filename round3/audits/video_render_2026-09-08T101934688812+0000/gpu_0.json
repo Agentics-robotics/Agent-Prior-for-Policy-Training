@@ -1,0 +1,138 @@
+{
+  "completed_at": "2026-09-08T10:20:16.561144+00:00",
+  "inputs": {
+    "accepted_test_runs": 98,
+    "audit_path": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/round3/audits/delivery_verifier_test_20260908T101614379062Z.json",
+    "audit_sha256": "238223fe5c0e487ed199d2ced20a3f709d87bd4419458bebaf8cc60574249cee",
+    "driver_sha256": "1283f9aa316b2fb2467737c391a883d15ff37ccfc24ed3d84a70b9b8a34516bf",
+    "global_freeze_sha256": "debae7fbdc4e75d217cd5227bfb2fd4e82de5350d705b306ed2a42a7db842cba",
+    "renderer_sha256": "7261ff567747e77bce2822b47f1759857e0f4951c4d55aa4d4c3ba00d88c26a9",
+    "selection_sha256": "f1e4a4663c0cc9c3d08c73a2ac39cbc17f0460ecde75d8312864b974de762c89"
+  },
+  "passed": true,
+  "physical_gpu": 0,
+  "policy_calls": 0,
+  "records": [
+    {
+      "fps": 20.0,
+      "identity": {
+        "episode_id": "r3_pick-place-wall_test_C_000_33001000",
+        "initial_state_hash": "3e460ed27a0e371fadcb3bb5ffe5d9bdc5fa5dd72d88b3ca47981359f947068f",
+        "renderer_sha256": "7261ff567747e77bce2822b47f1759857e0f4951c4d55aa4d4c3ba00d88c26a9",
+        "selection": "Fixed C manifest order plus first available failure; no outcome maximization",
+        "task": "pick-place-wall",
+        "trajectories": [
+          "5b016f5c27d643be06de8e8095f34cdc490dccb7fcae69b5e08b15d1a0a294b4",
+          "4ddf907cbc26865d0d790baee93dfd4c602a82f78e3e0b545bce9fc2fd90a13c"
+        ]
+      },
+      "path": "round3/videos/pick-place-wall_fixed_C_N20.mp4",
+      "physical_dt": 0.0125,
+      "policy_calls": 0,
+      "rendering_stride": 4,
+      "scored_evaluation_episodes_added": 0,
+      "success": [
+        false,
+        true
+      ],
+      "termination": [
+        "native_truncated",
+        "success"
+      ],
+      "video_sha256": "f7a7d192bdbbd187da2049e69ebaeaf17ccdafbedbba1f32ced9a70758835f35",
+      "visualization_replay_steps": 588
+    },
+    {
+      "fps": 20.0,
+      "identity": {
+        "episode_id": "r3_pick-place-wall_test_C_005_33001005",
+        "initial_state_hash": "41b24637463e909049c399778442fe91d8ebfa405d461ce9747c654324ef61db",
+        "renderer_sha256": "7261ff567747e77bce2822b47f1759857e0f4951c4d55aa4d4c3ba00d88c26a9",
+        "selection": "Fixed C manifest order plus first available failure; no outcome maximization",
+        "task": "pick-place-wall",
+        "trajectories": [
+          "fefdb2f33f9d828a2c322a60e2c35ec5a62039826381945827ee752989a3f928",
+          "aa63692b4f7da1ca3f9251993f6e2cba62479883e4583d4175894026af6dc5b3"
+        ]
+      },
+      "path": "round3/videos/pick-place-wall_first_failure_N20.mp4",
+      "physical_dt": 0.0125,
+      "policy_calls": 0,
+      "rendering_stride": 4,
+      "scored_evaluation_episodes_added": 0,
+      "success": [
+        false,
+        true
+      ],
+      "termination": [
+        "native_truncated",
+        "success"
+      ],
+      "video_sha256": "3ad26c4f260bd3ab0ffc49479ba1fc7b12ae35837e4ff83235dd32ec4ad5d78b",
+      "visualization_replay_steps": 586
+    },
+    {
+      "fps": 20.0,
+      "identity": {
+        "episode_id": "r3_peg-insert-side_test_C_000_33401000",
+        "initial_state_hash": "d757604fe706936fe2bc7b1e3843a052055b24105ad402a15ceed97cfa46786f",
+        "renderer_sha256": "7261ff567747e77bce2822b47f1759857e0f4951c4d55aa4d4c3ba00d88c26a9",
+        "selection": "Fixed C manifest order plus first available failure; no outcome maximization",
+        "task": "peg-insert-side",
+        "trajectories": [
+          "e628517abca5178d5ad12aaa93a9f576cb02ad94322f5574ebc91ad4cfb2f603",
+          "3ebb7c0fc2a7e692bb2170a542dbdda97a8ce560e20ff88f8f794ec3a18dc1d3"
+        ]
+      },
+      "path": "round3/videos/peg-insert-side_fixed_C_N20.mp4",
+      "physical_dt": 0.0125,
+      "policy_calls": 0,
+      "rendering_stride": 4,
+      "scored_evaluation_episodes_added": 0,
+      "success": [
+        true,
+        true
+      ],
+      "termination": [
+        "success",
+        "success"
+      ],
+      "video_sha256": "0c628586527b37c677e901cf9c70f69b0c5623821efe095f39872514c9c75590",
+      "visualization_replay_steps": 193
+    },
+    {
+      "fps": 20.0,
+      "identity": {
+        "episode_id": "r3_peg-insert-side_test_C_001_33401001",
+        "initial_state_hash": "52fc752177c01d208f958ec422669db6b84a1843c836db4fb18b842ff4e84537",
+        "renderer_sha256": "7261ff567747e77bce2822b47f1759857e0f4951c4d55aa4d4c3ba00d88c26a9",
+        "selection": "Fixed C manifest order plus first available failure; no outcome maximization",
+        "task": "peg-insert-side",
+        "trajectories": [
+          "65c4ecc370b6d58266e5d3aae2667079c5f21c1c335cfc548c1de258dbb69662",
+          "f3255e753e92356c38e68bac7c7af9822dcfac7fae1d59c1e4f140fae2159e56"
+        ]
+      },
+      "path": "round3/videos/peg-insert-side_first_failure_N20.mp4",
+      "physical_dt": 0.0125,
+      "policy_calls": 0,
+      "rendering_stride": 4,
+      "scored_evaluation_episodes_added": 0,
+      "success": [
+        false,
+        true
+      ],
+      "termination": [
+        "native_truncated",
+        "success"
+      ],
+      "video_sha256": "54970868dcc0b77ebc33e1e8cf0e9d928519a2b09184b14571d6ac432adda61b",
+      "visualization_replay_steps": 593
+    }
+  ],
+  "scored_evaluation_episodes_added": 0,
+  "tasks": [
+    "pick-place-wall",
+    "peg-insert-side"
+  ]
+}

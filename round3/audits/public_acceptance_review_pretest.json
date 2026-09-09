@@ -1,0 +1,139 @@
+{
+  "schema_version": 1,
+  "created_utc": "2026-09-08T08:08:58.581338+00:00",
+  "review_scope": "Public pretest artifact acceptance and specification readiness only",
+  "status": "pending",
+  "final_delivery_ready": false,
+  "locked_test_files_opened_or_hashed": false,
+  "training_or_evaluation_launched": false,
+  "specification": "round3/ROUND3_SPEC.txt",
+  "numerical_audit": {
+    "path": "round3/audits/delivery_verifier_development_20260908T080509160482Z.json",
+    "sha256": "e789cd28eff09f4d05b06f7dcba30e28748cb2b64f2848c371bfec257a339e06",
+    "command": "CUDA_VISIBLE_DEVICES='' OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 /home/users/oscar/.pixi/bin/pixi run python scripts/verify_round3_delivery.py --stage dev",
+    "exit_code": 1,
+    "passed": false,
+    "audit_scope_complete": false,
+    "elapsed_seconds": 72.19210764102172,
+    "context": "peg-insert-side: one feedback cycle",
+    "error": "ValueError: P4 plan does not match single feedback decision",
+    "classification": "Expected transient pending P4 registration: audit snapshotted the 96-run ledger before the peg P4 pair was registered. No evidence-validation error preceded this stop.",
+    "inspection_prefix_counts": {
+      "formal_training_runs": 75,
+      "cpu_checkpoints": 225,
+      "dev_runs": 74,
+      "dev_episodes": 3700,
+      "demonstrations": 120,
+      "train_and_dev_reset_snapshots": 420,
+      "physical_files_hashed": 9780,
+      "bytes_hashed": 18220958883
+    },
+    "pending_at_audit": {
+      "training": 21,
+      "dev": 22,
+      "test": null
+    },
+    "final_mutation_check_reached": false,
+    "limits": [
+      "Per-run checks succeeded through the reported prefix, but this is not a passing complete audit: feedback validation stopped before the final cross-artifact mutation check.",
+      "Training completion can advance after the mutable ledger snapshot; the 75 inspected training artifacts can therefore exceed an earlier 74-completed ledger observation.",
+      "The original failure audit records test pending as 0 although tests were not inspected. It remains immutable; this review uses null and the reporting bug has been fixed for future audits."
+    ]
+  },
+  "current_public_ledger_snapshot": {
+    "sha256": "e18c906ae6f5c3a7d4f8fa1840ece2a16c34b1c8231f2956b5e7402be6bbdafe",
+    "planned_runs": 98,
+    "main_runs": 96,
+    "p4_runs": [
+      {
+        "run_id": "r3_peg-insert-side_P4_n5_s0",
+        "task": "peg-insert-side",
+        "train_n": 5,
+        "status": "running",
+        "train_status": "running",
+        "dev_status": "pending"
+      },
+      {
+        "run_id": "r3_peg-insert-side_P4_n20_s0",
+        "task": "peg-insert-side",
+        "train_n": 20,
+        "status": "pending",
+        "train_status": "pending",
+        "dev_status": "pending"
+      }
+    ],
+    "training_status_counts": {
+      "completed": 78,
+      "running": 5,
+      "pending": 15
+    },
+    "dev_status_counts": {
+      "completed": 75,
+      "running": 3,
+      "pending": 20
+    },
+    "feedback_decisions": {
+      "pick-place-wall": "no_revision",
+      "assembly": "no_revision",
+      "drawer": "no_revision",
+      "door": "no_revision",
+      "peg-insert-side": "P4",
+      "stick-push": "pending"
+    },
+    "selection_exists": false,
+    "global_freeze_exists": false,
+    "limits": "Coordinator ledger status is a contemporaneous operational snapshot, not independent artifact acceptance."
+  },
+  "specification_readiness": [
+    {
+      "requirement": "Sections 2/10: exact 96 initial runs, at most 108 formal runs; P4 only N5/N20",
+      "status": "public_matrix_matches",
+      "evidence": "Initial audit matrix passed; current public ledger retains 96 initial runs and registers only the peg N5/N20 P4 pair."
+    },
+    {
+      "requirement": "Sections 4/5/10: shared nested data, current-DN normalization, pairing, 20k whole-system budget, recovery points and implementation identity",
+      "status": "inspection_prefix_checked",
+      "evidence": "120 demonstrations, 420 public snapshots, 75 training artifacts and 3700 dev trajectories inspected before the pending-feedback stop; no policy or simulator execution."
+    },
+    {
+      "requirement": "Section 11: one feedback decision per task, P4 completion, eligible per-N selection frozen before test",
+      "status": "pending",
+      "evidence": "Peg P4 implementation/smoke/training is under active independent work; other unfinished feedback and remaining runs must finish before the global gate."
+    },
+    {
+      "requirement": "Section 13: documented executable Pixi prepare/validate/train/dev/test/report/resume/all entries",
+      "status": "documented",
+      "evidence": "README.md and pixi.toml provide the entry names; this review executed only the CPU verifier and synthetic unit checks."
+    },
+    {
+      "requirement": "Latest AGENTS resource authorization: only physical GPU0-3, two workers/card",
+      "status": "documentation_consistent",
+      "evidence": "Parent corrected stale README GPU0-5 text during review; no scheduler or device allocation was changed by this reviewer."
+    },
+    {
+      "requirement": "Sections 12/13: final test numerical acceptance, complete report/CSV, all required figures and real paired videos",
+      "status": "pending_uninspected",
+      "evidence": "Final locked-test readiness is false; no locked files or test outcomes were opened or hashed. Reporting generation is being reviewed separately by the parent."
+    }
+  ],
+  "reporting_only_fix": {
+    "files": [
+      "scripts/verify_round3_delivery.py",
+      "tests/round3/test_delivery_verifier.py"
+    ],
+    "change": "Failure reports now emit null for pending test counts in dev mode, consistently with passing dev reports; original run records are preserved.",
+    "verification_command": "CUDA_VISIBLE_DEVICES='' OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 /home/users/oscar/.pixi/bin/pixi run python -m pytest -q tests/round3/test_delivery_verifier.py -k failed_audit_preserves_test_scope",
+    "verification": {
+      "passed": 2,
+      "deselected": 6,
+      "seconds": 3.5
+    },
+    "environment_note": "The initial pixi run pytest launch found no pytest executable. Using pixi run python -m pytest succeeded without installing anything."
+  },
+  "remaining_material_risks": [
+    "The live numerical audit was incomplete at a known registration transition; no matrix-wide acceptance or final mutation check has passed for this snapshot.",
+    "Formal training/dev work and feedback remain pending. Complete the fixed authorized matrix, validate P4 readiness, and freeze all per-N selections before any locked-test access.",
+    "Final numerical test artifacts and full report/figure/video delivery remain uninspected; do not describe the experiment as complete.",
+    "Fixed-model evaluation intervals do not establish robustness across training seeds or nested demonstration selections; P4 uses additional development interaction and training cost."
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "candidates": [
+    "B0",
+    "P1",
+    "P2",
+    "P3"
+  ],
+  "image_source": "Replay cached actions in the real simulator; no policy/expert calls; verify every replay observation",
+  "maximum_frames": 8,
+  "physical_steps": [
+    50,
+    200
+  ],
+  "split": "C",
+  "stage": "dev",
+  "state_selection": "First C state in manifest order whose valid N5 models disagree on success; otherwise first C state",
+  "terminated_policy": "Hold final real simulator frame when the requested physical step exceeds episode length",
+  "train_n": 5,
+  "unavailable_candidates": "Retain invalid candidates with their reason; select using all valid completed N5 models",
+  "version": "round3-feedback-frames-v1"
+}

@@ -1,0 +1,381 @@
+{
+  "task": "drawer",
+  "version": 1,
+  "created_at": "2026-09-08T05:39:52.189916+00:00",
+  "agent_backend": "codex_session",
+  "designer": {
+    "name": "/root/design_drawer",
+    "model": "not exposed to agent",
+    "session": "isolated initial design subagent",
+    "tokens": null,
+    "cost": null
+  },
+  "context_exposure": {
+    "read_scope": [
+      "round3/DESIGN_CONTRACT.md",
+      "round3/evidence/drawer/*",
+      "coordinator clarification of inherited sampler/DDIM and plugin normalization interfaces"
+    ],
+    "viewed_actual_frames": 16,
+    "summarized_trajectories": 2,
+    "forbidden_sources_read": false,
+    "details": "Read all drawer bundle text, loaded both bundled trajectory NPZs through Pixi, viewed each of16 actual PNGs separately. No parent source, reward/expert source, other task records, larger D_N, old trained-model outcomes, or concrete development/test states. Proposal saved before implementation or shared-source inspection."
+  },
+  "evidence_hashes": {
+    "round3/evidence/drawer/D2_summary.json": "7f612815ffedf28edee790e431092d5f715c33aac0ff7b65c60cb75ad162462c",
+    "round3/evidence/drawer/DESIGN_INTERFACE.md": "fe0a1c4a12c4bd170d432f48cf1cb3ae98028cc37a5d1ad0f4cff6d0d14f0101",
+    "round3/evidence/drawer/bundle.json": "d9bcefcf58f3d30dad8efc85be8d8fb8f8ca40433647992c930c9a003b4b3ba3",
+    "round3/evidence/drawer/demo_1_frame_00_step_000.png": "b2d215bebdf96cb1d93a4afab536b74a21cd15bb151cbf1fd672e13b2a518215",
+    "round3/evidence/drawer/demo_1_frame_01_step_013.png": "480413b09c9a9bb83128017f4da09a40effc913d7a5c03829e1a4a06256e905f",
+    "round3/evidence/drawer/demo_1_frame_02_step_025.png": "29b9c4da41a92269810036c2580a0003167350bbc5251ba2f123a1dacfb289ca",
+    "round3/evidence/drawer/demo_1_frame_03_step_038.png": "726bfe8357f5e6e21ae4e09041a63e9450806956cf5b54e6e485143429b4e054",
+    "round3/evidence/drawer/demo_1_frame_04_step_050.png": "7fced296b94e69ad09a58b81489532466bd00038aa340f43729300b9adc8195c",
+    "round3/evidence/drawer/demo_1_frame_05_step_063.png": "246d3599b8abf76300459e62dd523bf8966117d0d95b67a680639ab1e8dbda1a",
+    "round3/evidence/drawer/demo_1_frame_06_step_075.png": "00f9fa97ab9bb99bdaf41bbc708ed0777fad47184202b8d50bdc7ed833bc85d8",
+    "round3/evidence/drawer/demo_1_frame_07_step_088.png": "5af66147a0e49938d411c442e5a49cadfcc1df63f5ce908c5bba493fdcfebcb4",
+    "round3/evidence/drawer/demo_1_trajectory.npz": "9a0222c5b444e2623c75face58f17b31b6718dcc14719d4d60e4cc02726461c8",
+    "round3/evidence/drawer/demo_2_frame_00_step_000.png": "3faa388744d448d01f0e4ead6309c6b3575baed29bdf2d89cbf895dc2cdc4462",
+    "round3/evidence/drawer/demo_2_frame_01_step_013.png": "8a853e7d527f18a3c7cf61b99540761eebfa85acf8296ea4d65d55339067608f",
+    "round3/evidence/drawer/demo_2_frame_02_step_026.png": "34a43a21333f77c02991f6791596d0c247b4f8da0e2007e625984df05eb27776",
+    "round3/evidence/drawer/demo_2_frame_03_step_039.png": "b42b7207b9062515a37fe6e9c53edc48ed7f8f5c592039f8e2fe0b985d2e33b5",
+    "round3/evidence/drawer/demo_2_frame_04_step_051.png": "9355a1a88ebda8a4cb59654b968076a00c1f7b44ab6639ee6eeda49cd60d9b7a",
+    "round3/evidence/drawer/demo_2_frame_05_step_064.png": "fa9f447fd31ea6390589abb938966a1ff21a42b5e685094dff3b0c177b1d31b7",
+    "round3/evidence/drawer/demo_2_frame_06_step_077.png": "9241bbcf7b6629d624cc793315169702023bb55780f62632a01d8eb0dad5f941",
+    "round3/evidence/drawer/demo_2_frame_07_step_090.png": "a8783d3232dab7641c23adf83258552f1bbcf2eea19a39c53283c3a2a60f9c4f",
+    "round3/evidence/drawer/demo_2_trajectory.npz": "7034b5fd30796d8826750602d3b589293f506b2b03d58f01dc1ed80e66258eba",
+    "round3/evidence/drawer/frames.json": "4b0b1021c128c610c887ce51822d0ec88f5e41a9cf3f1a6928a3445a3ceb1f56",
+    "round3/evidence/drawer/task_materials.json": "881c8d54de03a502f491bc3b45ae7a70ea8226cce160bc5433d1e5c89fd37f10"
+  },
+  "combination_consideration": {
+    "adopted": "P3 combines the P1 cabinet frame with learned future-relation denoising, extending P2 rail-only future supervision to contact gap as well. P1 isolates representation benefit and P2 isolates a world-action future-learning mechanism.",
+    "rationale": "D2 separates long approach from short rail motion; hand-handle gap may distinguish approach/contact while future rail distance describes progress. Use jointly generated targets so no hand-coded phase switch or analytic controller is introduced.",
+    "rejected": "No hard contact threshold selector or termination rule: two successful demonstrations do not support robust threshold decisions. No global rotation augmentation because fixed robot/gravity/obstacles invalidate whole-scene symmetry.",
+    "uncertainty": "The combination is a hypothesis, not an assumed improvement; auxiliary targets may compete with action loss."
+  },
+  "candidates": [
+    {
+      "evidence_refs": [
+        "round3/evidence/drawer/task_materials.json: common observation/action schema and source_knowledge prismatic cabinet-local y axis, fixed robot, gravity and end-effector orientation",
+        "round3/evidence/drawer/demo_1_trajectory.npz: all89 observations/88 actions; peak height step25, handle movement transition69, final88",
+        "round3/evidence/drawer/demo_2_trajectory.npz: all91 observations/90 actions; peak height step25, handle movement transition69, final90",
+        "round3/evidence/drawer/frames.json and all16 listed frames: visual elevated approach, descent and drawer translation, demo1 steps0/13/25/38/50/63/75/88 and demo2 steps0/13/26/39/51/64/77/90"
+      ],
+      "applicability": "State-input drawer task with declared yaw channel and a prismatic cabinet-local y rail. Shared numerical runtime observations only; images inform design but are never policy inputs.",
+      "augmentation": "None. Rotating the cabinet is not a whole-environment symmetry because the robot, table, rail and gravity are fixed.",
+      "training_schedule": {
+        "updates": 20000,
+        "total_chunks_per_update": 128,
+        "seed": 0,
+        "dataset": "Each N in2/5/10/20 trains separately from scratch using only its nested D_N; no transfer. Uniform CPU torch.randint over all valid trajectory windows.",
+        "optimizer": "One joint AdamW over entire policy, lr1e-4, weight_decay1e-6, betas[0.9,0.999], gradient_norm_clip1, EMA0.995, no warmup or staged fitting.",
+        "diffusion": "DDPM100 cosine epsilon training; DDIM16 leading indices90,84,...,0 at deployment, eta0, clip_sample=False. Independent standard Gaussian noise in all generated channels.",
+        "history_prediction_execution": [
+          2,
+          16,
+          4
+        ],
+        "loss_schedule": "All specified losses active from update1 through20000; no selector, extra updates, or task-specific batch sampling."
+      },
+      "hierarchy_selection_and_termination": "One jointly trained conditional diffusion policy; no selector, phase label, route, analytic controller, success detector, termination gate, action search or rescue. Replan every4 executed actions under the unchanged episode clock; environment handles its existing termination.",
+      "chunk_transition_handling": "One latest-observation R_t and origin o_t are held for both history observations and the complete16-step chunk, including any approach/pull transition. No re-encoding or frame change during execution of first4 actions; recompute frame only at next replan. World-action P2 keeps identity action frame. Zero-pad tail actions/labels beyond the last valid transition and mask them out of all losses.",
+      "required_runtime_inputs": "Only two shared41-dimensional raw observations (initial repeated), including hand xyz/aperture, current/previous handle xyz, declared goal and yaw. No hidden state, future state, episode time feature, image, trained-model outcome, or expert action.",
+      "parameter_budget": "One U-Net widths[64,128,256], time embedding128, kernel5, groups8. No extra trainable encoder or head. Only conditioning/input/output dimensions differ from B0; expected under5.5M and must be counted before training, hard limit3x exact B0 count.",
+      "confidence": "Moderate geometry confidence from known prismatic rail and D2 agreement; low-to-moderate confidence of learned generalization benefit. No scores or additional demonstrations seen.",
+      "candidate_id": "P1",
+      "knowledge_hypotheses": [
+        {
+          "source": "external geometry/common knowledge",
+          "claim": "Rigid-coordinate changes express cabinet-parallel/perpendicular displacement without mixing x translation with yaw. A prismatic mechanism has one translational rail degree of freedom. This changes representation only; retaining world context avoids asserting whole-scene rotational symmetry.",
+          "source_reference": "Supplied task_materials.json source_knowledge (joint_type=prismatic, mechanism_axis=cabinet-local y), static_geometry_source hash2a2f29aa47ab399e16fe69c5428d2e14777842baf3e27b68a5b28884d1e14d59, and elementary rotation matrices; source implementation not opened."
+        },
+        {
+          "source": "observation from D2",
+          "claim": "Both demonstrations lift to ~0.302/0.305m at step25, descend before handle motion at transition69, then displace handle -0.134964/-0.130192m along local y; measured off-rail displacement below1e-8m. Initial goal-minus-handle is local y approximately-0.128m.",
+          "source_reference": "Both bundled NPZs, all transitions; all16 actual frames viewed."
+        },
+        {
+          "source": "unverified inference",
+          "claim": "Explicit cabinet-relative hand/goal relations and local actions should reduce sensitivity to correlated x/yaw training cells, while world context can preserve approach feasibility."
+        }
+      ],
+      "predicted_generalization_gain": "Prospectively strongest benefit when cabinet x/yaw combinations change but local handle contact and pull geometry remain similar. It may offer no gain if the learned approach remains dependent on the two seen robot configurations.",
+      "failure_conditions": [
+        "Local action coefficients can exceed1, so clipping before world decode would corrupt pulls.",
+        "Large yaw can alter contact feasibility with the fixed gripper; coordinate changes do not solve unreachable geometry.",
+        "Only two whole observations may not disambiguate similar approach and retreat states."
+      ],
+      "architecture": {
+        "core": "shared conditional U-Net",
+        "observation_dim": 25,
+        "action_diffusion_channels": 4
+      },
+      "modules": [
+        "stateless current-anchor observation transform",
+        "reversible fixed-chunk action rotation",
+        "4-channel diffusion policy"
+      ],
+      "observation_transform": {
+        "name": "fixed-scale local relations with retained world context",
+        "dim_per_whole_observation": 25,
+        "definition": "For latest raw observation x_t define normalized (s,c)=x_t[39:41]/norm, R_t=[[c,-s,0],[s,c,0],[0,0,1]], local ex=(c,s,0), ey=(-s,c,0) along cabinet prismatic rail, ez=(0,0,1) upward; origin o_t=x_t[4:7] is current yaw-corrected handle. Columns of R map local vectors into world; local vectors are R_t^T times world. Reject a nonfinite or norm<1e-6 yaw pair. All geometry lengths are meters.",
+        "history": "Both whole observations in the shared two-observation history use this same latest t anchor; initial observation is repeated. For each history member x_j use its current h=x_j[0:3], d=x_j[4:7], goal g=x_j[36:39], previous hprev=x_j[18:21], dprev=x_j[22:25].",
+        "ordered_features": [
+          "R_t^T(h-o_t)/0.2 [3]",
+          "R_t^T(d-o_t)/0.16 [3]",
+          "R_t^T(g-o_t)/0.16 [3]",
+          "R_t^T(h-hprev)/0.01 [3]",
+          "R_t^T(d-dprev)/0.01 [3]",
+          "world h / 1 meter [3]",
+          "world d / 1 meter [3]",
+          "x_j current aperture [1]",
+          "x_j previous aperture [1]",
+          "latest normalized s,c [2]"
+        ],
+        "normalization": "Exactly the listed fixed scales, all 25 output indices passthrough mean0/std1; no fitted observation statistics; no feature clipping. No object2 absent zeros or redundant quaternion retained."
+      },
+      "action_transform": {
+        "xyz": "For all 16 future actions use a_local_xyz=R_t^T a_world_xyz with latest replan R_t fixed. Coefficients remain native action units, where 1 means commanded 0.01m before native dynamics. No translation is applied to displacement actions.",
+        "gripper": "Fourth coordinate unchanged and learned; do not force the observed -1 constant.",
+        "decode": "Take generated first4 channels, world_xyz=R_t a_local_xyz, keep gripper, THEN clip each world coordinate and gripper to [-1,1]. Never clip local action coordinates (observed local values exceed magnitude1).",
+        "normalization": "identity; no data-fitted action scaling"
+      },
+      "losses_and_weights": [
+        {
+          "name": "action_epsilon",
+          "target": "standard Gaussian epsilon added to4 encoded action channels",
+          "loss": "masked mean squared error over valid transitions and4 action coordinates",
+          "weight": 1.0,
+          "condition": "all valid sampled chunk positions at every update"
+        }
+      ],
+      "required_train_labels": "Only demonstrated actions, common observations and valid-action masks from current D_N; no derived future labels.",
+      "implementation_steps": [
+        "Implement and roundtrip-test rotation with local magnitudes>1.",
+        "Implement common-anchor two-observation25-feature encoder with fixed scales.",
+        "Use shared4-channel U-Net, scheduler, masking and20k training; count parameters and record audit."
+      ]
+    },
+    {
+      "evidence_refs": [
+        "round3/evidence/drawer/task_materials.json: common observation/action schema and source_knowledge prismatic cabinet-local y axis, fixed robot, gravity and end-effector orientation",
+        "round3/evidence/drawer/demo_1_trajectory.npz: all89 observations/88 actions; peak height step25, handle movement transition69, final88",
+        "round3/evidence/drawer/demo_2_trajectory.npz: all91 observations/90 actions; peak height step25, handle movement transition69, final90",
+        "round3/evidence/drawer/frames.json and all16 listed frames: visual elevated approach, descent and drawer translation, demo1 steps0/13/25/38/50/63/75/88 and demo2 steps0/13/26/39/51/64/77/90"
+      ],
+      "applicability": "State-input drawer task with declared yaw channel and a prismatic cabinet-local y rail. Shared numerical runtime observations only; images inform design but are never policy inputs.",
+      "augmentation": "None. Rotating the cabinet is not a whole-environment symmetry because the robot, table, rail and gravity are fixed.",
+      "training_schedule": {
+        "updates": 20000,
+        "total_chunks_per_update": 128,
+        "seed": 0,
+        "dataset": "Each N in2/5/10/20 trains separately from scratch using only its nested D_N; no transfer. Uniform CPU torch.randint over all valid trajectory windows.",
+        "optimizer": "One joint AdamW over entire policy, lr1e-4, weight_decay1e-6, betas[0.9,0.999], gradient_norm_clip1, EMA0.995, no warmup or staged fitting.",
+        "diffusion": "DDPM100 cosine epsilon training; DDIM16 leading indices90,84,...,0 at deployment, eta0, clip_sample=False. Independent standard Gaussian noise in all generated channels.",
+        "history_prediction_execution": [
+          2,
+          16,
+          4
+        ],
+        "loss_schedule": "All specified losses active from update1 through20000; no selector, extra updates, or task-specific batch sampling."
+      },
+      "hierarchy_selection_and_termination": "One jointly trained conditional diffusion policy; no selector, phase label, route, analytic controller, success detector, termination gate, action search or rescue. Replan every4 executed actions under the unchanged episode clock; environment handles its existing termination.",
+      "chunk_transition_handling": "One latest-observation R_t and origin o_t are held for both history observations and the complete16-step chunk, including any approach/pull transition. No re-encoding or frame change during execution of first4 actions; recompute frame only at next replan. World-action P2 keeps identity action frame. Zero-pad tail actions/labels beyond the last valid transition and mask them out of all losses.",
+      "required_runtime_inputs": "Only two shared41-dimensional raw observations (initial repeated), including hand xyz/aperture, current/previous handle xyz, declared goal and yaw. No hidden state, future state, episode time feature, image, trained-model outcome, or expert action.",
+      "parameter_budget": "One U-Net widths[64,128,256], time embedding128, kernel5, groups8. No extra trainable encoder or head. Only conditioning/input/output dimensions differ from B0; expected under5.5M and must be counted before training, hard limit3x exact B0 count.",
+      "confidence": "Moderate geometry confidence from known prismatic rail and D2 agreement; low-to-moderate confidence of learned generalization benefit. No scores or additional demonstrations seen.",
+      "candidate_id": "P2",
+      "knowledge_hypotheses": [
+        {
+          "source": "external geometry/common knowledge",
+          "claim": "Rigid-coordinate changes express cabinet-parallel/perpendicular displacement without mixing x translation with yaw. A prismatic mechanism has one translational rail degree of freedom. This changes representation only; retaining world context avoids asserting whole-scene rotational symmetry.",
+          "source_reference": "Supplied task_materials.json source_knowledge (joint_type=prismatic, mechanism_axis=cabinet-local y), static_geometry_source hash2a2f29aa47ab399e16fe69c5428d2e14777842baf3e27b68a5b28884d1e14d59, and elementary rotation matrices; source implementation not opened."
+        },
+        {
+          "source": "observation from D2",
+          "claim": "Both demonstrations lift to ~0.302/0.305m at step25, descend before handle motion at transition69, then displace handle -0.134964/-0.130192m along local y; measured off-rail displacement below1e-8m. Initial goal-minus-handle is local y approximately-0.128m.",
+          "source_reference": "Both bundled NPZs, all transitions; all16 actual frames viewed."
+        },
+        {
+          "source": "unverified inference",
+          "claim": "Jointly denoising a future rail-distance sequence with world actions may teach the shared network which action subsequences leave the drawer static and which produce task progress, without hard phase gates."
+        }
+      ],
+      "predicted_generalization_gain": "May improve continuity and task progress on new factor combinations by sharing action and future-outcome modeling; less direct yaw transfer than P1. Auxiliary prediction may fail to benefit control.",
+      "failure_conditions": [
+        "D2 has only successful trajectories, so outcome-action correlations may remain noncausal and fail off demonstration support.",
+        "One-dimensional rail target omits contact geometry and can be easy to predict while actions remain poor.",
+        "Auxiliary sampling can consume model capacity or introduce denoising interference."
+      ],
+      "architecture": {
+        "core": "shared conditional U-Net with joint action/future output",
+        "observation_dim": 53,
+        "action_diffusion_channels": 5,
+        "generated_order": [
+          "world action xyz + gripper [4]",
+          "future signed remaining local-y travel /0.16m [1]"
+        ]
+      },
+      "modules": [
+        "world raw plus relation encoder",
+        "current-D_N future rail target builder",
+        "5-channel joint diffusion; only first4 channels executed"
+      ],
+      "observation_transform": {
+        "name": "world observations plus explicit world relations",
+        "dim_per_whole_observation": 53,
+        "ordered_features": [
+          "unchanged common raw x_j[0:41] [41]",
+          "(h-d)/0.2 [3]",
+          "(g-d)/0.16 [3]",
+          "(h-hprev)/0.01 [3]",
+          "(d-dprev)/0.01 [3]"
+        ],
+        "normalization": "All output indices passthrough mean0/std1; world raw coordinates are meters, raw apertures unitless, quaternions and yaw unitless. No fitted statistics or feature clipping. Standard shared history of two whole observations."
+      },
+      "action_transform": {
+        "xyz": "First3 channels are unchanged world action coefficients; one unit commands native0.01m.",
+        "gripper": "Fourth channel unchanged and learned; no constant command override.",
+        "decode": "Take generated first4 channels and clip world xyz and gripper to native[-1,1].",
+        "normalization": "identity; no data-fitted action scaling"
+      },
+      "losses_and_weights": [
+        {
+          "name": "action_epsilon",
+          "target": "standard Gaussian epsilon added to first4 world action channels",
+          "loss": "masked mean squared error over valid transitions and4 action coordinates",
+          "weight": 1.0,
+          "condition": "all valid sampled chunk positions at every update"
+        },
+        {
+          "name": "future_rail_epsilon",
+          "target": "epsilon added to label y_k = ey_t dot (goal_t - handle_(t+k+1)) /0.16 for k=0..15; signed value, no clipping; future observations from same D_N episode only",
+          "loss": "masked mean squared error over the fifth generated channel",
+          "weight": 0.25,
+          "condition": "all valid action positions; do not train masked terminal padding"
+        }
+      ],
+      "required_train_labels": "For each window start t and valid action k, next observed handle position at t+k+1. Project current goal minus this future handle onto normalized current cabinet ey and divide by0.16m. No reward, success, phase, action-derived target or data outside current D_N.",
+      "implementation_steps": [
+        "Implement53-feature fixed-scale world encoder.",
+        "Build aligned one-step-through16-step future rail labels with valid mask.",
+        "Append rail labels to clean training actions and enlarge diffusion channels to5.",
+        "Apply action epsilon mean first4 plus0.25 rail epsilon; sample5 channels and discard last at execution; count parameters."
+      ]
+    },
+    {
+      "evidence_refs": [
+        "round3/evidence/drawer/task_materials.json: common observation/action schema and source_knowledge prismatic cabinet-local y axis, fixed robot, gravity and end-effector orientation",
+        "round3/evidence/drawer/demo_1_trajectory.npz: all89 observations/88 actions; peak height step25, handle movement transition69, final88",
+        "round3/evidence/drawer/demo_2_trajectory.npz: all91 observations/90 actions; peak height step25, handle movement transition69, final90",
+        "round3/evidence/drawer/frames.json and all16 listed frames: visual elevated approach, descent and drawer translation, demo1 steps0/13/25/38/50/63/75/88 and demo2 steps0/13/26/39/51/64/77/90"
+      ],
+      "applicability": "State-input drawer task with declared yaw channel and a prismatic cabinet-local y rail. Shared numerical runtime observations only; images inform design but are never policy inputs.",
+      "augmentation": "None. Rotating the cabinet is not a whole-environment symmetry because the robot, table, rail and gravity are fixed.",
+      "training_schedule": {
+        "updates": 20000,
+        "total_chunks_per_update": 128,
+        "seed": 0,
+        "dataset": "Each N in2/5/10/20 trains separately from scratch using only its nested D_N; no transfer. Uniform CPU torch.randint over all valid trajectory windows.",
+        "optimizer": "One joint AdamW over entire policy, lr1e-4, weight_decay1e-6, betas[0.9,0.999], gradient_norm_clip1, EMA0.995, no warmup or staged fitting.",
+        "diffusion": "DDPM100 cosine epsilon training; DDIM16 leading indices90,84,...,0 at deployment, eta0, clip_sample=False. Independent standard Gaussian noise in all generated channels.",
+        "history_prediction_execution": [
+          2,
+          16,
+          4
+        ],
+        "loss_schedule": "All specified losses active from update1 through20000; no selector, extra updates, or task-specific batch sampling."
+      },
+      "hierarchy_selection_and_termination": "One jointly trained conditional diffusion policy; no selector, phase label, route, analytic controller, success detector, termination gate, action search or rescue. Replan every4 executed actions under the unchanged episode clock; environment handles its existing termination.",
+      "chunk_transition_handling": "One latest-observation R_t and origin o_t are held for both history observations and the complete16-step chunk, including any approach/pull transition. No re-encoding or frame change during execution of first4 actions; recompute frame only at next replan. World-action P2 keeps identity action frame. Zero-pad tail actions/labels beyond the last valid transition and mask them out of all losses.",
+      "required_runtime_inputs": "Only two shared41-dimensional raw observations (initial repeated), including hand xyz/aperture, current/previous handle xyz, declared goal and yaw. No hidden state, future state, episode time feature, image, trained-model outcome, or expert action.",
+      "parameter_budget": "One U-Net widths[64,128,256], time embedding128, kernel5, groups8. No extra trainable encoder or head. Only conditioning/input/output dimensions differ from B0; expected under5.5M and must be counted before training, hard limit3x exact B0 count.",
+      "confidence": "Moderate geometry confidence from known prismatic rail and D2 agreement; low-to-moderate confidence of learned generalization benefit. No scores or additional demonstrations seen.",
+      "candidate_id": "P3",
+      "knowledge_hypotheses": [
+        {
+          "source": "external geometry/common knowledge",
+          "claim": "Rigid-coordinate changes express cabinet-parallel/perpendicular displacement without mixing x translation with yaw. A prismatic mechanism has one translational rail degree of freedom. This changes representation only; retaining world context avoids asserting whole-scene rotational symmetry.",
+          "source_reference": "Supplied task_materials.json source_knowledge (joint_type=prismatic, mechanism_axis=cabinet-local y), static_geometry_source hash2a2f29aa47ab399e16fe69c5428d2e14777842baf3e27b68a5b28884d1e14d59, and elementary rotation matrices; source implementation not opened."
+        },
+        {
+          "source": "observation from D2",
+          "claim": "Both demonstrations lift to ~0.302/0.305m at step25, descend before handle motion at transition69, then displace handle -0.134964/-0.130192m along local y; measured off-rail displacement below1e-8m. Initial goal-minus-handle is local y approximately-0.128m.",
+          "source_reference": "Both bundled NPZs, all transitions; all16 actual frames viewed."
+        },
+        {
+          "source": "unverified inference",
+          "claim": "Combining the cabinet frame with jointly predicted future hand-handle gap and rail travel could link contact establishment to subsequent progress while retaining a single continuous diffusion policy."
+        }
+      ],
+      "predicted_generalization_gain": "May combine P1 geometric transfer with better contact-to-pull sequencing from predicted future relations. Could underperform either simpler candidate if auxiliary geometry is redundant or difficult to extrapolate.",
+      "failure_conditions": [
+        "Shared target geometry can encourage nominal contact patterns unsupported by the fixed gripper at large yaw.",
+        "Errors in generated future geometry may interfere with action denoising; no runtime planner corrects them.",
+        "Future labels come only from successful D_N and provide no recovery examples."
+      ],
+      "architecture": {
+        "core": "shared conditional U-Net with joint local-action/future output",
+        "observation_dim": 25,
+        "action_diffusion_channels": 8,
+        "generated_order": [
+          "local action xyz + gripper [4]",
+          "future local hand-minus-handle gap /0.2m [3]",
+          "future signed remaining local-y travel /0.16m [1]"
+        ]
+      },
+      "modules": [
+        "P1 common-anchor local observations and reversible local action transform",
+        "D_N-only future contact-gap/rail target builder",
+        "8-channel joint diffusion; only decoded first4 executed"
+      ],
+      "observation_transform": {
+        "name": "fixed-scale local relations with retained world context",
+        "dim_per_whole_observation": 25,
+        "definition": "For latest raw observation x_t define normalized (s,c)=x_t[39:41]/norm, R_t=[[c,-s,0],[s,c,0],[0,0,1]], local ex=(c,s,0), ey=(-s,c,0) along cabinet prismatic rail, ez=(0,0,1) upward; origin o_t=x_t[4:7] is current yaw-corrected handle. Columns of R map local vectors into world; local vectors are R_t^T times world. Reject a nonfinite or norm<1e-6 yaw pair. All geometry lengths are meters.",
+        "history": "Both whole observations in the shared two-observation history use this same latest t anchor; initial observation is repeated. For each history member x_j use its current h=x_j[0:3], d=x_j[4:7], goal g=x_j[36:39], previous hprev=x_j[18:21], dprev=x_j[22:25].",
+        "ordered_features": [
+          "R_t^T(h-o_t)/0.2 [3]",
+          "R_t^T(d-o_t)/0.16 [3]",
+          "R_t^T(g-o_t)/0.16 [3]",
+          "R_t^T(h-hprev)/0.01 [3]",
+          "R_t^T(d-dprev)/0.01 [3]",
+          "world h / 1 meter [3]",
+          "world d / 1 meter [3]",
+          "x_j current aperture [1]",
+          "x_j previous aperture [1]",
+          "latest normalized s,c [2]"
+        ],
+        "normalization": "Exactly the listed fixed scales, all 25 output indices passthrough mean0/std1; no fitted observation statistics; no feature clipping. No object2 absent zeros or redundant quaternion retained."
+      },
+      "action_transform": {
+        "xyz": "For all 16 future actions use a_local_xyz=R_t^T a_world_xyz with latest replan R_t fixed. Coefficients remain native action units, where 1 means commanded 0.01m before native dynamics. No translation is applied to displacement actions.",
+        "gripper": "Fourth coordinate unchanged and learned; do not force the observed -1 constant.",
+        "decode": "Take generated first4 channels, world_xyz=R_t a_local_xyz, keep gripper, THEN clip each world coordinate and gripper to [-1,1]. Never clip local action coordinates (observed local values exceed magnitude1).",
+        "normalization": "identity; no data-fitted action scaling"
+      },
+      "losses_and_weights": [
+        {
+          "name": "action_epsilon",
+          "target": "standard Gaussian epsilon added to first4 local action channels",
+          "loss": "masked mean squared error over valid transitions and4 action coordinates",
+          "weight": 1.0,
+          "condition": "all valid sampled chunk positions at every update"
+        },
+        {
+          "name": "future_relation_epsilon",
+          "target": "epsilon on channels4:7 from R_t^T(hand_(t+k+1)-handle_(t+k+1))/0.2 and channel7 from ey_t dot(goal_t-handle_(t+k+1))/0.16 for k0..15; no clipping",
+          "loss": "masked mean squared error jointly averaged over4 auxiliary coordinates, separately from action average",
+          "weight": 0.25,
+          "condition": "all valid action positions at every update; tail padding masked"
+        }
+      ],
+      "required_train_labels": "Current goal and normalized yaw, and paired hand/handle positions at each action next-state t+k+1 within the same current D_N episode. Frame R_t remains current anchor for all futures. No reward, success or inferred phase labels.",
+      "implementation_steps": [
+        "Reuse P1 fixed-frame observation/action transforms.",
+        "Derive4-channel future contact-gap and rail labels using current-anchor rotation, preserving alignment.",
+        "Append labels to training action channels and instantiate8-channel U-Net.",
+        "Use action loss1 plus mean4-aux epsilon0.25; sample all8 but discard future channels at runtime; count parameters and verify padded tails."
+      ]
+    }
+  ]
+}

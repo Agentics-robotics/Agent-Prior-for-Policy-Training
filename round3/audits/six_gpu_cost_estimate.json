@@ -1,0 +1,63 @@
+{
+  "active_confirmed": [
+    {
+      "dev_status": "running",
+      "gpu": 0,
+      "pid": 324005,
+      "run_id": "r3_pick-place-wall_P1_n5_s0",
+      "train_status": "completed"
+    },
+    {
+      "dev_status": "running",
+      "gpu": 1,
+      "pid": 326566,
+      "run_id": "r3_pick-place-wall_P2_n5_s0",
+      "train_status": "completed"
+    },
+    {
+      "dev_status": "pending",
+      "gpu": "3",
+      "pid": 284663,
+      "run_id": "r3_pick-place-wall_P3_n5_s0",
+      "train_status": "running"
+    },
+    {
+      "dev_status": "running",
+      "gpu": 2,
+      "pid": 336156,
+      "run_id": "r3_pick-place-wall_P1_n20_s0",
+      "train_status": "completed"
+    },
+    {
+      "dev_status": "pending",
+      "gpu": "5",
+      "pid": 326154,
+      "run_id": "r3_pick-place-wall_P2_n20_s0",
+      "train_status": "running"
+    },
+    {
+      "dev_status": "pending",
+      "gpu": "4",
+      "pid": 326157,
+      "run_id": "r3_pick-place-wall_P3_n20_s0",
+      "train_status": "running"
+    }
+  ],
+  "assumptions": "Uses first2 actual completed train+dev costs; test cost extrapolated by episode count and not yet measured. More models/layouts and shared server load can change throughput.",
+  "authorized_physical_gpus": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "maximum_P4_increment_hours": 0.49415520157671483,
+  "observed_cost_source": "round3/audits/initial_cost_estimate.json",
+  "remaining_main_central_hours": 3.776059740094804,
+  "time": "2026-09-08T05:51:24.917988+00:00",
+  "working_range_hours": [
+    4,
+    6
+  ]
+}

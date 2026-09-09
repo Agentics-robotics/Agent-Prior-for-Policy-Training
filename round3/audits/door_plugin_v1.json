@@ -1,0 +1,136 @@
+{
+  "created_at": "2026-09-08T05:44:53.878559+00:00",
+  "proposal_sha256": "03f70c459713735215f67b46f75fccfa6937ab9ecd9f416cec43b47ab704f849",
+  "plugin_sha256": "8c6adb9b7c801f31a94d19f1deb714c6ec8b09826c8793a58c19138720ff158f",
+  "test_scope": "Exactly two bundled D2 trajectories, synthetic inputs, random untrained networks; no optimizer updates or environment episodes",
+  "candidate_results": {
+    "P1": {
+      "passed": true,
+      "observation_shape": [
+        220,
+        2,
+        55
+      ],
+      "target_shape": [
+        220,
+        16,
+        4
+      ],
+      "parameters": 4811332,
+      "parameter_ratio": 1.021301724906495,
+      "world_action_inverse_max_error": 1.7881393432617188e-07,
+      "tail_zero_padding_and_mask": true,
+      "fixed_passthrough_normalization": true,
+      "coherent_current_anchor_history": true,
+      "next_state_labels_all_valid_slots_verified": false,
+      "auxiliary_weight_and_tail_gradient_verified": false,
+      "finite_random_forward_backward": true,
+      "exact_DDIM_timesteps": [
+        90,
+        84,
+        78,
+        72,
+        66,
+        60,
+        54,
+        48,
+        42,
+        36,
+        30,
+        24,
+        18,
+        12,
+        6,
+        0
+      ],
+      "DDIM_unbounded_sampling": true,
+      "P1_sampler_equals_inherited_Policy": true
+    },
+    "P2": {
+      "passed": true,
+      "observation_shape": [
+        220,
+        2,
+        43
+      ],
+      "target_shape": [
+        220,
+        16,
+        12
+      ],
+      "parameters": 4728908,
+      "parameter_ratio": 1.003805577608056,
+      "world_action_inverse_max_error": 0.0,
+      "tail_zero_padding_and_mask": true,
+      "fixed_passthrough_normalization": true,
+      "coherent_current_anchor_history": true,
+      "next_state_labels_all_valid_slots_verified": true,
+      "auxiliary_weight_and_tail_gradient_verified": true,
+      "finite_random_forward_backward": true,
+      "exact_DDIM_timesteps": [
+        90,
+        84,
+        78,
+        72,
+        66,
+        60,
+        54,
+        48,
+        42,
+        36,
+        30,
+        24,
+        18,
+        12,
+        6,
+        0
+      ],
+      "DDIM_unbounded_sampling": true,
+      "P1_sampler_equals_inherited_Policy": false
+    },
+    "P3": {
+      "passed": true,
+      "observation_shape": [
+        220,
+        2,
+        55
+      ],
+      "target_shape": [
+        220,
+        16,
+        12
+      ],
+      "parameters": 4814924,
+      "parameter_ratio": 1.0220641989564805,
+      "world_action_inverse_max_error": 1.7881393432617188e-07,
+      "tail_zero_padding_and_mask": true,
+      "fixed_passthrough_normalization": true,
+      "coherent_current_anchor_history": true,
+      "next_state_labels_all_valid_slots_verified": true,
+      "auxiliary_weight_and_tail_gradient_verified": true,
+      "finite_random_forward_backward": true,
+      "exact_DDIM_timesteps": [
+        90,
+        84,
+        78,
+        72,
+        66,
+        60,
+        54,
+        48,
+        42,
+        36,
+        30,
+        24,
+        18,
+        12,
+        6,
+        0
+      ],
+      "DDIM_unbounded_sampling": true,
+      "P1_sampler_equals_inherited_Policy": false
+    }
+  },
+  "baseline_parameters": 4710980,
+  "passed": true
+}

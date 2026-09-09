@@ -1,0 +1,17 @@
+# pick-place-wall initial design, version 1
+
+Saved by `/root/design_pickwall` in actual `codex_session` mode at 2026-09-08T05:27:54Z, before implementation or training. Exact model/session/tokens/cost metadata is unavailable. The interrupted historical `proposal.draft.json` remains unchanged and was never a completed frozen proposal.
+
+All 16 real 480×480 PNG frames were viewed. Only the contract, this task's bundle, and the explicitly authorized draft were read for design. Both D2 trajectories were loaded through Pixi for numerical summaries and exact label checks. The JSON records all 23 bundle file SHA256 values; all 22 manifest entries match. The supplied source URL/XML path were not opened.
+
+The evidence shows acquisition, lifting, and mainly positive-world-y transport. The wall occupies x[-0.02,0.22], y[0.74,0.76], z[0,0.12] meters, so the fixed world cannot be treated as freely translation/rotation invariant. Object and goal x covary in the LL/HH demonstrations; cross-factor and extrapolation benefits remain hypotheses. Endpoints are about 6.87 cm from their goals with the gripper still closed. The bundle calls these successful episodes, but it does not establish exact placement or release behavior.
+
+- **P1:** Four separate world, grasp, goal, and wall feature branches condition one action diffusion model. Relative geometry may aid factor recombination while the world branch retains fixed-environment information. This is the simplest candidate, with uncertain benefit.
+- **P2:** A learned four-class soft progress variable conditions one shared action diffusion model. Training labels use three persistent observed geometry events; predicted probabilities are used during both training and deployment. Labels never select actions at runtime. There are only 13 D2 action anchors in the goal-side class, a substantial limitation.
+- **P3:** Combine P1 with joint diffusion of action and next hand/object displacement channels. A small supervised geometric consistency loss matches recorded clearance and hand-object separation at lower diffusion noise. Only sampled action channels are executed; predicted future states are discarded without search or guidance. The extra prediction burden may hurt D2 learning.
+
+P3 adopts a combination because input relations and supervised future motion supply complementary structure. Combining the event router as well was rejected: approximate, sparse phase labels would complicate interpretation and may compound motion prediction errors. None of the designs supplies an analytic controller, new observation channel, release rule, success detector, route rescue, or claim of visual-policy generalization.
+
+The complete JSON defines coordinates, fixed scales, exact labels/losses, masks, schedules, runtime decisions, chunk handling, and parameter accounting. All candidates retain the prescribed one-system 20,000-update diffusion budget and initialize separately from the current nested D_N only. P3 needs a training target-packing hook for six future channels, a 10-channel diffusion declaration, first-four-channel action extraction, and loss access to noisy samples and alpha_bar. These are implementation interfaces, not extra environment capabilities.
+
+No training/evaluation outcome or measured candidate parameter count is claimed. At most one substantive feasibility revision can be recorded separately with a new version and reason; no extra-demo or model-score feedback may alter this initial design.

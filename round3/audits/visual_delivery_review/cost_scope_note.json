@@ -1,0 +1,30 @@
+{
+  "reviewed_at": "2026-09-08T10:28:33.450755+00:00",
+  "severity": "nonblocking prose ambiguity; numerical totals correct",
+  "main_report_sha256": "527922ba3735a0b10ce83cee7ebb9f995652f7f92caa8c19f98004f2e321a322",
+  "quoted_ambiguous_sentence": "These totals cover validated completed systems only; running/interrupted formal sessions are not included.",
+  "clarification": "Formal costs for validated completed systems sum all their recorded training sessions, including historical interrupted sessions followed by successful resume. Currently incomplete systems are excluded. Debug and evaluation costs are outside this formal training total. Per-worker synchronized training time is not exclusive physical GPU occupancy.",
+  "independent_checked_examples": [
+    {
+      "run_id": "r3_drawer_B0_n10_s0",
+      "session_wall_seconds": [
+        533.0661012090277,
+        43.35250394407194
+      ],
+      "reported_total_session_wall_seconds": 576.4186051530996,
+      "matches_all_sessions": true
+    },
+    {
+      "run_id": "r3_drawer_P1_n10_s0",
+      "session_wall_seconds": [
+        447.0613449040102,
+        140.51233979791868
+      ],
+      "reported_total_session_wall_seconds": 587.5736847019289,
+      "matches_all_sessions": true
+    }
+  ],
+  "source_evidence": "src/round3/learning.py:309 sums wall_seconds for all recorded sessions; src/round3/report.py:889 sums validated completed systems.",
+  "parent_action": "Parent is clarifying the Chinese delivery summary and recording a dedicated cost-scope clarification; report.py and bound cached outputs remain unchanged.",
+  "final_review_reference": "round3/audits/visual_delivery_review/final_review.json"
+}

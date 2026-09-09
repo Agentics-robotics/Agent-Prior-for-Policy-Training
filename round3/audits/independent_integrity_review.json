@@ -1,0 +1,871 @@
+{
+  "audit": "independent bounded initial implementation and completed-training integrity review",
+  "created_at": "2026-09-08T06:08:36.499022+00:00",
+  "status": "no_concrete_bug_found_in_reviewed_scope",
+  "completed_training_runs_reviewed": 14,
+  "runs": [
+    {
+      "run_id": "r3_assembly_B0_n20_s0",
+      "action_dim": 4,
+      "parameter_ratio": 1.0,
+      "pairing_digest": "9bc2d4e959ab3e996b08c5d43ba912db7094bfe5f2e0456004543d0a995231a2"
+    },
+    {
+      "run_id": "r3_assembly_B0_n5_s0",
+      "action_dim": 4,
+      "parameter_ratio": 1.0,
+      "pairing_digest": "713ba1221675ffa46fc5979837bcef25a447cccca1d566d7efafab1c9c366a13"
+    },
+    {
+      "run_id": "r3_assembly_P1_n20_s0",
+      "action_dim": 4,
+      "parameter_ratio": 1.0091154410586527,
+      "pairing_digest": "9bc2d4e959ab3e996b08c5d43ba912db7094bfe5f2e0456004543d0a995231a2"
+    },
+    {
+      "run_id": "r3_assembly_P1_n5_s0",
+      "action_dim": 4,
+      "parameter_ratio": 1.0091154410586527,
+      "pairing_digest": "713ba1221675ffa46fc5979837bcef25a447cccca1d566d7efafab1c9c366a13"
+    },
+    {
+      "run_id": "r3_assembly_P2_n5_s0",
+      "action_dim": 4,
+      "parameter_ratio": 1.025827082999516,
+      "pairing_digest": "713ba1221675ffa46fc5979837bcef25a447cccca1d566d7efafab1c9c366a13"
+    },
+    {
+      "run_id": "r3_assembly_P3_n5_s0",
+      "action_dim": 4,
+      "parameter_ratio": 1.0463130872537276,
+      "pairing_digest": "713ba1221675ffa46fc5979837bcef25a447cccca1d566d7efafab1c9c366a13"
+    },
+    {
+      "run_id": "r3_pick-place-wall_B0_n20_s0",
+      "action_dim": 4,
+      "parameter_ratio": 1.0,
+      "pairing_digest": "34a558fbb0febb2662155de713e616fc753b63757a5d0bde12938e2538dc3fc5"
+    },
+    {
+      "run_id": "r3_pick-place-wall_B0_n5_s0",
+      "action_dim": 4,
+      "parameter_ratio": 1.0,
+      "pairing_digest": "6e04019bbb048b8e9c222e09fc5547e840fc4a2735cb21e35dec8851b52a9f0d"
+    },
+    {
+      "run_id": "r3_pick-place-wall_P1_n20_s0",
+      "action_dim": 4,
+      "parameter_ratio": 1.0385648566603625,
+      "pairing_digest": "34a558fbb0febb2662155de713e616fc753b63757a5d0bde12938e2538dc3fc5"
+    },
+    {
+      "run_id": "r3_pick-place-wall_P1_n5_s0",
+      "action_dim": 4,
+      "parameter_ratio": 1.0385648566603625,
+      "pairing_digest": "6e04019bbb048b8e9c222e09fc5547e840fc4a2735cb21e35dec8851b52a9f0d"
+    },
+    {
+      "run_id": "r3_pick-place-wall_P2_n20_s0",
+      "action_dim": 4,
+      "parameter_ratio": 1.0590093956265143,
+      "pairing_digest": "34a558fbb0febb2662155de713e616fc753b63757a5d0bde12938e2538dc3fc5"
+    },
+    {
+      "run_id": "r3_pick-place-wall_P2_n5_s0",
+      "action_dim": 4,
+      "parameter_ratio": 1.0590093956265143,
+      "pairing_digest": "6e04019bbb048b8e9c222e09fc5547e840fc4a2735cb21e35dec8851b52a9f0d"
+    },
+    {
+      "run_id": "r3_pick-place-wall_P3_n20_s0",
+      "action_dim": 10,
+      "parameter_ratio": 1.0391332528210933,
+      "pairing_digest": "0128b4c01cbb16f3f7ea11fd5a18a74e1e5de923e532eb432bcde3023f697de9"
+    },
+    {
+      "run_id": "r3_pick-place-wall_P3_n5_s0",
+      "action_dim": 10,
+      "parameter_ratio": 1.0391332528210933,
+      "pairing_digest": "89d294a7adaedaafce9a452962bff60e05d49c65ab7e880a482c89e5696a91f4"
+    }
+  ],
+  "automated_checks": [
+    {
+      "check": "r3_assembly_B0_n20_s0:budget_flags",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "r3_assembly_B0_n20_s0:parameter_cap",
+      "passed": true,
+      "detail": {
+        "ratio": 1.0
+      }
+    },
+    {
+      "check": "r3_assembly_B0_n20_s0:config_identity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "r3_assembly_B0_n20_s0:source_identity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "r3_assembly_B0_n20_s0:current_DN_ids_hashes",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "r3_assembly_B0_n20_s0:checkpoint_records",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "r3_assembly_B0_n5_s0:budget_flags",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "r3_assembly_B0_n5_s0:parameter_cap",
+      "passed": true,
+      "detail": {
+        "ratio": 1.0
+      }
+    },
+    {
+      "check": "r3_assembly_B0_n5_s0:config_identity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "r3_assembly_B0_n5_s0:source_identity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "r3_assembly_B0_n5_s0:current_DN_ids_hashes",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "r3_assembly_B0_n5_s0:checkpoint_records",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "r3_assembly_P1_n20_s0:budget_flags",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "r3_assembly_P1_n20_s0:parameter_cap",
+      "passed": true,
+      "detail": {
+        "ratio": 1.0091154410586527
+      }
+    },
+    {
+      "check": "r3_assembly_P1_n20_s0:config_identity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "r3_assembly_P1_n20_s0:source_identity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "r3_assembly_P1_n20_s0:current_DN_ids_hashes",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "r3_assembly_P1_n20_s0:checkpoint_records",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "r3_assembly_P1_n5_s0:budget_flags",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "r3_assembly_P1_n5_s0:parameter_cap",
+      "passed": true,
+      "detail": {
+        "ratio": 1.0091154410586527
+      }
+    },
+    {
+      "check": "r3_assembly_P1_n5_s0:config_identity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "r3_assembly_P1_n5_s0:source_identity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "r3_assembly_P1_n5_s0:current_DN_ids_hashes",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "r3_assembly_P1_n5_s0:checkpoint_records",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "r3_assembly_P2_n5_s0:budget_flags",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "r3_assembly_P2_n5_s0:parameter_cap",
+      "passed": true,
+      "detail": {
+        "ratio": 1.025827082999516
+      }
+    },
+    {
+      "check": "r3_assembly_P2_n5_s0:config_identity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "r3_assembly_P2_n5_s0:source_identity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "r3_assembly_P2_n5_s0:current_DN_ids_hashes",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "r3_assembly_P2_n5_s0:checkpoint_records",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "r3_assembly_P3_n5_s0:budget_flags",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "r3_assembly_P3_n5_s0:parameter_cap",
+      "passed": true,
+      "detail": {
+        "ratio": 1.0463130872537276
+      }
+    },
+    {
+      "check": "r3_assembly_P3_n5_s0:config_identity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "r3_assembly_P3_n5_s0:source_identity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "r3_assembly_P3_n5_s0:current_DN_ids_hashes",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "r3_assembly_P3_n5_s0:checkpoint_records",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "r3_pick-place-wall_B0_n20_s0:budget_flags",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "r3_pick-place-wall_B0_n20_s0:parameter_cap",
+      "passed": true,
+      "detail": {
+        "ratio": 1.0
+      }
+    },
+    {
+      "check": "r3_pick-place-wall_B0_n20_s0:config_identity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "r3_pick-place-wall_B0_n20_s0:source_identity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "r3_pick-place-wall_B0_n20_s0:current_DN_ids_hashes",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "r3_pick-place-wall_B0_n20_s0:checkpoint_records",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "r3_pick-place-wall_B0_n5_s0:budget_flags",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "r3_pick-place-wall_B0_n5_s0:parameter_cap",
+      "passed": true,
+      "detail": {
+        "ratio": 1.0
+      }
+    },
+    {
+      "check": "r3_pick-place-wall_B0_n5_s0:config_identity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "r3_pick-place-wall_B0_n5_s0:source_identity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "r3_pick-place-wall_B0_n5_s0:current_DN_ids_hashes",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "r3_pick-place-wall_B0_n5_s0:checkpoint_records",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "r3_pick-place-wall_P1_n20_s0:budget_flags",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "r3_pick-place-wall_P1_n20_s0:parameter_cap",
+      "passed": true,
+      "detail": {
+        "ratio": 1.0385648566603625
+      }
+    },
+    {
+      "check": "r3_pick-place-wall_P1_n20_s0:config_identity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "r3_pick-place-wall_P1_n20_s0:source_identity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "r3_pick-place-wall_P1_n20_s0:current_DN_ids_hashes",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "r3_pick-place-wall_P1_n20_s0:checkpoint_records",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "r3_pick-place-wall_P1_n5_s0:budget_flags",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "r3_pick-place-wall_P1_n5_s0:parameter_cap",
+      "passed": true,
+      "detail": {
+        "ratio": 1.0385648566603625
+      }
+    },
+    {
+      "check": "r3_pick-place-wall_P1_n5_s0:config_identity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "r3_pick-place-wall_P1_n5_s0:source_identity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "r3_pick-place-wall_P1_n5_s0:current_DN_ids_hashes",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "r3_pick-place-wall_P1_n5_s0:checkpoint_records",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "r3_pick-place-wall_P2_n20_s0:budget_flags",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "r3_pick-place-wall_P2_n20_s0:parameter_cap",
+      "passed": true,
+      "detail": {
+        "ratio": 1.0590093956265143
+      }
+    },
+    {
+      "check": "r3_pick-place-wall_P2_n20_s0:config_identity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "r3_pick-place-wall_P2_n20_s0:source_identity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "r3_pick-place-wall_P2_n20_s0:current_DN_ids_hashes",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "r3_pick-place-wall_P2_n20_s0:checkpoint_records",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "r3_pick-place-wall_P2_n5_s0:budget_flags",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "r3_pick-place-wall_P2_n5_s0:parameter_cap",
+      "passed": true,
+      "detail": {
+        "ratio": 1.0590093956265143
+      }
+    },
+    {
+      "check": "r3_pick-place-wall_P2_n5_s0:config_identity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "r3_pick-place-wall_P2_n5_s0:source_identity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "r3_pick-place-wall_P2_n5_s0:current_DN_ids_hashes",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "r3_pick-place-wall_P2_n5_s0:checkpoint_records",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "r3_pick-place-wall_P3_n20_s0:budget_flags",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "r3_pick-place-wall_P3_n20_s0:parameter_cap",
+      "passed": true,
+      "detail": {
+        "ratio": 1.0391332528210933
+      }
+    },
+    {
+      "check": "r3_pick-place-wall_P3_n20_s0:config_identity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "r3_pick-place-wall_P3_n20_s0:source_identity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "r3_pick-place-wall_P3_n20_s0:current_DN_ids_hashes",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "r3_pick-place-wall_P3_n20_s0:checkpoint_records",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "r3_pick-place-wall_P3_n5_s0:budget_flags",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "r3_pick-place-wall_P3_n5_s0:parameter_cap",
+      "passed": true,
+      "detail": {
+        "ratio": 1.0391332528210933
+      }
+    },
+    {
+      "check": "r3_pick-place-wall_P3_n5_s0:config_identity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "r3_pick-place-wall_P3_n5_s0:source_identity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "r3_pick-place-wall_P3_n5_s0:current_DN_ids_hashes",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "r3_pick-place-wall_P3_n5_s0:checkpoint_records",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "assembly:N20:sameN_ids",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "assembly:N20:action4_paired_rng",
+      "passed": true,
+      "detail": [
+        "B0",
+        "P1"
+      ]
+    },
+    {
+      "check": "assembly:N5:sameN_ids",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "assembly:N5:action4_paired_rng",
+      "passed": true,
+      "detail": [
+        "B0",
+        "P1",
+        "P2",
+        "P3"
+      ]
+    },
+    {
+      "check": "pick-place-wall:N20:sameN_ids",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pick-place-wall:N20:action4_paired_rng",
+      "passed": true,
+      "detail": [
+        "B0",
+        "P1",
+        "P2"
+      ]
+    },
+    {
+      "check": "pick-place-wall:N5:sameN_ids",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pick-place-wall:N5:action4_paired_rng",
+      "passed": true,
+      "detail": [
+        "B0",
+        "P1",
+        "P2"
+      ]
+    },
+    {
+      "check": "assembly:B0:proposal_hash",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "assembly:P1:proposal_hash",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "assembly:P1:amendment_hash",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "assembly:P1:freeze_hash",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "assembly:P2:proposal_hash",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "assembly:P2:amendment_hash",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "assembly:P2:freeze_hash",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "assembly:P3:proposal_hash",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "assembly:P3:amendment_hash",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "assembly:P3:freeze_hash",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "door:B0:proposal_hash",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "door:P1:proposal_hash",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "door:P1:freeze_hash",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "door:P2:proposal_hash",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "door:P2:freeze_hash",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "door:P3:proposal_hash",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "door:P3:freeze_hash",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "drawer:B0:proposal_hash",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "drawer:P1:proposal_hash",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "drawer:P1:freeze_hash",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "drawer:P2:proposal_hash",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "drawer:P2:freeze_hash",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "drawer:P3:proposal_hash",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "drawer:P3:freeze_hash",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "peg-insert-side:B0:proposal_hash",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "peg-insert-side:P1:proposal_hash",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "peg-insert-side:P1:freeze_hash",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "peg-insert-side:P2:proposal_hash",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "peg-insert-side:P2:freeze_hash",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "peg-insert-side:P3:proposal_hash",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "peg-insert-side:P3:freeze_hash",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pick-place-wall:B0:proposal_hash",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pick-place-wall:P1:proposal_hash",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pick-place-wall:P1:amendment_hash",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pick-place-wall:P1:freeze_hash",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pick-place-wall:P2:proposal_hash",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pick-place-wall:P2:amendment_hash",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pick-place-wall:P2:freeze_hash",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pick-place-wall:P3:proposal_hash",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pick-place-wall:P3:amendment_hash",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pick-place-wall:P3:freeze_hash",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "stick-push:B0:proposal_hash",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "stick-push:P1:proposal_hash",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "stick-push:P1:freeze_hash",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "stick-push:P2:proposal_hash",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "stick-push:P2:freeze_hash",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "stick-push:P3:proposal_hash",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "stick-push:P3:freeze_hash",
+      "passed": true,
+      "detail": null
+    }
+  ],
+  "issues": [],
+  "source_review": {
+    "files": [
+      "src/round3/learning.py",
+      "src/round3/plugins.py",
+      "src/round3/assembly_plugin.py",
+      "src/round3/pickwall_plugin.py",
+      "src/round3/drawer_plugin.py",
+      "src/round3/door_plugin.py",
+      "src/round3/stick_plugin.py",
+      "src/round3/peg_plugin.py",
+      "src/relative_dp/dataset.py",
+      "src/relative_dp/config.py",
+      "src/round3/evaluate.py"
+    ],
+    "findings": [
+      "Shared WindowDataset uniformly samples all real current-D_N transition starts with independent CPU loader RNG, repeats initial observation, and zero-pads invalid action tails with validity masks.",
+      "Normalizer and supervision consume only manifest train20[:N]; auxiliary future fields are derived during training from those episodes.",
+      "Initial candidate architecture/channel mechanisms reviewed against saved proposal architecture summaries; assembly and pick-place-wall feasibility amendments explicitly authorize inherited zero-tail/default conventions.",
+      "Runtime action path receives two numerical observations and diffusion generator. Future/event labels are not runtime inputs. Joint future channels are discarded before world execution; learned event probabilities condition one denoiser.",
+      "Local coordinate actions decode before native [-1,1] world clipping. Evaluator repeats the same already-clipped world bound without a further transform.",
+      "Action-four same-task/same-N completed pairing digests are compared. Joint diffusion channels intentionally consume differently sized Gaussian streams; joint digest equality is not required."
+    ]
+  },
+  "scope_limits": [
+    "Bounded source review, not an exhaustive symbolic equivalence proof of every proposal feature and constant.",
+    "Only runs with complete.json at audit start were inspected; active/incomplete runs are excluded.",
+    "Checkpoint record existence checked; large checkpoint payload hashes were not independently recomputed or deserialized in this bounded review.",
+    "No GPU allocation, model construction, training, or evaluation performed.",
+    "No locked test states, locked test results, or test rollout arrays opened. Data manifests were read only to compare train20 prefix identifiers/hashes; no split state payloads opened.",
+    "No development outcome comparison was needed for this integrity audit.",
+    "Only this audit JSON is written; no source, configuration, proposal, frozen data, run status, or training artifacts were modified."
+  ]
+}

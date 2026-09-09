@@ -1,0 +1,397 @@
+{
+  "task": "peg-insert-side",
+  "version": 1,
+  "created_at": "2026-09-08T05:41:54.068651+00:00",
+  "agent_backend": "codex_session",
+  "designer": {
+    "subagent_name": "/root/design_peg",
+    "model": "not exposed",
+    "session": "not exposed",
+    "tokens": "not exposed",
+    "cost": "not exposed"
+  },
+  "context_exposure": {
+    "read_scope": [
+      "round3/DESIGN_CONTRACT.md",
+      "round3/evidence/peg-insert-side/*"
+    ],
+    "inherited_context": "Parent task restrictions and shared execution defaults, user AGENTS instructions. No parent source or reports read before this proposal.",
+    "actual_reads": [
+      "All contract text",
+      "Evidence DESIGN_INTERFACE.md, task_materials.json, bundle.json, frames.json via cat",
+      "D2_summary.json via cat output partly truncated; no claim full rendered summary read",
+      "Both complete trajectory NPZ loaded using Pixi numpy and numerical summaries computed",
+      "All16 PNG images individually viewed"
+    ],
+    "prohibited_not_read": [
+      "expert/reward/source implementation",
+      "D>2",
+      "older task reports",
+      "concrete dev/test states or model results"
+    ]
+  },
+  "evidence_hashes": {
+    "round3/evidence/peg-insert-side/D2_summary.json": "3c0e0ec942db85dd5fa90a9ced511998c7b9e3a29f3cb7f48729cb710c8de176",
+    "round3/evidence/peg-insert-side/DESIGN_INTERFACE.md": "fe0a1c4a12c4bd170d432f48cf1cb3ae98028cc37a5d1ad0f4cff6d0d14f0101",
+    "round3/evidence/peg-insert-side/bundle.json": "6a8fa210405c89d3e978f60d161da3317590bde396f749a9000de25ad740563b",
+    "round3/evidence/peg-insert-side/demo_1_frame_00_step_000.png": "344199161dfbf858d9b4c0a059c0a5eb526df6e1844d217da9d15a4ef9d0d321",
+    "round3/evidence/peg-insert-side/demo_1_frame_01_step_011.png": "740c136734ee71b07561e2326fdc78ed9704e30ec142f20b1bdcd286e85872f4",
+    "round3/evidence/peg-insert-side/demo_1_frame_02_step_022.png": "cb39a3b03984e7173bc30c890fb9a1a1c5503bfe4bf4fe6776441988fa7130c7",
+    "round3/evidence/peg-insert-side/demo_1_frame_03_step_033.png": "f3825e0fdd20da3b98c3d602800283bf82a3b418069357779e706c07bbc9ef74",
+    "round3/evidence/peg-insert-side/demo_1_frame_04_step_044.png": "1f502b7984bcffdf0d17cec68fb85cfa846989f872069b76f8bf31aa19f08ba2",
+    "round3/evidence/peg-insert-side/demo_1_frame_05_step_055.png": "a4a0b63147b22080eb2f1dc90fa6f918b74f64e1de4cd46b9c246dcec7b831b1",
+    "round3/evidence/peg-insert-side/demo_1_frame_06_step_066.png": "aeef2638d61cb53ca0c9f7d9103dd5bca02bfbde7a71f241b5f5dfdada586bac",
+    "round3/evidence/peg-insert-side/demo_1_frame_07_step_077.png": "1349c9032979299e1bca708dc8b26ca0e1df66e31d79fe66d94777ffbce3f665",
+    "round3/evidence/peg-insert-side/demo_1_trajectory.npz": "8b9700220557c3720826d5c637211995257fea3f72a286122a1726dc00a4afe1",
+    "round3/evidence/peg-insert-side/demo_2_frame_00_step_000.png": "3778d19f84ea3e8ddda683d6cfc03ea0d904d31f52a6658090b2d61405ed64cb",
+    "round3/evidence/peg-insert-side/demo_2_frame_01_step_013.png": "9eb047bb41378001eac69e2f929346d50b4ef8633ed673feaa79031eec5e4ac1",
+    "round3/evidence/peg-insert-side/demo_2_frame_02_step_026.png": "aa8a4e2c4282ec0b1557ec876acf4d10340720a7fb1e07a4e26c41684da3ef9a",
+    "round3/evidence/peg-insert-side/demo_2_frame_03_step_039.png": "1bd0cc72019a995e479a37e50d88402e847d538e73005f2ac969eef60c4bc9ea",
+    "round3/evidence/peg-insert-side/demo_2_frame_04_step_052.png": "3a5442855a1ca7f4eaa12f8680af4f5ca7b8839a6b96d3745ff2232cfbfdf3df",
+    "round3/evidence/peg-insert-side/demo_2_frame_05_step_065.png": "e80d2276dc89e26d7f4af7a6250873aea4dd0b3e80cb1bd6ac80df68d7ce2549",
+    "round3/evidence/peg-insert-side/demo_2_frame_06_step_078.png": "550461aee4c8de5f0d037dbd79911d838ce6c20be28fb568d784e261a15474c2",
+    "round3/evidence/peg-insert-side/demo_2_frame_07_step_091.png": "d2232a548005effa0beeeebd608c178ffb5a7e6e66e2e4ef1efa3afc48581a1d",
+    "round3/evidence/peg-insert-side/demo_2_trajectory.npz": "541a76664352ad3d0f8e1144693b333ffeb1ba32d0b7e9b3cf56192751dbc7a1",
+    "round3/evidence/peg-insert-side/frames.json": "029621e5830d9583178890419005b718da0f7e22317cbb516fd0a8bbda5bf534",
+    "round3/evidence/peg-insert-side/task_materials.json": "a018ace4404b4db3a34a687ae16b169a5758f8fee9b23c4cf89b713a87447227"
+  },
+  "combination_consideration": {
+    "adopted": "P3 is exact P1+P2 combination, retaining independent P1/P2 ablations.",
+    "reason": "Current relation conditioning and future relation denoising address distinguishable parts of action learning and can share one network/budget.",
+    "rejected_alternatives": "Did not add hard grasp/contact routing or zero-distance terminal controller: D2 offers no failures, closure precedes measured lift by26/28 steps, and terminal head-goal x residual remains about0.064m. Did not force environment invariance because robot and gravity fixed.",
+    "selection": "Record and implement all three candidates; no outcome-based initial selection."
+  },
+  "candidates": [
+    {
+      "evidence_refs": [
+        "task_materials.json: observation_schema/action_schema/source_knowledge",
+        "demo_1_trajectory.npz: all78 observations and77 transitions; grasp closure step32, grasp height>0.05m step58",
+        "demo_2_trajectory.npz: all92 observations and91 transitions; closure step34, grasp height>0.05m step62",
+        "frames.json: all16 listed frames viewed; demo1 steps0/11/22/33/44/55/66/77 and demo2 steps0/13/26/39/52/65/78/91"
+      ],
+      "action_transform": {
+        "encode": "Native [world_dx,world_dy,world_dz,gripper] identity on all four physical control channels. xyz=1 requests0.01m at dt0.0125s; this is a command, not assumed realized displacement.",
+        "decode": "Read first4 output channels unchanged as native world control; apply world cube clipping[-1,1]^4 AFTER decoding. Auxiliary channels, if any, are discarded.",
+        "chunk_frame": "World axes fixed at replan and throughout all16 predictions; execute first4. No per-slot recentering."
+      },
+      "augmentation": "None. No whole-environment rotations/translations or label perturbations.",
+      "training_schedule": {
+        "datasets": "Each N in 2/5/10/20 starts from scratch seed0; statistics/targets use current nested D_N only.",
+        "optimizer": "AdamW lr=1e-4 wd=1e-6 betas=(0.9,0.999), gradient_clip=1, EMA=0.995",
+        "updates": 20000,
+        "total_batch_chunks": 128,
+        "window_sampling": "Uniform CPU torch.randint over all current D_N transition starts; length16, zero padded tails excluded by validity mask.",
+        "diffusion": "epsilon prediction, 100 cosine DDPM steps; DDIM16 leading integer timesteps [90,84,78,72,66,60,54,48,42,36,30,24,18,12,6,0], eta=0, no clean-sample clipping",
+        "history": 2,
+        "predict": 16,
+        "execute": 4,
+        "aux_schedule": "Auxiliary loss active at fixed declared weight for all updates; no pretraining or extra updates."
+      },
+      "hierarchy_selection_and_termination": "Single diffusion policy; no router, phase oracle, geometric action controller, predicted-success termination, or clock. Replan each4 actions until shared environment/horizon termination; episode clock unchanged.",
+      "chunk_transition_handling": "Keep one conditioning two-observation history for complete16-action plan. No switching within chunk; execute4 then replan. Tail slots zero padded/masked during training. For auxiliary targets, all displacements use the observation at initial chunk anchor t.",
+      "required_runtime_inputs": "Exactly two common raw42 observations, including pegHead and fixed goal. No images, future states, initial factors, hidden state, expert action, task-specific success signal, or auxiliary target at runtime.",
+      "parameter_budget": "One shared U-Net, no separate experts; <=3x B0. Exact instantiated parameter counts must be audited before formal runs.",
+      "confidence": "Moderate mechanism plausibility; low empirical certainty from exactly two positive-only trajectories. No performance has been measured.",
+      "candidate_id": "P1",
+      "knowledge_hypotheses": [
+        {
+          "source": "external geometry/common knowledge",
+          "claim": "A fixed-axis insertion has separate axial x travel and transverse yz alignment; relative hand/grasp and head/goal locations express these relations.",
+          "source_ref": "task_materials.json source_knowledge and supplied static-geometry attribution; no external implementation read."
+        },
+        {
+          "source": "observation from D2",
+          "claim": "The observed head is offset from the grasp site by approximately[-0.13,0,-0.01]m in both D2 episodes; grasp-hand offsets settle after lift.",
+          "source_ref": "Both trajectory NPZ; max deviation around mean head-grasp offset <=2.1e-7m."
+        },
+        {
+          "source": "unverified inference",
+          "claim": "Separating relative grasp and insertion geometry may reduce reliance on correlated initial peg_y/box_y in LL/HH and aid LH/HL compositions.",
+          "source_ref": "task_materials.json distribution plus two demonstrations only."
+        }
+      ],
+      "predicted_generalization_gain": "Prospective: expose independent grasp and head-goal errors to improve recombination; fixed metric scaling may avoid small-D_N variance amplification.",
+      "applicability": "Fixed observed insertion geometry and valid common physical pose channels; world gravity retained.",
+      "failure_conditions": [
+        "Relative features still allow LL/HH shortcuts via retained raw fields.",
+        "No failure demonstrations teach recovery, and relational coordinates alone need not prevent early transport.",
+        "Fixed0.1m feature scaling may require larger feature extrapolation than trained trajectories."
+      ],
+      "architecture": {
+        "backbone": "Conditional temporal U-Net widths [64,128,256], time embedding128, kernel5, groups8, shared two-observation conditioning",
+        "action_channels": 4,
+        "trainable_parameter_cap": "<=3 times identically measured B0; verify before formal runs",
+        "control": "Every executed action is a sampled diffusion output decoded into native world xyz+gripper.",
+        "conditioning_per_observation": 62
+      },
+      "modules": [
+        "Fixed peg relation feature map",
+        "Shared4-channel action diffusion U-Net"
+      ],
+      "observation_transform": {
+        "raw_retained": {
+          "raw_fields": "All42 common raw channels including observed peg head, with same two-observation history as B0.",
+          "units": "World x,y,z positions in metres; quaternion xyzw; aperture unitless; prior/current raw channels unchanged.",
+          "normalization": "Fixed scale1 for all raw fields, fixed zero center; passthrough all coordinates. No current or future dataset fitting."
+        },
+        "appended_order": [
+          "(grasp-hand)/0.1m [xyz]",
+          "(goal-head)/0.1m [xyz]",
+          "(head-grasp)/0.1m [xyz]",
+          "(goal-hand)/0.1m [xyz]",
+          "(current_hand-raw_previous_hand)/0.01m [xyz]",
+          "(current_grasp-raw_previous_grasp)/0.01m [xyz]",
+          "norm((grasp-hand)[xy])/0.1m",
+          "norm((goal-head)[yz])/0.1m"
+        ],
+        "output_dimension_per_observation": 62,
+        "axes": "Native fixed world x insertion axis, world y lateral alignment, world z gravity. No rotation or translating the environment.",
+        "history": "Apply deterministic feature map independently to each of the two raw observations, retaining their actual native previous fields; first observation repeated at reset.",
+        "normalization": "All62 features passthrough downstream normalization; scaling above fixed from physical metric convention, not data-fitted."
+      },
+      "losses_and_weights": {
+        "action_epsilon": {
+          "target": "Independent standard Gaussian epsilon added to first4 encoded physical action coordinates under shared DDPM schedule",
+          "weight": 1.0,
+          "reduction": "Mean squared error over first4 channels and valid chunk slots only, averaged over batch",
+          "applies": "All sampled training windows, all updates"
+        },
+        "extra": "None"
+      },
+      "required_train_labels": "Only demonstrated action chunks and validity masks; no added labels.",
+      "implementation_steps": [
+        "Implement deterministic62D observation map with fixed normalization passthrough.",
+        "Keep4D identity world actions and shared diffusion.",
+        "Audit feature values, action round trip, valid-mask handling, parameter count."
+      ]
+    },
+    {
+      "evidence_refs": [
+        "task_materials.json: observation_schema/action_schema/source_knowledge",
+        "demo_1_trajectory.npz: all78 observations and77 transitions; grasp closure step32, grasp height>0.05m step58",
+        "demo_2_trajectory.npz: all92 observations and91 transitions; closure step34, grasp height>0.05m step62",
+        "frames.json: all16 listed frames viewed; demo1 steps0/11/22/33/44/55/66/77 and demo2 steps0/13/26/39/52/65/78/91"
+      ],
+      "action_transform": {
+        "encode": "Native [world_dx,world_dy,world_dz,gripper] identity on all four physical control channels. xyz=1 requests0.01m at dt0.0125s; this is a command, not assumed realized displacement.",
+        "decode": "Read first4 output channels unchanged as native world control; apply world cube clipping[-1,1]^4 AFTER decoding. Auxiliary channels, if any, are discarded.",
+        "chunk_frame": "World axes fixed at replan and throughout all16 predictions; execute first4. No per-slot recentering."
+      },
+      "augmentation": "None. No whole-environment rotations/translations or label perturbations.",
+      "training_schedule": {
+        "datasets": "Each N in 2/5/10/20 starts from scratch seed0; statistics/targets use current nested D_N only.",
+        "optimizer": "AdamW lr=1e-4 wd=1e-6 betas=(0.9,0.999), gradient_clip=1, EMA=0.995",
+        "updates": 20000,
+        "total_batch_chunks": 128,
+        "window_sampling": "Uniform CPU torch.randint over all current D_N transition starts; length16, zero padded tails excluded by validity mask.",
+        "diffusion": "epsilon prediction, 100 cosine DDPM steps; DDIM16 leading integer timesteps [90,84,78,72,66,60,54,48,42,36,30,24,18,12,6,0], eta=0, no clean-sample clipping",
+        "history": 2,
+        "predict": 16,
+        "execute": 4,
+        "aux_schedule": "Auxiliary loss active at fixed declared weight for all updates; no pretraining or extra updates."
+      },
+      "hierarchy_selection_and_termination": "Single diffusion policy; no router, phase oracle, geometric action controller, predicted-success termination, or clock. Replan each4 actions until shared environment/horizon termination; episode clock unchanged.",
+      "chunk_transition_handling": "Keep one conditioning two-observation history for complete16-action plan. No switching within chunk; execute4 then replan. Tail slots zero padded/masked during training. For auxiliary targets, all displacements use the observation at initial chunk anchor t.",
+      "required_runtime_inputs": "Exactly two common raw42 observations, including pegHead and fixed goal. No images, future states, initial factors, hidden state, expert action, task-specific success signal, or auxiliary target at runtime.",
+      "parameter_budget": "One shared U-Net, no separate experts; <=3x B0. Exact instantiated parameter counts must be audited before formal runs.",
+      "confidence": "Moderate mechanism plausibility; low empirical certainty from exactly two positive-only trajectories. No performance has been measured.",
+      "candidate_id": "P2",
+      "knowledge_hypotheses": [
+        {
+          "source": "external geometry/common knowledge",
+          "claim": "A fixed-axis insertion has separate axial x travel and transverse yz alignment; relative hand/grasp and head/goal locations express these relations.",
+          "source_ref": "task_materials.json source_knowledge and supplied static-geometry attribution; no external implementation read."
+        },
+        {
+          "source": "observation from D2",
+          "claim": "The observed head is offset from the grasp site by approximately[-0.13,0,-0.01]m in both D2 episodes; grasp-hand offsets settle after lift.",
+          "source_ref": "Both trajectory NPZ; max deviation around mean head-grasp offset <=2.1e-7m."
+        },
+        {
+          "source": "unverified inference",
+          "claim": "Jointly denoising action and its future peg motion/grasp relation can share knowledge of action consequences, reducing implausible action chunks under new layouts.",
+          "source_ref": "D2 has stable carried grasp offsets but varying episode duration; no counterfactual evidence."
+        }
+      ],
+      "predicted_generalization_gain": "Prospective: future physical relation supervision may regularize action chunk learning and promote consistent grasp-then-transport predictions; may also fail from extra modeling burden.",
+      "applicability": "Current-D_N trajectories include next observations, including terminal observation for each action.",
+      "failure_conditions": [
+        "Joint future dimensions can consume model capacity or dilute action learning despite0.2 weight.",
+        "Future prediction is observational and need not reflect causal correctness off distribution.",
+        "No test-time enforcement ensures sampled actions agree with sampled future channels."
+      ],
+      "architecture": {
+        "backbone": "Conditional temporal U-Net widths [64,128,256], time embedding128, kernel5, groups8, shared two-observation conditioning",
+        "action_channels": 10,
+        "trainable_parameter_cap": "<=3 times identically measured B0; verify before formal runs",
+        "control": "Every executed action is a sampled diffusion output decoded into native world xyz+gripper.",
+        "conditioning_per_observation": 42,
+        "outputs": "Joint diffusion vector: physical action4 + auxiliary future relation6"
+      },
+      "modules": [
+        "Raw fixed-scale conditioning",
+        "10-channel joint action/future-relation diffusion"
+      ],
+      "observation_transform": {
+        "raw_fields": "All42 common raw channels including observed peg head, with same two-observation history as B0.",
+        "units": "World x,y,z positions in metres; quaternion xyzw; aperture unitless; prior/current raw channels unchanged.",
+        "normalization": "Fixed scale1 for all raw fields, fixed zero center; passthrough all coordinates. No current or future dataset fitting."
+      },
+      "losses_and_weights": {
+        "action_epsilon": {
+          "target": "Independent standard Gaussian epsilon added to first4 encoded physical action coordinates under shared DDPM schedule",
+          "weight": 1.0,
+          "reduction": "Mean squared error over first4 channels and valid chunk slots only, averaged over batch",
+          "applies": "All sampled training windows, all updates"
+        },
+        "future_relation_epsilon": {
+          "target": "Independent standard Gaussian epsilon used to noise six future relation channels under SAME sampled DDPM time as action channels",
+          "weight": 0.2,
+          "reduction": "Mean squared error over six auxiliary channels and valid chunk slots only, averaged over batch",
+          "applies": "All valid transition slots for every current-D_N training window; no loss on padded slots"
+        },
+        "total": "action_epsilon_mean + 0.2*future_relation_epsilon_mean; no reconstruction, classifier, success, or terminal loss"
+      },
+      "required_train_labels": {
+        "future_relations": {
+          "shape": "[16,6] per window",
+          "definition": "For window start t and valid action slot k (0..15), target=[(head[t+k+1]-head[t])/0.1m, (grasp[t+k+1]-hand[t+k+1])/0.1m], native xyz each.",
+          "data_source": "Only observation rows of same current-D_N episode and anchor t. Terminal observation may supervise final valid transition. Never cross episodes.",
+          "padding": "Set all six targets to zero for slots t+k>=number of actions, exclude from loss using shared action validity mask.",
+          "meaning": "Observed realized head transport plus grasp relation; no labels assert success/contact or expert phase."
+        }
+      },
+      "implementation_steps": [
+        "Derive masked6D future targets using each current-D_N window only.",
+        "Append targets to encoded4D physical actions before diffusion noise; configure U-Net10 channels.",
+        "Keep base action loss first4 weight1 and add six-channel epsilon loss weight0.2.",
+        "Sample joint10 channels at runtime and discard auxiliary6 before physical world clipping.",
+        "Audit target anchoring, masking, action decode and parameter cap."
+      ]
+    },
+    {
+      "evidence_refs": [
+        "task_materials.json: observation_schema/action_schema/source_knowledge",
+        "demo_1_trajectory.npz: all78 observations and77 transitions; grasp closure step32, grasp height>0.05m step58",
+        "demo_2_trajectory.npz: all92 observations and91 transitions; closure step34, grasp height>0.05m step62",
+        "frames.json: all16 listed frames viewed; demo1 steps0/11/22/33/44/55/66/77 and demo2 steps0/13/26/39/52/65/78/91"
+      ],
+      "action_transform": {
+        "encode": "Native [world_dx,world_dy,world_dz,gripper] identity on all four physical control channels. xyz=1 requests0.01m at dt0.0125s; this is a command, not assumed realized displacement.",
+        "decode": "Read first4 output channels unchanged as native world control; apply world cube clipping[-1,1]^4 AFTER decoding. Auxiliary channels, if any, are discarded.",
+        "chunk_frame": "World axes fixed at replan and throughout all16 predictions; execute first4. No per-slot recentering."
+      },
+      "augmentation": "None. No whole-environment rotations/translations or label perturbations.",
+      "training_schedule": {
+        "datasets": "Each N in 2/5/10/20 starts from scratch seed0; statistics/targets use current nested D_N only.",
+        "optimizer": "AdamW lr=1e-4 wd=1e-6 betas=(0.9,0.999), gradient_clip=1, EMA=0.995",
+        "updates": 20000,
+        "total_batch_chunks": 128,
+        "window_sampling": "Uniform CPU torch.randint over all current D_N transition starts; length16, zero padded tails excluded by validity mask.",
+        "diffusion": "epsilon prediction, 100 cosine DDPM steps; DDIM16 leading integer timesteps [90,84,78,72,66,60,54,48,42,36,30,24,18,12,6,0], eta=0, no clean-sample clipping",
+        "history": 2,
+        "predict": 16,
+        "execute": 4,
+        "aux_schedule": "Auxiliary loss active at fixed declared weight for all updates; no pretraining or extra updates."
+      },
+      "hierarchy_selection_and_termination": "Single diffusion policy; no router, phase oracle, geometric action controller, predicted-success termination, or clock. Replan each4 actions until shared environment/horizon termination; episode clock unchanged.",
+      "chunk_transition_handling": "Keep one conditioning two-observation history for complete16-action plan. No switching within chunk; execute4 then replan. Tail slots zero padded/masked during training. For auxiliary targets, all displacements use the observation at initial chunk anchor t.",
+      "required_runtime_inputs": "Exactly two common raw42 observations, including pegHead and fixed goal. No images, future states, initial factors, hidden state, expert action, task-specific success signal, or auxiliary target at runtime.",
+      "parameter_budget": "One shared U-Net, no separate experts; <=3x B0. Exact instantiated parameter counts must be audited before formal runs.",
+      "confidence": "Moderate mechanism plausibility; low empirical certainty from exactly two positive-only trajectories. No performance has been measured.",
+      "candidate_id": "P3",
+      "knowledge_hypotheses": [
+        {
+          "source": "external geometry/common knowledge",
+          "claim": "A fixed-axis insertion has separate axial x travel and transverse yz alignment; relative hand/grasp and head/goal locations express these relations.",
+          "source_ref": "task_materials.json source_knowledge and supplied static-geometry attribution; no external implementation read."
+        },
+        {
+          "source": "observation from D2",
+          "claim": "The observed head is offset from the grasp site by approximately[-0.13,0,-0.01]m in both D2 episodes; grasp-hand offsets settle after lift.",
+          "source_ref": "Both trajectory NPZ; max deviation around mean head-grasp offset <=2.1e-7m."
+        },
+        {
+          "source": "unverified inference",
+          "claim": "Separating relative grasp and insertion geometry may reduce reliance on correlated initial peg_y/box_y in LL/HH and aid LH/HL compositions.",
+          "source_ref": "task_materials.json distribution plus two demonstrations only."
+        },
+        {
+          "source": "unverified inference",
+          "claim": "The P1 relation features provide direct context for P2 future-relation joint diffusion, potentially making its extra supervision easier to learn from little data.",
+          "source_ref": "Combination reasoning only; no measured evidence."
+        }
+      ],
+      "predicted_generalization_gain": "Prospective: combination may improve compositional layouts by coupling current task geometry to predicted physical consequences; additive gain is uncertain.",
+      "applicability": "Same fixed common schema and current-D_N next observations as P1/P2.",
+      "failure_conditions": [
+        "Both priors may compound incorrect assumptions or overfit D2 grasp offsets.",
+        "More redundant conditioning plus joint output may train less efficiently than either alone.",
+        "No geometry relation imposes actual collision/contact correctness."
+      ],
+      "architecture": {
+        "backbone": "Conditional temporal U-Net widths [64,128,256], time embedding128, kernel5, groups8, shared two-observation conditioning",
+        "action_channels": 10,
+        "trainable_parameter_cap": "<=3 times identically measured B0; verify before formal runs",
+        "control": "Every executed action is a sampled diffusion output decoded into native world xyz+gripper.",
+        "conditioning_per_observation": 62,
+        "outputs": "Joint diffusion vector: physical action4 + auxiliary future relation6"
+      },
+      "modules": [
+        "P1 fixed peg relation features",
+        "P2 joint action/future-relation diffusion"
+      ],
+      "observation_transform": {
+        "raw_retained": {
+          "raw_fields": "All42 common raw channels including observed peg head, with same two-observation history as B0.",
+          "units": "World x,y,z positions in metres; quaternion xyzw; aperture unitless; prior/current raw channels unchanged.",
+          "normalization": "Fixed scale1 for all raw fields, fixed zero center; passthrough all coordinates. No current or future dataset fitting."
+        },
+        "appended_order": [
+          "(grasp-hand)/0.1m [xyz]",
+          "(goal-head)/0.1m [xyz]",
+          "(head-grasp)/0.1m [xyz]",
+          "(goal-hand)/0.1m [xyz]",
+          "(current_hand-raw_previous_hand)/0.01m [xyz]",
+          "(current_grasp-raw_previous_grasp)/0.01m [xyz]",
+          "norm((grasp-hand)[xy])/0.1m",
+          "norm((goal-head)[yz])/0.1m"
+        ],
+        "output_dimension_per_observation": 62,
+        "axes": "Native fixed world x insertion axis, world y lateral alignment, world z gravity. No rotation or translating the environment.",
+        "history": "Apply deterministic feature map independently to each of the two raw observations, retaining their actual native previous fields; first observation repeated at reset.",
+        "normalization": "All62 features passthrough downstream normalization; scaling above fixed from physical metric convention, not data-fitted."
+      },
+      "losses_and_weights": {
+        "action_epsilon": {
+          "target": "Independent standard Gaussian epsilon added to first4 encoded physical action coordinates under shared DDPM schedule",
+          "weight": 1.0,
+          "reduction": "Mean squared error over first4 channels and valid chunk slots only, averaged over batch",
+          "applies": "All sampled training windows, all updates"
+        },
+        "future_relation_epsilon": {
+          "target": "Independent standard Gaussian epsilon used to noise six future relation channels under SAME sampled DDPM time as action channels",
+          "weight": 0.2,
+          "reduction": "Mean squared error over six auxiliary channels and valid chunk slots only, averaged over batch",
+          "applies": "All valid transition slots for every current-D_N training window; no loss on padded slots"
+        },
+        "total": "action_epsilon_mean + 0.2*future_relation_epsilon_mean; no reconstruction, classifier, success, or terminal loss"
+      },
+      "required_train_labels": {
+        "future_relations": {
+          "shape": "[16,6] per window",
+          "definition": "For window start t and valid action slot k (0..15), target=[(head[t+k+1]-head[t])/0.1m, (grasp[t+k+1]-hand[t+k+1])/0.1m], native xyz each.",
+          "data_source": "Only observation rows of same current-D_N episode and anchor t. Terminal observation may supervise final valid transition. Never cross episodes.",
+          "padding": "Set all six targets to zero for slots t+k>=number of actions, exclude from loss using shared action validity mask.",
+          "meaning": "Observed realized head transport plus grasp relation; no labels assert success/contact or expert phase."
+        }
+      },
+      "implementation_steps": [
+        "Combine exact P1 feature map with exact P2 labels and10-channel policy.",
+        "Use single optimizer/update budget and one joint sampling pass.",
+        "Verify P3 features equal P1 and P3 labels/loss equal P2 for matched windows.",
+        "Audit total parameters and unchanged physical action semantics."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,109 @@
+{
+  "created_utc": "2026-09-08T09:44:14.482026+00:00",
+  "scope": "Read-only source trace of canonical recovery after all 98 formal train/dev/test runs and parallel paired videos complete; no actual recovery execution or test-outcome inspection",
+  "status": "statically_reviewed; runtime reuse still to be demonstrated",
+  "locked_test_files_opened_or_hashed": false,
+  "resume_report_training_evaluation_render_executed": false,
+  "source_sha256": {
+    "pixi.toml": "11f635373a058c7668c4fb3ec9ded395aafa7c3f39b08fd06d4ceb5cf7f64550",
+    "src/round3/cli.py": "288520745e5404b4853ecc9e63bb38948795116433ab5d9565b6ac1012f31341",
+    "src/round3/common.py": "207ca486af25f9527db8656f3f3dd8a920a6dda81f67ec1b618a7b3754b9bd29",
+    "src/round3/proposals.py": "d9124ee45cd92c3ebfe551455be4ad214c118fb271901c137c1af89703448b96",
+    "src/round3/evaluate.py": "2ea6e47cd78993c5e59b1648028f69ca3ee5bc25db2d8e0b2a9109ace2a98c9a",
+    "src/round3/report.py": "7261ff567747e77bce2822b47f1759857e0f4951c4d55aa4d4c3ba00d88c26a9",
+    "src/round3/diagnostics.py": "0146746de3c6ca0ebd7c0649a2bcfeb515b70e6b9838b9165b6361e3217ffbdc",
+    "scripts/verify_round3_delivery.py": "2be48496da71d7cc9b862dd7e56c68f0a8f572d9f586b724cc0faf48b194425a",
+    "scripts/round3_render_videos.py": "1283f9aa316b2fb2467737c391a883d15ff37ccfc24ed3d84a70b9b8a34516bf"
+  },
+  "recommended_finish_sequence": [
+    "Wait for the current test scheduler and its complete child-process groups to exit successfully, including final manifest PID cleanup.",
+    "Run the complete numerical --stage test acceptance once.",
+    "Run scripts/round3_render_videos.py against that successful audit; require all four receipts and six task assignments.",
+    "Capture the before fingerprints below, then run /home/users/oscar/.pixi/bin/pixi run round3-resume once with stdout/stderr saved. This invocation also generates the final report.",
+    "Check the after fingerprints and final derived-delivery readiness; then produce the Chinese overview. A separate round3-report run is unnecessary."
+  ],
+  "canonical_path": [
+    {
+      "function": "common.initialize/planned_runs",
+      "behavior": "Existing manifest is read under the manifest lock, without rewriting it."
+    },
+    {
+      "function": "proposals.baseline_config",
+      "behavior": "Existing B0 configuration is compared exactly; no write if present and equal."
+    },
+    {
+      "function": "proposals.validate/validate_all",
+      "behavior": "Existing initial freeze is retained. Only pending-design statuses would be promoted. The derived audits/proposal_validation.json is always refreshed."
+    },
+    {
+      "function": "cli.schedule/gpu_queue/_eligible",
+      "behavior": "Completed stage fields yield no jobs in either dev/train or test schedules, so _child, training and evaluation workers are not called."
+    },
+    {
+      "function": "evaluate.freeze_selection/freeze_test_gate",
+      "behavior": "Recompute and compare existing frozen selection and global gate, without rewriting equal files. This repeats read/hash/metric checks but performs no policy inference or simulator work."
+    },
+    {
+      "function": "report.generate",
+      "behavior": "Reads cached results and all checkpoint milestones, recomputes diagnostics/plots/tables, and writes final derived artifacts; no optimizer or scored rollout calls."
+    },
+    {
+      "function": "report._paired_video",
+      "behavior": "When both MP4 and sidecar JSON exist and identity/video SHA match, returns before any TaskEnv construction, replay or encoding."
+    },
+    {
+      "function": "report.test_videos",
+      "behavior": "Uses the same frozen pair-selection rule and all B0/initial-selected fallback Ns as the parallel renderer; writes the shared videos/manifest.json after reusing per-video artifacts."
+    }
+  ],
+  "minimal_before_fingerprints": [
+    "Require 98 unique records with status, train_status, dev_status and test_status all completed. No remaining running claim or live owned stage worker; take the ledger hash only after scheduler exit.",
+    "Record SHA256 of the final numerical audit, run_manifest.json, global_freeze.json, selection.json, all six initial_freeze/proposal/revision files, existing configs, and the reviewed source set. The ledger hash must exactly match audit.run_manifest_snapshot_sha256.",
+    "Use the numerical audit artifact_hashes keys as the immutable file inventory and save each current stat signature (device, inode, size, mtime_ns, ctime_ns). This is a cheap operational mutation baseline, not another numerical audit; hash any file whose signature subsequently changes.",
+    "Record events.jsonl SHA/byte length/line count plus formal train.jsonl and sessions.jsonl hashes and line counts. Record counts of accepted complete artifacts: 98 train, 98 dev and 98 test; accepted scored episode totals: 4900 dev and 9800 test.",
+    "From the successful renderer receipts, record each MP4 and sidecar path, SHA256 and stat signature. Require all six tasks covered, no pending records, and renderer identity equal to the reviewed report.py SHA. Include legitimate no_additional_failure records without requiring nonexistent extra videos."
+  ],
+  "after_expectations": [
+    "Canonical command exits 0 with final=True, stage=test, trained=98 and evaluated=98. Verify reports/integrity.json and test_summary.json agree and required report/CSV/figure/video outputs exist.",
+    "run_manifest.json and every frozen fingerprint remain byte-identical. No accepted model, raw data, rollout, checkpoint, train-log or session-log file inventory/signature changes.",
+    "events.jsonl has zero appended events, including zero subprocess_started, training_started, training_completed and stale_runs_recovered events. No stage worker log growth is expected.",
+    "All per-video MP4 and sidecar hashes/stat signatures remain unchanged. The shared videos/manifest.json is expected to be created/refreshed and must reference the receipt-backed records.",
+    "The unchanged completed-artifact/episode/log evidence and empty queues establish zero additional formal optimizer work and zero scored rollouts along this recovery path. Unchanged video signatures plus the early cache return establish zero additional visualization replay/encoding."
+  ],
+  "expected_mutable_outputs": [
+    "round3/audits/proposal_validation.json",
+    "round3/videos/manifest.json",
+    "round3/figures/test/*",
+    "round3/reports/test_offline_diagnostics.json",
+    "round3/reports/data_quality_and_debug.json",
+    "round3/reports/test_all_results.csv",
+    "round3/reports/test_summary.json",
+    "round3/reports/integrity.json",
+    "round3/ROUND3_REPORT.md",
+    "Operational lock files/directories if absent"
+  ],
+  "binding_review": "Expected mutable report/audit/video-manifest outputs are absent from the current global gate bindings and from all feedback-decision evidence_hashes/feedback_hashes/consumed_file_hashes. Refreshing them does not change accepted model/data/result evidence.",
+  "material_risks": [
+    {
+      "function": "cli._child",
+      "risk": "Its finally block clears launcher_pid/scheduler_pid using update_run after the worker marks a result completed. An audit taken before full scheduler exit may bind a ledger that subsequently changes."
+    },
+    {
+      "function": "cli._reconcile_stale_runs; proposals.validate; common.update_run",
+      "risk": "Any remaining running or pending-design claim can cause a manifest mutation on resume even when complete artifacts exist. Enforce the all-completed precondition explicitly; the renderer checks completeness of artifacts but does not require every ledger stage status to be completed."
+    },
+    {
+      "function": "report._paired_video",
+      "risk": "A missing MP4 or missing sidecar invokes replay; an existing identity/hash mismatch fails an assertion. Preserve source SHA and confirm complete receipt-backed cache pairs before canonical resume."
+    },
+    {
+      "function": "report.generate; evaluate.freeze_test_gate",
+      "risk": "Canonical recovery still repeats CPU hashing, metrics, diagnostics and figure generation. This is expected reporting/verification cost; it does not repeat training, scored evaluation or cached simulator videos."
+    },
+    {
+      "function": "report.generate",
+      "risk": "The canonical report path does not itself require the external full numerical-audit receipt. Keep the agreed successful full audit and unchanged evidence fingerprints as its acceptance basis."
+    }
+  ],
+  "rerun_policy": "Do not rerun expensive numerical acceptance merely because derived prose/figures/manifests refresh. If an immutable accepted artifact, frozen source, selection/gate or final run ledger changes, stop and explain/revalidate that actual change; never overwrite the prior audit or silently update its bound hash."
+}

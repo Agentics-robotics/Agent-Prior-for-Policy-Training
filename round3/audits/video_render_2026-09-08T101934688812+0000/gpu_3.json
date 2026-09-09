@@ -1,0 +1,79 @@
+{
+  "completed_at": "2026-09-08T10:20:01.385308+00:00",
+  "inputs": {
+    "accepted_test_runs": 98,
+    "audit_path": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/round3/audits/delivery_verifier_test_20260908T101614379062Z.json",
+    "audit_sha256": "238223fe5c0e487ed199d2ced20a3f709d87bd4419458bebaf8cc60574249cee",
+    "driver_sha256": "1283f9aa316b2fb2467737c391a883d15ff37ccfc24ed3d84a70b9b8a34516bf",
+    "global_freeze_sha256": "debae7fbdc4e75d217cd5227bfb2fd4e82de5350d705b306ed2a42a7db842cba",
+    "renderer_sha256": "7261ff567747e77bce2822b47f1759857e0f4951c4d55aa4d4c3ba00d88c26a9",
+    "selection_sha256": "f1e4a4663c0cc9c3d08c73a2ac39cbc17f0460ecde75d8312864b974de762c89"
+  },
+  "passed": true,
+  "physical_gpu": 3,
+  "policy_calls": 0,
+  "records": [
+    {
+      "fps": 20.0,
+      "identity": {
+        "episode_id": "r3_door_test_C_000_33301000",
+        "initial_state_hash": "c7807ebde99e120aa708cc0d966476810a0bcc2e27d69dcadc706d0ebfd8ef96",
+        "renderer_sha256": "7261ff567747e77bce2822b47f1759857e0f4951c4d55aa4d4c3ba00d88c26a9",
+        "selection": "Fixed C manifest order plus first available failure; no outcome maximization",
+        "task": "door",
+        "trajectories": [
+          "7270799601d8569b83b8c2f8e25b87dd0f2d113e7438409d8a49b26f5cae446b",
+          "c0ccea3d79e9107c1eb99247aaea4924bb0ea51dcf9922b92befedf083b8e840"
+        ]
+      },
+      "path": "round3/videos/door_fixed_C_N20.mp4",
+      "physical_dt": 0.0125,
+      "policy_calls": 0,
+      "rendering_stride": 4,
+      "scored_evaluation_episodes_added": 0,
+      "success": [
+        true,
+        true
+      ],
+      "termination": [
+        "success",
+        "success"
+      ],
+      "video_sha256": "596f2a0d69166a59d855234010a12841c5d5463a172a7d7ce84a1fd2d8d77ef0",
+      "visualization_replay_steps": 231
+    },
+    {
+      "fps": 20.0,
+      "identity": {
+        "episode_id": "r3_door_test_E_002_33302002",
+        "initial_state_hash": "843aa8cb69912903679da38ce57073d4114b8142eddfbfff4c84ba4682e66314",
+        "renderer_sha256": "7261ff567747e77bce2822b47f1759857e0f4951c4d55aa4d4c3ba00d88c26a9",
+        "selection": "Fixed C manifest order plus first available failure; no outcome maximization",
+        "task": "door",
+        "trajectories": [
+          "0344ffc2344710a89ae938c09d6e321799fa206f8198dc189054650738196a37",
+          "d2bad898b967030077b0d8f8ff77c7c784297e8b2289461e7e3128f8d98f52ff"
+        ]
+      },
+      "path": "round3/videos/door_first_failure_N20.mp4",
+      "physical_dt": 0.0125,
+      "policy_calls": 0,
+      "rendering_stride": 4,
+      "scored_evaluation_episodes_added": 0,
+      "success": [
+        false,
+        true
+      ],
+      "termination": [
+        "native_truncated",
+        "success"
+      ],
+      "video_sha256": "78c73f8bfc9a950a1876972095e4cd8d73f817e829f4368fd9f94a371409ff89",
+      "visualization_replay_steps": 603
+    }
+  ],
+  "scored_evaluation_episodes_added": 0,
+  "tasks": [
+    "door"
+  ]
+}

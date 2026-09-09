@@ -1,0 +1,121 @@
+{
+  "task": "pick-place-wall",
+  "passed": true,
+  "device": "cpu",
+  "scope": "Correctness-only D2 checks, no simulator rollout, no development/test states, no formal training or model-score comparison.",
+  "proposal_sha256": "e4a14e7d2e0d6edf5624d5df9eeb201d84b5e13437f0cb094262972c6fd09b56",
+  "initial_feasibility_revision_sha256": "69982ec5b9e7d1c3ecd8721dc90802b27b42a07e17953cafd5312a795f6f5e89",
+  "plugin_sha256": "8e1fea26213db6606c7acfc7194fbceb3efcf092f4a276eb5e4c9d97c02f5eb1",
+  "check_script_sha256": "16f4a8d74a0d68b1c312400bd3e0e7a1cb7ec7508a1b32d85d8811285e42982e",
+  "data_sha256": {
+    "demo_1_trajectory.npz": "8684215072a3d9d9017a3a7943d094f41db8bbb365e855db942e9332c37f6101",
+    "demo_2_trajectory.npz": "0841fe7cdfe8f8e0d94c684e8fe46686cbefe5a17004860f4414473023e847b3"
+  },
+  "baseline_parameter_count": 4739652,
+  "persistent_event_steps": [
+    [
+      33,
+      45,
+      76
+    ],
+    [
+      35,
+      47,
+      74
+    ]
+  ],
+  "phase_action_anchor_counts": [
+    [
+      33,
+      12,
+      31,
+      3
+    ],
+    [
+      35,
+      12,
+      27,
+      10
+    ]
+  ],
+  "common_checks": [
+    "Original proposal/freeze and sole amendment identity",
+    "All23 evidence SHA256 values",
+    "Exact D2 event rules/counts",
+    "Signed box/sphere clearance analytic probes"
+  ],
+  "candidates": {
+    "P1": {
+      "passed": true,
+      "parameter_count": 4922436,
+      "ratio_to_B0": 1.0385648566603625,
+      "observation_features_per_row": 80,
+      "diffusion_channels": 4,
+      "disposable_cpu_optimizer_updates": 3,
+      "checks": [
+        "Fixed normalization identity",
+        "All163 D2 windows and valid target alignment",
+        "Zero invalid-tail targets with masks",
+        "Initial history repeat",
+        "Quaternion sign identity",
+        "Unclipped action decode with P3 future discard",
+        "One shared model below3x exact B0",
+        "CPU fullgraph eager-backend capture equals eager forward",
+        "Full128-batch finite gradients",
+        "Disposable checkpoint resume bitwise model/EMA/pairing equality",
+        "Inherited16-step DDIM shape/finiteness/timesteps"
+      ]
+    },
+    "P2": {
+      "passed": true,
+      "parameter_count": 5019336,
+      "ratio_to_B0": 1.0590093956265143,
+      "observation_features_per_row": 45,
+      "diffusion_channels": 4,
+      "disposable_cpu_optimizer_updates": 3,
+      "checks": [
+        "Fixed normalization identity",
+        "All163 D2 windows and valid target alignment",
+        "Zero invalid-tail targets with masks",
+        "Initial history repeat",
+        "Quaternion sign identity",
+        "Unclipped action decode with P3 future discard",
+        "One shared model below3x exact B0",
+        "CPU fullgraph eager-backend capture equals eager forward",
+        "Full128-batch finite gradients",
+        "Disposable checkpoint resume bitwise model/EMA/pairing equality",
+        "Inherited16-step DDIM shape/finiteness/timesteps"
+      ]
+    },
+    "P3": {
+      "passed": true,
+      "parameter_count": 4925130,
+      "ratio_to_B0": 1.0391332528210933,
+      "observation_features_per_row": 80,
+      "diffusion_channels": 10,
+      "disposable_cpu_optimizer_updates": 3,
+      "checks": [
+        "Fixed normalization identity",
+        "All163 D2 windows and valid target alignment",
+        "Zero invalid-tail targets with masks",
+        "Initial history repeat",
+        "Quaternion sign identity",
+        "Unclipped action decode with P3 future discard",
+        "One shared model below3x exact B0",
+        "CPU fullgraph eager-backend capture equals eager forward",
+        "Full128-batch finite gradients",
+        "Disposable checkpoint resume bitwise model/EMA/pairing equality",
+        "Inherited16-step DDIM shape/finiteness/timesteps",
+        "Perfect epsilon reconstructs zero auxiliary targets/loss",
+        "Invalid-tail auxiliary and action mask invariance",
+        "High-noise geometry excluded",
+        "Future target next-state/replan-anchor alignment for all valid windows"
+      ]
+    }
+  },
+  "completed_at": "2026-09-08T05:36:49.350881+00:00",
+  "limitations": [
+    "No CUDA execution or CUDA-graph compile checked in this CPU audit.",
+    "No trained behavior, training completion or evaluation outcome claimed."
+  ]
+}

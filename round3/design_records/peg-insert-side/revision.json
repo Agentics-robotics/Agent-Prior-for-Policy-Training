@@ -1,0 +1,414 @@
+{
+  "task": "peg-insert-side",
+  "decision": "P4",
+  "version": 2,
+  "created_at": "2026-09-08T08:00:59.686969+00:00",
+  "agent_backend": "codex_session",
+  "backend": "codex_session",
+  "designer": {
+    "subagent_name": "/root/feedback_peg",
+    "model": "not exposed",
+    "session": "not exposed",
+    "tokens": "not exposed",
+    "cost": "not exposed"
+  },
+  "original_proposal": "round3/design_records/peg-insert-side/proposal.json",
+  "original_proposal_sha256": "135cd9e6e8e3ee3c9ce86fec14178edc85f40329f1ac6851148d774e723f293f",
+  "feedback_bundle": {
+    "path": "round3/design_records/peg-insert-side/feedback/bundle.json",
+    "sha256": "0a20eea15e162730ae662ae82f7ec1f915921d96f2818b71992c571da2b0fc06"
+  },
+  "consumed_file_hashes": {
+    "AGENTS.md": "4f1776b6b781aedf1ca38f1bce3120da8b7f6c5556c27eaa906a79cc697477c6",
+    "round3/DESIGN_CONTRACT.md": "d3fe292220813dd805d0be8d330f215ab5da3da9a83669e9e54501509f10338d",
+    "round3/evidence/peg-insert-side/DESIGN_INTERFACE.md": "fe0a1c4a12c4bd170d432f48cf1cb3ae98028cc37a5d1ad0f4cff6d0d14f0101",
+    "round3/evidence/peg-insert-side/task_materials.json": "a018ace4404b4db3a34a687ae16b169a5758f8fee9b23c4cf89b713a87447227",
+    "round3/design_records/peg-insert-side/proposal.json": "135cd9e6e8e3ee3c9ce86fec14178edc85f40329f1ac6851148d774e723f293f",
+    "round3/design_records/peg-insert-side/rationale.md": "891e2b75ea99525a98a84351815af9cd22c89e2264591cebef22b98e1c27189a",
+    "round3/design_records/peg-insert-side/feedback/B0_offline_diagnostics.json": "de3393577f93ef4a4160258abc2f3337b2063d49eb962902234bd25a6d5d4a03",
+    "round3/design_records/peg-insert-side/feedback/B0_step_050.png": "a9155f753d6cb9cd7f689b5c659e2f8510f08f57f204589ff304442503a7bf8e",
+    "round3/design_records/peg-insert-side/feedback/B0_step_200.png": "acbbc1e1063e714170e3285d550261a2c352d89db9d7e79e50f5213b1cddf9e1",
+    "round3/design_records/peg-insert-side/feedback/B0_training_curve.json": "72577d2ed1178b23f6acaf0c2c5da1209ff335b8c102dacec99066f73217d9dc",
+    "round3/design_records/peg-insert-side/feedback/P1_offline_diagnostics.json": "b2a4300201ea67b6fdca0b4a415e43813889853b2c7c531caddeda7e9d4b991a",
+    "round3/design_records/peg-insert-side/feedback/P1_step_050.png": "0a4f45d7cbe372ef2888551ab9787d649924142f875c48bcb2b7dfecf7edee3d",
+    "round3/design_records/peg-insert-side/feedback/P1_step_200.png": "f4e929c6bded4bf99783b55ccaea735424d4d9fd1658b86b68ef9a9b320c1d2d",
+    "round3/design_records/peg-insert-side/feedback/P1_training_curve.json": "0ed75d88651d76af526fb072f0dac8ba13e810bc08d9b9aaa793909a7bc64a7c",
+    "round3/design_records/peg-insert-side/feedback/P2_offline_diagnostics.json": "0867d41d3945d41d4308da85407bfd509b9f52b74590b1d58cbe0f365c4685b4",
+    "round3/design_records/peg-insert-side/feedback/P2_step_050.png": "96983baba3b9bb9f2a581a8d080dd3eebc260d3558bd536c4510247fffd0af86",
+    "round3/design_records/peg-insert-side/feedback/P2_step_200.png": "934989fcaa227d2a487640c13f7a9dd4e71bf60984f65e0a554ece6ad9ad32a7",
+    "round3/design_records/peg-insert-side/feedback/P2_training_curve.json": "357368c33c1b1b8f824e9fd3706e930743d01f1ebe68b0a41944ea06d4314a59",
+    "round3/design_records/peg-insert-side/feedback/P3_offline_diagnostics.json": "da1a4338897407aa95910191b10f6fb4d607057d9c843a50911e6a00b8f549f1",
+    "round3/design_records/peg-insert-side/feedback/P3_step_050.png": "349935967ffd31b5494a67cb4caf9d5952f68b5695761a48b240154d8c5c13e6",
+    "round3/design_records/peg-insert-side/feedback/P3_step_200.png": "a9daa497e54cd16b8db74c37b04811869c08562b0ee29f1a3c5bc43e459737c2",
+    "round3/design_records/peg-insert-side/feedback/P3_training_curve.json": "9acfd27284e0fbc0fa34f92f9d46e7b34120360bbe58a64b6484732e68433346",
+    "round3/design_records/peg-insert-side/feedback/bundle.json": "0a20eea15e162730ae662ae82f7ec1f915921d96f2818b71992c571da2b0fc06",
+    "round3/design_records/peg-insert-side/feedback/training_curves.png": "31f731d5cc755d043e268c9eeaaf9ec3cbc329f9d8007b3783a4d39a6bdb5574"
+  },
+  "bound_file_hash_verification": {
+    "round3/data/peg-insert-side/manifest.json": "9b85cb6218a0a4d7460d8146eed7cd900d57ebf708bcc3a55df52be8f52bf90a",
+    "round3/design_records/feedback_frame_rule.json": "e1f0c9186a5825f240abf479c5d8b92aac969e31de9e4b4b4b058ed21bb20207",
+    "round3/design_records/offline_diagnostic_rule.json": "b9c47487850405014b2593da8d29d21c4684b80b128b7d623cf33c25a5074cb6",
+    "round3/design_records/peg-insert-side/feedback/B0_offline_diagnostics.json": "de3393577f93ef4a4160258abc2f3337b2063d49eb962902234bd25a6d5d4a03",
+    "round3/design_records/peg-insert-side/feedback/B0_step_050.png": "a9155f753d6cb9cd7f689b5c659e2f8510f08f57f204589ff304442503a7bf8e",
+    "round3/design_records/peg-insert-side/feedback/B0_step_200.png": "acbbc1e1063e714170e3285d550261a2c352d89db9d7e79e50f5213b1cddf9e1",
+    "round3/design_records/peg-insert-side/feedback/B0_training_curve.json": "72577d2ed1178b23f6acaf0c2c5da1209ff335b8c102dacec99066f73217d9dc",
+    "round3/design_records/peg-insert-side/feedback/P1_offline_diagnostics.json": "b2a4300201ea67b6fdca0b4a415e43813889853b2c7c531caddeda7e9d4b991a",
+    "round3/design_records/peg-insert-side/feedback/P1_step_050.png": "0a4f45d7cbe372ef2888551ab9787d649924142f875c48bcb2b7dfecf7edee3d",
+    "round3/design_records/peg-insert-side/feedback/P1_step_200.png": "f4e929c6bded4bf99783b55ccaea735424d4d9fd1658b86b68ef9a9b320c1d2d",
+    "round3/design_records/peg-insert-side/feedback/P1_training_curve.json": "0ed75d88651d76af526fb072f0dac8ba13e810bc08d9b9aaa793909a7bc64a7c",
+    "round3/design_records/peg-insert-side/feedback/P2_offline_diagnostics.json": "0867d41d3945d41d4308da85407bfd509b9f52b74590b1d58cbe0f365c4685b4",
+    "round3/design_records/peg-insert-side/feedback/P2_step_050.png": "96983baba3b9bb9f2a581a8d080dd3eebc260d3558bd536c4510247fffd0af86",
+    "round3/design_records/peg-insert-side/feedback/P2_step_200.png": "934989fcaa227d2a487640c13f7a9dd4e71bf60984f65e0a554ece6ad9ad32a7",
+    "round3/design_records/peg-insert-side/feedback/P2_training_curve.json": "357368c33c1b1b8f824e9fd3706e930743d01f1ebe68b0a41944ea06d4314a59",
+    "round3/design_records/peg-insert-side/feedback/P3_offline_diagnostics.json": "da1a4338897407aa95910191b10f6fb4d607057d9c843a50911e6a00b8f549f1",
+    "round3/design_records/peg-insert-side/feedback/P3_step_050.png": "349935967ffd31b5494a67cb4caf9d5952f68b5695761a48b240154d8c5c13e6",
+    "round3/design_records/peg-insert-side/feedback/P3_step_200.png": "a9daa497e54cd16b8db74c37b04811869c08562b0ee29f1a3c5bc43e459737c2",
+    "round3/design_records/peg-insert-side/feedback/P3_training_curve.json": "9acfd27284e0fbc0fa34f92f9d46e7b34120360bbe58a64b6484732e68433346",
+    "round3/design_records/peg-insert-side/feedback/training_curves.png": "31f731d5cc755d043e268c9eeaaf9ec3cbc329f9d8007b3783a4d39a6bdb5574",
+    "round3/design_records/peg-insert-side/proposal.json": "135cd9e6e8e3ee3c9ce86fec14178edc85f40329f1ac6851148d774e723f293f",
+    "round3/dev_results/r3_peg-insert-side_B0_n5_s0/complete.json": "d4a58cfdee84dac574a6696ec8e50fe3511d3ab0dd7bad02fc0cc6b0806e8cf3",
+    "round3/dev_results/r3_peg-insert-side_B0_n5_s0/r3_peg-insert-side_dev_C_000_32401000.npz": "2dc5f8959813e2ae095c5f6b80ef20736274b9b2a0ddd826462a36a058124f88",
+    "round3/dev_results/r3_peg-insert-side_P1_n5_s0/complete.json": "3f00800d9ce8c47fb761a95e252054e9bddd2f92964869334a8dbbb10f28c47e",
+    "round3/dev_results/r3_peg-insert-side_P1_n5_s0/r3_peg-insert-side_dev_C_000_32401000.npz": "16c448cc48f4abf9a9c7ab2f3129d955cf5207f7483dd3f92126859baae5512d",
+    "round3/dev_results/r3_peg-insert-side_P2_n5_s0/complete.json": "ff818d7f8e762127e730bdc4cc27cb43344caf0987079abfea57e5d261d8b987",
+    "round3/dev_results/r3_peg-insert-side_P2_n5_s0/r3_peg-insert-side_dev_C_000_32401000.npz": "1425fc138b4a42fafa36d49df565d7a6716efbcdaa7fa6d9b86382b66a2c384a",
+    "round3/dev_results/r3_peg-insert-side_P3_n5_s0/complete.json": "6bb1f4d1c309b5b0e2938d13473c2725fcd79b90119ad96fad39f355b2ea07b4",
+    "round3/dev_results/r3_peg-insert-side_P3_n5_s0/r3_peg-insert-side_dev_C_000_32401000.npz": "d9e718aec1653e0936abf742b210f59d7d04ba1455e38a89409131f6e1366530"
+  },
+  "frame_access": {
+    "method": "view_image on every image individually, parallel tool calls where independent",
+    "real_frames_viewed": [
+      {
+        "actual_step": 50,
+        "candidate_id": "B0",
+        "episode_id": "r3_peg-insert-side_dev_C_000_32401000",
+        "path": "round3/design_records/peg-insert-side/feedback/B0_step_050.png",
+        "requested_step": 50,
+        "sha256": "a9155f753d6cb9cd7f689b5c659e2f8510f08f57f204589ff304442503a7bf8e",
+        "success": true
+      },
+      {
+        "actual_step": 200,
+        "candidate_id": "B0",
+        "episode_id": "r3_peg-insert-side_dev_C_000_32401000",
+        "path": "round3/design_records/peg-insert-side/feedback/B0_step_200.png",
+        "requested_step": 200,
+        "sha256": "acbbc1e1063e714170e3285d550261a2c352d89db9d7e79e50f5213b1cddf9e1",
+        "success": true
+      },
+      {
+        "actual_step": 50,
+        "candidate_id": "P1",
+        "episode_id": "r3_peg-insert-side_dev_C_000_32401000",
+        "path": "round3/design_records/peg-insert-side/feedback/P1_step_050.png",
+        "requested_step": 50,
+        "sha256": "0a4f45d7cbe372ef2888551ab9787d649924142f875c48bcb2b7dfecf7edee3d",
+        "success": true
+      },
+      {
+        "actual_step": 84,
+        "candidate_id": "P1",
+        "episode_id": "r3_peg-insert-side_dev_C_000_32401000",
+        "path": "round3/design_records/peg-insert-side/feedback/P1_step_200.png",
+        "requested_step": 200,
+        "sha256": "f4e929c6bded4bf99783b55ccaea735424d4d9fd1658b86b68ef9a9b320c1d2d",
+        "success": true
+      },
+      {
+        "actual_step": 50,
+        "candidate_id": "P2",
+        "episode_id": "r3_peg-insert-side_dev_C_000_32401000",
+        "path": "round3/design_records/peg-insert-side/feedback/P2_step_050.png",
+        "requested_step": 50,
+        "sha256": "96983baba3b9bb9f2a581a8d080dd3eebc260d3558bd536c4510247fffd0af86",
+        "success": false
+      },
+      {
+        "actual_step": 200,
+        "candidate_id": "P2",
+        "episode_id": "r3_peg-insert-side_dev_C_000_32401000",
+        "path": "round3/design_records/peg-insert-side/feedback/P2_step_200.png",
+        "requested_step": 200,
+        "sha256": "934989fcaa227d2a487640c13f7a9dd4e71bf60984f65e0a554ece6ad9ad32a7",
+        "success": false
+      },
+      {
+        "actual_step": 50,
+        "candidate_id": "P3",
+        "episode_id": "r3_peg-insert-side_dev_C_000_32401000",
+        "path": "round3/design_records/peg-insert-side/feedback/P3_step_050.png",
+        "requested_step": 50,
+        "sha256": "349935967ffd31b5494a67cb4caf9d5952f68b5695761a48b240154d8c5c13e6",
+        "success": true
+      },
+      {
+        "actual_step": 85,
+        "candidate_id": "P3",
+        "episode_id": "r3_peg-insert-side_dev_C_000_32401000",
+        "path": "round3/design_records/peg-insert-side/feedback/P3_step_200.png",
+        "requested_step": 200,
+        "sha256": "a9daa497e54cd16b8db74c37b04811869c08562b0ee29f1a3c5bc43e459737c2",
+        "success": true
+      }
+    ],
+    "additional_plot_viewed": "round3/design_records/peg-insert-side/feedback/training_curves.png",
+    "runtime_images_used": false
+  },
+  "context_exposure": {
+    "allowed_semantic_reads": [
+      "AGENTS.md",
+      "round3/DESIGN_CONTRACT.md",
+      "round3/evidence/peg-insert-side/DESIGN_INTERFACE.md",
+      "round3/evidence/peg-insert-side/task_materials.json",
+      "round3/design_records/peg-insert-side/proposal.json",
+      "round3/design_records/peg-insert-side/rationale.md",
+      "round3/design_records/peg-insert-side/feedback/B0_offline_diagnostics.json",
+      "round3/design_records/peg-insert-side/feedback/B0_step_050.png",
+      "round3/design_records/peg-insert-side/feedback/B0_step_200.png",
+      "round3/design_records/peg-insert-side/feedback/B0_training_curve.json",
+      "round3/design_records/peg-insert-side/feedback/P1_offline_diagnostics.json",
+      "round3/design_records/peg-insert-side/feedback/P1_step_050.png",
+      "round3/design_records/peg-insert-side/feedback/P1_step_200.png",
+      "round3/design_records/peg-insert-side/feedback/P1_training_curve.json",
+      "round3/design_records/peg-insert-side/feedback/P2_offline_diagnostics.json",
+      "round3/design_records/peg-insert-side/feedback/P2_step_050.png",
+      "round3/design_records/peg-insert-side/feedback/P2_step_200.png",
+      "round3/design_records/peg-insert-side/feedback/P2_training_curve.json",
+      "round3/design_records/peg-insert-side/feedback/P3_offline_diagnostics.json",
+      "round3/design_records/peg-insert-side/feedback/P3_step_050.png",
+      "round3/design_records/peg-insert-side/feedback/P3_step_200.png",
+      "round3/design_records/peg-insert-side/feedback/P3_training_curve.json",
+      "round3/design_records/peg-insert-side/feedback/bundle.json",
+      "round3/design_records/peg-insert-side/feedback/training_curves.png"
+    ],
+    "prior_context": "User AGENTS/environment plus parent scoped task instruction only. Original proposal/rationale report original D2 observations; D2 demonstration arrays/images were not re-read in this feedback session.",
+    "hash_only_reads": "All 29 feedback-bound files, including source rollout bytes and task data manifest, solely SHA256, without semantic parsing outside permitted scope.",
+    "prohibited_not_read": [
+      "N2/N10/N20 scores",
+      "other tasks",
+      "old reports",
+      "larger-N demonstration data",
+      "expert/reward/source implementations before decision",
+      "run_manifest",
+      "locked-test states or outcomes"
+    ],
+    "initial_feasibility_revision_exists": false
+  },
+  "assessment": {
+    "supports": [
+      "All four curves have 201 logged rows ending at 20000 updates, finite reported losses/gradient norms and broadly declining training objectives.",
+      "All candidates score 10/10 IID; P1 and P3 each score 20/20 C and 10/20 E; B0 scores 4/20 in each C/E, P2 scores 3/20 C and 0/20 E.",
+      "P1 and P3 have exactly matching descriptive labels on all 50 paired episodes, including E: ten scored successes, five never-near-interaction and five lift-observed-without-completion.",
+      "All eight frames are from one prespecified C episode. At step50 policies remain near the peg; P1/P3 terminal frames at actual84/85 show the peg brought to the opening; B0 remains near the table at200 and later succeeds307; P2 has lifted near the box at200 but this episode is scored unsuccessful. These are qualitative snapshots.",
+      "The supplied physical schema permits hand-relative replacement using existing common observations and retains world hand context."
+    ],
+    "cannot_support": [
+      "No proof that absolute-coordinate shortcuts cause E failure; descriptive labels do not detect contact, phase, true grasp or causal failure.",
+      "No E failure images are in this packet, and two snapshots from one C episode cannot establish full behavior or the exact timing of grasp.",
+      "P1/P3 equal aggregate and paired outcomes do not prove general equivalence; 20 E episodes give broad uncertainty, one seed only.",
+      "Total loss values across 4-channel and 10-channel policies are different objectives and cannot directly rank action learning quality.",
+      "No test outcome, N2/N10/N20 score, larger-N demonstration, reward/expert implementation or old report was inspected. No empirical P4 gain is claimed."
+    ],
+    "curve_numerical_summary": {
+      "B0": {
+        "logged_rows": 201,
+        "first_update": 1,
+        "last_update": 20000,
+        "initial_total_loss": 1.184295892715454,
+        "final_total_loss": 0.005423900205641985,
+        "last_5000_updates_mean_total_loss": 0.006509332731366157
+      },
+      "P1": {
+        "logged_rows": 201,
+        "first_update": 1,
+        "last_update": 20000,
+        "initial_total_loss": 1.1455914974212646,
+        "final_total_loss": 0.0042863222770392895,
+        "last_5000_updates_mean_total_loss": 0.0059307988919317725
+      },
+      "P2": {
+        "logged_rows": 201,
+        "first_update": 1,
+        "last_update": 20000,
+        "initial_total_loss": 1.4215267896652222,
+        "final_total_loss": 0.011457696557044983,
+        "last_5000_updates_mean_total_loss": 0.011101335631683468
+      },
+      "P3": {
+        "logged_rows": 201,
+        "first_update": 1,
+        "last_update": 20000,
+        "initial_total_loss": 1.4232615232467651,
+        "final_total_loss": 0.008149770088493824,
+        "last_5000_updates_mean_total_loss": 0.00906955623999238
+      }
+    },
+    "hash_verification": {
+      "bound_file_count": 29,
+      "mismatches": [],
+      "method": "Byte SHA256 only for bound files outside allowed semantic scope; no parsing of those files."
+    }
+  },
+  "rationale": "Choose P4 from P1 to test one remaining representation hypothesis: retain the successful explicit relations while replacing direct absolute object/goal position blocks with hand-relative positions. P3 provides no additional observed E successes over P1 and P2 underperforms in this packet, so P4 retains action-only diffusion. The evidence motivates a bounded test, not a guaranteed improvement; no controller, auxiliary training objective or hyperparameter search is added.",
+  "combination_consideration": "Retain P1 relational input and action-only diffusion. Do not inherit P2/P3 joint future denoising: no incremental P3 E successes here and auxiliary channels would confound the one input-representation intent.",
+  "candidate": {
+    "evidence_refs": [
+      "round3/evidence/peg-insert-side/task_materials.json",
+      "round3/evidence/peg-insert-side/DESIGN_INTERFACE.md",
+      "round3/design_records/peg-insert-side/proposal.json (original D2 observations are inherited as reported, not newly inspected)",
+      "round3/design_records/peg-insert-side/rationale.md",
+      "round3/design_records/peg-insert-side/feedback/bundle.json",
+      "All four full 201-row training curves and all four 50-record offline diagnostics in feedback/",
+      "All eight feedback frames individually viewed; selected C episode only, actual steps B0 50/200, P1 50/84, P2 50/200, P3 50/85; training_curves.png also viewed"
+    ],
+    "action_transform": {
+      "encode": "Native [world_dx,world_dy,world_dz,gripper] identity on all four physical control channels. xyz=1 requests0.01m at dt0.0125s; this is a command, not assumed realized displacement.",
+      "decode": "Read first4 output channels unchanged as native world control; apply world cube clipping[-1,1]^4 AFTER decoding. Auxiliary channels, if any, are discarded.",
+      "chunk_frame": "World axes fixed at replan and throughout all16 predictions; execute first4. No per-slot recentering."
+    },
+    "augmentation": "None. No whole-environment rotations/translations or label perturbations.",
+    "training_schedule": {
+      "datasets": "Only N5 and N20, independent from-scratch seed0 runs; actions, masks and any statistics only from current D_N. No fine tuning, additional demonstrations or larger-N labels.",
+      "optimizer": "AdamW lr=1e-4 wd=1e-6 betas=(0.9,0.999), gradient_clip=1, EMA=0.995",
+      "updates": 20000,
+      "total_batch_chunks": 128,
+      "window_sampling": "Uniform CPU torch.randint over all current D_N transition starts; length16, zero padded tails excluded by validity mask.",
+      "diffusion": "epsilon prediction, 100 cosine DDPM steps; DDIM16 leading integer timesteps [90,84,78,72,66,60,54,48,42,36,30,24,18,12,6,0], eta=0, no clean-sample clipping",
+      "history": 2,
+      "predict": 16,
+      "execute": 4,
+      "aux_schedule": "No auxiliary head, auxiliary labels or auxiliary loss; exactly the unchanged P1 action-only training objective."
+    },
+    "hierarchy_selection_and_termination": "Single diffusion policy; no router, phase oracle, geometric action controller, predicted-success termination, or clock. Replan each4 actions until shared environment/horizon termination; episode clock unchanged.",
+    "chunk_transition_handling": "Keep one conditioning two-observation history for complete16-action plan. No switching within chunk; execute4 then replan. Tail slots zero padded/masked during training. For auxiliary targets, all displacements use the observation at initial chunk anchor t.",
+    "required_runtime_inputs": "Exactly two common raw42 observations, including pegHead and fixed goal. No images, future states, initial factors, hidden state, expert action, task-specific success signal, or auxiliary target at runtime.",
+    "parameter_budget": "One shared U-Net, no separate experts; <=3x B0. Exact instantiated parameter counts must be audited before formal runs.",
+    "confidence": "Low to moderate plausibility for a testable representation hypothesis; low confidence in incremental gain beyond P1. This is the sole feedback revision and will not be retuned against later outcomes.",
+    "candidate_id": "P4",
+    "knowledge_hypotheses": [
+      {
+        "source": "external geometry/common knowledge",
+        "claim": "Hand-relative object and target displacement expresses manipulation geometry, while absolute hand location retains information about fixed robot reach and world gravity. This representation does not require translated scenes to be physically equivalent.",
+        "source_ref": "Supplied task_materials.json fixed world axes, observed grasp/head/goal and robot/gravity caution."
+      },
+      {
+        "source": "observation from permitted N5 development feedback",
+        "claim": "P1 relation conditioning and P3 combination both achieve 20/20 C and 10/20 E, with identical per-episode descriptive failure labels, while raw-conditioning B0/P2 achieve 4/20 and 3/20 C and 4/20 and 0/20 E.",
+        "source_ref": "feedback/bundle.json and all four offline_diagnostics.json files."
+      },
+      {
+        "source": "unverified inference",
+        "claim": "P1 still presents direct absolute peg and goal positions despite appending relations. Replacing those absolute position inputs with local displacements may make geometry-based interpolation/extrapolation easier for the denoiser, addressing some remaining E failures. Absolute positions remain algebraically reconstructible from hand context, so shortcut elimination is not claimed.",
+        "source_ref": "Original proposal P1 observation_transform plus feedback P1/P3 E failure diagnostics."
+      }
+    ],
+    "predicted_generalization_gain": "Prospective and uncertain: relative replacement may improve extrapolated peg/box layouts by presenting observed manipulation relations consistently across absolute placements. It may preserve C success, but a measurable improvement or preservation is not guaranteed.",
+    "applicability": "Exactly the common raw42 peg schema with observed grasp, peg head, goal, current and native previous hand positions, absent object2 zeros, fixed world xyz axes; no new runtime channels.",
+    "failure_conditions": [
+      "The U-Net may reconstruct absolute peg/goal coordinates from retained hand positions and continue exploiting LL/HH correlations.",
+      "P1 already supplies the same relations among appended features, so replacing raw coordinates may be redundant or hurt learned conditioning.",
+      "Extrapolation failures can involve reachability, grasp stability, contact dynamics or missing training support that this representation cannot repair.",
+      "Fixed metric magnitudes can exceed those observed in current D_N; no clipping or learned normalization suppresses extrapolated features.",
+      "The small N5 development sample and one seed do not establish causal mechanism, N20 effectiveness, or locked-test performance."
+    ],
+    "architecture": {
+      "backbone": "Conditional temporal U-Net widths [64,128,256], time embedding128, kernel5, groups8, shared two-observation conditioning",
+      "action_channels": 4,
+      "trainable_parameter_cap": "<=3 times identically measured B0; verify before formal runs",
+      "control": "Every executed action is a sampled diffusion output decoded into native world xyz+gripper.",
+      "conditioning_per_observation": 62
+    },
+    "modules": [
+      "Fixed hand-relative replacement of four raw xyz blocks",
+      "Unchanged P1 appended relation feature map",
+      "Unchanged shared 4-channel diffusion U-Net"
+    ],
+    "observation_transform": {
+      "raw_retained": {
+        "input": "Each raw42 observation independently, within the unchanged two-observation history. Original raw array must not be mutated.",
+        "replacements_in_order": [
+          {
+            "indices": [
+              4,
+              7
+            ],
+            "value": "(raw[4:7]-raw[0:3])/0.1m",
+            "meaning": "current grasp relative to current hand, native xyz"
+          },
+          {
+            "indices": [
+              22,
+              25
+            ],
+            "value": "(raw[22:25]-raw[18:21])/0.1m",
+            "meaning": "native previous grasp relative to native previous hand, native xyz"
+          },
+          {
+            "indices": [
+              36,
+              39
+            ],
+            "value": "(raw[36:39]-raw[0:3])/0.1m",
+            "meaning": "goal relative to current hand, native xyz"
+          },
+          {
+            "indices": [
+              39,
+              42
+            ],
+            "value": "(raw[39:42]-raw[0:3])/0.1m",
+            "meaning": "observed peg head relative to current hand, native xyz"
+          }
+        ],
+        "all_other_raw_fields": "Copied unchanged: current/previous absolute hand xyz in metres, apertures, quaternions, and absent object2 zero positions/quaternions. No time, phase, success, initial factors or extra channels.",
+        "normalization": "Fixed zero center and scale one after explicit 0.1m division; no statistics fitted."
+      },
+      "appended_order": [
+        "(grasp-hand)/0.1m [xyz]",
+        "(goal-head)/0.1m [xyz]",
+        "(head-grasp)/0.1m [xyz]",
+        "(goal-hand)/0.1m [xyz]",
+        "(current_hand-raw_previous_hand)/0.01m [xyz]",
+        "(current_grasp-raw_previous_grasp)/0.01m [xyz]",
+        "norm((grasp-hand)[xy])/0.1m",
+        "norm((goal-head)[yz])/0.1m"
+      ],
+      "output_dimension_per_observation": 62,
+      "axes": "Native fixed world x insertion axis, world y lateral alignment, world z gravity. No rotation or translating the environment.",
+      "history": "Apply to each of two raw observations independently; use each observation own native previous slots for previous relation. Repeat initial observation as shared protocol. No route change or clock exists.",
+      "normalization": "All62 features passthrough downstream normalization; scaling above fixed from physical metric convention, not data-fitted.",
+      "appended_feature_source": "Compute all original P1 appended 20 features from the original unmodified raw42, before or independently of the replacement. Do not compute them from the replaced block."
+    },
+    "losses_and_weights": {
+      "action_epsilon": {
+        "target": "Independent standard Gaussian epsilon added to first4 encoded physical action coordinates under shared DDPM schedule",
+        "weight": 1.0,
+        "reduction": "Mean squared error over first4 channels and valid chunk slots only, averaged over batch",
+        "applies": "All sampled training windows, all updates"
+      },
+      "extra": "None"
+    },
+    "required_train_labels": "Only current-D_N demonstrated native world action chunks and shared validity masks. No future, contact, success, phase or diagnostic labels.",
+    "implementation_steps": [
+      "After saving this decision, inspect only necessary original peg plugin and shared interfaces for compatibility.",
+      "Implement NEW src/round3/peg_revision.py deriving or composing original P1 adapter: compute original P1 features first, then overwrite the four specified xyz blocks without mutating raw input.",
+      "Use unchanged P1 identity action encode/decode, four-channel model, fixed normalization and masked action epsilon loss.",
+      "Create P4 config binding this revision SHA and additional_source_files for original peg plugin and any noncore imported helper; do not modify original plugin or shared files.",
+      "Run CPU feature, synthetic translation/context, action round-trip, masked loss, gradient and exact parameter cap audits with torch threads1. Keep final readiness passed=false until parent CUDA debug.",
+      "Parent registers P4 and performs CUDA debug plus independent formal N5/N20 training at fixed budget on authorized GPUs only."
+    ],
+    "base_candidate_id": "P1",
+    "principal_revision_intent": "Express peg and goal positions through hand-relative coordinates in the retained conditioning block, reducing direct access to correlated absolute object/goal placement while retaining absolute hand context for the fixed robot.",
+    "all_changes_from_base": [
+      {
+        "field": "observation_transform.raw_retained",
+        "change": "Replace raw current grasp xyz indices 4:7 with (current_grasp-current_hand)/0.1m; previous grasp xyz indices 22:25 with (previous_grasp-previous_hand)/0.1m; goal xyz indices 36:39 with (goal-current_hand)/0.1m; peg_head xyz indices 39:42 with (peg_head-current_hand)/0.1m. All other raw coordinates and the original P1 appended 20 features remain exactly as P1. This is a conditioning representation change only; no physical scene transformation."
+      },
+      {
+        "field": "training_schedule.datasets",
+        "change": "P4 formal runs only N5 and N20, fresh seed0 independently; each current D_N only."
+      }
+    ]
+  },
+  "revision_policy": "One immutable N5 feedback decision; no further feedback cycle or edits after later model results. Material implementation feasibility deviation must be separately recorded before any design-changing implementation."
+}

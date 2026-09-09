@@ -1,0 +1,11 @@
+# Drawer initial design, version 1
+
+The design used only the contract and drawer D2 evidence. All 16 actual frames were viewed. Exactly two complete NPZ trajectories were numerically summarized with Pixi; their derived measurements are in `D2_analysis.json`. No larger data or model outcomes were read before this record was saved.
+
+Both demonstrations rise to about 0.30 m at step 25, descend toward the handle, then first move the drawer appreciably at transition 69. Final handle displacements are -0.134964 m and -0.130192 m along the cabinet-local y rail; transverse displacement is below 1e-8 m. The initial goal lies about -0.128 m along that rail. The images support approach/descent/pull interpretation but are not deployment policy inputs.
+
+P1 changes coordinates: current-handle anchored, cabinet-aligned relations and local action vectors, while preserving absolute world hand/handle positions and yaw for fixed-robot context. P2 keeps world actions and jointly diffuses a future signed rail-distance sequence alongside them. P3 combines the cabinet frame with future local hand-handle gap and rail-distance sequences. All are actual single diffusion policy candidates; auxiliary generated channels are discarded at execution and never become an analytic action controller.
+
+The combination in P3 is deliberate: rail progress alone may not explain when contact is established, whereas future hand-handle gap can share that signal with the action denoiser. This can also hurt through interference or successful-trajectory-only bias. There is no prescribed phase selector, geometric action controller, rescue, or presumed prior benefit.
+
+All scales, channels, loss weights and alignment rules are exact in `proposal.json`. The frame stays fixed across both observations and all 16 chunk actions, even across approach/pull changes. Rotate actions back to world before native cube clipping: bundled local action coordinates can exceed magnitude one. Fixed environment geometry makes scene-rotation augmentation unjustified. All candidates use no augmentation, one seed, uniform current-D_N windows, and the complete shared 20,000-update budget. Numerical state generalization remains uncertain, particularly for large yaw with fixed gripper orientation.

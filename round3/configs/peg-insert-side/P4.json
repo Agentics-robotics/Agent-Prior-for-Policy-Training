@@ -1,0 +1,16 @@
+{
+  "candidate_id": "P4",
+  "plugin_module": "round3.peg_revision",
+  "plugin_class": "PegRevisionPlugin",
+  "plugin_config": {
+    "candidate_id": "P4"
+  },
+  "proposal_sha256": "e49f4fe20d46727dd4973abcd83f3eb81ab558acfb68168f7a3773ce47f83b2b",
+  "observation_schema_sha256": "303b41ffaeab8ed64f0597fd94bce702666b19b4d41f3c95cbeacb84f07db95e",
+  "rationale": "P1 action-only diffusion with four retained position blocks replaced by hand-relative displacements; absolute hand context retained",
+  "implementation_audit": "round3/audits/peg_revision_readiness.json",
+  "custom_loss": false,
+  "additional_source_files": [
+    "src/round3/peg_plugin.py"
+  ]
+}

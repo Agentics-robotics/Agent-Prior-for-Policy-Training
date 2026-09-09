@@ -1,0 +1,657 @@
+{
+  "actual_design_changes": [],
+  "agent_backend": "codex_session",
+  "alternatives_considered": [
+    {
+      "mechanism": "P2world-frame replacement",
+      "reason_not_adopted": "Would substantially duplicate existing P1 rather than introduce a distinct supported revision."
+    },
+    {
+      "mechanism": "Acquisition-specific auxiliary labels or phase hierarchy",
+      "reason_not_adopted": "The descriptive diagnostics do not establish contact/grasp labels or isolate a causal acquisition failure, and P1/P3already succeed on the exposed cases."
+    },
+    {
+      "mechanism": "Reduce or remove P3future-motion objective",
+      "reason_not_adopted": "Higher total training loss includes its auxiliary term; no P3development failure or controlled evidence supports an objective change."
+    }
+  ],
+  "authorized_new_training_runs": [],
+  "base_candidate_id": null,
+  "candidate": null,
+  "candidates": [],
+  "confidence": {
+    "basis": "Adequate support for retaining the original candidate set under this limited feedback packet; limited confidence about population generalization and causal mechanisms.",
+    "level": "moderate",
+    "prospective_gain_claim": "None. no_revision makes no guaranteed positive outcome claim."
+  },
+  "context_exposure": {
+    "additional_scored_or_unscored_rollouts": 0,
+    "aggregate_reports_or_selection_read": [],
+    "all_accesses_listed_in": "evidence_access_hash_map",
+    "content_or_image_access_count": 24,
+    "development_states": "Only authorized feedback frame images and aggregate/episode descriptive diagnostics; bound trajectory and complete files were hashed without parsing.",
+    "expert_or_reward_implementations_read": [],
+    "fresh_isolated_feedback_designer": true,
+    "gpu_calls": 0,
+    "hash_only_access_count": 11,
+    "implementation_sources_read_before_decision": [],
+    "initial_feasibility_revision_json": "not present; existence checked only",
+    "locked_test_content_read": [],
+    "new_trajectory_contents_loaded": 0,
+    "optimizer_updates": 0,
+    "other_N_data_or_results_read": [],
+    "other_tasks_read": [],
+    "python_execution": "env OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 /home/users/oscar/.pixi/bin/pixi run python",
+    "scope": "This task N5 feedback only, the authorized contract/interface/materials, and the saved initial stick-push proposal/rationale. No previous parent outcomes were supplied.",
+    "torch_imported": false,
+    "web_or_external_source_accesses": 0
+  },
+  "created_at": "2026-09-08T08:29:24.012532+00:00",
+  "decision": "no_revision",
+  "decision_is_final_for_this_feedback_cycle": true,
+  "decision_saved_before_any_implementation_inspection": true,
+  "designer": {
+    "actual_agent_identity": "/root/feedback_stick",
+    "actual_subagent_name": "/root/feedback_stick",
+    "cost": "unavailable",
+    "model": "unavailable",
+    "session_id": "unavailable",
+    "tokens": "unavailable"
+  },
+  "evidence_access_hash_map": {
+    "AGENTS.md": {
+      "access": "content_read",
+      "purpose": "authorized stick-push design evidence or instructions",
+      "sha256": "4f1776b6b781aedf1ca38f1bce3120da8b7f6c5556c27eaa906a79cc697477c6"
+    },
+    "round3/DESIGN_CONTRACT.md": {
+      "access": "content_read",
+      "purpose": "authorized stick-push design evidence or instructions",
+      "sha256": "d3fe292220813dd805d0be8d330f215ab5da3da9a83669e9e54501509f10338d"
+    },
+    "round3/data/stick-push/manifest.json": {
+      "access": "hash_only_no_content_parsing",
+      "purpose": "exact packet-bound provenance verification",
+      "sha256": "a5613ec22f5cbeb4ba757d936088b644fc13de2599adb272bf035963ef25d713"
+    },
+    "round3/design_records/feedback_frame_rule.json": {
+      "access": "hash_only_no_content_parsing",
+      "purpose": "exact packet-bound provenance verification",
+      "sha256": "e1f0c9186a5825f240abf479c5d8b92aac969e31de9e4b4b4b058ed21bb20207"
+    },
+    "round3/design_records/offline_diagnostic_rule.json": {
+      "access": "hash_only_no_content_parsing",
+      "purpose": "exact packet-bound provenance verification",
+      "sha256": "b9c47487850405014b2593da8d29d21c4684b80b128b7d623cf33c25a5074cb6"
+    },
+    "round3/design_records/stick-push/feedback/B0_offline_diagnostics.json": {
+      "access": "content_read",
+      "purpose": "authorized stick-push design evidence or instructions",
+      "sha256": "bc182883f89f2c9e879a80570fafde3786f1190fd504d9efd3a181c5ee9ac3e4"
+    },
+    "round3/design_records/stick-push/feedback/B0_step_050.png": {
+      "access": "viewed_with_image_tool",
+      "purpose": "authorized stick-push design evidence or instructions",
+      "sha256": "8356a07196d1ecc9cce52436ca4cd2db2d9ab2427b116376a33696ed38e23a8e"
+    },
+    "round3/design_records/stick-push/feedback/B0_step_200.png": {
+      "access": "viewed_with_image_tool",
+      "purpose": "authorized stick-push design evidence or instructions",
+      "sha256": "65d4c3ac8c6a6dd1f87ef173b1640599f4242d76dcf66b23d30ec7fdeb0dae6e"
+    },
+    "round3/design_records/stick-push/feedback/B0_training_curve.json": {
+      "access": "content_read",
+      "purpose": "authorized stick-push design evidence or instructions",
+      "sha256": "30aeff88a3189f91bccd1d90a007755fe1900132ac578a82c0bb7144097a8476"
+    },
+    "round3/design_records/stick-push/feedback/P1_offline_diagnostics.json": {
+      "access": "content_read",
+      "purpose": "authorized stick-push design evidence or instructions",
+      "sha256": "b8eae27de9de2a8a1e9fb74d720d5ce33c173ee0b133eaf3496ba21faaeb41ae"
+    },
+    "round3/design_records/stick-push/feedback/P1_step_050.png": {
+      "access": "viewed_with_image_tool",
+      "purpose": "authorized stick-push design evidence or instructions",
+      "sha256": "cb81f621cc829c74940a7494e0471b1232ad8767ce90d68c3b4923a38db47136"
+    },
+    "round3/design_records/stick-push/feedback/P1_step_200.png": {
+      "access": "viewed_with_image_tool",
+      "purpose": "authorized stick-push design evidence or instructions",
+      "sha256": "95e9ba9dc1da7c889bf87b768b1957910e67b63f0d291fcc288c7ad6111fcb86"
+    },
+    "round3/design_records/stick-push/feedback/P1_training_curve.json": {
+      "access": "content_read",
+      "purpose": "authorized stick-push design evidence or instructions",
+      "sha256": "03723369b8eb1c9adf83d725df9e156a1839601c37afd6a09178e428cafc5c89"
+    },
+    "round3/design_records/stick-push/feedback/P2_offline_diagnostics.json": {
+      "access": "content_read",
+      "purpose": "authorized stick-push design evidence or instructions",
+      "sha256": "8bd0d5fc13452d408d5b5465477e7895ec02b022182ceaead1dff72f90220e84"
+    },
+    "round3/design_records/stick-push/feedback/P2_step_050.png": {
+      "access": "viewed_with_image_tool",
+      "purpose": "authorized stick-push design evidence or instructions",
+      "sha256": "5baba0a776f844d212d6ee874a312dcb7e422f6768e1f03ddbcdcfb632af4137"
+    },
+    "round3/design_records/stick-push/feedback/P2_step_200.png": {
+      "access": "viewed_with_image_tool",
+      "purpose": "authorized stick-push design evidence or instructions",
+      "sha256": "97ab1e157e10ca7484c7da2a645f28ef2d945c2b689135cb493662ab1726179c"
+    },
+    "round3/design_records/stick-push/feedback/P2_training_curve.json": {
+      "access": "content_read",
+      "purpose": "authorized stick-push design evidence or instructions",
+      "sha256": "311e76234d2f952c1b5a557af14317300f0b26b585df7bb53ae12b002446c82c"
+    },
+    "round3/design_records/stick-push/feedback/P3_offline_diagnostics.json": {
+      "access": "content_read",
+      "purpose": "authorized stick-push design evidence or instructions",
+      "sha256": "e6b0b2e5246d8fd50858270c6b383855969cdbfe03dfe9830f226ae15ba05c0b"
+    },
+    "round3/design_records/stick-push/feedback/P3_step_050.png": {
+      "access": "viewed_with_image_tool",
+      "purpose": "authorized stick-push design evidence or instructions",
+      "sha256": "3dae4ed961959e383b2dc031220d31ad10191db9a23ebf2266cebc374112fa8a"
+    },
+    "round3/design_records/stick-push/feedback/P3_step_200.png": {
+      "access": "viewed_with_image_tool",
+      "purpose": "authorized stick-push design evidence or instructions",
+      "sha256": "5024918692f0652548abb73b967697b124b0348fadb0bbf357f9fcb78f16608b"
+    },
+    "round3/design_records/stick-push/feedback/P3_training_curve.json": {
+      "access": "content_read",
+      "purpose": "authorized stick-push design evidence or instructions",
+      "sha256": "0d908fbe7f1c6dd59ddfe6f3ba14c27791369f10b309374bf4c59f560ad6e9e2"
+    },
+    "round3/design_records/stick-push/feedback/bundle.json": {
+      "access": "content_read",
+      "purpose": "authorized stick-push design evidence or instructions",
+      "sha256": "6563c2de0f8b7359c716ce9bddd83d9d8b892865e62bef4dd9c33b17f7070438"
+    },
+    "round3/design_records/stick-push/feedback/training_curves.png": {
+      "access": "viewed_with_image_tool",
+      "purpose": "authorized stick-push design evidence or instructions",
+      "sha256": "9ac9deeedb95189d1cb5e71f8eb8530d07dbd70251d82fb666ff9e0fe39c9338"
+    },
+    "round3/design_records/stick-push/proposal.json": {
+      "access": "content_read",
+      "purpose": "authorized stick-push design evidence or instructions",
+      "sha256": "0744d1fe9defe7a972d99c66ed028ee3d4c1955542690734a1b00fbac8f245b5"
+    },
+    "round3/design_records/stick-push/rationale.md": {
+      "access": "content_read",
+      "purpose": "authorized stick-push design evidence or instructions",
+      "sha256": "5b3622ce2c4686b8c1f2d8d85afea8b4a179119071af6d388ca1aaac26b2765d"
+    },
+    "round3/dev_results/r3_stick-push_B0_n5_s0/complete.json": {
+      "access": "hash_only_no_content_parsing",
+      "purpose": "exact packet-bound provenance verification",
+      "sha256": "92322c4495a844d2cf7517477ea26a5f94b8ba16a118a534ed0ec8fc599a7640"
+    },
+    "round3/dev_results/r3_stick-push_B0_n5_s0/r3_stick-push_dev_C_000_32501000.npz": {
+      "access": "hash_only_no_content_parsing",
+      "purpose": "exact packet-bound provenance verification",
+      "sha256": "7a81d08261fa1b123527a484c5b2c49b3bfe2280819f7f85e4fcc1a0fcc68c99"
+    },
+    "round3/dev_results/r3_stick-push_P1_n5_s0/complete.json": {
+      "access": "hash_only_no_content_parsing",
+      "purpose": "exact packet-bound provenance verification",
+      "sha256": "a387e8a47787416aa35787cb844bb132f6ac804b59de88e663c77274073aafb3"
+    },
+    "round3/dev_results/r3_stick-push_P1_n5_s0/r3_stick-push_dev_C_000_32501000.npz": {
+      "access": "hash_only_no_content_parsing",
+      "purpose": "exact packet-bound provenance verification",
+      "sha256": "b0e3a679e1254ab3ce91d2727d790f1bdde8fa11f5a73797cd6ac2bab5006b33"
+    },
+    "round3/dev_results/r3_stick-push_P2_n5_s0/complete.json": {
+      "access": "hash_only_no_content_parsing",
+      "purpose": "exact packet-bound provenance verification",
+      "sha256": "81ffaea5e15e718a654093d8870a04d17b0c023ea362e123a598a5423718f56b"
+    },
+    "round3/dev_results/r3_stick-push_P2_n5_s0/r3_stick-push_dev_C_000_32501000.npz": {
+      "access": "hash_only_no_content_parsing",
+      "purpose": "exact packet-bound provenance verification",
+      "sha256": "ce4c64244945b907bc60e5788e4dac1c1f928ec663dc15ddced4f729cac6693c"
+    },
+    "round3/dev_results/r3_stick-push_P3_n5_s0/complete.json": {
+      "access": "hash_only_no_content_parsing",
+      "purpose": "exact packet-bound provenance verification",
+      "sha256": "6c9ffe467f4612ed4300aeb86a8af0a704350d39180946bcbe4bad64bba162a0"
+    },
+    "round3/dev_results/r3_stick-push_P3_n5_s0/r3_stick-push_dev_C_000_32501000.npz": {
+      "access": "hash_only_no_content_parsing",
+      "purpose": "exact packet-bound provenance verification",
+      "sha256": "d41fda5a1f3d2752e86c59dcd9d571504e16216fac9c9f06d966daeed465551d"
+    },
+    "round3/evidence/stick-push/DESIGN_INTERFACE.md": {
+      "access": "content_read",
+      "purpose": "authorized stick-push design evidence or instructions",
+      "sha256": "fe0a1c4a12c4bd170d432f48cf1cb3ae98028cc37a5d1ad0f4cff6d0d14f0101"
+    },
+    "round3/evidence/stick-push/task_materials.json": {
+      "access": "content_read",
+      "purpose": "authorized stick-push design evidence or instructions",
+      "sha256": "32c50f692af812baf0d88f4776d06bc569fad81230e594f828d43f0929aac8f0"
+    }
+  },
+  "evidence_cannot_establish": [
+    "Causal explanation for any failure or isolated causal benefit from a particular prior.",
+    "Grasp/contact detection from the5cm threshold or success from observed goal-point distance.",
+    "A dependable P1versusP3ranking, general success probability of100%, N20performance, another seed outcome, or locked-test performance.",
+    "That no future revision could help."
+  ],
+  "evidence_hashes": {
+    "AGENTS.md": "4f1776b6b781aedf1ca38f1bce3120da8b7f6c5556c27eaa906a79cc697477c6",
+    "round3/DESIGN_CONTRACT.md": "d3fe292220813dd805d0be8d330f215ab5da3da9a83669e9e54501509f10338d",
+    "round3/data/stick-push/manifest.json": "a5613ec22f5cbeb4ba757d936088b644fc13de2599adb272bf035963ef25d713",
+    "round3/design_records/feedback_frame_rule.json": "e1f0c9186a5825f240abf479c5d8b92aac969e31de9e4b4b4b058ed21bb20207",
+    "round3/design_records/offline_diagnostic_rule.json": "b9c47487850405014b2593da8d29d21c4684b80b128b7d623cf33c25a5074cb6",
+    "round3/design_records/stick-push/feedback/B0_offline_diagnostics.json": "bc182883f89f2c9e879a80570fafde3786f1190fd504d9efd3a181c5ee9ac3e4",
+    "round3/design_records/stick-push/feedback/B0_step_050.png": "8356a07196d1ecc9cce52436ca4cd2db2d9ab2427b116376a33696ed38e23a8e",
+    "round3/design_records/stick-push/feedback/B0_step_200.png": "65d4c3ac8c6a6dd1f87ef173b1640599f4242d76dcf66b23d30ec7fdeb0dae6e",
+    "round3/design_records/stick-push/feedback/B0_training_curve.json": "30aeff88a3189f91bccd1d90a007755fe1900132ac578a82c0bb7144097a8476",
+    "round3/design_records/stick-push/feedback/P1_offline_diagnostics.json": "b8eae27de9de2a8a1e9fb74d720d5ce33c173ee0b133eaf3496ba21faaeb41ae",
+    "round3/design_records/stick-push/feedback/P1_step_050.png": "cb81f621cc829c74940a7494e0471b1232ad8767ce90d68c3b4923a38db47136",
+    "round3/design_records/stick-push/feedback/P1_step_200.png": "95e9ba9dc1da7c889bf87b768b1957910e67b63f0d291fcc288c7ad6111fcb86",
+    "round3/design_records/stick-push/feedback/P1_training_curve.json": "03723369b8eb1c9adf83d725df9e156a1839601c37afd6a09178e428cafc5c89",
+    "round3/design_records/stick-push/feedback/P2_offline_diagnostics.json": "8bd0d5fc13452d408d5b5465477e7895ec02b022182ceaead1dff72f90220e84",
+    "round3/design_records/stick-push/feedback/P2_step_050.png": "5baba0a776f844d212d6ee874a312dcb7e422f6768e1f03ddbcdcfb632af4137",
+    "round3/design_records/stick-push/feedback/P2_step_200.png": "97ab1e157e10ca7484c7da2a645f28ef2d945c2b689135cb493662ab1726179c",
+    "round3/design_records/stick-push/feedback/P2_training_curve.json": "311e76234d2f952c1b5a557af14317300f0b26b585df7bb53ae12b002446c82c",
+    "round3/design_records/stick-push/feedback/P3_offline_diagnostics.json": "e6b0b2e5246d8fd50858270c6b383855969cdbfe03dfe9830f226ae15ba05c0b",
+    "round3/design_records/stick-push/feedback/P3_step_050.png": "3dae4ed961959e383b2dc031220d31ad10191db9a23ebf2266cebc374112fa8a",
+    "round3/design_records/stick-push/feedback/P3_step_200.png": "5024918692f0652548abb73b967697b124b0348fadb0bbf357f9fcb78f16608b",
+    "round3/design_records/stick-push/feedback/P3_training_curve.json": "0d908fbe7f1c6dd59ddfe6f3ba14c27791369f10b309374bf4c59f560ad6e9e2",
+    "round3/design_records/stick-push/feedback/bundle.json": "6563c2de0f8b7359c716ce9bddd83d9d8b892865e62bef4dd9c33b17f7070438",
+    "round3/design_records/stick-push/feedback/training_curves.png": "9ac9deeedb95189d1cb5e71f8eb8530d07dbd70251d82fb666ff9e0fe39c9338",
+    "round3/design_records/stick-push/proposal.json": "0744d1fe9defe7a972d99c66ed028ee3d4c1955542690734a1b00fbac8f245b5",
+    "round3/design_records/stick-push/rationale.md": "5b3622ce2c4686b8c1f2d8d85afea8b4a179119071af6d388ca1aaac26b2765d",
+    "round3/dev_results/r3_stick-push_B0_n5_s0/complete.json": "92322c4495a844d2cf7517477ea26a5f94b8ba16a118a534ed0ec8fc599a7640",
+    "round3/dev_results/r3_stick-push_B0_n5_s0/r3_stick-push_dev_C_000_32501000.npz": "7a81d08261fa1b123527a484c5b2c49b3bfe2280819f7f85e4fcc1a0fcc68c99",
+    "round3/dev_results/r3_stick-push_P1_n5_s0/complete.json": "a387e8a47787416aa35787cb844bb132f6ac804b59de88e663c77274073aafb3",
+    "round3/dev_results/r3_stick-push_P1_n5_s0/r3_stick-push_dev_C_000_32501000.npz": "b0e3a679e1254ab3ce91d2727d790f1bdde8fa11f5a73797cd6ac2bab5006b33",
+    "round3/dev_results/r3_stick-push_P2_n5_s0/complete.json": "81ffaea5e15e718a654093d8870a04d17b0c023ea362e123a598a5423718f56b",
+    "round3/dev_results/r3_stick-push_P2_n5_s0/r3_stick-push_dev_C_000_32501000.npz": "ce4c64244945b907bc60e5788e4dac1c1f928ec663dc15ddced4f729cac6693c",
+    "round3/dev_results/r3_stick-push_P3_n5_s0/complete.json": "6c9ffe467f4612ed4300aeb86a8af0a704350d39180946bcbe4bad64bba162a0",
+    "round3/dev_results/r3_stick-push_P3_n5_s0/r3_stick-push_dev_C_000_32501000.npz": "d41fda5a1f3d2752e86c59dcd9d571504e16216fac9c9f06d966daeed465551d",
+    "round3/evidence/stick-push/DESIGN_INTERFACE.md": "fe0a1c4a12c4bd170d432f48cf1cb3ae98028cc37a5d1ad0f4cff6d0d14f0101",
+    "round3/evidence/stick-push/task_materials.json": "32c50f692af812baf0d88f4776d06bc569fad81230e594f828d43f0929aac8f0"
+  },
+  "evidence_supports": [
+    "Observed N5development success counts and descriptive motion differences on the fixed200episodes.",
+    "Existing P1/P3world-relation designs perform successfully on all exposed episodes; broad training optimization failure is not apparent in reported curves."
+  ],
+  "feedback_cycles_used": 1,
+  "frame_count": 8,
+  "frame_inspection": {
+    "all_frames_viewed_individually": true,
+    "limits": "No failure episode is pictured; sparse viewpoints cannot establish contact forces, secure grasp, or causal failure stage.",
+    "observation": "Similar tool/container arrangements at step 50 and later container movement on this one successful compositional episode. Terminal frames occur before requested step 200.",
+    "records": [
+      {
+        "actual_step": 50,
+        "candidate_id": "B0",
+        "episode_id": "r3_stick-push_dev_C_000_32501000",
+        "path": "round3/design_records/stick-push/feedback/B0_step_050.png",
+        "requested_step": 50,
+        "sha256": "8356a07196d1ecc9cce52436ca4cd2db2d9ab2427b116376a33696ed38e23a8e",
+        "success": true
+      },
+      {
+        "actual_step": 75,
+        "candidate_id": "B0",
+        "episode_id": "r3_stick-push_dev_C_000_32501000",
+        "path": "round3/design_records/stick-push/feedback/B0_step_200.png",
+        "requested_step": 200,
+        "sha256": "65d4c3ac8c6a6dd1f87ef173b1640599f4242d76dcf66b23d30ec7fdeb0dae6e",
+        "success": true
+      },
+      {
+        "actual_step": 50,
+        "candidate_id": "P1",
+        "episode_id": "r3_stick-push_dev_C_000_32501000",
+        "path": "round3/design_records/stick-push/feedback/P1_step_050.png",
+        "requested_step": 50,
+        "sha256": "cb81f621cc829c74940a7494e0471b1232ad8767ce90d68c3b4923a38db47136",
+        "success": true
+      },
+      {
+        "actual_step": 75,
+        "candidate_id": "P1",
+        "episode_id": "r3_stick-push_dev_C_000_32501000",
+        "path": "round3/design_records/stick-push/feedback/P1_step_200.png",
+        "requested_step": 200,
+        "sha256": "95e9ba9dc1da7c889bf87b768b1957910e67b63f0d291fcc288c7ad6111fcb86",
+        "success": true
+      },
+      {
+        "actual_step": 50,
+        "candidate_id": "P2",
+        "episode_id": "r3_stick-push_dev_C_000_32501000",
+        "path": "round3/design_records/stick-push/feedback/P2_step_050.png",
+        "requested_step": 50,
+        "sha256": "5baba0a776f844d212d6ee874a312dcb7e422f6768e1f03ddbcdcfb632af4137",
+        "success": true
+      },
+      {
+        "actual_step": 75,
+        "candidate_id": "P2",
+        "episode_id": "r3_stick-push_dev_C_000_32501000",
+        "path": "round3/design_records/stick-push/feedback/P2_step_200.png",
+        "requested_step": 200,
+        "sha256": "97ab1e157e10ca7484c7da2a645f28ef2d945c2b689135cb493662ab1726179c",
+        "success": true
+      },
+      {
+        "actual_step": 50,
+        "candidate_id": "P3",
+        "episode_id": "r3_stick-push_dev_C_000_32501000",
+        "path": "round3/design_records/stick-push/feedback/P3_step_050.png",
+        "requested_step": 50,
+        "sha256": "3dae4ed961959e383b2dc031220d31ad10191db9a23ebf2266cebc374112fa8a",
+        "success": true
+      },
+      {
+        "actual_step": 74,
+        "candidate_id": "P3",
+        "episode_id": "r3_stick-push_dev_C_000_32501000",
+        "path": "round3/design_records/stick-push/feedback/P3_step_200.png",
+        "requested_step": 200,
+        "sha256": "5024918692f0652548abb73b967697b124b0348fadb0bbf357f9fcb78f16608b",
+        "success": true
+      }
+    ],
+    "selected_episode_id": "r3_stick-push_dev_C_000_32501000"
+  },
+  "frames_actually_viewed": 8,
+  "implementation_required": false,
+  "observed_feedback_summary": {
+    "B0": {
+      "by_split": {
+        "C": {
+          "episodes": 20,
+          "successes": 20
+        },
+        "E": {
+          "episodes": 20,
+          "successes": 15
+        },
+        "IID": {
+          "episodes": 10,
+          "successes": 10
+        }
+      },
+      "curve_rows_inspected": 201,
+      "diagnostic_records_inspected": 50,
+      "failed_episodes": [
+        {
+          "descriptive_label": "never_near_interaction_point",
+          "episode_id": "r3_stick-push_dev_E_001_32502001",
+          "final_hand_to_interaction_m": 0.32227442276213286,
+          "final_observed_goal_point_distance_m": 0.15983970932138108,
+          "final_recorded_cabinet_progress": null,
+          "first_within_5cm_step": null,
+          "fraction_observations_within_5cm": 0.0,
+          "maximum_recorded_cabinet_progress": null,
+          "min_hand_to_interaction_m": 0.07229207063204358,
+          "min_observed_goal_point_distance_m": 0.03195833964152642,
+          "original_failure_category": "native_truncated",
+          "peak_observed_object_or_tool_lift_m": 0.008535530418157578,
+          "scored_success": false,
+          "split": "E",
+          "termination_reason": "native_truncated"
+        },
+        {
+          "descriptive_label": "never_near_interaction_point",
+          "episode_id": "r3_stick-push_dev_E_005_32502005",
+          "final_hand_to_interaction_m": 0.3250727891593642,
+          "final_observed_goal_point_distance_m": 0.2007359036917198,
+          "final_recorded_cabinet_progress": null,
+          "first_within_5cm_step": null,
+          "fraction_observations_within_5cm": 0.0,
+          "maximum_recorded_cabinet_progress": null,
+          "min_hand_to_interaction_m": 0.07665925157057696,
+          "min_observed_goal_point_distance_m": 0.2007359036917198,
+          "original_failure_category": "native_truncated",
+          "peak_observed_object_or_tool_lift_m": 0.001337515190243721,
+          "scored_success": false,
+          "split": "E",
+          "termination_reason": "native_truncated"
+        },
+        {
+          "descriptive_label": "never_near_interaction_point",
+          "episode_id": "r3_stick-push_dev_E_009_32502009",
+          "final_hand_to_interaction_m": 0.3758337692107529,
+          "final_observed_goal_point_distance_m": 0.1829962386527601,
+          "final_recorded_cabinet_progress": null,
+          "first_within_5cm_step": null,
+          "fraction_observations_within_5cm": 0.0,
+          "maximum_recorded_cabinet_progress": null,
+          "min_hand_to_interaction_m": 0.0735220273591647,
+          "min_observed_goal_point_distance_m": 0.0030616909016196827,
+          "original_failure_category": "native_truncated",
+          "peak_observed_object_or_tool_lift_m": 0.0038362406194210052,
+          "scored_success": false,
+          "split": "E",
+          "termination_reason": "native_truncated"
+        },
+        {
+          "descriptive_label": "never_near_interaction_point",
+          "episode_id": "r3_stick-push_dev_E_013_32502013",
+          "final_hand_to_interaction_m": 0.29265897522105083,
+          "final_observed_goal_point_distance_m": 0.19633385369973366,
+          "final_recorded_cabinet_progress": null,
+          "first_within_5cm_step": null,
+          "fraction_observations_within_5cm": 0.0,
+          "maximum_recorded_cabinet_progress": null,
+          "min_hand_to_interaction_m": 0.07303159784175668,
+          "min_observed_goal_point_distance_m": 0.034711258249626765,
+          "original_failure_category": "native_truncated",
+          "peak_observed_object_or_tool_lift_m": 0.018150579184293747,
+          "scored_success": false,
+          "split": "E",
+          "termination_reason": "native_truncated"
+        },
+        {
+          "descriptive_label": "never_near_interaction_point",
+          "episode_id": "r3_stick-push_dev_E_017_32502017",
+          "final_hand_to_interaction_m": 0.3676121294028213,
+          "final_observed_goal_point_distance_m": 0.1993753620677676,
+          "final_recorded_cabinet_progress": null,
+          "first_within_5cm_step": null,
+          "fraction_observations_within_5cm": 0.0,
+          "maximum_recorded_cabinet_progress": null,
+          "min_hand_to_interaction_m": 0.07395391707791583,
+          "min_observed_goal_point_distance_m": 0.1993753620677676,
+          "original_failure_category": "native_truncated",
+          "peak_observed_object_or_tool_lift_m": 0.0036757029592990875,
+          "scored_success": false,
+          "split": "E",
+          "termination_reason": "native_truncated"
+        }
+      ],
+      "final_optimizer_step": 20000,
+      "final_reported_training_loss": 0.0017326467204838991,
+      "last_50_reported_loss_median": 0.0026350978296250105,
+      "scored_episodes": 50,
+      "scored_successes": 45,
+      "successful_episodes_never_within_5cm": 23,
+      "successful_lift_range_m": [
+        0.06368261203169823,
+        0.07380105182528496
+      ],
+      "train_n": 5
+    },
+    "P1": {
+      "by_split": {
+        "C": {
+          "episodes": 20,
+          "successes": 20
+        },
+        "E": {
+          "episodes": 20,
+          "successes": 20
+        },
+        "IID": {
+          "episodes": 10,
+          "successes": 10
+        }
+      },
+      "curve_rows_inspected": 201,
+      "diagnostic_records_inspected": 50,
+      "failed_episodes": [],
+      "final_optimizer_step": 20000,
+      "final_reported_training_loss": 0.0027503708843141794,
+      "last_50_reported_loss_median": 0.0027410552138462663,
+      "scored_episodes": 50,
+      "scored_successes": 50,
+      "successful_episodes_never_within_5cm": 21,
+      "successful_lift_range_m": [
+        0.06728697940707207,
+        0.07302860543131828
+      ],
+      "train_n": 5
+    },
+    "P2": {
+      "by_split": {
+        "C": {
+          "episodes": 20,
+          "successes": 20
+        },
+        "E": {
+          "episodes": 20,
+          "successes": 19
+        },
+        "IID": {
+          "episodes": 10,
+          "successes": 10
+        }
+      },
+      "curve_rows_inspected": 201,
+      "diagnostic_records_inspected": 50,
+      "failed_episodes": [
+        {
+          "descriptive_label": "never_near_interaction_point",
+          "episode_id": "r3_stick-push_dev_E_011_32502011",
+          "final_hand_to_interaction_m": 0.16458939483158835,
+          "final_observed_goal_point_distance_m": 0.19904191168891197,
+          "final_recorded_cabinet_progress": null,
+          "first_within_5cm_step": null,
+          "fraction_observations_within_5cm": 0.0,
+          "maximum_recorded_cabinet_progress": null,
+          "min_hand_to_interaction_m": 0.060475496962980824,
+          "min_observed_goal_point_distance_m": 0.19904191168891197,
+          "original_failure_category": "native_truncated",
+          "peak_observed_object_or_tool_lift_m": 0.011170100420713425,
+          "scored_success": false,
+          "split": "E",
+          "termination_reason": "native_truncated"
+        }
+      ],
+      "final_optimizer_step": 20000,
+      "final_reported_training_loss": 0.00234984396956861,
+      "last_50_reported_loss_median": 0.0031480580801144242,
+      "scored_episodes": 50,
+      "scored_successes": 49,
+      "successful_episodes_never_within_5cm": 24,
+      "successful_lift_range_m": [
+        0.06532276794314384,
+        0.07408055290579796
+      ],
+      "train_n": 5
+    },
+    "P3": {
+      "by_split": {
+        "C": {
+          "episodes": 20,
+          "successes": 20
+        },
+        "E": {
+          "episodes": 20,
+          "successes": 20
+        },
+        "IID": {
+          "episodes": 10,
+          "successes": 10
+        }
+      },
+      "curve_rows_inspected": 201,
+      "diagnostic_records_inspected": 50,
+      "failed_episodes": [],
+      "final_optimizer_step": 20000,
+      "final_reported_training_loss": 0.005962821654975414,
+      "last_50_reported_loss_median": 0.006211401894688606,
+      "scored_episodes": 50,
+      "scored_successes": 50,
+      "successful_episodes_never_within_5cm": 22,
+      "successful_lift_range_m": [
+        0.06611418351531029,
+        0.07266971096396446
+      ],
+      "train_n": 5
+    }
+  },
+  "offline_diagnostic_records_inspected": 200,
+  "original_proposal": {
+    "path": "round3/design_records/stick-push/proposal.json",
+    "sha256": "0744d1fe9defe7a972d99c66ed028ee3d4c1955542690734a1b00fbac8f245b5"
+  },
+  "packet": {
+    "all_bound_hashes_match": true,
+    "bound_files_verified": 29,
+    "path": "round3/design_records/stick-push/feedback/bundle.json",
+    "sha256": "6563c2de0f8b7359c716ce9bddd83d9d8b892865e62bef4dd9c33b17f7070438"
+  },
+  "packet_path": "round3/design_records/stick-push/feedback/bundle.json",
+  "packet_sha256": "6563c2de0f8b7359c716ce9bddd83d9d8b892865e62bef4dd9c33b17f7070438",
+  "principal_revision_intent": null,
+  "reasoning_summary": [
+    "P1 and P3 succeed on all50N5development episodes each, including all six distinct episode instances failed by B0 or P2. No remaining failure in either world-relation candidate is demonstrated by this packet.",
+    "The four full training curves exhibit large early decreases and low late reported losses without a sustained divergence signature; the higher P3total includes its auxiliary objective and does not by itself establish harmful optimization.",
+    "B0/P2 failures have lower recorded tool lift, but the retained proximity/goal-point diagnostics cannot prove missed grasp, contact state, progress, or success; successful episodes often never cross5cm.",
+    "The eight real frames depict only one successful compositional episode per model and cannot isolate a failure mechanism.",
+    "Changing P2back to world coordinates duplicates the existing P1 hypothesis; acquisition labels or P3auxiliary-weight changes lack sufficient diagnostic specificity. Creating P4would require an unsupported mechanism choice."
+  ],
+  "revision_rationale": {
+    "path": "round3/design_records/stick-push/revision_rationale.md",
+    "sha256": "d462a3031fda59efe15f80b0fdc0e605ebca55af1cf16843ecddb6b1a37eb8fd"
+  },
+  "scored_dev_episodes": 200,
+  "scored_development_rollouts": 200,
+  "task": "stick-push",
+  "training_curve_plots_actually_viewed": 1,
+  "training_curve_rows_inspected": 804,
+  "verified_packet_bound_hashes": {
+    "round3/data/stick-push/manifest.json": "a5613ec22f5cbeb4ba757d936088b644fc13de2599adb272bf035963ef25d713",
+    "round3/design_records/feedback_frame_rule.json": "e1f0c9186a5825f240abf479c5d8b92aac969e31de9e4b4b4b058ed21bb20207",
+    "round3/design_records/offline_diagnostic_rule.json": "b9c47487850405014b2593da8d29d21c4684b80b128b7d623cf33c25a5074cb6",
+    "round3/design_records/stick-push/feedback/B0_offline_diagnostics.json": "bc182883f89f2c9e879a80570fafde3786f1190fd504d9efd3a181c5ee9ac3e4",
+    "round3/design_records/stick-push/feedback/B0_step_050.png": "8356a07196d1ecc9cce52436ca4cd2db2d9ab2427b116376a33696ed38e23a8e",
+    "round3/design_records/stick-push/feedback/B0_step_200.png": "65d4c3ac8c6a6dd1f87ef173b1640599f4242d76dcf66b23d30ec7fdeb0dae6e",
+    "round3/design_records/stick-push/feedback/B0_training_curve.json": "30aeff88a3189f91bccd1d90a007755fe1900132ac578a82c0bb7144097a8476",
+    "round3/design_records/stick-push/feedback/P1_offline_diagnostics.json": "b8eae27de9de2a8a1e9fb74d720d5ce33c173ee0b133eaf3496ba21faaeb41ae",
+    "round3/design_records/stick-push/feedback/P1_step_050.png": "cb81f621cc829c74940a7494e0471b1232ad8767ce90d68c3b4923a38db47136",
+    "round3/design_records/stick-push/feedback/P1_step_200.png": "95e9ba9dc1da7c889bf87b768b1957910e67b63f0d291fcc288c7ad6111fcb86",
+    "round3/design_records/stick-push/feedback/P1_training_curve.json": "03723369b8eb1c9adf83d725df9e156a1839601c37afd6a09178e428cafc5c89",
+    "round3/design_records/stick-push/feedback/P2_offline_diagnostics.json": "8bd0d5fc13452d408d5b5465477e7895ec02b022182ceaead1dff72f90220e84",
+    "round3/design_records/stick-push/feedback/P2_step_050.png": "5baba0a776f844d212d6ee874a312dcb7e422f6768e1f03ddbcdcfb632af4137",
+    "round3/design_records/stick-push/feedback/P2_step_200.png": "97ab1e157e10ca7484c7da2a645f28ef2d945c2b689135cb493662ab1726179c",
+    "round3/design_records/stick-push/feedback/P2_training_curve.json": "311e76234d2f952c1b5a557af14317300f0b26b585df7bb53ae12b002446c82c",
+    "round3/design_records/stick-push/feedback/P3_offline_diagnostics.json": "e6b0b2e5246d8fd50858270c6b383855969cdbfe03dfe9830f226ae15ba05c0b",
+    "round3/design_records/stick-push/feedback/P3_step_050.png": "3dae4ed961959e383b2dc031220d31ad10191db9a23ebf2266cebc374112fa8a",
+    "round3/design_records/stick-push/feedback/P3_step_200.png": "5024918692f0652548abb73b967697b124b0348fadb0bbf357f9fcb78f16608b",
+    "round3/design_records/stick-push/feedback/P3_training_curve.json": "0d908fbe7f1c6dd59ddfe6f3ba14c27791369f10b309374bf4c59f560ad6e9e2",
+    "round3/design_records/stick-push/feedback/training_curves.png": "9ac9deeedb95189d1cb5e71f8eb8530d07dbd70251d82fb666ff9e0fe39c9338",
+    "round3/design_records/stick-push/proposal.json": "0744d1fe9defe7a972d99c66ed028ee3d4c1955542690734a1b00fbac8f245b5",
+    "round3/dev_results/r3_stick-push_B0_n5_s0/complete.json": "92322c4495a844d2cf7517477ea26a5f94b8ba16a118a534ed0ec8fc599a7640",
+    "round3/dev_results/r3_stick-push_B0_n5_s0/r3_stick-push_dev_C_000_32501000.npz": "7a81d08261fa1b123527a484c5b2c49b3bfe2280819f7f85e4fcc1a0fcc68c99",
+    "round3/dev_results/r3_stick-push_P1_n5_s0/complete.json": "a387e8a47787416aa35787cb844bb132f6ac804b59de88e663c77274073aafb3",
+    "round3/dev_results/r3_stick-push_P1_n5_s0/r3_stick-push_dev_C_000_32501000.npz": "b0e3a679e1254ab3ce91d2727d790f1bdde8fa11f5a73797cd6ac2bab5006b33",
+    "round3/dev_results/r3_stick-push_P2_n5_s0/complete.json": "81ffaea5e15e718a654093d8870a04d17b0c023ea362e123a598a5423718f56b",
+    "round3/dev_results/r3_stick-push_P2_n5_s0/r3_stick-push_dev_C_000_32501000.npz": "ce4c64244945b907bc60e5788e4dac1c1f928ec663dc15ddced4f729cac6693c",
+    "round3/dev_results/r3_stick-push_P3_n5_s0/complete.json": "6c9ffe467f4612ed4300aeb86a8af0a704350d39180946bcbe4bad64bba162a0",
+    "round3/dev_results/r3_stick-push_P3_n5_s0/r3_stick-push_dev_C_000_32501000.npz": "d41fda5a1f3d2752e86c59dcd9d571504e16216fac9c9f06d966daeed465551d"
+  },
+  "version": 1
+}

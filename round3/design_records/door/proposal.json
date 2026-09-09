@@ -1,0 +1,384 @@
+{
+  "task": "door",
+  "version": 1,
+  "created_at": "2026-09-08T05:40:37.337599+00:00",
+  "agent_backend": "codex_session",
+  "designer": {
+    "actual_subagent_name": "/root/design_door",
+    "model": "unavailable",
+    "session_id": "unavailable",
+    "tokens": "unavailable",
+    "cost": "unavailable"
+  },
+  "context_exposure": {
+    "read_scope": [
+      "round3/DESIGN_CONTRACT.md",
+      "round3/evidence/door/*",
+      "parent task instructions and default clarifications only"
+    ],
+    "trajectories_read": 2,
+    "real_frames_viewed": 16,
+    "source_expert_reward_larger_D_old_results_dev_test_states_read": false,
+    "evidence_usage": "TwoNPZ inspected through /home/users/oscar/.pixi/bin/pixi run python. All16images individually viewed. No web/source inspection; external geometry statements are explicitly supplied static knowledge and common geometry."
+  },
+  "evidence_hashes": {
+    "round3/evidence/door/D2_summary.json": "7e7994c0834cbb69daf6d3be49bf07b2da4087c5eede61a6ed96792b19a9ad11",
+    "round3/evidence/door/DESIGN_INTERFACE.md": "fe0a1c4a12c4bd170d432f48cf1cb3ae98028cc37a5d1ad0f4cff6d0d14f0101",
+    "round3/evidence/door/bundle.json": "90ee9fe42a7c1a02ada679e8eb31e3ac2e3d4cc3d21ac1658b4f17e65b5e0a58",
+    "round3/evidence/door/demo_1_frame_00_step_000.png": "822271d6720845253f9798d31c2458cd06e5bfe2f6238db7599e0379c10b0ace",
+    "round3/evidence/door/demo_1_frame_01_step_015.png": "1534bd0ae8716affa904967a8c106834331488a2279e6e2ee99a5a44fdbdf362",
+    "round3/evidence/door/demo_1_frame_02_step_030.png": "8b210cff19136aeb1a26b1bf746535ad86fe6d2fcf337f1f83b10511eb8a0b1b",
+    "round3/evidence/door/demo_1_frame_03_step_045.png": "b307a48b0a575c0d797a41c96823d70b9b2a1355cf03488d3746224200ae0ea0",
+    "round3/evidence/door/demo_1_frame_04_step_060.png": "5fa0ecdb8bb515c9dd01a7827ec7abb55dc023be7eef1ede98a210bf156bc1e5",
+    "round3/evidence/door/demo_1_frame_05_step_075.png": "ec3c8383f5760c60e30bcc59f9b2424d25b22b488587c5fbd15b34d066b5eeb3",
+    "round3/evidence/door/demo_1_frame_06_step_090.png": "73105046ccd9444cc1b6d47c857edb7e553f5d35a69ccf264f43ea5728e882f8",
+    "round3/evidence/door/demo_1_frame_07_step_105.png": "2da3c0f94725585a7b4f1287ffdbecc1f9698bc295533b1bcc4bd5dbd9165843",
+    "round3/evidence/door/demo_1_trajectory.npz": "b3b948b89d43840fad47ddddc0ea5e21548b0604efad5f6bfd7bd2baae902acf",
+    "round3/evidence/door/demo_2_frame_00_step_000.png": "ca3bacd35eeb19920762a0c23ae3e692a7fe141e35cb90320ab6c61a3d7f973d",
+    "round3/evidence/door/demo_2_frame_01_step_016.png": "86a1aa3a131f80edadc6f2e96222b8c9b055264b33718338c7cbdd0d38e586a6",
+    "round3/evidence/door/demo_2_frame_02_step_033.png": "e6bb2216575ae5a82eb4cc3d0c4eb6bbd168f5110f7b4e57a949b98c649a1deb",
+    "round3/evidence/door/demo_2_frame_03_step_049.png": "06badbc44dc9a2705b332fcc82449c3b7134ea6870ee13ea8fba7caf1cebe7de",
+    "round3/evidence/door/demo_2_frame_04_step_066.png": "9a3165c3063373033d9a562f997e8ad88a554b7684e5b3e80b5b1552b3bd18ce",
+    "round3/evidence/door/demo_2_frame_05_step_082.png": "2b94651f1e12b48ff72ff6355172945af29136696fe6a199f5572b725d945b34",
+    "round3/evidence/door/demo_2_frame_06_step_099.png": "fa8f6d5d59eff0dea27fd32464d21b2d63be742c5f85ff28188d58ed37c3236a",
+    "round3/evidence/door/demo_2_frame_07_step_115.png": "0fc1276d57f6e713bcf82de66e9347271b941856c02288a79c73d2efcb21c2ad",
+    "round3/evidence/door/demo_2_trajectory.npz": "fba010c1726ab9befc1eb13e8d27518be06c6b1e5433da4e20c3e96944ac4780",
+    "round3/evidence/door/frames.json": "e0e6e6dda42e109bf5ed0116c85aced7eb4cb489aa161699eab49a1db51da9fe",
+    "round3/evidence/door/task_materials.json": "ee86a3df8d3deffc996f37f72cecb0d6b9ff021b62170ea7fc53fd13958be834"
+  },
+  "contract_sha256": "d3fe292220813dd805d0be8d330f215ab5da3da9a83669e9e54501509f10338d",
+  "combination_consideration": {
+    "decision": "Adopt deliberate combination asP3; retain P1/P2 as separate distinct mechanisms.",
+    "why": "P1 changes conditioning/action coordinates without future supervision; P2 adds joint learned future-geometry denoising while retaining world actions; P3 tests their combination under identical optimizer/update budget.",
+    "rejected": "No analytic tangent controller, success oracle or hard approach/open phases; only2successful demonstrations do not justify hard route thresholds. No whole-scene rotational augmentation because robot/table remain fixed.",
+    "uncertainty": "Extra predictive learning can hurt action imitation; dynamic handle-attached action frames were considered but rejected here because fixed end-effector orientation limits their physical symmetry and cabinet yaw provides a simpler fully declared frame."
+  },
+  "candidates": [
+    {
+      "evidence_refs": [
+        "round3/evidence/door/task_materials.json: declared z-hinge, yaw channels39:41, world-fixed robot/gravity/rail",
+        "round3/evidence/door/demo_1_trajectory.npz: obs0:106, actions0:105; LL layout",
+        "round3/evidence/door/demo_2_trajectory.npz: obs0:116, actions0:115; HH layout",
+        "round3/evidence/door/frames.json: all16 linked images viewed, demo1 steps0/15/30/45/60/75/90/105 and demo2 steps0/16/33/49/66/82/99/115"
+      ],
+      "applicability": "Declared door observation schema only; state-input policies. Cabinet yaw varies while robot/table remain fixed. No visual-policy generalization claim.",
+      "augmentation": "None. Coordinate re-expression is invertible action encoding, not environment rotation augmentation. No mirrored/translated trajectories.",
+      "training_schedule": {
+        "updates": 20000,
+        "total_batch_chunks": 128,
+        "sampling": "uniform valid action-start windows with CPU torch.randint; no balancing, resampling or extra batches",
+        "optimizer": {
+          "name": "AdamW",
+          "lr": 0.0001,
+          "weight_decay": 1e-06,
+          "betas": [
+            0.9,
+            0.999
+          ]
+        },
+        "gradient_clip": 1.0,
+        "ema": 0.995,
+        "training_noise": "epsilon-prediction100-step cosineDDPM",
+        "sampling_noise": "DDIM16, leading timestep indices [90,84,78,72,66,60,54,48,42,36,30,24,18,12,6,0], eta0, no clean clipping",
+        "data": "Every N in2/5/10/20 trains from scratch seed0 using only its nested D_N; fixed specified feature scales; no fitted statistics",
+        "padding": "zero-pad encoded targets beyond episode action tail; mask all losses there",
+        "gpu": "parent schedules physical GPU0/1/2/3; at most one formal trainer per physical GPU"
+      },
+      "hierarchy_selection_and_termination": "No hierarchy, selector, phase clock or custom termination; one learned diffusion policy replans every4native actions. Environment episode termination unchanged.",
+      "chunk_transition_handling": "Freeze coordinate axes from current replan raw throughout predicted16 and executed4 actions; use same axes for training chunk and both history observations. Decode xyz to world then shared native cube clips all4actions to[-1,1]. No chunk replacement or route transitions.",
+      "required_runtime_inputs": [
+        "two whole observations from common raw41 schema only"
+      ],
+      "parameter_budget": "Single default U-Net; observation size55/43 and action size4/12 add only conditioning/output projection weights. Hard assert total trainable parameters<=3x exact B0 count before formal training.",
+      "confidence": "moderate for mechanism interpretation; low-to-moderate for prospective generalization benefit given only2successful, correlated-layout demonstrations",
+      "candidate_id": "P1",
+      "knowledge_hypotheses": [
+        {
+          "source": "external geometry/common knowledge",
+          "claim": "An orthonormal cabinet yaw frame expresses relative displacement and command directions consistently across yaw; known z-axis hinge does not imply whole-environment equivariance. Geometry source is task_materials.json source_knowledge and declared yaw fields; rotation algebra is common geometry."
+        },
+        {
+          "source": "observation from D2",
+          "claim": "Both image sequences approach above handle then descend before planar opening; object z stays0.15003595m. LL hand reaches~0.3274m and HH~0.3326m before descending."
+        },
+        {
+          "source": "unverified inference",
+          "claim": "Explicit cabinet-relative relations may reduce spurious correlation between door_x and yaw while retained world fields allow fixed robot constraints to be learned."
+        }
+      ],
+      "predicted_generalization_gain": "May improve C cross-combinations and moderate yaw extrapolation through explicit relative features and rotated action coordinates; large yaw may still fail due to fixed-gripper reach/contact.",
+      "architecture": {
+        "diffusion": "single conditional 1D U-Net; widths [64,128,256], time embedding128, kernel5, groups8",
+        "observation_history": 2,
+        "prediction_horizon": 16,
+        "execution_horizon": 4,
+        "trainable_extra_heads": false,
+        "observation_dim": 55,
+        "action_dim": 4
+      },
+      "modules": [
+        "fixed cabinet-frame relation encoder",
+        "single4-channel diffusion U-Net"
+      ],
+      "observation_transform": {
+        "dimension_per_observation": 55,
+        "raw": "Concatenate unchanged declared raw41 fields, in meters/unitless, with14 engineered features; no per-D_N normalization, passthrough(all).",
+        "engineered_features": [
+          "C(hand_xyz-object_xyz)/0.1 [3]",
+          "C(goal_xyz-object_xyz)/0.5 [3]",
+          "C(current.hand_xyz-previous.hand_xyz)/0.01 [3]",
+          "C(current.object_xyz-previous.object_xyz)/0.01 [3]",
+          "C(projected door local+y) xy [2]"
+        ],
+        "coordinate_definition": "C(v)=(c*vx+s*vy,-s*vx+c*vy,vz), with (s,c)=normalize(raw[39:41]); fallback(0,1) only for norm<1e-8. C inverse(v)=(c*vx-s*vy,s*vx+c*vy,vz). Axes are cabinet x/y at declared yaw and world +z. xyz positions in meters; native actions dimensionless,1unit=0.01m command.",
+        "orientation_definition": "Normalize q=raw[7:11] in xyzw order. Project quaternion-rotated local+y: u=(2*(qx*qy-qw*qz),1-2*(qx*qx+qz*qz)); normalize in xy, fallback world(0,1) if projection norm<1e-8. This is an observed door orientation coordinate, not an inferred hinge axis or action controller; apply C to(u_x,u_y,0) when cabinet coordinates are requested.",
+        "history": "Encode both whole raw observations with yaw from the latest replan observation. Relative vectors use each whole observation's own declared hand,object,goal and embedded previous fields; same cabinet axes for both history elements."
+      },
+      "action_transform": {
+        "encode": "Apply C to all world xyz action commands; gripper unchanged.",
+        "decode": "Apply C inverse to first3sampled channels; gripper unchanged; shared world cube clipping after decode.",
+        "coordinate_definition": "C(v)=(c*vx+s*vy,-s*vx+c*vy,vz), with (s,c)=normalize(raw[39:41]); fallback(0,1) only for norm<1e-8. C inverse(v)=(c*vx-s*vy,s*vx+c*vy,vz). Axes are cabinet x/y at declared yaw and world +z. xyz positions in meters; native actions dimensionless,1unit=0.01m command.",
+        "normalization": "passthrough(all4); rotated action components may exceed1before world decode; never local clip."
+      },
+      "losses_and_weights": {
+        "action_epsilon_mse": 1.0,
+        "auxiliary": "none"
+      },
+      "required_train_labels": [
+        "demonstration action16chunk and valid-tail mask only"
+      ],
+      "failure_conditions": [
+        "World constraints dominate cabinet-relative consistency.",
+        "Large yaw changes fixed finger contact geometry.",
+        "Explicit relations and unchanged raw fields remain correlated in only LL/HH training."
+      ],
+      "implementation_steps": [
+        "Implement fixed yaw/relative feature encoder with current replan axes.",
+        "Implement action rotation/inverse preserving gripper.",
+        "Use standard4-channel U-Net and default loss.",
+        "Check frame inverses, tail masks and parameter cap on D2 only."
+      ]
+    },
+    {
+      "evidence_refs": [
+        "round3/evidence/door/task_materials.json: declared z-hinge, yaw channels39:41, world-fixed robot/gravity/rail",
+        "round3/evidence/door/demo_1_trajectory.npz: obs0:106, actions0:105; LL layout",
+        "round3/evidence/door/demo_2_trajectory.npz: obs0:116, actions0:115; HH layout",
+        "round3/evidence/door/frames.json: all16 linked images viewed, demo1 steps0/15/30/45/60/75/90/105 and demo2 steps0/16/33/49/66/82/99/115"
+      ],
+      "applicability": "Declared door observation schema only; state-input policies. Cabinet yaw varies while robot/table remain fixed. No visual-policy generalization claim.",
+      "augmentation": "None. Coordinate re-expression is invertible action encoding, not environment rotation augmentation. No mirrored/translated trajectories.",
+      "training_schedule": {
+        "updates": 20000,
+        "total_batch_chunks": 128,
+        "sampling": "uniform valid action-start windows with CPU torch.randint; no balancing, resampling or extra batches",
+        "optimizer": {
+          "name": "AdamW",
+          "lr": 0.0001,
+          "weight_decay": 1e-06,
+          "betas": [
+            0.9,
+            0.999
+          ]
+        },
+        "gradient_clip": 1.0,
+        "ema": 0.995,
+        "training_noise": "epsilon-prediction100-step cosineDDPM",
+        "sampling_noise": "DDIM16, leading timestep indices [90,84,78,72,66,60,54,48,42,36,30,24,18,12,6,0], eta0, no clean clipping",
+        "data": "Every N in2/5/10/20 trains from scratch seed0 using only its nested D_N; fixed specified feature scales; no fitted statistics",
+        "padding": "zero-pad encoded targets beyond episode action tail; mask all losses there",
+        "gpu": "parent schedules physical GPU0/1/2/3; at most one formal trainer per physical GPU"
+      },
+      "hierarchy_selection_and_termination": "No hierarchy, selector, phase clock or custom termination; one learned diffusion policy replans every4native actions. Environment episode termination unchanged.",
+      "chunk_transition_handling": "Freeze coordinate axes from current replan raw throughout predicted16 and executed4 actions; use same axes for training chunk and both history observations. Decode xyz to world then shared native cube clips all4actions to[-1,1]. No chunk replacement or route transitions.",
+      "required_runtime_inputs": [
+        "two whole observations from common raw41 schema only"
+      ],
+      "parameter_budget": "Single default U-Net; observation size55/43 and action size4/12 add only conditioning/output projection weights. Hard assert total trainable parameters<=3x exact B0 count before formal training.",
+      "confidence": "moderate for mechanism interpretation; low-to-moderate for prospective generalization benefit given only2successful, correlated-layout demonstrations",
+      "candidate_id": "P2",
+      "knowledge_hypotheses": [
+        {
+          "source": "external geometry/common knowledge",
+          "claim": "A rigid body rotating around world z preserves its height; future handle displacement and door orientation constrain coherent opening motion. Source: task_materials.json z-hinge declaration; projected quaternion direction uses standard quaternion rotation."
+        },
+        {
+          "source": "observation from D2",
+          "claim": "Handle motion starts after initial approach at approximately step41LL and49HH (>1mm displacement). Terminal opening follows a planar curve; measured hand-handle gaps reach~0.0253m LL and~0.0271m HH."
+        },
+        {
+          "source": "unverified inference",
+          "claim": "Joint action/future-geometry denoising may make handle engagement and rotation more legible to the network than action-only imitation."
+        }
+      ],
+      "predicted_generalization_gain": "May improve contact continuity by jointly learning action and future handle/hand geometry; may instead waste limited capacity or overfit two trajectory futures.",
+      "architecture": {
+        "diffusion": "single conditional 1D U-Net; widths [64,128,256], time embedding128, kernel5, groups8",
+        "observation_history": 2,
+        "prediction_horizon": 16,
+        "execution_horizon": 4,
+        "trainable_extra_heads": false,
+        "observation_dim": 43,
+        "action_dim": 12
+      },
+      "modules": [
+        "raw-state+projected-orientation encoder",
+        "single12-channel joint action/future-geometry diffusion U-Net"
+      ],
+      "observation_transform": {
+        "dimension_per_observation": 43,
+        "raw": "unchanged raw41 with passthrough(all)",
+        "engineered_features": [
+          "world projected door local+y xy [2]"
+        ],
+        "orientation_definition": "Normalize q=raw[7:11] in xyzw order. Project quaternion-rotated local+y: u=(2*(qx*qy-qw*qz),1-2*(qx*qx+qz*qz)); normalize in xy, fallback world(0,1) if projection norm<1e-8. This is an observed door orientation coordinate, not an inferred hinge axis or action controller; apply C to(u_x,u_y,0) when cabinet coordinates are requested.",
+        "history": "two whole observations, initial repeated; no hidden state or episode time"
+      },
+      "action_transform": {
+        "encode": "World xyz+gripper unchanged; fixed passthrough normalization.",
+        "decode": "Return first4sampled channels as native world action then shared cube clip."
+      },
+      "losses_and_weights": {
+        "action_epsilon_mse": 1.0,
+        "auxiliary_epsilon_mse": 0.2,
+        "auxiliary_spec": {
+          "target_dim": 8,
+          "target_at_each_chunk_slot": "For valid action slot k at demonstration start t, use declared obs[t+k+1]. Concatenate (future.object_xyz-current.object_xyz)/0.1 [3], (future.hand_xyz-future.object_xyz)/0.1 [3], future projected door local+y xy [2]. All vectors in the candidate coordinate frame frozen at replan t. No validity labels, hidden phase, rewards or success used.",
+          "training": "Append8 channels after first4 encoded action channels. Same timestep and independently drawn Gaussian epsilon per channel; one U-Net jointly denoises all12channels.",
+          "loss": "Base mean squared epsilon error on first4action channels has weight1. Add weight0.2 times mean squared epsilon error on8auxiliary channels; mean over valid temporal positions,8channels and batch. All updates and all valid positions, no warmup.",
+          "runtime": "Sample all12channels jointly with standard DDIM; discard auxiliary8channels, decode first4actions. No rollout scoring, search, termination or action correction from predicted state.",
+          "coordinate_frame": "world"
+        }
+      },
+      "required_train_labels": [
+        "demonstration action16chunk and valid-tail mask",
+        "for each valid slot, next-state handle displacement from replan handle, next-state hand-handle gap and projected next door local+y; currentD_N only"
+      ],
+      "failure_conditions": [
+        "Joint future prediction may fit narrow demonstration timing rather than contact dynamics.",
+        "Future auxiliary channels can introduce denoising interference and slow action fitting.",
+        "World-coordinate action learning may retain the x/yaw confound."
+      ],
+      "implementation_steps": [
+        "Implement43-channel raw+orientation encoder.",
+        "Generate8future channels from currentD_N observations only.",
+        "Extend one U-Net to12channels, retain base first4loss and add masked aux epsilon weight0.2.",
+        "Discard generated future channels at runtime and check no future input dependency."
+      ]
+    },
+    {
+      "evidence_refs": [
+        "round3/evidence/door/task_materials.json: declared z-hinge, yaw channels39:41, world-fixed robot/gravity/rail",
+        "round3/evidence/door/demo_1_trajectory.npz: obs0:106, actions0:105; LL layout",
+        "round3/evidence/door/demo_2_trajectory.npz: obs0:116, actions0:115; HH layout",
+        "round3/evidence/door/frames.json: all16 linked images viewed, demo1 steps0/15/30/45/60/75/90/105 and demo2 steps0/16/33/49/66/82/99/115"
+      ],
+      "applicability": "Declared door observation schema only; state-input policies. Cabinet yaw varies while robot/table remain fixed. No visual-policy generalization claim.",
+      "augmentation": "None. Coordinate re-expression is invertible action encoding, not environment rotation augmentation. No mirrored/translated trajectories.",
+      "training_schedule": {
+        "updates": 20000,
+        "total_batch_chunks": 128,
+        "sampling": "uniform valid action-start windows with CPU torch.randint; no balancing, resampling or extra batches",
+        "optimizer": {
+          "name": "AdamW",
+          "lr": 0.0001,
+          "weight_decay": 1e-06,
+          "betas": [
+            0.9,
+            0.999
+          ]
+        },
+        "gradient_clip": 1.0,
+        "ema": 0.995,
+        "training_noise": "epsilon-prediction100-step cosineDDPM",
+        "sampling_noise": "DDIM16, leading timestep indices [90,84,78,72,66,60,54,48,42,36,30,24,18,12,6,0], eta0, no clean clipping",
+        "data": "Every N in2/5/10/20 trains from scratch seed0 using only its nested D_N; fixed specified feature scales; no fitted statistics",
+        "padding": "zero-pad encoded targets beyond episode action tail; mask all losses there",
+        "gpu": "parent schedules physical GPU0/1/2/3; at most one formal trainer per physical GPU"
+      },
+      "hierarchy_selection_and_termination": "No hierarchy, selector, phase clock or custom termination; one learned diffusion policy replans every4native actions. Environment episode termination unchanged.",
+      "chunk_transition_handling": "Freeze coordinate axes from current replan raw throughout predicted16 and executed4 actions; use same axes for training chunk and both history observations. Decode xyz to world then shared native cube clips all4actions to[-1,1]. No chunk replacement or route transitions.",
+      "required_runtime_inputs": [
+        "two whole observations from common raw41 schema only"
+      ],
+      "parameter_budget": "Single default U-Net; observation size55/43 and action size4/12 add only conditioning/output projection weights. Hard assert total trainable parameters<=3x exact B0 count before formal training.",
+      "confidence": "moderate for mechanism interpretation; low-to-moderate for prospective generalization benefit given only2successful, correlated-layout demonstrations",
+      "candidate_id": "P3",
+      "knowledge_hypotheses": [
+        {
+          "source": "external geometry/common knowledge",
+          "claim": "Coordinate re-expression applies equally to action vectors and future displacement labels; retaining world state and yaw preserves information about fixed robot/table. Source: supplied task_materials geometry and common rotation algebra."
+        },
+        {
+          "source": "observation from D2",
+          "claim": "Approach/descend/open sequence is shared across both layouts despite world-coordinate differences; raw quaternion local+y has stable unit xy projection while local+x is nearly vertical."
+        },
+        {
+          "source": "unverified inference",
+          "claim": "Combining cabinet-relative action learning with joint future-geometry denoising may make learned interaction dynamics more reusable across position/yaw combinations."
+        }
+      ],
+      "predicted_generalization_gain": "Prospective complementary benefit: relational coordinates address layout nuisance while future targets address contact/rotation consistency. No presumption that combination beats either component.",
+      "architecture": {
+        "diffusion": "single conditional 1D U-Net; widths [64,128,256], time embedding128, kernel5, groups8",
+        "observation_history": 2,
+        "prediction_horizon": 16,
+        "execution_horizon": 4,
+        "trainable_extra_heads": false,
+        "observation_dim": 55,
+        "action_dim": 12
+      },
+      "modules": [
+        "P1 fixed cabinet-frame relation encoder and action transform",
+        "P2 joint future-geometry diffusion channels expressed in cabinet axes"
+      ],
+      "observation_transform": {
+        "dimension_per_observation": 55,
+        "raw": "Concatenate unchanged declared raw41 fields, in meters/unitless, with14 engineered features; no per-D_N normalization, passthrough(all).",
+        "engineered_features": [
+          "C(hand_xyz-object_xyz)/0.1 [3]",
+          "C(goal_xyz-object_xyz)/0.5 [3]",
+          "C(current.hand_xyz-previous.hand_xyz)/0.01 [3]",
+          "C(current.object_xyz-previous.object_xyz)/0.01 [3]",
+          "C(projected door local+y) xy [2]"
+        ],
+        "coordinate_definition": "C(v)=(c*vx+s*vy,-s*vx+c*vy,vz), with (s,c)=normalize(raw[39:41]); fallback(0,1) only for norm<1e-8. C inverse(v)=(c*vx-s*vy,s*vx+c*vy,vz). Axes are cabinet x/y at declared yaw and world +z. xyz positions in meters; native actions dimensionless,1unit=0.01m command.",
+        "orientation_definition": "Normalize q=raw[7:11] in xyzw order. Project quaternion-rotated local+y: u=(2*(qx*qy-qw*qz),1-2*(qx*qx+qz*qz)); normalize in xy, fallback world(0,1) if projection norm<1e-8. This is an observed door orientation coordinate, not an inferred hinge axis or action controller; apply C to(u_x,u_y,0) when cabinet coordinates are requested.",
+        "history": "Encode both whole raw observations with yaw from the latest replan observation. Relative vectors use each whole observation's own declared hand,object,goal and embedded previous fields; same cabinet axes for both history elements."
+      },
+      "action_transform": {
+        "encode": "Apply C to all world xyz action commands; gripper unchanged.",
+        "decode": "Apply C inverse to first3sampled channels; gripper unchanged; shared world cube clipping after decode.",
+        "coordinate_definition": "C(v)=(c*vx+s*vy,-s*vx+c*vy,vz), with (s,c)=normalize(raw[39:41]); fallback(0,1) only for norm<1e-8. C inverse(v)=(c*vx-s*vy,s*vx+c*vy,vz). Axes are cabinet x/y at declared yaw and world +z. xyz positions in meters; native actions dimensionless,1unit=0.01m command.",
+        "normalization": "passthrough(all4); rotated action components may exceed1before world decode; never local clip."
+      },
+      "losses_and_weights": {
+        "action_epsilon_mse": 1.0,
+        "auxiliary_epsilon_mse": 0.2,
+        "auxiliary_spec": {
+          "target_dim": 8,
+          "target_at_each_chunk_slot": "For valid action slot k at demonstration start t, use declared obs[t+k+1]. Concatenate (future.object_xyz-current.object_xyz)/0.1 [3], (future.hand_xyz-future.object_xyz)/0.1 [3], future projected door local+y xy [2]. All vectors in the candidate coordinate frame frozen at replan t. No validity labels, hidden phase, rewards or success used.",
+          "training": "Append8 channels after first4 encoded action channels. Same timestep and independently drawn Gaussian epsilon per channel; one U-Net jointly denoises all12channels.",
+          "loss": "Base mean squared epsilon error on first4action channels has weight1. Add weight0.2 times mean squared epsilon error on8auxiliary channels; mean over valid temporal positions,8channels and batch. All updates and all valid positions, no warmup.",
+          "runtime": "Sample all12channels jointly with standard DDIM; discard auxiliary8channels, decode first4actions. No rollout scoring, search, termination or action correction from predicted state.",
+          "coordinate_frame": "C frozen at current replan t; projected future orientation uses sameC"
+        }
+      },
+      "required_train_labels": [
+        "demonstration action16chunk and valid-tail mask",
+        "for each valid slot, next-state handle displacement from replan handle, next-state hand-handle gap and projected next door local+y; currentD_N only"
+      ],
+      "failure_conditions": [
+        "Both component failure modes remain possible.",
+        "Combined engineered inputs and auxiliary denoising may compete for the same small data budget.",
+        "Cabinet frame does not remove yaw-dependent gripper feasibility."
+      ],
+      "implementation_steps": [
+        "Reuse P1 exact frame/observations/action transform.",
+        "Reuse P2 exact8future labels and weight0.2, rotating each label with replanC.",
+        "Use one12-channel U-Net with same20kupdate/128batch total budget.",
+        "Check equivalence of coordinate transforms and current-frame label freezing."
+      ]
+    }
+  ]
+}

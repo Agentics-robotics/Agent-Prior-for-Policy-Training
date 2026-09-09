@@ -1,0 +1,62 @@
+{
+  "devices_allowed": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "devices_released": [
+    4,
+    5
+  ],
+  "nvidia_memory_MiB_at_verification": {
+    "4": 39,
+    "5": 38
+  },
+  "requested_at": "2026-09-08T07:03:37.696496+00:00",
+  "status": "GPUs4_and5_released",
+  "supplemental_scheduler_terminated": 325596,
+  "verification_note": "Original shutdown steps are from immutable session ledger; latest checkpoint may already advance after authorized0\u20133 resume.",
+  "verified_at": "2026-09-08T07:13:18.877541+00:00",
+  "worker_signal": "SIGINT for checkpoint save and exit",
+  "workers": [
+    {
+      "checkpoint_path": "round3/checkpoints/r3_drawer_P1_n10_s0/latest.pt",
+      "checkpoint_sha256_at_verification": "27c5a54164a39ec68b11862d59d806ce827b8957366b9abdb649103957ec1b3a",
+      "checkpoint_step_at_verification": 20000,
+      "full_optimizer_ema_rng_present": true,
+      "gpu": 4,
+      "pgid": 589495,
+      "pid": 589780,
+      "process_exited": true,
+      "run_id": "r3_drawer_P1_n10_s0",
+      "saved_session": {
+        "end_step": 15664,
+        "ended_at": "2026-09-08T07:03:37.922405+00:00",
+        "gpu": "4",
+        "start_step": 0,
+        "wall_seconds": 447.0613449040102
+      },
+      "saved_step": 15664
+    },
+    {
+      "checkpoint_path": "round3/checkpoints/r3_drawer_B0_n10_s0/latest.pt",
+      "checkpoint_sha256_at_verification": "383de845fefcdff3a6b96c3248de8f7680821f2be1c77c996a6f1c861ac97ae5",
+      "checkpoint_step_at_verification": 20000,
+      "full_optimizer_ema_rng_present": true,
+      "gpu": 5,
+      "pgid": 585227,
+      "pid": 585498,
+      "process_exited": true,
+      "run_id": "r3_drawer_B0_n10_s0",
+      "saved_session": {
+        "end_step": 18797,
+        "ended_at": "2026-09-08T07:03:37.925591+00:00",
+        "gpu": "5",
+        "start_step": 0,
+        "wall_seconds": 533.0661012090277
+      },
+      "saved_step": 18797
+    }
+  ]
+}

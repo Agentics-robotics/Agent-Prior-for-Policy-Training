@@ -1,0 +1,87 @@
+{
+  "cpu_threads_per_worker": 1,
+  "created_at": "2026-09-08T09:12:54.618386+00:00",
+  "encoder_threads": 1,
+  "entrypoint": "pixi run python scripts/round3_render_videos.py --audit round3/audits/delivery_verifier_test_<timestamp>.json",
+  "final_step": "pixi run round3-report",
+  "focused_checks": [
+    {
+      "command": "pixi run python -m pytest -q tests/round3/test_video_render_driver.py",
+      "log": "round3/audits/video_render_preparation_checks_20260908T091025Z.log",
+      "result": "28 passed in 6.93s"
+    },
+    {
+      "command": "pixi run python -m pytest -q tests/round3/test_video_render_driver.py::test_loads_only_current_tasks_frozen_comparison_runs",
+      "log": "round3/audits/video_render_pair_scope_check_20260908T091025Z.log",
+      "result": "1 passed in 1.47s"
+    },
+    {
+      "command": "pixi run python -m pytest -q tests/round3/test_video_render_driver.py tests/round3/test_reporting.py tests/round3/test_process_cleanup.py",
+      "result": "33 passed, 14 dependency deprecation warnings in 7.28s",
+      "scope": "Earlier regression run before the final fingerprint/cleanup cases; final new paths checked above."
+    },
+    {
+      "command": "pixi run python scripts/round3_render_videos.py --help",
+      "result": "exit 0; no artifact reads or GPU initialization"
+    }
+  ],
+  "guards": [
+    "Requires all 98 valid test completion paths before locked-content access.",
+    "Requires a successful current-source complete numerical test audit: 98 tests/9800 episodes/24 selections/six feedback decisions, no pending or invalid runs.",
+    "Matches current ledger and global-freeze hashes to acceptance; validates every current gate binding before outcome bytes.",
+    "Rehashes all 98 audited aggregates, 9800 standalone rows and 9800 trajectories without loading other tasks into result objects.",
+    "Holds orchestrator lease in parent; each child owns canonical gpu-N and gpu-N-slot-1 leases.",
+    "Pins CUDA/EGL and thread variables after Pixi activation; rejects physical GPUs 4 and 5.",
+    "Rechecks driver, renderer, gate, selection and audit fingerprint before worker/final receipts.",
+    "Interrupts and waits only newly owned child groups on failure; no shared success manifest on failed rendering.",
+    "Uses canonical report.test_videos with tasks filter/write_manifest=False; final report owns the full manifest.",
+    "Preserves fixed first-C N20 and failure order N20 then N5/N2/N10, same renderer SHA/cache and replay-observation validation.",
+    "ExitStack closes all created simulator/encoder resources and preserves a primary replay/creation exception."
+  ],
+  "independent_review": "render_guard_review: acceptance staleness, both slot leases, source fence, encoder thread cap and exception cleanup reviewed; findings resolved with focused synthetic tests.",
+  "limitations": [
+    "Preparation uses only synthetic fixtures and mocked simulators/writers; no real GPU rendering or actual gate/test validation was performed.",
+    "Requires the final numerical audit after the test scheduler has exited; current run ledger must still match that audit.",
+    "Four worker preflights and canonical per-task gate checks rehash immutable evidence; this favors strict current-byte validation over minimizing disk reads.",
+    "Actual video usability remains to be confirmed by the real renderer and canonical final report; source edits after rendering invalidate the canonical cache.",
+    "The existing numerical audit is a local evidence record, not an adversarially tamper-proof attestation."
+  ],
+  "maximum_independent_render_children": 4,
+  "optimizer_updates": 0,
+  "passed": true,
+  "physical_gpus": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "policy_inference_calls": 0,
+  "real_locked_test_contents_accessed": false,
+  "real_videos_generated": 0,
+  "scored_evaluation_episodes_added": 0,
+  "source_and_check_sha256": {
+    "README.md": "33d6a7f261c37e4d75d2881e823be4edaf3956285a627127b294a884dc050eea",
+    "round3/audits/video_render_pair_scope_check_20260908T091025Z.log": "6a188187cc4acf92013e1fe24b04baf7dba1edd907ad7d4feecc4ff2465c741f",
+    "round3/audits/video_render_preparation_checks_20260908T091025Z.log": "e5002dd51552fee6aa4d64ea07a275ecc72962e6e3d831866876968fec4533aa",
+    "scripts/round3_render_videos.py": "1283f9aa316b2fb2467737c391a883d15ff37ccfc24ed3d84a70b9b8a34516bf",
+    "src/round3/report.py": "7261ff567747e77bce2822b47f1759857e0f4951c4d55aa4d4c3ba00d88c26a9",
+    "tests/round3/test_video_render_driver.py": "6791c0348171441079c8c0286a882a7d0c88a981cb1589826bfb4f4e901e8813"
+  },
+  "status": "prepared_not_rendered",
+  "task_assignment": {
+    "0": [
+      "pick-place-wall",
+      "peg-insert-side"
+    ],
+    "1": [
+      "assembly",
+      "stick-push"
+    ],
+    "2": [
+      "drawer"
+    ],
+    "3": [
+      "door"
+    ]
+  }
+}

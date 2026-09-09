@@ -1,0 +1,102 @@
+{
+  "created_at": "2026-09-08T07:12:21.736930+00:00",
+  "reviewer": "concurrency_review subagent",
+  "scope": "Bounded static review of two independent process slots per authorized physical GPU, run claiming, leases, process isolation, and training/resume fairness. No training or evaluation execution performed by reviewer; no test files or locked test artifacts read.",
+  "status": "passed_training_integrity_with_preexisting_operational_races",
+  "launch_blocking_findings": [],
+  "training_or_evaluation_completion_claimed": false,
+  "authorization": {
+    "source": "Parent relayed latest explicit user authorization superseding older one-process-per-GPU instruction",
+    "physical_gpus": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "excluded_gpus": [
+      4,
+      5
+    ],
+    "workers_per_gpu": 2,
+    "maximum_workers": 8
+  },
+  "reviewed_source_sha256": {
+    "src/round3/cli.py": "43e784675e1c6eddba23a6e60fb64d0719eb7e537237748ac84b9e7580e611c4",
+    "src/round3/common.py": "207ca486af25f9527db8656f3f3dd8a920a6dda81f67ec1b618a7b3754b9bd29",
+    "src/round3/learning.py": "f9db514f4ba180441a552e0d7cfcc20db32b55bf9f149cfc4335896f73169a2b",
+    "src/relative_dp/train.py": "d7c1f4a08bfe22c3f3ecb5f1e03a0b714230b139edd4383457a552d4a4904eca",
+    "src/relative_dp/config.py": "1dc8779534ac9abb8a16c5cdc9214911439f8fd22e99d1993ed8becc1f5bdf5f",
+    "round3/ROUND3_SPEC.txt": "425a43cd7d99948f823725ccd36d012c7ee3594651737213f59216968d555156"
+  },
+  "checks": [
+    {
+      "name": "authorized_gpu_and_slot_bounds",
+      "result": "passed",
+      "evidence": "gpu_queue rejects GPU outside GPUS and slots outside range(WORKERS_PER_GPU); source constants are [0,1,2,3] and 2."
+    },
+    {
+      "name": "lease_compatibility",
+      "result": "passed",
+      "evidence": "Slot 0 retains gpu-N flock; slot 1 uses gpu-N-slot-1 flock. One sequential child per queue holds its slot throughout child execution. Existing slot-0 lease remains compatible."
+    },
+    {
+      "name": "process_gpu_binding",
+      "result": "passed_static",
+      "evidence": "_child invokes pixi run env CUDA_VISIBLE_DEVICES=<physical GPU> MUJOCO_EGL_DEVICE_ID=<physical GPU> and passes --gpu to a fresh Python process. gpu_context reasserts environment inside Pixi before importing training/evaluation. Child receives live parent lease PID."
+    },
+    {
+      "name": "independent_training_state",
+      "result": "passed_static",
+      "evidence": "Each run uses a new Python child, isolated CUDA graph/compile runtime, Trainer, optimizer, EMA and loader/diffusion RNGs. No Trainer reuse or shared optimizer/model state is introduced."
+    },
+    {
+      "name": "fixed_training_budget",
+      "result": "passed_static",
+      "evidence": "Training config remains 20,000 updates, batch and microbatch 128, fixed seeds and AdamW/EMA. CLI/common are absent from training source_identity; orchestration changes do not change checkpoint training identity."
+    },
+    {
+      "name": "resume_state",
+      "result": "passed_static",
+      "evidence": "Restore validates metadata/config/normalization/initial weights and restores model, EMA, optimizer, step, pairing digest and loader/diffusion/Python/NumPy/Torch/CUDA RNG states. Exclusive per-run flock protects train and evaluation writes."
+    },
+    {
+      "name": "atomic_run_claims",
+      "result": "passed_with_operational_caveats",
+      "evidence": "All gpu_queue claims occur under common scheduler flock and manifest mutations under manifest flock. Per-run flock blocks concurrent training/evaluation body execution; stale reconciliation and old-child cleanup have races recorded below."
+    },
+    {
+      "name": "live_extension_coexistence",
+      "result": "parent_reported",
+      "evidence": "Parent reports slot-1 direct gpu_queue launcher PID 630158, bypassing orchestrator/reconcile, alongside existing slot-0 scheduler PID 227554. Reviewer did not launch GPU work or independently validate live utilization."
+    }
+  ],
+  "operational_findings": [
+    {
+      "id": "completion_claim_cleanup_race",
+      "severity": "medium",
+      "preexisting": true,
+      "resolved_in_live_parents": false,
+      "detail": "A training worker marks train complete before its child process fully exits. Another queue can claim dev while old run lock is still held; worker can fail acquiring the lock, or old _child cleanup can unconditionally clear ownership metadata belonging to the new child. Exclusive run lock protects artifact integrity, but a queue may stop or ownership fields may become incomplete.",
+      "minimum_followup": "Under scheduler lock, exclude live pid/worker_pid/launcher_pid from eligible records and condition cleanup on matching launcher_pid. Do not exclude scheduler_pid alone."
+    },
+    {
+      "id": "reconciliation_claim_race",
+      "severity": "medium",
+      "preexisting": true,
+      "resolved_in_live_parents": false,
+      "triggered_by_slot1_extension": false,
+      "detail": "reconcile_stale_runs currently inspects records outside scheduler lock. Concurrent reconciliation may reset a freshly claimed run before its child acquires the per-run lock. Direct slot-1 extension does not call reconciliation.",
+      "minimum_followup": "Serialize stale-run snapshot, live-process checks and run-lock-protected reset using the shared scheduler lock."
+    },
+    {
+      "id": "nonexclusive_timing",
+      "severity": "reporting_caveat",
+      "detail": "Per-run gpu_active_work_seconds measure synchronized allocated-device wall time, not exclusive GPU kernel time. Concurrent workers overlap; sums are not physical GPU occupancy, and pre/post-concurrency run timing is not directly comparable without concurrency context."
+    }
+  ],
+  "limits": [
+    "Static inspection does not establish bitwise equivalence for every completed run or measure throughput/memory headroom.",
+    "Existing live slot-0 and slot-1 parent processes retain their loaded code; subsequent on-disk guard fixes do not retroactively resolve those parents.",
+    "No model, data, frozen configuration, split ID, prior run record, or training source was edited by this reviewer."
+  ]
+}

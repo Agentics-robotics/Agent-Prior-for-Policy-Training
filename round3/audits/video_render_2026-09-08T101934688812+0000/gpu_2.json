@@ -1,0 +1,79 @@
+{
+  "completed_at": "2026-09-08T10:20:00.083796+00:00",
+  "inputs": {
+    "accepted_test_runs": 98,
+    "audit_path": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/round3/audits/delivery_verifier_test_20260908T101614379062Z.json",
+    "audit_sha256": "238223fe5c0e487ed199d2ced20a3f709d87bd4419458bebaf8cc60574249cee",
+    "driver_sha256": "1283f9aa316b2fb2467737c391a883d15ff37ccfc24ed3d84a70b9b8a34516bf",
+    "global_freeze_sha256": "debae7fbdc4e75d217cd5227bfb2fd4e82de5350d705b306ed2a42a7db842cba",
+    "renderer_sha256": "7261ff567747e77bce2822b47f1759857e0f4951c4d55aa4d4c3ba00d88c26a9",
+    "selection_sha256": "f1e4a4663c0cc9c3d08c73a2ac39cbc17f0460ecde75d8312864b974de762c89"
+  },
+  "passed": true,
+  "physical_gpu": 2,
+  "policy_calls": 0,
+  "records": [
+    {
+      "fps": 20.0,
+      "identity": {
+        "episode_id": "r3_drawer_test_C_000_33201000",
+        "initial_state_hash": "c8433d50adc5ba7bda24f5768f708f42e19c06badf9051f1b3a49d6f0773d1dc",
+        "renderer_sha256": "7261ff567747e77bce2822b47f1759857e0f4951c4d55aa4d4c3ba00d88c26a9",
+        "selection": "Fixed C manifest order plus first available failure; no outcome maximization",
+        "task": "drawer",
+        "trajectories": [
+          "0f44969de16c5a3619621f5fdc68e7db037659e424c3b5daa48a95590544cdd7",
+          "f52b7e9156e46a9614ed245f935b5168b7c043765747496a7f2ff90432bfe536"
+        ]
+      },
+      "path": "round3/videos/drawer_fixed_C_N20.mp4",
+      "physical_dt": 0.0125,
+      "policy_calls": 0,
+      "rendering_stride": 4,
+      "scored_evaluation_episodes_added": 0,
+      "success": [
+        true,
+        true
+      ],
+      "termination": [
+        "success",
+        "success"
+      ],
+      "video_sha256": "abc5d32b324496275aa929001a0c153f2c82562c5d2c8aef9682e78a81351e10",
+      "visualization_replay_steps": 176
+    },
+    {
+      "fps": 20.0,
+      "identity": {
+        "episode_id": "r3_drawer_test_C_005_33201005",
+        "initial_state_hash": "01b26f71ff095d84fb1ef88e72180225715f1343ee63933ad2b890711b03f0c8",
+        "renderer_sha256": "7261ff567747e77bce2822b47f1759857e0f4951c4d55aa4d4c3ba00d88c26a9",
+        "selection": "Fixed C manifest order plus first available failure; no outcome maximization",
+        "task": "drawer",
+        "trajectories": [
+          "fd9258992c26129052650859514e6f22e53b612ffc0ad020f15a2522daab2c0b",
+          "f505d5c3f8570a18851eab0721f15484176686830d9fad8c7073ce7de6a3cbf0"
+        ]
+      },
+      "path": "round3/videos/drawer_first_failure_N20.mp4",
+      "physical_dt": 0.0125,
+      "policy_calls": 0,
+      "rendering_stride": 4,
+      "scored_evaluation_episodes_added": 0,
+      "success": [
+        false,
+        true
+      ],
+      "termination": [
+        "success_threshold_with_joint_violation",
+        "success"
+      ],
+      "video_sha256": "e509629d5fb105bddce7cd98cdcc0dbe25a02ba538d898140c98272083b1f4a9",
+      "visualization_replay_steps": 188
+    }
+  ],
+  "scored_evaluation_episodes_added": 0,
+  "tasks": [
+    "drawer"
+  ]
+}

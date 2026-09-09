@@ -1,0 +1,29 @@
+{
+  "assumptions": "Four authorized A5000 devices, one formal job/device; remaining training/dev use first2 measurements; locked test estimate assumes twice dev rollout count, not yet measured; future candidate architectures/task success lengths and compilation can change costs; no guarantee.",
+  "maximum_P4_increment_hours": 0.7412328023650723,
+  "mean_dev_seconds": 141.1310054975329,
+  "mean_train_seconds": 466.086346345488,
+  "measured_first_two_completed_train_and_dev": [
+    {
+      "dev_episodes": 50,
+      "dev_seconds": 136.90797557204496,
+      "run_id": "r3_pick-place-wall_B0_n20_s0",
+      "train_seconds": 467.2935233609751,
+      "updates": 20000
+    },
+    {
+      "dev_episodes": 50,
+      "dev_seconds": 145.35403542302083,
+      "run_id": "r3_assembly_B0_n20_s0",
+      "train_seconds": 464.8791693300009,
+      "updates": 20000
+    }
+  ],
+  "remaining_main_central_hours": 5.7611909322975166,
+  "short_debug_overlap": "Candidate20-update compile checks briefly shared GPUs0/1; included in observed wall times and separately audited.",
+  "time": "2026-09-08T05:43:00.463992+00:00",
+  "working_range_hours": [
+    6,
+    9
+  ]
+}

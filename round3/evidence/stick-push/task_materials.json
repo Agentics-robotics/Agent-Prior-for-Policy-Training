@@ -1,0 +1,256 @@
+{
+  "action_schema": {
+    "control_dt_seconds": 0.0125,
+    "dim": 4,
+    "end_effector_rotation": "fixed native orientation",
+    "fields": [
+      "world_dx",
+      "world_dy",
+      "world_dz",
+      "gripper"
+    ],
+    "high": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "low": [
+      -1,
+      -1,
+      -1,
+      -1
+    ],
+    "native_xyz_scale_m": 0.01,
+    "world_clip": "after policy action decode, before env.step"
+  },
+  "distribution": {
+    "C_cells": [
+      "LH",
+      "HL"
+    ],
+    "E_cells": [
+      "LL",
+      "LH",
+      "HL",
+      "HH"
+    ],
+    "E_definition": "Both factor values are sampled in extrap_low/extrap_high outside training intervals; all four sign cells balanced.",
+    "balanced_training_sequence": [
+      "LL",
+      "HH",
+      "LL",
+      "HH",
+      "LL",
+      "HH",
+      "LL",
+      "HH",
+      "LL",
+      "HH",
+      "LL",
+      "HH",
+      "LL",
+      "HH",
+      "LL",
+      "HH",
+      "LL",
+      "HH",
+      "LL",
+      "HH"
+    ],
+    "factors": {
+      "a": {
+        "extrap_high": [
+          -0.037,
+          -0.03
+        ],
+        "extrap_low": [
+          -0.08,
+          -0.073
+        ],
+        "high": [
+          -0.05,
+          -0.045
+        ],
+        "low": [
+          -0.065,
+          -0.06
+        ],
+        "name": "stick_x",
+        "units": "m"
+      },
+      "b": {
+        "extrap_high": [
+          0.593,
+          0.6
+        ],
+        "extrap_low": [
+          0.55,
+          0.557
+        ],
+        "high": [
+          0.58,
+          0.587
+        ],
+        "low": [
+          0.565,
+          0.572
+        ],
+        "name": "target_y",
+        "units": "m"
+      }
+    },
+    "nuisance_ranges": {
+      "pushed_object_start": "native fixed",
+      "randvec_goal_z": 0.132,
+      "randvec_stick_z": 0.0005,
+      "stick_y": [
+        0.585,
+        0.615
+      ],
+      "target_x": [
+        0.399,
+        0.401
+      ]
+    },
+    "reset_range_extension": "none; native bounds, or previously calibrated Round 2 cabinet extension",
+    "train_cells": [
+      "LL",
+      "HH"
+    ],
+    "version": "round3-layout-v1"
+  },
+  "native_id": "stick-push-v3",
+  "observation_schema": {
+    "all_methods_receive_identical_raw_fields": true,
+    "dp_history": "two whole observations, initial repeated",
+    "extra_physical_pose_channels": "ring body center for assembly; pegHead site for peg-insert-side; same declared channel for B0 and all candidates",
+    "fields": [
+      {
+        "name": "current.hand_xyz",
+        "slice": [
+          0,
+          3
+        ],
+        "units": "m"
+      },
+      {
+        "name": "current.gripper",
+        "slice": [
+          3,
+          4
+        ],
+        "units": "unitless aperture / .1 m"
+      },
+      {
+        "name": "current.object_xyz",
+        "slice": [
+          4,
+          7
+        ],
+        "units": "m"
+      },
+      {
+        "name": "current.object_quaternion",
+        "slice": [
+          7,
+          11
+        ],
+        "units": "unit quaternion"
+      },
+      {
+        "name": "current.object2_xyz",
+        "slice": [
+          11,
+          14
+        ],
+        "units": "m or absent zeros"
+      },
+      {
+        "name": "current.object2_quaternion",
+        "slice": [
+          14,
+          18
+        ],
+        "units": "unit quaternion or absent zeros"
+      },
+      {
+        "name": "previous.hand_xyz",
+        "slice": [
+          18,
+          21
+        ],
+        "units": "m"
+      },
+      {
+        "name": "previous.gripper",
+        "slice": [
+          21,
+          22
+        ],
+        "units": "unitless aperture / .1 m"
+      },
+      {
+        "name": "previous.object_xyz",
+        "slice": [
+          22,
+          25
+        ],
+        "units": "m"
+      },
+      {
+        "name": "previous.object_quaternion",
+        "slice": [
+          25,
+          29
+        ],
+        "units": "unit quaternion"
+      },
+      {
+        "name": "previous.object2_xyz",
+        "slice": [
+          29,
+          32
+        ],
+        "units": "m or absent zeros"
+      },
+      {
+        "name": "previous.object2_quaternion",
+        "slice": [
+          32,
+          36
+        ],
+        "units": "unit quaternion or absent zeros"
+      },
+      {
+        "name": "goal_xyz",
+        "slice": [
+          36,
+          39
+        ],
+        "units": "m"
+      }
+    ],
+    "frame": "world; native current18+previous18+goal3",
+    "native_history_reset": "current repeated as previous",
+    "object2_present": true,
+    "object_point": "stick body COM; object2 insertion site+[0,.09,0]",
+    "policy": "state-input",
+    "quaternion_order": "xyzw",
+    "raw_dim": 39,
+    "runtime_oracles_provided": false,
+    "version": "round3-common-observation-v1"
+  },
+  "source_knowledge": {
+    "object2_quaternion": "absent zero placeholder",
+    "pushed_object_initial_position": "native fixed; independent factors are tool x and target y",
+    "symmetry_caution": "Fixed robot, gravity, container start, and tool geometry.",
+    "task": "Pick up the stick and push the separate container toward the target."
+  },
+  "source_url": "https://github.com/Farama-Foundation/Metaworld/blob/6e01ad7e2ffb2302e4dca04f796fcd8837df8540/metaworld/envs/sawyer_stick_push_v3.py",
+  "static_geometry_source": {
+    "sha256": "54dc71d0ce1b18807f6d6e2b2114051f17631e0348e6f92daaf8d881ae1a0d6e",
+    "xml": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/.pixi/envs/default/lib/python3.11/site-packages/metaworld/assets/sawyer_xyz/sawyer_stick_obj.xml"
+  },
+  "task": "stick-push"
+}

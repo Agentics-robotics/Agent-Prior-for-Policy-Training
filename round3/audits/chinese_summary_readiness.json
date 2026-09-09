@@ -1,0 +1,26 @@
+{
+  "created_at": "2026-09-08T07:08:30.401089+00:00",
+  "status": "implementation_ready_final_report_pending",
+  "final_reporting_complete": false,
+  "final_summary_created": false,
+  "actual_cli_exit_code": 2,
+  "rejection": {
+    "status": "not_ready",
+    "reason": "等待最终报告：缺少 /home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/round3/reports/test_summary.json；未读取锁定测试文件。",
+    "summary_written": false
+  },
+  "source_sha256": {
+    "scripts/round3_chinese_summary.py": "b88a4d1745258d813204d1b0b5461199beac3b871edfe6f1c322f1edd5296e62",
+    "tests/round3/test_chinese_summary.py": "bdad35b0616707e93712de055336c835d19f01c252d04b4bf14327d025ea61da"
+  },
+  "command": "/home/users/oscar/.pixi/bin/pixi run python scripts/round3_chinese_summary.py",
+  "tests_command": "/home/users/oscar/.pixi/bin/pixi run python -m pytest -q tests/round3/test_chinese_summary.py",
+  "tests_passed": 8,
+  "tests_scope": "pre-gate rejection plus in-memory synthetic rendering only; no synthetic files in test directories",
+  "guarded_actual_execution": "Python audit hook rejects any open/listdir/scandir involving locked_test_states or locked_test_results",
+  "locked_test_access_attempts": [],
+  "gate_order": "require test_summary.json exists and final is exactly true; then validate_test_gate; then all other test-derived reads",
+  "final_path": "round3/ROUND3_SUMMARY_ZH.md",
+  "final_execution_scope": "CPU-only validation/formatting of existing final artifacts; no training, evaluation, GPU work, selection writes or proposal changes",
+  "scope_limit": "The real post-gate final path has intentionally not run while training and feedback are incomplete."
+}

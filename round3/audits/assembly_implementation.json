@@ -1,0 +1,141 @@
+{
+  "task": "assembly",
+  "status": "passed",
+  "created_at": "2026-09-08T05:35:13.469022Z",
+  "scope": "Frozen proposal plus sole feasibility amendment; assembly D2 and synthetic inputs only.",
+  "formal_training_completed": false,
+  "evaluation_completed": false,
+  "gpu_validation": "Not exercised by this CPU audit; Dynamo eager backend validates inference routing, not CUDA performance.",
+  "checks": {
+    "P1": {
+      "observation_shape": [
+        179,
+        2,
+        48
+      ],
+      "parameter_count": 4761156,
+      "baseline_parameter_count": 4718148,
+      "parameter_budget_passed": true,
+      "action_roundtrip_max_error": 0.0,
+      "identity_fitted_normalizer": true,
+      "zero_tail_padding_masked": true,
+      "cpu_single_debug_update_finite": true,
+      "ddim16_leading_steps": [
+        90,
+        84,
+        78,
+        72,
+        66,
+        60,
+        54,
+        48,
+        42,
+        36,
+        30,
+        24,
+        18,
+        12,
+        6,
+        0
+      ],
+      "eager_and_dynamo_eager_inference_agree": true,
+      "inference_finite_and_shape_correct": true
+    },
+    "P2": {
+      "observation_shape": [
+        179,
+        2,
+        59
+      ],
+      "parameter_count": 4840004,
+      "baseline_parameter_count": 4718148,
+      "parameter_budget_passed": true,
+      "action_roundtrip_max_error": 2.384185791015625e-07,
+      "identity_fitted_normalizer": true,
+      "zero_tail_padding_masked": true,
+      "cpu_single_debug_update_finite": true,
+      "current_anchor_shared_across_history": true,
+      "basis_orthonormal_and_right_handed": true,
+      "zero_and_threshold_basis_cases": true,
+      "local_components_above_one_preserved": true,
+      "world_decode_not_locally_clipped": true,
+      "quaternion_double_cover_invariant": true,
+      "ddim16_leading_steps": [
+        90,
+        84,
+        78,
+        72,
+        66,
+        60,
+        54,
+        48,
+        42,
+        36,
+        30,
+        24,
+        18,
+        12,
+        6,
+        0
+      ],
+      "eager_and_dynamo_eager_inference_agree": true,
+      "inference_finite_and_shape_correct": true
+    },
+    "P3": {
+      "observation_shape": [
+        179,
+        2,
+        48
+      ],
+      "parameter_count": 4936660,
+      "baseline_parameter_count": 4718148,
+      "parameter_budget_passed": true,
+      "action_roundtrip_max_error": 0.0,
+      "identity_fitted_normalizer": true,
+      "zero_tail_padding_masked": true,
+      "cpu_single_debug_update_finite": true,
+      "milestone_starts": [
+        [
+          22,
+          45,
+          73
+        ],
+        [
+          25,
+          48,
+          78
+        ]
+      ],
+      "missing_milestones_sentinel": true,
+      "future_target_terminal_masks": true,
+      "no_future_runtime_input": true,
+      "auxiliary_empty_mask_zero": true,
+      "auxiliary_weight_ramp_exact": true,
+      "cpu_checkpoint_next_update_bitwise_equal": true,
+      "ddim16_leading_steps": [
+        90,
+        84,
+        78,
+        72,
+        66,
+        60,
+        54,
+        48,
+        42,
+        36,
+        30,
+        24,
+        18,
+        12,
+        6,
+        0
+      ],
+      "eager_and_dynamo_eager_inference_agree": true,
+      "inference_finite_and_shape_correct": true
+    }
+  },
+  "original_proposal_sha256": "191a05c3b94c5077f7a5bc3d0fbe168759ca634f9f4caa5040ea5bb19bb087d6",
+  "initial_feasibility_revision_sha256": "17fff5fb1ef886bf6b1a7c157805410f2555b6f86feea564d8a61e45f3af6ed8",
+  "source_sha256": "ab07dd6686c24a641de0d95246bcde35de76ade8662cba6cdacda6cc6a123d97",
+  "audit_script_sha256": "ada1f2fb262923062cfda81292aa90fca87bbe0758459fce2e35258e9ee248d5"
+}

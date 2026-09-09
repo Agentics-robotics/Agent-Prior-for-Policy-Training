@@ -1,0 +1,483 @@
+{
+  "task": "assembly",
+  "version": 1,
+  "created_at": "2026-09-08T05:26:44.694118Z",
+  "agent_backend": "codex_session",
+  "designer": "/root/design_assembly",
+  "designer_metadata": {
+    "role": "Actual isolated initial-design subagent",
+    "exact_model": null,
+    "session_id": null,
+    "token_count": null,
+    "cost": null,
+    "availability_note": "Exact model identifier, session ID, token accounting and cost are not exposed to this subagent; not estimated."
+  },
+  "context_exposure": {
+    "semantic_input_scope": [
+      "round3/DESIGN_CONTRACT.md",
+      "round3/evidence/assembly/DESIGN_INTERFACE.md",
+      "round3/evidence/assembly/task_materials.json",
+      "round3/evidence/assembly/D2_summary.json (initial concatenated display partly truncated; primary numerical checks used both complete NPZ arrays)",
+      "round3/evidence/assembly/frames.json",
+      "round3/evidence/assembly/bundle.json",
+      "round3/evidence/assembly/demo_1_trajectory.npz",
+      "round3/evidence/assembly/demo_2_trajectory.npz",
+      "All 16 PNG files listed in round3/evidence/assembly/frames.json"
+    ],
+    "inherited_instruction_scope": "Parent task assignment, user-provided AGENTS instructions and environment context, platform/developer/tool instructions. No additional experiment source or result content was requested or opened.",
+    "visual_review": "All 16 original PNGs individually rendered through tools.view_image, eight uniformly sampled frames per whole demonstration. These images informed design only; no visual runtime input is proposed.",
+    "numerical_review": "NumPy through /home/users/oscar/.pixi/bin/pixi run python loaded both allowed NPZ files, reported schema, summarized all-array extrema/relations and evaluated the prospective milestone rules. No training, environment rollout or model evaluation was performed.",
+    "excluded_content": "No parent source code, expert/reward implementation, linked source URL/XML content, other task report, D5/D10/D20 demonstration, old result, concrete development/test state or model score was read.",
+    "hash_scope": "SHA256 computed directly over every file in the assembly evidence directory, including bundle.json itself. Hash reads add no evidence outside that bundle.",
+    "output_scope": "Only this proposal and its rationale are written by this design assignment; no implementation is created."
+  },
+  "evidence_hashes": {
+    "round3/evidence/assembly/D2_summary.json": "33cb668aa9b6dc85d23bb5a8ad33ea6f0efa72ad65343ca2fb933fb542f9b541",
+    "round3/evidence/assembly/DESIGN_INTERFACE.md": "fe0a1c4a12c4bd170d432f48cf1cb3ae98028cc37a5d1ad0f4cff6d0d14f0101",
+    "round3/evidence/assembly/bundle.json": "95e353095c846ba60f022002afbcede27152fea75856bda7f81dbc1d39644de9",
+    "round3/evidence/assembly/demo_1_frame_00_step_000.png": "e8806513ce7eb09ae1afb73acc0e84256a7da46f74e3938a360c35a99de68cf0",
+    "round3/evidence/assembly/demo_1_frame_01_step_012.png": "113738f35e5dd61b6a91054209ee3626025e282d286c1f90aac12706f590b683",
+    "round3/evidence/assembly/demo_1_frame_02_step_025.png": "ae8256db57dd702687ffb108f4c3cb1b47386858adf2ba1d6c828c8df124d93a",
+    "round3/evidence/assembly/demo_1_frame_03_step_037.png": "6eef8dd0618d91f295e85e27a5350ae0ebf29c08f365049dd850df62ad251ea4",
+    "round3/evidence/assembly/demo_1_frame_04_step_050.png": "75e13254897ca8f230376944120ef525bfd9d53281073dd4e073152e2916153f",
+    "round3/evidence/assembly/demo_1_frame_05_step_062.png": "cdddb559c089c7641d27b901970f0d4a9d56ab076dafd9326e16eb628762ee80",
+    "round3/evidence/assembly/demo_1_frame_06_step_075.png": "41cd63fe135adf8e7199b31006c3518879d331799efebf13263c16df9eab962e",
+    "round3/evidence/assembly/demo_1_frame_07_step_087.png": "10e7506110964c2f0dc6a12169dba3abe0fd9bc0ec6129f3ccf4bc7008a7d7f0",
+    "round3/evidence/assembly/demo_1_trajectory.npz": "dd823e7ef7895d0efbafc4e6452a07d7168533d9624831e1eb37c471482936af",
+    "round3/evidence/assembly/demo_2_frame_00_step_000.png": "b5d427c58327add0d8c8f5ae12219f564248c0bb86cf7c2a8aede157b17ac19a",
+    "round3/evidence/assembly/demo_2_frame_01_step_013.png": "5507318c74140fce8751063ee4ceba9dacca5befa7c6f9953369fa868d4bb894",
+    "round3/evidence/assembly/demo_2_frame_02_step_026.png": "9297b1dff1ff2cfa741f3146ea5f7057875494842568b01fb3f722f6426e98e0",
+    "round3/evidence/assembly/demo_2_frame_03_step_039.png": "dfffcc497358df127de8fc04ed3fd5f6e6866b21f0c4b8cb819fffe0d0a6c295",
+    "round3/evidence/assembly/demo_2_frame_04_step_053.png": "b129fcc0f7d4740e229bae05112a0a5f9e2c0bdecbc237fbc4386d1a9487f0e1",
+    "round3/evidence/assembly/demo_2_frame_05_step_066.png": "a50c08b29d88cdf958a39ec99c79371a986fe59f0c88ddf5acad7c69a3de5674",
+    "round3/evidence/assembly/demo_2_frame_06_step_079.png": "81ecd2fc9e4c4f77689c2a1a90133cae027ba343d1edbfae9f8792bc5e07d971",
+    "round3/evidence/assembly/demo_2_frame_07_step_092.png": "2f7ff4c715855d3cf1b48bf1dcdd9eae6e0efd4d829c20466e5283ca258f73ba",
+    "round3/evidence/assembly/demo_2_trajectory.npz": "0e32da0f99f3c920e2b0ad1144f4f2f418b8aa02acfa9ce94d5f3a5c28935c0a",
+    "round3/evidence/assembly/frames.json": "772115b0cad086947e1136df9b128c3a8446404c3be1d7d8a75424a789cc7d35",
+    "round3/evidence/assembly/task_materials.json": "ef7889dd002a550ddae332660f91a5488b9df7f6c14148638ecd71bf2ae8141a"
+  },
+  "coordinate_definitions": {
+    "axes": "World Cartesian +x and +y match the native observation/action schema; +z=(0,0,1) points upward along the declared fixed peg axis. Horizontal plane is world xy. No unverified camera-to-world inference is used.",
+    "symbols": "For each raw observation, h=raw[0:3] hand, aperture=raw[3], p=raw[4:7] nut handle site, q=raw[7:11] native body wxyz quaternion, h_previous=raw[18:21], p_previous=raw[22:25], g=raw[36:39] declared goal, r=raw[39:42] observed ring center; rho=norm((r-g)[0:2]).",
+    "units": "Positions and lengths are metres, control interval 0.0125 s, velocity metres/second. Native spatial action units multiply by 0.01 m; gripper action [-1,1] is native unitless. Aperture is the declared native aperture divided by 0.1 m and is not the gripper action.",
+    "quaternion": "For each present body quaternion, normalize its Euclidean norm; use identity (1,0,0,0) if norm<1e-8. Choose sign so the first nonzero component in w,x,y,z order is positive; this represents the same rotation and never supplies extra orientation information.",
+    "static_geometry": "Only supplied material is used: vertical peg axis, peg radius 0.020 m and halfheight 0.050 m. Goal z is the declared observation target; the design does not infer a hidden success band or derive an analytic action controller from geometry."
+  },
+  "shared_training_protocol": {
+    "batch": "128 total chunks per update across the entire candidate. Sample an episode uniformly from current D_N, then a valid action start uniformly from 0..T-1 within that episode, with replacement.",
+    "observations": "Exactly two whole consecutive common raw observations; repeat initial observation for absent outer history. Retain native internal previous channels as provided; no new sensor history.",
+    "prediction_execution": "Prediction horizon 16 native actions, execute 4, replan. Training action starts at the current observation index.",
+    "tail_handling": "Repeat the final valid action only to fill the tensor to length 16; a boolean validity mask excludes every padded target from loss. Do not cross episode boundaries. Auxiliary future targets use their separate stated eligibility masks.",
+    "optimizer": "AdamW learning_rate 1e-4, weight_decay 1e-6, betas [0.9,0.999]; global gradient norm clip 1 across all modules; exactly 20,000 joint updates, batch 128 total. Maintain EMA decay 0.995 for all trainable modules and use EMA at inference.",
+    "diffusion": "Epsilon target with k uniform over integers 0..99. Cosine schedule uses f(u)=cos(((u+0.008)/1.008)*pi/2)^2 and beta_i=min(1-f((i+1)/100)/f(i/100),0.999), i=0..99. Forward corruption uses cumulative product alpha_bar. DDIM uses 16 indices round(linspace(99,0,16)), eta=0, and final clean reconstruction after index 0. No clean-sample clipping or guidance.",
+    "action_execution": "Decode the entire chunk in its fixed replan frame, then clip each native world xyz and gripper component to [-1,1] before env.step. No analytic correction, rescue, runtime action search or future state input.",
+    "run_scope": "Train N in [2,5,10,20] independently from scratch at seed 0 using only nested D_N. One formal training process on GPU 1 selected by Pixi activation. This design does not launch any run.",
+    "design_freeze": "This version precedes implementation. Any substantive feasibility revision must create a new version with reason, at most once. Later permitted N5 development feedback revision is a separately recorded process and must not rewrite this original design."
+  },
+  "evidence_observations": {
+    "episodes": [
+      {
+        "id": "r3_assembly_train_IID_000_31100000",
+        "cell": "LL",
+        "transitions": 87,
+        "duration_seconds": 1.0875,
+        "max_ring_z_m": 0.20192231237888336,
+        "final_ring_minus_goal_m": [
+          0.005701109766960144,
+          -0.001211404800415039,
+          -0.00379190593957901
+        ]
+      },
+      {
+        "id": "r3_assembly_train_IID_001_31100100",
+        "cell": "HH",
+        "transitions": 92,
+        "duration_seconds": 1.15,
+        "max_ring_z_m": 0.20053993165493011,
+        "final_ring_minus_goal_m": [
+          0.005342245101928711,
+          -0.0016452670097351074,
+          -0.005194433033466339
+        ]
+      }
+    ],
+    "interpretation": "These are descriptive measurements from the two supplied successful demonstrations. They are neither a native success rule nor a new evaluation. The rendered frames show handle grasp and ring placement but do not establish robustness, recovery or visual-policy generalization."
+  },
+  "combination_consideration": {
+    "seriously_considered": [
+      "P1 explicit point relations plus P2 moving action basis.",
+      "P1 explicit point relations plus learned soft event conditioning and future-geometry supervision.",
+      "All three mechanisms together."
+    ],
+    "adopted": "P3 adopts the second combination. It preserves world actions while asking small jointly trained heads to organize relational conditioning. The shared model and predicted-only soft conditioning avoid independent controllers or teacher-forced routing.",
+    "rejected_for_initial_version": "Do not combine the moving action basis with the event/auxiliary candidate. D2 provides little evidence about near-alignment basis switches or recovery; coupling that discontinuity with learned sequencing would make failures harder to interpret. P2 remains the separate action-representation test.",
+    "comparability_limit": "P1/P2/P3 are three prospective candidate designs, not a perfectly factorial ablation. P2 adds frame-aware absolute anchors; P3 adds auxiliary capacity and losses. No winning candidate or positive result is claimed."
+  },
+  "candidates": [
+    {
+      "candidate_id": "P1",
+      "knowledge_hypotheses": [
+        {
+          "source": "external geometry/common knowledge",
+          "claim": "Grasp contact and insertion alignment refer to different physical points: a handle grasp does not imply that the ring center is aligned with the peg. Coordinate differences directly represent these relations.",
+          "reference": "round3/evidence/assembly/task_materials.json: observation_schema, action_schema, source_knowledge"
+        },
+        {
+          "source": "observation from D2",
+          "claim": "The handle site lies approximately 0.130 m from the observed ring center throughout both trajectories; initial handle-minus-ring is approximately (+0.130,0,0) m. Both successful demonstrations lift before transporting and descending.",
+          "reference": "demo_1_trajectory.npz and demo_2_trajectory.npz, all observations; demo_1 frames steps 25/37/50/62/75/87 and demo_2 frames 26/39/53/66/79/92."
+        },
+        {
+          "source": "unverified inference",
+          "claim": "Exposing hand-to-handle and ring-to-goal relations separately may reduce reliance on the LL/HH correlation between initial nut x and peg x. D2 cannot establish extrapolation or recovery."
+        }
+      ],
+      "evidence_refs": [
+        "round3/evidence/assembly/task_materials.json: observation_schema, action_schema, source_knowledge",
+        "round3/evidence/assembly/demo_1_trajectory.npz: episode r3_assembly_train_IID_000_31100000, observations 0..87 and actions 0..86",
+        "round3/evidence/assembly/demo_2_trajectory.npz: episode r3_assembly_train_IID_001_31100100, observations 0..92 and actions 0..91",
+        "round3/evidence/assembly/frames.json: all 16 frame entries, individually viewed through view_image"
+      ],
+      "predicted_generalization_gain": "Prospectively, easier recombination of the grasp location and insertion location in LH/HL layouts and possibly outside the training x intervals. A small-data gain is plausible but no improvement over B0 is assumed.",
+      "applicability": "Declared assembly state schema with observed handle site, ring center, fixed vertical peg and native translational action control.",
+      "failure_conditions": [
+        "A high-dimensional relation expansion can overfit two successful trajectories.",
+        "Keeping absolute positions allows the model to retain spurious LL/HH correlations.",
+        "The demonstrations contain no failed grasp or recovery examples, and relations alone cannot create those behaviors.",
+        "Fixed observation scaling may be poor for unusually large off-trajectory states."
+      ],
+      "architecture": {
+        "action_generator": "One conditional temporal U-Net, four action channels, epsilon prediction; widths [64,128,256], time_embedding_dim 128, kernel_size 5, groups 8.",
+        "diffusion": "100-step cosine DDPM training; 16-step DDIM inference, eta=0; no classifier-free guidance and no clean-sample clipping.",
+        "history_and_chunks": "Two whole raw observations in chronological order, initial repeated; predict a_t..a_(t+15), execute first four, then replan.",
+        "trainable_parameter_measurement": "Count all trainable parameters including conditioning layers and auxiliaries before formal training; record actual B0 and candidate counts.",
+        "conditioning": "Flatten the 96 deterministic features and supply them directly as global observation conditioning to the U-Net; no auxiliary trainable encoder, router or separate expert."
+      },
+      "modules": [
+        "Deterministic 48-feature-per-raw relational encoder.",
+        "Single shared diffusion U-Net and EMA copy.",
+        "Native world action codec."
+      ],
+      "observation_transform": {
+        "input": "Two 42-dimensional raw observations s_(t-1), s_t. Each raw includes its declared internal current/previous blocks; this does not authorize any extra observations.",
+        "per_raw_output_order": "28 retained raw channels in index order [0:11,18:29,36:42], then (p-h)[3], (r-h)[3], (g-r)[3], (p-r)[3], rho[1], (r_z-g_z)[1], v_h[3], v_p[3]. Total 48 numbers per raw, flattened chronologically to 96.",
+        "retained_channel_scaling": "Every retained position coordinate divided by 0.10 m, with world origin unchanged. The two aperture fields stay native unitless. Each native wxyz quaternion is normalized and assigned a deterministic sign as defined in coordinate_definitions.",
+        "relation_scaling": "Four relation vectors and both distance scalars divided by 0.10 m. Velocities v_h=(h-h_previous)/0.0125 s and v_p=(p-p_previous)/0.0125 s divided by 1 m/s. No observation feature clipping or fitted mean/std.",
+        "absent_channels": "Discard object2 position/quaternion fields [11:18,29:36], which are declared absent zeros. No mask or undeclared object pose is inferred.",
+        "role_of_absolute_features": "Retain absolute world positions because the robot, workspace and gravity do not move with the object."
+      },
+      "action_transform": {
+        "encode": "For each native demonstration action a=(a_x,a_y,a_z,a_g), return a unchanged. Spatial entries are dimensionless commands whose physical displacement scale is 0.01 m per unit; gripper is native unitless command.",
+        "decode": "Return denoised spatial and gripper values unchanged, then clip each of the four world-native components to [-1,1] once, immediately before env.step.",
+        "normalization": "No fitted action normalization; no clipping of noised or denoised clean samples inside the sampler.",
+        "frame": "World +x,+y and +z, with +z the vertical peg/gravity-opposing axis; fixed throughout every chunk."
+      },
+      "losses_and_weights": [
+        {
+          "name": "diffusion_epsilon_mse",
+          "target": "Independent standard-normal epsilon added to the encoded demonstration action chunk at sampled diffusion index k.",
+          "scale": "Encoded action units as specified for the candidate; mean squared error averaged over four channels and all valid chunk positions in the batch.",
+          "weight": 1.0,
+          "application_condition": "Every training update, all 128 sampled chunks; positions past the demonstration final action are masked out."
+        }
+      ],
+      "augmentation": {
+        "physical_augmentation": "None. Do not rotate, translate, mirror or independently rearrange demonstrations; fixed robot, peg geometry and gravity make full-environment equivariance unproven.",
+        "noise": "Only standard diffusion corruption of action targets. Quaternion sign canonicalization is representation equivalence, not new physical data."
+      },
+      "training_schedule": {
+        "shared_protocol": "Follow shared_training_protocol verbatim; all modules belonging to this candidate update together in the same 20,000 optimizer steps.",
+        "N_values": [
+          2,
+          5,
+          10,
+          20
+        ],
+        "initialization": "Independent from-scratch seed 0 run for each N; no warm start, pretrained component, N-to-N transfer, or model-score-dependent tuning.",
+        "data_scope": "Only the current nested D_N provides action targets, statistics, labels and fitted parameters. D2 evidence fixes this design. No additional demonstrations or scores may revise this initial design.",
+        "extra_steps": 0,
+        "learning_rate_schedule": "Constant 1e-4 for all 20,000 updates; no warmup, early stopping, or auxiliary pretraining."
+      },
+      "hierarchy_selection_and_termination": "None. One policy predicts the full action chunk. No geometric if-statement issues actions or terminates an episode; the common harness controls episode termination.",
+      "chunk_transition_handling": "Condition on the two observations at replan t; predict 16 world-frame actions and execute four. No route or frame changes occur during execution. Use fresh observations at the next replan. Near demonstration ends, shared_protocol padding/masking applies.",
+      "required_train_labels": [
+        "Recorded current D_N action chunks only; no phase, success, contact or future geometry labels."
+      ],
+      "required_runtime_inputs": [
+        "The two most recent common raw observations (42 numbers each, initial repeated).",
+        "Fixed declared action scale 0.01 m, control dt 0.0125 s, and world axes.",
+        "The candidate checkpoint and normal diffusion sampling RNG. No images, future states/actions, hidden phase, success signal, source expert, or privileged physics channel."
+      ],
+      "parameter_budget": {
+        "hard_cap": "At most 3 times measured raw-input B0 trainable parameters.",
+        "prospective_estimate": "One B0-sized U-Net with slightly wider conditioning; expected below 5.5 million parameters, not measured. No hidden ensemble or independently trained controller.",
+        "enforcement": "Do not train if measured count exceeds the cap; report implementation infeasibility for the separately recorded feasibility-revision process."
+      },
+      "implementation_steps": [
+        "Implement and assert the frozen 42D slices and two-observation ordering.",
+        "Implement the 96D relation transform with fixed scales and deterministic quaternion signs.",
+        "Use one default U-Net conditioned on these features and identity world action encode/decode.",
+        "Verify shape, identity codec and postdecode native clipping with synthetic arrays; run no task rollout during implementation validation.",
+        "Record parameter count and train each prescribed N from scratch using only its D_N."
+      ],
+      "confidence": {
+        "level": "medium",
+        "basis": "The point distinction is directly observed and physically motivated; transfer benefit and off-demonstration behavior remain untested."
+      }
+    },
+    {
+      "candidate_id": "P2",
+      "knowledge_hypotheses": [
+        {
+          "source": "external geometry/common knowledge",
+          "claim": "A change of coordinates can represent displacement along the horizontal ring-to-peg direction while preserving the vertical gravity axis. Encoding and decoding with the same orthonormal basis leaves the represented world action unchanged before clipping.",
+          "reference": "round3/evidence/assembly/task_materials.json: observation_schema, action_schema, source_knowledge; elementary right-handed orthonormal-frame geometry, no external implementation opened."
+        },
+        {
+          "source": "observation from D2",
+          "claim": "During transport the ring moves primarily toward greater world y, with opposite x corrections in the two demonstrations (e.g. demo 1 step 50 action x=-0.1091, demo 2 step 53 x=+0.2136). Ring height peaks near 0.2019 and 0.2005 m before descent.",
+          "reference": "D2_summary.json and both trajectory NPZ files; demo_1_frame_04_step_050.png through frame_07; demo_2_frame_04_step_053.png through frame_07."
+        },
+        {
+          "source": "unverified inference",
+          "claim": "Expressing carry actions along the observed ring-to-goal displacement could reduce action-distribution variation under crossed x factors, but it may complicate grasping and final alignment."
+        }
+      ],
+      "evidence_refs": [
+        "round3/evidence/assembly/task_materials.json: observation_schema, action_schema, source_knowledge",
+        "round3/evidence/assembly/demo_1_trajectory.npz: episode r3_assembly_train_IID_000_31100000, observations 0..87 and actions 0..86",
+        "round3/evidence/assembly/demo_2_trajectory.npz: episode r3_assembly_train_IID_001_31100100, observations 0..92 and actions 0..91",
+        "round3/evidence/assembly/frames.json: all 16 frame entries, individually viewed through view_image"
+      ],
+      "predicted_generalization_gain": "Prospectively strongest during transport when the required x correction changes independently of the initial nut x. Benefit during grasp or insertion is uncertain and could be negative.",
+      "applicability": "Assembly with a fixed world vertical axis and a measurable ring-to-goal horizontal displacement. This is a coordinate representation, not a claim of physical translation or rotation symmetry.",
+      "failure_conditions": [
+        "The basis switches to world x near alignment; that discontinuity can make nearby training windows have different encoded actions.",
+        "Direction inferred from a small ring-to-goal vector is noisy; the specified radius fallback limits but does not eliminate this issue.",
+        "The frame is centered on the ring while grasp actions target the handle; the diffusion model must resolve that distinction.",
+        "Robot reach and action-cube limits are anisotropic in world coordinates, so relative-coordinate training can still fail outside observed layouts."
+      ],
+      "architecture": {
+        "action_generator": "One conditional temporal U-Net, four action channels, epsilon prediction; widths [64,128,256], time_embedding_dim 128, kernel_size 5, groups 8.",
+        "diffusion": "100-step cosine DDPM training; 16-step DDIM inference, eta=0; no classifier-free guidance and no clean-sample clipping.",
+        "history_and_chunks": "Two whole raw observations in chronological order, initial repeated; predict a_t..a_(t+15), execute first four, then replan.",
+        "trainable_parameter_measurement": "Count all trainable parameters including conditioning layers and auxiliaries before formal training; record actual B0 and candidate counts.",
+        "conditioning": "One U-Net directly conditioned on 118 flattened deterministic features; no router or auxiliary head. Action targets are the three displacement coordinates in the replan basis plus native gripper."
+      },
+      "modules": [
+        "Deterministic current ring/goal basis builder.",
+        "59-feature-per-raw anchored coordinate encoder.",
+        "One shared diffusion U-Net and EMA.",
+        "Orthonormal action encoder/decoder with world-only final cube clipping."
+      ],
+      "observation_transform": {
+        "basis": "At replan t use r_t and g_t from s_t. Let d=(g_x-r_x,g_y-r_y,0), rho=norm(d), e_z=(0,0,1). If rho >= 0.020 m, e_1=d/rho; otherwise e_1=(1,0,0). Let e_2=e_z cross e_1 and B_t=[e_1,e_2,e_z] with columns in world coordinates. The 0.020 m cutoff equals the declared peg radius but is only a numerical coordinate rule, not an insertion or success rule.",
+        "history_frame": "Use exactly this current B_t and current origin r_t for BOTH outer-history raw entries and every vector in the predicted chunk; do not build a different frame for the previous observation or future targets.",
+        "per_raw_output": "Start with the same 48 slots as P1. Replace each retained position x by B_t^T(x-r_t)/0.10 m. Rotate each relation vector with B_t^T and divide by 0.10 m; rotate velocities with B_t^T and divide by 1 m/s. Keep rho, vertical gap, apertures and the canonical native WORLD wxyz quaternions as in P1. Append world h_j/0.10 m, world g_j/0.10 m, world r_j/0.10 m, and (e_1x,e_1y). This is 59 features per raw and 118 for the two entries.",
+        "orientation_note": "Quaternions remain explicitly world-referenced; they are not asserted to be local-frame quaternions. Absolute anchors and basis components make the representation aware of fixed world geometry.",
+        "statistics": "No learned normalization, feature clipping or augmented states. No new runtime channel."
+      },
+      "action_transform": {
+        "encode": "For every action in a training chunk anchored at t, u_xyz=B_t^T a_xyz and u_g=a_g. a_xyz is native dimensionless displacement; equivalently rotate 0.01*a_xyz metres then divide by 0.01 m. Encoded spatial components may exceed magnitude 1 and must not be clipped.",
+        "decode": "For all 16 denoised actions use the same anchor B_t: a_xyz=B_t u_xyz, a_g=u_g. Clip the four resulting native WORLD components to [-1,1] only before executing them.",
+        "normalization": "Identity after basis change. No fitted action scale, clean-sample clipping or per-axis local clipping.",
+        "runtime_replanning": "Discard the unexecuted 12 predictions after four actions, build a new B from the next current observation, and replan. Never reinterpret cached encoded actions using a new basis."
+      },
+      "losses_and_weights": [
+        {
+          "name": "diffusion_epsilon_mse",
+          "target": "Independent standard-normal epsilon added to the encoded demonstration action chunk at sampled diffusion index k.",
+          "scale": "Encoded action units as specified for the candidate; mean squared error averaged over four channels and all valid chunk positions in the batch.",
+          "weight": 1.0,
+          "application_condition": "Every training update, all 128 sampled chunks; positions past the demonstration final action are masked out."
+        }
+      ],
+      "augmentation": {
+        "physical_augmentation": "None. Do not rotate, translate, mirror or independently rearrange demonstrations; fixed robot, peg geometry and gravity make full-environment equivariance unproven.",
+        "noise": "Only standard diffusion corruption of action targets. Quaternion sign canonicalization is representation equivalence, not new physical data."
+      },
+      "training_schedule": {
+        "shared_protocol": "Follow shared_training_protocol verbatim; all modules belonging to this candidate update together in the same 20,000 optimizer steps.",
+        "N_values": [
+          2,
+          5,
+          10,
+          20
+        ],
+        "initialization": "Independent from-scratch seed 0 run for each N; no warm start, pretrained component, N-to-N transfer, or model-score-dependent tuning.",
+        "data_scope": "Only the current nested D_N provides action targets, statistics, labels and fitted parameters. D2 evidence fixes this design. No additional demonstrations or scores may revise this initial design.",
+        "extra_steps": 0,
+        "learning_rate_schedule": "Constant 1e-4 for all 20,000 updates; no warmup, early stopping, or auxiliary pretraining."
+      },
+      "hierarchy_selection_and_termination": "None. The rho-based branch chooses only a coordinate basis. All action values and gripper behavior come from the learned diffusion model. No success or termination rule is added.",
+      "chunk_transition_handling": "Freeze B_t and r_t throughout both input history entries, all action targets and all decoded actions of a chunk. A basis branch change is permitted only at replan after four executed actions, with stale predictions discarded. Episode clock, observation history and environment state do not reset.",
+      "required_train_labels": [
+        "Recorded D_N action chunks and the common current observation that defines their basis; no phase or future-state labels."
+      ],
+      "required_runtime_inputs": [
+        "The two most recent common raw observations (42 numbers each, initial repeated).",
+        "Fixed declared action scale 0.01 m, control dt 0.0125 s, and world axes.",
+        "The candidate checkpoint and normal diffusion sampling RNG. No images, future states/actions, hidden phase, success signal, source expert, or privileged physics channel.",
+        "Fixed declared peg radius 0.020 m used solely as the basis degeneracy cutoff."
+      ],
+      "parameter_budget": {
+        "hard_cap": "At most 3 times measured raw-input B0 trainable parameters.",
+        "prospective_estimate": "One default U-Net with 118D conditioning, expected below 5.5 million trainable parameters; not yet measured. Basis and codec contain no learned parameters.",
+        "enforcement": "Measure before formal training and fail closed on excess; a changed architecture would require the contract feasibility-revision record."
+      },
+      "implementation_steps": [
+        "Implement B and explicitly test B^T B=I and det(B)=+1 for synthetic observations including rho just above/below 0.020 m and zero.",
+        "Implement 118D history encoding with a single shared replan origin and basis.",
+        "Implement chunkwide encode/decode and verify native action round trips, including rotated commands whose local component exceeds 1.",
+        "Use the default diffusion model and loss without local action clipping.",
+        "Measure parameter count and train each prescribed N from scratch; do not use development/test rollouts to choose a basis cutoff."
+      ],
+      "confidence": {
+        "level": "low-to-medium",
+        "basis": "The algebra is exact, but task advantage is an inference and the near-alignment basis switch is a material risk."
+      }
+    },
+    {
+      "candidate_id": "P3",
+      "knowledge_hypotheses": [
+        {
+          "source": "observation from D2",
+          "claim": "The observed sequences support approach, grasp/lift, carry and alignment/descent as useful retrospective groups. The fixed three-observation milestone rules below give event starts [22,45,73] in demo 1 and [25,48,78] in demo 2; these labels are new design heuristics, not native simulator phases.",
+          "reference": "demo_1_trajectory.npz and demo_2_trajectory.npz, declared aperture, ring center and goal channels; all 16 rendered frames."
+        },
+        {
+          "source": "external geometry/common knowledge",
+          "claim": "Carrying an object to a vertical peg couples horizontal center alignment to vertical clearance, while hand-to-handle geometry concerns grasp maintenance. Supervising both relations can separate their roles without prescribing an analytic controller.",
+          "reference": "round3/evidence/assembly/task_materials.json: observation_schema, action_schema, source_knowledge"
+        },
+        {
+          "source": "unverified inference",
+          "claim": "Jointly learning event probabilities and short-horizon future relations may organize diffusion conditioning more efficiently than an unconstrained relation expansion, especially when initial object and goal x values are recombined. Successful-only labels may instead reinforce brittle sequencing."
+        }
+      ],
+      "evidence_refs": [
+        "round3/evidence/assembly/task_materials.json: observation_schema, action_schema, source_knowledge",
+        "round3/evidence/assembly/demo_1_trajectory.npz: episode r3_assembly_train_IID_000_31100000, observations 0..87 and actions 0..86",
+        "round3/evidence/assembly/demo_2_trajectory.npz: episode r3_assembly_train_IID_001_31100100, observations 0..92 and actions 0..91",
+        "round3/evidence/assembly/frames.json: all 16 frame entries, individually viewed through view_image"
+      ],
+      "predicted_generalization_gain": "Prospectively may improve ordering and retention of grasp geometry across independent object/goal layouts. The combination may be worse at N2 because auxiliary targets and retrospective modes add bias and have no failure examples.",
+      "applicability": "The same state schema as P1; training supplies complete current-D_N observation sequences for retrospective milestones and future relation labels. Runtime remains strictly current/past state input.",
+      "failure_conditions": [
+        "Heuristic thresholds can partition states poorly or miss a milestone in a legitimate successful trajectory.",
+        "The four labeled modes may not describe recovery behavior, alternative grasps or off-trajectory states.",
+        "A future-relation head fit to demonstrations may encode their motion habits rather than task-invariant structure.",
+        "Diffusion and auxiliary gradients may conflict; the weights are frozen here and cannot be tuned using unseen demonstrations or initial-model scores."
+      ],
+      "architecture": {
+        "action_generator": "One conditional temporal U-Net, four action channels, epsilon prediction; widths [64,128,256], time_embedding_dim 128, kernel_size 5, groups 8.",
+        "diffusion": "100-step cosine DDPM training; 16-step DDIM inference, eta=0; no classifier-free guidance and no clean-sample clipping.",
+        "history_and_chunks": "Two whole raw observations in chronological order, initial repeated; predict a_t..a_(t+15), execute first four, then replan.",
+        "trainable_parameter_measurement": "Count all trainable parameters including conditioning layers and auxiliaries before formal training; record actual B0 and candidate counts.",
+        "conditioning_encoder": "Use P1 96D features. E is Linear(96,128), SiLU, Linear(128,128), SiLU.",
+        "event_head": "From E, Linear(128,64), SiLU, Linear(64,4), softmax.",
+        "future_relation_head": "From E, Linear(128,64), SiLU, Linear(64,12), unconstrained output. This head is used for training and optional diagnostics, never to produce or correct actions.",
+        "diffusion_conditioning": "Concatenate E (128 numbers) and four predicted event probabilities into 132D global conditioning. Use predicted probabilities during both training and inference; no ground-truth mode is fed to the action model. Diffusion gradients pass through E and the softmax event head.",
+        "parameter_sharing": "One diffusion U-Net for all modes. No per-mode expert networks or sequential training stages. One optimizer jointly updates encoder, both heads and U-Net."
+      },
+      "modules": [
+        "P1 deterministic relational encoder.",
+        "Shared 128D learned observation encoder.",
+        "Four-class retrospective-event head with soft runtime conditioning.",
+        "12D future relation auxiliary head.",
+        "Single world-action diffusion U-Net with EMA over every trainable module."
+      ],
+      "observation_transform": {
+        "input": "Two 42-dimensional raw observations s_(t-1), s_t. Each raw includes its declared internal current/previous blocks; this does not authorize any extra observations.",
+        "per_raw_output_order": "28 retained raw channels in index order [0:11,18:29,36:42], then (p-h)[3], (r-h)[3], (g-r)[3], (p-r)[3], rho[1], (r_z-g_z)[1], v_h[3], v_p[3]. Total 48 numbers per raw, flattened chronologically to 96.",
+        "retained_channel_scaling": "Every retained position coordinate divided by 0.10 m, with world origin unchanged. The two aperture fields stay native unitless. Each native wxyz quaternion is normalized and assigned a deterministic sign as defined in coordinate_definitions.",
+        "relation_scaling": "Four relation vectors and both distance scalars divided by 0.10 m. Velocities v_h=(h-h_previous)/0.0125 s and v_p=(p-p_previous)/0.0125 s divided by 1 m/s. No observation feature clipping or fitted mean/std.",
+        "absent_channels": "Discard object2 position/quaternion fields [11:18,29:36], which are declared absent zeros. No mask or undeclared object pose is inferred.",
+        "role_of_absolute_features": "Retain absolute world positions because the robot, workspace and gravity do not move with the object."
+      },
+      "action_transform": {
+        "encode": "For each native demonstration action a=(a_x,a_y,a_z,a_g), return a unchanged. Spatial entries are dimensionless commands whose physical displacement scale is 0.01 m per unit; gripper is native unitless command.",
+        "decode": "Return denoised spatial and gripper values unchanged, then clip each of the four world-native components to [-1,1] once, immediately before env.step.",
+        "normalization": "No fitted action normalization; no clipping of noised or denoised clean samples inside the sampler.",
+        "frame": "World +x,+y and +z, with +z the vertical peg/gravity-opposing axis; fixed throughout every chunk."
+      },
+      "losses_and_weights": [
+        {
+          "name": "diffusion_epsilon_mse",
+          "target": "Independent standard-normal epsilon added to the encoded demonstration action chunk at sampled diffusion index k.",
+          "scale": "Encoded action units as specified for the candidate; mean squared error averaged over four channels and all valid chunk positions in the batch.",
+          "weight": 1.0,
+          "application_condition": "Every training update, all 128 sampled chunks; positions past the demonstration final action are masked out."
+        },
+        {
+          "name": "event_cross_entropy",
+          "target": "Four-class milestone label y_t defined in required_train_labels.",
+          "scale": "Mean unweighted cross entropy over the 128 current-window labels, natural logarithms. No class reweighting.",
+          "weight": "0.10 * min(1,(update+1)/2000), where update is zero-indexed 0..19999.",
+          "application_condition": "Every update, every sampled chunk. All milestone labels are generated only from its current D_N demonstration."
+        },
+        {
+          "name": "future_relation_smooth_l1",
+          "target": "At H in {4,16} actions ahead, concatenate (r_(t+H)-g_(t+H))/0.10 m and (p_(t+H)-h_(t+H))/0.10 m: six components per horizon, twelve outputs in H=4 then H=16 order.",
+          "scale": "SmoothL1 beta=1 on normalized components; mean over all valid horizon/components in the batch. H corresponds to 0.050 or 0.200 s. No fitted label normalization.",
+          "weight": "0.05 * min(1,(update+1)/2000), update zero-indexed.",
+          "application_condition": "Only horizons satisfying t+H <= T, where T is the final observation index. Invalid horizons are masked, not clamped to the terminal state. If none are valid, this term is exactly zero."
+        }
+      ],
+      "augmentation": {
+        "physical_augmentation": "None. Do not rotate, translate, mirror or independently rearrange demonstrations; fixed robot, peg geometry and gravity make full-environment equivariance unproven.",
+        "noise": "Only standard diffusion corruption of action targets. Quaternion sign canonicalization is representation equivalence, not new physical data."
+      },
+      "training_schedule": {
+        "shared_protocol": "Follow shared_training_protocol verbatim; all modules belonging to this candidate update together in the same 20,000 optimizer steps.",
+        "N_values": [
+          2,
+          5,
+          10,
+          20
+        ],
+        "initialization": "Independent from-scratch seed 0 run for each N; no warm start, pretrained component, N-to-N transfer, or model-score-dependent tuning.",
+        "data_scope": "Only the current nested D_N provides action targets, statistics, labels and fitted parameters. D2 evidence fixes this design. No additional demonstrations or scores may revise this initial design.",
+        "extra_steps": 0,
+        "learning_rate_schedule": "Constant 1e-4 for all 20,000 updates; no warmup, early stopping, or auxiliary pretraining.",
+        "auxiliary_schedule": "Both auxiliary weights ramp linearly to their declared values over the first 2,000 joint updates; remain constant for updates 2,000..19,999. The diffusion weight remains 1 throughout. Auxiliary updates use the same 128 chunks, with no additional optimizer steps."
+      },
+      "hierarchy_selection_and_termination": {
+        "selection": "At each replan compute the four soft event probabilities from the two common observations. Supply the entire vector to the shared diffusion model. There is no hard expert selection, argmax controller, threshold-triggered action, or forced monotonic mode sequence.",
+        "mode_termination": "A mode relinquishes conditioning weight only through the next predicted probability vector. There is no additional learned or analytic termination module; environment episode termination is unchanged.",
+        "training_inference_match": "Use predicted probabilities from the beginning of training, never teacher-forced class labels. Auxiliary labels supervise the event head only.",
+        "runtime_information": "Neither retrospective milestone indices nor future relation targets are accessible at runtime. No episode clock or oracle phase is supplied."
+      },
+      "chunk_transition_handling": "Freeze E and event probabilities at replan t for the complete 16-action prediction and first four executed actions. Recompute only at the next replan; discard stale predictions. Do not relabel action targets or restart the episode clock when a labeled training boundary lies within a chunk. Every action target remains its actual demonstrated world command.",
+      "required_train_labels": {
+        "actions": "Current D_N native demonstration action chunks.",
+        "milestone_definition": "For each training episode with observations 0..T, define event(mask,start) as the smallest i >= start with i+2 <= T and mask true at all of i,i+1,i+2; if none exists return sentinel T+1. c=event(aperture<=0.85,0). l=event(r_z>=g_z+0.050 m,c). a=event(rho<=0.020 m AND r_z>=g_z+0.030 m,l). If start>T, return T+1. These fixed constants are declared design choices, not fitted success thresholds.",
+        "class_rule": "For every current action index t=0..T-1, y_t=1[t>=c]+1[t>=l]+1[t>=a], yielding 0 approach, 1 grasp/lift, 2 carry, 3 alignment/descent. Empty modes are permitted; do not fabricate missing events or inspect extra trajectories to revise thresholds. Three-observation persistence is retrospective training supervision only.",
+        "future_relations": "Use exactly the common observation channels at t+4 and t+16 with the eligibility masks specified in losses_and_weights. No simulator reward, success labels, hidden contact state or expert implementation is read.",
+        "D2_rule_check": "The rules produce c/l/a=22/45/73 for the 87-action LL episode and 25/48/78 for the 92-action HH episode. This checks only that the declared labels are populated in the allowed evidence; it is not a performance result."
+      },
+      "required_runtime_inputs": [
+        "The two most recent common raw observations (42 numbers each, initial repeated).",
+        "Fixed declared action scale 0.01 m, control dt 0.0125 s, and world axes.",
+        "The candidate checkpoint and normal diffusion sampling RNG. No images, future states/actions, hidden phase, success signal, source expert, or privileged physics channel."
+      ],
+      "parameter_budget": {
+        "hard_cap": "At most 3 times measured raw-input B0 trainable parameters, including shared encoder, router/event head, future head and conditioning layers.",
+        "prospective_estimate": "One default U-Net plus small MLPs; expected below 5.5 million parameters. This is an estimate, not a measured artifact. No separately trained experts.",
+        "enforcement": "Measure all trainable modules before training; if over cap, record an implementation feasibility issue before any substantive revision."
+      },
+      "implementation_steps": [
+        "Reuse the exact P1 world-relation and action codecs.",
+        "Implement deterministic per-episode milestone labels and future-relation labels, loading only the current D_N for each run.",
+        "Implement the shared encoder, four-way soft head and 12D auxiliary head; condition the single U-Net on predicted E/probabilities in both train and runtime paths.",
+        "Implement exact masked losses and 2,000-update ramps within one optimizer step per shared batch.",
+        "Validate synthetic end-of-episode masks, missing milestones and mode-boundary chunks; verify the D2 rule starts reported above without any new task rollouts.",
+        "Measure full parameter count, record the frozen design/configuration linkage, and train each prescribed N from scratch."
+      ],
+      "confidence": {
+        "level": "low-to-medium",
+        "basis": "The event ordering and point relations are observed; the auxiliary combination and its effect on generalization are untested."
+      }
+    }
+  ]
+}

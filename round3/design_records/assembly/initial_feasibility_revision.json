@@ -1,0 +1,59 @@
+{
+  "task": "assembly",
+  "version": 2,
+  "record_type": "sole_pretraining_initial_feasibility_revision",
+  "created_at": "2026-09-08T05:30:09.947176Z",
+  "designer": "/root/design_assembly",
+  "agent_backend": "codex_session",
+  "supersedes_only": "The three shared implementation defaults and historical resource prose enumerated below; all candidate mechanisms and other version-1 fields remain in force.",
+  "original_proposal_sha256": "191a05c3b94c5077f7a5bc3d0fbe168759ca634f9f4caa5040ea5bb19bb087d6",
+  "original_proposal_preserved": true,
+  "initial_freeze_preserved": true,
+  "reason": "After version 1 was saved and frozen, implementation inspection showed that the design contract omitted detailed inherited default sampling, padding and scheduler spacing. The coordinator requires preserving the locked common baseline conventions. This amendment is based on interface/default feasibility only, before candidate training or model feedback; it does not select or revise a hypothesis based on scores.",
+  "changes": [
+    {
+      "field": "shared_training_protocol.batch",
+      "original": "Uniform episode, then uniform valid action within that episode.",
+      "replacement": "Uniformly sample valid action windows across the current D_N with replacement using the inherited WindowDataset.sample CPU torch.randint stream. Batch remains 128 total chunks per joint update."
+    },
+    {
+      "field": "shared_training_protocol.tail_handling",
+      "original": "Repeat the final action to pad the tensor, with padded targets excluded by the validity mask.",
+      "replacement": "Zero-pad missing future action targets as the inherited WindowDataset does; keep the existing valid-action mask. P2 encodes the zero vector as zero. No tail-padding target contributes to the diffusion loss."
+    },
+    {
+      "field": "shared_training_protocol.diffusion DDIM index spacing",
+      "original": "round(linspace(99,0,16)), explicitly advancing to each next listed index.",
+      "replacement": "Use the inherited Diffusers DDIMScheduler with timestep_spacing=leading and inference_steps=16: indices [90,84,78,72,66,60,54,48,42,36,30,24,18,12,6,0], eta=0, use_clipped_model_output=False, set_alpha_to_one=True, no clean-sample clipping. Training remains the shared 100-step cosine epsilon process."
+    },
+    {
+      "field": "shared_training_protocol.run_scope resource sentence",
+      "original": "One formal training process on GPU 1 selected by Pixi activation.",
+      "replacement": "The coordinator reports a subsequent user-authorized GPU 0\u20133 runtime override. Resource scheduling follows that current user authorization and is audited by the coordinator; this design agent launches no formal training. The per-model 20,000-update and batch-128 budget is unchanged."
+    }
+  ],
+  "unchanged": [
+    "P1/P2/P3 architectures and feature dimensions",
+    "P2 current-replan frame and postdecode world clipping",
+    "P3 exact retrospective milestones, future targets, weights and ramps",
+    "Only current D_N fitting/labels per run",
+    "Frozen datasets, original design record and initial freeze",
+    "No model results, extra demonstration designs or development/test states read"
+  ],
+  "implementation_context_read_after_freeze": [
+    "ROUND1_SPEC.txt (immutable legacy specification; current Round3 override controls this experiment)",
+    "src/round3/plugins.py",
+    "src/round3/learning.py",
+    "src/round3/proposals.py",
+    "src/round3/common.py selected implementation-path lines",
+    "src/round2/learning.py (policy/trainer interfaces, no prior-run artifacts)",
+    "src/relative_dp/dataset.py",
+    "src/relative_dp/model.py",
+    "src/relative_dp/config.py",
+    "src/relative_dp/train.py selected trainer/checkpoint lines",
+    "src/relative_dp/vendor/diffusion_policy/conditional_unet1d.py"
+  ],
+  "runtime_override_provenance": "Relayed coordinator instruction in this task, not an independently inspected user-message archive. No formal process is launched by this amendment.",
+  "remaining_initial_feasibility_revisions": 0,
+  "validation_status": "Amendment saved before candidate implementation; mathematical/interface audit will be separate and cannot imply training or evaluation completion."
+}

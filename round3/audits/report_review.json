@@ -1,0 +1,94 @@
+{
+  "findings_fixed": [
+    {
+      "fix": "All preview table selections and plot legends/titles identify provisional status; selection bias and missing eligibility are stated.",
+      "id": "R1",
+      "issue": "Partial dev selections and B0 fallback appeared final despite unavailable candidates and feedback decisions."
+    },
+    {
+      "fix": "Opening states shared numerical policy inputs and that learned visual generalization is not measured.",
+      "id": "R2",
+      "issue": "Report did not explicitly distinguish numerical state-input deployment from design/feedback images."
+    },
+    {
+      "fix": "Opening and equal-task averages state that IDs index task-local proposals and potentially different architectures.",
+      "id": "R3",
+      "issue": "Same P1/P2/P3 labels across task averages could imply a shared architecture."
+    },
+    {
+      "fix": "Complete per-candidate Markdown table now includes IID minus OOD percentage points.",
+      "id": "R4",
+      "issue": "Required IID minus OOD gap existed only in CSV."
+    },
+    {
+      "fix": "Added per-task decisions, cycles, feedback episode/frame counts, completed/planned P4 runs, separate P4 training wall/GPU time and dev episodes; P4 versus initial-selected paired effects at eligible N5/N20 only.",
+      "id": "R5",
+      "issue": "Feedback opportunity, P4 search costs and the effect relative to initial-selected were not separately tabulated."
+    },
+    {
+      "fix": "Data-quality JSON and Markdown now report termination-reason counts for unsuccessful demonstration attempts.",
+      "id": "R6",
+      "issue": "Collection failure counts omitted failure-reason aggregation."
+    },
+    {
+      "fix": "Reject differing reset_record_hash or inference_seed fields when either supplied; unchanged percentile bootstrap and equally weighted C/E estimand.",
+      "id": "R7",
+      "issue": "Paired bootstrap checked snapshot hashes but not paired reset records and rollout seeds."
+    },
+    {
+      "fix": "CSV now includes recorded training chunk draws and parameter counts for completed training even before dev evaluation. Links expose each saved candidate config and implementation audit. Completed-system-only wall/GPU totals exclude active/interrupted sessions explicitly.",
+      "id": "R8",
+      "issue": "Cost/provenance navigation and partial cost scope were incomplete."
+    },
+    {
+      "fix": "Opening dynamically summarizes initial-candidate comparisons, range of observed effects, feedback decisions and P4 count without causal or final claims.",
+      "id": "R9",
+      "issue": "Opening delayed observed helps/harms until after long design records."
+    }
+  ],
+  "gpu_work_launched": false,
+  "locked_test_snapshots_or_results_opened": false,
+  "modified_files": [
+    "src/round3/report.py"
+  ],
+  "remaining_work": [
+    "Root should regenerate the latest development report; the reviewed prior ROUND3_REPORT.md was stale at 4/96 completed formal runs. This reviewer did not overwrite it.",
+    "Exact auxiliary tensor counts and phase frequencies are being reconstructed by the independent delivery-verifier task. Report links audits/delivery_verifier_development.json when present, otherwise explicitly marks aggregation pending.",
+    "Final report still requires the remaining authorized training, development feedback/selection freeze, validated locked-test scores and required real simulator videos. None is claimed complete by this review."
+  ],
+  "reviewed_at": "2026-09-08T06:29:27.934127+00:00",
+  "scope": "Report and offline diagnostic semantics against ROUND3_SPEC sections 4, 6, 7, 9, 10, 11, 12, 13. Development artifacts and synthetic tests only.",
+  "status": "bounded_reporting_review_complete; experiment_in_progress",
+  "unmodified_semantics": [
+    "diagnostics.py",
+    "feedback FRAME_RULE",
+    "feedback frame rendering/replay selection",
+    "frozen data and split IDs",
+    "proposals and implementation configs",
+    "training and scored evaluation",
+    "locked test access gate"
+  ],
+  "validation": {
+    "diagnostics_source_sha256": "0146746de3c6ca0ebd7c0649a2bcfeb515b70e6b9838b9165b6361e3217ffbdc",
+    "existing_tests": {
+      "command": "/home/users/oscar/.pixi/bin/pixi run python -m pytest -q tests/round3/test_reporting.py tests/round3/test_diagnostics.py",
+      "result": "6 passed; 14 existing matplotlib/pyparsing deprecation warnings"
+    },
+    "frozen_feedback_rule_equality": true,
+    "frozen_offline_diagnostic_rule_equality": true,
+    "paired_seed_mismatch_rejected": true,
+    "report_source_sha256": "3f02943f48f71717008b885ff12590c6496fdd6343c9e1083c8c80835adfab83",
+    "synthetic_populated_report": "passed: state-input/task-local disclosure, provisional selections, visible IID-OOD gap, P4 paired comparison, independent P4 counters/time, recorded training chunk draws, no final-completion claim"
+  },
+  "verified_existing_behavior": [
+    "Each N transition count sums the frozen train20 prefix; one trajectory family is nested and training windows do not change N.",
+    "All six current task manifests define independent a/b factors, LL/HH training, LH/HL C, and four outside-interval E cells; existing coverage figures match these distributions.",
+    "Candidate tables retain all planned initial candidates, invalid reasons and negative outcomes; curves separate initial-selected and keep P4 out of initial curves.",
+    "Per-N selection uses that N development results, follows mean C/E then IID then parameter count then fixed ID, and excludes P4 at N2/N10; frozen test selection code was not changed.",
+    "Wilson per-split intervals and stratified paired C/E bootstrap target fixed trained models and exclude seed/data-subset uncertainty.",
+    "Task averages require all six tasks and weight tasks equally.",
+    "Debug costs use completed sessions plus an independent reference and explicitly disclose unaggregated CPU mathematical/test optimizer work.",
+    "Inference latency and replanning counts are available per model in the full CSV; equal updates do not claim equal FLOPs.",
+    "Offline diagnostics retain scored success, original termination metadata and observed-only distance/progress descriptors; they do not prove contact, grasp or causal failure mechanisms."
+  ]
+}

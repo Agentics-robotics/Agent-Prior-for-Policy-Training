@@ -1,0 +1,37 @@
+{
+  "audit_scope_complete": false,
+  "audit_version": 1,
+  "auditor_sha256": "9bdb0c053bd53db6d7485d6d5a1d9416bc1d83677053fb595237236087766391",
+  "completed_utc": "2026-09-08T07:15:31.932939+00:00",
+  "context": "drawer: one feedback cycle",
+  "counts": {
+    "bytes_hashed": 12188466369,
+    "cpu_checkpoints_checked": 150,
+    "demonstrations_checked": 120,
+    "dev_episodes_checked": 2400,
+    "normalizers_refit_from_current_DN": 50,
+    "physical_files_hashed": 6609,
+    "reset_snapshots_checked": 420
+  },
+  "elapsed_seconds": 41.65177511202637,
+  "error": "ValueError: Feedback decision does not bind its packet",
+  "global_freeze_validated": false,
+  "limits": [
+    "CPU artifact verification only; no policy inference, new rollouts, or simulator replay.",
+    "Success and other totals are recomputed from recorded trajectory flags and infos; no unrecorded simulator outcomes are inferred.",
+    "Current-DN normalizers and configured model initialization are recomputed; historical optimizer execution is supported by checkpoint/log evidence, not independently replayed.",
+    "Source, checkpoint, reset, standalone record, and aggregate identities are checked; no claim of adversarially tamper-proof historical provenance.",
+    "The mutable run ledger is snapshotted at audit start; runs completed afterwards may remain pending in this audit.",
+    "A passing dev subset is not complete training, complete evaluation, or final delivery.",
+    "Final report prose, figures, videos, and cross-training-seed stability are outside this numerical audit."
+  ],
+  "locked_test_contents_accessed": false,
+  "numerical_delivery_complete": false,
+  "passed": false,
+  "pending_counts": {
+    "dev": 48,
+    "test": 0,
+    "training": 46
+  },
+  "stage": "dev"
+}

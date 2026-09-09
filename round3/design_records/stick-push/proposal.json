@@ -1,0 +1,465 @@
+{
+  "task": "stick-push",
+  "version": 1,
+  "created_at": "2026-09-08T05:50:21.046846+00:00",
+  "agent_backend": "codex_session",
+  "designer": {
+    "actual_subagent_name": "/root/design_stick",
+    "model": "not exposed",
+    "session_id": "not exposed",
+    "tokens": "not exposed",
+    "cost": "not exposed"
+  },
+  "context_exposure": {
+    "read_scope": [
+      "round3/DESIGN_CONTRACT.md",
+      "round3/evidence/stick-push/*"
+    ],
+    "trajectories_loaded": [
+      "demo_1_trajectory.npz",
+      "demo_2_trajectory.npz"
+    ],
+    "frames_individually_viewed": 16,
+    "python_execution": "/home/users/oscar/.pixi/bin/pixi run python",
+    "excluded": "No source/expert/reward, larger demonstrations, other task reports, learned outcomes, concrete dev/test states read before this proposal.",
+    "parent_interface_clarifications": [
+      "uniform valid-window CPU torch.randint",
+      "zero padded masked tails",
+      "DDIM16 leading90,84,...,0 eta0 no clean clipping",
+      "fixed feature scales via passthrough(all)",
+      "optional coherent observation_history",
+      "training_actions(np actions,np targets dict)",
+      "model_config(cfg)",
+      "extra_loss preserving base first4 epsilon weight1",
+      "joint sampler owns predict_action"
+    ]
+  },
+  "evidence_hashes": {
+    "round3/evidence/stick-push/D2_summary.json": "37e86ca36ac68c595781463bdb0ad214edc930f71a06ad45b22028987bc213bc",
+    "round3/evidence/stick-push/DESIGN_INTERFACE.md": "fe0a1c4a12c4bd170d432f48cf1cb3ae98028cc37a5d1ad0f4cff6d0d14f0101",
+    "round3/evidence/stick-push/bundle.json": "98db3c546f30571ea01e9a49a2c8ef42440e43266ec1ed8736bb411604010e80",
+    "round3/evidence/stick-push/demo_1_frame_00_step_000.png": "42f15e353468a9dadf681cb58acbc1acd413b5219c2b50d2391ccbc2a6de7dda",
+    "round3/evidence/stick-push/demo_1_frame_01_step_011.png": "9956e3cd11acd2d96e72b5c041bcef4d2c6cff9e4be454592e0661c7ffe982ff",
+    "round3/evidence/stick-push/demo_1_frame_02_step_021.png": "952087386ff6d67ead8d54e925d47c5ef26b5dc40d76ba3a59c696a4e318830f",
+    "round3/evidence/stick-push/demo_1_frame_03_step_032.png": "8b9b25e3ac2a7f7381f08b9edce382af33cf926f4ff8cfede7cecd1a2485fd99",
+    "round3/evidence/stick-push/demo_1_frame_04_step_043.png": "7cf219878854e756da39d8105b37e6251e53cc41cc501ace27c30e50fdfb2468",
+    "round3/evidence/stick-push/demo_1_frame_05_step_054.png": "ec012f2e75b2f9b741817114ba542b0813957ac006fc40367905e02fa0c76fec",
+    "round3/evidence/stick-push/demo_1_frame_06_step_064.png": "e47bc9bcdfff933f7e4099cbfdacc1fafe3fed9b919d85ae5e394933044151b8",
+    "round3/evidence/stick-push/demo_1_frame_07_step_075.png": "c5359ef4bdd65008e736c52701897206bae47f9e14a8249ceb2356e2712e3e4c",
+    "round3/evidence/stick-push/demo_1_trajectory.npz": "e00a48023781a2de11e2d3369aba690fb28a6c9137021231d6f70df02433869e",
+    "round3/evidence/stick-push/demo_2_frame_00_step_000.png": "9fba274d410dfcd506c5403cd0eecddda76f0090c537e8947c4ac501a3dcc85b",
+    "round3/evidence/stick-push/demo_2_frame_01_step_010.png": "d6538fe36d8b6ccb59ae5e5a360835a01ba560061ca5946aed4b96c4f9570f96",
+    "round3/evidence/stick-push/demo_2_frame_02_step_021.png": "97e584024069f798fdd5069a45d8d35d0b1d2b2a6b3137a306b64c1fe6e5292d",
+    "round3/evidence/stick-push/demo_2_frame_03_step_031.png": "6ad472ac2e66ae2d4a80fd39dcc39061892e36ae7617c92443cb8fba3c4ed652",
+    "round3/evidence/stick-push/demo_2_frame_04_step_042.png": "679df93ff747f9f9df52ada7e23f0b19261408c59057f31dbd3bfb37d2606cac",
+    "round3/evidence/stick-push/demo_2_frame_05_step_052.png": "0f12de3ad31264a2c846cc239b8358e64a5b19ae9f290a6c410e48e4bebfbf6d",
+    "round3/evidence/stick-push/demo_2_frame_06_step_063.png": "32602437841666eea88093c995b9cc63d06805182c19439f88a94bdf8588cf2b",
+    "round3/evidence/stick-push/demo_2_frame_07_step_073.png": "3f3d8b2770812e75a6ff2a65414b24ac033dde2b26e57838e068fcb24dc6e117",
+    "round3/evidence/stick-push/demo_2_trajectory.npz": "9391b91161ac64962092e3d49f9928de023dbf7848338a8283d643df0dc5cff1",
+    "round3/evidence/stick-push/frames.json": "33d5cfb9af34fbd129ed6424c166817c7b6cfbeb50daee25d343898c62a044e7",
+    "round3/evidence/stick-push/task_materials.json": "32c50f692af812baf0d88f4776d06bc569fad81230e594f828d43f0929aac8f0"
+  },
+  "combination_consideration": {
+    "adopted": "P3 combines P1 explicit relations with joint future-motion action diffusion. This tests representation plus a learned physical coupling without an analytic action controller.",
+    "considered_and_rejected": "Combining P2 goal rotation and P3 joint labels would conflate moving frames with outcome learning, while D2 final container motion stays near world+x and provides weak evidence that goal alignment is beneficial. Keep P2 as a distinct representation hypothesis.",
+    "no_assumed_benefit": "Every candidate may lose to B0; two successful demonstrations cannot establish gain."
+  },
+  "candidates": [
+    {
+      "candidate_id": "P1",
+      "knowledge_hypotheses": [
+        {
+          "source": "external geometry/common knowledge",
+          "claim": "Differences between point coordinates express relative position in metres and cancel common translations; gravity fixes world z. These are algebraic facts, not inferred invariance of the robot or table."
+        },
+        {
+          "source": "observation from D2",
+          "claim": "Demo1 steps0-30 and demo2 steps0-30 lower the hand while closing around the stick; later hand-stick offsets stabilize near x=0.024m,z=0.043m. Steps43/42 onward lift and transport, with container moving only late (roughly steps67/64).",
+          "evidence_refs": [
+            "round3/evidence/stick-push/D2_summary.json",
+            "round3/evidence/stick-push/demo_1_trajectory.npz",
+            "round3/evidence/stick-push/demo_2_trajectory.npz"
+          ]
+        },
+        {
+          "source": "unverified inference",
+          "claim": "Explicit hand-stick, tool-container and container-goal relations may weaken the incidental training correlation between stick_x and target_y."
+        }
+      ],
+      "evidence_refs": [
+        "round3/evidence/stick-push/task_materials.json",
+        "round3/evidence/stick-push/D2_summary.json",
+        "round3/evidence/stick-push/demo_1_trajectory.npz",
+        "round3/evidence/stick-push/demo_2_trajectory.npz",
+        "round3/evidence/stick-push/frames.json",
+        "All16 real PNG frames listed in frames.json were individually viewed. Demo1 steps0,11,21,32,43,54,64,75; demo2 steps0,10,21,31,42,52,63,73."
+      ],
+      "predicted_generalization_gain": "Prospective only; may improve compositional factor transfer by exposing the task relations but could fail or underperform B0.",
+      "applicability": "Numerical common39 schema, object1=stick COM, object2=declared container point; fixed gravity/robot geometry.",
+      "failure_conditions": [
+        "Only two successful trajectories cannot establish robustness to missed grasp or contact changes.",
+        "Goal-point error is not a supplied contact or success oracle.",
+        "Representation may amplify unobserved state regions; no outcome is assumed."
+      ],
+      "architecture": {
+        "family": "Conditional epsilon diffusion temporal U-Net",
+        "widths": [
+          64,
+          128,
+          256
+        ],
+        "time_embedding": 128,
+        "kernel": 5,
+        "groups": 8,
+        "condition": "Flatten both transformed numerical observations",
+        "trainable_encoder": "None beyond standard U-Net conditional layers"
+      },
+      "modules": [
+        "Explicit world relation and motion feature transform; standard4-channel diffusion U-Net"
+      ],
+      "observation_transform": {
+        "dimension": 66,
+        "raw_features": "Raw39 with xyz position groups [0:3,4:7,11:14,18:21,22:25,29:32,36:39] centered by fixed world origin o=(0,0.6,0.1)m and divided by 0.1m. Gripper unchanged. Normalize each nonzero xyzw quaternion to unit norm and canonical sign w>=0; absent object2 quaternion remains zeros.",
+        "relations": "Append (stick-hand, container-stick, goal-container, container-hand, goal-stick, goal-hand)/0.1m in world xyz axes, in this order (18 channels).",
+        "motions": "Append (current.hand-previous.hand, current.stick-previous.stick, current.container-previous.container)/0.01m (9 channels), raw native previous fields. These are frame differences, not velocity per second.",
+        "history": "Apply per raw observation in the two-observation history; no time or hidden route channel.",
+        "normalization": "Fixed scales for all66 dimensions; normalizer passthrough(all), no D_N fit needed."
+      },
+      "action_transform": {
+        "encode": "Identity on all4 native world dx,dy,dz,gripper action channels. Native xyz*0.01m defines commanded displacement.",
+        "decode": "Identity then clip all4 native world components to [-1,1].",
+        "normalization": "Actions native scale, no fitted normalization."
+      },
+      "losses_and_weights": [
+        {
+          "name": "action_epsilon_mse",
+          "target": "Injected independent standard Gaussian epsilon for channels0:4 at the sampled timestep.",
+          "weight": 1.0,
+          "scale": "Mean over4 action coordinates and valid horizon positions.",
+          "application": "Every sampled window, tail mask; no additional action loss."
+        }
+      ],
+      "augmentation": "None. No rotation or translation of demonstrations, no visual policy.",
+      "training_schedule": {
+        "system_updates": 20000,
+        "batch_size_total_chunks": 128,
+        "sampling": "Uniform over every valid episode action-start window using CPU torch.randint; repeated initial observation; zero padded tails masked in every loss.",
+        "optimizer": {
+          "name": "AdamW",
+          "lr": 0.0001,
+          "weight_decay": 1e-06,
+          "betas": [
+            0.9,
+            0.999
+          ],
+          "gradient_clip": 1
+        },
+        "ema_decay": 0.995,
+        "seed": 0,
+        "subsets": "Fresh system for each nested D2/D5/D10/D20; fit labels/statistics only on that run current D_N. Fixed feature scales require no fitted statistics.",
+        "diffusion": {
+          "target": "epsilon",
+          "train_steps": 100,
+          "schedule": "squared cosine DDPM",
+          "sampling": "DDIM16 leading timesteps [90,84,78,72,66,60,54,48,42,36,30,24,18,12,6,0], eta=0",
+          "clean_sample_clipping": false
+        },
+        "history": 2,
+        "predict": 16,
+        "execute": 4
+      },
+      "hierarchy_selection_and_termination": "Single diffusion policy. No phase, selector, termination model, clock, analytic controller or route switching. Replan every4 executed steps; environment controls episode end.",
+      "chunk_transition_handling": "All16 action targets belong to one replan window; no phase splitting. No future runtime inputs. Execute first4 world-decoded actions then replan.",
+      "required_train_labels": "Demonstration native actions only; all current D_N windows.",
+      "required_runtime_inputs": "Two common39 numerical observations only; initial repeat.",
+      "parameter_budget": {
+        "limit": "<=3x matched B0; measured count required before formal config",
+        "expected": "Approximately one B0 U-Net plus modest conditioning growth, comfortably under3x; not a measured count."
+      },
+      "implementation_steps": [
+        "Implement66D fixed-scale relation observation transform and identity action maps.",
+        "Use unmodified4-channel conditional U-Net and action epsilon loss.",
+        "Audit finite shapes, quaternion sign handling, masks, normalization and parameter budget."
+      ],
+      "confidence": {
+        "level": "moderate-low",
+        "basis": "Two demonstrations and static schema only; no learned outcomes or dev/test states inspected."
+      }
+    },
+    {
+      "candidate_id": "P2",
+      "knowledge_hypotheses": [
+        {
+          "source": "external geometry/common knowledge",
+          "claim": "Differences between point coordinates express relative position in metres and cancel common translations; gravity fixes world z. These are algebraic facts, not inferred invariance of the robot or table."
+        },
+        {
+          "source": "observation from D2",
+          "claim": "Demo1 steps0-30 and demo2 steps0-30 lower the hand while closing around the stick; later hand-stick offsets stabilize near x=0.024m,z=0.043m. Steps43/42 onward lift and transport, with container moving only late (roughly steps67/64).",
+          "evidence_refs": [
+            "round3/evidence/stick-push/D2_summary.json",
+            "round3/evidence/stick-push/demo_1_trajectory.npz",
+            "round3/evidence/stick-push/demo_2_trajectory.npz"
+          ]
+        },
+        {
+          "source": "unverified inference",
+          "claim": "Explicit hand-stick, tool-container and container-goal relations may weaken the incidental training correlation between stick_x and target_y."
+        },
+        {
+          "source": "external geometry/common knowledge",
+          "claim": "A horizontal orthonormal basis can align its x-axis to container-to-goal displacement while leaving gravity z unchanged; inverse rotation recovers world displacements exactly."
+        },
+        {
+          "source": "unverified inference",
+          "claim": "Goal-frame actions may transfer lateral target variation, but fixed robot and stick geometry can make this representation worse. Retaining frame direction and world anchor preserves those asymmetries."
+        }
+      ],
+      "evidence_refs": [
+        "round3/evidence/stick-push/task_materials.json",
+        "round3/evidence/stick-push/D2_summary.json",
+        "round3/evidence/stick-push/demo_1_trajectory.npz",
+        "round3/evidence/stick-push/demo_2_trajectory.npz",
+        "round3/evidence/stick-push/frames.json",
+        "All16 real PNG frames listed in frames.json were individually viewed. Demo1 steps0,11,21,32,43,54,64,75; demo2 steps0,10,21,31,42,52,63,73."
+      ],
+      "predicted_generalization_gain": "Prospective only; may improve compositional factor transfer by exposing the task relations but could fail or underperform B0.",
+      "applicability": "Numerical common39 schema, object1=stick COM, object2=declared container point; fixed gravity/robot geometry.",
+      "failure_conditions": [
+        "Only two successful trajectories cannot establish robustness to missed grasp or contact changes.",
+        "Goal-point error is not a supplied contact or success oracle.",
+        "Representation may amplify unobserved state regions; no outcome is assumed."
+      ],
+      "architecture": {
+        "family": "Conditional epsilon diffusion temporal U-Net",
+        "widths": [
+          64,
+          128,
+          256
+        ],
+        "time_embedding": 128,
+        "kernel": 5,
+        "groups": 8,
+        "condition": "Flatten both transformed numerical observations",
+        "trainable_encoder": "None beyond standard U-Net conditional layers"
+      },
+      "modules": [
+        "Current-container anchored horizontal goal frame",
+        "Coherent two-frame observation transform",
+        "Goal-frame4-channel diffusion"
+      ],
+      "observation_transform": {
+        "dimension": 71,
+        "basis": "At current/latest replan observation c=container xyz and g=goal xyz. e1=(g_x-c_x,g_y-c_y,0)/horizontal norm; norm<1e-6m uses (1,0,0). e2=(-e1_y,e1_x,0), e3=(0,0,1). R=[e1 e2 e3].",
+        "raw_features": "Use P1 layout but positions become R^T(p-c)/0.1m, all relations R^T(delta)/0.1m, motions R^T(delta)/0.01m. Quaternion channels remain normalized canonical world xyzw, never rotated as position vectors.",
+        "append": "Append (c-(0,0.6,0.1)m)/0.1m and e1_x,e1_y (5channels), preserving absolute context.",
+        "history": "Both observation rows, including their embedded previous positions and goals, use the SAME latest replan c,R.",
+        "normalization": "Fixed passthrough(all)71 dimensions."
+      },
+      "action_transform": {
+        "encode": "For every valid action in the16-step chunk, encoded_xyz=R^T*world_native_xyz; gripper unchanged. Do not clip encoded rotated values.",
+        "decode": "world_native_xyz=R*encoded_xyz, gripper unchanged; then native4 cube clipping. This is equivalent to rotate native_xyz*0.01m then divide by0.01m.",
+        "frame": "Use current replan c,R throughout every chunk. Recompute only at next replan; never future object position.",
+        "normalization": "Native action scale, no fitted normalization."
+      },
+      "losses_and_weights": [
+        {
+          "name": "action_epsilon_mse",
+          "target": "Injected independent standard Gaussian epsilon for channels0:4 at the sampled timestep.",
+          "weight": 1.0,
+          "scale": "Mean over4 action coordinates and valid horizon positions.",
+          "application": "Every sampled window, tail mask; no additional action loss."
+        }
+      ],
+      "augmentation": "None. No rotation or translation of demonstrations, no visual policy.",
+      "training_schedule": {
+        "system_updates": 20000,
+        "batch_size_total_chunks": 128,
+        "sampling": "Uniform over every valid episode action-start window using CPU torch.randint; repeated initial observation; zero padded tails masked in every loss.",
+        "optimizer": {
+          "name": "AdamW",
+          "lr": 0.0001,
+          "weight_decay": 1e-06,
+          "betas": [
+            0.9,
+            0.999
+          ],
+          "gradient_clip": 1
+        },
+        "ema_decay": 0.995,
+        "seed": 0,
+        "subsets": "Fresh system for each nested D2/D5/D10/D20; fit labels/statistics only on that run current D_N. Fixed feature scales require no fitted statistics.",
+        "diffusion": {
+          "target": "epsilon",
+          "train_steps": 100,
+          "schedule": "squared cosine DDPM",
+          "sampling": "DDIM16 leading timesteps [90,84,78,72,66,60,54,48,42,36,30,24,18,12,6,0], eta=0",
+          "clean_sample_clipping": false
+        },
+        "history": 2,
+        "predict": 16,
+        "execute": 4
+      },
+      "hierarchy_selection_and_termination": "Single diffusion policy. No phase, selector, termination model, clock, analytic controller or route switching. Replan every4 executed steps; environment controls episode end.",
+      "chunk_transition_handling": "Freeze current/latest c,R for both observation-history rows, all16 future actions and their inverse decode. Execute4 then recompute; no route-switch clock.",
+      "required_train_labels": "Demonstration native actions only; all current D_N windows.",
+      "required_runtime_inputs": "Two common39 numerical observations only; initial repeat.",
+      "parameter_budget": {
+        "limit": "<=3x matched B0; measured count required before formal config",
+        "expected": "Approximately one B0 U-Net plus modest conditioning growth, comfortably under3x; not a measured count."
+      },
+      "implementation_steps": [
+        "Implement orthonormal horizontal current-goal frame with finite zero-distance fallback.",
+        "Transform both observation rows in same frame using observation_history extension.",
+        "Audit encode/decode roundtrip before clip, history-anchor consistency and clipping order."
+      ],
+      "confidence": {
+        "level": "moderate-low",
+        "basis": "Two demonstrations and static schema only; no learned outcomes or dev/test states inspected."
+      }
+    },
+    {
+      "candidate_id": "P3",
+      "knowledge_hypotheses": [
+        {
+          "source": "external geometry/common knowledge",
+          "claim": "Differences between point coordinates express relative position in metres and cancel common translations; gravity fixes world z. These are algebraic facts, not inferred invariance of the robot or table."
+        },
+        {
+          "source": "observation from D2",
+          "claim": "Demo1 steps0-30 and demo2 steps0-30 lower the hand while closing around the stick; later hand-stick offsets stabilize near x=0.024m,z=0.043m. Steps43/42 onward lift and transport, with container moving only late (roughly steps67/64).",
+          "evidence_refs": [
+            "round3/evidence/stick-push/D2_summary.json",
+            "round3/evidence/stick-push/demo_1_trajectory.npz",
+            "round3/evidence/stick-push/demo_2_trajectory.npz"
+          ]
+        },
+        {
+          "source": "unverified inference",
+          "claim": "Explicit hand-stick, tool-container and container-goal relations may weaken the incidental training correlation between stick_x and target_y."
+        },
+        {
+          "source": "external geometry/common knowledge",
+          "claim": "A manipulating hand, held tool and pushed object have coupled motions, but action-to-motion dynamics depend on contact and cannot be inferred as a universal rigid controller."
+        },
+        {
+          "source": "unverified inference",
+          "claim": "Jointly denoising action and short-horizon physical motions may encourage a contact-sensitive action representation. Sparse successful trajectories may instead make the auxiliary task misleading."
+        }
+      ],
+      "evidence_refs": [
+        "round3/evidence/stick-push/task_materials.json",
+        "round3/evidence/stick-push/D2_summary.json",
+        "round3/evidence/stick-push/demo_1_trajectory.npz",
+        "round3/evidence/stick-push/demo_2_trajectory.npz",
+        "round3/evidence/stick-push/frames.json",
+        "All16 real PNG frames listed in frames.json were individually viewed. Demo1 steps0,11,21,32,43,54,64,75; demo2 steps0,10,21,31,42,52,63,73."
+      ],
+      "predicted_generalization_gain": "Prospective only; may improve compositional factor transfer by exposing the task relations but could fail or underperform B0.",
+      "applicability": "Numerical common39 schema, object1=stick COM, object2=declared container point; fixed gravity/robot geometry.",
+      "failure_conditions": [
+        "Only two successful trajectories cannot establish robustness to missed grasp or contact changes.",
+        "Goal-point error is not a supplied contact or success oracle.",
+        "Representation may amplify unobserved state regions; no outcome is assumed."
+      ],
+      "architecture": {
+        "family": "Conditional epsilon diffusion temporal U-Net",
+        "widths": [
+          64,
+          128,
+          256
+        ],
+        "time_embedding": 128,
+        "kernel": 5,
+        "groups": 8,
+        "condition": "Flatten both transformed numerical observations",
+        "trainable_encoder": "None beyond standard U-Net conditional layers",
+        "diffusion_channels": 13,
+        "runtime_sampling": "Joint DDIM16 with13 independent Gaussian channels; retain generated first4 action channels, discard9 motion channels without action correction/search."
+      },
+      "modules": [
+        "P1 relation features",
+        "Joint13-channel diffusion:4 native actions+9 anchored future position changes"
+      ],
+      "observation_transform": {
+        "dimension": 66,
+        "raw_features": "Raw39 with xyz position groups [0:3,4:7,11:14,18:21,22:25,29:32,36:39] centered by fixed world origin o=(0,0.6,0.1)m and divided by 0.1m. Gripper unchanged. Normalize each nonzero xyzw quaternion to unit norm and canonical sign w>=0; absent object2 quaternion remains zeros.",
+        "relations": "Append (stick-hand, container-stick, goal-container, container-hand, goal-stick, goal-hand)/0.1m in world xyz axes, in this order (18 channels).",
+        "motions": "Append (current.hand-previous.hand, current.stick-previous.stick, current.container-previous.container)/0.01m (9 channels), raw native previous fields. These are frame differences, not velocity per second.",
+        "history": "Apply per raw observation in the two-observation history; no time or hidden route channel.",
+        "normalization": "Fixed scales for all66 dimensions; normalizer passthrough(all), no D_N fit needed."
+      },
+      "action_transform": {
+        "encode": "Identity on all4 native world dx,dy,dz,gripper action channels. Native xyz*0.01m defines commanded displacement.",
+        "decode": "Identity then clip all4 native world components to [-1,1].",
+        "normalization": "Actions native scale, no fitted normalization.",
+        "training_extension": "After native4 identity action encoding concatenate9 future labels to construct13-channel diffusion target; do not minmax-fit or clip auxiliary displacements."
+      },
+      "losses_and_weights": [
+        {
+          "name": "action_epsilon_mse",
+          "target": "Injected independent standard Gaussian epsilon for channels0:4 at the sampled timestep.",
+          "weight": 1.0,
+          "scale": "Mean over4 action coordinates and valid horizon positions.",
+          "application": "Every sampled window, tail mask; no additional action loss."
+        },
+        {
+          "name": "future_motion_epsilon_mse",
+          "target": "Injected epsilon for channels4:13; clean labels at horizon j are concatenated (hand[t+j+1]-hand[t], stick[t+j+1]-stick[t], container[t+j+1]-container[t])/0.1m, world xyz; j=0..15.",
+          "weight": 0.15,
+          "scale": "Mean over9 motion coordinates and same valid horizon mask. Separate from base action4 mean, preserving action loss weight1.",
+          "application": "Every valid action position, using only future states from current training D_N; zero tails masked. No extrapolation past terminal observation."
+        }
+      ],
+      "augmentation": "None. No rotation or translation of demonstrations, no visual policy.",
+      "training_schedule": {
+        "system_updates": 20000,
+        "batch_size_total_chunks": 128,
+        "sampling": "Uniform over every valid episode action-start window using CPU torch.randint; repeated initial observation; zero padded tails masked in every loss.",
+        "optimizer": {
+          "name": "AdamW",
+          "lr": 0.0001,
+          "weight_decay": 1e-06,
+          "betas": [
+            0.9,
+            0.999
+          ],
+          "gradient_clip": 1
+        },
+        "ema_decay": 0.995,
+        "seed": 0,
+        "subsets": "Fresh system for each nested D2/D5/D10/D20; fit labels/statistics only on that run current D_N. Fixed feature scales require no fitted statistics.",
+        "diffusion": {
+          "target": "epsilon",
+          "train_steps": 100,
+          "schedule": "squared cosine DDPM",
+          "sampling": "DDIM16 leading timesteps [90,84,78,72,66,60,54,48,42,36,30,24,18,12,6,0], eta=0",
+          "clean_sample_clipping": false
+        },
+        "history": 2,
+        "predict": 16,
+        "execute": 4
+      },
+      "hierarchy_selection_and_termination": "Single diffusion policy. No phase, selector, termination model, clock, analytic controller or route switching. Replan every4 executed steps; environment controls episode end.",
+      "chunk_transition_handling": "All9 motion coordinates anchored at same current t for entire16-step chunk, including transition between acquiring, lifting and pushing. They are training targets/generated latent outcomes only, never observed future state. Execute only generated first4 channels for4 steps then replan.",
+      "required_train_labels": "Actions plus9 per-position world displacement labels from current training episode obs at t+j+1 relative to corresponding entity at replan t, divided by0.1m. Uses terminal observation when that action exists. No cross-episode future and no labels from larger D_N.",
+      "required_runtime_inputs": "Two common39 numerical observations only; initial repeat.",
+      "parameter_budget": {
+        "limit": "<=3x matched B0; measured count required before formal config",
+        "expected": "One U-Net with13 input/output channels, same widths; modest channel growth rather than second model. Exact measured parameter ratio required."
+      },
+      "implementation_steps": [
+        "Reuse P1 observation and action transforms.",
+        "Create current-D_N supervision for all16 actions with9 future displacements and common mask.",
+        "Extend training_actions to concatenate9 labels and model_config to13-channel diffusion.",
+        "Keep existing base first4 epsilon MSE weight1, add separate9-channel epsilon MSE weight0.15.",
+        "Provide joint13-channel DDIM sampler; crop generated action channels before native decode.",
+        "Audit labels at first/middle/tail windows, no future runtime arguments, channel-weight denominators and model count."
+      ],
+      "confidence": {
+        "level": "moderate-low",
+        "basis": "Two demonstrations and static schema only; no learned outcomes or dev/test states inspected."
+      }
+    }
+  ]
+}

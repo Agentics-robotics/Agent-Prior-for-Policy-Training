@@ -1,0 +1,354 @@
+{
+  "comparison": "B0 versus P1/P2/P3 initial-selected by dev: first C state at N20 plus first other N20 failure in C/E/IID order; if absent, first failure at N5 then N2 then N10",
+  "created_at": "2026-09-08T10:24:01.564205+00:00",
+  "records": [
+    {
+      "fps": 20.0,
+      "identity": {
+        "episode_id": "r3_pick-place-wall_test_C_000_33001000",
+        "initial_state_hash": "3e460ed27a0e371fadcb3bb5ffe5d9bdc5fa5dd72d88b3ca47981359f947068f",
+        "renderer_sha256": "7261ff567747e77bce2822b47f1759857e0f4951c4d55aa4d4c3ba00d88c26a9",
+        "selection": "Fixed C manifest order plus first available failure; no outcome maximization",
+        "task": "pick-place-wall",
+        "trajectories": [
+          "5b016f5c27d643be06de8e8095f34cdc490dccb7fcae69b5e08b15d1a0a294b4",
+          "4ddf907cbc26865d0d790baee93dfd4c602a82f78e3e0b545bce9fc2fd90a13c"
+        ]
+      },
+      "path": "round3/videos/pick-place-wall_fixed_C_N20.mp4",
+      "physical_dt": 0.0125,
+      "policy_calls": 0,
+      "rendering_stride": 4,
+      "scored_evaluation_episodes_added": 0,
+      "success": [
+        false,
+        true
+      ],
+      "termination": [
+        "native_truncated",
+        "success"
+      ],
+      "video_sha256": "f7a7d192bdbbd187da2049e69ebaeaf17ccdafbedbba1f32ced9a70758835f35",
+      "visualization_replay_steps": 588
+    },
+    {
+      "fps": 20.0,
+      "identity": {
+        "episode_id": "r3_pick-place-wall_test_C_005_33001005",
+        "initial_state_hash": "41b24637463e909049c399778442fe91d8ebfa405d461ce9747c654324ef61db",
+        "renderer_sha256": "7261ff567747e77bce2822b47f1759857e0f4951c4d55aa4d4c3ba00d88c26a9",
+        "selection": "Fixed C manifest order plus first available failure; no outcome maximization",
+        "task": "pick-place-wall",
+        "trajectories": [
+          "fefdb2f33f9d828a2c322a60e2c35ec5a62039826381945827ee752989a3f928",
+          "aa63692b4f7da1ca3f9251993f6e2cba62479883e4583d4175894026af6dc5b3"
+        ]
+      },
+      "path": "round3/videos/pick-place-wall_first_failure_N20.mp4",
+      "physical_dt": 0.0125,
+      "policy_calls": 0,
+      "rendering_stride": 4,
+      "scored_evaluation_episodes_added": 0,
+      "success": [
+        false,
+        true
+      ],
+      "termination": [
+        "native_truncated",
+        "success"
+      ],
+      "video_sha256": "3ad26c4f260bd3ab0ffc49479ba1fc7b12ae35837e4ff83235dd32ec4ad5d78b",
+      "visualization_replay_steps": 586
+    },
+    {
+      "fps": 20.0,
+      "identity": {
+        "episode_id": "r3_assembly_test_C_000_33101000",
+        "initial_state_hash": "18f01bb366fdc56a2d386a3cda75f9672007dfa26afb7f03846547ddd4b72558",
+        "renderer_sha256": "7261ff567747e77bce2822b47f1759857e0f4951c4d55aa4d4c3ba00d88c26a9",
+        "selection": "Fixed C manifest order plus first available failure; no outcome maximization",
+        "task": "assembly",
+        "trajectories": [
+          "23e0069c845739278113ef8c404e3f536aaaf6903324455c5e786a3735d346fd",
+          "948e0559f7fc772c4d6dd37a4553fe80e9a4528b2bd35a4849f151f6f86bcaa1"
+        ]
+      },
+      "path": "round3/videos/assembly_fixed_C_N20.mp4",
+      "physical_dt": 0.0125,
+      "policy_calls": 0,
+      "rendering_stride": 4,
+      "scored_evaluation_episodes_added": 0,
+      "success": [
+        true,
+        true
+      ],
+      "termination": [
+        "success",
+        "success"
+      ],
+      "video_sha256": "a6226adf43e851022ac644486be2189a27441008ad147f9715d18f7dc2148d79",
+      "visualization_replay_steps": 175
+    },
+    {
+      "fps": 20.0,
+      "identity": {
+        "episode_id": "r3_assembly_test_C_001_33101001",
+        "initial_state_hash": "7248431f76151218cb6b28e55bdd42ab0dd6a7d582a4fc51e3f73320641a18f5",
+        "renderer_sha256": "7261ff567747e77bce2822b47f1759857e0f4951c4d55aa4d4c3ba00d88c26a9",
+        "selection": "Fixed C manifest order plus first available failure; no outcome maximization",
+        "task": "assembly",
+        "trajectories": [
+          "787353b0d291b09455c53da9833e4f05834443d8718044a572963b200b0787ed",
+          "dd18c4d212ecaca8c844f54481ce4fc93a1ad453ec26effa66f1a56de9978ab1"
+        ]
+      },
+      "path": "round3/videos/assembly_first_failure_N20.mp4",
+      "physical_dt": 0.0125,
+      "policy_calls": 0,
+      "rendering_stride": 4,
+      "scored_evaluation_episodes_added": 0,
+      "success": [
+        false,
+        false
+      ],
+      "termination": [
+        "native_truncated",
+        "native_truncated"
+      ],
+      "video_sha256": "afbe3e245e5c444aedc717284dbfaf160ef62b5750c859b7639480d1873103eb",
+      "visualization_replay_steps": 1000
+    },
+    {
+      "fps": 20.0,
+      "identity": {
+        "episode_id": "r3_drawer_test_C_000_33201000",
+        "initial_state_hash": "c8433d50adc5ba7bda24f5768f708f42e19c06badf9051f1b3a49d6f0773d1dc",
+        "renderer_sha256": "7261ff567747e77bce2822b47f1759857e0f4951c4d55aa4d4c3ba00d88c26a9",
+        "selection": "Fixed C manifest order plus first available failure; no outcome maximization",
+        "task": "drawer",
+        "trajectories": [
+          "0f44969de16c5a3619621f5fdc68e7db037659e424c3b5daa48a95590544cdd7",
+          "f52b7e9156e46a9614ed245f935b5168b7c043765747496a7f2ff90432bfe536"
+        ]
+      },
+      "path": "round3/videos/drawer_fixed_C_N20.mp4",
+      "physical_dt": 0.0125,
+      "policy_calls": 0,
+      "rendering_stride": 4,
+      "scored_evaluation_episodes_added": 0,
+      "success": [
+        true,
+        true
+      ],
+      "termination": [
+        "success",
+        "success"
+      ],
+      "video_sha256": "abc5d32b324496275aa929001a0c153f2c82562c5d2c8aef9682e78a81351e10",
+      "visualization_replay_steps": 176
+    },
+    {
+      "fps": 20.0,
+      "identity": {
+        "episode_id": "r3_drawer_test_C_005_33201005",
+        "initial_state_hash": "01b26f71ff095d84fb1ef88e72180225715f1343ee63933ad2b890711b03f0c8",
+        "renderer_sha256": "7261ff567747e77bce2822b47f1759857e0f4951c4d55aa4d4c3ba00d88c26a9",
+        "selection": "Fixed C manifest order plus first available failure; no outcome maximization",
+        "task": "drawer",
+        "trajectories": [
+          "fd9258992c26129052650859514e6f22e53b612ffc0ad020f15a2522daab2c0b",
+          "f505d5c3f8570a18851eab0721f15484176686830d9fad8c7073ce7de6a3cbf0"
+        ]
+      },
+      "path": "round3/videos/drawer_first_failure_N20.mp4",
+      "physical_dt": 0.0125,
+      "policy_calls": 0,
+      "rendering_stride": 4,
+      "scored_evaluation_episodes_added": 0,
+      "success": [
+        false,
+        true
+      ],
+      "termination": [
+        "success_threshold_with_joint_violation",
+        "success"
+      ],
+      "video_sha256": "e509629d5fb105bddce7cd98cdcc0dbe25a02ba538d898140c98272083b1f4a9",
+      "visualization_replay_steps": 188
+    },
+    {
+      "fps": 20.0,
+      "identity": {
+        "episode_id": "r3_door_test_C_000_33301000",
+        "initial_state_hash": "c7807ebde99e120aa708cc0d966476810a0bcc2e27d69dcadc706d0ebfd8ef96",
+        "renderer_sha256": "7261ff567747e77bce2822b47f1759857e0f4951c4d55aa4d4c3ba00d88c26a9",
+        "selection": "Fixed C manifest order plus first available failure; no outcome maximization",
+        "task": "door",
+        "trajectories": [
+          "7270799601d8569b83b8c2f8e25b87dd0f2d113e7438409d8a49b26f5cae446b",
+          "c0ccea3d79e9107c1eb99247aaea4924bb0ea51dcf9922b92befedf083b8e840"
+        ]
+      },
+      "path": "round3/videos/door_fixed_C_N20.mp4",
+      "physical_dt": 0.0125,
+      "policy_calls": 0,
+      "rendering_stride": 4,
+      "scored_evaluation_episodes_added": 0,
+      "success": [
+        true,
+        true
+      ],
+      "termination": [
+        "success",
+        "success"
+      ],
+      "video_sha256": "596f2a0d69166a59d855234010a12841c5d5463a172a7d7ce84a1fd2d8d77ef0",
+      "visualization_replay_steps": 231
+    },
+    {
+      "fps": 20.0,
+      "identity": {
+        "episode_id": "r3_door_test_E_002_33302002",
+        "initial_state_hash": "843aa8cb69912903679da38ce57073d4114b8142eddfbfff4c84ba4682e66314",
+        "renderer_sha256": "7261ff567747e77bce2822b47f1759857e0f4951c4d55aa4d4c3ba00d88c26a9",
+        "selection": "Fixed C manifest order plus first available failure; no outcome maximization",
+        "task": "door",
+        "trajectories": [
+          "0344ffc2344710a89ae938c09d6e321799fa206f8198dc189054650738196a37",
+          "d2bad898b967030077b0d8f8ff77c7c784297e8b2289461e7e3128f8d98f52ff"
+        ]
+      },
+      "path": "round3/videos/door_first_failure_N20.mp4",
+      "physical_dt": 0.0125,
+      "policy_calls": 0,
+      "rendering_stride": 4,
+      "scored_evaluation_episodes_added": 0,
+      "success": [
+        false,
+        true
+      ],
+      "termination": [
+        "native_truncated",
+        "success"
+      ],
+      "video_sha256": "78c73f8bfc9a950a1876972095e4cd8d73f817e829f4368fd9f94a371409ff89",
+      "visualization_replay_steps": 603
+    },
+    {
+      "fps": 20.0,
+      "identity": {
+        "episode_id": "r3_peg-insert-side_test_C_000_33401000",
+        "initial_state_hash": "d757604fe706936fe2bc7b1e3843a052055b24105ad402a15ceed97cfa46786f",
+        "renderer_sha256": "7261ff567747e77bce2822b47f1759857e0f4951c4d55aa4d4c3ba00d88c26a9",
+        "selection": "Fixed C manifest order plus first available failure; no outcome maximization",
+        "task": "peg-insert-side",
+        "trajectories": [
+          "e628517abca5178d5ad12aaa93a9f576cb02ad94322f5574ebc91ad4cfb2f603",
+          "3ebb7c0fc2a7e692bb2170a542dbdda97a8ce560e20ff88f8f794ec3a18dc1d3"
+        ]
+      },
+      "path": "round3/videos/peg-insert-side_fixed_C_N20.mp4",
+      "physical_dt": 0.0125,
+      "policy_calls": 0,
+      "rendering_stride": 4,
+      "scored_evaluation_episodes_added": 0,
+      "success": [
+        true,
+        true
+      ],
+      "termination": [
+        "success",
+        "success"
+      ],
+      "video_sha256": "0c628586527b37c677e901cf9c70f69b0c5623821efe095f39872514c9c75590",
+      "visualization_replay_steps": 193
+    },
+    {
+      "fps": 20.0,
+      "identity": {
+        "episode_id": "r3_peg-insert-side_test_C_001_33401001",
+        "initial_state_hash": "52fc752177c01d208f958ec422669db6b84a1843c836db4fb18b842ff4e84537",
+        "renderer_sha256": "7261ff567747e77bce2822b47f1759857e0f4951c4d55aa4d4c3ba00d88c26a9",
+        "selection": "Fixed C manifest order plus first available failure; no outcome maximization",
+        "task": "peg-insert-side",
+        "trajectories": [
+          "65c4ecc370b6d58266e5d3aae2667079c5f21c1c335cfc548c1de258dbb69662",
+          "f3255e753e92356c38e68bac7c7af9822dcfac7fae1d59c1e4f140fae2159e56"
+        ]
+      },
+      "path": "round3/videos/peg-insert-side_first_failure_N20.mp4",
+      "physical_dt": 0.0125,
+      "policy_calls": 0,
+      "rendering_stride": 4,
+      "scored_evaluation_episodes_added": 0,
+      "success": [
+        false,
+        true
+      ],
+      "termination": [
+        "native_truncated",
+        "success"
+      ],
+      "video_sha256": "54970868dcc0b77ebc33e1e8cf0e9d928519a2b09184b14571d6ac432adda61b",
+      "visualization_replay_steps": 593
+    },
+    {
+      "fps": 20.0,
+      "identity": {
+        "episode_id": "r3_stick-push_test_C_000_33501000",
+        "initial_state_hash": "3a521f3b1a14af05c4fcc86d85e248b0fc09f21e4ee0ef2ab186468196db0341",
+        "renderer_sha256": "7261ff567747e77bce2822b47f1759857e0f4951c4d55aa4d4c3ba00d88c26a9",
+        "selection": "Fixed C manifest order plus first available failure; no outcome maximization",
+        "task": "stick-push",
+        "trajectories": [
+          "b8c9b8c7810e3ac7b56fe324ddf8891effb7e82317845924bbf47f7f72d4def6",
+          "e3f90b8e2b1fcf456137bcf47798d8cd555b24cb99f41c3054ce507be22bf49f"
+        ]
+      },
+      "path": "round3/videos/stick-push_fixed_C_N20.mp4",
+      "physical_dt": 0.0125,
+      "policy_calls": 0,
+      "rendering_stride": 4,
+      "scored_evaluation_episodes_added": 0,
+      "success": [
+        true,
+        true
+      ],
+      "termination": [
+        "success",
+        "success"
+      ],
+      "video_sha256": "5254b9b01fc3ba17365d6cf217005e13fc50cc30733cb4b01742598660b64c39",
+      "visualization_replay_steps": 148
+    },
+    {
+      "fps": 20.0,
+      "identity": {
+        "episode_id": "r3_stick-push_test_C_003_33501003",
+        "initial_state_hash": "eca1f69c70f24a488cc9d01e9c35f383b88fd1e5f89c3c2af0a374c22e451b67",
+        "renderer_sha256": "7261ff567747e77bce2822b47f1759857e0f4951c4d55aa4d4c3ba00d88c26a9",
+        "selection": "Fixed C manifest order plus first available failure; no outcome maximization",
+        "task": "stick-push",
+        "trajectories": [
+          "62f9fff60179bb0cca508f030870746201768d71a779cb68483715178a01f83d",
+          "6d3d093a5ea862f11ffe8c5369f379f3b6b963aea6dbe147a681a5459955b721"
+        ]
+      },
+      "path": "round3/videos/stick-push_first_failure_N20.mp4",
+      "physical_dt": 0.0125,
+      "policy_calls": 0,
+      "rendering_stride": 4,
+      "scored_evaluation_episodes_added": 0,
+      "success": [
+        false,
+        true
+      ],
+      "termination": [
+        "native_truncated",
+        "success"
+      ],
+      "video_sha256": "58acdd1ac721013ac1ed5dfdad3cb392522b3d56caa5ba822a14465861cc00ff",
+      "visualization_replay_steps": 573
+    }
+  ]
+}
