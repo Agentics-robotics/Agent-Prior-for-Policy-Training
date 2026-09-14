@@ -40,3 +40,33 @@ round3/debug/
 round3/locks/
 round3/logs/
 round3/videos/*.mp4
+
+# Round 4 local assets, trajectories, weights and generated media.
+round4/assets/
+round4/checkpoints/
+round4/debug/
+round4/data/**/*.npz
+round4/feasibility/**/*.npz
+round4/feasibility/**/*.mp4
+round4/videos/*.mp4
+round4/locks/
+round4/logs/
+
+# Experiment 1 local execution artifacts; public code/specifications/reports stay trackable.
+archive/**/checkpoints/
+archive/**/debug/
+archive/**/*.pt
+archive/**/*.pth
+archive/**/*.npz
+archive/**/*.mp4
+experiments/experiment1/state.sqlite*
+experiments/experiment1/objects/
+experiments/experiment1/locks/
+experiments/experiment1/runs/
+experiments/experiment1/attempts/
+experiments/experiment1/logs/
+experiments/experiment1/preflight/
+experiments/experiment1/api_records/
+experiments/experiment1/evidence/
+experiments/experiment1/hidden_test/
+experiments/experiment1/manifests/**/*.npz

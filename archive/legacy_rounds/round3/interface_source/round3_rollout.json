@@ -1,0 +1,20 @@
+{
+  "env": {
+    "backend": "round3",
+    "kwargs": {"task": "drawer", "render_mode": null}
+  },
+  "policy": {
+    "backend": "round3",
+    "checkpoint": "../../round3/checkpoints/r3_drawer_B0_n10_s0/checkpoints/step_020000.pt",
+    "manifest": "../../outputs/interfaces/round3-policy.json",
+    "device": "cpu"
+  },
+  "reset": {
+    "seed": null,
+    "record": "../../outputs/interfaces/round3-train-reset.json"
+  },
+  "inference_seed": 17,
+  "auxiliary_seed": null,
+  "max_steps": 500,
+  "stop_on_success": true
+}

@@ -1,0 +1,1001 @@
+{
+  "api": {
+    "api_key_env": "LOCAL_OPENAI_BEARER_TOKEN",
+    "base_url": "http://127.0.0.1:8080",
+    "max_output_tokens": 16384,
+    "mode": "responses",
+    "model": "gpt-6-astra",
+    "provider": "OpenAI",
+    "reasoning_effort": "max",
+    "timeout_seconds": 600
+  },
+  "api_limits": {
+    "formal_training_slots_per_candidate": 1,
+    "formal_updates": 20000,
+    "max_api_calls_initial": 64,
+    "max_api_calls_revision": 32,
+    "max_api_calls_selection": 8,
+    "max_candidate_bytes": 1048576,
+    "max_checks_per_candidate": 3,
+    "max_file_bytes": 131072,
+    "max_files_per_candidate": 32,
+    "max_read_characters": 32000,
+    "max_tool_calls_per_phase": 256
+  },
+  "author_boundaries": {
+    "A_candidates": "RuntimePriorAPI",
+    "B1": "RepositoryAgent",
+    "shared": "RepositoryAgent"
+  },
+  "candidate_budgets": [
+    1,
+    3,
+    4
+  ],
+  "capacity_limit": "3 * complete B0 parameters",
+  "created_at": "2026-09-12T07:58:49.949260+00:00",
+  "data_permission": "Only current D_N fitting and evidence; task×N sessions isolated",
+  "demonstration_counts": [
+    2,
+    5,
+    10,
+    20
+  ],
+  "dev_episodes": {
+    "C": 20,
+    "E": 20,
+    "IID": 10
+  },
+  "gpus": [
+    4,
+    5,
+    6,
+    7
+  ],
+  "inputs": {
+    "EXPERIMENT1_CODEX_EXECUTION_HANDOFF.md": "59d87b76dffc2c4944739d7259ae1cb1a08611b4c7939b71a3f6ad17601d6a8a",
+    "experiments/experiment1/evidence/assembly__N10__rep0/bundle.json": "e2b48757ac3eb5d014efc97394282264bdfa9394ecfed58c62bba0cc41001339",
+    "experiments/experiment1/evidence/assembly__N20__rep0/bundle.json": "51e8bc4f80bc420864553da1d06c05f64c8c54714f8ebff8da15c8cc8e7c7c88",
+    "experiments/experiment1/evidence/assembly__N2__rep0/bundle.json": "3be35887507534e06fea471473102c06589d4c4a6ea634f402538773f8a3471d",
+    "experiments/experiment1/evidence/assembly__N5__rep0/bundle.json": "80aea841b0bc0638c85bacd8328ea6af64e4b9a1057dbf92cbc329fdd2229439",
+    "experiments/experiment1/evidence/door__N10__rep0/bundle.json": "b42087c1454c6cd561f81dc3e0b4297eb7b3e35c055dd674d4f63ed69efc57d7",
+    "experiments/experiment1/evidence/door__N20__rep0/bundle.json": "3e32e616412549f5be9b15de215e5a15daf3a812940091dfb6865f97d95d5894",
+    "experiments/experiment1/evidence/door__N2__rep0/bundle.json": "189c1f1d068f00f79374f98813dfc0f27f5e61fce4d65dac2d2069a5cc42f688",
+    "experiments/experiment1/evidence/door__N5__rep0/bundle.json": "957f7df65722902416ee6dc9f37969dbc5a1ec38508cb597fe90b45f36b75ad7",
+    "experiments/experiment1/evidence/drawer__N10__rep0/bundle.json": "fa793b7f79f907fd38f358b4aeb57118a6595e867859e7ec4d5c4911b4ef63d8",
+    "experiments/experiment1/evidence/drawer__N20__rep0/bundle.json": "dbff89abad96f2f24a7598e70450e54bde48d477ef2f443b139025e309a61a16",
+    "experiments/experiment1/evidence/drawer__N2__rep0/bundle.json": "d63be3cb8994d5d29d2c942179f665c406c8a7f59a037cec02115cd03ad4f260",
+    "experiments/experiment1/evidence/drawer__N5__rep0/bundle.json": "ad2b1592823f515df5626cf2158b56e5340f2a6ad3c43ea39b1da673e19ead76",
+    "experiments/experiment1/evidence/peg-insert-side__N10__rep0/bundle.json": "0fc5ed137cfa64c81107a780c501d9de968868ca67037e6f10bf83bbc98fd538",
+    "experiments/experiment1/evidence/peg-insert-side__N20__rep0/bundle.json": "9b2997f843274c7f28fcc12eb9241a0a439944cb1dab2354db17d4061900ff50",
+    "experiments/experiment1/evidence/peg-insert-side__N2__rep0/bundle.json": "5b69655c71f611d7017d70dbe85ae6f6983d3bb2922b39d6debe99596b749575",
+    "experiments/experiment1/evidence/peg-insert-side__N5__rep0/bundle.json": "c22545801d1f0435ae33d51d95fb25e8c3869c07c7f5cd875be948e9def1510e",
+    "experiments/experiment1/evidence/pick-place-wall__N10__rep0/bundle.json": "14e4c77bb103f5b79a08df89ae158b41e33107e0cd5aeee6cc4c6a6af6973305",
+    "experiments/experiment1/evidence/pick-place-wall__N20__rep0/bundle.json": "0c8936d15ac2e0a299b707d65ce2d5fd6e09560cf98b40d0e133a8c7db982c79",
+    "experiments/experiment1/evidence/pick-place-wall__N2__rep0/bundle.json": "5772dabd2e127679b5605091e61c43a3ae1be571953950eddb17768bc6e735eb",
+    "experiments/experiment1/evidence/pick-place-wall__N5__rep0/bundle.json": "de0ad8e8ad94c409c8fc93bd4df1f07fe882023a9c09d21c411404cce1bd82bf",
+    "experiments/experiment1/evidence/stick-push__N10__rep0/bundle.json": "77d2e40188af30e456f00fa9c831fa3c155be79d0137d2c10262eb102f0b6759",
+    "experiments/experiment1/evidence/stick-push__N20__rep0/bundle.json": "7ea08098e90208ce5d7a7550bfa7aec2cf874d9a21981e1e596c4ae221ed5116",
+    "experiments/experiment1/evidence/stick-push__N2__rep0/bundle.json": "12c52a65f8066e81614ecddaf0e2afe456ea81a6174b6937793e99e011310e6c",
+    "experiments/experiment1/evidence/stick-push__N5__rep0/bundle.json": "90fce5ce3ebdcc544cf6ab130bac99b04ddffd2bfe96fda952a4e48c6c99f9cb",
+    "experiments/experiment1/hidden_test/assembly/manifest.json": "4af2d5e35c62ce187469b94a74eb046e22188df1dbf15b23b48798eecadd90c3",
+    "experiments/experiment1/hidden_test/door/manifest.json": "809d9e0b5108bfbd229a25bcd8d3d773c11f7a5b58c5ea2c045eacfd12fda024",
+    "experiments/experiment1/hidden_test/drawer/manifest.json": "8dd9404521a386b18566b5c1d30178f8d14c95cb66bd18f397a06bd14be53543",
+    "experiments/experiment1/hidden_test/peg-insert-side/manifest.json": "1a3ca8ca3dd1312c294cdd9f7c6c2c7882b8102ed16ca22471b09ca30d7e39fe",
+    "experiments/experiment1/hidden_test/pick-place-wall/manifest.json": "f31ef14dcd26d6385ce20d9546a1bfc9fc7190534089e66794000870f868b1a8",
+    "experiments/experiment1/hidden_test/stick-push/manifest.json": "d405dcf580f8183330e964e425527c3a4d911e193867b3647b57a33fbdf56bb0",
+    "experiments/experiment1/manifests/assembly/common_spec.json": "23a6e66ca9819cdaec20133ce4a6c0b0e9ea5763d5153ce66f3abfff74478292",
+    "experiments/experiment1/manifests/assembly/dev.json": "86c224a78916681bb2ec575967cc96c664f1c4cc9a96173d77e851ed6561c4cc",
+    "experiments/experiment1/manifests/assembly/ready.json": "38188b2a810ae6f190f76d86225d3a8faa2fd9adf266af24c1769d10a20584b6",
+    "experiments/experiment1/manifests/assembly/support.json": "94e51b41186b2658221ec69ec3818c7a89ebbf92098892c5a00bacf7b8905658",
+    "experiments/experiment1/manifests/door/common_spec.json": "00efc66906d392b63a81053e6afed4f1ed10ca1d3132c6712b5c959f3672fe0a",
+    "experiments/experiment1/manifests/door/dev.json": "9e0951c197249daac5d492e2c3a229c5022349306814dc776dc57b40ad269dce",
+    "experiments/experiment1/manifests/door/ready.json": "94e25dd9e92430cbb9a28a7c9bc38e5ac73a41d06ed363bbb6bb900dacb728c8",
+    "experiments/experiment1/manifests/door/support.json": "72e58de3d018d5c57adcb5e7cc7b9e01714d40fcef424018650c7444a4aac4b7",
+    "experiments/experiment1/manifests/drawer/common_spec.json": "3ace47bdd877c66b71ba63f9281ceac558aee6caaa1e878cfe66adc46972e74d",
+    "experiments/experiment1/manifests/drawer/dev.json": "966f2547951f760dea7dad50f9f26846bdbe2a0a749d4f13cabcc2bdeb21edcb",
+    "experiments/experiment1/manifests/drawer/ready.json": "4fed7513fc0969e5b25d2e1562551e3e64942231660ab5c7c302e9731336c9ee",
+    "experiments/experiment1/manifests/drawer/support.json": "50ee65272c8b20a884ab89afee953a20b75304d770f7b91b10af6d4a9ad8cf8d",
+    "experiments/experiment1/manifests/peg-insert-side/common_spec.json": "cb8d8fb7a13c0dd281916efb9b6bc205b32b2c14c644617022d86e9d64e2b0b3",
+    "experiments/experiment1/manifests/peg-insert-side/dev.json": "242de018669293994d9099cfb313dd205b0ed7981a637e6285374eaaea635b80",
+    "experiments/experiment1/manifests/peg-insert-side/ready.json": "fc18e58c0555ba21679f6226469fee0c66bd98434f3191868ec9d9a90c71ad4e",
+    "experiments/experiment1/manifests/peg-insert-side/support.json": "84ba985233e416bbffb363cea823a355d439ade901b26d6fbe3c2f5f5815dc04",
+    "experiments/experiment1/manifests/pick-place-wall/common_spec.json": "9988b58e1d1fb5d95c6aabfd810cbe8dbd904b41e2d0242073cf7782e76cf21b",
+    "experiments/experiment1/manifests/pick-place-wall/dev.json": "7bf3450ecb3670e6d03b792f845fd92dd82b604a40d9a5c862fe8d8be56cfbb7",
+    "experiments/experiment1/manifests/pick-place-wall/ready.json": "278954b517c55f2c8c7fff888df6f1f8f13af16cdb33a7a40d097a1a2277ac7f",
+    "experiments/experiment1/manifests/pick-place-wall/support.json": "0f9d8a9c5c6631aa6a796712a441e08ebc3cea7379edc9160be20576e121b6c5",
+    "experiments/experiment1/manifests/stick-push/common_spec.json": "74e91346ac579fc2ef9e94e819d57e9c95fbde1ecd1f68b67feb0a2b03b58b00",
+    "experiments/experiment1/manifests/stick-push/dev.json": "a860e7825b778ccd9776da87a41fb64af9569bd80794793458ccc945a0d91fe4",
+    "experiments/experiment1/manifests/stick-push/ready.json": "8fa1e27218513f321aa9863641100e23a9870b279f3d9b2e845f271f0eb9b1af",
+    "experiments/experiment1/manifests/stick-push/support.json": "ec939145cf20efeb4aa32dcc076aa63563227b10a6c9dcaef0110d461d601e9d",
+    "experiments/experiment1/preflight/frozen_status.json": "bc1cffa884df54f614b402147a867837343a5606f62d99988865a1bbb906d2f0",
+    "pixi.lock": "a47fbce71bc6e30a1ede8406c2a8af12d901c2534635e82c3632d66a5658e520",
+    "pixi.toml": "7f9f3cd6c64221d718571dbcf1d2d33ee0fd9bd6d2818d957e7a50e30b7e6e6f",
+    "src/experiment1/__init__.py": "0c7149ea8469f4239f7b8fb30aafa6706700730fe09855a98a81eb859a835919",
+    "src/experiment1/api_client.py": "fcb11160dd1331bd7a6ab7d5bb2c8f4de045f1c5c9ae6d61cc4f0ecda6a4ad2a",
+    "src/experiment1/baselines.py": "1ebf69bf26d7129de9f67c5b8fe1bbe7cb2ef60fc3db3ee13c4f0759c698fbb3",
+    "src/experiment1/cli.py": "a8c850c376d72aa1bd70ce2ba089819bae7a7d47a91a1a146ac546251516b093",
+    "src/experiment1/contracts.py": "4e7868a6fc9b839e522b51336320f47463c9dcb6d1c2a902988d1493fd786074",
+    "src/experiment1/data.py": "ffb736026738112139b03e5e55a6ce87b6e59e42aea937a25f8129e96301b259",
+    "src/experiment1/design_tools.py": "b78a0f92a9881e0c801a5e7e15de018d4c66c04183395d245e2700919dfdc715",
+    "src/experiment1/evaluation.py": "f9348b2b5f7e84133b85552bc9b375829e27b52f7150c6494c7a61aac0b5a61b",
+    "src/experiment1/evidence.py": "e2f6dc08d010579744460af690dcd5b43f8e2f64db2515aeab50baad8f07992c",
+    "src/experiment1/fitting.py": "37ce4528c47ca523875d6c2c06c1e26fcd9c1b4a81816a06101addeee55eb636",
+    "src/experiment1/isolation.py": "883cc4809275c40825694d7304c313376f178798e13835616d65e36ecf507cd4",
+    "src/experiment1/launch.py": "4b92cc56b90550e98dea0af022f02a8af5cb3af19690192d712363d30e2615d0",
+    "src/experiment1/learning.py": "27e7feb12b809dbff40589b00c1d48961d5453c8d39e942aee016a52bc387bcd",
+    "src/experiment1/metaworld/__init__.py": "e3944478eb7394d06de271ac5f7ac09b5b6f78807f522a475a2a356274733dea",
+    "src/experiment1/metaworld/environment.py": "cf9884aab05f89b61c6272a0f2ca52c8a639cb3c125301c0d38a46faad483cc4",
+    "src/experiment1/metaworld/geometry.py": "34eedfa53c72e99102762c43e047641a097a9c3650601dcce9ef0b524427dbb4",
+    "src/experiment1/metaworld/snapshot.py": "900966bf1dc18c98a98bc4f628c1e5fb5ad89643202fa1c49ef32ddacf205b09",
+    "src/experiment1/metaworld/tasks.py": "4183b28ad75aa87e7af7de061824370f11926df938d9e2abfe1fda9264b3399e",
+    "src/experiment1/plugin_validation.py": "b31087bf1be13a611c83aa1fbb3684d7a346cbb3f786335151f2cc846082dfd1",
+    "src/experiment1/preflight.py": "bbfcf0e6205f7d94b13747f527c611932c72334eb091bc8ccc486b0f5bbfeedf",
+    "src/experiment1/protocol.py": "9d191a07ff3f0fe6b1022ee6125c59f4b308425f4a5e7e1a50a82b523d206620",
+    "src/experiment1/records.py": "d8774e1242417b791efe56763cdd5c094ea54e52a7d43fd01442854764fe0894",
+    "src/experiment1/runner.py": "f33fb27b77fdbf459e5390c69ed9b43d05a6cd74792e9afcd60be38f797b03e1",
+    "src/experiment1/runtime_api.py": "4c2c3979c5c305265d5ecec76dd9d6544e681eb7093a1f7e4064f0150b1fac57",
+    "src/experiment1/selection.py": "f96e780fffecf66236e39636f53351213892d6a7104f1f8c82886630be569a17",
+    "src/experiment_interfaces/__init__.py": "ecd47db9fe5d4a7ead0f9fcdaffb39e968b754d65843ed1291ada69a60a99a60",
+    "src/experiment_interfaces/__main__.py": "6d8b7d7846a845059d7a3107143f11131f63c5511d669b44085b15ec5e3d2279",
+    "src/experiment_interfaces/cli.py": "bf79c2684d0729875e3a34bd09cc567ae23227e8a6c920d80be49c120f7036ea",
+    "src/experiment_interfaces/envs.py": "74fb567f4bcafa2f38a150ea63dd065af6d2b79660920b40119bde66f5062890",
+    "src/experiment_interfaces/gpt6.py": "cfdab2aa6d7189be0f6c3ca946811de59fa8c5a1566f65c2d9ea110399fc109b",
+    "src/experiment_interfaces/policies.py": "c53f3d2a405ef42e687c152de384ffb37148a02550005113bb77cd6638e692f1",
+    "src/experiment_interfaces/rollout.py": "fd5e2646e8963410cce8433b583f9470463d42b7060f3299f4b5ce4665b57ed9",
+    "src/relative_dp/__init__.py": "3bb2bf83da8b2c0c1d48873a00f243374064ce129397ce4b219f9dd1875e0b75",
+    "src/relative_dp/cli.py": "6a4d390d0328175352f28522612802f9b317130cf2614c6fb6b3348767746076",
+    "src/relative_dp/collection.py": "148a624c00ec35000e77fbcd64ec3084c3960fdf6ec28366d8f99ccf0a78ac89",
+    "src/relative_dp/config.py": "1dc8779534ac9abb8a16c5cdc9214911439f8fd22e99d1993ed8becc1f5bdf5f",
+    "src/relative_dp/dataset.py": "ea08e1979f2be2b7a02b740439e30eaa271970c5c8479863b921f2006522a3de",
+    "src/relative_dp/doctor.py": "d8599813e31ebd8a1574d8baaeec32bfd4c24bbe7251ab1d6015bf9fc024aa96",
+    "src/relative_dp/environment.py": "36f97bba7ba4316a54e396d459c24482af15b4b8f0637707c1012c80982688a6",
+    "src/relative_dp/evaluate.py": "21cb1997aed76812592af506143080d41442bf345de34cba1f459a87b8ba6b37",
+    "src/relative_dp/model.py": "20de4713507957d84d5237ed318dedeab16f87aa3ee00d6b6123ab5ac5a61908",
+    "src/relative_dp/report.py": "a9503ba882c48b5ce21054e3a9111541de0afb1bdf35a8c142e1b21644a2a0ad",
+    "src/relative_dp/representation.py": "b842cc74812253380b1820874d80c563c7ca56f84c7474ff7755eea1fc00b772",
+    "src/relative_dp/train.py": "d7c1f4a08bfe22c3f3ecb5f1e03a0b714230b139edd4383457a552d4a4904eca",
+    "src/relative_dp/utils.py": "236b21cedb205b314e38ea0a0fecf094523a21c775801954eaef0f0ebdf3c1f1",
+    "src/relative_dp/vendor/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/relative_dp/vendor/diffusion_policy/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/relative_dp/vendor/diffusion_policy/conditional_unet1d.py": "f78f3c77eea5ab1b59e210837cfdeab8d0a85bbf82c72efa4c39d640bfa50137",
+    "src/relative_dp/vendor/diffusion_policy/conv1d_components.py": "ea2aa10e297cf253bc1a1919ba47fe6ae32049b5eaaab292ed9cc145d8d2adc0",
+    "src/relative_dp/vendor/diffusion_policy/positional_embedding.py": "2266c75ecc9c9ac8ca126839d39a7bafbdd7af8800d6de903f66815e64cc366c"
+  },
+  "name": "Experiment 1",
+  "planned_dev_episodes": 7200,
+  "planned_system_slots": 144,
+  "planned_test_episodes": 14400,
+  "policy_at_deployment": "frozen learned policy; no API calls",
+  "prompt_hash": "18a04fd6fe6c5f053b9a532acb678a066d1c0b05a6c3e33c11193fb8c76baf7c",
+  "public_manifest": {
+    "allowed_imports": [
+      "torch",
+      "numpy",
+      "math",
+      "experiment1.contracts",
+      "local candidate modules"
+    ],
+    "files": {
+      "PUBLIC_CONTRACT.md": "fdcc1c07247c9cde1114d3f2bcf9609e3bfdf94d53b0a8fea658b3272f41b95c",
+      "contracts.py": "4e7868a6fc9b839e522b51336320f47463c9dcb6d1c2a902988d1493fd786074",
+      "diffusion_policy.py": "20de4713507957d84d5237ed318dedeab16f87aa3ee00d6b6123ab5ac5a61908",
+      "language_policy.json": "04d59a1e82326135e39d058b0c6cb574891e17521eaeeb30c531325cbb4f24ff",
+      "learning.py": "27e7feb12b809dbff40589b00c1d48961d5453c8d39e942aee016a52bc387bcd",
+      "training_recipe.json": "bd0695efa4fe6136aa3f9fc73fae44e34c8efc64846ea1b6f698c631fc2a28ef",
+      "vendor/conditional_unet1d.py": "f78f3c77eea5ab1b59e210837cfdeab8d0a85bbf82c72efa4c39d640bfa50137",
+      "vendor/conv1d_components.py": "ea2aa10e297cf253bc1a1919ba47fe6ae32049b5eaaab292ed9cc145d8d2adc0",
+      "vendor/positional_embedding.py": "2266c75ecc9c9ac8ca126839d39a7bafbdd7af8800d6de903f66815e64cc366c"
+    },
+    "prohibited": [
+      "B1 source",
+      "historical designs/results",
+      "hidden test",
+      "other task×N sessions"
+    ],
+    "schema_version": "experiment1.public-capabilities.v1"
+  },
+  "repeats": 1,
+  "schema_version": "experiment1.protocol.v1",
+  "selection_rule": "Maximize 0.5*dev_C_success + 0.5*dev_E_success; within each distribution use equal subcondition weights. Ties: lower fixed-method inference latency, fewer complete-system parameters, smaller candidate ID. Invalid candidates are ineligible. No eligible candidate means null. IID and hidden test do not select.",
+  "systems": [
+    "B0_vanilla_dp",
+    "B1_rule_prior",
+    "A1",
+    "A2",
+    "A3",
+    "A4"
+  ],
+  "tasks": [
+    "pick-place-wall",
+    "assembly",
+    "drawer",
+    "door",
+    "peg-insert-side",
+    "stick-push"
+  ],
+  "test_episodes": {
+    "C": 40,
+    "E": 40,
+    "IID": 20
+  },
+  "test_gate": "all 24 designs and selections globally frozen",
+  "tool_schemas": {
+    "initial": [
+      {
+        "description": "List allowed read-only public/evidence files or this session's candidate files. No repository search.",
+        "name": "list_files",
+        "parameters": {
+          "additionalProperties": false,
+          "properties": {
+            "candidate_id": {
+              "type": "string"
+            },
+            "scope": {
+              "enum": [
+                "public",
+                "evidence",
+                "candidate"
+              ],
+              "type": "string"
+            }
+          },
+          "required": [
+            "scope",
+            "candidate_id"
+          ],
+          "type": "object"
+        },
+        "strict": true,
+        "type": "function"
+      },
+      {
+        "description": "Read an allowed UTF-8 file with explicit character pagination. Candidate files are only from the active phase.",
+        "name": "read_file",
+        "parameters": {
+          "additionalProperties": false,
+          "properties": {
+            "candidate_id": {
+              "type": "string"
+            },
+            "limit": {
+              "type": "integer"
+            },
+            "offset": {
+              "type": "integer"
+            },
+            "path": {
+              "type": "string"
+            },
+            "scope": {
+              "enum": [
+                "public",
+                "evidence",
+                "candidate"
+              ],
+              "type": "string"
+            }
+          },
+          "required": [
+            "scope",
+            "candidate_id",
+            "path",
+            "offset",
+            "limit"
+          ],
+          "type": "object"
+        },
+        "strict": true,
+        "type": "function"
+      },
+      {
+        "description": "Read one allowed real demonstration image from the current task×N evidence bundle.",
+        "name": "read_image",
+        "parameters": {
+          "additionalProperties": false,
+          "properties": {
+            "path": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "path"
+          ],
+          "type": "object"
+        },
+        "strict": true,
+        "type": "function"
+      },
+      {
+        "description": "Read a bounded range of numeric state/action/time rows from a current D_N trajectory JSON; no simulator or other dataset access.",
+        "name": "read_trajectory",
+        "parameters": {
+          "additionalProperties": false,
+          "properties": {
+            "count": {
+              "type": "integer"
+            },
+            "field": {
+              "enum": [
+                "obs",
+                "actions",
+                "time_seconds"
+              ],
+              "type": "string"
+            },
+            "path": {
+              "type": "string"
+            },
+            "start": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "path",
+            "field",
+            "start",
+            "count"
+          ],
+          "type": "object"
+        },
+        "strict": true,
+        "type": "function"
+      },
+      {
+        "description": "Create or replace a candidate UTF-8 .py/.json/.md file. Every version is retained. Submitted candidates are immutable.",
+        "name": "write_file",
+        "parameters": {
+          "additionalProperties": false,
+          "properties": {
+            "candidate_id": {
+              "enum": [
+                "A1",
+                "A2",
+                "A3",
+                "A4"
+              ],
+              "type": "string"
+            },
+            "content": {
+              "type": "string"
+            },
+            "path": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "candidate_id",
+            "path",
+            "content"
+          ],
+          "type": "object"
+        },
+        "strict": true,
+        "type": "function"
+      },
+      {
+        "description": "Modify exactly one occurrence in an unsubmitted candidate file; retain its previous version.",
+        "name": "replace_text",
+        "parameters": {
+          "additionalProperties": false,
+          "properties": {
+            "candidate_id": {
+              "enum": [
+                "A1",
+                "A2",
+                "A3",
+                "A4"
+              ],
+              "type": "string"
+            },
+            "new": {
+              "type": "string"
+            },
+            "old": {
+              "type": "string"
+            },
+            "path": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "candidate_id",
+            "path",
+            "old",
+            "new"
+          ],
+          "type": "object"
+        },
+        "strict": true,
+        "type": "function"
+      },
+      {
+        "description": "Run the frozen syntax, security, shape, causality, frame, mask and capacity interface checks. No training or performance evaluation. Three checks maximum per candidate (initial plus two repair checks).",
+        "name": "run_checks",
+        "parameters": {
+          "additionalProperties": false,
+          "properties": {
+            "candidate_id": {
+              "enum": [
+                "A1",
+                "A2",
+                "A3",
+                "A4"
+              ],
+              "type": "string"
+            }
+          },
+          "required": [
+            "candidate_id"
+          ],
+          "type": "object"
+        },
+        "strict": true,
+        "type": "function"
+      },
+      {
+        "description": "Explicitly freeze code/config/design and their SHA256 manifest after passing the exact-version checks. Required files: candidate.py, config.json, design.json. No further edits or performance-driven debug.",
+        "name": "submit_candidate",
+        "parameters": {
+          "additionalProperties": false,
+          "properties": {
+            "candidate_id": {
+              "enum": [
+                "A1",
+                "A2",
+                "A3",
+                "A4"
+              ],
+              "type": "string"
+            },
+            "expected_hash": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "candidate_id",
+            "expected_hash"
+          ],
+          "type": "object"
+        },
+        "strict": true,
+        "type": "function"
+      },
+      {
+        "description": "Explicitly close this scientific candidate slot as invalid, retaining all current files and failed-check records. It cannot be replaced by an extra candidate.",
+        "name": "submit_invalid",
+        "parameters": {
+          "additionalProperties": false,
+          "properties": {
+            "candidate_id": {
+              "enum": [
+                "A1",
+                "A2",
+                "A3",
+                "A4"
+              ],
+              "type": "string"
+            },
+            "reason": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "candidate_id",
+            "reason"
+          ],
+          "type": "object"
+        },
+        "strict": true,
+        "type": "function"
+      }
+    ],
+    "revision": [
+      {
+        "description": "List allowed read-only public/evidence files or this session's candidate files. No repository search.",
+        "name": "list_files",
+        "parameters": {
+          "additionalProperties": false,
+          "properties": {
+            "candidate_id": {
+              "type": "string"
+            },
+            "scope": {
+              "enum": [
+                "public",
+                "evidence",
+                "candidate"
+              ],
+              "type": "string"
+            }
+          },
+          "required": [
+            "scope",
+            "candidate_id"
+          ],
+          "type": "object"
+        },
+        "strict": true,
+        "type": "function"
+      },
+      {
+        "description": "Read an allowed UTF-8 file with explicit character pagination. Candidate files are only from the active phase.",
+        "name": "read_file",
+        "parameters": {
+          "additionalProperties": false,
+          "properties": {
+            "candidate_id": {
+              "type": "string"
+            },
+            "limit": {
+              "type": "integer"
+            },
+            "offset": {
+              "type": "integer"
+            },
+            "path": {
+              "type": "string"
+            },
+            "scope": {
+              "enum": [
+                "public",
+                "evidence",
+                "candidate"
+              ],
+              "type": "string"
+            }
+          },
+          "required": [
+            "scope",
+            "candidate_id",
+            "path",
+            "offset",
+            "limit"
+          ],
+          "type": "object"
+        },
+        "strict": true,
+        "type": "function"
+      },
+      {
+        "description": "Read one allowed real demonstration image from the current task×N evidence bundle.",
+        "name": "read_image",
+        "parameters": {
+          "additionalProperties": false,
+          "properties": {
+            "path": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "path"
+          ],
+          "type": "object"
+        },
+        "strict": true,
+        "type": "function"
+      },
+      {
+        "description": "Read a bounded range of numeric state/action/time rows from a current D_N trajectory JSON; no simulator or other dataset access.",
+        "name": "read_trajectory",
+        "parameters": {
+          "additionalProperties": false,
+          "properties": {
+            "count": {
+              "type": "integer"
+            },
+            "field": {
+              "enum": [
+                "obs",
+                "actions",
+                "time_seconds"
+              ],
+              "type": "string"
+            },
+            "path": {
+              "type": "string"
+            },
+            "start": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "path",
+            "field",
+            "start",
+            "count"
+          ],
+          "type": "object"
+        },
+        "strict": true,
+        "type": "function"
+      },
+      {
+        "description": "Create or replace a candidate UTF-8 .py/.json/.md file. Every version is retained. Submitted candidates are immutable.",
+        "name": "write_file",
+        "parameters": {
+          "additionalProperties": false,
+          "properties": {
+            "candidate_id": {
+              "enum": [
+                "A1",
+                "A2",
+                "A3",
+                "A4"
+              ],
+              "type": "string"
+            },
+            "content": {
+              "type": "string"
+            },
+            "path": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "candidate_id",
+            "path",
+            "content"
+          ],
+          "type": "object"
+        },
+        "strict": true,
+        "type": "function"
+      },
+      {
+        "description": "Modify exactly one occurrence in an unsubmitted candidate file; retain its previous version.",
+        "name": "replace_text",
+        "parameters": {
+          "additionalProperties": false,
+          "properties": {
+            "candidate_id": {
+              "enum": [
+                "A1",
+                "A2",
+                "A3",
+                "A4"
+              ],
+              "type": "string"
+            },
+            "new": {
+              "type": "string"
+            },
+            "old": {
+              "type": "string"
+            },
+            "path": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "candidate_id",
+            "path",
+            "old",
+            "new"
+          ],
+          "type": "object"
+        },
+        "strict": true,
+        "type": "function"
+      },
+      {
+        "description": "Run the frozen syntax, security, shape, causality, frame, mask and capacity interface checks. No training or performance evaluation. Three checks maximum per candidate (initial plus two repair checks).",
+        "name": "run_checks",
+        "parameters": {
+          "additionalProperties": false,
+          "properties": {
+            "candidate_id": {
+              "enum": [
+                "A1",
+                "A2",
+                "A3",
+                "A4"
+              ],
+              "type": "string"
+            }
+          },
+          "required": [
+            "candidate_id"
+          ],
+          "type": "object"
+        },
+        "strict": true,
+        "type": "function"
+      },
+      {
+        "description": "Explicitly freeze code/config/design and their SHA256 manifest after passing the exact-version checks. Required files: candidate.py, config.json, design.json. No further edits or performance-driven debug.",
+        "name": "submit_candidate",
+        "parameters": {
+          "additionalProperties": false,
+          "properties": {
+            "candidate_id": {
+              "enum": [
+                "A1",
+                "A2",
+                "A3",
+                "A4"
+              ],
+              "type": "string"
+            },
+            "expected_hash": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "candidate_id",
+            "expected_hash"
+          ],
+          "type": "object"
+        },
+        "strict": true,
+        "type": "function"
+      },
+      {
+        "description": "Explicitly close this scientific candidate slot as invalid, retaining all current files and failed-check records. It cannot be replaced by an extra candidate.",
+        "name": "submit_invalid",
+        "parameters": {
+          "additionalProperties": false,
+          "properties": {
+            "candidate_id": {
+              "enum": [
+                "A1",
+                "A2",
+                "A3",
+                "A4"
+              ],
+              "type": "string"
+            },
+            "reason": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "candidate_id",
+            "reason"
+          ],
+          "type": "object"
+        },
+        "strict": true,
+        "type": "function"
+      },
+      {
+        "description": "Submit the development-only q3 (revision) or q4 (selection) choice under the frozen scoring and tie rules.",
+        "name": "record_selection",
+        "parameters": {
+          "additionalProperties": false,
+          "properties": {
+            "candidate_id": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "rationale": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "candidate_id",
+            "rationale"
+          ],
+          "type": "object"
+        },
+        "strict": true,
+        "type": "function"
+      }
+    ],
+    "selection": [
+      {
+        "description": "List allowed read-only public/evidence files or this session's candidate files. No repository search.",
+        "name": "list_files",
+        "parameters": {
+          "additionalProperties": false,
+          "properties": {
+            "candidate_id": {
+              "type": "string"
+            },
+            "scope": {
+              "enum": [
+                "public",
+                "evidence",
+                "candidate"
+              ],
+              "type": "string"
+            }
+          },
+          "required": [
+            "scope",
+            "candidate_id"
+          ],
+          "type": "object"
+        },
+        "strict": true,
+        "type": "function"
+      },
+      {
+        "description": "Read an allowed UTF-8 file with explicit character pagination. Candidate files are only from the active phase.",
+        "name": "read_file",
+        "parameters": {
+          "additionalProperties": false,
+          "properties": {
+            "candidate_id": {
+              "type": "string"
+            },
+            "limit": {
+              "type": "integer"
+            },
+            "offset": {
+              "type": "integer"
+            },
+            "path": {
+              "type": "string"
+            },
+            "scope": {
+              "enum": [
+                "public",
+                "evidence",
+                "candidate"
+              ],
+              "type": "string"
+            }
+          },
+          "required": [
+            "scope",
+            "candidate_id",
+            "path",
+            "offset",
+            "limit"
+          ],
+          "type": "object"
+        },
+        "strict": true,
+        "type": "function"
+      },
+      {
+        "description": "Read one allowed real demonstration image from the current task×N evidence bundle.",
+        "name": "read_image",
+        "parameters": {
+          "additionalProperties": false,
+          "properties": {
+            "path": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "path"
+          ],
+          "type": "object"
+        },
+        "strict": true,
+        "type": "function"
+      },
+      {
+        "description": "Read a bounded range of numeric state/action/time rows from a current D_N trajectory JSON; no simulator or other dataset access.",
+        "name": "read_trajectory",
+        "parameters": {
+          "additionalProperties": false,
+          "properties": {
+            "count": {
+              "type": "integer"
+            },
+            "field": {
+              "enum": [
+                "obs",
+                "actions",
+                "time_seconds"
+              ],
+              "type": "string"
+            },
+            "path": {
+              "type": "string"
+            },
+            "start": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "path",
+            "field",
+            "start",
+            "count"
+          ],
+          "type": "object"
+        },
+        "strict": true,
+        "type": "function"
+      },
+      {
+        "description": "Submit the development-only q3 (revision) or q4 (selection) choice under the frozen scoring and tie rules.",
+        "name": "record_selection",
+        "parameters": {
+          "additionalProperties": false,
+          "properties": {
+            "candidate_id": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "rationale": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "candidate_id",
+            "rationale"
+          ],
+          "type": "object"
+        },
+        "strict": true,
+        "type": "function"
+      }
+    ]
+  },
+  "train_seed": 0,
+  "training": {
+    "action_dim": 4,
+    "batch_size": 128,
+    "beta_end": 0.02,
+    "beta_schedule": "squaredcos_cap_v2",
+    "beta_start": 0.0001,
+    "betas": [
+      0.9,
+      0.999
+    ],
+    "checkpoint_updates": [
+      5000,
+      10000,
+      20000
+    ],
+    "clip_predicted_clean_actions": false,
+    "clip_sample_range": 1.0,
+    "cond_predict_scale": true,
+    "ddim_eta": 0.0,
+    "diffusion_seed": 200,
+    "diffusion_step_embed_dim": 128,
+    "diffusion_train_timesteps": 100,
+    "ema_decay": 0.995,
+    "inference_compile_mode": "reduce-overhead",
+    "inference_scheduler": "DDIM",
+    "inference_steps": 16,
+    "inference_torch_compile": false,
+    "kernel_size": 5,
+    "learning_rate": 0.0001,
+    "loader_seed": 100,
+    "lr_schedule": "constant",
+    "max_grad_norm": 1.0,
+    "microbatch_size": 128,
+    "model_init_seed": 0,
+    "n_action_steps": 4,
+    "n_groups": 8,
+    "n_obs_steps": 2,
+    "obs_std_floor": 0.001,
+    "optimizer": "AdamW",
+    "precision": "float32",
+    "prediction_horizon": 16,
+    "prediction_type": "epsilon",
+    "rescale_betas_zero_snr": false,
+    "set_alpha_to_one": true,
+    "steps_offset": 0,
+    "thresholding": false,
+    "timestep_spacing": "leading",
+    "torch_compile": false,
+    "train_compile_mode": "reduce-overhead",
+    "train_seed": 0,
+    "train_updates": 20000,
+    "unet_down_dims": [
+      64,
+      128,
+      256
+    ],
+    "weight_decay": 1e-06
+  },
+  "versions": {
+    "diffusers": "0.35.1",
+    "metaworld": "3.1.1",
+    "mujoco": "3.3.0",
+    "numpy": "2.2.6",
+    "torch": "2.7.1"
+  },
+  "workers_per_gpu": 1
+}

@@ -1,78 +1,34 @@
-# Round 3 已完成并验收（2026-09-08）
+# Experiment 1 进度入口
 
-项目已迁至仓库根目录，Pixi locked install、依赖导入和CUDA验证通过。按最新授权仅使用物理 GPU0–3，训练与评测每卡两个独立工作进程、共八个逻辑槽位；GPU4/5已于07:03 UTC撤回。六任务、N=2/5/10/20、每模型seed=0的正式实验全部完成：96次初始训练加2次 peg P4训练，每模型20,000步；4,900个开发回合和9,800个锁定测试回合。最终数值审计于10:16:14.379029 UTC通过，核验98个run、294个检查点、24组冻结选择及六次反馈决定，无无效或待完成项。
+当前执行规范是 EXPERIMENT1_CODEX_EXECUTION_HANDOFF.md 和用户追加的 RuntimePriorAPI 工具 agent 要求。
 
-开发集冻结选择在24组上等权平均的测试 OOD 为73.59%，B0为42.24%（+31.35个百分点）。peg P4在 N5/N20相对P1的测试 OOD 分别下降15/1.25个百分点，负结果保留，最终系统未选P4。最终报告、98行CSV、14张测试图、12段真实配对视频和中文概览已生成。`round3-resume` 实际退出码0；运行时复用审计通过，33,034个已接受文件与全部数值结果、视频保持不变，未新增正式更新、计分回合或视频重放。
+用户最新 GPU 分配为物理卡 4、5、6、7，替代旧的 0–3 分配。候选 GPU worker 按 UUID 绑定，保留所有历史尝试的原始设备记录。
 
-产物与证据：[中文结论](round3/ROUND3_SUMMARY_ZH.md)、[完整报告](round3/ROUND3_REPORT.md)、[数值审计](round3/audits/delivery_verifier_test_20260908T101614379062Z.json)、[视频渲染验收](round3/audits/video_render_2026-09-08T101934688812+0000/complete.json)、[恢复复用验收](round3/audits/final_resume_reuse.json) 和 [最终执行记录](round3/LIVE_EXECUTION.md)。没有待完成的设计、训练或评测。本轮仅一个训练 seed，采用数值状态输入；历史任务/源码接触、没有匹配人类或随机搜索对照、缺少机制消融均限制结论。
+实时状态：`pixi run --locked experiment1-status`。
+报告：`experiments/experiment1/EXPERIMENT1_REPORT.md`。
 
-下方 Round 1/2 与迁移内容为保留的历史记录，其中“当前进程”、旧路径、旧GPU分配和“暂停”不代表 Round 3 当前状态。
+已完成实际精确迁移、六任务支持数据/控制审查、独立dev/test初态和24套真实图像证据。真实GPT-6 Astra/max工具冒烟已完成12次API调用、一次零更新接口检查和显式候选提交；它是合成基础设施测试，不属于144正式训练槽位。
 
-# 第一轮实验：全部完成
+公共GPU预检、源码/协议冻结与正式矩阵状态以可验证工件为准。不得把本进度说明当作训练已完成的证据。旧PROGRESS/README/AGENTS与Pixi环境快照保存在archive/legacy_rounds/round3/environment_before_experiment1。
 
-截至 2026-09-07，代码、Pixi 环境、数据、正式训练、开发集选择、正式测试、视频与报告均已完成。当前没有运行中的项目训练、评测或资源监测进程。
+2026-09-12 续推：修复 PyTorch CUDA UUID 与 NVML 的 `GPU-` 前缀差异，保留原始 UUID；`gpu-uuid-format-r4` 基础设施修订通过六任务公共拟合、物理 GPU 4–7 核验及精确恢复检查。旧失败尝试保留。完整测试 268 passed / 1 skipped，修复后相关测试 35 passed。实际 preflight 已通过，protocol.lock.json 已冻结。
 
-| Run | 正式 updates | 选定 checkpoint | IID | 位置 OOD |
-|---|---:|---:|---:|---:|
-| drawer_raw_n20_s0 | 20000 | 10000 | 20/20 | 20/20 |
-| drawer_relative_n20_s0 | 20000 | 10000 | 20/20 | 20/20 |
-| door_raw_n20_s0 | 20000 | 5000 | 20/20 | 20/20 |
-| door_relative_n20_s0 | 20000 | 20000 | 20/20 | 20/20 |
+早先执行 `pixi run --locked experiment1-run --resume --detach` 因启动环境缺少 `LOCAL_OPENAI_BEARER_TOKEN` 而停止，历史失败详情保留在 `experiments/experiment1/last_failure.json`。
 
-- 17 项 preflight 检查通过；每任务 100 条成功示范、同一份 train20 及独立 split 已冻结。
-- 完整重放 320 个初始状态、200 条示范，共 16,444 步；数据与动作标签校验通过。
-- 4 次正式训练各完成 20,000 updates；12 个规定 checkpoint、optimizer、EMA 与完整 RNG 恢复状态已保存。
-- 240 个 dev episode 已完成，四个 checkpoint 选择冻结后才运行 160 个最终测试。
-- 160 个正式测试全部成功；8 个成功视频重放及轨迹 hash 验证通过。没有失败 episode，故 8 个失败视频类型明确记为 absent。
-- 配对公平性与交付审计见 `results/paired_integrity.json`、`artifacts/delivery_audit.json`。
-- 再次运行 `pixi run round1` 已验证退出码 0：全部训练跳过，开发/测试/视频缓存按完整 hash 验证复用，无新增 optimizer update 或正式测试 episode。日志见 `logs/idempotence_check.log`。
+2026-09-12 10:24 UTC：用户提供并授权持久化凭据后，已保存至仓库外 `~/.config/experiment1/runtime-api-credential.json`（0600）。专用启动入口 `~/.config/experiment1/launch.py` 自动加载凭据，通过 Pixi 调用冻结 runner；不修改实验源码或冻结模型/地址。恢复命令：`/home/users/oscar/.pixi/bin/pixi run --locked python /home/users/oscar/.config/experiment1/launch.py`。已有 runner 运行时不要重复启动。
 
-完整结果：[ROUND1_REPORT.md](ROUND1_REPORT.md)；四行结果：[results/summary.csv](results/summary.csv)；阶段计时：[results/compute_cost.json](results/compute_cost.json)。成功率没有观察到表示间差异；Drawer OOD 平均完成步数的次要差异需多训练 seed 复验。
+后台 runner PID 853471，日志目录 `experiments/experiment1/logs/runner-1789208654505688207/`，物理 GPU 队列 4–7。首批四个正式 task×N 设计会话均已获得 HTTP 200 响应并执行工具循环。凭据阻塞已解除；启动时正式训练/dev/test 为 0/144，实时计数以 status 为准，不能据此声称实验完成。
 
-## 历史进程与运行恢复
+2026-09-12 10:46 UTC 核查：pick-place-wall 四个 N 档的 A1/A2/A3 共 12 个正式候选已显式提交且接口检查有效，全部提交文件 hash 与冻结协议核验通过。正式 API 调用 153 次均为 HTTP 200 并已消费（另有基础设施 smoke 12 次）；正式接口检查 12 次。四个 B0 正在物理卡 4–7 训练，记录步数分别为 N2=11800、N5=12200、N10=11200、N20=14400，目标均为 20000；正式完成训练/dev/test 仍为 0/144，无新失败或阻塞。未向 API 返回开发反馈，隐藏测试尚未开启。报告已刷新，检查快照见 `experiments/experiment1/reports/live_execution_audit.json`。后台 runner 继续按冻结流程调度。
 
-- PID 804594 / tool session 1364：首个 raw 训练完成后，relative 的速度异常；在第 65 步安全保存后暂停。原始日志、耗时和逐位一致性诊断完整保留。
-- PID 822128 / tool session 26467：采用独立 Pixi 子进程顺序恢复，完成剩余训练、全部评测及视频，退出码 0。
-- PID 864337 / tool session 2304：完成后的缓存复用检查，退出码 0。
-- 资源监测 tool sessions 68535、25291 已结束。
-- 冻结模型、数据、配置及训练预算未改。细节见 [docs/RUNTIME_RECOVERY.md](docs/RUNTIME_RECOVERY.md)。
+2026-09-13 01:25 UTC 最新资源变更：用户授权物理 GPU 0–7 全部使用，0–3 实测空闲。已准备仅涉及 CLI 卡号、隔离 worker 设备授权、runner 并行度与协议补充校验的精确改动；原文件和待应用文件保存在 `experiments/experiment1/allocation_20260913/{original,proposed}/`。原 `protocol.lock.json`、科学配置、候选代码和已有结果保持原 hash；补充记录为 `execution_allocation.json`，仅在切换时产生。八卡调度与修订校验的 6 项测试已通过。
 
-## 可复现与恢复命令
+为避免运行中源码变化，仅结束旧调度进程 853747，保留四个独立实例及全部训练/API worker。后台切换控制器 PID 321717 正在等待现有实例结束，然后自动应用资源修订、运行相关测试、对八张卡逐一进行零更新隔离/UUID 检查并启动八卡 runner。切换状态见 `experiments/experiment1/allocation_20260913/transition_status.json`，启动结果见同目录 `launch.log`；当前 `draining` 表示八卡尚未正式启用。不要同时手动启动另一个 runner。任何检查失败会明确写 blocked 并停止，不自动重试；失败槽位不因此重训。
 
-项目目录：`/home/users/oscar/Agent_Training/agent_training`。本机 Pixi：`/home/users/oscar/.pixi/bin/pixi`。
+2026-09-13 03:28 UTC：八卡资源修订已应用，55 项相关测试和八张卡零更新隔离检查通过，新 runner PID 512751 已实际启动。
 
-```bash
-pixi run round1
-pixi run train-round1 --run-id drawer_relative_n20_s0
-pixi run evaluate-round1
-pixi run report-round1
-pixi run python scripts/verify_delivery.py
-```
+2026-09-13 05:39 UTC：用户明确授权补上 assembly/N10/A4 的 OOM 失败槽位。全局隐藏测试尚未开始；仅停止外层调度进程 513020，保留 stick-push/N2 的独立运行实例，避免补跑期间越过全局测试门槛。恢复程序 PID 662683 在空闲物理 GPU 0 上加载原 step=1 checkpoint；实际训练账本确认 resumed_step=1，已推进至 step=100。候选代码/配置/seed/科学槽位不变，训练 attempt 与中断费用单独保留。
 
-已完成的训练会校验后跳过；未完成训练会恢复 optimizer、EMA、独立 RNG 与采样位置。所有正式数值结果均已冻结。未完成项：无；失败视频缺席是实际全成功结果，阶段机制归因与跨训练 seed 稳定性属于研究限制。
+恢复原始 checkpoint、失败 slot、会话、q4 选择及开发反馈均备份至 `experiments/experiment1/recoveries/assembly_N10_A4_20260913/`。后台脚本完成训练/dev 后，仅将新开发结果返回同一 API 会话重新确定 q4，保留旧选择和全部工具日志，q1/q3 不变；所有现有实例结束后自动恢复八卡 runner，再全局冻结并隐藏测试。状态与错误见该目录 `status.json`、`stderr.txt`，恢复调度结果见 `restart.log`。本次是用户明确授权的一次恢复，没有自动重试；失败则写 blocked 并保留原因。
 
-
-## Round 2 已完成
-
-- 环境：真实柜体 yaw，自定义 MetaWorld 扩展；两任务均通过 A 档校准。训练±10°，测试±20°/±35°/±50°并含±2°扰动。
-- 数据：新示范20条/任务；40条完整重放、280个dev/test快照重置，以及正负far角度短重放通过。
-- 调试：四配置各200步，共800次更新；100步跨进程恢复检查通过。
-- 正式训练：四模型各20,000步，共80,000次更新；12个EMA checkpoint。配对初始权重、参数量和采样/噪声摘要一致。
-- 评测：240次dev、480次冻结测试全部完成；四模型均依据dev选择20,000步EMA。另对全部240个测试状态执行冻结专家后置参考，未调整测试或模型。
-- yaw主成功率：drawer world/frame = 0.0%/81.7%；door world/frame = 45.0%/80.0%。四模型IID均100%。两任务frame在正向far仍为0/10，限制已报告。
-- 交付：5张图、12段实际动作重放视频（含2段配对视频）、逐回合轨迹/指标、成本、协议和报告。
-- 独立验收：`artifacts/round2/delivery_audit.json`；模型与数据完整性检查通过。
-
-主报告：[ROUND2_REPORT.md](ROUND2_REPORT.md)。结果：[summary.csv](results/round2/summary.csv)。视频：[manifest.json](artifacts/round2/videos/manifest.json)。
-
-复现：`pixi run round2`。独立复核：`pixi run python scripts/round2/verify.py`。已完成项通过hash核验后复用，不额外训练。
-
-未完成项：无。唯一下一步建议为补充独立训练seed；本轮未启动额外实验。Round 1 历史结果与冻结输入已保留，Pixi新增任务对应的原始配置存于 `artifacts/round2/round1_archive/`。
-
-总入口复跑验收：`pixi run round2` 已验证复用全部完成产物，23个关键数值产物身份保持一致，未新增正式更新或模型评测回合；见 [idempotence_audit.json](artifacts/round2/idempotence_audit.json)。
-
-## Round 3：用户要求暂停迁移（2026-09-08）
-
-已停止本轮所有实验进程。pick-place-wall、assembly、drawer各完成60条专家校准、20条成功示范和完整重放、50个dev状态、100个封存test状态、D2证据16帧。door校准保存37/60，另两任务尚未开始正式准备。正式训练0次、模型评测0回合；pickwall仅有未冻结设计草稿。训练/评测/双GPU入口框架已写，但未完成端到端验收和报告模块。
-
-完整迁移范围、恢复点及必须先修复的集成项见 [ROUND3_MIGRATION_HANDOFF.md](ROUND3_MIGRATION_HANDOFF.md)。停止系用户主动迁移决定，不是API key或算力阻塞。迁移后收到继续指令再执行。
+2026-09-13 06:03 UTC：assembly/N10/A4 恢复成功，完成原定 20000 步及开发评估。API 根据新开发结果按原规则将 q4 更新为 A4（开发 C/E 等权分数 0.725，原 A2 为 0.475）；原失败与选择记录保留。恢复程序已重新启动外层 runner PID 719175，24 个实例随后全部全局冻结，开始物理 GPU 0–7 八卡隐藏测试。06:31 UTC 状态：144 个系统均已完成训练/dev，8 个系统完成 test、8 个正在 test；这些是进度计数，不是最终隐藏测试结论。日志目录 `experiments/experiment1/logs/runner-1789279412036418660/`。

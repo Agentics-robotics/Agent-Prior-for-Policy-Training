@@ -1,0 +1,69 @@
+{
+  "budget": {
+    "elapsed_seconds": 3.8089754581451416,
+    "formal_training_slots": 0,
+    "interface_checks": 1,
+    "optimizer_updates": 0,
+    "task_rollouts": 0
+  },
+  "candidate_hashes": {
+    "candidate.py": "20c10d13083f115cf0dd3961f0a3555f8e56177ade41aea907f71357ed5dc8c0",
+    "config.json": "eadf3181905ba393df9d34d5a7a45ea2b42fab37793fcfa8d6d1b8b933ff9e82",
+    "design.json": "f9d8fbb441022a0b64f4ea5d0e838df2919fc1c286c46775da821391185ad153"
+  },
+  "candidate_unchanged": true,
+  "diagnostics": {
+    "backward_checks": 1,
+    "baseline_parameter_count": 4696644,
+    "causal_labels_isolated": true,
+    "contract_version": "experiment1-candidate-v1",
+    "deployment_state_roundtrip": true,
+    "elapsed_seconds": 0.7085719680035254,
+    "inference_calls": 3,
+    "native_roundtrip": true,
+    "optimizer_updates": 0,
+    "parameter_count": 4995055,
+    "status": "valid"
+  },
+  "schema_version": "experiment1.interface_check.v1",
+  "stderr": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/.pixi/envs/default/lib/python3.11/site-packages/torch/autograd/graph.py:824: UserWarning: CUDA initialization: Unexpected error from cudaGetDeviceCount(). Did you run some cuda functions before calling NumCudaDevices() that might have already set an error? Error 304: OS call failed or operation not supported on this OS (Triggered internally at /pytorch/c10/cuda/CUDAFunctions.cpp:109.)\n  return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass\n",
+  "stdout": "",
+  "valid": true,
+  "worker": {
+    "elapsed_seconds": 3.8089754581451416,
+    "ended_unix": 1789277147.1101463,
+    "gpu": null,
+    "handler": "validate",
+    "isolation": "linux_landlock_seccomp",
+    "read_only_files": {
+      "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/archive/legacy_rounds/round3/repository/round3/data/stick-push/train20/r3_stick-push_train_IID_000_31500000.npz": "375fd8d1ba4077090db8a4a347d35decfe3656ef8efc994a30cd5c1c7b4b7f3b",
+      "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/archive/legacy_rounds/round3/repository/round3/data/stick-push/train20/r3_stick-push_train_IID_001_31500100.npz": "e139d84717d273bc08b7e33ee8e53ccb0aa3b8f15f64d4f058e8d6f67d27b62c",
+      "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/src/experiment1/__init__.py": "0c7149ea8469f4239f7b8fb30aafa6706700730fe09855a98a81eb859a835919",
+      "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/src/experiment1/contracts.py": "4e7868a6fc9b839e522b51336320f47463c9dcb6d1c2a902988d1493fd786074",
+      "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/src/experiment1/isolation.py": "60c845460bc392398dc8f26779cb092e2b86e26e9110fe1c965673d6d2053a44",
+      "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/src/experiment1/learning.py": "27e7feb12b809dbff40589b00c1d48961d5453c8d39e942aee016a52bc387bcd",
+      "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/src/experiment1/plugin_validation.py": "b31087bf1be13a611c83aa1fbb3684d7a346cbb3f786335151f2cc846082dfd1",
+      "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/src/relative_dp/__init__.py": "3bb2bf83da8b2c0c1d48873a00f243374064ce129397ce4b219f9dd1875e0b75",
+      "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/src/relative_dp/config.py": "1dc8779534ac9abb8a16c5cdc9214911439f8fd22e99d1993ed8becc1f5bdf5f",
+      "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/src/relative_dp/dataset.py": "ea08e1979f2be2b7a02b740439e30eaa271970c5c8479863b921f2006522a3de",
+      "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/src/relative_dp/model.py": "20de4713507957d84d5237ed318dedeab16f87aa3ee00d6b6123ab5ac5a61908",
+      "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/src/relative_dp/representation.py": "b842cc74812253380b1820874d80c563c7ca56f84c7474ff7755eea1fc00b772",
+      "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/src/relative_dp/train.py": "d7c1f4a08bfe22c3f3ecb5f1e03a0b714230b139edd4383457a552d4a4904eca",
+      "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/src/relative_dp/utils.py": "236b21cedb205b314e38ea0a0fecf094523a21c775801954eaef0f0ebdf3c1f1",
+      "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/src/relative_dp/vendor/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/src/relative_dp/vendor/diffusion_policy/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/src/relative_dp/vendor/diffusion_policy/conditional_unet1d.py": "f78f3c77eea5ab1b59e210837cfdeab8d0a85bbf82c72efa4c39d640bfa50137",
+      "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/src/relative_dp/vendor/diffusion_policy/conv1d_components.py": "ea2aa10e297cf253bc1a1919ba47fe6ae32049b5eaaab292ed9cc145d8d2adc0",
+      "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/src/relative_dp/vendor/diffusion_policy/positional_embedding.py": "2266c75ecc9c9ac8ca126839d39a7bafbdd7af8800d6de903f66815e64cc366c"
+    },
+    "request_sha256": "4f58fb471d8026772deb9c5e3c4bb291e54d857330832d8b86df47fa206e29ad",
+    "returncode": 0,
+    "schema_version": "experiment1.worker.v1",
+    "started_unix": 1789277143.3011718,
+    "status": "completed",
+    "stderr_path": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/experiments/experiment1/generated/stick-push__N2__rep0/A4/checks/attempt-001/stderr.txt",
+    "stdout_path": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/experiments/experiment1/generated/stick-push__N2__rep0/A4/checks/attempt-001/stdout.txt",
+    "timeout_seconds": 120,
+    "training_updates": 0
+  }
+}

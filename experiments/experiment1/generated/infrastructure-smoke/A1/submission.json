@@ -1,0 +1,56 @@
+{
+  "candidate_id": "A1",
+  "status": "valid",
+  "files": {
+    "candidate.py": "057ca221e72f021f822b70df5f603736076f181a0d88764986875cbdd82cbda0",
+    "config.json": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356",
+    "design.json": "f850a3f719960144fcd599bb7bacccf94b60b00c31e0924194e55569b9b484fd"
+  },
+  "code_hash": "1718094d2dc663001c87a65541fd4611f5408896b70eb56c1ef515323478512d",
+  "fingerprint": "454941adc1b6ec178e15178adef0f86c8cde7381de7b6a97e5e9fdd1f85a9242",
+  "design": {
+    "title": "Synthetic infrastructure smoke: exact public B0 identity interface",
+    "coverage_gap": "Validate candidate construction, frozen interface compatibility, and immutable submission plumbing only. The supplied fixture is synthetic; no robot coverage gap or empirical policy improvement is asserted.",
+    "reusable_regularity": "Identity preservation of the complete normalized observation history and native action channels. No scientific bias, learned encoder, stage model, auxiliary head, or additional support-fit statistics are introduced.",
+    "dependencies_preserved": [
+      "Both causal history observations and every synthetic field at indices [0,4) pass to the common DP without reordering, aggregation, or removal.",
+      "The host-owned normalization remains based only on current D_N obs[0:T], with population standard deviation floor 0.001.",
+      "All four action channels keep their native ordering and values through inherited identity encode_actions and decode_actions.",
+      "Exactly one unmodified common DP is registered as self.dp, with per-observation condition_dim equal to common_spec.observation_schema.raw_dim and default diffusion_action_dim 4.",
+      "The common action epsilon loss retains weight 1 and denominator mask.sum()*4. No auxiliary losses or diffusion channels are added.",
+      "The host retains ownership of sampling randomness, action clipping, history length two, horizon sixteen, and execution prefix four."
+    ],
+    "evidence_refs": [
+      "bundle.json: synthetic=true; the only listed evidence file is task_materials.json, with no demonstration images.",
+      "task_materials.json: infrastructure-smoke; four unitless synthetic observation fields at slice [0,4); four synthetic action channels and no robot trajectory.",
+      "PUBLIC_CONTRACT.md: B0 public semantics specify identity conditioning, factory(raw_dim), identity action mappings, and no additional losses.",
+      "contracts.py: CandidateDesign supplies identity encode/decode and diffusion targets, direct common-DP denoising, empty training targets, no extra loss, and empty deployment state.",
+      "learning.py: common host provides normalization, causal context, shape requirements, fixed action loss, and zero-update interface validation."
+    ],
+    "expected_failure_signature": [
+      "An implementation mismatch would be falsified by condition returning anything other than the unchanged [B,2,4] history, or by action encode/decode changing native values.",
+      "Extra candidate parameters, more than one factory call, auxiliary loss, altered action dimensions, or inference dependence on future targets would violate the intended B0 equivalence.",
+      "No task-success failure signature can be inferred from a synthetic interface fixture; no performance prediction is made."
+    ],
+    "required_runtime_fields": [
+      "common_spec.observation_schema.raw_dim, used during build_modules; equals 4 in this fixture.",
+      "causal_history [B,2,4], the host-normalized values of the complete synthetic source field obs[...,0:4].",
+      "The public causal_context argument is accepted but not read; raw_history and raw_current are not additional conditioning inputs for this identity design.",
+      "Native or encoded action tensors [B,16,4] for the inherited identity action mappings, and the standard host-provided noisy actions, timesteps, and conditioning for denoising."
+    ],
+    "training_only_targets": [],
+    "action_frame_semantics": "Exact identity in the fixture's native four-channel synthetic action coordinates. The fixture specifies no robot trajectory or physical world/tool frame. There is no translation, rotation, scaling, clipping, or channel reinterpretation in candidate code; executor clipping remains host-only.",
+    "support_fit_state": "No candidate-specific support fitting or deployment state; inherited state is {}. Host common normalization is unchanged.",
+    "parents": [],
+    "change_summary": "Initial smoke implementation, not a scientific prior-search candidate. Subclass the frozen CandidateDesign, implement only build_modules and identity condition, and inherit the public B0-compatible defaults. Empty configuration introduces no tunable design choices. No structural repairs or measured performance claims at authoring."
+  },
+  "config": {},
+  "instance_id": "infrastructure-smoke",
+  "phase": "smoke",
+  "submitted_at": "2026-09-12T07:11:18.335389+00:00",
+  "author": "RuntimePriorAPI",
+  "provenance": "openai_responses_api",
+  "rank_before_feedback": 1,
+  "submit_tool_call_id": "call_59uQepuSaiZYgjtpxteq4O9W",
+  "submission_hash": "b74835e8d062d7f97a6d65f641b0335bcb0bfcea7628bc4f13f5f0a5c47ec583"
+}

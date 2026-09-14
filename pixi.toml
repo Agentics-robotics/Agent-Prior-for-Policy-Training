@@ -6,28 +6,13 @@ platforms = ["linux-64"]
 version = "0.1.0"
 
 [tasks]
-doctor = "python -m relative_dp.cli doctor"
 test = "python -m pytest -q"
-collect-round1 = "python -m relative_dp.cli collect"
-train-round1 = "python -m relative_dp.cli train"
-evaluate-round1 = "python -m relative_dp.cli evaluate"
-report-round1 = "python -m relative_dp.cli report"
-round1 = "python -m relative_dp.cli round1"
-round2-preflight = "python -m round2.cli preflight"
-round2-calibrate = "python -m round2.cli calibrate"
-round2-collect = "python -m round2.cli collect"
-round2-train = "python -m round2.cli train"
-round2-evaluate = "python -m round2.cli evaluate"
-round2-report = "python -m round2.cli report"
-round2 = "python -m round2.cli all"
-round3-prepare = "python -m round3.cli prepare"
-round3-validate-proposals = "python -m round3.cli validate-proposals"
-round3-train = "python -m round3.cli train"
-round3-dev-eval = "python -m round3.cli dev-eval"
-round3-test = "python -m round3.cli test"
-round3-report = "python -m round3.cli report"
-round3-resume = "python -m round3.cli resume"
-round3 = "python -m round3.cli all"
+experiment1-preflight = "python -m experiment1.cli preflight"
+experiment1-run = "python -m experiment1.cli run"
+experiment1-status = "python -m experiment1.cli status"
+experiment1-report = "python -m experiment1.cli report"
+experiment1-freeze = "python -m experiment1.cli freeze"
+experiment1-api-smoke = "python -m experiment1.cli smoke"
 
 [dependencies]
 python = "3.11.*"
@@ -50,9 +35,13 @@ pytest = "==8.4.1"
 
 [activation.env]
 MUJOCO_GL = "egl"
-CUDA_VISIBLE_DEVICES = "0,1,2,3"
-MUJOCO_EGL_DEVICE_ID = "0"
+CUDA_VISIBLE_DEVICES = "4,5,6,7"
+CUDA_DEVICE_ORDER = "PCI_BUS_ID"
+MUJOCO_EGL_DEVICE_ID = "4"
 OMP_NUM_THREADS = "1"
 MKL_NUM_THREADS = "1"
 OPENBLAS_NUM_THREADS = "1"
 PYTHONUNBUFFERED = "1"
+
+[environments]
+default = { features = [] }

@@ -1,0 +1,46 @@
+"""Opt-in checks using training records or explicitly supplied assets.
+
+Set INTERFACES_TEST_SIMULATOR=round3 or round4 to enable the corresponding test.
+For round4, also set INTERFACES_TEST_MODEL_ID and INTERFACES_TEST_DRAWER_INDEX
+to an authorized feasibility/training cabinet and its declared drawer index.
+Only the Round 3 train20 record is selected; no held-out record or outcome is used.
+"""
+import json
+import os
+from pathlib import Path
+
+import numpy as np
+import pytest
+
+from experiment_interfaces.envs import Round3Env, Round4Env
+
+
+def compare_step(actual, expected):
+    np.testing.assert_allclose(actual[0], expected[0], atol=1e-6, rtol=0)
+    np.testing.assert_allclose(actual[1], expected[1], atol=1e-6, rtol=0)
+    assert actual[2:4] == expected[2:4]
+    assert actual[4].keys() == expected[4].keys()
+    assert bool(actual[4]["success"]) == bool(expected[4]["success"])
+
+
+@pytest.mark.skipif(os.environ.get("INTERFACES_TEST_SIMULATOR") != "round3",
+                    reason="Enable the explicit Round 3 simulator check")
+def test_round3_matches_direct_backend_on_existing_training_record():
+    from round3.environment import TaskEnv
+
+    root = Path(__file__).resolve().parents[2]
+    manifest = json.loads((root / "round3/data/drawer/manifest.json").read_text())
+    record = manifest["train20"][0]
+    env, direct = Round3Env("drawer"), TaskEnv("drawer")
+    try:
+        actual, _ = env.reset(seed=record["seed"], options={"record": record})
+        expected, _ = direct.reset(record)
+        np.testing.assert_allclose(actual, expected, atol=1e-9, rtol=0)
+        assert actual.shape == (env.spec.observation_dim,)
+        for action in np.array([[0., 0., 0., 0.], [.1, -.1, .1, 0.], [0., .1, 0., 0.]], np.float32):
+            compare_step(env.step(action.copy()), direct.step(action.copy()))
+    finally:
+        env.close()
+        direct.close()
+
+

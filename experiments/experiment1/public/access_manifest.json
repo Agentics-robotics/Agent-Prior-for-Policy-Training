@@ -1,0 +1,27 @@
+{
+  "schema_version": "experiment1.public-capabilities.v1",
+  "files": {
+    "PUBLIC_CONTRACT.md": "fdcc1c07247c9cde1114d3f2bcf9609e3bfdf94d53b0a8fea658b3272f41b95c",
+    "language_policy.json": "04d59a1e82326135e39d058b0c6cb574891e17521eaeeb30c531325cbb4f24ff",
+    "training_recipe.json": "bd0695efa4fe6136aa3f9fc73fae44e34c8efc64846ea1b6f698c631fc2a28ef",
+    "contracts.py": "4e7868a6fc9b839e522b51336320f47463c9dcb6d1c2a902988d1493fd786074",
+    "learning.py": "27e7feb12b809dbff40589b00c1d48961d5453c8d39e942aee016a52bc387bcd",
+    "diffusion_policy.py": "20de4713507957d84d5237ed318dedeab16f87aa3ee00d6b6123ab5ac5a61908",
+    "vendor/conditional_unet1d.py": "f78f3c77eea5ab1b59e210837cfdeab8d0a85bbf82c72efa4c39d640bfa50137",
+    "vendor/conv1d_components.py": "ea2aa10e297cf253bc1a1919ba47fe6ae32049b5eaaab292ed9cc145d8d2adc0",
+    "vendor/positional_embedding.py": "2266c75ecc9c9ac8ca126839d39a7bafbdd7af8800d6de903f66815e64cc366c"
+  },
+  "prohibited": [
+    "B1 source",
+    "historical designs/results",
+    "hidden test",
+    "other task×N sessions"
+  ],
+  "allowed_imports": [
+    "torch",
+    "numpy",
+    "math",
+    "experiment1.contracts",
+    "local candidate modules"
+  ]
+}

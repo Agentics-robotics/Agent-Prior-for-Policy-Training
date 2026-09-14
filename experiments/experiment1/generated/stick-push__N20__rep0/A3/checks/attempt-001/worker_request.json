@@ -1,0 +1,468 @@
+{
+  "environment": {
+    "CUDA_CACHE_DISABLE": "1",
+    "CUDA_DEVICE_ORDER": "PCI_BUS_ID",
+    "CUDA_VISIBLE_DEVICES": "",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "MKL_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PATH": "/usr/bin:/bin",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONUNBUFFERED": "1",
+    "TMPDIR": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/experiments/experiment1/generated/stick-push__N20__rep0/A3/checks/attempt-001",
+    "XDG_CACHE_HOME": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/experiments/experiment1/generated/stick-push__N20__rep0/A3/checks/attempt-001/cache"
+  },
+  "gpu": null,
+  "handler": "validate",
+  "output_dir": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/experiments/experiment1/generated/stick-push__N20__rep0/A3/checks/attempt-001",
+  "payload": {
+    "baseline_system": null,
+    "candidate_dir": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/experiments/experiment1/generated/stick-push__N20__rep0/A3/work",
+    "candidate_hashes": {
+      "candidate.py": "f9b37f0d637d5544632c81ef925534e3d7969df52155e42c49c491a5a8ac79dd",
+      "config.json": "4d1817c34c946cd3fa2671555bd2eeeb1b030b68b77ac19ec52473f09a1f0977",
+      "design.json": "09323e9731be1bb51c9b4fb9fc5adbacf807e6ac69a09f5f35963f493c9b2fe2"
+    },
+    "common_spec": {
+      "action_schema": {
+        "control_dt_seconds": 0.0125,
+        "control_frequency_hz": 80.0,
+        "dim": 4,
+        "end_effector_rotation": "fixed native orientation",
+        "fields": [
+          "world_dx",
+          "world_dy",
+          "world_dz",
+          "gripper"
+        ],
+        "gripper_actuator_controls": "[action[3], -action[3]]",
+        "high": [
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "low": [
+          -1.0,
+          -1.0,
+          -1.0,
+          -1.0
+        ],
+        "native_xyz_scale_m": 0.01,
+        "world_clip": "native action cube after candidate decoding"
+      },
+      "dependencies": {
+        "metaworld": "3.1.1",
+        "mujoco": "3.3.0",
+        "numpy": "2.2.6"
+      },
+      "distribution": {
+        "C_cells": [
+          "LH",
+          "HL"
+        ],
+        "E_cells": [
+          "LL",
+          "LH",
+          "HL",
+          "HH"
+        ],
+        "E_definition": "Both factor values are sampled in extrap_low/extrap_high outside training intervals; all four sign cells balanced.",
+        "balanced_training_sequence": [
+          "LL",
+          "HH",
+          "LL",
+          "HH",
+          "LL",
+          "HH",
+          "LL",
+          "HH",
+          "LL",
+          "HH",
+          "LL",
+          "HH",
+          "LL",
+          "HH",
+          "LL",
+          "HH",
+          "LL",
+          "HH",
+          "LL",
+          "HH"
+        ],
+        "factors": {
+          "a": {
+            "extrap_high": [
+              -0.037,
+              -0.03
+            ],
+            "extrap_low": [
+              -0.08,
+              -0.073
+            ],
+            "high": [
+              -0.05,
+              -0.045
+            ],
+            "low": [
+              -0.065,
+              -0.06
+            ],
+            "name": "stick_x",
+            "units": "m"
+          },
+          "b": {
+            "extrap_high": [
+              0.593,
+              0.6
+            ],
+            "extrap_low": [
+              0.55,
+              0.557
+            ],
+            "high": [
+              0.58,
+              0.587
+            ],
+            "low": [
+              0.565,
+              0.572
+            ],
+            "name": "target_y",
+            "units": "m"
+          }
+        },
+        "nuisance_ranges": {
+          "pushed_object_start": "native fixed",
+          "randvec_goal_z": 0.132,
+          "randvec_stick_z": 0.0005,
+          "stick_y": [
+            0.585,
+            0.615
+          ],
+          "target_x": [
+            0.399,
+            0.401
+          ]
+        },
+        "reset_range_extension": "none; native bounds, or previously calibrated Round 2 cabinet extension",
+        "train_cells": [
+          "LL",
+          "HH"
+        ],
+        "version": "round3-layout-v1"
+      },
+      "hash": "6163a2de8620d71f397c3eacd0842e0ce693d048868a3539bd28310933fcf58a",
+      "historical_exposure": "Shared task semantics and raw support originate in historical development; fresh evaluation seeds do not constitute unseen tasks.",
+      "implementation_hashes": {
+        "distribution": "4183b28ad75aa87e7af7de061824370f11926df938d9e2abfe1fda9264b3399e",
+        "geometry": "34eedfa53c72e99102762c43e047641a097a9c3650601dcce9ef0b524427dbb4",
+        "native_control": "4282580b80befc557f67d25acffffec737ad0dae2c440601be76fc09139f351d",
+        "native_task": "043621a7e9c6cc31630e8d76d76bb7675f5c1f85527d26fbf34a985f54ac4bd2",
+        "native_xml": "54dc71d0ce1b18807f6d6e2b2114051f17631e0348e6f92daaf8d881ae1a0d6e",
+        "snapshot": "900966bf1dc18c98a98bc4f628c1e5fb5ad89643202fa1c49ef32ddacf205b09",
+        "task_reset": "cf9884aab05f89b61c6272a0f2ca52c8a639cb3c125301c0d38a46faad483cc4"
+      },
+      "max_steps": 500,
+      "native_id": "stick-push-v3",
+      "observation_schema": {
+        "all_methods_receive_identical_raw_fields": true,
+        "dp_history": "two whole observations, initial repeated",
+        "extra_physical_pose_channels": "ring body center for assembly; pegHead site for peg-insert-side; same declared channel for B0 and all candidates",
+        "fields": [
+          {
+            "name": "current.hand_xyz",
+            "slice": [
+              0,
+              3
+            ],
+            "units": "m"
+          },
+          {
+            "name": "current.gripper",
+            "slice": [
+              3,
+              4
+            ],
+            "units": "unitless aperture / .1 m"
+          },
+          {
+            "name": "current.object_xyz",
+            "slice": [
+              4,
+              7
+            ],
+            "units": "m"
+          },
+          {
+            "name": "current.object_quaternion",
+            "slice": [
+              7,
+              11
+            ],
+            "units": "unit quaternion"
+          },
+          {
+            "name": "current.object2_xyz",
+            "slice": [
+              11,
+              14
+            ],
+            "units": "m or absent zeros"
+          },
+          {
+            "name": "current.object2_quaternion",
+            "slice": [
+              14,
+              18
+            ],
+            "units": "unit quaternion or absent zeros"
+          },
+          {
+            "name": "previous.hand_xyz",
+            "slice": [
+              18,
+              21
+            ],
+            "units": "m"
+          },
+          {
+            "name": "previous.gripper",
+            "slice": [
+              21,
+              22
+            ],
+            "units": "unitless aperture / .1 m"
+          },
+          {
+            "name": "previous.object_xyz",
+            "slice": [
+              22,
+              25
+            ],
+            "units": "m"
+          },
+          {
+            "name": "previous.object_quaternion",
+            "slice": [
+              25,
+              29
+            ],
+            "units": "unit quaternion"
+          },
+          {
+            "name": "previous.object2_xyz",
+            "slice": [
+              29,
+              32
+            ],
+            "units": "m or absent zeros"
+          },
+          {
+            "name": "previous.object2_quaternion",
+            "slice": [
+              32,
+              36
+            ],
+            "units": "unit quaternion or absent zeros"
+          },
+          {
+            "name": "goal_xyz",
+            "slice": [
+              36,
+              39
+            ],
+            "units": "m"
+          }
+        ],
+        "frame": "world; native current18+previous18+goal3",
+        "native_history_reset": "current repeated as previous",
+        "object2_present": true,
+        "object_point": "stick body COM; object2 insertion site+[0,.09,0]",
+        "policy": "state-input",
+        "quaternion_order": "xyzw",
+        "raw_dim": 39,
+        "runtime_oracles_provided": false,
+        "version": "round3-common-observation-v1"
+      },
+      "schema_version": "experiment1.common_spec.v1",
+      "success_hold_steps": 1,
+      "success_semantics": "unchanged public task evaluator; runner stops on success, termination or truncation; any invalid joint invalidates the episode",
+      "task": "stick-push"
+    },
+    "config": {
+      "edge_scale_m": [
+        0.2,
+        0.05,
+        0.1
+      ],
+      "future_motion_scale_m": 0.1,
+      "height_scale_m": 0.1,
+      "motion_loss_weight": 0.2,
+      "motion_scale_m": 0.01,
+      "near_scale_m": 0.05,
+      "object2_observation_offset_m": [
+        0.0,
+        0.09,
+        0.0
+      ],
+      "quaternion_vector_gain": 10.0,
+      "rotation_gain": 5.0,
+      "world_scale_m": 0.4
+    },
+    "entrypoint": "candidate:build_design",
+    "result_path": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/experiments/experiment1/generated/stick-push__N20__rep0/A3/checks/attempt-001/contract_checks.json",
+    "support_manifest": {
+      "n_demos": 20,
+      "phase": "support",
+      "records": [
+        {
+          "episode_id": "r3_stick-push_train_IID_000_31500000",
+          "path": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/archive/legacy_rounds/round3/repository/round3/data/stick-push/train20/r3_stick-push_train_IID_000_31500000.npz",
+          "sha256": "375fd8d1ba4077090db8a4a347d35decfe3656ef8efc994a30cd5c1c7b4b7f3b"
+        },
+        {
+          "episode_id": "r3_stick-push_train_IID_001_31500100",
+          "path": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/archive/legacy_rounds/round3/repository/round3/data/stick-push/train20/r3_stick-push_train_IID_001_31500100.npz",
+          "sha256": "e139d84717d273bc08b7e33ee8e53ccb0aa3b8f15f64d4f058e8d6f67d27b62c"
+        },
+        {
+          "episode_id": "r3_stick-push_train_IID_002_31500200",
+          "path": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/archive/legacy_rounds/round3/repository/round3/data/stick-push/train20/r3_stick-push_train_IID_002_31500200.npz",
+          "sha256": "0006da26ef10248e9656319e6211749ef4419f1223883d6d3cf5fd5274472e87"
+        },
+        {
+          "episode_id": "r3_stick-push_train_IID_003_31500300",
+          "path": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/archive/legacy_rounds/round3/repository/round3/data/stick-push/train20/r3_stick-push_train_IID_003_31500300.npz",
+          "sha256": "75323f08594b4a9e07ffdf6eeab8eed94aac0f227eb42b5b49a89a56b936854c"
+        },
+        {
+          "episode_id": "r3_stick-push_train_IID_004_31500400",
+          "path": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/archive/legacy_rounds/round3/repository/round3/data/stick-push/train20/r3_stick-push_train_IID_004_31500400.npz",
+          "sha256": "9041f4173cbbb2944f8ebef66edf95d390a447ecb05e711959705a789a3258f2"
+        },
+        {
+          "episode_id": "r3_stick-push_train_IID_005_31500500",
+          "path": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/archive/legacy_rounds/round3/repository/round3/data/stick-push/train20/r3_stick-push_train_IID_005_31500500.npz",
+          "sha256": "a186bd6b52678b8d350ed701e64dc6543674eb911ed95226f3dbc65a9f421afe"
+        },
+        {
+          "episode_id": "r3_stick-push_train_IID_006_31500600",
+          "path": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/archive/legacy_rounds/round3/repository/round3/data/stick-push/train20/r3_stick-push_train_IID_006_31500600.npz",
+          "sha256": "48369868bb1365e66fe093f9ab41c23e38c13060989bf6851ebcd3d4185458f1"
+        },
+        {
+          "episode_id": "r3_stick-push_train_IID_007_31500700",
+          "path": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/archive/legacy_rounds/round3/repository/round3/data/stick-push/train20/r3_stick-push_train_IID_007_31500700.npz",
+          "sha256": "ce29941d8d02578b44fa2497c3057df3475d284319feb4fff3cbee93bde181e6"
+        },
+        {
+          "episode_id": "r3_stick-push_train_IID_008_31500800",
+          "path": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/archive/legacy_rounds/round3/repository/round3/data/stick-push/train20/r3_stick-push_train_IID_008_31500800.npz",
+          "sha256": "57d7cf4266f52dec86ae5e60a45e12992966b1e4c7fbd9ae2981dfb7037f8df4"
+        },
+        {
+          "episode_id": "r3_stick-push_train_IID_009_31500900",
+          "path": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/archive/legacy_rounds/round3/repository/round3/data/stick-push/train20/r3_stick-push_train_IID_009_31500900.npz",
+          "sha256": "9ac225bf24ea38b69e361e2e7e575b3c1c30b5afc1742410926d0f4fd4c4a268"
+        },
+        {
+          "episode_id": "r3_stick-push_train_IID_010_31501000",
+          "path": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/archive/legacy_rounds/round3/repository/round3/data/stick-push/train20/r3_stick-push_train_IID_010_31501000.npz",
+          "sha256": "f4e1f806bfbd72ecbbacd0706d72d7aa280cf2e11029de5ea75be1d5a784a323"
+        },
+        {
+          "episode_id": "r3_stick-push_train_IID_011_31501100",
+          "path": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/archive/legacy_rounds/round3/repository/round3/data/stick-push/train20/r3_stick-push_train_IID_011_31501100.npz",
+          "sha256": "727e290018be701a4c8ad15207260dc36bfeb9a8240fbba228dc6bcd7afcf416"
+        },
+        {
+          "episode_id": "r3_stick-push_train_IID_012_31501200",
+          "path": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/archive/legacy_rounds/round3/repository/round3/data/stick-push/train20/r3_stick-push_train_IID_012_31501200.npz",
+          "sha256": "dd5c9e33c2189fb3cf3f8a6dbfcdfca4b5a6fb299c5d7d05b2dba45006fd3990"
+        },
+        {
+          "episode_id": "r3_stick-push_train_IID_013_31501300",
+          "path": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/archive/legacy_rounds/round3/repository/round3/data/stick-push/train20/r3_stick-push_train_IID_013_31501300.npz",
+          "sha256": "d1acac293557f30f4ecc401c925fa984decd355044db78172228e30acff356a8"
+        },
+        {
+          "episode_id": "r3_stick-push_train_IID_014_31501400",
+          "path": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/archive/legacy_rounds/round3/repository/round3/data/stick-push/train20/r3_stick-push_train_IID_014_31501400.npz",
+          "sha256": "f85f66f81630c3d784b7fbde15786449760108281bbb067415a12d924d5d2f9d"
+        },
+        {
+          "episode_id": "r3_stick-push_train_IID_015_31501500",
+          "path": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/archive/legacy_rounds/round3/repository/round3/data/stick-push/train20/r3_stick-push_train_IID_015_31501500.npz",
+          "sha256": "8be8add69d575be6d2dd58ccd68d0d5489f98b3dc6beab4da17857b050fe985e"
+        },
+        {
+          "episode_id": "r3_stick-push_train_IID_016_31501600",
+          "path": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/archive/legacy_rounds/round3/repository/round3/data/stick-push/train20/r3_stick-push_train_IID_016_31501600.npz",
+          "sha256": "7afcea7bb1a6665d39668876794f7fe3bcf7a54ae2ebd91335cfba138e8283ea"
+        },
+        {
+          "episode_id": "r3_stick-push_train_IID_017_31501700",
+          "path": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/archive/legacy_rounds/round3/repository/round3/data/stick-push/train20/r3_stick-push_train_IID_017_31501700.npz",
+          "sha256": "99379931341eb8f10899dd81932f9f37caecad2a487ab2cc1a3d1555a4668fad"
+        },
+        {
+          "episode_id": "r3_stick-push_train_IID_018_31501800",
+          "path": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/archive/legacy_rounds/round3/repository/round3/data/stick-push/train20/r3_stick-push_train_IID_018_31501800.npz",
+          "sha256": "58af12a901881a3f73b5b5496f3d002d4ccb02a882d9abbd95608aa0f26c348d"
+        },
+        {
+          "episode_id": "r3_stick-push_train_IID_019_31501900",
+          "path": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/archive/legacy_rounds/round3/repository/round3/data/stick-push/train20/r3_stick-push_train_IID_019_31501900.npz",
+          "sha256": "a80aa9737c0cede623f06b7b8702389e996a1225ca43193597cb4add89cb15e2"
+        }
+      ]
+    }
+  },
+  "read_only_paths": [
+    "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/experiments/experiment1/generated/stick-push__N20__rep0/A3/work",
+    "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/archive/legacy_rounds/round3/repository/round3/data/stick-push/train20/r3_stick-push_train_IID_000_31500000.npz",
+    "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/archive/legacy_rounds/round3/repository/round3/data/stick-push/train20/r3_stick-push_train_IID_001_31500100.npz",
+    "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/archive/legacy_rounds/round3/repository/round3/data/stick-push/train20/r3_stick-push_train_IID_002_31500200.npz",
+    "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/archive/legacy_rounds/round3/repository/round3/data/stick-push/train20/r3_stick-push_train_IID_003_31500300.npz",
+    "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/archive/legacy_rounds/round3/repository/round3/data/stick-push/train20/r3_stick-push_train_IID_004_31500400.npz",
+    "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/archive/legacy_rounds/round3/repository/round3/data/stick-push/train20/r3_stick-push_train_IID_005_31500500.npz",
+    "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/archive/legacy_rounds/round3/repository/round3/data/stick-push/train20/r3_stick-push_train_IID_006_31500600.npz",
+    "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/archive/legacy_rounds/round3/repository/round3/data/stick-push/train20/r3_stick-push_train_IID_007_31500700.npz",
+    "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/archive/legacy_rounds/round3/repository/round3/data/stick-push/train20/r3_stick-push_train_IID_008_31500800.npz",
+    "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/archive/legacy_rounds/round3/repository/round3/data/stick-push/train20/r3_stick-push_train_IID_009_31500900.npz",
+    "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/archive/legacy_rounds/round3/repository/round3/data/stick-push/train20/r3_stick-push_train_IID_010_31501000.npz",
+    "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/archive/legacy_rounds/round3/repository/round3/data/stick-push/train20/r3_stick-push_train_IID_011_31501100.npz",
+    "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/archive/legacy_rounds/round3/repository/round3/data/stick-push/train20/r3_stick-push_train_IID_012_31501200.npz",
+    "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/archive/legacy_rounds/round3/repository/round3/data/stick-push/train20/r3_stick-push_train_IID_013_31501300.npz",
+    "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/archive/legacy_rounds/round3/repository/round3/data/stick-push/train20/r3_stick-push_train_IID_014_31501400.npz",
+    "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/archive/legacy_rounds/round3/repository/round3/data/stick-push/train20/r3_stick-push_train_IID_015_31501500.npz",
+    "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/archive/legacy_rounds/round3/repository/round3/data/stick-push/train20/r3_stick-push_train_IID_016_31501600.npz",
+    "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/archive/legacy_rounds/round3/repository/round3/data/stick-push/train20/r3_stick-push_train_IID_017_31501700.npz",
+    "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/archive/legacy_rounds/round3/repository/round3/data/stick-push/train20/r3_stick-push_train_IID_018_31501800.npz",
+    "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/archive/legacy_rounds/round3/repository/round3/data/stick-push/train20/r3_stick-push_train_IID_019_31501900.npz",
+    "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/src/experiment1/__init__.py",
+    "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/src/experiment1/contracts.py",
+    "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/src/experiment1/learning.py",
+    "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/src/experiment1/plugin_validation.py",
+    "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/src/experiment1/isolation.py",
+    "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/src/relative_dp/__init__.py",
+    "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/src/relative_dp/model.py",
+    "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/src/relative_dp/train.py",
+    "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/src/relative_dp/dataset.py",
+    "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/src/relative_dp/config.py",
+    "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/src/relative_dp/representation.py",
+    "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/src/relative_dp/utils.py",
+    "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/src/relative_dp/vendor/__init__.py",
+    "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/src/relative_dp/vendor/diffusion_policy/__init__.py",
+    "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/src/relative_dp/vendor/diffusion_policy/conditional_unet1d.py",
+    "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/src/relative_dp/vendor/diffusion_policy/conv1d_components.py",
+    "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/src/relative_dp/vendor/diffusion_policy/positional_embedding.py"
+  ],
+  "timeout_seconds": 120,
+  "write_dirs": [
+    "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/experiments/experiment1/generated/stick-push__N20__rep0/A3/checks/attempt-001"
+  ]
+}
