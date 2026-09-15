@@ -1,3 +1,25 @@
+# 项目进度
+
+## 当前摘要
+
+核对日期：2026-09-15。以下根据现有报告、完成记录、配置与调用关系整理；本次文档整理未重新运行实验或校验全部产物。这是唯一的人工进度摘要，详细数字以链接的报告和原始记录为准。
+
+| 工作线 | 当前状态 | 证据入口 | 待完成事项 |
+| --- | --- | --- | --- |
+| Exp1 正式实验 | 已完成；现有报告记录训练、dev、hidden test 均完成全部正式槽位 | [完整报告](experiments/experiment1/EXPERIMENT1_REPORT.md)、[模型结果](experiments/experiment1/reports/model_results.csv)、[完成记录](experiments/experiment1/reports/completion_manifest.json) | 保全冻结代码、数据、选择与结果；没有待补跑槽位 |
+| Exp2 主实验 | ID 开发门槛未通过；正式 M0/M1/M2 矩阵未完成 | [执行报告](experiments/exp2/REPORT.md)、[DP 诊断](experiments/exp2/DP_DIAGNOSIS.md)、[运行汇总](runs/exp2/rebuild_20260915/report/summary.json) | 继续定位闭环失败并通过既定门槛，再完成正式技能库设计、冻结、配对训练与评估 |
+| Exp2 示范拆分 | 六类子技能数据与假设说明已生成；尚未接入主训练 | [拆分报告](runs/exp2/demonstration_processing_20260915/REPORT.md)、[完成记录](runs/exp2/demonstration_processing_20260915/completed.json)、[数据 manifest](data/exp2/processed/drawer_exchange_20260915/manifest.json)、[验证记录](runs/exp2/demonstration_processing_20260915/validation.json) | 决定六类子技能与三类任务角色的映射、训练输入和实验协议；接入训练是单独的后续工作 |
+
+示范拆分完成表示数据与文档已生成，未证明策略有效。主训练仍读取原始完整示范及候选指定的片段边界。两条 Exp2 流程的依赖与命令见 [Exp2 入口](experiments/exp2/README.md)。
+
+当前资源范围：Exp1 物理 GPU 0–7，依据 [2026-09-13 资源修订](experiments/experiment1/execution_allocation.json)；Exp2 主实验按其[配置](experiments/exp2/configs/main.json)限制为物理 4–7。调度前检查实际占用。下方旧卡号、PID、运行中描述及恢复命令只代表历史时点。
+
+## 历史记录：Exp1 执行过程
+
+以下保留原进度原文，最后一条记录止于 2026-09-13 隐藏测试进行中。历史正文中的“当前”“最新”指各自记录时点；当前结论以本页顶部摘要及其证据为准。
+
+---
+
 # Experiment 1 进度入口
 
 当前执行规范是 EXPERIMENT1_CODEX_EXECUTION_HANDOFF.md 和用户追加的 RuntimePriorAPI 工具 agent 要求。

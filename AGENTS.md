@@ -1,8 +1,28 @@
 # Project execution
 
-The active specification is EXPERIMENT1_CODEX_EXECUTION_HANDOFF.md with the latest user amendment: RuntimePriorAPI is a tool-using design agent. Work on dev.
+## Repository-wide rules and navigation
 
-All Python and project commands use /home/users/oscar/.pixi/bin/pixi run ... and the locked default MetaWorld environment. No Conda/venv or bare pip. Pixi changes are authorized with provenance retained.
+Work on dev. Start with [README.md](README.md) for directory ownership and [PROGRESS.md](PROGRESS.md) for the single human-maintained progress summary. Update that summary with a review date and evidence links when a workstream changes; detailed measurements remain in its reports and receipts.
+
+All Python and project commands use /home/users/oscar/.pixi/bin/pixi run ... with the appropriate locked environment. Exp1, relative_dp and experiment_interfaces use the root default MetaWorld environment. Exp2 uses /home/users/oscar/.pixi/bin/pixi run --manifest-path environments/exp2/pixi.toml --locked. No Conda/venv or bare pip. Pixi changes are authorized with provenance retained.
+
+Follow [agent.md](agent.md) and the applicable experiment rules below. Preserve frozen source, data, submissions, checkpoints, environment locks and provenance. Developer-authored framework/baseline code and Runtime API-authored designs must remain distinguishable. No ad hoc candidate design, silent fallback or automatic transport retries. Completion claims require validated artifacts; retain interrupted-call uncertainty and declared cost accounting.
+
+Use the latest applicable experiment allocation, inspect actual GPU occupancy before scheduling, and preserve unrelated processes. Exp1's 0–7 authorization does not expand Exp2's current 4–7 configuration. Historical receipts retain their actual device indices. Exp1-specific candidate order, check budgets and selection rules in this file and agent.md apply to Exp1.
+
+## Exp2 scope
+
+For all work concerning src/appl, experiments/exp2, environments/exp2, data/exp2 or runs/exp2, apply [experiments/exp2/AGENTS.md](experiments/exp2/AGENTS.md). Its project specification is [APPL_EXP2_REBUILD_AND_EXECUTE.md](APPL_EXP2_REBUILD_AND_EXECUTE.md), with current behavior documented in the [Exp2 entry](experiments/exp2/README.md) and [protocol](experiments/exp2/PROTOCOL.md). The rebuild specification is not an instruction to restart completed diagnostic attempts.
+
+The main experiment and independent demonstration-processing module are separate workflows. The latter publishes API-defined segment datasets and heuristic hypotheses; developer code validates/materializes the plan without substituting its own segmentation or heuristics. It currently has no training or simulator stage. Its completed output is not consumed by the main trainer. Integrating it into training requires a separately specified experiment change; documentation/layout work alone does not authorize that change.
+
+Preserve Exp1 while working on Exp2. Active Exp2 imports use src/appl; never import archived Exp2 runners. Physical GPU processes follow the Exp2 4–7 configuration and appl.gpu isolation. Data/assets/calibration inputs live in data/exp2; runtime storage mappings and archive dependencies are described in [MIGRATION.md](experiments/exp2/MIGRATION.md).
+
+## Exp1 scope — completed experiment and preservation
+
+Exp1's current report records completion of all 144 formal slots. Preserve its source, original protocol lock, data and results. The following rules retain the executed protocol for review and any explicitly requested reproduction/resumption; they are not pending work to restart merely because an agent opens this repository.
+
+The specification is [EXPERIMENT1_CODEX_EXECUTION_HANDOFF.md](EXPERIMENT1_CODEX_EXECUTION_HANDOFF.md) with the latest user amendment: RuntimePriorAPI is a tool-using design agent. This scope includes src/experiment1, its dependencies src/relative_dp and src/experiment_interfaces, experiments/experiment1, the root locked environment and the original support data referenced from archive/legacy_rounds.
 
 Experiment 1 is exactly six tasks × N=2/5/10/20 × B0/B1/A1/A2/A3/A4, one replicate, seed 0: 144 formal training slots. Latest user allocation (2026-09-13): all physical GPUs 0–7 are authorized. Preserve unrelated processes and inspect actual occupancy before scheduling. This supersedes the earlier 4–7 restriction; historical receipts keep their original GPU indices. The resource-only transition is recorded under experiments/experiment1/allocation_20260913 and execution_allocation.json; retain the original protocol.lock.json and scientific artifacts.
 

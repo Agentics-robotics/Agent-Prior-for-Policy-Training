@@ -1,0 +1,45 @@
+{
+  "schema": "appl.exp2.v2",
+  "run_id": "rebuild_20260915",
+  "output": "runs/exp2/rebuild_20260915",
+  "data": {
+    "directory": "data/exp2/demonstrations_v2",
+    "train_ids": ["demo1000", "demo1001", "demo1002", "demo1003", "demo1004", "demo1005", "demo1006", "demo1007", "demo1008", "demo1009", "demo1010", "demo1011"],
+    "validation_ids": ["demo1012", "demo1013", "demo1014"]
+  },
+  "devices": {"allowed": [4,5,6,7], "train": 4, "render": 5, "candidate": 6, "secondary": 7},
+  "training": {
+    "updates": 30000, "batch_size": 128, "learning_rate": 0.0001,
+    "weight_decay": 0.000001, "ema_decay": 0.999, "observation_steps": 2,
+    "horizon": 16, "execution_steps": 8, "denoising_train_steps": 100,
+    "denoising_inference_steps": 16, "down_dims": [128,256,512],
+    "timestep_embed_dim": 128, "kernel_size": 5, "groups": 8,
+    "observation_std_floor": 0.001, "action_scale_floor": 0.01,
+    "clip_sample": false, "checkpoint_every": 5000,
+    "selection": "last EMA at predeclared budget", "seeds": [0,1,2]
+  },
+  "diagnostics": {
+    "replay_ids": ["demo1000", "demo1007", "demo1014"],
+    "id_development_seeds": [6000,6001,6002,6003,6004,6005,6006,6007,6008,6009,6010,6011,6012,6013,6014,6015,6016,6017,6018,6019],
+    "id_gate_successes": 16, "id_gate_trials": 20,
+    "d1_updates": 5000, "d2_updates": 30000, "d3_updates": 30000
+  },
+  "evaluation": {
+    "max_steps": 1500, "control_hz": 20,
+    "drawer_open_m": 0.26, "linear_speed_m_s": 0.02,
+    "angular_speed_rad_s": 0.2, "sustained_steps": 10,
+    "finger_open_m": 0.035, "tcp_clearance_m": 0.08,
+    "red_pad_half_m": 0.06, "object_half_m": 0.02,
+    "confirmation_actions": "none; policy must release/settle during its recorded actions",
+    "conditions": ["ID", "OOD-position", "OOD-state"],
+    "paired_resets_per_condition": 10
+  },
+  "api": {
+    "base_url": "http://127.0.0.1:8080", "model": "gpt-5.5",
+    "reasoning_effort": "high", "timeout_seconds": 600,
+    "max_requests": 120, "max_tools": 180, "max_checks": 18,
+    "max_training_attempts": 12, "verification_per_round": 12,
+    "credential_path": "/home/users/oscar/.config/experiment1/runtime-api-credential.json"
+  },
+  "formal_gate": "D0/D1/D2/D3 checked; D4 >=16/20; trusted MuJoCo calibration; actual API neural candidate and frozen protocol"
+}
