@@ -1,5 +1,38 @@
 # Exp2 migration
 
+## M1 version naming and checkpoint retirement (2026-09-16)
+
+`runs/exp2/M1_v1` is the previous `prior_policies_20260916` run. The original
+directory was atomically renamed on the storage disk; the historical path is a
+relative symlink to M1_v1. Immutable source, submissions, API journals, training
+metrics, traces and reports remain. The user explicitly authorized deleting its
+31 training/interface checkpoints (11,075,462,809 bytes). Exact pre-deletion hashes
+and the receipt are in `runs/exp2/M1_v2/setup`. Old reports describe historical
+training verification; they do not imply the deleted checkpoints are available.
+
+M1_v2 uses `runs/exp2/M1_v2`, `data/exp2/processed/M1_v2` and
+`experiments/exp2/configs/m1_v2.json`. M1_v1's published segmentation remains for
+provenance. Exp1, M0, raw data and environment locks are unchanged by this migration.
+
+## M0 baseline cleanup (2026-09-16)
+
+The active M0 path is `src/appl/dp_baseline` → `configs/m0.json` →
+[`M0_REPORT.md`](M0_REPORT.md): 12 original demonstrations, DDPM100, execute 8.
+Historical M0 diagnostic reports, research configurations and a complete pre-cleanup
+Exp2 source snapshot are in [`archive/Exp2_M0DP`](../../archive/Exp2_M0DP/README.md).
+Diagnostic runtime files were moved within the storage disk to
+`/home/storage/oscar/appl_exp2/legacy/Exp2_M0DP`; old paths forward to the same bytes.
+The retained model and its development/confirmation episodes remain at their
+original physical paths, with a convenient `runs/exp2/m0` entry.
+
+D0's shared controller contract and non-M0 workflows remain in place. The original
+rebuild specification's `DP_DIAGNOSIS.md` deliverable is preserved in the archive;
+`exp2 report` no longer recreates that retired document in the active directory.
+Frozen configs, checkpoints, receipts and reports were not rewritten. Per-file
+relocation hashes and validation are linked from [M0_LAYOUT.json](M0_LAYOUT.json).
+
+## Original rebuild migration (2026-09-15)
+
 The active source is `src/appl/`; experiment configuration and reports are here.
 The independent locked environment is `environments/exp2/`. The original Exp1
 entry remains `pixi run --locked experiment1-{status,run,report}` in the root
@@ -96,3 +129,27 @@ Exp1 的 [support manifests](../experiment1/manifests/)仍引用 `archive/legacy
 | Exp1 的数据库、checkpoint、API 原始记录等 | 大量产物被单独忽略；完整性依据实验 manifest、hash 与存储记录 |
 
 Git 提交记录、工作树文件与外部存储共同构成当前工作现场。仅克隆仓库不会获得所有本机数据、环境和运行产物；恢复时需要对应存储及其校验记录。符号链接提供路径入口，不复制或备份目标内容。
+# 2026-09-16: current policy workflow and authorized deletions
+
+The active workflow is [PRIOR_POLICIES.md](PRIOR_POLICIES.md). Only
+`data/exp2/processed/drawer_exchange_20260916_overlap` remains as a processed
+demonstration dataset. The two superseded processed versions and old M1/M2-only
+candidate/training/deployment directories were removed at the user's explicit
+request. Exact paths, file hashes and small historical receipts are retained in
+[the deletion inventory](../../runs/exp2/prior_policies_20260916/cleanup/deletion_inventory.json)
+and [completion receipt](../../runs/exp2/prior_policies_20260916/cleanup/deletion_receipt.json).
+The old library/formal/deployment modules were removed after dependency checks;
+shared numerical, M0, environment, reconstruction and viewer code was retained.
+Earlier path descriptions in this file are historical where the deletion inventory
+supersedes them. Original data, current segmentation provenance, Exp1 and M0 are
+preserved.
+# M1 initial tests and scale-up (2026-09-16)
+
+`runs/exp2/M1_initial_test` is the canonical retained initial study; its shared
+policy library and `inference_5000` artifacts are unchanged. Earlier 1500/3000
+results and original configurations moved to `archive/Exp2_M1_initial_tests`.
+Historical paths remain compatibility links so frozen receipts and model requests
+remain valid. [M1_INITIAL_LAYOUT.json](M1_INITIAL_LAYOUT.json) records 4,615
+byte-preserved runtime files and exact moves. New tasks and their data live under
+`runs/exp2/M1_scaleup` and `data/exp2/scaleup`, respectively; no new results are
+written into the frozen initial study or M0.

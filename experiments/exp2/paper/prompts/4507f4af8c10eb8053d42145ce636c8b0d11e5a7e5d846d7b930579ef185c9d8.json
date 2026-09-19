@@ -1,0 +1,179 @@
+{
+  "include": [
+    "reasoning.encrypted_content"
+  ],
+  "instructions": "You are the scientific design and implementation agent for ONE full-task\nprior-based Diffusion Policy. Study the task and its twelve complete training\ndemonstrations, choose a useful inductive bias, and implement it in a learned\ndiffusion model. You own the scientific choice, policy source and PRIOR.md.\nThe repository supplies the data, numerical interface, DDPM sampler, training\nrecipe and evaluator. It does not prescribe a prior or a menu of candidate designs.\n\nThis is offline design followed by autonomous learned-policy deployment. Your\nsingle model must handle the entire task from reset through completion, including\nall demonstrated transitions. No language-model agent, policy selector or external\nskill schedule will run during deployment. You may learn internal structure,\nrepresentations, conditioning or differentiable auxiliary objectives appropriate\nto the observed task. The final output must remain one learned action diffusion\npolicy and one checkpoint. There is no requirement to invent multiple heuristics.\n\nRead INTERFACE.md, read_assignment, and actual demonstration observations before\nimplementing. Use read_overview to inspect a whole trajectory and read_steps to\ninspect transitions at source indices of your choice. Ground your chosen bias\nin training evidence and explain its expected benefit, actual gradient paths and\nlimitations. You see only training data; no performance results or test layouts\nare available. Check failures are interface diagnostics, not rollout feedback.\n\nWrite policy.py, pipeline.json and PRIOR.md, then call check_policy. Repair your\nown unsubmitted code if necessary within the fixed interface-check budget. After\na successful check, submit the exact checked package hash with submit_policy.\nAll source and documentation must be English. Submitted source is immutable.\n",
+  "max_output_tokens": 16384,
+  "model": "gpt-6-astra",
+  "parallel_tool_calls": false,
+  "reasoning": {
+    "effort": "xhigh"
+  },
+  "store": false,
+  "tool_choice": "auto",
+  "tools": [
+    {
+      "description": "Read the full-task assignment, complete demonstration ranges, shared normalization and fixed training contract.",
+      "name": "read_assignment",
+      "parameters": {
+        "additionalProperties": false,
+        "properties": {},
+        "required": [],
+        "type": "object"
+      },
+      "strict": true,
+      "type": "function"
+    },
+    {
+      "description": "Read the English implementation interface or numerical source.",
+      "name": "read_public",
+      "parameters": {
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "enum": [
+              "INTERFACE.md",
+              "public.py",
+              "backbone.py"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "type": "object"
+      },
+      "strict": true,
+      "type": "function"
+    },
+    {
+      "description": "Read original training states/actions at selected indices in a complete trajectory.",
+      "name": "read_steps",
+      "parameters": {
+        "additionalProperties": false,
+        "properties": {
+          "indices": {
+            "items": {
+              "minimum": 0,
+              "type": "integer"
+            },
+            "maxItems": 24,
+            "minItems": 1,
+            "type": "array"
+          },
+          "trajectory_id": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "trajectory_id",
+          "indices"
+        ],
+        "type": "object"
+      },
+      "strict": true,
+      "type": "function"
+    },
+    {
+      "description": "Write your unsubmitted policy source, metadata or prior document; records exact bytes.",
+      "name": "write_file",
+      "parameters": {
+        "additionalProperties": false,
+        "properties": {
+          "content": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "path": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "path",
+          "content"
+        ],
+        "type": "object"
+      },
+      "strict": true,
+      "type": "function"
+    },
+    {
+      "description": "Read your current policy file.",
+      "name": "read_file",
+      "parameters": {
+        "additionalProperties": false,
+        "properties": {
+          "path": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "path"
+        ],
+        "type": "object"
+      },
+      "strict": true,
+      "type": "function"
+    },
+    {
+      "description": "Validate package and run 2 real GPU training updates plus DDPM/EMA reload checks.",
+      "name": "check_policy",
+      "parameters": {
+        "additionalProperties": false,
+        "properties": {},
+        "required": [],
+        "type": "object"
+      },
+      "strict": true,
+      "type": "function"
+    },
+    {
+      "description": "Freeze the exact successfully checked package hash.",
+      "name": "submit_policy",
+      "parameters": {
+        "additionalProperties": false,
+        "properties": {
+          "expected_hash": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "expected_hash"
+        ],
+        "type": "object"
+      },
+      "strict": true,
+      "type": "function"
+    },
+    {
+      "description": "Read evenly spaced original observations/actions from one complete training trajectory; choose denser source indices with read_steps.",
+      "name": "read_overview",
+      "parameters": {
+        "additionalProperties": false,
+        "properties": {
+          "frames": {
+            "maximum": 32,
+            "minimum": 4,
+            "type": "integer"
+          },
+          "trajectory_id": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "trajectory_id",
+          "frames"
+        ],
+        "type": "object"
+      },
+      "strict": true,
+      "type": "function"
+    }
+  ]
+}

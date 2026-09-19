@@ -1,0 +1,29 @@
+{
+  "policy_id": "red_buffer_to_goal_finish__h02",
+  "skill_id": "red_buffer_to_goal_finish",
+  "heuristic_index": 2,
+  "prior_summary": "A learned epsilon-predicting diffusion policy for the full expanded final red placement slice, augmented with explicit trainable red_at_goal and blue_at_goal predicate heads and weak post-success open/settle action losses.",
+  "applicable_conditions": "Use when blue is already at or very near blue_goal and the robot is in the demonstrated transition that acquires or is carrying the red block from the buffer toward red_goal. The policy observes qpos/qvel, tcp_pose, red_pose, blue_pose, red_goal and blue_goal in world coordinates; no drawer or image input is used.",
+  "termination_guidance": "The inference system may terminate or hand to a task monitor when current causal observations and the learned predicate cues indicate both red_at_goal and blue_at_goal. The completion contract itself is geometric containment of both blocks at their goals; release and retreat are only demonstrated context, not required task predicates.",
+  "limitations": "The demonstrations are successful and provide mainly on-trajectory negatives before final placement, not adversarial boundary failures. The model does not implement IK, hard geometric constraints, image perception, or a scripted controller; all actions remain learned joint/gripper diffusion outputs.",
+  "config": {
+    "condition_dim": 256,
+    "auxiliary_losses": {
+      "current_predicate_bce_weight": 0.1,
+      "future_action_conditioned_predicate_bce_weight": 0.05,
+      "success_open_gripper_weight": 0.02,
+      "settled_success_joint_hold_weight": 0.01
+    },
+    "predicate_label_contract": {
+      "target_half_width_m": 0.06,
+      "object_half_width_m": 0.02,
+      "z_tolerance_m": 0.011,
+      "full_rotated_xy_containment": true
+    },
+    "representation": {
+      "history_steps": 2,
+      "causal_metric_features": true,
+      "normalization": "shared M1_v2 complete-demonstration normalizer supplied by assignment"
+    }
+  }
+}

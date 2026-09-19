@@ -1,0 +1,78 @@
+{
+  "all_supplements_completed": true,
+  "completed": 599,
+  "failed_processes": [
+    {
+      "condition": "ID",
+      "gpu": 3,
+      "method": "APPL",
+      "path": "batch/jobs/buffer_swap/APPL/ID/20116/process_result.json",
+      "returncode": 1,
+      "seed": 20116,
+      "task": "buffer_swap"
+    }
+  ],
+  "failure_records": [
+    {
+      "automatic_retry": false,
+      "completed_evaluation": false,
+      "elapsed_seconds": 307.71826040401356,
+      "error": "Provider HTTP failure retained; no automatic retry",
+      "path": "buffer_swap/evaluation/APPL/ID/20116/failure.json",
+      "physical_steps": 650
+    }
+  ],
+  "main_completed": true,
+  "main_queue": {
+    "active": [],
+    "finished": 600,
+    "pending": {
+      "APPL": 0,
+      "naive_DP": 0
+    },
+    "state": "evaluating",
+    "time": 1789593984.7978911
+  },
+  "methods": {
+    "APPL": 299,
+    "naive_DP": 300
+  },
+  "planned": 600,
+  "postprocessing": {
+    "active": 0,
+    "audited_completed": 599,
+    "completion": "all_planned_attempts_finished_with_unknown_outcomes",
+    "diagnosed_completed": 599,
+    "exported_videos": 600,
+    "finalization_failure": null,
+    "finalized": true,
+    "main_completed": true,
+    "pending": {
+      "APPL": 0,
+      "naive_DP": 0
+    },
+    "report_completed": 599,
+    "reviewed_utc": "2026-09-16T21:35:21.637034+00:00"
+  },
+  "reviewed_utc": "2026-09-16T21:35:21.637034+00:00",
+  "supplement_queues": {
+    "supplement_DP": {
+      "active": [],
+      "finished": 20,
+      "pending": 0,
+      "time": 1789575493.1938298
+    },
+    "supplement_DP_14_11": {
+      "active": [],
+      "finished": 40,
+      "pending": 0,
+      "time": 1789593248.68857
+    },
+    "supplement_DP_27_15": {
+      "active": [],
+      "finished": 130,
+      "pending": 0,
+      "time": 1789589732.1760817
+    }
+  }
+}

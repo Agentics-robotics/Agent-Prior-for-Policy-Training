@@ -1,0 +1,103 @@
+{
+  "policy_id": "transfer_blue__h02",
+  "skill_id": "transfer_blue",
+  "heuristic_index": 2,
+  "prior_summary": "Role-conditioned noninterference in a learned action diffusion model: a TCP/red/blue interaction graph estimates passive versus active roles, and an action-conditioned ensemble provides masked preservation and conservative point-to-cube clearance training losses. The fixed sampler has no candidate-ranking hook; ranking is not implemented and preservation is amortized into the epsilon predictor during training.",
+  "applicable_conditions": "Two observed 0.04 m cubes on the known world table, original Panda joint/gripper dynamics and fixed world goals. The complete expanded transfer_blue slice includes closed-grip red descent into the buffer, release and retreat, blue acquisition/transport/placement, and retreat followed by red retrieval/lift. Requires two causal 47-dimensional states including joint positions/velocities, aperture, TCP and both object poses. Active roles depend on observed association and motion, not color alone. Spatial support is limited to demonstrated sites and routes.",
+  "termination_guidance": "Use observation-based continuation, not elapsed steps. During incoming overlap continue red descent/release before treating red as passive. After blue is supported near its goal, this policy can continue opening, retreating and retrieving red. A useful exit has blue at its goal and red rising with close TCP association and total finger width near 0.0365 m; hand off the measured state to finish_red without reopening or returning toward blue. Blue reaching a geometric goal alone is not the same as a completed manipulation transition. These are handoff cues, not extra task-success predicates.",
+  "limitations": "Successful demonstrations do not calibrate collisions or recovery. Weak role labels infer association/support without contact sensing. Forward models may ignore unsafe actions or predict passive stationarity regardless of action; ensemble agreement is not evidence of safety. The clearance term models a TCP point against an oriented cube, not fingers, links or held-object geometry. There is no inference candidate generation/ranking, likelihood estimator, online guidance, IK, FK, hard constraint, symmetry guarantee, or image encoder. Two observations cannot resolve all dwell/contact ambiguities. Roles and auxiliary losses require ablation and performance is unmeasured.",
+  "config": {
+    "architecture": {
+      "type": "role_conditioned_graph_conditional_unet_epsilon",
+      "nodes": ["tcp", "red", "blue"],
+      "node_width": 64,
+      "graph_rounds": 2,
+      "edge_features": "directed shared-scale relative displacement and norm, both role probabilities, both node embeddings",
+      "message_types": ["passive_sender", "nonpassive_sender"],
+      "role_classes": ["supported_passive", "closed_tcp_associated", "transition_or_uncertain"],
+      "condition_dimension": 256,
+      "global_history_width": 128,
+      "dynamics_ensemble_size": 3,
+      "dynamics_hidden_widths": [256, 256],
+      "dynamics_outputs": "16 future red/blue poses and TCP positions, residual to current observed state",
+      "candidate_ranking": false,
+      "deployment": "single fixed DDPM sample, learned causal role-conditioned epsilon network"
+    },
+    "normalization": {
+      "fit": "provided shared complete-original-demo normalizer, unchanged",
+      "normalizer_sha256": "fc51579717dc36a089ba2d22956960d65828acd5bcb57e93d6362641102d37d1",
+      "relational_position_scale": "shared normalizer std[18:21], the complete-demo TCP half ranges",
+      "quaternions": "wxyz unit components; sign-invariant auxiliary orientation error",
+      "action_representation": "shared affinely normalized seven absolute joint targets and gripper command",
+      "time_features": "backward displacement per observation; no unprovided sample period or elapsed phase"
+    },
+    "labels_and_geometry": {
+      "object_half_size_m": 0.02,
+      "supported_center_z_m": 0.02,
+      "support_height_tolerance_m": 0.008,
+      "stable_backward_displacement_m": 0.002,
+      "closed_total_finger_width_below_m": 0.06,
+      "association_distance_m": 0.045,
+      "passive_interval_displacement_tolerance_m": 0.003,
+      "passive_interval_quaternion_error_tolerance": 0.001,
+      "clearance_margin_m": 0.01,
+      "clearance_current_tcp_distance_gate_m": 0.05,
+      "future_targets_training_only": true,
+      "bootstrap_probability": 0.8
+    },
+    "loss_weights": {
+      "diffusion": 1.0,
+      "current_role_cross_entropy": 0.05,
+      "expert_action_forward_model_fit": 0.5,
+      "denoised_action_passive_preservation": 0.03,
+      "denoised_action_clearance": 0.005,
+      "denoised_action_future_consistency": 0.05
+    },
+    "auxiliary_gradient_control": {
+      "guidance_world_model_weights": "detached; expert fit trains them separately",
+      "guidance_world_condition": "detached; gradients to denoised actions remain",
+      "high_noise_gate": "alpha_bar times indicator(alpha_bar > 0.25)",
+      "trust": "detached exp(-expert ensemble position variance / 0.02^2 - expert mean position error / 0.02^2)",
+      "denoised_action_clip": [-1.0, 1.0],
+      "padding": "action and future masks; no future outside assigned slice"
+    },
+    "training": {
+      "seed": 0,
+      "updates": 20000,
+      "batch_size": 128,
+      "horizon": 16,
+      "observation_steps": 2,
+      "execution_steps": 8,
+      "sampler": "ddpm",
+      "denoising_train_steps": 100,
+      "denoising_inference_steps": 100,
+      "clip_sample": true,
+      "learning_rate": 0.0001,
+      "weight_decay": 0.000001,
+      "ema_decay": 0.999,
+      "warmup_steps": 500,
+      "lr_schedule": "cosine",
+      "max_grad_norm": 1,
+      "down_dims": [128, 256, 512],
+      "timestep_embed_dim": 128,
+      "kernel_size": 5,
+      "groups": 8,
+      "selection": "last EMA at predeclared budget"
+    },
+    "expanded_slice_coverage": {
+      "demo10100": [240, 850],
+      "demo10101": [242, 847],
+      "demo10102": [240, 843],
+      "demo10103": [244, 848],
+      "demo10104": [238, 839],
+      "demo10105": [240, 838],
+      "demo10106": [241, 842],
+      "demo10107": [246, 855],
+      "demo10108": [239, 841],
+      "demo10109": [243, 846],
+      "demo10110": [245, 849],
+      "demo10111": [242, 844]
+    },
+    "coverage_semantics": "start inclusive, stop exclusive for actions; terminal observation at stop; metadata is evidence of coverage, never an inference schedule"
+  }
+}

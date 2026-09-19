@@ -1,0 +1,21 @@
+{
+  "checkpoint_sha256": "cfc5159592886349eb9e9a078c44757d7f53b3ce6befdd5d4f52398fd6c2f0c4",
+  "demonstrations": [
+    "demo1005",
+    "demo1011"
+  ],
+  "device": {
+    "logical_gpu": 0,
+    "minor": 1,
+    "physical_gpu": 2,
+    "uuid": "GPU-7a6705f2-1132-637d-000e-c94d37e2f0a2"
+  },
+  "diagnostic_source_sha256": "e6e7817ede15da1d0e83e203eb69a768931afd7e30d62e7e95920885c65dc685",
+  "intervention": "Replay the exact expert prefix until 32 actions before the blue-pick closing transition (third closing for drawer, second for other tasks); DP receives the actual preceding and current states. No expert actions after takeover.",
+  "max_policy_steps": 1500,
+  "note": "Oracle-prefix diagnosis; not a deployable method or held-out performance estimate. Sampling is freshly seeded at takeover. The follow-up records contact replay differences rather than requiring exact equality; initial reset must still match. Previous guard-stopped prefixes are retained and did not execute policy actions.",
+  "policy_training_changes": false,
+  "require_bitwise_prefix": false,
+  "runtime_API_requests": 0,
+  "task": "drawer_exchange"
+}

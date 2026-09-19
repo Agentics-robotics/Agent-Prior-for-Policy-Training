@@ -1,0 +1,33 @@
+{
+  "policy_id": "acquire_block__h03",
+  "skill_id": "acquire_block",
+  "heuristic_index": 3,
+  "prior_summary": "Clearance via-point acquisition implemented as a learned state-conditioned DDPM: a trainable waypoint head predicts hover, grasp, lift-clearance and goal-approach TCP subgoals from causal world-frame object, goal, gripper and TCP state, and the diffusion U-Net conditions on those predictions while denoising joint/gripper action sequences.",
+  "applicable_conditions": "Use when the active tray_pack block can be acquired by a top-down gripper approach, lifted above the table/tray rim, and carried toward its marked tray region. The model expects the provided 47-D state with reliable TCP pose, red/blue object poses and fixed red/blue goals; no images, drawer motion or external IK are used.",
+  "termination_guidance": "Transfer to place_block once the carried active block is above or entering the target funnel with closed fingers and clearance, for example red or blue near its goal in x-y with object/TCP height roughly 0.13-0.31 m. Continue this policy if the active block is still on the table, just grasped, or still travelling along the high clearance corridor.",
+  "limitations": "The waypoint labels are executable approximations of the heuristic rather than annotated demonstrations. They use fixed tray/table clearance constants and a learned residual, not collision checking, robot forward kinematics or IK. Recovery from missed grasps, changed tray geometry or side-grasp configurations is not claimed.",
+  "config": {
+    "model_type": "waypoint_conditioned_action_diffusion",
+    "condition_dimension": 256,
+    "feature_dimension": 166,
+    "waypoint_head_outputs": ["tcp_next_waypoint_residual_xyz", "phase_logits_hover_grasp_lift_goal", "progress"],
+    "waypoint_residual_limit_m": 0.06,
+    "clearance_waypoints_m": {
+      "hover_z": 0.27,
+      "lift_z": 0.285,
+      "goal_approach_z": 0.30,
+      "minimum_clearance_loss_z": 0.115,
+      "tcp_object_x_offset": -0.009
+    },
+    "auxiliary_loss_weights": {
+      "waypoint_mse": 0.05,
+      "phase_cross_entropy": 0.01,
+      "progress_mse": 0.02,
+      "clearance_barrier": 0.02,
+      "gripper_clean_action_consistency": 0.01
+    },
+    "uses_shared_normalizer": true,
+    "uses_external_ik": false,
+    "uses_scripted_controller": false
+  }
+}

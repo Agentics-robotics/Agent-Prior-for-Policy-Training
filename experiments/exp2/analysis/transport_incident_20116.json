@@ -1,0 +1,32 @@
+{
+  "automatic_retry_performed": false,
+  "condition": "ID",
+  "failed_request_cost": {
+    "elapsed_seconds": 1.4230508269974962,
+    "http_status": 502,
+    "provenance": "responses_api",
+    "seq": 11,
+    "usage": null
+  },
+  "failure": {
+    "automatic_retry": false,
+    "completed_evaluation": false,
+    "elapsed_seconds": 307.71826040401356,
+    "error": "Provider HTTP failure retained; no automatic retry",
+    "physical_steps": 650
+  },
+  "journal_sha256": "8544d69345b92c1bdbdf753fc1fb17412743971b50c9c953d250befac177002f",
+  "method": "APPL",
+  "provider_response": {
+    "error": {
+      "message": "Upstream service temporarily unavailable",
+      "type": "upstream_error"
+    }
+  },
+  "request_sequence": 11,
+  "request_status": "http_failed",
+  "result_known": false,
+  "reviewed_utc": "2026-09-16T18:41:31.718394+00:00",
+  "seed": 20116,
+  "task": "buffer_swap"
+}

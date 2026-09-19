@@ -1,0 +1,15 @@
+{
+  "extraction": "All function_call objects in the final recorded response, unchanged.",
+  "function_calls": [
+    {
+      "arguments": "{\"notebook\":\"At step531 invocation6 h03 lifted blue to z=0.27159 with TCP z=0.27228, blue=(-0.43233,0.22731), TCP x=-0.44318,y=0.22729, width=0.03663, TCP-blue distance=0.01087. Actual blue/TCP rise together from table supports loaded attachment. Red remains stationary at goal (-0.17411,-0.24153,0.0200). Sequence h03 red acquisition -> h01 red transport/release -> h03 bridge/blue acquisition has progressed normally. Switch h01, which supports finishing lift and offset-aware transport/lower for both colors. Stop at exact supplied success, no terminal opening/retreat required.\",\"policy_id\":\"deliver_disengage__h01\",\"reason\":\"Blue has observed lift to the documented carrying region, loaded finger width and a close TCP transform, while red is already released on its pad. This is supported incoming delivery overlap; h01 can complete lift and carry blue to its own pad using live measured grasp offset. Monitor loss of attachment, premature lowering and red disturbance.\",\"steps\":150,\"stop_when\":[{\"conditions\":[{\"comparison\":\"eq\",\"metric\":\"success\",\"reference\":\"absolute\",\"value\":1}],\"label\":\"Both supplied goal predicates satisfied\"},{\"conditions\":[{\"comparison\":\"gt\",\"metric\":\"tcp_blue_distance\",\"reference\":\"absolute\",\"value\":0.06},{\"comparison\":\"lt\",\"metric\":\"finger_width\",\"reference\":\"absolute\",\"value\":0.05}],\"label\":\"Closed gripper loses blue relation\"},{\"conditions\":[{\"comparison\":\"lt\",\"metric\":\"blue_z\",\"reference\":\"absolute\",\"value\":0.065},{\"comparison\":\"lt\",\"metric\":\"blue_x\",\"reference\":\"absolute\",\"value\":-0.25}],\"label\":\"Blue lowered before reaching pad\"},{\"conditions\":[{\"comparison\":\"eq\",\"metric\":\"red_at_goal\",\"reference\":\"absolute\",\"value\":0}],\"label\":\"Previously placed red disturbed\"}]}",
+      "call_id": "call_MZMOtB78vIQPq5YQKxtNJ9a5",
+      "id": "fc_093f9fada8fef8c8016aaba6f70c4c87d0b4888895378a7712",
+      "name": "invoke_policy",
+      "status": "completed",
+      "type": "function_call"
+    }
+  ],
+  "source": "runs/exp2/M1_astra_xhigh/two_block_sort/evaluation/APPL/ID/20000/api/api/0009.response.json",
+  "source_sha256": "a7f1409d008104fa90cf270e2ce7cef34dbd46b2ef760f48e8c1de4f9506aa97"
+}

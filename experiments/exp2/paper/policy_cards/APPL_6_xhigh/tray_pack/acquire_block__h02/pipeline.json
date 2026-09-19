@@ -1,0 +1,38 @@
+{
+  "policy_id": "acquire_block__h02",
+  "skill_id": "acquire_block",
+  "heuristic_index": 2,
+  "prior_summary": "Contact-progress-conditioned hidden semi-Markov latent diffusion: a two-frame recurrent belief encoder, six soft manipulation modes, uncertain run-age initialization and learned progress-dependent stay/exit hazards condition an absolute-joint/gripper DDPM. Training-only action, aperture, height and masked future co-motion cues supervise phase, pending-role, duration likelihood and readiness. Finite transition preferences favor demonstrated dependencies without an irreversible automaton.",
+  "applicable_conditions": "Use over the full expanded acquisition slices: initial red approach through early red transfer, or incoming red lowering/release followed by empty retreat, blue approach, dwell, closing, lifting and early transfer. Requires accurate world-frame TCP and block poses, qpos including both fingers, qvel and goals, at nominal 20 Hz. Deployment supplies only two causal observations. Duplicate-frame resets are trained, but neither long-history disambiguation nor arbitrary requested object order is available.",
+  "termination_guidance": "A useful exit is a selected block elevated and moving with the nearby TCP under a closed command, usually attached lift or early goalward translation. Measured expanded exits are moving around 0.28-0.293 m center height, not zero-velocity holds. Earlier transfer within overlaps must communicate approach/closing or incoming-release uncertainty and causal observations to the successor. Continue through red release and retreat when blue is pending; red geometric placement alone does not imply readiness for blue grasp. These skill cues do not add requirements to task success.",
+  "limitations": "The supplied interface fixes history at two observations, execution at eight actions and exposes no role or previous-command input. This is a truncated-history semi-Markov adaptation, not the original eight-frame persistent filter or adaptive 1-4-action execution proposal. Pending role is learned from demonstrated red-then-blue state evidence. Contact labels are weak inferences, future states are labels only, the 7+ age bin has a censored tail, and all belief is reinitialized per forward. No contact sensor, recovery demonstrations, hard safety guarantee, IK, image encoder, geometric equivariance or external action controller is implemented. Optional belief introspection is not part of the fixed forward return.",
+  "config": {
+    "representation": "Shared full-demonstration normalized raw state, normalized causal finite differences and shared-scale relative geometry; original normalized absolute joint/gripper action diffusion",
+    "normalizer_sha256": "874039c9e091b43eacce196d1283f9944073808a6049a059b2e07938248a7ce8",
+    "slice_policy": "All 24 assigned expanded segments without trimming or per-phase resampling",
+    "observation_steps": 2,
+    "nominal_observation_hz": 20,
+    "horizon": 16,
+    "execution_steps": 8,
+    "updates": 20000,
+    "seed": 0,
+    "conditioning_dimension": 256,
+    "recurrent_hidden_dimension": 128,
+    "phase_modes": ["incoming_lower_release", "empty_retreat_approach", "aligned_dwell", "closing", "attached_vertical_lift", "early_translation"],
+    "latent_run_age_bins": 8,
+    "last_age_bin": "7 or more local 20 Hz transitions, right-censored; not a maximum duration",
+    "forecast_transitions": 14,
+    "reset_augmentation_probability": 0.15,
+    "finite_skip_logit_penalty": 2.5,
+    "loss_weights": {
+      "epsilon_mse": 1.0,
+      "soft_phase_cross_entropy": 0.15,
+      "marginal_duration_transition_nll": 0.08,
+      "pending_role_cross_entropy": 0.03,
+      "readiness_binary_cross_entropy": 0.03,
+      "expected_skipped_dependency_mass": 0.01
+    },
+    "diffusion_backbone": "Public Conditional U-Net, widths 128/256/512, kernel 5, groups 8, diffusion time embedding 128",
+    "fixed_recipe": "DDPM epsilon prediction with 100 train/inference steps and clipped clean samples; batch 128; AdamW learning rate 0.0001 and weight decay 0.000001; cosine schedule, 500 warmup, gradient norm 1; EMA 0.999; last EMA at 20000 updates"
+  }
+}

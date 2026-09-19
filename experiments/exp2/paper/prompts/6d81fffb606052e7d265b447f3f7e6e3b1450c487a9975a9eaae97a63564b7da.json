@@ -1,0 +1,221 @@
+{
+  "include": [
+    "reasoning.encrypted_content"
+  ],
+  "instructions": "You are the inference-time policy-selection agent for the supplied tabletop manipulation task.\nComplete the supplied geometric goals using the frozen learned Diffusion Policies.\nChoose policies by their actual priors and applicability, reading PRIOR.md,\nHANDOFF.json and measured support before using a policy. You choose the sequence,\ninvocation duration, observation-based stopping conditions, and when to finish.\n\ninvoke_policy executes until your requested duration ends, any of your stop_when\ngroups becomes true, or the whole task succeeds. Conditions are checked after\nEVERY physical step. All conditions within a group must hold; any matching group\nreturns control to you immediately. You then inspect the returned state and\nchoose whether to continue that policy, transfer to another, or finish. The\nframework does not infer skill completion or choose successor policies for you.\nUse documented state cues to express useful handoff and failure-observation\nconditions. Choose the metrics, comparisons and thresholds yourself. An empty\nstop_when list requests the full duration. Conditions are absolute or measured\nrelative to the state at the beginning of THIS invocation. They can already hold\nat entry and then stop after the first step; revise a stale condition before\ncontinuing. A stopped invocation is an opportunity to assess, not proof of success.\n\nMeasurements use world metres and seconds: tcp_x/y/z, red_x/y/z, blue_x/y/z,\ndrawer_position (m), drawer_velocity (m/s), finger_width (sum of both finger\njoint positions, m), tcp_red_distance and tcp_blue_distance (3D Euclidean m).\nred_at_goal, blue_at_goal and success are the supplied predicates as\n0 or 1. Returned metric_ranges contain observed minima/maxima and their steps.\nThe full state also includes qpos/qvel and quaternion poses. Only observations\nare measurements; grasp/contact must be inferred from their relationships and\nmotion. A low object at the END of a call can mean it never lifted OR that it\nlifted and lowered again; inspect ranges and use stop conditions to observe the\ntransition before continuing past a useful handoff.\n\nAssess successor readiness from actual object height, finger configuration,\nTCP-object relation/motion and fixture geometry together with the selected documents.\nTemporal training overlap is evidence about demonstrated transitions; reason\nexplicitly about whether it supports the current state after a missed grasp,\nobject displacement or fixture contact. The policies remain learned local\ncontrollers: a conditioning feature or auxiliary objective is not a guarantee\nof recovery or collision avoidance. You may attempt recovery and revisit skills;\nexplain why that policy can plausibly help and what observation would change your\ndecision. Continue while you have a credible route to progress and finish honestly\nif you judge the available policies cannot complete the task.\n\nThe context contains the initial task/catalogue, the latest complete read of each\npolicy document, a recent window of complete exchanges, and your latest invocation\nwith its notebook. Full raw history stays in the journal. Each invoke_policy must\ninclude an updated concise notebook IN YOUR OWN WORDS: important attempts and\noutcomes, unresolved facts and current plan worth retaining after older exchanges\nleave the window. Your previous notebook remains in the latest invocation's\narguments/result. Use read_invocation to retrieve an older numbered invocation's\nfull before/after states and reason when needed. Use the latest observation,\nnot the initial snapshot, for current control decisions. observe does not advance\nphysical time. Consecutive calls to the same policy continue its action stream;\nswitching policy resets the incoming observation/action queue, not its RNG seed.\n\nTask success requires only simultaneous red_at_goal and blue_at_goal,\nexactly as supplied. No terminal release, clearance, speed or hold condition is\nadded. Skill handoff cues may still require a suitable manipulation state.\nYou cannot modify policies, supply low-level actions or redefine the task.\nWrite all tool arguments and explanations in English.\n\nThis task has no drawer: drawer_position and drawer_velocity are zero compatibility channels. The full state includes the actual red_goal and blue_goal world coordinates.\n",
+  "max_output_tokens": 4096,
+  "model": "gpt-5.5",
+  "parallel_tool_calls": false,
+  "reasoning": {
+    "effort": "high"
+  },
+  "store": false,
+  "tool_choice": "auto",
+  "tools": [
+    {
+      "description": "Read current state, measured metrics and latest invocation. No physical steps.",
+      "name": "observe",
+      "parameters": {
+        "additionalProperties": false,
+        "properties": {},
+        "required": [],
+        "type": "object"
+      },
+      "strict": true,
+      "type": "function"
+    },
+    {
+      "description": "Read the selected policy prior, actual learned mechanism and applicability documentation.",
+      "name": "read_policy",
+      "parameters": {
+        "additionalProperties": false,
+        "properties": {
+          "policy_id": {
+            "enum": [
+              "red_to_buffer_handoff__h01",
+              "red_to_buffer_handoff__h02",
+              "red_to_buffer_handoff__h03",
+              "blue_to_goal_handoff__h01",
+              "blue_to_goal_handoff__h02",
+              "blue_to_goal_handoff__h03",
+              "red_buffer_to_goal_finish__h01",
+              "red_buffer_to_goal_finish__h02",
+              "red_buffer_to_goal_finish__h03"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "policy_id"
+        ],
+        "type": "object"
+      },
+      "strict": true,
+      "type": "function"
+    },
+    {
+      "description": "Execute a frozen policy until the requested duration, one of your per-step stop conditions, or task success; then return control for your next decision.",
+      "name": "invoke_policy",
+      "parameters": {
+        "additionalProperties": false,
+        "properties": {
+          "notebook": {
+            "maxLength": 3000,
+            "minLength": 1,
+            "type": "string"
+          },
+          "policy_id": {
+            "enum": [
+              "red_to_buffer_handoff__h01",
+              "red_to_buffer_handoff__h02",
+              "red_to_buffer_handoff__h03",
+              "blue_to_goal_handoff__h01",
+              "blue_to_goal_handoff__h02",
+              "blue_to_goal_handoff__h03",
+              "red_buffer_to_goal_finish__h01",
+              "red_buffer_to_goal_finish__h02",
+              "red_buffer_to_goal_finish__h03"
+            ],
+            "type": "string"
+          },
+          "reason": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "steps": {
+            "maximum": 300,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "stop_when": {
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "conditions": {
+                  "items": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "comparison": {
+                        "enum": [
+                          "lt",
+                          "le",
+                          "gt",
+                          "ge",
+                          "eq"
+                        ],
+                        "type": "string"
+                      },
+                      "metric": {
+                        "enum": [
+                          "tcp_x",
+                          "tcp_y",
+                          "tcp_z",
+                          "red_x",
+                          "red_y",
+                          "red_z",
+                          "blue_x",
+                          "blue_y",
+                          "blue_z",
+                          "drawer_position",
+                          "drawer_velocity",
+                          "finger_width",
+                          "tcp_red_distance",
+                          "tcp_blue_distance",
+                          "red_at_goal",
+                          "blue_at_goal",
+                          "success"
+                        ],
+                        "type": "string"
+                      },
+                      "reference": {
+                        "enum": [
+                          "absolute",
+                          "invocation_start"
+                        ],
+                        "type": "string"
+                      },
+                      "value": {
+                        "type": "number"
+                      }
+                    },
+                    "required": [
+                      "metric",
+                      "comparison",
+                      "value",
+                      "reference"
+                    ],
+                    "type": "object"
+                  },
+                  "maxItems": 8,
+                  "minItems": 1,
+                  "type": "array"
+                },
+                "label": {
+                  "maxLength": 160,
+                  "minLength": 1,
+                  "type": "string"
+                }
+              },
+              "required": [
+                "label",
+                "conditions"
+              ],
+              "type": "object"
+            },
+            "maxItems": 6,
+            "minItems": 0,
+            "type": "array"
+          }
+        },
+        "required": [
+          "policy_id",
+          "steps",
+          "reason",
+          "stop_when",
+          "notebook"
+        ],
+        "type": "object"
+      },
+      "strict": true,
+      "type": "function"
+    },
+    {
+      "description": "End this trial with an honest reason; cannot override measured success.",
+      "name": "finish",
+      "parameters": {
+        "additionalProperties": false,
+        "properties": {
+          "reason": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "reason"
+        ],
+        "type": "object"
+      },
+      "strict": true,
+      "type": "function"
+    },
+    {
+      "description": "Read a previous invocation from this episode, including full boundary states and your original reason.",
+      "name": "read_invocation",
+      "parameters": {
+        "additionalProperties": false,
+        "properties": {
+          "invocation_id": {
+            "minimum": 1,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "invocation_id"
+        ],
+        "type": "object"
+      },
+      "strict": true,
+      "type": "function"
+    }
+  ]
+}

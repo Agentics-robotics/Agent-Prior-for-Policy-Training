@@ -1,0 +1,41 @@
+{
+  "action": "One explicitly authorized continuation of the same unsubmitted candidate, beginning by repeating the exact failed request once; subsequent normal calls use the remaining original budget. Stop on another transport failure.",
+  "consumed_calls": 20,
+  "failed_request_sha256": "dc722c95757130f2d12a1e2488236d33c26eb6f0d359473de2a6109ffd982cbf",
+  "failure": {
+    "http_status": 502,
+    "message": "Upstream request failed",
+    "reported_usage": null,
+    "request_sequence": 21
+  },
+  "followthrough": "On explicit authorization, complete the same candidate, train it once, check all five models, freeze and evaluate the predeclared 300 trials. Preserve the stopped original supervisor and record the continuation separately.",
+  "invariants": {
+    "formal_updates": 60000,
+    "model": "gpt-6-astra",
+    "one_candidate": true,
+    "other_four_candidates_not_repeated": true,
+    "prompt_unchanged": true,
+    "reasoning_effort": "xhigh",
+    "test_feedback": false,
+    "training_data_unchanged": true
+  },
+  "method": "SinglePrior_6_xhigh",
+  "new_API_calls_for_this_proposal": 0,
+  "original_calls": 21,
+  "original_history_sha256": "3c5db6c50230cb49e01aa11be7b860a359f46cd967007e2ecddaed2ad423a760",
+  "original_interface_checks": 0,
+  "original_journal_sha256": "0fe98d8954c75bc565da12470c237f0cec463af1e560d496c05f94e738b6ba23",
+  "original_tool_calls": 20,
+  "preservation": "Retain the complete original attempt including failed request/response, source, history and cost uncertainty. The continued attempt inherits the exact consumed history and API-authored working files; no developer edits to policy or prior.",
+  "remaining_limits": {
+    "API_calls": 15,
+    "interface_checks": 5,
+    "tool_calls": 80
+  },
+  "status": "awaiting_explicit_recovery_authorization",
+  "task": "tray_pack",
+  "unsubmitted_source": {
+    "pipeline.json": "41ee10fbd352a8f8e63898a1806f48c210f1610cfafb13b8e34a2b86e78c5727",
+    "policy.py": "090886b2fd12550fddde9490bb6f6fa33758bb4143359b04ad8b8d154dee52d1"
+  }
+}

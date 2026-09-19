@@ -1,0 +1,23 @@
+{
+  "policy_id": "place_block__h02",
+  "skill_id": "place_block",
+  "heuristic_index": 2,
+  "prior_summary": "Support-gated release and retreat implemented as a learned epsilon-predicting diffusion policy. A causal state encoder predicts a five-phase posterior (carry_to_funnel, descend, supported_settle, open_release, retreat), support probability, and active-object future height, and the denoising U-Net is conditioned on these trainable predictions. Auxiliary losses train the phase/support/height heads and a differentiable gripper gate on the predicted clean action so that opening is learned after support rather than scripted.",
+  "applicable_conditions": "Use when one block is already grasped or is entering the tray goal funnel and the task state resembles the demonstrations: tray open, target z near 0.036 m, active object close to the TCP or already at the placement site, and finger width indicating a grasp for carry/descent or an open gripper during retreat. The policy is intended to cover red placement including open-gripper retreat toward blue acquisition and blue placement through final retreat.",
+  "termination_guidance": "A useful handoff state has the active block near its marked tray target at z approximately 0.036 m, the gripper opening or open, and the TCP retreating upward or away without lifting the placed block. For red, acquire_blue can take over during the open retreat from roughly the 330-420 overlap when red is stable and the fingers are open. For blue, terminate when both red and blue satisfy the tray goals; no extra task-level release or velocity predicate is required by the completion contract.",
+  "limitations": "The model has no force sensing, no external inverse kinematics, no images, and no hard geometric controller. Support/contact is inferred from state history and learned labels. The gripper prior is a soft auxiliary loss and may still release incorrectly under object tilt, unusual tray height, disturbed grasps, or states far outside the expanded training slices.",
+  "config": {
+    "architecture": "causal two-observation state encoder plus Conditional U-Net DDPM backbone",
+    "condition_dim": 256,
+    "latent_phases": ["carry_to_funnel", "descend", "supported_settle", "open_release", "retreat"],
+    "engineered_features": "shared-normalized raw history plus world-frame goal-relative, TCP-object, finger-width, object-motion, and active-block cues using fixed metric scales",
+    "auxiliary_losses": {
+      "phase_cross_entropy_weight": 0.10,
+      "support_bce_weight": 0.05,
+      "future_height_mse_weight": 0.05,
+      "clean_action_gripper_gate_weight": 0.05
+    },
+    "active_block_rule_for_training_labels": "blue is active when elevated, close to its goal after red is placed, or grasped closed after red is placed; otherwise red is active",
+    "normalization": "uses the shared M1_v2 full-demonstration normalizer supplied in spec; no per-skill refit"
+  }
+}

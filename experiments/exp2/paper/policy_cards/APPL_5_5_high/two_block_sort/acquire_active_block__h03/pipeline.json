@@ -1,0 +1,24 @@
+{
+  "policy_id": "acquire_active_block__h03",
+  "skill_id": "acquire_active_block",
+  "heuristic_index": 3,
+  "prior_summary": "Attachment-confirmation prior implemented as a learned action diffusion policy: the denoiser is conditioned on causal TCP/object/finger relative-motion features, a learned active-block selector, and learned attachment probabilities; auxiliary losses supervise attachment from future demonstration evidence and train an action-conditioned future relative-offset predictor.",
+  "applicable_conditions": "Use when the gripper is approaching or over the active block, the fingers are open or closing, object poses and finger qpos/qvel are available in the state vector, and the task follows the demonstrated contact mechanics for grasping 4 cm blocks with the Panda parallel gripper.",
+  "termination_guidance": "Continue this policy through approach, closure, and lift until the active object is close to the TCP, fingers are near the demonstrated closed width, recent TCP/object motion suggests stable coupling, and the object has reached an early carry state. Then delivery can take over while monitoring the same attachment cues.",
+  "limitations": "Training demonstrations contain successful grasps and no deliberately failed grasps, so negative attachment supervision comes mostly from pre-contact and open-finger portions. The model has no analytic IK, no force sensing, no image input, and no hard grasp constraint; attachment is a learned state prediction from the available observations.",
+  "config": {
+    "condition_dim": 256,
+    "encoder_hidden_dim": 256,
+    "prior_loss_weight": 0.20,
+    "active_ce_weight": 0.35,
+    "attachment_bce_weight": 1.0,
+    "future_relative_weight": 0.20,
+    "relative_feature_scales": {
+      "position_m": 0.5,
+      "relative_position_m": 0.35,
+      "small_motion_m": 0.05,
+      "finger_width_m": 0.08
+    },
+    "attachment_label_description": "Soft labels are computed from future training observations only during training: closed fingers, active object near TCP, stable future TCP-object relative offset, and present or imminent lift above table height. Deployment uses only the model's causal prediction from the last two observations."
+  }
+}

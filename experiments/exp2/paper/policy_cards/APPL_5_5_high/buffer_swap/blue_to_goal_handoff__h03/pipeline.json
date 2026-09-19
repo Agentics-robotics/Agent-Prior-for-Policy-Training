@@ -1,0 +1,30 @@
+{
+  "policy_id": "blue_to_goal_handoff__h03",
+  "skill_id": "blue_to_goal_handoff",
+  "heuristic_index": 3,
+  "prior_summary": "A learned recurrent contact-mode diffusion policy for the full expanded blue-to-goal handoff slice. A GRU encodes the two causal state observations plus physical relative features, predicts a six-way latent mode distribution, and conditions a DDPM action denoiser with small mode-gated residual experts.",
+  "applicable_conditions": "Use when the current state is within the demonstrated middle handoff support: after the red block has been released in the buffer or during the shared approach/closing phase on the blue block, through blue carry/place/release, retreat, and the shared approach or lift of the red block. The causal cues are qpos and qvel, TCP pose, red and blue poses, goals, object heights, TCP-object xy distances, and finger aperture in world metres.",
+  "termination_guidance": "The policy is ready to hand off when blue is at its goal region on the table and the arm has either retreated open/high from the blue goal or has progressed into the red handoff phase with the TCP near the buffered red block, closing on it, or lifting it. Continuing to index-like late overlap states gives the successor a blue-at-goal state and a red block already approached or lifted.",
+  "limitations": "The mode labels are weak event labels from successful demonstrations, not contact sensors or recovery logic. The model does not implement inverse kinematics, hard constraints, image encoders, or scripted action control. It uses the shared full-demonstration normalizer supplied by the assignment and may not recover if a grasp misses and observations no longer resemble the successful mode sequence.",
+  "config": {
+    "mode_names": [
+      "entry_approach_blue",
+      "blue_grasp_lift",
+      "blue_carry",
+      "blue_place_release",
+      "retreat",
+      "red_handoff"
+    ],
+    "mode_count": 6,
+    "causal_observation_steps": 2,
+    "condition_dim": 256,
+    "recurrent_encoder": "GRU over shared-normalized observations concatenated with fixed-scale relative geometry features",
+    "diffusion_architecture": "standard ConditionalUnet1D DDPM epsilon predictor plus learned mode-gated residual denoising experts",
+    "auxiliary_losses": {
+      "current_mode_cross_entropy_weight": 0.1,
+      "future_teacher_forced_mode_cross_entropy_weight": 0.05,
+      "mode_probability_smoothness_weight": 0.005
+    },
+    "normalization": "assignment shared full-demonstration range normalizer; no per-skill refitting"
+  }
+}

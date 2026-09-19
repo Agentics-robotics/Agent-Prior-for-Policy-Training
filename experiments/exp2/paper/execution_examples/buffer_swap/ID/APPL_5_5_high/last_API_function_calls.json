@@ -1,0 +1,15 @@
+{
+  "extraction": "All function_call objects in the final recorded response, unchanged.",
+  "function_calls": [
+    {
+      "arguments": "{\"notebook\":\"Invocation 8 with final h03 successfully approached, grasped, and lifted red from buffer: red is now at (-0.1786,-0.0038,0.203), TCP-red distance 0.011, fingers closed (0.0366). Blue remains at goal. This is an on-trajectory lifted carry state for final policy, not a failure; continue the same h03 stream toward red_goal and stop only on official success or clear loss of blue.\",\"policy_id\":\"red_buffer_to_goal_finish__h03\",\"reason\":\"Red is securely lifted in the final transport phase with blue already at goal; continuing h03 is the documented behavior for carry/descent/release.\",\"steps\":260,\"stop_when\":[{\"conditions\":[{\"comparison\":\"eq\",\"metric\":\"success\",\"reference\":\"absolute\",\"value\":1}],\"label\":\"official task success\"},{\"conditions\":[{\"comparison\":\"eq\",\"metric\":\"blue_at_goal\",\"reference\":\"absolute\",\"value\":0},{\"comparison\":\"gt\",\"metric\":\"tcp_blue_distance\",\"reference\":\"absolute\",\"value\":0.12}],\"label\":\"blue displaced during final red carry\"},{\"conditions\":[{\"comparison\":\"lt\",\"metric\":\"red_z\",\"reference\":\"absolute\",\"value\":0.04},{\"comparison\":\"lt\",\"metric\":\"red_at_goal\",\"reference\":\"absolute\",\"value\":0.5},{\"comparison\":\"gt\",\"metric\":\"tcp_red_distance\",\"reference\":\"absolute\",\"value\":0.08}],\"label\":\"red dropped on table outside goal and gripper moved away\"}]}",
+      "call_id": "call_hfsWNpgpXhFRpw20DMBOuGxk",
+      "id": "fc_00a61492e3c23472016aaab639d5c087d0918b16d6e6629432",
+      "name": "invoke_policy",
+      "status": "completed",
+      "type": "function_call"
+    }
+  ],
+  "source": "runs/exp2/M1_scaleup/buffer_swap/evaluation/APPL/ID/20100/api/api/0013.response.json",
+  "source_sha256": "cd18aa91bb497ebb1a348b38e9c79732f9a99c89013ac5833916a7832017f782"
+}

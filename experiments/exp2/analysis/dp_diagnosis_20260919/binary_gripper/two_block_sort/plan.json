@@ -1,0 +1,21 @@
+{
+  "checkpoint_sha256": "eac4a4476d2f1caff0ead47337eff21a03056c5348cda8b220b9d2079b124871",
+  "demonstrations": [
+    "demo10000",
+    "demo10005",
+    "demo10011"
+  ],
+  "device": {
+    "logical_gpu": 0,
+    "minor": 0,
+    "physical_gpu": 3,
+    "uuid": "GPU-211ca63e-6f90-7281-b43a-e1facc953f2b"
+  },
+  "intervention": "Only action[7] changes: +1 if frozen model action[7]>=0, else -1. Seven arm targets, model weights, observations, DDPM100, eight-step queue and reset/diffusion seed are unchanged.",
+  "max_steps": 1500,
+  "note": "Adaptive diagnostic motivated by progressive open-finger drift observed in the original reset traces; not a new held-out score.",
+  "runtime_API_requests": 0,
+  "source_sha256": "79044b2d9b9de516cd8674441896b122f89fff86f8d0a4878befe6a4b1ee29b1",
+  "task": "two_block_sort",
+  "training_updates": 0
+}

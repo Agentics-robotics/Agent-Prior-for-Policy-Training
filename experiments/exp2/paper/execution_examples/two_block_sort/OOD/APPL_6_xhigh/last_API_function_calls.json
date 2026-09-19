@@ -1,0 +1,15 @@
+{
+  "extraction": "All function_call objects in the final recorded response, unchanged.",
+  "function_calls": [
+    {
+      "arguments": "{\"notebook\":\"Red still at_goal. h03 delivery recovery now promising: inv21 moved blue Y0.0027->0.21726 and lowered after peakZ0.2295; grasp offset stable0.02357,width0.03814. Step894 blue(-0.18125,0.21726,0.08184),TCP(-0.17750,0.21496,0.10500). Current rotation w0.99265,x0.08473,y-0.08575,z-0.01045 gives modest tilt; projected footprint appears within pad XY despite Y center at lower edge. Need descend to Z<=0.031, preserving XY. Continue same h03 stream with updated nonstale guards and automatic task success; no added release requirement. Earlier delivery stalls were at Y0.178; this is measurable improvement.\",\"policy_id\":\"deliver_disengage__h03\",\"reason\":\"The recovery has reached the actual blue-pad XY neighborhood with stable co-motion and a near-upright grasp. Descent is now appropriate: blue is at z=0.0818 and must reach the supplied height tolerance. Continue the controller that achieved this improvement, stopping if alignment regresses or the object separates before reaching the goal.\",\"steps\":16,\"stop_when\":[{\"conditions\":[{\"comparison\":\"lt\",\"metric\":\"blue_y\",\"reference\":\"absolute\",\"value\":0.208}],\"label\":\"Losing Y containment neighborhood\"},{\"conditions\":[{\"comparison\":\"lt\",\"metric\":\"blue_x\",\"reference\":\"absolute\",\"value\":-0.213}],\"label\":\"Losing negative-X margin\"},{\"conditions\":[{\"comparison\":\"gt\",\"metric\":\"blue_x\",\"reference\":\"absolute\",\"value\":-0.147}],\"label\":\"Losing positive-X margin\"},{\"conditions\":[{\"comparison\":\"ge\",\"metric\":\"tcp_blue_distance\",\"reference\":\"absolute\",\"value\":0.055},{\"comparison\":\"eq\",\"metric\":\"blue_at_goal\",\"reference\":\"absolute\",\"value\":0}],\"label\":\"Separation without blue placement\"},{\"conditions\":[{\"comparison\":\"ge\",\"metric\":\"blue_z\",\"reference\":\"absolute\",\"value\":0.14}],\"label\":\"Unexpected relift\"},{\"conditions\":[{\"comparison\":\"eq\",\"metric\":\"red_at_goal\",\"reference\":\"absolute\",\"value\":0}],\"label\":\"Red disturbed\"}]}",
+      "call_id": "call_hc8Nq2OwNHaJoIzcKr5ZMBpy",
+      "id": "fc_0566d95b028565b1016aaba8c1a0c887d0acec5ab6bdde9f68",
+      "name": "invoke_policy",
+      "status": "completed",
+      "type": "function_call"
+    }
+  ],
+  "source": "runs/exp2/M1_astra_xhigh/two_block_sort/evaluation/APPL/OOD/30000/api/api/0027.response.json",
+  "source_sha256": "a41588bd40c50e3c738c0963c790ff39d731cde796fcc4b06e829456244d2899"
+}

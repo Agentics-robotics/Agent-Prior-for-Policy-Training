@@ -1,0 +1,29 @@
+{
+  "policy_id": "place_block__h03",
+  "skill_id": "place_block",
+  "heuristic_index": 3,
+  "prior_summary": "Tray packing noninterference prior: a learned action diffusion policy conditions on both block poses, both goal boxes and analytic tray geometry, while auxiliary learned object-future heads penalize predicted inactive-object motion, active-object goal/containment error and low-path keep-out violations.",
+  "applicable_conditions": "Use during the expanded place_block slice when a block is being transported into its tray goal, released, or the arm is transitioning away while the other block must remain undisturbed. Causal cues are the two most recent world-frame states: tcp pose, red and blue poses, finger opening, and the fixed red/blue goals and tray geometry.",
+  "termination_guidance": "Terminate or hand off when the current active block is at its assigned tray goal, the inactive block remains at its table pose or prior tray goal, and the gripper/TCP state is appropriate for the next policy: open and retreating for acquire_blue or open/retreated after the final blue placement.",
+  "limitations": "The implementation has no image input, IK, collision checker, or scripted controller. It learns from positive demonstrations only; recovery from a displaced inactive block or true near-collision is extrapolative. The auxiliary losses train a learned future-pose predictor from states and denoised actions rather than enforcing hard constraints at inference.",
+  "config": {
+    "condition_dim": 256,
+    "engineered_features": "shared-normalized raw two-step state plus metric relative red/blue/tcp/goal features, target-box features, gripper features, and conservative tray signed distances",
+    "object_delta_scale_m": 0.25,
+    "tray_center_bounds_for_object_centers_m": {
+      "x_min": -0.23,
+      "x_max": -0.01,
+      "y_min": -0.15,
+      "y_max": 0.15
+    },
+    "keepout_margin_m": 0.055,
+    "auxiliary_weights": {
+      "future_object_dynamics": 0.05,
+      "role_classification": 0.02,
+      "inactive_constancy": 0.05,
+      "active_goal": 0.02,
+      "tray_containment": 0.01,
+      "inactive_keepout": 0.01
+    }
+  }
+}

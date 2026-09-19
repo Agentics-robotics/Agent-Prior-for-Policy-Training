@@ -1,0 +1,15 @@
+{
+  "extraction": "All function_call objects in the final recorded response, unchanged.",
+  "function_calls": [
+    {
+      "arguments": "{\"notebook\":\"At step 847 after invocation 5, transfer_blue h01 completed blue opening/retreat and reacquired red. Blue remains at goal (-.356127,-.195828,.020), stationary after setdown. Red rose to .180518 near (-.181954,-.000647); TCP .18409, distance .00533, finger width .036566. This fits outgoing overlap and finish_red h01 support with modest grasp offset. All attempts progressed; no failure/recovery needed. Switch to documented margin-aware finish_red h01 for red carry/setdown, watching blue preservation and red attachment; end immediately on supplied conjunction, without extra release/clearance.\",\"policy_id\":\"finish_red__h01\",\"reason\":\"Blue is supported at its goal, while red is genuinely elevated near the demonstrated buffer with held-width fingers and close TCP association. This lies in the measured red-lift overlap. h01 conditions its learned actions on exact footprint/height margins and is applicable for final carry/setdown; this is not a guarantee, so monitor actual geometry and separation.\",\"steps\":220,\"stop_when\":[{\"conditions\":[{\"comparison\":\"eq\",\"metric\":\"success\",\"reference\":\"absolute\",\"value\":1}],\"label\":\"Both supplied goal predicates hold\"},{\"conditions\":[{\"comparison\":\"eq\",\"metric\":\"blue_at_goal\",\"reference\":\"absolute\",\"value\":0}],\"label\":\"Blue goal disturbed\"},{\"conditions\":[{\"comparison\":\"gt\",\"metric\":\"tcp_red_distance\",\"reference\":\"absolute\",\"value\":0.05},{\"comparison\":\"gt\",\"metric\":\"red_z\",\"reference\":\"absolute\",\"value\":0.04}],\"label\":\"Possible red separation during carry\"},{\"conditions\":[{\"comparison\":\"gt\",\"metric\":\"finger_width\",\"reference\":\"absolute\",\"value\":0.06},{\"comparison\":\"gt\",\"metric\":\"red_z\",\"reference\":\"absolute\",\"value\":0.05}],\"label\":\"Premature opening during red transport\"},{\"conditions\":[{\"comparison\":\"lt\",\"metric\":\"red_z\",\"reference\":\"absolute\",\"value\":0.035},{\"comparison\":\"lt\",\"metric\":\"red_y\",\"reference\":\"absolute\",\"value\":0.14}],\"label\":\"Red lowered before destination\"}]}",
+      "call_id": "call_XWqIpvg5mk4Hi3knnzJf327Z",
+      "id": "fc_09015682c811f3bf016aaba7137b9c87d084254fbb29cac14b",
+      "name": "invoke_policy",
+      "status": "completed",
+      "type": "function_call"
+    }
+  ],
+  "source": "runs/exp2/M1_astra_xhigh/buffer_swap/evaluation/APPL/ID/20100/api/api/0009.response.json",
+  "source_sha256": "6729ee2af6daa33074c0e8d2b4c4ffa7e93d2f46bbe28f4fc92ef03e4bfdd666"
+}

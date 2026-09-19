@@ -1,0 +1,15 @@
+{
+  "extraction": "All function_call objects in the final recorded response, unchanged.",
+  "function_calls": [
+    {
+      "arguments": "{\"notebook\":\"Inv1 acquire h03 lifted red; inv2 carry h03 placed it; inv3 carry released and retreated. Inv4 acquire h03 completed retreat, approached blue, pinched and lifted it by .216 m with red completely stationary at its goal. Current step511: blue=(-.33953,-.02915,.23577), TCP z=.23819, TCP-blue=.00341, width=.03663. Red=(-.24329,-.24534,.020), red_at_goal=1. Read both h03 policies' PRIOR/HANDOFF/support. Actual narrow-finger coupled lift fits documented carry pickup overlap, despite slightly smaller grasp offset than demonstrations. Switch carry h03 for blue transport and lowering; stop on measured task success automatically, red loss, high opening or blue separation indicating slip.\",\"policy_id\":\"carry_place_clear__h03\",\"reason\":\"Blue is now lifted with near-constant local TCP relation and approximately .0183 m per finger; red remains at its pad. This is a supported partial-lift handoff to carry h03, whose full overlap can finish lift before transporting and lowering blue while retaining red goal context.\",\"steps\":190,\"stop_when\":[{\"conditions\":[{\"comparison\":\"eq\",\"metric\":\"success\",\"reference\":\"absolute\",\"value\":1}],\"label\":\"Both blocks meet supplied geometric goals\"},{\"conditions\":[{\"comparison\":\"eq\",\"metric\":\"red_at_goal\",\"reference\":\"absolute\",\"value\":0}],\"label\":\"Red goal lost during blue handling\"},{\"conditions\":[{\"comparison\":\"ge\",\"metric\":\"finger_width\",\"reference\":\"absolute\",\"value\":0.06},{\"comparison\":\"ge\",\"metric\":\"blue_z\",\"reference\":\"absolute\",\"value\":0.07}],\"label\":\"Unexpected opening with blue high\"},{\"conditions\":[{\"comparison\":\"ge\",\"metric\":\"tcp_blue_distance\",\"reference\":\"absolute\",\"value\":0.06},{\"comparison\":\"eq\",\"metric\":\"blue_at_goal\",\"reference\":\"absolute\",\"value\":0}],\"label\":\"Possible blue loss before placement\"}]}",
+      "call_id": "call_FpSgAv0uj97XXzCU3MXjasDU",
+      "id": "fc_0bd647d09995425f016aaba78bfc7487d0b818a05dfccd0277",
+      "name": "invoke_policy",
+      "status": "completed",
+      "type": "function_call"
+    }
+  ],
+  "source": "runs/exp2/M1_astra_xhigh/unstack_sort/evaluation/APPL/OOD/30200/api/api/0007.response.json",
+  "source_sha256": "4184f7207655773e3e211c7088895e1725354ba5c445b125ff22a1162e297bae"
+}

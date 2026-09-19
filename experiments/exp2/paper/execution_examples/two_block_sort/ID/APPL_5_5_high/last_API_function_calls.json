@@ -1,0 +1,15 @@
+{
+  "extraction": "All function_call objects in the final recorded response, unchanged.",
+  "function_calls": [
+    {
+      "arguments": "{\"notebook\":\"Blue acquisition succeeded in invocation 4. Red remains at goal. Blue is lifted at (-0.433,0.222,0.077) with TCP nearly coincident (distance 0.006) and finger width 0.0365 closed, so coupling is plausible. Need deliver blue to its pad at (-0.18,0.25,0.02). Use h02 vertical staging for high carry, near-goal descent, release/retreat. Formal task success will be red_at_goal AND blue_at_goal; release/clearance is not required by contract.\",\"policy_id\":\"deliver_active_block__h02\",\"reason\":\"Current blue state is the documented close/lift/carry overlap for delivery: closed fingers, active blue block lifted and near TCP, red already placed. The h02 vertical-staging prior is suited to carry to the blue goal and lower/place it.\",\"steps\":300,\"stop_when\":[{\"conditions\":[{\"comparison\":\"eq\",\"metric\":\"success\",\"reference\":\"absolute\",\"value\":1}],\"label\":\"formal task success achieved\"},{\"conditions\":[{\"comparison\":\"ge\",\"metric\":\"finger_width\",\"reference\":\"absolute\",\"value\":0.065},{\"comparison\":\"eq\",\"metric\":\"blue_at_goal\",\"reference\":\"absolute\",\"value\":0},{\"comparison\":\"le\",\"metric\":\"blue_z\",\"reference\":\"absolute\",\"value\":0.05}],\"label\":\"possible premature blue release off goal\"},{\"conditions\":[{\"comparison\":\"eq\",\"metric\":\"red_at_goal\",\"reference\":\"absolute\",\"value\":0}],\"label\":\"red disturbed during blue delivery\"}]}",
+      "call_id": "call_WlvsNtW61OQOriZJGz7OA02s",
+      "id": "fc_074a22f5b8fdd1af016aaab5e6ecc487d0bd0ed8e620943026",
+      "name": "invoke_policy",
+      "status": "completed",
+      "type": "function_call"
+    }
+  ],
+  "source": "runs/exp2/M1_scaleup/two_block_sort/evaluation/APPL/ID/20000/api/api/0008.response.json",
+  "source_sha256": "53446178ce10a10c3f5b2977c36500659132a5e395932d69816431b3fc41b74d"
+}

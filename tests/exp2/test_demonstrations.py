@@ -39,7 +39,9 @@ def plan():
                 rationale='Tests preserve API-provided explanatory text without generating a claim.',
                 applicability='Synthetic fixture only.',
                 pipeline_implications='A future pipeline is unspecified; no DP recipe is imposed.',
-                limitations='This is scripted test output, not a validated heuristic.')])
+                limitations='This is scripted test output, not a validated heuristic.',
+                handoff={key: 'Synthetic interface text supplied by the test client.' for key in (
+                    'entry_conditions','exit_conditions','overlap_role','successor_readiness','failure_signatures')})])
 
     return dict(skills=[skill('phase_alpha', [segment('a', 0, 2), segment('a', 4, 6), segment('b', 0, 3)], 0),
                         skill('phase_beta', [segment('a', 2, 4), segment('b', 3, 6)], 3)],
@@ -70,11 +72,13 @@ class ScriptedClient:
     def __init__(self, plan):
         self.calls = 0
         self.plan = plan
+        self.output_limits = []
 
     def configuration(self):
         return {'model': self.model, 'provenance': self.provenance}
 
     def respond(self, request):
+        self.output_limits.append(request['max_output_tokens'])
         calls = [
             ('list_demonstrations', {}),
             ('read_steps', dict(trajectory_id='a', indices=list(range(7)))),
@@ -91,11 +95,16 @@ class ScriptedClient:
 
 
 def test_api_loop_exports_portable_raw_datasets_and_heuristic_markdown(demos, plan, tmp_path):
+    for number in (2, 3):
+        extra = deepcopy(plan['skills'][0]['heuristics'][0])
+        extra['statement'] = f'Synthetic heuristic fixture {number}; transport test only.'
+        plan['skills'][0]['heuristics'].append(extra)
     original_hashes = {p: digest(p) for p in demos}
     client = ScriptedClient(plan)
     root = tmp_path / 'processed'
     result = process_demonstrations(demos, root, client=client)
     assert client.calls == 7
+    assert set(client.output_limits) == {Limits().max_output_tokens}
     assert result['provenance'] == 'test_fixture'
     assert result['checks']['original_demonstrations'] == 2
     assert result['checks']['segments'] == 5
@@ -103,6 +112,7 @@ def test_api_loop_exports_portable_raw_datasets_and_heuristic_markdown(demos, pl
     dataset = read(root / 'datasets/phase_alpha/dataset.json')
     assert dataset['original_demonstration_count'] == 2 and dataset['segment_count'] == 3
     assert dataset['heuristics'] == plan['skills'][0]['heuristics']
+    assert '## Heuristic 3' in (root / 'datasets/phase_alpha/heuristic.md').read_text()
     for record in result['datasets']:
         directory = (root / record['dataset']).parent
         for segment in read(root / record['dataset'])['segments']:
@@ -120,6 +130,8 @@ def test_api_loop_exports_portable_raw_datasets_and_heuristic_markdown(demos, pl
         text = (root / record['heuristic']).read_text()
         assert 'Synthetic heuristic fixture' in text and 'test_fixture' in text
         assert 'future training/inference pipeline' in text
+        assert '### Handoff interface' in text
+        assert 'Synthetic interface text supplied by the test client.' in text
     assert {p: digest(p) for p in demos} == original_hashes
     assert process_demonstrations(demos, root, client=client) == result
     assert client.calls == 7  # A completed resume makes no API request.

@@ -1,0 +1,815 @@
+{
+  "exclusions": [],
+  "overlap_rationale": "The plan intentionally uses large temporal overlaps rather than narrow cut points. Skill 1/2 overlap [130,190) covers red already grasped, vertical lift, and the beginning of lateral transport, so the red placing policy can take over before the unstacking policy has finished its arm motion. Skill 2/3 overlap [330,520) covers red post-release retreat, approach to the blue block, blue grasp closure, and lift to a safe height; this gives both policies the full red-to-blue object switch instead of a single reset pose. Skill 3/4 overlap [520,590) covers blue held high near the source and transport toward or just above the blue goal, so the final placer can take over while the blue acquisition/transport policy is still evolving. These overlaps support entry states seen in demonstrations with different initial stack xy positions, fingers opening/closing, and object heights. They do not establish recovery from off-demonstration spatial/contact errors, failed grasps, or knocked-over blocks; those remain limitations of all handoffs.",
+  "skills": [
+    {
+      "heuristics": [
+        {
+          "applicability": "Transfers when a red cube is initially stacked directly on the blue cube, tcp_pose is above the workspace, top-down parallel-jaw grasping is feasible, and red_pose/blue_pose are available in world coordinates. It depends on the same Panda arm, gripper width range, block size, and gravity/contact behavior because the learned joint targets and gripper closure timing are contact dependent.",
+          "evidence": [
+            {
+              "indices": [
+                0,
+                80,
+                100,
+                130,
+                190
+              ],
+              "trajectory_id": "demo10200"
+            },
+            {
+              "indices": [
+                0,
+                90,
+                100,
+                130,
+                190
+              ],
+              "trajectory_id": "demo10207"
+            },
+            {
+              "indices": [
+                0,
+                130,
+                190
+              ],
+              "trajectory_id": "demo10204"
+            }
+          ],
+          "handoff": {
+            "entry_conditions": "Measured support: observations like demo10200 index 0 and demo10207 index 0, with qpos finger channels about 0.04 m each, gripper_command open, tcp_pose z about 0.442 m, red_pose z about 0.060 m directly above blue_pose z about 0.020 m. Hypothesized tolerance: initial stack xy within the demonstrated range roughly x -0.339 to -0.361 m and y -0.011 to 0.012 m.",
+            "exit_conditions": "Useful end state for the next policy: red is pinched, qpos finger channels near 0.018 m, red_pose has risen well above the blue cube (e.g. z 0.30 m at demo10200 index 190 and demo10207 index 190), blue_pose remains near table z 0.020 m, and tcp_pose is moving laterally toward red_goal.",
+            "failure_signatures": "No red lift after gripper closure, finger channels remain near 0.04 m despite close command, red_pose z stays near 0.06 m or blue_pose shifts/tilts while red is pulled, or tcp_pose-red_pose offset grows unexpectedly. These indicate transfer to red placement is premature.",
+            "overlap_role": "The [130,190) overlap teaches both this skill and the red placement skill to handle a grasped red cube being raised and starting lateral travel. This prior assumes the successor may enter while vertical lift is still in progress, not only at a fixed high pose.",
+            "successor_readiness": "Successor needs red_pose, red_goal, blue_pose, tcp_pose and qpos fingers showing a secure pinch; it can accept red z above roughly 0.15 m as seen at index 130 or about 0.30 m at index 190, with gripper command still closing/closed."
+          },
+          "limitations": "The demonstrations only show successful centered top grasps. The prior may fail for yawed or offset grasps, partial side contacts, or if the top red cube is not directly supported by the blue cube. A falsifying ablation would compare object-relative features against raw joint/state diffusion on held-out initial stack xy; failure would appear as more blue disturbance or missed grasps. The dataset cannot prove recovery after bumping the stack.",
+          "pipeline_implications": "Candidate policy encodes observations in red-relative coordinates: r_tcp = tcp_pose.xyz - red_pose.xyz, r_blue = blue_pose.xyz - red_pose.xyz, and target grasp offset g=(0,0,approximately 0.00 to 0.02 m above red top/contact). Causal inputs at inference: qpos,qvel,tcp_pose,red_pose,blue_pose,goals. Training labels from demonstrations: joint actions and optionally Cartesian finite-difference delta of tcp_pose. Train a diffusion policy over short horizons of absolute arm_joint_positions plus gripper_command, but condition its denoising network on r_tcp, red/blue relative pose, and finger aperture; optionally decode a Cartesian delta through a learned joint-target head. Loss = action denoising + auxiliary L2 on next r_tcp and red z. At deployment compute red-relative features online and sample joint/gripper commands; no future information is used.",
+          "rationale": "Across demonstrations the TCP descends toward the red top with the gripper open, closes near the stacked block, and then red_pose moves with tcp_pose while blue_pose remains on the table. The absolute joint trajectories differ with initial stack xy, but the local relationship between tcp_pose, red_pose, and blue_pose is nearly invariant. Encoding that relation should reduce sample complexity and generalize to small stack translations. This differs from the phase prior below: the representation bias says what coordinates to use, not how to segment time or contacts.",
+          "statement": "Red-relative top-grasp prior: learn unstacking in a coordinate frame centered on red_pose, with blue_pose as the support/obstacle, so the policy generalizes over stack xy shifts rather than memorizing absolute joint paths."
+        },
+        {
+          "applicability": "Applies when the grasp/lift sequence has the same qualitative event order: open approach, gripper close/contact, red begins rising, then early transport. It requires observable finger aperture in qpos and object pose changes; it is less appropriate for suction, side grasps, or tasks where contact is not visible in the object motion.",
+          "evidence": [
+            {
+              "indices": [
+                80,
+                100,
+                130,
+                190
+              ],
+              "trajectory_id": "demo10200"
+            },
+            {
+              "indices": [
+                90,
+                100,
+                130,
+                190
+              ],
+              "trajectory_id": "demo10207"
+            },
+            {
+              "indices": [
+                80,
+                100,
+                140,
+                180
+              ],
+              "trajectory_id": "demo10201"
+            }
+          ],
+          "handoff": {
+            "entry_conditions": "Policy can take over from initial or pre-grasp states with gripper open and red still stacked. It models internal phases and therefore can also start within the demonstrated overlap at a post-close lift state such as demo10200 index 130, where qpos fingers are about 0.018 m and red_pose z is 0.155 m.",
+            "exit_conditions": "Exit when the latent phase is lift/early-transport and red_pose z is high enough that lateral motion has begun (e.g. demo10200 index 190 red x,y shifted toward red_goal, z 0.302 m).",
+            "failure_signatures": "Mode posterior oscillates between close and lift, gripper opens during lift, red_pose does not rise after the close phase, or qvel/finger velocities show continuing closure with no object motion. Such signatures mean the successor may receive an ungrasped object.",
+            "overlap_role": "In [130,190), both policies learn the transition from lift to carry. This phase prior explicitly exposes the successor to varying latent modes so it need not assume a single boundary timestep.",
+            "successor_readiness": "The red placing successor needs the mode estimate or observable equivalent: closed fingers, red_pose moving with tcp_pose, and blue stable. Demonstrated tolerance includes red z from about 0.13-0.16 m at index 130 to about 0.30 m at index 190."
+          },
+          "limitations": "Event labels are inferred from successful demonstrations, not directly measured contacts. If the gripper closes around empty space, the latent model may still advance unless trained with object-motion checks. Falsify by comparing against a non-phase diffusion policy and by withholding closure timing perturbations; a true benefit should reduce early/late gripper close errors. Dataset cannot establish robustness to failed contact detection.",
+          "pipeline_implications": "Train a latent-mode diffusion policy with modes m in {approach_open, close_contact, lift_carry}. Causal inputs: qpos/qvel including finger aperture, tcp_pose, red_pose, blue_pose. Training labels: modes computed from demonstration futures/thresholds, e.g. close when gripper_command<0 and finger qpos decreases, lift when future red_pose.z increases above initial. Objective: denoising loss for action horizon plus cross-entropy for m_t and transition consistency p(m_{t+1}|m_t,o_t). Deployment pseudocode: infer p(m_t|history) with a GRU/transformer; condition diffusion denoiser eps_theta(a_h,o_t,m_t); sample action horizon. The specific prior is temporal event structure rather than coordinate choice.",
+          "rationale": "At inspected states the command and object motion form distinct events: open approach at indices 80/90, close command and finger aperture near 0.018 m at 100, red lifted at 130, and lateral carry by 190. A single stationary policy must learn sharp gripper timing and continuous arm motion simultaneously; a phase latent variable can separate these distributions and make the close/lift transition learnable from few demonstrations.",
+          "statement": "Event-gated grasp-lift prior: represent unstacking as a small ordered latent state machine whose modes gate arm motion and gripper command, improving contact timing and reducing averaging across approach, close, and lift behaviors."
+        },
+        {
+          "applicability": "Applies when the lower blue cube should remain at the source while the red top cube is removed. It relies on accurate blue_pose and the physical need for vertical clearance before lateral transport. It transfers to similar stacked-block unstacking but not to tasks where the support object should move together with the top object.",
+          "evidence": [
+            {
+              "indices": [
+                0,
+                130,
+                190
+              ],
+              "trajectory_id": "demo10202"
+            },
+            {
+              "indices": [
+                0,
+                130,
+                190
+              ],
+              "trajectory_id": "demo10208"
+            },
+            {
+              "indices": [
+                0,
+                130,
+                190
+              ],
+              "trajectory_id": "demo10211"
+            }
+          ],
+          "handoff": {
+            "entry_conditions": "Enter with red_pose and blue_pose vertically aligned, blue_pose z near 0.020 m, and no prior blue displacement. The policy assumes the blue cube is a passive support to preserve, as in all index-0 observations.",
+            "exit_conditions": "Exit when red has been lifted clear while blue_pose remains approximately unchanged at the source. Examples: demo10202 index 190 red z 0.302 m while blue z 0.020 m; demo10208 index 190 red z 0.303 m while blue remains table-level.",
+            "failure_signatures": "Blue_pose xy changes by more than a few millimetres or blue orientation tilts during red lift, red/blue z separation stays close to the initial 0.04 m, or lateral tcp motion occurs before red has cleared the blue. These signs predict poor handoff to red placement and later blue pickup.",
+            "overlap_role": "The overlap [130,190) includes the safety-critical moment where vertical clearance becomes sufficient and lateral red transport begins. Both adjacent policies learn to preserve blue while carrying red.",
+            "successor_readiness": "The successor can assume blue remains at the original source and red is clear. Demonstrated readiness includes red-blue z separation larger than 0.14 m by index 130 and about 0.28 m by index 190; hypothesized tolerance is not validated outside this range."
+          },
+          "limitations": "The blue-stability objective is observational, not a measured contact force constraint. It may over-penalize necessary incidental motion in other environments, and cannot recover if the blue cube is already displaced. An ablation should remove blue-motion auxiliary loss/cost; falsification would be no reduction in blue perturbation or grasp failure rates. Successful demos cannot prove safety under aggressive lateral disturbances.",
+          "pipeline_implications": "Augment the diffusion objective with blue-preservation and clearance auxiliaries. Inference inputs are causal states including red_pose and blue_pose. Training labels: future blue displacement and red-blue clearance from demonstrations. Mechanism: denoiser conditioned on c = [tcp-red, red-blue, finger_aperture]; loss = L_DDPM(action) + lambda1||blue_pose_{t+k}.xy-blue_pose_t.xy||^2 + lambda2 max(0, h_min-(red_z-blue_z)) during lateral velocity labels. Optionally reject sampled action horizons whose predicted next-state model violates blue stability. Deployment samples actions and selects the lowest predicted blue-disturbance trajectory.",
+          "rationale": "In all inspected endpoints, red moves from z 0.06 to high z while blue remains at table height and nearly fixed xy. The most important generalization issue for unstacking is avoiding coupled motion of the bottom cube; explicitly representing blue as an object to preserve should bias the policy toward vertical lift before lateral travel. This differs from the event prior by adding a physical constraint on non-target object motion.",
+          "statement": "Support-preservation prior: treat blue_pose as a passive support/obstacle and bias the policy to increase red-blue clearance before lateral motion, minimizing unintended blue movement during red unstacking."
+        }
+      ],
+      "name": "Red unstack grasp and lift",
+      "segmentation_rationale": "Segments [0,190) start from the initial stacked red-on-blue scene with the gripper open and include approach, closure on the red cube, vertical lifting, and the first part of lateral travel. The stop at 190 was chosen because inspected observations show red high above the table and moving toward the red goal while blue remains at the source (e.g. demo10200 and demo10207 index 190). It intentionally overlaps the next skill from 130 onward, where red is already grasped and lifted but placement has not finished.",
+      "segments": [
+        {
+          "start": 0,
+          "stop": 190,
+          "trajectory_id": "demo10200"
+        },
+        {
+          "start": 0,
+          "stop": 190,
+          "trajectory_id": "demo10201"
+        },
+        {
+          "start": 0,
+          "stop": 190,
+          "trajectory_id": "demo10202"
+        },
+        {
+          "start": 0,
+          "stop": 190,
+          "trajectory_id": "demo10203"
+        },
+        {
+          "start": 0,
+          "stop": 190,
+          "trajectory_id": "demo10204"
+        },
+        {
+          "start": 0,
+          "stop": 190,
+          "trajectory_id": "demo10205"
+        },
+        {
+          "start": 0,
+          "stop": 190,
+          "trajectory_id": "demo10206"
+        },
+        {
+          "start": 0,
+          "stop": 190,
+          "trajectory_id": "demo10207"
+        },
+        {
+          "start": 0,
+          "stop": 190,
+          "trajectory_id": "demo10208"
+        },
+        {
+          "start": 0,
+          "stop": 190,
+          "trajectory_id": "demo10209"
+        },
+        {
+          "start": 0,
+          "stop": 190,
+          "trajectory_id": "demo10210"
+        },
+        {
+          "start": 0,
+          "stop": 190,
+          "trajectory_id": "demo10211"
+        }
+      ],
+      "skill_id": "red_unstack_lift",
+      "subgoal": "Grasp the top red block from the initial stack, lift it clear of the blue block, and begin carrying it toward the red goal while keeping the blue block stationary."
+    },
+    {
+      "heuristics": [
+        {
+          "applicability": "Transfers to the red-object phase of the same task when red is securely grasped and its goal is fixed at red_goal in world coordinates. It relies on red_pose being observable while grasped and on a top-down grasp that keeps red near a stable tcp offset. It should not be assumed for non-grasped pushing or when red_goal changes outside the reachable tabletop region.",
+          "evidence": [
+            {
+              "indices": [
+                130,
+                190,
+                260,
+                280,
+                330
+              ],
+              "trajectory_id": "demo10200"
+            },
+            {
+              "indices": [
+                130,
+                190,
+                260,
+                280,
+                330
+              ],
+              "trajectory_id": "demo10207"
+            },
+            {
+              "indices": [
+                130,
+                190,
+                260,
+                330
+              ],
+              "trajectory_id": "demo10204"
+            }
+          ],
+          "handoff": {
+            "entry_conditions": "Can enter during the Skill 1/2 overlap with red already in hand: qpos fingers around 0.018 m, gripper command closed, red_pose z above the stack (demo10200 index 130 z 0.155 m) or high carry (index 190 z 0.302 m), blue_pose still at table z about 0.020 m.",
+            "exit_conditions": "For this prior the useful end state is red placed within the red_goal basin and the robot on its way to blue acquisition. At demo10200 index 280 red_pose is at about [-0.241,-0.248,0.020] with fingers open; by index 330 tcp_pose is high above the red goal and ready to retreat/switch.",
+            "failure_signatures": "Red_pose does not converge to red_goal before opening, red tilts or follows the gripper after release, blue is displaced during red carry, or red remains high when the policy switches attention to blue.",
+            "overlap_role": "The [130,190) overlap with the predecessor lets this policy learn from early red lift/carry states; the [330,520) overlap with the successor lets it continue through retreat and blue approach rather than ending at red release.",
+            "successor_readiness": "The blue acquisition successor needs red_at_goal supported by red_pose within the pad tolerance, gripper open, tcp_pose clear enough to move to blue, and blue_pose still at source. Demonstrated support includes red settled by 280 and tcp high by 330, with further approach to blue by 460-520."
+          },
+          "limitations": "The red-goal servo is learned only for one red_goal and one approach direction; it may overfit to absolute goal position. It cannot prove that release is unnecessary because demonstrations do release even though the task contract does not require release. Falsify by comparing against a non-goal-conditioned raw policy on perturbed initial stack positions; no improvement in red placement accuracy would refute the benefit.",
+          "pipeline_implications": "Use causal inputs qpos,qvel,tcp_pose,red_pose,blue_pose,red_goal,blue_goal. Represent red placement by e_goal = red_goal - red_pose.xyz and grasp offset e_tcp = tcp_pose.xyz - red_pose.xyz. Candidate DP denoiser conditions on [e_goal,e_tcp,blue_pose,phase scalar] and predicts absolute joint targets and gripper. Auxiliary training labels from future demonstrations: time-to-red-at-goal and future red_goal error. Objective: action denoising + beta||red_pose_{t+H}.xyz-red_goal||_Huber for predicted latent rollout + binary red_at_goal classifier. Deployment samples actions using current e_goal only, without future labels.",
+          "rationale": "The data show a smooth transition from red high in hand to red at the marked red pad: demo10200 red moves from index 190 high and off-goal to index 260/280 at table height near red_goal, then stays fixed by 330. Encoding the red_goal error directly addresses the learning difficulty of mapping varied initial stack poses to a single precise goal. This prior is about goal-directed object servoing, not release timing or object switching.",
+          "statement": "Red goal-relative carry/place prior: while red is grasped, actions should depend primarily on red_pose-to-red_goal error and the maintained tcp-red grasp offset, improving spatial generalization of placement."
+        },
+        {
+          "applicability": "Applies when the robot must release red and leave it stable before approaching blue. It depends on gripper command/finger position observations and on tabletop support capturing the red cube after descent. It transfers to tasks where a released object should remain at a goal while the arm retreats, but not to tasks requiring continuous in-hand manipulation after placement.",
+          "evidence": [
+            {
+              "indices": [
+                260,
+                280,
+                300,
+                330,
+                420,
+                520
+              ],
+              "trajectory_id": "demo10200"
+            },
+            {
+              "indices": [
+                260,
+                280,
+                330,
+                460,
+                520
+              ],
+              "trajectory_id": "demo10207"
+            },
+            {
+              "indices": [
+                260,
+                300,
+                330,
+                420,
+                520
+              ],
+              "trajectory_id": "demo10201"
+            }
+          ],
+          "handoff": {
+            "entry_conditions": "Enter after or during red descent with red still grasped, such as demo10200 index 260 red at z 0.020 near red_goal with qpos fingers still near 0.018 m, or earlier high-carry states in the overlap. The policy assumes blue remains ungrasped at source.",
+            "exit_conditions": "Exit when red is released and stationary at goal, gripper is open (finger qpos about 0.04 m by demo10200 index 280/300), and tcp_pose is either high above red or moving toward blue. It may continue until blue is grasped/lifted by index 520 in the expanded overlap.",
+            "failure_signatures": "Opening before red z is at table, red moves with the gripper after release, tcp retreats horizontally while still closed on red, or fingers fail to reopen before blue approach. Any of these gives the successor a bad object-switch state.",
+            "overlap_role": "The [330,520) overlap is deliberately large: both this skill and blue acquisition see the post-release retreat, open-finger approach to blue, blue closing, and blue lift. This prior treats that overlap as a learned reset process rather than an instantaneous cut.",
+            "successor_readiness": "Successor requires red_pose at red_goal and gripper available for blue. Demonstrated states include red fixed at z 0.020 from 330 onward while tcp travels to blue and fingers remain open until the close near blue; hypothesized tolerance to off-goal red is not demonstrated."
+          },
+          "limitations": "The reset/release event is inferred from gripper and object motion; contacts or object settling forces are not measured. If the object is slightly wedged or the table friction differs, release may not leave red stable. An ablation should remove explicit release/reset labels and compare frequency of dragging red toward blue. The successful dataset cannot establish recovery if red is dropped outside the pad.",
+          "pipeline_implications": "Train a policy with a release-reset latent variable r_t in {carry, descend_contact, open_release, retreat_switch}. Causal inputs: qpos fingers, tcp_pose, red_pose, blue_pose, goals. Training labels: r_t computed from gripper_command sign, finger aperture, and red_pose near red_goal; future labels mark red stationary after opening. Action decoder: diffusion predicts joint/gripper horizons; a gripper head is regularized with BCE to command open only in open_release/retreat. Additional loss predicts red_pose_{t+k} after release to encourage no-drag. Deployment infers r_t from current/history and gates gripper open/arm retreat behavior.",
+          "rationale": "The inspected trajectory does not simply stop after placing red; it opens at the table, then retreats upward and across before blue pickup. Without an explicit reset prior, a policy may average closed-carry and open-retreat commands around the release boundary. Learning release as a manipulation-state transition should improve handoff reliability to the next object. This differs from the goal prior by focusing on gripper/object decoupling and availability for the next grasp.",
+          "statement": "Release-reset prior: after red reaches the pad, the policy should explicitly switch from closed carry to open retreat, using stable red placement and open fingers as the state that enables the next object pickup."
+        },
+        {
+          "applicability": "Applies to ordered two-object sorting where red must be finished before blue can be manipulated. It assumes object identities are known from red_pose and blue_pose fields and that the task order red-then-blue is valid. It is not a general unordered planner unless trained with additional permutations.",
+          "evidence": [
+            {
+              "indices": [
+                330,
+                420,
+                460,
+                520
+              ],
+              "trajectory_id": "demo10200"
+            },
+            {
+              "indices": [
+                330,
+                420,
+                460,
+                500,
+                520
+              ],
+              "trajectory_id": "demo10207"
+            },
+            {
+              "indices": [
+                330,
+                420,
+                460,
+                520
+              ],
+              "trajectory_id": "demo10201"
+            }
+          ],
+          "handoff": {
+            "entry_conditions": "The policy can enter with red in hand during early overlap or after red placement. For the attention switch itself, measured support is red_pose fixed at red_goal and qpos fingers open around 0.04 m near index 330; blue remains at source and becomes the new attended object during indices 420-520.",
+            "exit_conditions": "Exit when attention has switched to blue and a secure blue grasp/lift entry exists: blue_pose z has risen substantially, e.g. demo10200 index 520 blue z 0.280 m or demo10207 index 520 blue z 0.278 m, with fingers closed around 0.018 m.",
+            "failure_signatures": "Attention switches before red_at_goal, robot returns toward red after release instead of blue, blue approach occurs with fingers still closed on red, or red_pose changes while blue is being lifted.",
+            "overlap_role": "The [330,520) overlap is the full object-switch corridor. Both policies learn states with red released, robot retreating, then blue closing/lifting, so successor takeover can occur before or after actual blue contact.",
+            "successor_readiness": "The next policy needs a target-object flag or attention state selecting blue, red fixed at goal, tcp near or above blue, and gripper either open for approach or closed/lifting blue. Demonstrated range spans high retreat at 330, low blue contact at 460, and lift at 520."
+          },
+          "limitations": "The demonstrations always use the same task order, so the attention switch might encode chronology rather than a learned predicate. It may fail if blue should be done first or if red is already at goal initially. Falsify with an ablation that removes explicit object-attention/target token; benefit should show as fewer regrasp-red or wrong-object actions. The dataset cannot prove autonomous task planning.",
+          "pipeline_implications": "Build a target-conditioned or mixture-of-experts diffusion policy with attention logits alpha_red, alpha_blue. Inputs at inference: object poses/goals and qpos/qvel; no future labels. Training labels for alpha come from demonstration futures: target=red until red_at_goal/open release, then transition target=blue by approach/blue lift. Compute object-centric embeddings phi_i=[tcp-object_i, object_i-goal_i, finger, is_at_goal_i]. Denoiser condition = sum_i alpha_i phi_i plus global qpos. Loss = action denoising + CE(alpha,label) + consistency encouraging alpha_blue after red_at_goal. Deployment infers alpha online and samples actions from the selected/weighted object context.",
+          "rationale": "At index 330 red is already fixed at the red pad while the robot has not yet completed blue acquisition; by 420-520 tcp and blue_pose dominate the motion. A policy that must infer which object matters from raw concatenated poses risks confusion because both goals remain present. An explicit attention switch uses the observed red_at_goal predicate to decide when blue becomes the control target. This differs from release-reset by changing the policy representation of object relevance.",
+          "statement": "Sequential object-attention prior: encode a learned red-to-blue target switch triggered by red_at_goal and gripper release, reducing wrong-object ambiguity during the long transition to blue pickup."
+        }
+      ],
+      "name": "Red place, release, and transition to blue lift entry",
+      "segmentation_rationale": "Segments [130,520) begin while red is already grasped and being lifted, continue through transport to the red pad, descent, release, retreat, approach to blue, blue grasp closure, and the early blue lift. The start overlaps Skill 1 before red transport has settled; the stop at 520 is after inspected demonstrations show blue lifted high from the source, giving the following blue policies a supported takeover state. This grouping is intentionally broader than pure red placement to learn the red-to-blue handoff.",
+      "segments": [
+        {
+          "start": 130,
+          "stop": 520,
+          "trajectory_id": "demo10200"
+        },
+        {
+          "start": 130,
+          "stop": 520,
+          "trajectory_id": "demo10201"
+        },
+        {
+          "start": 130,
+          "stop": 520,
+          "trajectory_id": "demo10202"
+        },
+        {
+          "start": 130,
+          "stop": 520,
+          "trajectory_id": "demo10203"
+        },
+        {
+          "start": 130,
+          "stop": 520,
+          "trajectory_id": "demo10204"
+        },
+        {
+          "start": 130,
+          "stop": 520,
+          "trajectory_id": "demo10205"
+        },
+        {
+          "start": 130,
+          "stop": 520,
+          "trajectory_id": "demo10206"
+        },
+        {
+          "start": 130,
+          "stop": 520,
+          "trajectory_id": "demo10207"
+        },
+        {
+          "start": 130,
+          "stop": 520,
+          "trajectory_id": "demo10208"
+        },
+        {
+          "start": 130,
+          "stop": 520,
+          "trajectory_id": "demo10209"
+        },
+        {
+          "start": 130,
+          "stop": 520,
+          "trajectory_id": "demo10210"
+        },
+        {
+          "start": 130,
+          "stop": 520,
+          "trajectory_id": "demo10211"
+        }
+      ],
+      "skill_id": "red_place_to_blue_entry",
+      "subgoal": "Carry the grasped red block to the red pad, release and retreat from it, then switch to the blue block and reach a blue-lift entry state."
+    },
+    {
+      "heuristics": [
+        {
+          "applicability": "Transfers when red has already been placed and blue remains at the original source, with the same top-down gripper and block geometry. It uses object identity: blue is the target to pick and red is a placed obstacle/finished object. It is suitable for small source xy variation but not for side grasps or if blue has been tipped.",
+          "evidence": [
+            {
+              "indices": [
+                330,
+                460,
+                520,
+                590
+              ],
+              "trajectory_id": "demo10200"
+            },
+            {
+              "indices": [
+                330,
+                460,
+                520,
+                590
+              ],
+              "trajectory_id": "demo10207"
+            },
+            {
+              "indices": [
+                330,
+                520,
+                590
+              ],
+              "trajectory_id": "demo10208"
+            }
+          ],
+          "handoff": {
+            "entry_conditions": "Measured entry support ranges from high post-red-release states with gripper open (demo10200 index 330 qpos fingers about 0.04 m, red at goal) to low blue contact/early lift states in the overlap. The policy assumes blue_pose z about 0.020 m before grasp and red_pose already at red_goal.",
+            "exit_conditions": "Exit when blue is grasped, lifted, and translated near the blue goal or beginning descent. Examples: demo10200 index 590 blue near [-0.239,0.254] at z 0.295 m; demo10201 index 590 already descending at z 0.221 m; demo10207 index 590 z 0.296 m.",
+            "failure_signatures": "Gripper closes before centering over blue, blue_pose does not rise after closure, red_pose changes during blue approach, or tcp-blue offset deviates from the top-grasp relation. Such failures mean final placement will start without a secured blue block.",
+            "overlap_role": "The [330,520) overlap with Skill 2 covers object switching and the blue grasp; the [520,590) overlap with Skill 4 covers blue high carry toward the goal. This prior accepts starts before contact and exits before final placement is complete.",
+            "successor_readiness": "The final placer needs blue in hand, fingers closed near 0.018 m, and blue_pose high enough for controlled transport/descent. Demonstrated readiness includes blue z about 0.28 m at 520 and goal-near high/descending states at 590."
+          },
+          "limitations": "Although geometry resembles red pickup, the dataset does not show independent randomization of object color, so identity-conditioned symmetry may be partially confounded with time. It may fail if red is not safely out of the way. Falsify by training a version without shared pickup geometry or object identity embeddings; benefit should appear in fewer missed blue grasps with varied source positions. Recovery after a failed red placement is unseen.",
+          "pipeline_implications": "Use a shared top-grasp encoder for target object o_target=blue with identity embedding e_blue and context red fixed. Inputs: qpos,qvel,tcp_pose,blue_pose,red_pose,goals. Features: tcp-blue, blue-red, blue_goal-blue, and target token. Diffusion action head is the same structure as red top-grasp but parameters may be partly shared or initialized from red-grasp prior. Training objective: action denoising + auxiliary next blue z and grasp-success label from future blue lift. Deployment sets target=blue once red_at_goal/open or directly within this skill; sample actions conditioned on blue-centric features.",
+          "rationale": "The blue acquisition mirrors the earlier red top-grasp: approach source, close, lift vertically, then carry. Demonstrations show the same finger aperture behavior and a stable tcp-object offset after lift. Sharing or encoding common pickup geometry should help learn blue pickup from few samples while still conditioning on color/goal identity. This differs from the transport prior below, which focuses on after-grasp motion to the goal.",
+          "statement": "Identity-conditioned top-grasp reuse: treat blue pickup as the same geometric grasp-and-lift template as red pickup, selected by a blue target token and conditioned on red as a finished obstacle."
+        },
+        {
+          "applicability": "Applies to moving a securely grasped blue block from source to blue_goal after the red block is already placed. It requires that the policy can observe blue_pose and blue_goal in the world frame and that lifting before large xy motion is feasible with the same arm workspace. It is not valid if the object must be dragged on the table.",
+          "evidence": [
+            {
+              "indices": [
+                520,
+                560,
+                590
+              ],
+              "trajectory_id": "demo10200"
+            },
+            {
+              "indices": [
+                520,
+                560,
+                590
+              ],
+              "trajectory_id": "demo10207"
+            },
+            {
+              "indices": [
+                520,
+                590
+              ],
+              "trajectory_id": "demo10201"
+            },
+            {
+              "indices": [
+                520,
+                590
+              ],
+              "trajectory_id": "demo10204"
+            }
+          ],
+          "handoff": {
+            "entry_conditions": "Can take over from Skill 2 during or just after blue lift, e.g. demo10200 index 520 blue_pose z 0.280 m over the source and fingers closed, or from earlier overlap states where tcp is approaching blue and gripper is open. Red must be placed and static.",
+            "exit_conditions": "Exit when blue is near blue_goal in xy and either still high or beginning descent; e.g. demo10200 index 590 blue at x -0.239,y 0.254,z 0.295, or demo10204 index 590 x -0.239,y 0.253,z 0.256.",
+            "failure_signatures": "Blue is transported laterally while still near table height before being lifted, blue-goal xy error does not decrease, or tcp/blue slip during transport. Such states are unsafe for the final place policy.",
+            "overlap_role": "The [520,590) overlap teaches both this skill and final placement to handle blue high carry and the first part of controlled descent; there is no requirement that handoff happen only after reaching exact goal height.",
+            "successor_readiness": "Successor needs blue_goal-blue_pose xy error small or decreasing, blue in gripper, and enough height margin to descend. Demonstrated entry at 520 has high source carry; by 590 many trajectories are goal-near, but some are already descending, so successor is trained on both."
+          },
+          "limitations": "The staged lift-translate-descend structure is inferred from successful motions and not enforced by kinematics; it may be too rigid if obstacles require different arcs. Falsify by comparing against an unstructured diffusion policy on start-source variations; the prior should reduce low-altitude lateral dragging. The data cannot establish collision avoidance for obstacles other than red.",
+          "pipeline_implications": "Implement a waypoint/phase-conditioned DP for blue transport. Causal features: h = blue_pose.z, e_xy = blue_goal.xy-blue_pose.xy, e_z_goal=blue_goal.z-blue_pose.z, tcp-blue. Train auxiliary waypoint labels from demonstration futures: stage=lift if h<0.25 and distance to source small, stage=translate if h high and e_xy large, stage=descend if e_xy small. The denoiser conditions on stage and object-goal error. Action is still absolute Panda joint targets plus gripper closed; optional predicted Cartesian waypoint w=[blue_goal.xy, z_safe] then [blue_goal.xyz]. Deployment estimates stage from current blue_pose and samples actions.",
+          "rationale": "Across inspected trajectories, blue first reaches a safe height near 0.28 m at the source, then moves in xy toward blue_goal, and only later descends. Encoding a staged vector field reduces the burden on diffusion to infer long-horizon transport from raw joints and should avoid unsafe table-level dragging. This is a temporal/spatial transport prior, distinct from target grasp reuse.",
+          "statement": "Height-staged blue transport prior: after grasp, carry blue through a lift-to-safe-height, xy-translate-to-goal, then descend sequence driven by blue_pose-to-blue_goal error."
+        },
+        {
+          "applicability": "Applies once red has been placed at its goal and should remain undisturbed while the robot handles blue. It requires accurate red_pose and enough workspace clearance. It transfers to sorted-block tasks where completed objects become fixed constraints, but not to tasks requiring re-adjustment of the completed red block.",
+          "evidence": [
+            {
+              "indices": [
+                330,
+                520,
+                590
+              ],
+              "trajectory_id": "demo10200"
+            },
+            {
+              "indices": [
+                330,
+                520,
+                590
+              ],
+              "trajectory_id": "demo10202"
+            },
+            {
+              "indices": [
+                330,
+                520,
+                590
+              ],
+              "trajectory_id": "demo10211"
+            }
+          ],
+          "handoff": {
+            "entry_conditions": "Enter after red_at_goal, demonstrated by red_pose near [-0.241,-0.248,0.020] at index 330 with open gripper. The policy can also start during blue approach if red remains static and blue is still at source.",
+            "exit_conditions": "Exit with red unchanged at goal and blue in hand near/above its goal, as seen at indices 520 and 590 where red_pose remains constant while blue_pose rises and translates.",
+            "failure_signatures": "Any red_pose drift/tilt during blue acquisition, tcp path passing through the red pad area, or sampled actions that bring the gripper close to red after attention has switched to blue. This indicates completed-object constraints are violated.",
+            "overlap_role": "Both adjacent overlaps require red invariance: Skill 2/3 overlap from 330-520 establishes red should stay fixed while blue is approached; Skill 3/4 overlap 520-590 maintains red fixed during blue transport.",
+            "successor_readiness": "Final blue placement needs red to satisfy red_at_goal already; otherwise completing blue alone will not satisfy the task contract. Demonstrated red support is stable from 330 through final observations; recovery if red is off-goal is unseen."
+          },
+          "limitations": "Because red never moves after successful placement, the auxiliary may be trivially satisfied and not causally responsible for performance. It cannot teach how to repair red if displaced. Falsify by ablating red-static loss and testing for red disturbances under perturbed trajectories; no difference would weaken the claim.",
+          "pipeline_implications": "Add a completed-object constraint to the blue skill. Inference inputs include red_pose, red_goal, blue_pose, blue_goal, tcp_pose. Training labels: future red displacement over horizon from demonstrations. Objective: L_DDPM(action)+lambda||red_pose_{t+H}-red_pose_t||^2+mu*I[red_at_goal] BCE. A learned dynamics/pose predictor estimates red disturbance from sampled action horizons; at deployment, sample K horizons and choose one with low predicted red displacement and good blue-goal progress. This encodes a constraint on non-target completed object, not a new scripted controller.",
+          "rationale": "After index 330 red is at the red pad and remains essentially unchanged while the robot grasps and moves blue. The task success requires both red_at_goal and blue_at_goal, so blue policies should not ignore the completed red object. Explicitly preserving red can prevent policies from using shortcuts or paths that graze the red block. This differs from the grasp and transport priors by adding a non-target invariant.",
+          "statement": "Completed-object invariance prior: once red is placed, treat red_pose as a fixed success condition and bias blue acquisition/transport against disturbing it."
+        }
+      ],
+      "name": "Blue acquire, lift, and carry toward goal",
+      "segmentation_rationale": "Segments [330,590) begin with red already released at the red goal and the gripper open/high, include retreat from red, approach to the blue block, blue grasp and lift, and transport toward the blue goal until the block is goal-near or beginning descent. They overlap Skill 2 from 330-520 for the full object switch and overlap Skill 4 from 520-590 for the blue high-carry/final descent transition.",
+      "segments": [
+        {
+          "start": 330,
+          "stop": 590,
+          "trajectory_id": "demo10200"
+        },
+        {
+          "start": 330,
+          "stop": 590,
+          "trajectory_id": "demo10201"
+        },
+        {
+          "start": 330,
+          "stop": 590,
+          "trajectory_id": "demo10202"
+        },
+        {
+          "start": 330,
+          "stop": 590,
+          "trajectory_id": "demo10203"
+        },
+        {
+          "start": 330,
+          "stop": 590,
+          "trajectory_id": "demo10204"
+        },
+        {
+          "start": 330,
+          "stop": 590,
+          "trajectory_id": "demo10205"
+        },
+        {
+          "start": 330,
+          "stop": 590,
+          "trajectory_id": "demo10206"
+        },
+        {
+          "start": 330,
+          "stop": 590,
+          "trajectory_id": "demo10207"
+        },
+        {
+          "start": 330,
+          "stop": 590,
+          "trajectory_id": "demo10208"
+        },
+        {
+          "start": 330,
+          "stop": 590,
+          "trajectory_id": "demo10209"
+        },
+        {
+          "start": 330,
+          "stop": 590,
+          "trajectory_id": "demo10210"
+        },
+        {
+          "start": 330,
+          "stop": 590,
+          "trajectory_id": "demo10211"
+        }
+      ],
+      "skill_id": "blue_acquire_transport",
+      "subgoal": "With red already placed, acquire the blue block from the source, lift it safely, and carry it to a state near or above the blue goal suitable for final placement."
+    },
+    {
+      "heuristics": [
+        {
+          "applicability": "Applies when blue is securely grasped or recently lifted and must be placed on the fixed blue_goal pad. It relies on blue_pose/blue_goal observability and similar table/contact geometry. It transfers to small variations in approach height but not to cases where the grasp is slipping or blue is not in hand at entry.",
+          "evidence": [
+            {
+              "indices": [
+                520,
+                590,
+                620,
+                640,
+                660,
+                700,
+                732
+              ],
+              "trajectory_id": "demo10200"
+            },
+            {
+              "indices": [
+                520,
+                590,
+                640,
+                660,
+                700,
+                739
+              ],
+              "trajectory_id": "demo10207"
+            },
+            {
+              "indices": [
+                520,
+                590,
+                730
+              ],
+              "trajectory_id": "demo10210"
+            }
+          ],
+          "handoff": {
+            "entry_conditions": "Can enter during overlap from blue high carry: demo10200 index 520 blue z 0.280 over source, index 590 near goal high at z 0.295; demo10207 index 520 source-high and 590 goal-high. Gripper is closed with qpos fingers near 0.018 m and red is already at goal.",
+            "exit_conditions": "Exit/final state is blue within the blue_goal pad at table height, red still at red_goal, and robot retreated or at least not disturbing objects. Examples: demo10200 final index 732 blue at [-0.241,0.248,0.020], red at [-0.241,-0.248,0.020], fingers open.",
+            "failure_signatures": "Blue xy error grows during descent, blue contacts table outside the pad, gripper opens while blue z is still high, or tcp pushes blue after release. These signal local goal-servo failure.",
+            "overlap_role": "The [520,590) overlap with the predecessor lets this final policy start before blue has reached the exact goal or descent stage. It learns to continue from high source carry, high goal carry, or early descent states.",
+            "successor_readiness": "No successor manipulation is required; for a hypothetical monitor, readiness is red_at_goal AND blue_at_goal in world frame with object z within tolerance. The task contract does not require gripper release, but demonstrations support release and retreat."
+          },
+          "limitations": "This local servo is demonstrated only for one blue_goal and several similar approach paths. It may fail if entering with large xy error not seen at 520 or if the grasp is loose. Falsify by comparing against raw action diffusion and measuring blue_at_goal accuracy and final nudging. The dataset cannot prove general pad placement under unseen goal locations.",
+          "pipeline_implications": "Construct a local goal-basin DP with features e_xy=blue_goal.xy-blue_pose.xy, e_z=blue_goal.z-blue_pose.z, tcp-blue, finger aperture, red_at_goal flag. Causal inputs: current fields only. Training labels: action horizons and final blue_at_goal predicate computed from future observations. Mechanism: denoiser predicts joint/gripper actions; an auxiliary critic V(o)=probability blue_at_goal within H is trained from demonstration futures and used to rank sampled action horizons. Objective = action denoising + gamma BCE(V, future_success) + Huber on predicted terminal blue-goal error. Deployment samples several horizons and executes the first action from the highest V/lowest denoising-cost sample.",
+          "rationale": "Inspected final phases show blue moving from high carry near the goal through descent to table-level containment. The main learning challenge is precision: the pad tolerance is small relative to long arm joint motions. A goal-basin representation and success critic directly bias final corrections toward blue_at_goal rather than replaying time indices. This differs from release timing and retreat priors by focusing on placement accuracy before/while contact is made.",
+          "statement": "Blue goal-basin servo prior: near final placement, represent actions around blue_pose-to-blue_goal error and train an auxiliary final-success critic to improve precise pad containment."
+        },
+        {
+          "applicability": "Applies to placing a grasped block on a table where opening should occur only after the block is supported and aligned. It depends on gripper command/finger observations and table contact dynamics. It does not transfer to tasks where release in midair or dropping is acceptable.",
+          "evidence": [
+            {
+              "indices": [
+                590,
+                620,
+                640,
+                660,
+                680
+              ],
+              "trajectory_id": "demo10200"
+            },
+            {
+              "indices": [
+                590,
+                640,
+                660,
+                700
+              ],
+              "trajectory_id": "demo10207"
+            },
+            {
+              "indices": [
+                590,
+                640,
+                660
+              ],
+              "trajectory_id": "demo10201"
+            }
+          ],
+          "handoff": {
+            "entry_conditions": "Enter with blue in gripper, usually high or descending: at index 590 blue is near goal but above table in many trajectories; by index 640 demo10200 blue is near table z 0.023 and still closed; at index 660 gripper opens as blue is at z 0.020.",
+            "exit_conditions": "Exit when fingers have opened and blue remains at blue_goal table height. Demonstrated examples include demo10200 index 660 qpos fingers approximately 0.040 m with blue z 0.020, followed by retreat at 680.",
+            "failure_signatures": "Open command before blue z approaches 0.02 m and xy is within the pad, continued closed grasp after object is table-supported causing dragging, or asymmetric finger motion indicating object wedged in the gripper.",
+            "overlap_role": "The prior uses the C/D overlap to learn that high-carry states should keep gripper closed, while later table contact states should open. This prevents the predecessor's transport state from being confused with release.",
+            "successor_readiness": "Since this is final, successor readiness means the monitor can evaluate success after release or while stable. Demonstrations support open-finger final states; tolerance for no-release success is allowed by task contract but not strongly represented in the demonstrations."
+          },
+          "limitations": "Release timing is not supervised by contact force, only by pose/finger trajectories; the object might be supported slightly earlier or later under different friction. A falsifying comparison would remove the release-event classifier; if premature drops do not increase, the prior may be unnecessary. Successful data cannot establish how to recover from a bounce or a stuck object.",
+          "pipeline_implications": "Train a release-gated DP with event variable u_t in {carry_closed, descend_closed, release_open, retreat_open}. Causal inputs: blue_pose, blue_goal, tcp_pose, qpos fingers, red_pose. Training labels from demonstrations/futures: u_t based on gripper_command, finger aperture, and blue_pose.z/xy relative to goal; these labels are not available at inference but inferred by a small recurrent classifier. Denoiser conditions on u_t and predicts absolute joint targets and gripper_command. Add loss penalizing sampled open command when inferred P(supported/aligned) is low: support predictor S(o_t) trained from future stable-at-goal labels. Deployment keeps gripper closed until S is high.",
+          "rationale": "The demonstrations show blue kept closed during high transport/descent and gripper opening only when blue is near table height at the goal, e.g. transition around 640-660. Without a release prior, diffusion may average open/closed actions near the boundary or drop early from high states included in the overlap. This prior is a manipulation-contact timing bias distinct from goal-servo accuracy.",
+          "statement": "Supported-release prior: gate gripper opening on blue being both aligned with blue_goal and supported by the table, reducing premature drops or post-contact dragging."
+        },
+        {
+          "applicability": "Applies to final task completion when both blocks are at their goals and the robot should stop influencing them. It depends on the demonstration convention of retreating upward with open fingers after placement. It transfers to tasks where final object stability matters, even though this task contract does not require tcp clearance or sustained hold.",
+          "evidence": [
+            {
+              "indices": [
+                660,
+                680,
+                700,
+                720,
+                732
+              ],
+              "trajectory_id": "demo10200"
+            },
+            {
+              "indices": [
+                660,
+                700,
+                739
+              ],
+              "trajectory_id": "demo10207"
+            },
+            {
+              "indices": [
+                660,
+                700,
+                717
+              ],
+              "trajectory_id": "demo10201"
+            },
+            {
+              "indices": [
+                730
+              ],
+              "trajectory_id": "demo10210"
+            }
+          ],
+          "handoff": {
+            "entry_conditions": "Enter after release or near-release with blue at table height and fingers opening/open, as at demo10200 index 660. It can also cover retreat states through final observations where both objects are already at goals.",
+            "exit_conditions": "Exit is the materialized task-complete state: red_pose at red_goal, blue_pose at blue_goal, both z about 0.020 m, gripper open qpos about 0.04 m, and tcp_pose retreated high around z 0.30 m in final frames.",
+            "failure_signatures": "Object pose changes during retreat, tcp remains low enough to bump the blue cube, fingers close again after release, or final blue/red velocities/poses indicate sliding. These signs mean stopping/monitoring should not declare stable completion.",
+            "overlap_role": "Although this is the terminal skill, retaining actions through final settling teaches post-release retreat instead of truncating at first contact. It shares early release/descent states with Skill 3 via [520,590) and then continues final verification context.",
+            "successor_readiness": "No successor policy is expected. A completion monitor can use the task contract predicates red_at_goal and blue_at_goal for at least one observation; demonstrations additionally show open gripper and tcp clearance, which are useful but not contract-required."
+          },
+          "limitations": "The task contract has no velocity threshold, sustained hold, or tcp clearance requirement, so retreat/stability is a demonstration convention rather than necessary for success. A policy that stops immediately after blue_at_goal may still satisfy the contract. Falsify by comparing with a no-retreat terminal policy; if object disturbance is not reduced, the prior adds unnecessary horizon. The data cannot prove robustness to delayed settling or collisions after final pose.",
+          "pipeline_implications": "Add terminal-state and no-disturbance auxiliary heads to a final DP. Inputs: all object poses/goals, tcp_pose, qpos/qvel. Training labels: future task_success, future object displacement after release, and terminal/retreat phase from demonstration futures. Objective: action denoising + BCE(success_{t+H}) + lambda||red/blue_pose_{t+H}-red/blue_pose_t|| for post-release states + optional imitation of open gripper. Deployment computes success probability; if high and object-disturbance risk low, the policy can output retreat/open or a hold action according to sampled horizon. This prior specifically changes terminal objective and inference selection.",
+          "rationale": "Final observations show the expert keeps the gripper open and retreats upward after blue is placed, while both objects stay at their goals. Including this behavior in the skill prevents the learned policy from ending with the gripper still near the block, which could bump the object on controller settling. This is different from release timing: it optimizes post-release non-disturbance and terminal confidence.",
+          "statement": "Post-release verification and retreat prior: after blue placement, continue learning open-finger retreat and object-stability prediction so the final policy avoids disturbing already successful object poses."
+        }
+      ],
+      "name": "Blue final place, release, and retreat",
+      "segmentation_rationale": "Segments [520,end) begin while blue is already lifted high, before exact final placement, and continue through transport/descent, table contact, gripper opening, and terminal retreat/settling. Starting at 520 creates a large overlap with blue acquisition/transport so this policy can take over from high source-carry or goal-near carry states rather than a single final descent pose. The final observations are retained because the task completion contract needs both objects at goals and the demonstrations include useful release/retreat context.",
+      "segments": [
+        {
+          "start": 520,
+          "stop": 732,
+          "trajectory_id": "demo10200"
+        },
+        {
+          "start": 520,
+          "stop": 717,
+          "trajectory_id": "demo10201"
+        },
+        {
+          "start": 520,
+          "stop": 729,
+          "trajectory_id": "demo10202"
+        },
+        {
+          "start": 520,
+          "stop": 728,
+          "trajectory_id": "demo10203"
+        },
+        {
+          "start": 520,
+          "stop": 721,
+          "trajectory_id": "demo10204"
+        },
+        {
+          "start": 520,
+          "stop": 723,
+          "trajectory_id": "demo10205"
+        },
+        {
+          "start": 520,
+          "stop": 729,
+          "trajectory_id": "demo10206"
+        },
+        {
+          "start": 520,
+          "stop": 739,
+          "trajectory_id": "demo10207"
+        },
+        {
+          "start": 520,
+          "stop": 737,
+          "trajectory_id": "demo10208"
+        },
+        {
+          "start": 520,
+          "stop": 723,
+          "trajectory_id": "demo10209"
+        },
+        {
+          "start": 520,
+          "stop": 730,
+          "trajectory_id": "demo10210"
+        },
+        {
+          "start": 520,
+          "stop": 721,
+          "trajectory_id": "demo10211"
+        }
+      ],
+      "skill_id": "blue_place_release_retreat",
+      "subgoal": "Place the blue block on its goal pad, release it, and retreat while keeping both red and blue at their goals."
+    }
+  ]
+}

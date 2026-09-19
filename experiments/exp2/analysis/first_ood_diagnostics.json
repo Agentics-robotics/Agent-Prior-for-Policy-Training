@@ -1,0 +1,48 @@
+{
+  "API_invocations": 9,
+  "after_first_missed_grasp": {
+    "executed_gripper_action_max": -0.7000044584274292,
+    "executed_gripper_action_min": -1.0,
+    "finger_width_max_m": 0.0,
+    "finger_width_min_m": 0.0,
+    "from_step": 82,
+    "raw_gripper_action_max": -0.7000044584274292,
+    "raw_gripper_action_min": -1.0,
+    "to_step": 882
+  },
+  "condition": "OOD",
+  "native_gripper_contract": {
+    "installed_sources": {
+      "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/environments/exp2/.pixi/envs/default/lib/python3.11/site-packages/mani_skill/agents/controllers/pd_joint_pos.py": "ce05feb05c4370ec2be58c60465082dde15fd97e6398a187a648a5e932a4d58e",
+      "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/environments/exp2/.pixi/envs/default/lib/python3.11/site-packages/mani_skill/agents/robots/panda/panda.py": "2a98a2133b49e5a94a83d05019c0ab833ad6767f85ff1bf66265cd9247cb0fda",
+      "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/environments/exp2/.pixi/envs/default/lib/python3.11/site-packages/mani_skill/utils/gym_utils.py": "66f56909b8b913014fba394c2348e4948d87855ab6a81a89597bfca61a4ef325"
+    },
+    "mapping": "(action + 1) / 2 * (0.04 - (-0.01)) + (-0.01)",
+    "normalized_action_range": [
+      -1,
+      1
+    ],
+    "per_finger_command_range_m": [
+      -0.01,
+      0.04
+    ],
+    "recovery_commanded_per_finger_max_m": -0.00250011146068573,
+    "recovery_commanded_per_finger_min_m": -0.01
+  },
+  "observational_only": true,
+  "seed": 30000,
+  "task": "two_block_sort",
+  "training_finger_width_m": {
+    "max": 0.07999999821186066,
+    "min": 0.036509063094854355,
+    "observations": 9237
+  },
+  "unique_API_selected_policies": [
+    "acquire_active_block__h01",
+    "acquire_active_block__h02",
+    "acquire_active_block__h03",
+    "deliver_active_block__h01",
+    "deliver_active_block__h02",
+    "deliver_active_block__h03"
+  ]
+}

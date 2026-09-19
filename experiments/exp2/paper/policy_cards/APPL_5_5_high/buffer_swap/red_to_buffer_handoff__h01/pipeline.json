@@ -1,0 +1,21 @@
+{
+  "policy_id": "red_to_buffer_handoff__h01",
+  "skill_id": "red_to_buffer_handoff",
+  "heuristic_index": 1,
+  "prior_summary": "A learned action diffusion policy with an object-relative contact-funnel conditioning path: two causal state observations are encoded in the red-block and blue-block frames, a learned soft phase embedding represents approach, pinch/lift, carry, lower/release, and blue-handoff phases, and auxiliary prediction of short-horizon red/blue displacements trains the same representation.",
+  "applicable_conditions": "Use for the first part of the buffer-swap task when the red block is still in the lower initial/blue-goal region, the blue block remains in the upper red-goal region, the Panda starts or remains within the demonstrated top-down corridor, and observations include qpos, qvel, tcp_pose, red_pose, blue_pose, red_goal, and blue_goal in world metres. It is intended for the full expanded slice 0-460 including the shared red-release to blue-acquisition transition.",
+  "termination_guidance": "Prefer handing off after the red block is resting near the central buffer around [-0.181, 0.0, 0.02] m and the gripper has reopened, with the TCP either high in the retreat/approach corridor toward the blue block or low over the blue block with closure underway. Continue this policy through the overlap if the gripper is still opening after red release or the TCP has not yet reached the demonstrated blue approach corridor.",
+  "limitations": "The prior is trained only from successful top-down pinch demonstrations in the supplied state dataset. It does not implement IK, collision checking, image perception, hard safety constraints, or a scripted fallback. Recovery from missed red grasps, large object perturbations, clutter, or moving blue/red blocks outside the measured support is untested.",
+  "config": {
+    "condition_dim": 256,
+    "hidden_dim": 256,
+    "phase_count": 5,
+    "phase_embedding_dim": 64,
+    "xyz_scale_m": 0.25,
+    "future_offsets": [3, 7, 11, 15],
+    "phase_loss_weight": 0.05,
+    "object_delta_loss_weight": 0.5,
+    "buffer_xyz_m": [-0.181, 0.0, 0.02],
+    "implemented_prior": "object_relative_contact_funnel_with_learned_phase_and_object_motion_auxiliary"
+  }
+}

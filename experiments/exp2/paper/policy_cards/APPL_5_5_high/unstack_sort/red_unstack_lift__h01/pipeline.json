@@ -1,0 +1,22 @@
+{
+  "policy_id": "red_unstack_lift__h01",
+  "skill_id": "red_unstack_lift",
+  "heuristic_index": 1,
+  "prior_summary": "A learned DDPM action policy conditioned on a causal red-object-relative representation: TCP, blue support cube, and red/blue goals are encoded relative to the current red cube so the unstack lift is not learned only as an absolute joint path.",
+  "applicable_conditions": "Use when the red cube is the top cube in an initially centered red-on-blue stack, red_pose and blue_pose are available in world coordinates, the gripper is initially open or can still form a top grasp, and the Panda TCP is approaching from above the workspace. The model covers the full expanded slice from initial approach through the shared raised-and-starting-lateral-carry transition.",
+  "termination_guidance": "Continue until causal observations show a closed/pinched gripper, red_pose lifted well above blue_pose, blue_pose still near the table, and the TCP/red pair beginning lateral travel toward the red goal. Transfer can occur in the overlap once red z is roughly above 0.15 m and the fingers remain near the closed demonstrated aperture; later transfer around 0.30 m red height is also supported.",
+  "limitations": "The policy is still a learned joint-target diffusion model with no analytic IK, no contact proof, and no recovery controller. It is trained on successful top grasps in a narrow stack-translation range and may fail under large yaw, side contacts, missed grasps, or disturbed blue blocks.",
+  "config": {
+    "condition_dim": 256,
+    "phase_dim": 5,
+    "prior_loss_weight": 0.05,
+    "relative_feature_scales_m": {
+      "local_relations": 0.25,
+      "goal_relations_xy": 0.40,
+      "goal_relations_z": 0.25,
+      "small_motion_xy": 0.06,
+      "small_motion_z": 0.08
+    },
+    "auxiliary_future_descriptor": "learned MLP predicts normalized future TCP-minus-red, red-minus-blue, red-goal-minus-red, blue drift, and finger aperture from the denoised action estimate and condition embedding"
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "policy_id": "deliver_block__h02",
+  "skill_id": "deliver_block",
+  "heuristic_index": 2,
+  "prior_summary": "Rim-aware transport topology implemented as an absolute-joint diffusion policy with fixture-relative causal conditioning, learned contact/motion-mode forecasts, and a supervised action-chunk-conditioned pose ensemble. A differentiable, confidence-weighted geometric preference compares a denoised chunk with the demonstrated chunk through frozen rollout weights. This amortizes the assigned predictive-ranking hypothesis into diffusion training; the fixed inference interface does not perform completed-sample ranking.",
+  "applicable_conditions": "Known open tray, upright gravity, two observed 0.04 m cubes and their color-specific world-frame goals. Supports the entire assigned expanded slices: aligned open descent, closing, lifting, carry, insertion, release, vertical retreat and open traversal toward the remaining object. Two measured causal states must contain robot joints/velocities, TCP, both object poses and goals. Fixture boxes are supplied through configuration, not inferred. Nominal acquisition and packed-object configurations are supported; recovery from collisions or failed grasps is untested.",
+  "termination_guidance": "Use actual observed object containment for the supplied formal task contract. For manipulation handoff separately consider finger opening, TCP-object separation and co-motion, and preservation of the other block. Continue through final lowering/release and vertical retreat if the successor cannot do them. After red delivery the demonstrated exit is open above the blue source near TCP z 0.267 m; after blue the demonstrated retreat holds near z 0.3165 m. These are readiness cues, not additional task-success predicates or timed waypoints.",
+  "limitations": "No IK, physical simulator, images, exact robot collision checker, certified safety margin or online multi-candidate selector. Rotated cube corners produce conservative axis-aligned envelopes, not exact oriented-box collision tests or swept volumes. Pose models are learned only from nominal demonstrations and can ignore or misgeneralize action perturbations. Ensemble agreement is not calibrated safety confidence. Geometry preferences are used during training only, at moderate/low diffusion noise; frozen rollout weights prevent direct energy-driven predictor distortion but cannot eliminate model exploitation. One tray and no collision examples cannot establish changed-geometry generalization or the causal reason for high waypoints.",
+  "config": {
+    "implementation": "amortized_fixture_predictive_preference_v1",
+    "fixtures": [
+      [-0.12, 0.0, 0.008, 0.13, 0.17, 0.008],
+      [-0.12, -0.178, 0.045, 0.138, 0.008, 0.045],
+      [-0.12, 0.178, 0.045, 0.138, 0.008, 0.045],
+      [-0.258, 0.0, 0.045, 0.008, 0.17, 0.045],
+      [0.018, 0.0, 0.045, 0.008, 0.17, 0.045]
+    ],
+    "fixture_format": "world center xyz then positive half extents xyz, metres; floor first",
+    "wall_margin_m": 0.003,
+    "margin_status": "unvalidated soft regularizer, not a safety guarantee",
+    "observation_steps": 2,
+    "action_horizon": 16,
+    "execution_steps": 8,
+    "condition_dimension": 320,
+    "mode_channels": "red attached/free-lateral/low-insertion/settled, blue attached/free-lateral/low-insertion/settled, empty-hand retreat",
+    "pose_ensemble_members": 2,
+    "pose_predictor_hidden_dimensions": [384, 384],
+    "loss_weights": {
+      "diffusion": 1.0,
+      "rollout_supervision": 0.25,
+      "mode_forecast": 0.05,
+      "clean_action_pose_consistency": 0.05,
+      "geometry_preference": 0.03
+    },
+    "geometry_preference_tolerance": 0.01,
+    "geometry_alpha_bar_min": 0.2,
+    "fit_confidence_length_m": 0.02,
+    "ensemble_confidence_length_m": 0.015,
+    "deployment_ranking": false,
+    "normalization": "provided complete-demonstration shared range normalizer, unchanged",
+    "shared_normalizer_sha256": "874039c9e091b43eacce196d1283f9944073808a6049a059b2e07938248a7ce8",
+    "slice_coverage": "all 24 assigned expanded segments, all valid actions, no phase filtering",
+    "training_updates": 20000,
+    "seed": 0,
+    "selection": "last EMA at the assigned fixed budget",
+    "fixed_sampler": "100-step epsilon-prediction DDPM with clipped normalized actions"
+  }
+}

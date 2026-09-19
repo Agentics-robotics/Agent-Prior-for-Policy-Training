@@ -1,0 +1,90 @@
+{
+  "policy_id": "acquire_lift__h02",
+  "skill_id": "acquire_lift",
+  "heuristic_index": 2,
+  "prior_summary": "A causal recurrent contact-belief prior conditions a learned absolute-joint action DDPM. Six soft object-indexed modes distinguish empty approach/retreat, red closing, red held, red releasing, blue closing and blue held. Future finger positions, coupled object/TCP displacement and relative orientation changes provide training-only outcome supervision; no measured contact is asserted.",
+  "applicable_conditions": "State-based unstack_sort acquisition over the entire assigned expanded slices, including red placement/release and empty retreat before blue approach. Two ordered world-frame observations at 20 Hz include qpos/qvel, TCP and both block poses and goals. Blue invocation may begin with red still pinched and descending over its pad. No role tags, prior commands, force, tactile signals or images enter deployment forward; physical object-indexed modes adapt the original role-based proposal to that interface.",
+  "termination_guidance": "Continue through approach, actual finger closure and coupled lift, or through red descent/open/clear when acquiring blue. A useful carry handoff has the selected block following TCP motion with approximately persistent relative pose and fingers near the observed 0.01825 m per-finger band; recorded selected-object exit heights are about 0.28-0.32 m and lateral motion may already be underway. These are evidence-based cues for the invocation agent, not model-enforced thresholds or task-success requirements. Hand off causal observations, not future-derived labels.",
+  "limitations": "Only two observations spanning 0.05 s are available, not the proposed twelve-frame contact history. The implementation uses a soft one-step Markov persistence prior, not a full semi-Markov duration model. Modes are weakly supervised attachment proxies, uncalibrated on slips or failures. No explicit invocation role input, cross-call latent memory, contact sensor, kinematics, collision constraint or guaranteed timing robustness is implemented. Outcome forecasts are expert-conditioned predictions, not an action-conditioned physical simulator. Task completion remains the supplied two-block goal-containment contract.",
+  "config": {
+    "implementation": "two_frame_object_indexed_contact_belief_v1",
+    "expanded_slice_coverage": "All 24 assigned expanded segments, all action phases, without phase filtering or index-based conditioning.",
+    "normalization": {
+      "source": "spec.normalizer, shared across complete original training demonstrations",
+      "normalizer_sha256": "5445b8ee07ea31ca96be698930aa68aa28456023af51c213860aed01a97316fb",
+      "position_feature_scale": "Axiswise maximum of shared TCP, red and blue position half-ranges",
+      "local_refit": false,
+      "quaternion_features": "Unit components and canonicalized TCP-relative unit quaternions; no empirical quaternion rescaling"
+    },
+    "representation": {
+      "observation_dimension": 47,
+      "observation_steps": 2,
+      "action_dimension": 8,
+      "action_representation": "Unchanged shared-normalized seven absolute joint targets and gripper command",
+      "frame_features": 67,
+      "frame_encoder_input": 135,
+      "recurrent_hidden": 160,
+      "condition_dimension": 256,
+      "mode_embedding_dimension": 32,
+      "modes": ["empty_approach_or_retreat", "red_closing", "red_attached_or_carrying", "red_releasing", "blue_closing", "blue_attached_or_carrying"],
+      "external_role_input": false,
+      "stateful_across_calls": false,
+      "environment_time_input": false
+    },
+    "belief_transition": {
+      "learned_row_softmax": true,
+      "log_prior_weight": 0.35,
+      "initial_diagonal_logit": 3.0,
+      "initial_preferred_off_diagonal_logit": -0.5,
+      "initial_other_logit": -3.0,
+      "hard_forbidden_transitions": false,
+      "duration_adaptation": "Two-frame persistence and soft self-transition preference only"
+    },
+    "auxiliary_targets": {
+      "phase_future_window_frames": 8,
+      "phase_label_smoothing_score": 0.015,
+      "near_object_bandwidth_m": 0.022,
+      "relative_persistence_bandwidth_m": 0.01,
+      "outcome_dimension_per_slot": 19,
+      "outcome_fields": ["two future finger positions", "TCP displacement xyz", "red displacement xyz", "blue displacement xyz", "red TCP-relative quaternion change", "blue TCP-relative quaternion change"],
+      "future_slot_zero_excluded_from_forecast_loss": true,
+      "future_labels_only": true,
+      "forecaster_action_input": false
+    },
+    "loss_weights": {
+      "diffusion_epsilon": 1.0,
+      "soft_phase_cross_entropy": 0.12,
+      "belief_temporal_persistence": 0.01,
+      "discouraged_transition_mass": 0.002,
+      "future_fingers": 0.1,
+      "future_tcp_and_object_displacements": 0.1,
+      "relative_translation_change": 0.08,
+      "relative_quaternion_change": 0.02
+    },
+    "fixed_training": {
+      "seed": 0,
+      "updates": 20000,
+      "batch_size": 128,
+      "horizon": 16,
+      "observation_steps": 2,
+      "execution_steps": 8,
+      "sampler": "ddpm",
+      "denoising_train_steps": 100,
+      "denoising_inference_steps": 100,
+      "prediction_type": "epsilon",
+      "clip_sample": true,
+      "down_dims": [128, 256, 512],
+      "kernel_size": 5,
+      "groups": 8,
+      "timestep_embed_dim": 128,
+      "learning_rate": 0.0001,
+      "weight_decay": 0.000001,
+      "ema_decay": 0.999,
+      "lr_schedule": "cosine",
+      "warmup_steps": 500,
+      "max_grad_norm": 1,
+      "checkpoint_every": 2000,
+      "selection": "last EMA at predeclared budget"
+    }
+  }
+}

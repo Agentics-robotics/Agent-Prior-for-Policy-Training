@@ -1,0 +1,36 @@
+{
+  "API_requests": 0,
+  "checkpoint_sha256": "ba8b7152d864205c9a343bee45fc1c83e5aa5dff021f7023600559892de2a8f2",
+  "control_steps": [
+    8,
+    16,
+    24,
+    32,
+    40,
+    48,
+    56,
+    64
+  ],
+  "demonstration": "demo10300",
+  "device": {
+    "logical_gpu": 0,
+    "minor": 1,
+    "physical_gpu": 2,
+    "uuid": "GPU-7a6705f2-1132-637d-000e-c94d37e2f0a2"
+  },
+  "interpretation": "Offline counterfactual conditioning with identical diffusion noise for each variant. Hybrid observations may be physically inconsistent and are not a deployable controller.",
+  "optimizer_updates": 0,
+  "random_seed": 913,
+  "samples_per_cell": 16,
+  "simulator_steps": 0,
+  "source_sha256": "e8de45fafd077336ec381a8a05500dbac310ffdfa423adef0b8dde388ae20845",
+  "task": "tray_pack",
+  "variants": [
+    "observed",
+    "expert_same_time",
+    "replace_finger_qpos",
+    "replace_finger_qpos_qvel",
+    "replace_arm_qpos_qvel",
+    "replace_TCP_pose"
+  ]
+}

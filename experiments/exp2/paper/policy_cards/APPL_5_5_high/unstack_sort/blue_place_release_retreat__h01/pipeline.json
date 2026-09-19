@@ -1,0 +1,25 @@
+{
+  "policy_id": "blue_place_release_retreat__h01",
+  "skill_id": "blue_place_release_retreat",
+  "heuristic_index": 1,
+  "prior_summary": "Blue goal-basin servo diffusion prior: a learned conditional DDPM uses shared-normalized state history plus world-frame blue-goal, TCP-blue, red-goal and gripper features, with auxiliary learned success and terminal-error heads trained from demonstration futures to bias precise blue placement, release and retreat.",
+  "applicable_conditions": "Use when red is already on the red goal and blue is grasped or has just been carried toward the fixed blue goal. The causal observations should show blue above or near the blue pad, TCP close to blue, and gripper fingers closed during approach or opening after table contact. The demonstrated expanded slice includes takeover from high source carry through high goal carry, descent, release and retreat.",
+  "termination_guidance": "Terminate when causal state shows blue and red inside their goal-pad XY tolerances at table height, with blue no longer being pushed by the gripper. Demonstrations usually have open fingers near 0.04 m per finger and the TCP retreated upward around z 0.28-0.30 m, but the task success contract only requires red_at_goal and blue_at_goal.",
+  "limitations": "The model is trained only on the fixed unstack_sort goals and similar carries in the assigned demonstrations. It does not implement analytic IK, hard contact constraints, image perception, rejection thresholds or scripted recovery if the grasp is slipping or blue is far outside the observed basin.",
+  "config": {
+    "condition_dim": 256,
+    "action_summary_dim": 128,
+    "state_value_loss_weight": 0.15,
+    "action_value_loss_weight": 0.10,
+    "terminal_error_loss_weight": 0.05,
+    "relative_feature_scales": {
+      "blue_goal_xy_m": 0.50,
+      "blue_goal_z_m": 0.30,
+      "tcp_relative_m": 0.30,
+      "terminal_error_xy_m": 0.12,
+      "terminal_error_z_m": 0.30
+    },
+    "success_label": "future red and blue within goal XY half-width 0.06 m and Z tolerance 0.011 m at any valid future slot in the 16-step training horizon",
+    "auxiliary_low_noise_weight": "sqrt(alpha_bar) for action-conditioned auxiliary losses"
+  }
+}

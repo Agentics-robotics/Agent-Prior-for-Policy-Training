@@ -1,0 +1,99 @@
+{
+  "coordinate_frame": "world",
+  "description": "Pick up both table blocks and place them in their separate marked regions inside the open tray.",
+  "drawer_channels": "No drawer in this task: drawer_position and drawer_velocity are fixed zero compatibility channels.",
+  "fixtures": [
+    {
+      "half": [
+        0.13,
+        0.17,
+        0.008
+      ],
+      "position": [
+        -0.12,
+        0,
+        0.008
+      ]
+    },
+    {
+      "half": [
+        0.138,
+        0.008,
+        0.045
+      ],
+      "position": [
+        -0.12,
+        -0.178,
+        0.045
+      ]
+    },
+    {
+      "half": [
+        0.138,
+        0.008,
+        0.045
+      ],
+      "position": [
+        -0.12,
+        0.178,
+        0.045
+      ]
+    },
+    {
+      "half": [
+        0.008,
+        0.17,
+        0.045
+      ],
+      "position": [
+        -0.258,
+        0,
+        0.045
+      ]
+    },
+    {
+      "half": [
+        0.008,
+        0.17,
+        0.045
+      ],
+      "position": [
+        0.018,
+        0,
+        0.045
+      ]
+    }
+  ],
+  "full_rotated_xy_containment": true,
+  "gripper_release_required": false,
+  "half_xy_m": [
+    0.06,
+    0.06
+  ],
+  "object_half_m": 0.02,
+  "predicates": [
+    "red_at_goal",
+    "blue_at_goal"
+  ],
+  "required_observations": 1,
+  "schema": "appl.scaleup.goals.v1",
+  "success_expression": "red_at_goal AND blue_at_goal",
+  "sustained_hold_required": false,
+  "targets": {
+    "blue": [
+      -0.14,
+      0.075,
+      0.036
+    ],
+    "red": [
+      -0.14,
+      -0.075,
+      0.036
+    ]
+  },
+  "task_id": "tray_pack",
+  "tcp_clearance_required": false,
+  "units": "metres",
+  "velocity_threshold_required": false,
+  "z_tolerance_m": 0.011
+}

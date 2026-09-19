@@ -1,0 +1,21 @@
+{
+  "checkpoint_sha256": "98215b169a5246928dc4f0993aa1dc8fdcd2e7164d6d884cd7fb3fd0753fbd8d",
+  "demonstrations": [
+    "demo10200",
+    "demo10205",
+    "demo10211"
+  ],
+  "device": {
+    "logical_gpu": 0,
+    "minor": 7,
+    "physical_gpu": 5,
+    "uuid": "GPU-13ce441a-9b9f-d327-08cf-e7e9f728b580"
+  },
+  "diagnostic_source_sha256": "306118fa2750096acd005b6bd2ab2e30f40364bf9ddafabd2b7320e32bf316db",
+  "intervention": "Replay the exact expert prefix until 32 actions before the blue-pick closing transition (third closing for drawer, second for other tasks); DP receives the actual preceding and current states. No expert actions after takeover.",
+  "max_policy_steps": 1500,
+  "note": "Oracle-prefix diagnosis; not a deployable method or held-out performance estimate. Sampling is freshly seeded at takeover.",
+  "policy_training_changes": false,
+  "runtime_API_requests": 0,
+  "task": "unstack_sort"
+}

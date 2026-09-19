@@ -1,0 +1,21 @@
+{
+  "policy_id": "blue_to_goal_handoff__h02",
+  "skill_id": "blue_to_goal_handoff",
+  "heuristic_index": 2,
+  "prior_summary": "Goal-anchored learned diffusion policy for placing the blue block: the causal condition explicitly encodes blue_pose-blue_goal and tcp_pose-blue_goal in world metres, and auxiliary trainable heads predict future blue-goal error, future minimum distance, and the blue_at_goal predicate from the DDPM clean-action estimate.",
+  "applicable_conditions": "Use when blue_pose, tcp_pose, qpos/qvel, red_pose, red_goal, and blue_goal are available in the supplied world-frame state vector. The intended entry is the expanded handoff slice: red has already been moved to the central buffer and blue is either still in the upper/red-goal region or in the early grasp/approach part of the overlap.",
+  "termination_guidance": "A good transfer point is reached when the causal observation shows the blue block inside the blue goal square with table-height z, the gripper has opened after lowering, and the TCP has either lifted clear as in the index-700 handoff or the policy has continued into the demonstrated red reacquisition phase. The inference API may continue briefly after blue_at_goal if it wants the successor to receive the red-pickup transition state.",
+  "limitations": "This implementation does not contain IK, collision constraints, image encoders, or a scripted release controller. Auxiliary labels come from demonstrated future observations, so recovery from large overshoots or occluded blue poses is untested. The model uses the single shared normalizer supplied for the full original demonstrations and does not refit per-skill scales.",
+  "config": {
+    "condition_dim": 256,
+    "encoder_hidden": 256,
+    "aux_hidden": 192,
+    "lambda_pose": 0.06,
+    "lambda_min_distance": 0.02,
+    "lambda_success": 0.03,
+    "lambda_terminal_goal": 0.02,
+    "relative_feature_metric_scales": [0.35, 0.45, 0.30],
+    "containment_center_half_width_m": 0.04,
+    "z_tolerance_m": 0.011
+  }
+}

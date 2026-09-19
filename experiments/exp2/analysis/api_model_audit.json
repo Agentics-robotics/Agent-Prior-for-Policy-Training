@@ -1,0 +1,4933 @@
+{
+  "scope": "Read-only audit of requested model, reasoning effort and returned model across retained original API journals. Does not independently attest provider backend weights.",
+  "groups": {
+    "current_segmentation": {
+      "journals": 5,
+      "calls": 148,
+      "counts": [
+        {
+          "request_model": "gpt-5.5",
+          "reasoning_effort": "high",
+          "response_model": "gpt-5.5",
+          "status": "consumed",
+          "calls": 148
+        }
+      ],
+      "records": [
+        {
+          "journal": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/data/exp2/processed/M1_v2/_session/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 30
+            }
+          ]
+        },
+        {
+          "journal": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/data/exp2/scaleup/buffer_swap/processed/_session/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 28
+            }
+          ]
+        },
+        {
+          "journal": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/data/exp2/scaleup/tray_pack/processed/_session/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 27
+            }
+          ]
+        },
+        {
+          "journal": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/data/exp2/scaleup/two_block_sort/processed/_session/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 34
+            }
+          ]
+        },
+        {
+          "journal": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/data/exp2/scaleup/unstack_sort/processed/_session/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 29
+            }
+          ]
+        }
+      ]
+    },
+    "current_policy_design": {
+      "journals": 51,
+      "calls": 708,
+      "counts": [
+        {
+          "request_model": "gpt-5.5",
+          "reasoning_effort": "high",
+          "response_model": "gpt-5.5",
+          "status": "consumed",
+          "calls": 708
+        }
+      ],
+      "records": [
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_initial_test/policies/blue_approach_grasp_lift/heuristic_01/design/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 15
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_initial_test/policies/blue_approach_grasp_lift/heuristic_02/design/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 16
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_initial_test/policies/blue_approach_grasp_lift/heuristic_03/design/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 13
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_initial_test/policies/blue_release_retreat_complete/heuristic_01/design/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 12
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_initial_test/policies/blue_release_retreat_complete/heuristic_02/design/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 14
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_initial_test/policies/blue_release_retreat_complete/heuristic_03/design/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 13
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_initial_test/policies/blue_transport_to_drawer/heuristic_01/design/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 13
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_initial_test/policies/blue_transport_to_drawer/heuristic_02/design/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 14
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_initial_test/policies/blue_transport_to_drawer/heuristic_03/design/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 16
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_initial_test/policies/red_top_regrasp_lift/heuristic_01/design/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 16
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_initial_test/policies/red_top_regrasp_lift/heuristic_02/design/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 13
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_initial_test/policies/red_top_regrasp_lift/heuristic_03/design/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 12
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_initial_test/policies/red_transport_place_pad/heuristic_01/design/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 15
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_initial_test/policies/red_transport_place_pad/heuristic_02/design/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 16
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_initial_test/policies/red_transport_place_pad/heuristic_03/design/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 14
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_initial_test/policies/side_grasp_red_pull_drawer_open/heuristic_01/design/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 16
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_initial_test/policies/side_grasp_red_pull_drawer_open/heuristic_02/design/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 13
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_initial_test/policies/side_grasp_red_pull_drawer_open/heuristic_03/design/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 14
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/buffer_swap/policies/blue_to_goal_handoff/heuristic_01/design/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 14
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/buffer_swap/policies/blue_to_goal_handoff/heuristic_02/design/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 16
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/buffer_swap/policies/blue_to_goal_handoff/heuristic_03/design/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 14
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/buffer_swap/policies/red_buffer_to_goal_finish/heuristic_01/design/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 12
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/buffer_swap/policies/red_buffer_to_goal_finish/heuristic_02/design/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 13
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/buffer_swap/policies/red_buffer_to_goal_finish/heuristic_03/design/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 12
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/buffer_swap/policies/red_to_buffer_handoff/heuristic_01/design/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 13
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/buffer_swap/policies/red_to_buffer_handoff/heuristic_02/design/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 13
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/buffer_swap/policies/red_to_buffer_handoff/heuristic_03/design/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 12
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/tray_pack/policies/acquire_block/heuristic_01/design/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 15
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/tray_pack/policies/acquire_block/heuristic_02/design/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 12
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/tray_pack/policies/acquire_block/heuristic_03/design/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 14
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/tray_pack/policies/place_block/heuristic_01/design/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 13
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/tray_pack/policies/place_block/heuristic_02/design/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 14
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/tray_pack/policies/place_block/heuristic_03/design/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 15
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/two_block_sort/policies/acquire_active_block/heuristic_01/design/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 15
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/two_block_sort/policies/acquire_active_block/heuristic_02/design/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 13
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/two_block_sort/policies/acquire_active_block/heuristic_03/design/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 13
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/two_block_sort/policies/deliver_active_block/heuristic_01/design/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 14
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/two_block_sort/policies/deliver_active_block/heuristic_02/design/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 13
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/two_block_sort/policies/deliver_active_block/heuristic_03/design/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 13
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/unstack_sort/policies/blue_acquire_transport/heuristic_01/design/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 14
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/unstack_sort/policies/blue_acquire_transport/heuristic_02/design/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 14
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/unstack_sort/policies/blue_acquire_transport/heuristic_03/design/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 12
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/unstack_sort/policies/blue_place_release_retreat/heuristic_01/design/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 15
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/unstack_sort/policies/blue_place_release_retreat/heuristic_02/design/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 13
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/unstack_sort/policies/blue_place_release_retreat/heuristic_03/design/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 15
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/unstack_sort/policies/red_place_to_blue_entry/heuristic_01/design/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 15
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/unstack_sort/policies/red_place_to_blue_entry/heuristic_02/design/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 15
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/unstack_sort/policies/red_place_to_blue_entry/heuristic_03/design/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 15
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/unstack_sort/policies/red_unstack_lift/heuristic_01/design/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 14
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/unstack_sort/policies/red_unstack_lift/heuristic_02/design/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 15
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/unstack_sort/policies/red_unstack_lift/heuristic_03/design/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 13
+            }
+          ]
+        }
+      ]
+    },
+    "scaleup_deployment": {
+      "journals": 300,
+      "calls": 5049,
+      "counts": [
+        {
+          "request_model": "gpt-5.5",
+          "reasoning_effort": "high",
+          "response_model": "gpt-5.5",
+          "status": "consumed",
+          "calls": 5048
+        },
+        {
+          "request_model": "gpt-5.5",
+          "reasoning_effort": "high",
+          "response_model": null,
+          "status": "http_failed",
+          "calls": 1
+        }
+      ],
+      "records": [
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/buffer_swap/evaluation/APPL/ID/20100/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 13
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/buffer_swap/evaluation/APPL/ID/20101/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 11
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/buffer_swap/evaluation/APPL/ID/20102/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 12
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/buffer_swap/evaluation/APPL/ID/20103/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 12
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/buffer_swap/evaluation/APPL/ID/20104/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 9
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/buffer_swap/evaluation/APPL/ID/20105/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 12
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/buffer_swap/evaluation/APPL/ID/20106/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 16
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/buffer_swap/evaluation/APPL/ID/20107/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 13
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/buffer_swap/evaluation/APPL/ID/20108/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 13
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/buffer_swap/evaluation/APPL/ID/20109/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 16
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/buffer_swap/evaluation/APPL/ID/20110/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 10
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/buffer_swap/evaluation/APPL/ID/20111/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 10
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/buffer_swap/evaluation/APPL/ID/20112/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 12
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/buffer_swap/evaluation/APPL/ID/20113/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 10
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/buffer_swap/evaluation/APPL/ID/20114/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 10
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/buffer_swap/evaluation/APPL/ID/20115/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 9
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/buffer_swap/evaluation/APPL/ID/20116/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": null,
+              "status": "http_failed",
+              "calls": 1
+            },
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 10
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/buffer_swap/evaluation/APPL/ID/20117/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 12
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/buffer_swap/evaluation/APPL/ID/20118/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 13
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/buffer_swap/evaluation/APPL/ID/20119/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 13
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/buffer_swap/evaluation/APPL/ID/20120/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 10
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/buffer_swap/evaluation/APPL/ID/20121/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 10
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/buffer_swap/evaluation/APPL/ID/20122/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 11
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/buffer_swap/evaluation/APPL/ID/20123/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 16
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/buffer_swap/evaluation/APPL/ID/20124/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 16
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/buffer_swap/evaluation/APPL/ID/20125/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 36
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/buffer_swap/evaluation/APPL/ID/20126/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 11
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/buffer_swap/evaluation/APPL/ID/20127/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 11
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/buffer_swap/evaluation/APPL/ID/20128/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 12
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/buffer_swap/evaluation/APPL/ID/20129/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 14
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/buffer_swap/evaluation/APPL/OOD/30100/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 18
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/buffer_swap/evaluation/APPL/OOD/30101/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 17
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/buffer_swap/evaluation/APPL/OOD/30102/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 21
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/buffer_swap/evaluation/APPL/OOD/30103/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 39
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/buffer_swap/evaluation/APPL/OOD/30104/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 23
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/buffer_swap/evaluation/APPL/OOD/30105/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 25
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/buffer_swap/evaluation/APPL/OOD/30106/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 12
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/buffer_swap/evaluation/APPL/OOD/30107/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 16
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/buffer_swap/evaluation/APPL/OOD/30108/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 19
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/buffer_swap/evaluation/APPL/OOD/30109/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 17
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/buffer_swap/evaluation/APPL/OOD/30110/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 14
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/buffer_swap/evaluation/APPL/OOD/30111/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 17
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/buffer_swap/evaluation/APPL/OOD/30112/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 36
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/buffer_swap/evaluation/APPL/OOD/30113/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 18
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/buffer_swap/evaluation/APPL/OOD/30114/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 17
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/buffer_swap/evaluation/APPL/OOD/30115/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 25
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/buffer_swap/evaluation/APPL/OOD/30116/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 27
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/buffer_swap/evaluation/APPL/OOD/30117/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 15
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/buffer_swap/evaluation/APPL/OOD/30118/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 18
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/buffer_swap/evaluation/APPL/OOD/30119/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 12
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/buffer_swap/evaluation/APPL/OOD/30120/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 17
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/buffer_swap/evaluation/APPL/OOD/30121/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 23
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/buffer_swap/evaluation/APPL/OOD/30122/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 17
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/buffer_swap/evaluation/APPL/OOD/30123/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 25
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/buffer_swap/evaluation/APPL/OOD/30124/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 27
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/buffer_swap/evaluation/APPL/OOD/30125/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 12
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/buffer_swap/evaluation/APPL/OOD/30126/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 16
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/buffer_swap/evaluation/APPL/OOD/30127/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 12
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/buffer_swap/evaluation/APPL/OOD/30128/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 15
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/buffer_swap/evaluation/APPL/OOD/30129/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 14
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/drawer_exchange/evaluation/APPL/ID/6300/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 16
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/drawer_exchange/evaluation/APPL/ID/6301/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 12
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/drawer_exchange/evaluation/APPL/ID/6302/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 16
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/drawer_exchange/evaluation/APPL/ID/6303/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 16
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/drawer_exchange/evaluation/APPL/ID/6304/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 14
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/drawer_exchange/evaluation/APPL/ID/6305/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 12
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/drawer_exchange/evaluation/APPL/ID/6306/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 14
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/drawer_exchange/evaluation/APPL/ID/6307/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 14
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/drawer_exchange/evaluation/APPL/ID/6308/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 12
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/drawer_exchange/evaluation/APPL/ID/6309/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 12
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/drawer_exchange/evaluation/APPL/ID/6310/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 13
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/drawer_exchange/evaluation/APPL/ID/6311/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 16
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/drawer_exchange/evaluation/APPL/ID/6312/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 22
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/drawer_exchange/evaluation/APPL/ID/6313/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 12
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/drawer_exchange/evaluation/APPL/ID/6314/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 18
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/drawer_exchange/evaluation/APPL/ID/6315/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 14
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/drawer_exchange/evaluation/APPL/ID/6316/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 15
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/drawer_exchange/evaluation/APPL/ID/6317/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 11
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/drawer_exchange/evaluation/APPL/ID/6318/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 14
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/drawer_exchange/evaluation/APPL/ID/6319/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 12
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/drawer_exchange/evaluation/APPL/ID/6320/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 25
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/drawer_exchange/evaluation/APPL/ID/6321/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 12
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/drawer_exchange/evaluation/APPL/ID/6322/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 13
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/drawer_exchange/evaluation/APPL/ID/6323/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 12
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/drawer_exchange/evaluation/APPL/ID/6324/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 12
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/drawer_exchange/evaluation/APPL/ID/6325/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 30
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/drawer_exchange/evaluation/APPL/ID/6326/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 11
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/drawer_exchange/evaluation/APPL/ID/6327/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 13
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/drawer_exchange/evaluation/APPL/ID/6328/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 12
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/drawer_exchange/evaluation/APPL/ID/6329/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 12
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/drawer_exchange/evaluation/APPL/OOD/6400/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 24
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/drawer_exchange/evaluation/APPL/OOD/6401/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 31
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/drawer_exchange/evaluation/APPL/OOD/6402/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 22
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/drawer_exchange/evaluation/APPL/OOD/6403/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 35
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/drawer_exchange/evaluation/APPL/OOD/6404/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 22
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/drawer_exchange/evaluation/APPL/OOD/6405/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 15
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/drawer_exchange/evaluation/APPL/OOD/6406/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 57
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/drawer_exchange/evaluation/APPL/OOD/6407/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 8
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/drawer_exchange/evaluation/APPL/OOD/6408/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 36
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/drawer_exchange/evaluation/APPL/OOD/6409/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 17
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/drawer_exchange/evaluation/APPL/OOD/6410/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 50
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/drawer_exchange/evaluation/APPL/OOD/6411/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 19
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/drawer_exchange/evaluation/APPL/OOD/6412/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 23
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/drawer_exchange/evaluation/APPL/OOD/6413/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 24
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/drawer_exchange/evaluation/APPL/OOD/6414/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 38
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/drawer_exchange/evaluation/APPL/OOD/6415/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 20
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/drawer_exchange/evaluation/APPL/OOD/6416/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 18
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/drawer_exchange/evaluation/APPL/OOD/6417/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 38
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/drawer_exchange/evaluation/APPL/OOD/6418/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 32
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/drawer_exchange/evaluation/APPL/OOD/6419/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 18
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/drawer_exchange/evaluation/APPL/OOD/6420/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 27
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/drawer_exchange/evaluation/APPL/OOD/6421/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 13
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/drawer_exchange/evaluation/APPL/OOD/6422/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 23
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/drawer_exchange/evaluation/APPL/OOD/6423/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 18
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/drawer_exchange/evaluation/APPL/OOD/6424/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 16
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/drawer_exchange/evaluation/APPL/OOD/6425/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 35
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/drawer_exchange/evaluation/APPL/OOD/6426/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 16
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/drawer_exchange/evaluation/APPL/OOD/6427/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 16
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/drawer_exchange/evaluation/APPL/OOD/6428/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 29
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/drawer_exchange/evaluation/APPL/OOD/6429/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 22
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/tray_pack/evaluation/APPL/ID/20300/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 26
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/tray_pack/evaluation/APPL/ID/20301/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 15
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/tray_pack/evaluation/APPL/ID/20302/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 10
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/tray_pack/evaluation/APPL/ID/20303/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 12
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/tray_pack/evaluation/APPL/ID/20304/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 13
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/tray_pack/evaluation/APPL/ID/20305/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 18
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/tray_pack/evaluation/APPL/ID/20306/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 9
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/tray_pack/evaluation/APPL/ID/20307/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 14
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/tray_pack/evaluation/APPL/ID/20308/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 19
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/tray_pack/evaluation/APPL/ID/20309/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 10
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/tray_pack/evaluation/APPL/ID/20310/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 23
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/tray_pack/evaluation/APPL/ID/20311/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 23
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/tray_pack/evaluation/APPL/ID/20312/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 21
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/tray_pack/evaluation/APPL/ID/20313/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 17
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/tray_pack/evaluation/APPL/ID/20314/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 24
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/tray_pack/evaluation/APPL/ID/20315/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 11
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/tray_pack/evaluation/APPL/ID/20316/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 20
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/tray_pack/evaluation/APPL/ID/20317/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 11
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/tray_pack/evaluation/APPL/ID/20318/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 20
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/tray_pack/evaluation/APPL/ID/20319/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 9
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/tray_pack/evaluation/APPL/ID/20320/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 11
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/tray_pack/evaluation/APPL/ID/20321/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 22
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/tray_pack/evaluation/APPL/ID/20322/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 21
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/tray_pack/evaluation/APPL/ID/20323/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 16
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/tray_pack/evaluation/APPL/ID/20324/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 9
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/tray_pack/evaluation/APPL/ID/20325/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 13
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/tray_pack/evaluation/APPL/ID/20326/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 13
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/tray_pack/evaluation/APPL/ID/20327/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 18
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/tray_pack/evaluation/APPL/ID/20328/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 14
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/tray_pack/evaluation/APPL/ID/20329/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 15
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/tray_pack/evaluation/APPL/OOD/30300/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 27
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/tray_pack/evaluation/APPL/OOD/30301/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 32
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/tray_pack/evaluation/APPL/OOD/30302/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 23
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/tray_pack/evaluation/APPL/OOD/30303/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 16
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/tray_pack/evaluation/APPL/OOD/30304/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 19
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/tray_pack/evaluation/APPL/OOD/30305/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 17
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/tray_pack/evaluation/APPL/OOD/30306/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 18
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/tray_pack/evaluation/APPL/OOD/30307/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 24
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/tray_pack/evaluation/APPL/OOD/30308/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 19
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/tray_pack/evaluation/APPL/OOD/30309/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 13
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/tray_pack/evaluation/APPL/OOD/30310/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 25
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/tray_pack/evaluation/APPL/OOD/30311/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 13
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/tray_pack/evaluation/APPL/OOD/30312/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 25
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/tray_pack/evaluation/APPL/OOD/30313/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 15
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/tray_pack/evaluation/APPL/OOD/30314/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 12
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/tray_pack/evaluation/APPL/OOD/30315/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 34
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/tray_pack/evaluation/APPL/OOD/30316/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 18
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/tray_pack/evaluation/APPL/OOD/30317/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 13
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/tray_pack/evaluation/APPL/OOD/30318/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 21
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/tray_pack/evaluation/APPL/OOD/30319/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 32
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/tray_pack/evaluation/APPL/OOD/30320/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 14
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/tray_pack/evaluation/APPL/OOD/30321/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 20
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/tray_pack/evaluation/APPL/OOD/30322/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 14
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/tray_pack/evaluation/APPL/OOD/30323/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 11
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/tray_pack/evaluation/APPL/OOD/30324/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 25
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/tray_pack/evaluation/APPL/OOD/30325/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 19
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/tray_pack/evaluation/APPL/OOD/30326/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 17
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/tray_pack/evaluation/APPL/OOD/30327/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 15
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/tray_pack/evaluation/APPL/OOD/30328/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 14
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/tray_pack/evaluation/APPL/OOD/30329/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 26
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/two_block_sort/evaluation/APPL/ID/20000/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 8
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/two_block_sort/evaluation/APPL/ID/20001/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 35
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/two_block_sort/evaluation/APPL/ID/20002/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 24
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/two_block_sort/evaluation/APPL/ID/20003/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 8
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/two_block_sort/evaluation/APPL/ID/20004/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 8
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/two_block_sort/evaluation/APPL/ID/20005/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 7
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/two_block_sort/evaluation/APPL/ID/20006/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 15
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/two_block_sort/evaluation/APPL/ID/20007/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 6
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/two_block_sort/evaluation/APPL/ID/20008/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 19
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/two_block_sort/evaluation/APPL/ID/20009/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 12
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/two_block_sort/evaluation/APPL/ID/20010/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 7
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/two_block_sort/evaluation/APPL/ID/20011/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 16
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/two_block_sort/evaluation/APPL/ID/20012/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 10
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/two_block_sort/evaluation/APPL/ID/20013/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 7
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/two_block_sort/evaluation/APPL/ID/20014/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 14
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/two_block_sort/evaluation/APPL/ID/20015/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 9
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/two_block_sort/evaluation/APPL/ID/20016/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 6
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/two_block_sort/evaluation/APPL/ID/20017/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 7
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/two_block_sort/evaluation/APPL/ID/20018/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 6
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/two_block_sort/evaluation/APPL/ID/20019/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 8
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/two_block_sort/evaluation/APPL/ID/20020/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 6
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/two_block_sort/evaluation/APPL/ID/20021/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 9
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/two_block_sort/evaluation/APPL/ID/20022/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 20
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/two_block_sort/evaluation/APPL/ID/20023/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 8
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/two_block_sort/evaluation/APPL/ID/20024/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 9
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/two_block_sort/evaluation/APPL/ID/20025/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 14
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/two_block_sort/evaluation/APPL/ID/20026/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 8
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/two_block_sort/evaluation/APPL/ID/20027/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 7
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/two_block_sort/evaluation/APPL/ID/20028/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 8
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/two_block_sort/evaluation/APPL/ID/20029/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 9
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/two_block_sort/evaluation/APPL/OOD/30000/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 16
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/two_block_sort/evaluation/APPL/OOD/30001/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 14
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/two_block_sort/evaluation/APPL/OOD/30002/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 37
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/two_block_sort/evaluation/APPL/OOD/30003/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 18
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/two_block_sort/evaluation/APPL/OOD/30004/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 13
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/two_block_sort/evaluation/APPL/OOD/30005/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 40
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/two_block_sort/evaluation/APPL/OOD/30006/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 49
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/two_block_sort/evaluation/APPL/OOD/30007/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 25
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/two_block_sort/evaluation/APPL/OOD/30008/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 12
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/two_block_sort/evaluation/APPL/OOD/30009/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 13
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/two_block_sort/evaluation/APPL/OOD/30010/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 34
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/two_block_sort/evaluation/APPL/OOD/30011/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 36
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/two_block_sort/evaluation/APPL/OOD/30012/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 13
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/two_block_sort/evaluation/APPL/OOD/30013/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 22
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/two_block_sort/evaluation/APPL/OOD/30014/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 10
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/two_block_sort/evaluation/APPL/OOD/30015/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 15
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/two_block_sort/evaluation/APPL/OOD/30016/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 19
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/two_block_sort/evaluation/APPL/OOD/30017/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 32
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/two_block_sort/evaluation/APPL/OOD/30018/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 13
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/two_block_sort/evaluation/APPL/OOD/30019/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 12
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/two_block_sort/evaluation/APPL/OOD/30020/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 24
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/two_block_sort/evaluation/APPL/OOD/30021/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 16
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/two_block_sort/evaluation/APPL/OOD/30022/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 48
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/two_block_sort/evaluation/APPL/OOD/30023/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 26
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/two_block_sort/evaluation/APPL/OOD/30024/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 15
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/two_block_sort/evaluation/APPL/OOD/30025/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 17
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/two_block_sort/evaluation/APPL/OOD/30026/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 15
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/two_block_sort/evaluation/APPL/OOD/30027/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 15
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/two_block_sort/evaluation/APPL/OOD/30028/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 33
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/two_block_sort/evaluation/APPL/OOD/30029/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 14
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/unstack_sort/evaluation/APPL/ID/20200/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 12
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/unstack_sort/evaluation/APPL/ID/20201/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 10
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/unstack_sort/evaluation/APPL/ID/20202/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 8
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/unstack_sort/evaluation/APPL/ID/20203/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 9
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/unstack_sort/evaluation/APPL/ID/20204/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 28
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/unstack_sort/evaluation/APPL/ID/20205/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 12
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/unstack_sort/evaluation/APPL/ID/20206/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 11
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/unstack_sort/evaluation/APPL/ID/20207/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 11
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/unstack_sort/evaluation/APPL/ID/20208/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 12
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/unstack_sort/evaluation/APPL/ID/20209/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 9
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/unstack_sort/evaluation/APPL/ID/20210/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 10
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/unstack_sort/evaluation/APPL/ID/20211/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 9
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/unstack_sort/evaluation/APPL/ID/20212/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 10
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/unstack_sort/evaluation/APPL/ID/20213/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 10
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/unstack_sort/evaluation/APPL/ID/20214/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 9
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/unstack_sort/evaluation/APPL/ID/20215/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 9
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/unstack_sort/evaluation/APPL/ID/20216/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 11
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/unstack_sort/evaluation/APPL/ID/20217/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 10
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/unstack_sort/evaluation/APPL/ID/20218/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 9
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/unstack_sort/evaluation/APPL/ID/20219/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 11
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/unstack_sort/evaluation/APPL/ID/20220/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 11
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/unstack_sort/evaluation/APPL/ID/20221/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 11
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/unstack_sort/evaluation/APPL/ID/20222/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 9
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/unstack_sort/evaluation/APPL/ID/20223/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 10
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/unstack_sort/evaluation/APPL/ID/20224/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 10
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/unstack_sort/evaluation/APPL/ID/20225/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 15
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/unstack_sort/evaluation/APPL/ID/20226/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 9
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/unstack_sort/evaluation/APPL/ID/20227/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 9
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/unstack_sort/evaluation/APPL/ID/20228/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 13
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/unstack_sort/evaluation/APPL/ID/20229/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 15
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/unstack_sort/evaluation/APPL/OOD/30200/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 28
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/unstack_sort/evaluation/APPL/OOD/30201/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 20
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/unstack_sort/evaluation/APPL/OOD/30202/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 19
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/unstack_sort/evaluation/APPL/OOD/30203/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 19
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/unstack_sort/evaluation/APPL/OOD/30204/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 11
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/unstack_sort/evaluation/APPL/OOD/30205/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 9
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/unstack_sort/evaluation/APPL/OOD/30206/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 12
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/unstack_sort/evaluation/APPL/OOD/30207/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 26
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/unstack_sort/evaluation/APPL/OOD/30208/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 14
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/unstack_sort/evaluation/APPL/OOD/30209/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 18
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/unstack_sort/evaluation/APPL/OOD/30210/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 14
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/unstack_sort/evaluation/APPL/OOD/30211/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 16
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/unstack_sort/evaluation/APPL/OOD/30212/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 17
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/unstack_sort/evaluation/APPL/OOD/30213/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 9
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/unstack_sort/evaluation/APPL/OOD/30214/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 14
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/unstack_sort/evaluation/APPL/OOD/30215/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 9
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/unstack_sort/evaluation/APPL/OOD/30216/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 18
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/unstack_sort/evaluation/APPL/OOD/30217/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 14
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/unstack_sort/evaluation/APPL/OOD/30218/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 18
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/unstack_sort/evaluation/APPL/OOD/30219/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 18
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/unstack_sort/evaluation/APPL/OOD/30220/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 19
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/unstack_sort/evaluation/APPL/OOD/30221/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 15
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/unstack_sort/evaluation/APPL/OOD/30222/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 12
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/unstack_sort/evaluation/APPL/OOD/30223/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 17
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/unstack_sort/evaluation/APPL/OOD/30224/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 16
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/unstack_sort/evaluation/APPL/OOD/30225/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 19
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/unstack_sort/evaluation/APPL/OOD/30226/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 20
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/unstack_sort/evaluation/APPL/OOD/30227/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 11
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/unstack_sort/evaluation/APPL/OOD/30228/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 16
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_scaleup/unstack_sort/evaluation/APPL/OOD/30229/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 18
+            }
+          ]
+        }
+      ]
+    },
+    "initial_5000_deployment": {
+      "journals": 6,
+      "calls": 94,
+      "counts": [
+        {
+          "request_model": "gpt-5.5",
+          "reasoning_effort": "high",
+          "response_model": "gpt-5.5",
+          "status": "consumed",
+          "calls": 94
+        }
+      ],
+      "records": [
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_initial_test/inference_5000/evaluation/1000/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 14
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_initial_test/inference_5000/evaluation/6200/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 18
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_initial_test/inference_5000/evaluation/6201/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 16
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_initial_test/inference_5000/evaluation/6202/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 18
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_initial_test/inference_5000/evaluation/6203/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 15
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_initial_test/inference_5000/evaluation/6204/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 13
+            }
+          ]
+        }
+      ]
+    },
+    "historical_v1_design": {
+      "journals": 15,
+      "calls": 200,
+      "counts": [
+        {
+          "request_model": "gpt-5.5",
+          "reasoning_effort": "high",
+          "response_model": "gpt-5.5",
+          "status": "consumed",
+          "calls": 200
+        }
+      ],
+      "records": [
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_v1/policies/grasp_blue_from_table/heuristic_01/design/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 13
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_v1/policies/grasp_blue_from_table/heuristic_02/design/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 12
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_v1/policies/grasp_blue_from_table/heuristic_03/design/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 14
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_v1/policies/grasp_red_from_open_drawer/heuristic_01/design/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 14
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_v1/policies/grasp_red_from_open_drawer/heuristic_02/design/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 14
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_v1/policies/grasp_red_from_open_drawer/heuristic_03/design/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 13
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_v1/policies/open_drawer_by_prismatic_pull/heuristic_01/design/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 14
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_v1/policies/open_drawer_by_prismatic_pull/heuristic_02/design/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 13
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_v1/policies/open_drawer_by_prismatic_pull/heuristic_03/design/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 15
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_v1/policies/place_blue_inside_open_drawer/heuristic_01/design/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 12
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_v1/policies/place_blue_inside_open_drawer/heuristic_02/design/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 16
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_v1/policies/place_blue_inside_open_drawer/heuristic_03/design/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 13
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_v1/policies/place_red_on_outside_pad/heuristic_01/design/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 13
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_v1/policies/place_red_on_outside_pad/heuristic_02/design/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 12
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_v1/policies/place_red_on_outside_pad/heuristic_03/design/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 12
+            }
+          ]
+        }
+      ]
+    },
+    "historical_v1_deployment": {
+      "journals": 6,
+      "calls": 87,
+      "counts": [
+        {
+          "request_model": "gpt-5.5",
+          "reasoning_effort": "high",
+          "response_model": "gpt-5.5",
+          "status": "consumed",
+          "calls": 87
+        }
+      ],
+      "records": [
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_v1/evaluation/1000/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 14
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_v1/evaluation/6100/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 18
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_v1/evaluation/6101/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 14
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_v1/evaluation/6102/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 13
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_v1/evaluation/6103/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 13
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/runs/M1_v1/evaluation/6104/api/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 15
+            }
+          ]
+        }
+      ]
+    },
+    "historical_v1_segmentation": {
+      "journals": 1,
+      "calls": 27,
+      "counts": [
+        {
+          "request_model": "gpt-5.5",
+          "reasoning_effort": "high",
+          "response_model": "gpt-5.5",
+          "status": "consumed",
+          "calls": 27
+        }
+      ],
+      "records": [
+        {
+          "journal": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/data/exp2/processed/drawer_exchange_20260916_overlap/_session/journal.sqlite",
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 27
+            }
+          ]
+        }
+      ]
+    },
+    "archived_initial_deployment": {
+      "journals": 12,
+      "calls": 217,
+      "counts": [
+        {
+          "request_model": "gpt-5.5",
+          "reasoning_effort": "high",
+          "response_model": "gpt-5.5",
+          "status": "consumed",
+          "calls": 216
+        },
+        {
+          "request_model": "gpt-5.5",
+          "reasoning_effort": "high",
+          "response_model": null,
+          "status": "http_failed",
+          "calls": 1
+        }
+      ],
+      "records": [
+        {
+          "journal": "/home/storage/oscar/appl_exp2/legacy/Exp2_M1_initial_tests/1500/evaluation/1000/api/journal.sqlite",
+          "study_steps": 1500,
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 10
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/legacy/Exp2_M1_initial_tests/1500/evaluation/6200/api/journal.sqlite",
+          "study_steps": 1500,
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 16
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/legacy/Exp2_M1_initial_tests/1500/evaluation/6201/api/journal.sqlite",
+          "study_steps": 1500,
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 14
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/legacy/Exp2_M1_initial_tests/1500/evaluation/6202/api/journal.sqlite",
+          "study_steps": 1500,
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 18
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/legacy/Exp2_M1_initial_tests/1500/evaluation/6203/api/journal.sqlite",
+          "study_steps": 1500,
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 18
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/legacy/Exp2_M1_initial_tests/1500/evaluation/6204/api/journal.sqlite",
+          "study_steps": 1500,
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 10
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/legacy/Exp2_M1_initial_tests/3000/evaluation/1000/api/journal.sqlite",
+          "study_steps": 3000,
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 19
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/legacy/Exp2_M1_initial_tests/3000/evaluation/6200/api/journal.sqlite",
+          "study_steps": 3000,
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 29
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/legacy/Exp2_M1_initial_tests/3000/evaluation/6201/api/journal.sqlite",
+          "study_steps": 3000,
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 13
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/legacy/Exp2_M1_initial_tests/3000/evaluation/6202/api/journal.sqlite",
+          "study_steps": 3000,
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": null,
+              "status": "http_failed",
+              "calls": 1
+            },
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 29
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/legacy/Exp2_M1_initial_tests/3000/evaluation/6203/api/journal.sqlite",
+          "study_steps": 3000,
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 28
+            }
+          ]
+        },
+        {
+          "journal": "/home/storage/oscar/appl_exp2/legacy/Exp2_M1_initial_tests/3000/evaluation/6204/api/journal.sqlite",
+          "study_steps": 3000,
+          "counts": [
+            {
+              "request_model": "gpt-5.5",
+              "reasoning_effort": "high",
+              "response_model": "gpt-5.5",
+              "status": "consumed",
+              "calls": 12
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "exp1_comparison": {
+    "config": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/experiments/experiment1/protocol.lock.json",
+    "configured_model": "gpt-6-astra",
+    "configured_reasoning_effort": "max",
+    "report": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/experiments/experiment1/reports/api_calls.csv",
+    "reported_model_counts": [
+      {
+        "model": "gpt-6-astra",
+        "status": "consumed",
+        "calls": 1150
+      }
+    ]
+  },
+  "reviewed_utc": "2026-09-17T04:55:56.505489+00:00",
+  "read_only_query": "SELECT json_extract(request,'$.model'),json_extract(request,'$.reasoning.effort'),json_extract(response,'$.model'),status,COUNT(*) FROM api GROUP BY 1,2,3,4",
+  "backend_verification": "The local endpoint listens on port 8080. Listener inspection did not expose its owning process or model mapping; request and response model identifiers are verified, backend weights are not independently attested."
+}

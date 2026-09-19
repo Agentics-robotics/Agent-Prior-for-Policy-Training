@@ -1,0 +1,22 @@
+{
+  "policy_id": "blue_transport_to_drawer__h01",
+  "skill_id": "blue_transport_to_drawer",
+  "heuristic_index": 1,
+  "prior_summary": "Drawer-frame blue insertion prior: the diffusion model conditions on the causal observation history augmented with learned features for blue pose, TCP pose, gripper state, and goal errors expressed relative to the open drawer cavity center [0.19 - drawer_position, 0, 0.035]. A trainable auxiliary predictor uses the denoised action estimate to predict future drawer-frame blue placement and inside-cavity status.",
+  "applicable_conditions": "Use when the drawer is already open or nearly open, the red block is on the outside pad, and the blue block is grasped or being lifted for transport toward the open drawer. The causal cues are drawer_position, blue_pose, tcp_pose, finger qpos, and their two-step motion history.",
+  "termination_guidance": "Continue until the blue block has descended into the open drawer cavity near z 0.063 m and the gripper is opening or open; then transfer to a release/retreat policy if further TCP clearance is desired. Task completion itself follows the assigned three-goal contract and does not require a separate retreat hold.",
+  "limitations": "The prior is learned from state observations only and does not implement IK, image processing, hard collision constraints, or a scripted insertion controller. Training support shows an already-open drawer with modest drawer_position variation, so recovery from closed drawers, lost grasps, or large cavity perturbations is not claimed.",
+  "config": {
+    "condition_dim": 256,
+    "condition_hidden": 384,
+    "auxiliary_hidden": 96,
+    "future_blue_aux_weight": 0.05,
+    "inside_bce_weight": 0.15,
+    "aux_clean_action_bound": 1.5,
+    "drawer_center_expression": "[0.19 - drawer_position, 0, 0.035] in world metres",
+    "blue_aux_scale_m": [0.172, 0.182, 0.15],
+    "uses_shared_normalizer": true,
+    "observation_history_steps": 2,
+    "action_horizon": 16
+  }
+}

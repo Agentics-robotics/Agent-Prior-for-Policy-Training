@@ -1,0 +1,397 @@
+{
+  "include": [
+    "reasoning.encrypted_content"
+  ],
+  "instructions": "You are the scientific agent designing reusable skills and learning\npriors from robot demonstrations. Produce two connected deliverables: coherent\nsubskill datasets, and a portfolio of heuristic-based prior designs for each skill.\nYou choose the skill identities, subgoals, boundaries, cross-trajectory groupings\nand the priors themselves. The framework validates and materializes your plan.\n\nPURPOSE: YOUR HEURISTICS WILL BECOME DIFFERENT TRAINED POLICIES\nIn the next stage, different heuristics for the SAME skill will seed separately\nimplemented and trained policy candidates. Each candidate may use a different\nobservation/action representation, learned encoder, network structure, temporal\nor latent-state model, auxiliary prediction targets, loss/objective, training\nprocedure or inference mechanism. Design across these freedoms when justified;\nthere is no prescribed prior menu or requirement to keep a common DP architecture.\nThe useful reasoning chain is:\nobserved regularity -> learning/generalization problem -> concrete inductive bias\n-> implementable policy mechanism -> testable prediction.\nThe output should enable a later implementation agent to build distinct policies.\n\nA heuristic states a reusable relationship, symmetry, constraint, dependency or\ntemporal organization that could make a policy easier to learn or generalize.\nExplain WHY it should help and HOW the learner would embody it. A chronological\ndescription of what the expert did belongs in the subgoal/segmentation rationale;\ndevelop the learning principle beyond that description in each heuristic.\n\nFor each skill, aim for three substantively different prior hypotheses. Separate\ndifferent learning mechanisms into different entries, rather than putting all\nideas inside one generic paragraph. Differences should change what a policy\nrepresents, predicts, optimizes or computes, with distinguishable expected effects.\nChoose the number on scientific grounds: if fewer independent hypotheses are\nsupported, explain that limitation; if more are valuable, include them concisely.\nConsider alternative explanations and inspect additional evidence when it helps\ndistinguish them. Prior content and segmentation remain your scientific decisions.\n\nWRITE EACH HEURISTIC AS AN IMPLEMENTATION-READY RESEARCH DESIGN\nUse the existing fields with the following substance:\n- statement: give the prior a short descriptive title, state the reusable\n  regularity and its expected benefit beyond replaying these demonstrations.\n- evidence: cite actual inspected observations within this skill's segments.\n  Compare different trajectories and relevant within-skill transitions.\n- rationale: connect the evidence to the proposed bias and the specific coverage\n  gap or learning difficulty it addresses. Distinguish observed relationships\n  from your scientific assumptions; explain what differs from the other priors.\n- pipeline_implications: specify the candidate policy's inputs, representation,\n  trainable modules and computation, action parameterization/decoding, training\n  targets and objective, and deployment computation. Use a concise equation or\n  pseudocode where useful. Name source fields and coordinate frames. Identify\n  quantities available from causal observations at inference separately from\n  labels computed from demonstration futures for training. Explain the particular\n  change that encodes this prior; a full implementation is the next stage.\n- applicability: specify the conditions under which the prior should transfer,\n  and the robot/world/contact dependencies that must be retained.\n- limitations: identify uncertain assumptions, an expected failure signature,\n  and an ablation or comparison that could falsify the claimed benefit. State\n  which behavior this successful-demonstration dataset cannot establish.\n- handoff: append an explicit interface to EACH heuristic. Describe entry_conditions\n  (robot, fingers, objects and motion when this policy can take over), exit_conditions\n  (its useful end state), overlap_role (which transition behavior is learned by both\n  adjacent skills), successor_readiness (what the next policy needs), and\n  failure_signatures (observable evidence that transfer is premature or has failed).\n  Ground these descriptions in inspected states, with field names, frames and units.\n  Distinguish measured demonstration support from hypothesized tolerance. A subgoal\n  predicate alone is not a complete handoff: include manipulation state and the\n  actions needed to let the successor take control. Make this interface specific\n  to each prior's assumptions; it will be read by the implementation and selection\n  agents, not converted by the framework into a scripted controller.\n\nBUILD SKILL DATASETS THAT SUPPORT THESE LEARNING QUESTIONS\nRead the source catalog, actual synchronized states/actions and representative\nimages. Choose meaningful subgoals and inspect both endpoint observations for\nevery proposed [start,stop) segment: actions[start:stop], observations[start:stop+1].\nTrajectories can progress at different rates. Choose boundaries separately for\neach trajectory from its observed state transitions; the same skill need not\nstart or stop at the same timestep or have the same duration across demonstrations.\nThis is M1_v2: incomplete handoff coverage was identified as a weakness in M1_v1.\nMake adjacent-skill overlaps SUBSTANTIALLY LARGER than a short boundary tail.\nCover the full useful transition before and after transfer, so the successor is\ntrained to take over while the predecessor's manipulation state is still evolving.\nInspect release, retreat, approach, finger opening/closing and object lifting as\nrelevant; choose the actual phases and intervals from the demonstrations. Give\nboth policies enough shared context to complete the transition, rather than\nassuming one exact robot pose or contact state at a single cut. Explain which\nentry states become supported by each expanded overlap, and which remain unseen.\nYou choose the boundaries and overlap widths independently for each trajectory;\nthere is no framework-imposed timestep schedule or numerical overlap cap. Preserve\ncoherent skill identities and explain the purpose of every expanded transition.\nLarger overlap improves temporal coverage, but does not establish recovery from\noff-demonstration spatial/contact errors. Document that limitation explicitly.\nUse the supplied task goals and completion contract to judge task completion.\nRetain the release, settling and transition context needed by those goals and\nusable skill interfaces. A skill may recur, or occur in only some demonstrations.\nGroup segments that share a learning problem and explain the grouping. Account\nfor every source action with a segment or an explicit exclusion; explain overlaps.\n\nFinish by reviewing whether each heuristic could lead to a distinct, testable\npolicy candidate. Use write_plan, check_plan, repair as needed, then explicitly\nsubmit_datasets with the checked plan hash. This stage produces the raw datasets\nand prior-design Markdown; implementation, training and performance evaluation\nfollow later. Use only the supplied training demonstrations and declared tools;\nkeep unspecified deployment requirements explicit and expected benefits labelled\nas hypotheses until tested. Write the plan and heuristic explanations in English.\n",
+  "max_output_tokens": 32768,
+  "model": "gpt-6-astra",
+  "parallel_tool_calls": false,
+  "reasoning": {
+    "effort": "xhigh"
+  },
+  "store": false,
+  "tool_choice": "auto",
+  "tools": [
+    {
+      "description": "List only explicitly authorized complete demonstrations and supplied context.",
+      "name": "list_demonstrations",
+      "parameters": {
+        "additionalProperties": false,
+        "properties": {},
+        "required": [],
+        "type": "object"
+      },
+      "strict": true,
+      "type": "function"
+    },
+    {
+      "description": "Read indexed synchronized observations and actions; record inspected evidence.",
+      "name": "read_steps",
+      "parameters": {
+        "additionalProperties": false,
+        "properties": {
+          "indices": {
+            "items": {
+              "minimum": 0,
+              "type": "integer"
+            },
+            "maxItems": 24,
+            "minItems": 1,
+            "type": "array"
+          },
+          "trajectory_id": {
+            "maxLength": 12000,
+            "minLength": 1,
+            "pattern": "\\S",
+            "type": "string"
+          }
+        },
+        "required": [
+          "trajectory_id",
+          "indices"
+        ],
+        "type": "object"
+      },
+      "strict": true,
+      "type": "function"
+    },
+    {
+      "description": "Read one authorized image by trajectory, observation index and camera.",
+      "name": "read_image",
+      "parameters": {
+        "additionalProperties": false,
+        "properties": {
+          "camera": {
+            "maxLength": 12000,
+            "minLength": 1,
+            "pattern": "\\S",
+            "type": "string"
+          },
+          "index": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "trajectory_id": {
+            "maxLength": 12000,
+            "minLength": 1,
+            "pattern": "\\S",
+            "type": "string"
+          }
+        },
+        "required": [
+          "trajectory_id",
+          "index",
+          "camera"
+        ],
+        "type": "object"
+      },
+      "strict": true,
+      "type": "function"
+    },
+    {
+      "description": "Write a versioned segmentation/grouping and heuristic plan; no generated code.",
+      "name": "write_plan",
+      "parameters": {
+        "additionalProperties": false,
+        "properties": {
+          "plan": {
+            "additionalProperties": false,
+            "properties": {
+              "exclusions": {
+                "items": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "reason": {
+                      "maxLength": 12000,
+                      "minLength": 1,
+                      "pattern": "\\S",
+                      "type": "string"
+                    },
+                    "start": {
+                      "minimum": 0,
+                      "type": "integer"
+                    },
+                    "stop": {
+                      "minimum": 1,
+                      "type": "integer"
+                    },
+                    "trajectory_id": {
+                      "maxLength": 12000,
+                      "minLength": 1,
+                      "pattern": "\\S",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "trajectory_id",
+                    "start",
+                    "stop",
+                    "reason"
+                  ],
+                  "type": "object"
+                },
+                "maxItems": 256,
+                "type": "array"
+              },
+              "overlap_rationale": {
+                "maxLength": 12000,
+                "type": "string"
+              },
+              "skills": {
+                "items": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "heuristics": {
+                      "items": {
+                        "additionalProperties": false,
+                        "properties": {
+                          "applicability": {
+                            "maxLength": 12000,
+                            "minLength": 1,
+                            "pattern": "\\S",
+                            "type": "string"
+                          },
+                          "evidence": {
+                            "items": {
+                              "additionalProperties": false,
+                              "properties": {
+                                "indices": {
+                                  "items": {
+                                    "minimum": 0,
+                                    "type": "integer"
+                                  },
+                                  "maxItems": 24,
+                                  "minItems": 1,
+                                  "type": "array"
+                                },
+                                "trajectory_id": {
+                                  "maxLength": 12000,
+                                  "minLength": 1,
+                                  "pattern": "\\S",
+                                  "type": "string"
+                                }
+                              },
+                              "required": [
+                                "trajectory_id",
+                                "indices"
+                              ],
+                              "type": "object"
+                            },
+                            "maxItems": 32,
+                            "minItems": 1,
+                            "type": "array"
+                          },
+                          "handoff": {
+                            "additionalProperties": false,
+                            "properties": {
+                              "entry_conditions": {
+                                "maxLength": 12000,
+                                "minLength": 1,
+                                "pattern": "\\S",
+                                "type": "string"
+                              },
+                              "exit_conditions": {
+                                "maxLength": 12000,
+                                "minLength": 1,
+                                "pattern": "\\S",
+                                "type": "string"
+                              },
+                              "failure_signatures": {
+                                "maxLength": 12000,
+                                "minLength": 1,
+                                "pattern": "\\S",
+                                "type": "string"
+                              },
+                              "overlap_role": {
+                                "maxLength": 12000,
+                                "minLength": 1,
+                                "pattern": "\\S",
+                                "type": "string"
+                              },
+                              "successor_readiness": {
+                                "maxLength": 12000,
+                                "minLength": 1,
+                                "pattern": "\\S",
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "entry_conditions",
+                              "exit_conditions",
+                              "overlap_role",
+                              "successor_readiness",
+                              "failure_signatures"
+                            ],
+                            "type": "object"
+                          },
+                          "limitations": {
+                            "maxLength": 12000,
+                            "minLength": 1,
+                            "pattern": "\\S",
+                            "type": "string"
+                          },
+                          "pipeline_implications": {
+                            "maxLength": 12000,
+                            "minLength": 1,
+                            "pattern": "\\S",
+                            "type": "string"
+                          },
+                          "rationale": {
+                            "maxLength": 12000,
+                            "minLength": 1,
+                            "pattern": "\\S",
+                            "type": "string"
+                          },
+                          "statement": {
+                            "maxLength": 12000,
+                            "minLength": 1,
+                            "pattern": "\\S",
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "statement",
+                          "evidence",
+                          "rationale",
+                          "applicability",
+                          "pipeline_implications",
+                          "limitations",
+                          "handoff"
+                        ],
+                        "type": "object"
+                      },
+                      "maxItems": 16,
+                      "minItems": 1,
+                      "type": "array"
+                    },
+                    "name": {
+                      "maxLength": 12000,
+                      "minLength": 1,
+                      "pattern": "\\S",
+                      "type": "string"
+                    },
+                    "segmentation_rationale": {
+                      "maxLength": 12000,
+                      "minLength": 1,
+                      "pattern": "\\S",
+                      "type": "string"
+                    },
+                    "segments": {
+                      "items": {
+                        "additionalProperties": false,
+                        "properties": {
+                          "start": {
+                            "minimum": 0,
+                            "type": "integer"
+                          },
+                          "stop": {
+                            "minimum": 1,
+                            "type": "integer"
+                          },
+                          "trajectory_id": {
+                            "maxLength": 12000,
+                            "minLength": 1,
+                            "pattern": "\\S",
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "trajectory_id",
+                          "start",
+                          "stop"
+                        ],
+                        "type": "object"
+                      },
+                      "maxItems": 256,
+                      "minItems": 1,
+                      "type": "array"
+                    },
+                    "skill_id": {
+                      "pattern": "^[a-z][a-z0-9_]{0,63}$",
+                      "type": "string"
+                    },
+                    "subgoal": {
+                      "maxLength": 12000,
+                      "minLength": 1,
+                      "pattern": "\\S",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "skill_id",
+                    "name",
+                    "subgoal",
+                    "segmentation_rationale",
+                    "segments",
+                    "heuristics"
+                  ],
+                  "type": "object"
+                },
+                "maxItems": 16,
+                "minItems": 1,
+                "type": "array"
+              }
+            },
+            "required": [
+              "skills",
+              "exclusions",
+              "overlap_rationale"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "plan"
+        ],
+        "type": "object"
+      },
+      "strict": true,
+      "type": "function"
+    },
+    {
+      "description": "Read the current plan and its content hash.",
+      "name": "read_plan",
+      "parameters": {
+        "additionalProperties": false,
+        "properties": {},
+        "required": [],
+        "type": "object"
+      },
+      "strict": true,
+      "type": "function"
+    },
+    {
+      "description": "Check coverage, ranges, inspected evidence and explicit exclusions/overlaps.",
+      "name": "check_plan",
+      "parameters": {
+        "additionalProperties": false,
+        "properties": {},
+        "required": [],
+        "type": "object"
+      },
+      "strict": true,
+      "type": "function"
+    },
+    {
+      "description": "Freeze the checked plan and materialize raw subskill datasets plus heuristic Markdown.",
+      "name": "submit_datasets",
+      "parameters": {
+        "additionalProperties": false,
+        "properties": {
+          "expected_hash": {
+            "maxLength": 12000,
+            "minLength": 1,
+            "pattern": "\\S",
+            "type": "string"
+          }
+        },
+        "required": [
+          "expected_hash"
+        ],
+        "type": "object"
+      },
+      "strict": true,
+      "type": "function"
+    }
+  ]
+}

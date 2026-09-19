@@ -1,0 +1,575 @@
+{
+  "passed": true,
+  "unchanged_copies": [
+    {
+      "copy": "framework/environments/exp2/pixi.lock",
+      "sha256": "a9ff1b3563dfa556d1a47001d61827b98cb9739c181683ce1ea1185aadce7cd0",
+      "source": "environments/exp2/pixi.lock"
+    },
+    {
+      "copy": "framework/environments/exp2/pixi.toml",
+      "sha256": "3994b4ef1a67acc890c9a3e26bfa7828d89177e41e209ee62ea9d7dd790eec3f",
+      "source": "environments/exp2/pixi.toml"
+    },
+    {
+      "copy": "framework/experiments/exp2/SINGLE_POLICY.md",
+      "sha256": "95c6019d0111f236a56800f948da063830df394509877033f414336609eddbe7",
+      "source": "experiments/exp2/SINGLE_POLICY.md"
+    },
+    {
+      "copy": "framework/experiments/exp2/single_policy/__init__.py",
+      "sha256": "092b8adfdc8b2b0ab9747f7995d1853fb0ea07175b628681654e1d7e644cce81",
+      "source": "experiments/exp2/single_policy/__init__.py"
+    },
+    {
+      "copy": "framework/experiments/exp2/single_policy/common.py",
+      "sha256": "d32b686f8fd100a118982b34a6b6036aa6eb242217ac9f9b10881ec8e82e75ff",
+      "source": "experiments/exp2/single_policy/common.py"
+    },
+    {
+      "copy": "framework/experiments/exp2/single_policy/design.py",
+      "sha256": "4b47f86a5678fc89732c52049d5271ffb19d8214a00dc65624b0d07fc65803b0",
+      "source": "experiments/exp2/single_policy/design.py"
+    },
+    {
+      "copy": "framework/experiments/exp2/single_policy/evaluate.py",
+      "sha256": "747884fd1e2e111f43ababb7c0de35911f504449f8ace8d0ac95828762bf6f59",
+      "source": "experiments/exp2/single_policy/evaluate.py"
+    },
+    {
+      "copy": "framework/experiments/exp2/single_policy/report.py",
+      "sha256": "f98121948949caa5f6c1d3ee8c98b99bc7e540a492ca793146a6968b063c098c",
+      "source": "experiments/exp2/single_policy/report.py"
+    },
+    {
+      "copy": "framework/experiments/exp2/single_policy/runner.py",
+      "sha256": "9508008a3a641bcb4df9ebfecde65eb95636154451f5ddeb327bc085ff75ca23",
+      "source": "experiments/exp2/single_policy/runner.py"
+    },
+    {
+      "copy": "framework/src/appl/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "src/appl/__init__.py"
+    },
+    {
+      "copy": "framework/src/appl/agent.py",
+      "sha256": "035826c10ba6ebf1d4d54144dadea5719c6a971f387713cd466091e8fa6171d9",
+      "source": "src/appl/agent.py"
+    },
+    {
+      "copy": "framework/src/appl/baseline.py",
+      "sha256": "a42ea4f4f15f815dac1a1771816ef8c52216c731e39f69cd28a3c638825ada32",
+      "source": "src/appl/baseline.py"
+    },
+    {
+      "copy": "framework/src/appl/cli.py",
+      "sha256": "467b65867edfd96777d8e80b8c2dba758b4ae9cba6ed6bc9145f2002c50f36a9",
+      "source": "src/appl/cli.py"
+    },
+    {
+      "copy": "framework/src/appl/config.py",
+      "sha256": "b3fc50b59a0cee9ab6605beac4e7356b57d3ebf3753b96632547f15f49bc1d68",
+      "source": "src/appl/config.py"
+    },
+    {
+      "copy": "framework/src/appl/data.py",
+      "sha256": "77eecf224e36f1c80a6841f819b2690ec81b6f73e360fe18c1a3170d0b286d3f",
+      "source": "src/appl/data.py"
+    },
+    {
+      "copy": "framework/src/appl/demonstrations/__init__.py",
+      "sha256": "c884fa80c4b791a50437d20b8fea62e2913de91e08c786f0777115ded3aa3856",
+      "source": "src/appl/demonstrations/__init__.py"
+    },
+    {
+      "copy": "framework/src/appl/demonstrations/decouple.py",
+      "sha256": "b8112574af2e9ff53586aea7a25d825da02d40bafb7d12a268502706ddc8253c",
+      "source": "src/appl/demonstrations/decouple.py"
+    },
+    {
+      "copy": "framework/src/appl/design.py",
+      "sha256": "6dd3c9b1f07d9196974779535a66290d6e5b10a9a158d9b205cd44e6e8ae3333",
+      "source": "src/appl/design.py"
+    },
+    {
+      "copy": "framework/src/appl/diagnose.py",
+      "sha256": "146fbd8a1646aa93e1bf7c6dcff2426fed6b9fd6309cbda269ec91f83f6db783",
+      "source": "src/appl/diagnose.py"
+    },
+    {
+      "copy": "framework/src/appl/dp_baseline/__init__.py",
+      "sha256": "f84d496b6946036e62bb4cd2e8d2712a6f637f3946758da488638b107459729d",
+      "source": "src/appl/dp_baseline/__init__.py"
+    },
+    {
+      "copy": "framework/src/appl/dp_baseline/__main__.py",
+      "sha256": "d4fe66830ca47ed2c8e40a0e849a1da19dddded575a1dcb2e9e0ef18a9f493d9",
+      "source": "src/appl/dp_baseline/__main__.py"
+    },
+    {
+      "copy": "framework/src/appl/dp_baseline/data.py",
+      "sha256": "185ae9add8cf5603725e49cb9cd194618b1683562dd6d400f11f6dec22f0fe59",
+      "source": "src/appl/dp_baseline/data.py"
+    },
+    {
+      "copy": "framework/src/appl/dp_baseline/train.py",
+      "sha256": "622fdf13248d96e4c96ba9ffea13fdc7c05d43fe014be5c9a9dde86534a2a840",
+      "source": "src/appl/dp_baseline/train.py"
+    },
+    {
+      "copy": "framework/src/appl/envs/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "src/appl/envs/__init__.py"
+    },
+    {
+      "copy": "framework/src/appl/envs/adapter.py",
+      "sha256": "b5fc2328d154b61912f81fd15c0ec1b11b062fd80f74ef971a5a7f7850df30f8",
+      "source": "src/appl/envs/adapter.py"
+    },
+    {
+      "copy": "framework/src/appl/envs/demonstrator.py",
+      "sha256": "01dc45f97a2769ece1434d88be9381d45d33dc9974390695f7ff3beb6bb8f467",
+      "source": "src/appl/envs/demonstrator.py"
+    },
+    {
+      "copy": "framework/src/appl/envs/evaluator.py",
+      "sha256": "ec92ec41ac2ebf4dcd247a293c0296c8812c58941ab3587fa0b1b70f5a0cfa92",
+      "source": "src/appl/envs/evaluator.py"
+    },
+    {
+      "copy": "framework/src/appl/envs/native.py",
+      "sha256": "c207d4ab4807a012e636cde140b474f29e268bea675e879a739db0f72424724c",
+      "source": "src/appl/envs/native.py"
+    },
+    {
+      "copy": "framework/src/appl/envs/scene.py",
+      "sha256": "8fecc775ea9354cb02fa5b7992a3864812af23a47ea5041f5713d3a4c1c68efb",
+      "source": "src/appl/envs/scene.py"
+    },
+    {
+      "copy": "framework/src/appl/evaluate.py",
+      "sha256": "68d6e35b6ad125b8d0e088fc32833d7f296539e0218b2d956a5e370c81958c06",
+      "source": "src/appl/evaluate.py"
+    },
+    {
+      "copy": "framework/src/appl/gpu.py",
+      "sha256": "18f31b1275a2a8d67a7ac0047b2f67f9b7b5279969962ef41b6b3bca8a547a1d",
+      "source": "src/appl/gpu.py"
+    },
+    {
+      "copy": "framework/src/appl/io.py",
+      "sha256": "8d552f621646f9f9fae18316e9a3596a078320579a451336aca37c2a6f1542f8",
+      "source": "src/appl/io.py"
+    },
+    {
+      "copy": "framework/src/appl/journal.py",
+      "sha256": "98cb887bf9b032638e05d8f486c331450a651f868fab864f9a21a8396c6e46be",
+      "source": "src/appl/journal.py"
+    },
+    {
+      "copy": "framework/src/appl/kernel.py",
+      "sha256": "d7a08e00b9b0c2726ee1b93af7709f3c131fb692aa4dd11e209188dad51b449f",
+      "source": "src/appl/kernel.py"
+    },
+    {
+      "copy": "framework/src/appl/model_contract.py",
+      "sha256": "d1dee8052f48ac3fc223194e7e9a9fd7845c70fbb7a441a9a86072d4c6b879d1",
+      "source": "src/appl/model_contract.py"
+    },
+    {
+      "copy": "framework/src/appl/prior_policies/__init__.py",
+      "sha256": "20445076ee18ac0c241bfa28940e66bec9e40b78da762c287d2f2999ddb78bc1",
+      "source": "src/appl/prior_policies/__init__.py"
+    },
+    {
+      "copy": "framework/src/appl/prior_policies/__main__.py",
+      "sha256": "61f1ad6988a101d02efbe16e6c8e417c3b469fed55ab97d327ebacfca4138270",
+      "source": "src/appl/prior_policies/__main__.py"
+    },
+    {
+      "copy": "framework/src/appl/prior_policies/data.py",
+      "sha256": "2bdc265dac4968db702dafe19cc49218dae15ae13b0226955811e2e30f35c78e",
+      "source": "src/appl/prior_policies/data.py"
+    },
+    {
+      "copy": "framework/src/appl/prior_policies/deploy.py",
+      "sha256": "dbdd8cbbababd243545c6631895f994cef2338649296b89fa7af2d136dd9bc96",
+      "source": "src/appl/prior_policies/deploy.py"
+    },
+    {
+      "copy": "framework/src/appl/prior_policies/design.py",
+      "sha256": "8104a9a10c3b27f91967685f622cd1853fd0815e505e47fa90206e43432d0445",
+      "source": "src/appl/prior_policies/design.py"
+    },
+    {
+      "copy": "framework/src/appl/prior_policies/engine.py",
+      "sha256": "3c47730313630ef74e8b7436db5cb4122aac404f199646f5384e8e2baaf8b10f",
+      "source": "src/appl/prior_policies/engine.py"
+    },
+    {
+      "copy": "framework/src/appl/prior_policies/feedback.py",
+      "sha256": "5530bb494f650ad0568c657b5fc2332c5988158cb58a2f1497878fe4260836e9",
+      "source": "src/appl/prior_policies/feedback.py"
+    },
+    {
+      "copy": "framework/src/appl/prior_policies/goals.py",
+      "sha256": "fd27a6f77920cd4f75be164fc1a4cedd04e3ac03f57839b1edd374a6145c57e3",
+      "source": "src/appl/prior_policies/goals.py"
+    },
+    {
+      "copy": "framework/src/appl/prior_policies/report.py",
+      "sha256": "6d5c15be3a0a3016875bc52c9c44baaab18c306cd90d485ebd007d90f532ad77",
+      "source": "src/appl/prior_policies/report.py"
+    },
+    {
+      "copy": "framework/src/appl/prior_policies/runner.py",
+      "sha256": "492122cf1b1e9f45cb13f404453c05e46e121ba44a3a5df49c8eb58cbbd42e3c",
+      "source": "src/appl/prior_policies/runner.py"
+    },
+    {
+      "copy": "framework/src/appl/prior_policies/segment.py",
+      "sha256": "26e353b1efb42ce0edcedcd102927bc087321a571d058910a1c1e145a358610a",
+      "source": "src/appl/prior_policies/segment.py"
+    },
+    {
+      "copy": "framework/src/appl/protocol.py",
+      "sha256": "969d33bdc8fd8a311cdcd89451e85eca5cdcb304f24ac2a49bc3c371c4e55884",
+      "source": "src/appl/protocol.py"
+    },
+    {
+      "copy": "framework/src/appl/public.py",
+      "sha256": "aa041f16ea68779140b7ff64d678a516bcfde0e7924fb3050530669ef4983131",
+      "source": "src/appl/public.py"
+    },
+    {
+      "copy": "framework/src/appl/reference.py",
+      "sha256": "6c6c83b2cac9199f601baa0b774c46fcbc1ddb9e7f67b3c64044bf1f80f98834",
+      "source": "src/appl/reference.py"
+    },
+    {
+      "copy": "framework/src/appl/report.py",
+      "sha256": "08da144ed83f191e34c6925545fa10fcc2e6c8dee34e4576d317e56b47aa4560",
+      "source": "src/appl/report.py"
+    },
+    {
+      "copy": "framework/src/appl/scaleup/__init__.py",
+      "sha256": "b4268da77138609b489421cfac8de460b68f34380a3c06153dda75ba81f10e41",
+      "source": "src/appl/scaleup/__init__.py"
+    },
+    {
+      "copy": "framework/src/appl/scaleup/__main__.py",
+      "sha256": "dcfed7020d91047c6458518858df2feb1f7d6de0fce6af407ef61871e151719d",
+      "source": "src/appl/scaleup/__main__.py"
+    },
+    {
+      "copy": "framework/src/appl/scaleup/audit.py",
+      "sha256": "00bff7fd3381ce58d73bba9a982bf46396527e7a2d616cc4144eb61bfb3b6bd7",
+      "source": "src/appl/scaleup/audit.py"
+    },
+    {
+      "copy": "framework/src/appl/scaleup/batch.py",
+      "sha256": "cb1c0ef13be3bd18aaa705d0206c7294277d0eb36f1d20e98bcd06c0b053da09",
+      "source": "src/appl/scaleup/batch.py"
+    },
+    {
+      "copy": "framework/src/appl/scaleup/collect.py",
+      "sha256": "05013781d32da6007f9060dc1edf41523264125e2f9ece3bf844bab1a8d6e142",
+      "source": "src/appl/scaleup/collect.py"
+    },
+    {
+      "copy": "framework/src/appl/scaleup/environment.py",
+      "sha256": "66a552dfe96d941c6c45207318cf5fc82e2bfd519fca0ca289504aa35a9b192b",
+      "source": "src/appl/scaleup/environment.py"
+    },
+    {
+      "copy": "framework/src/appl/scaleup/evaluate.py",
+      "sha256": "197dd98c98ed0e5f6212de9be9d6b7dad787ae2bcd0b20f334ec10a88dcadd52",
+      "source": "src/appl/scaleup/evaluate.py"
+    },
+    {
+      "copy": "framework/src/appl/scaleup/naive.py",
+      "sha256": "e980a778e8ec388b6a906e8b5249db15b89ff0ed8cb7f851b0585f959766740e",
+      "source": "src/appl/scaleup/naive.py"
+    },
+    {
+      "copy": "framework/src/appl/scaleup/naive_policy.py",
+      "sha256": "38e4dbed29d3978708f6cf4d13f4818810d45b994b3f8fbfd72c2460f88c6f30",
+      "source": "src/appl/scaleup/naive_policy.py"
+    },
+    {
+      "copy": "framework/src/appl/scaleup/prepare.py",
+      "sha256": "cf7125cd8608d719c7d3de821ca68a17d6bbddb188c9491205e58013a1f49cf5",
+      "source": "src/appl/scaleup/prepare.py"
+    },
+    {
+      "copy": "framework/src/appl/scaleup/protocol.py",
+      "sha256": "48e5280ec3b7affbf3d89a08e967e2f81e7e9dbb6d3a55ea711b5f4b304d5c48",
+      "source": "src/appl/scaleup/protocol.py"
+    },
+    {
+      "copy": "framework/src/appl/scaleup/report.py",
+      "sha256": "0502683d22d9017586ba8d2a745d36aa7e87a2c95e5a526206657c342ebc3799",
+      "source": "src/appl/scaleup/report.py"
+    },
+    {
+      "copy": "framework/src/appl/scaleup/tasks.py",
+      "sha256": "488ecf6e5a4dbaf28827851aa0e55e31a84d76b3b8481b74cea327008c47f76e",
+      "source": "src/appl/scaleup/tasks.py"
+    },
+    {
+      "copy": "framework/src/appl/security.py",
+      "sha256": "6bd2812990e443644e4dd07061e5e0e3654ac866c1a7a22697fad9488455fbdb",
+      "source": "src/appl/security.py"
+    },
+    {
+      "copy": "framework/src/appl/surrogate.py",
+      "sha256": "f4042679ac66fb5be816aac9d82a9ad8b788a15b2318156176c09a8327935b4c",
+      "source": "src/appl/surrogate.py"
+    },
+    {
+      "copy": "framework/src/appl/train.py",
+      "sha256": "68e93e516a3175061c860c016c3161671702a9aaf231ffc80e356ca05fc5b0ff",
+      "source": "src/appl/train.py"
+    },
+    {
+      "copy": "framework/src/appl/vendor/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "src/appl/vendor/__init__.py"
+    },
+    {
+      "copy": "framework/src/appl/vendor/diffusion_policy/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "src/appl/vendor/diffusion_policy/__init__.py"
+    },
+    {
+      "copy": "framework/src/appl/vendor/diffusion_policy/conditional_unet1d.py",
+      "sha256": "6a8aeebb2a10d850f632544df77c492562b609033e72d8c0be193803340e0aab",
+      "source": "src/appl/vendor/diffusion_policy/conditional_unet1d.py"
+    },
+    {
+      "copy": "framework/src/appl/vendor/diffusion_policy/conv1d_components.py",
+      "sha256": "ea2aa10e297cf253bc1a1919ba47fe6ae32049b5eaaab292ed9cc145d8d2adc0",
+      "source": "src/appl/vendor/diffusion_policy/conv1d_components.py"
+    },
+    {
+      "copy": "framework/src/appl/vendor/diffusion_policy/positional_embedding.py",
+      "sha256": "2266c75ecc9c9ac8ca126839d39a7bafbdd7af8800d6de903f66815e64cc366c",
+      "source": "src/appl/vendor/diffusion_policy/positional_embedding.py"
+    },
+    {
+      "copy": "framework/src/appl/verification.py",
+      "sha256": "34eac88789b4f2635211b8ace26a75bf9b769be2725bc195efc410624616fef4",
+      "source": "src/appl/verification.py"
+    },
+    {
+      "copy": "framework/src/appl/viewer.py",
+      "sha256": "fb49ef4234298e052d0f4f716af1cf028183473027678df0e76dbf5d2213bb7a",
+      "source": "src/appl/viewer.py"
+    },
+    {
+      "copy": "framework/src/appl/worker.py",
+      "sha256": "155733f9482004632b60c1caac7b0af55618e65e7289fefcbf9d94dad3ee3da2",
+      "source": "src/appl/worker.py"
+    },
+    {
+      "copy": "framework/src/appl/vendor/diffusion_policy/LICENSE",
+      "sha256": "304e99a48271e10820f71a1b86ef395c06c100d7f68dd1d308790d1064fc4d41",
+      "source": "src/appl/vendor/diffusion_policy/LICENSE"
+    },
+    {
+      "copy": "framework/src/appl/vendor/diffusion_policy/PROVENANCE.md",
+      "sha256": "f7e2a4430471fadd6d5376a15f827abfddf998d27ecf202ecc457699f7e7c80c",
+      "source": "src/appl/vendor/diffusion_policy/PROVENANCE.md"
+    },
+    {
+      "copy": "protocols/SCALEUP.md",
+      "sha256": "a80cb1ab3efde5551926811add07399eaadc9e7a2331bd3bea24a6276789e3f9",
+      "source": "experiments/exp2/SCALEUP.md"
+    },
+    {
+      "copy": "protocols/ASTRA_XHIGH.md",
+      "sha256": "9804ffaaf5914426c2636b71603e13893ab3dfd9301fe65bc3bb3c5e97dab12c",
+      "source": "experiments/exp2/ASTRA_XHIGH.md"
+    },
+    {
+      "copy": "protocols/SINGLE_POLICY.md",
+      "sha256": "95c6019d0111f236a56800f948da063830df394509877033f414336609eddbe7",
+      "source": "experiments/exp2/SINGLE_POLICY.md"
+    },
+    {
+      "copy": "protocols/INFERENCE_5000.md",
+      "sha256": "58f7d1bc3ad9a2b1f0e310f3304a9f0476befb605fc292d47a50115a97ae1db4",
+      "source": "experiments/exp2/INFERENCE_5000.md"
+    },
+    {
+      "copy": "protocols/PRIOR_POLICIES.md",
+      "sha256": "779d28e1c25dd67f14c6238c4193f491a774df1812c2ab73c2c4028a37092782",
+      "source": "experiments/exp2/PRIOR_POLICIES.md"
+    },
+    {
+      "copy": "protocols/configs/scaleup/buffer_swap.json",
+      "sha256": "56a6819da15374f65238d5f26e38e9cd81ea182169403f2fb32c98289830e082",
+      "source": "experiments/exp2/configs/scaleup/buffer_swap.json"
+    },
+    {
+      "copy": "protocols/configs/scaleup/buffer_swap_goals.json",
+      "sha256": "c082c6cf52a7c0c64a4bcc8741b025e37ed2bfa76c5d36fd9a00f5e312bc930c",
+      "source": "experiments/exp2/configs/scaleup/buffer_swap_goals.json"
+    },
+    {
+      "copy": "protocols/configs/scaleup/drawer_exchange.json",
+      "sha256": "81043a96b58e45ede96e4ee5e452bdb396535fbfccac057a27ab768bc7a752fd",
+      "source": "experiments/exp2/configs/scaleup/drawer_exchange.json"
+    },
+    {
+      "copy": "protocols/configs/scaleup/tray_pack.json",
+      "sha256": "03468997d9bd22409ec90a5b44d1ea3b1442e853fd8f36ddda43024e55f7a576",
+      "source": "experiments/exp2/configs/scaleup/tray_pack.json"
+    },
+    {
+      "copy": "protocols/configs/scaleup/tray_pack_goals.json",
+      "sha256": "eb193de5f07d6f123a42467bfb82922edf8be886eff3bd77d677fa22b7489eab",
+      "source": "experiments/exp2/configs/scaleup/tray_pack_goals.json"
+    },
+    {
+      "copy": "protocols/configs/scaleup/two_block_sort.json",
+      "sha256": "9a8d22be2685de4f281f0df3d92dadea4135fd1619e8cd16e9b1499d6c5fcbb9",
+      "source": "experiments/exp2/configs/scaleup/two_block_sort.json"
+    },
+    {
+      "copy": "protocols/configs/scaleup/two_block_sort_goals.json",
+      "sha256": "477363b0a3bb497986c1b067dfd742072469e8e0d084db7f714c3913f0538cf2",
+      "source": "experiments/exp2/configs/scaleup/two_block_sort_goals.json"
+    },
+    {
+      "copy": "protocols/configs/scaleup/unstack_sort.json",
+      "sha256": "db6e1980a364c6502118232c8c2fe71d63872eaa73e41fcd9829c534bdaa1120",
+      "source": "experiments/exp2/configs/scaleup/unstack_sort.json"
+    },
+    {
+      "copy": "protocols/configs/scaleup/unstack_sort_goals.json",
+      "sha256": "eea1a13e7b311761c4b1d6a68f4bacd40d136589dee70bc73c51092bde8e87c2",
+      "source": "experiments/exp2/configs/scaleup/unstack_sort_goals.json"
+    },
+    {
+      "copy": "protocols/configs/astra_xhigh/buffer_swap.json",
+      "sha256": "0fa71e83cabd86abf4bcbff0c704cda1d35a7556c0342dba613cd098bedc6271",
+      "source": "experiments/exp2/configs/astra_xhigh/buffer_swap.json"
+    },
+    {
+      "copy": "protocols/configs/astra_xhigh/drawer_exchange.json",
+      "sha256": "1f12149b1eb59eacc6fd0e112518944fc11cad1b1217ec583f2f75182df44a3f",
+      "source": "experiments/exp2/configs/astra_xhigh/drawer_exchange.json"
+    },
+    {
+      "copy": "protocols/configs/astra_xhigh/tray_pack.json",
+      "sha256": "1a35652504bfcdbcc08276ed72770fdb06c08d8ba0895dd8aea3e14ead5e24ca",
+      "source": "experiments/exp2/configs/astra_xhigh/tray_pack.json"
+    },
+    {
+      "copy": "protocols/configs/astra_xhigh/two_block_sort.json",
+      "sha256": "2f40338a83e7191ea1537f59895abd55d9c9bff5f35fa5c35f4c17496d3cebe6",
+      "source": "experiments/exp2/configs/astra_xhigh/two_block_sort.json"
+    },
+    {
+      "copy": "protocols/configs/astra_xhigh/unstack_sort.json",
+      "sha256": "eebb3117aafab11d7e2aaa1778f517c7f7a852e58dfcc39c29fe9e38a41d0dfb",
+      "source": "experiments/exp2/configs/astra_xhigh/unstack_sort.json"
+    },
+    {
+      "copy": "protocols/configs/single_policy_astra_xhigh/buffer_swap.json",
+      "sha256": "cb5a8654bfd09cb5d4ac5b0801470378f4a3c7970d2852bca1dad3a540d8b228",
+      "source": "experiments/exp2/configs/single_policy_astra_xhigh/buffer_swap.json"
+    },
+    {
+      "copy": "protocols/configs/single_policy_astra_xhigh/drawer_exchange.json",
+      "sha256": "a43837a0c41dfe644c4ef9566607753b3ce8a2625ae30b1efa1049c4537b13d0",
+      "source": "experiments/exp2/configs/single_policy_astra_xhigh/drawer_exchange.json"
+    },
+    {
+      "copy": "protocols/configs/single_policy_astra_xhigh/tray_pack.json",
+      "sha256": "8a64dc136b7a2ac6bd6f6734832cb9f1ac67b80d8beaaa617e2b74a04f5a6d2f",
+      "source": "experiments/exp2/configs/single_policy_astra_xhigh/tray_pack.json"
+    },
+    {
+      "copy": "protocols/configs/single_policy_astra_xhigh/two_block_sort.json",
+      "sha256": "b8e433a040e800a05c2df3b9738d57006771f634a553b969b6a205c478cbe89c",
+      "source": "experiments/exp2/configs/single_policy_astra_xhigh/two_block_sort.json"
+    },
+    {
+      "copy": "protocols/configs/single_policy_astra_xhigh/unstack_sort.json",
+      "sha256": "48047ffacd46349ad1d54ad7319927a72d22c668ef331dcb50b6c9ca86bed2de",
+      "source": "experiments/exp2/configs/single_policy_astra_xhigh/unstack_sort.json"
+    },
+    {
+      "copy": "protocols/configs/m0.json",
+      "sha256": "b1b91754429519377001c49d76f6bf8473a6df0a1f90d90491ec668c0b09c26d",
+      "source": "experiments/exp2/configs/m0.json"
+    },
+    {
+      "copy": "supporting_reports/M0_REPORT.md",
+      "sha256": "5e352fcc9c9739e76d0144eb4d86a088a4e5162c80fe846b8fc1ff5f3010abff",
+      "source": "experiments/exp2/M0_REPORT.md"
+    },
+    {
+      "copy": "supporting_reports/M0_SETTING_STUDY.md",
+      "sha256": "054d17671099f15ea17e305d5728280ca6828a564054ddc654c113b29da1ea99",
+      "source": "archive/Exp2_M0DP/experiments/exp2/M0_SETTING_STUDY.md"
+    },
+    {
+      "copy": "supporting_reports/M1_v1_REPORT.md",
+      "sha256": "c04d477b470ac8e65abc37abe0b8c6910b56f4e2541ee71e88da2f272b40f481",
+      "source": "runs/exp2/M1_v1/REPORT.md"
+    },
+    {
+      "copy": "supporting_reports/M1_initial_5000_REPORT.md",
+      "sha256": "b33568baa2b737158edc31f8a80742dadf860e78102e9a57a58bbf0d013e22d0",
+      "source": "runs/exp2/M1_initial_test/inference_5000/REPORT.md"
+    },
+    {
+      "copy": "supporting_reports/M1_initial_5000_ANALYSIS.md",
+      "sha256": "84d8ee010d7f08cb9af3b967791975a1e1ee0f34fa6c7ccbc5ff457f6640c4d0",
+      "source": "runs/exp2/M1_initial_test/inference_5000/ANALYSIS.md"
+    },
+    {
+      "copy": "supporting_reports/SCALEUP_REPORT.md",
+      "sha256": "3bda1c9e8b062065d42da46f4de85dadc478e16fc0bbe55064fc00df54a568e3",
+      "source": "runs/exp2/M1_scaleup/REPORT.md"
+    },
+    {
+      "copy": "supporting_reports/SCALEUP_ANALYSIS.md",
+      "sha256": "bcd9ff36b166c47fffbb4c8ef3b0b5593609675832b3a43dc04261e2d1451e4a",
+      "source": "runs/exp2/M1_scaleup/ANALYSIS.md"
+    },
+    {
+      "copy": "supporting_reports/ASTRA_FINAL_REPORT.md",
+      "sha256": "0194fcaf9d69b93071c8abd4eb3d4153549c8355f0eed016ed2960835f540dd2",
+      "source": "runs/exp2/M1_astra_xhigh/evaluation_followup_20260918/REPORT.md"
+    },
+    {
+      "copy": "supporting_reports/ASTRA_FINAL_ANALYSIS.md",
+      "sha256": "086e3f78e89241ef45ef838651dfacaf3f47e36e605d193d0448b146c89b3675",
+      "source": "runs/exp2/M1_astra_xhigh/evaluation_followup_20260918/ANALYSIS.md"
+    },
+    {
+      "copy": "supporting_reports/DRAWER_ASTRA_REGRESSION.md",
+      "sha256": "bb839dc8c1cf125802a5ae6269dbc1839678c8c273d0f412c56ef71ded8caa5d",
+      "source": "experiments/exp2/analysis/drawer_astra_regression/REPORT.md"
+    },
+    {
+      "copy": "supporting_reports/naive_equivalence_audit.json",
+      "sha256": "dcefedc5294b727581e0fe27e9683cd3ccf4bf6db11d2b8e31f5f3f0852aa46c",
+      "source": "experiments/exp2/analysis/naive_equivalence_audit.json"
+    },
+    {
+      "copy": "supporting_reports/training_gripper_support.json",
+      "sha256": "51deb3af0bb854d19fe65447fdb970c8214f79dd0dba3d9c0f43031621162745",
+      "source": "experiments/exp2/analysis/training_gripper_support.json"
+    },
+    {
+      "copy": "supporting_reports/astra_token_cost_20260918.json",
+      "sha256": "2fa2eb3542590736eab61a1edb3757e64782c1f75e7a4d20d3c0977a4073a3bf",
+      "source": "experiments/exp2/analysis/astra_token_cost_20260918.json"
+    }
+  ]
+}

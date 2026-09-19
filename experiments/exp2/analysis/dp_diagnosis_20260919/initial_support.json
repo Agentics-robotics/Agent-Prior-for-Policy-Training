@@ -1,0 +1,191 @@
+{
+  "note": "ID is the predeclared reset distribution, not the finite sample convex hull. Unstack uses shared XY and is rank 2; hulls use an SVD projection without artificial jitter. L2 combines both objects.",
+  "runtime_API_requests": 0,
+  "tasks": {
+    "buffer_swap": {
+      "affine_rank": 4,
+      "conditions": {
+        "ID": {
+          "count": 30,
+          "inside_empirical_convex_hull": 4,
+          "inside_training_coordinate_box": 17,
+          "nearest_training_layout_L2_m": {
+            "max": 0.01684164150753033,
+            "median": 0.008853783269457894,
+            "min": 0.0020659762126047487
+          }
+        },
+        "OOD": {
+          "count": 30,
+          "inside_empirical_convex_hull": 0,
+          "inside_training_coordinate_box": 0,
+          "nearest_training_layout_L2_m": {
+            "max": 0.05467590242820578,
+            "median": 0.04263831986682628,
+            "min": 0.028653247668419392
+          }
+        }
+      },
+      "training_red_blue_xy_max": [
+        -0.3418218493461609,
+        -0.18906575441360474,
+        -0.3385905623435974,
+        0.20961488783359528
+      ],
+      "training_red_blue_xy_min": [
+        -0.3598071038722992,
+        -0.21054919064044952,
+        -0.36141303181648254,
+        0.1883760541677475
+      ]
+    },
+    "drawer_exchange": {
+      "affine_rank": 4,
+      "conditions": {
+        "ID": {
+          "count": 30,
+          "inside_empirical_convex_hull": 0,
+          "inside_training_coordinate_box": 11,
+          "nearest_training_layout_L2_m": {
+            "max": 0.01662138276812334,
+            "median": 0.010331463629404423,
+            "min": 0.004574224764119581
+          }
+        },
+        "OOD": {
+          "count": 30,
+          "inside_empirical_convex_hull": 0,
+          "inside_training_coordinate_box": 0,
+          "nearest_training_layout_L2_m": {
+            "max": 0.062092180472721255,
+            "median": 0.046399241331949004,
+            "min": 0.03066931628643806
+          }
+        }
+      },
+      "training_red_blue_xy_max": [
+        0.10770227760076523,
+        -0.054666511714458466,
+        -0.38746970891952515,
+        0.31451308727264404
+      ],
+      "training_red_blue_xy_min": [
+        0.09302113205194473,
+        -0.07662318646907806,
+        -0.4135044515132904,
+        0.28746116161346436
+      ]
+    },
+    "tray_pack": {
+      "affine_rank": 4,
+      "conditions": {
+        "ID": {
+          "count": 30,
+          "inside_empirical_convex_hull": 3,
+          "inside_training_coordinate_box": 15,
+          "nearest_training_layout_L2_m": {
+            "max": 0.0167843223731067,
+            "median": 0.009055123907549515,
+            "min": 0.00402338000911507
+          }
+        },
+        "OOD": {
+          "count": 30,
+          "inside_empirical_convex_hull": 0,
+          "inside_training_coordinate_box": 0,
+          "nearest_training_layout_L2_m": {
+            "max": 0.05635896088193785,
+            "median": 0.04577189328385716,
+            "min": 0.029836856058873883
+          }
+        }
+      },
+      "training_red_blue_xy_max": [
+        -0.3896632790565491,
+        -0.2506837248802185,
+        -0.3919861614704132,
+        0.2697497010231018
+      ],
+      "training_red_blue_xy_min": [
+        -0.411618173122406,
+        -0.26982060074806213,
+        -0.41156822443008423,
+        0.24947038292884827
+      ]
+    },
+    "two_block_sort": {
+      "affine_rank": 4,
+      "conditions": {
+        "ID": {
+          "count": 30,
+          "inside_empirical_convex_hull": 3,
+          "inside_training_coordinate_box": 12,
+          "nearest_training_layout_L2_m": {
+            "max": 0.015112421403605162,
+            "median": 0.008961148667408648,
+            "min": 0.003478503095336256
+          }
+        },
+        "OOD": {
+          "count": 30,
+          "inside_empirical_convex_hull": 0,
+          "inside_training_coordinate_box": 0,
+          "nearest_training_layout_L2_m": {
+            "max": 0.05919936279643808,
+            "median": 0.04165917127587836,
+            "min": 0.029737465261054846
+          }
+        }
+      },
+      "training_red_blue_xy_max": [
+        -0.4118543267250061,
+        -0.19120007753372192,
+        -0.4080464839935303,
+        0.23187412321567535
+      ],
+      "training_red_blue_xy_min": [
+        -0.42897915840148926,
+        -0.21100565791130066,
+        -0.42471209168434143,
+        0.20819485187530518
+      ]
+    },
+    "unstack_sort": {
+      "affine_rank": 2,
+      "conditions": {
+        "ID": {
+          "count": 30,
+          "inside_empirical_convex_hull": 18,
+          "inside_training_coordinate_box": 27,
+          "nearest_training_layout_L2_m": {
+            "max": 0.012135073322929516,
+            "median": 0.007092351901763875,
+            "min": 0.0007626560096196225
+          }
+        },
+        "OOD": {
+          "count": 30,
+          "inside_empirical_convex_hull": 0,
+          "inside_training_coordinate_box": 0,
+          "nearest_training_layout_L2_m": {
+            "max": 0.05442106439641604,
+            "median": 0.034802241971608215,
+            "min": 0.017337508360804964
+          }
+        }
+      },
+      "training_red_blue_xy_max": [
+        -0.3386727571487427,
+        0.01179077010601759,
+        -0.3386727571487427,
+        0.01179077010601759
+      ],
+      "training_red_blue_xy_min": [
+        -0.36141106486320496,
+        -0.010520332492887974,
+        -0.36141106486320496,
+        -0.010520332492887974
+      ]
+    }
+  }
+}

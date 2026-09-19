@@ -1,3 +1,10 @@
+# Historical protocol — retired M1/M2 workflow
+
+The user authorized replacing the old M1/M2 workflow on 2026-09-16. The active
+versioned M1 workflow is specified in [PRIOR_POLICIES.md](PRIOR_POLICIES.md).
+The text below records the previous protocol and does not schedule new formal
+M1/M2 runs. Frozen M0 evaluation and its results remain unchanged.
+
 # APPL Exp2：重建协议与当前执行边界
 
 执行规范为根目录 `APPL_EXP2_REBUILD_AND_EXECUTE.md`。本文件区分已运行的开发诊断和被门槛保护的正式流程；研究假设尚未得到验证。结果由 `exp2 report` 集中生成，不能用接口通过代替任务成功。

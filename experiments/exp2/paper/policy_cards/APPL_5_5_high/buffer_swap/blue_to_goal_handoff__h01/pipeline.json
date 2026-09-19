@@ -1,0 +1,20 @@
+{
+  "policy_id": "blue_to_goal_handoff__h01",
+  "skill_id": "blue_to_goal_handoff",
+  "heuristic_index": 1,
+  "prior_summary": "Active-object reflection prior for the blue transfer: a learned action diffusion model conditions on causal state history through shared relative encoders for the blue-active view and a y-reflected red/blue-swapped view, with a small task-space auxiliary loss for predictive and reflection-consistent latent features.",
+  "applicable_conditions": "Use after the red block has been buffered near the central free area, the blue block is still near the upper/red-goal region, and the gripper/TCP are in the demonstrated transition corridor from high and open above the buffer toward the blue block. The model also covers later states in which blue is grasped or placed and the arm is moving toward reacquiring the buffered red block.",
+  "termination_guidance": "Transfer control when blue_pose is within the blue_goal region, the gripper is open and no longer carrying blue, red_pose remains near the buffer, and the TCP is either high/open above blue or already in the demonstrated approach corridor toward the buffered red block. If the task-level predicates red_at_goal and blue_at_goal are both true, the task is complete regardless of this skill guidance.",
+  "limitations": "The reflection is implemented in learned state representation and auxiliary task-space consistency only; there is no robot kinematic mirror map, no IK controller, no image encoder, and no hard constraint on object motion. Joint actions remain absolute Panda targets learned from demonstrations. Recovery from a missed grasp, disturbed red block, or a blue placement outside tolerance is not specifically demonstrated.",
+  "config": {
+    "condition_dimension": 256,
+    "raw_history_steps": 2,
+    "relation_features_per_step": 54,
+    "phase_features": 25,
+    "reflection_transform": "world y reflection with red/blue object and goal swap for spatial conditioning; robot qpos and qvel are not transformed",
+    "diffusion_loss": "epsilon MSE supplied by the fixed DDPM training batch mask",
+    "prior_loss": "0.03 * supervised future task-space prediction MSE + 0.01 * reflection/swap consistency MSE",
+    "auxiliary_prediction": "horizon-16 normalized TCP xyz, blue xyz, red xyz and finger width from the causal condition",
+    "normalization": "shared M1_v2 full-demonstration normalizer for raw observations/actions plus broad hand-coded metric scales for relative features"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "API_requests": 0,
+  "checkpoint_sha256": "cfc5159592886349eb9e9a078c44757d7f53b3ce6befdd5d4f52398fd6c2f0c4",
+  "demonstrations": [
+    "demo1000",
+    "demo1005",
+    "demo1011"
+  ],
+  "device": {
+    "logical_gpu": 0,
+    "minor": 1,
+    "physical_gpu": 2,
+    "uuid": "GPU-7a6705f2-1132-637d-000e-c94d37e2f0a2"
+  },
+  "intervention": "Subtract half the stated opening reduction from each observed finger position in both history frames. All other inputs unchanged; offline sensitivity only.",
+  "optimizer_updates": 0,
+  "samples_per_cell": 8,
+  "seed": 913,
+  "selection": "32 actions before red/blue pick closing; drawer red/blue are closing events 2/3, other tasks 1/2.",
+  "simulator_steps": 0,
+  "source_sha256": "a5ba02ca497b920c3a6d95b27ecaa2a9523bf84d90970fa08a41fed8ea654c7a",
+  "task": "drawer_exchange",
+  "total_finger_opening_reduction_mm": [
+    0,
+    1,
+    2,
+    4,
+    8
+  ]
+}

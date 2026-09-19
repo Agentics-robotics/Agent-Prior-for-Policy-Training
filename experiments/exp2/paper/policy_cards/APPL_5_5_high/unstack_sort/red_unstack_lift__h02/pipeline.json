@@ -1,0 +1,26 @@
+{
+  "policy_id": "red_unstack_lift__h02",
+  "skill_id": "red_unstack_lift",
+  "heuristic_index": 2,
+  "prior_summary": "A learned action DDPM conditioned on a causal recurrent encoder with an ordered three-mode latent event state: approach_open, close_contact, and lift_carry. The latent mode gates the denoiser through trainable embeddings and is supervised by demonstration-derived phase and transition losses.",
+  "applicable_conditions": "Use when the red block is the upper block in the initial stack, the gripper/TCP and block poses are observable, and the required behavior follows open approach, finger closure/contact, lift, and early carry toward the red goal. The policy can also start during the shared lift-to-carry overlap when fingers are already closed and red is elevated.",
+  "termination_guidance": "Transfer or stop this skill when the fingers remain closed, red has lifted clearly above blue, and the TCP/red pair has begun lateral motion toward the red goal; in the demonstrations this corresponds to red z around 0.13 to 0.30 m and the end of the expanded slice near index 190.",
+  "limitations": "The event labels are inferred from poses, finger aperture, and demonstration futures, not measured contact. The implementation has no inverse kinematics, no image encoder, and no hard geometric constraint; failures such as empty grasps or red not moving with the TCP must be handled by policy selection or recovery outside this model.",
+  "config": {
+    "architecture": "event_gated_recurrent_conditioned_unet_ddpm",
+    "modes": ["approach_open", "close_contact", "lift_carry"],
+    "condition_dim": 256,
+    "hidden_dim": 128,
+    "mode_embedding_dim": 24,
+    "engineered_feature_dim": 35,
+    "phase_loss_weight": 0.06,
+    "transition_loss_weight": 0.04,
+    "prototype_loss_weight": 0.02,
+    "order_loss_weight": 0.01,
+    "phase_label_rule": "approach if finger width is open and red is not lifted; close_contact if finger width is below 0.055 m before lift; lift_carry if red z exceeds 0.095 m, red-blue z separation exceeds 0.070 m, or labeled future red z exceeds 0.135 m with closed fingers",
+    "transition_target_slot": 7,
+    "uses_shared_normalizer": true,
+    "causal_forward_inputs": "raw_history only: qpos, qvel, tcp_pose, red_pose, blue_pose, drawer compatibility channels, red_goal, blue_goal",
+    "auxiliary_training_inputs": "future_obs and future_mask are used only to form phase/transition labels in compute_loss"
+  }
+}

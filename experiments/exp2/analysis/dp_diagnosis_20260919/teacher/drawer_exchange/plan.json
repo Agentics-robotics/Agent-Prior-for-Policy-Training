@@ -1,0 +1,19 @@
+{
+  "batch_size": 16,
+  "caveat": "Training-state conditional generation, not closed-loop success. Batch sampling has a fixed RNG but is not the B=1 rollout stream.",
+  "checkpoint_sha256": "cfc5159592886349eb9e9a078c44757d7f53b3ce6befdd5d4f52398fd6c2f0c4",
+  "demonstrations": [
+    "demo1000",
+    "demo1005",
+    "demo1011"
+  ],
+  "device": {
+    "logical_gpu": 0,
+    "minor": 1,
+    "physical_gpu": 2,
+    "uuid": "GPU-7a6705f2-1132-637d-000e-c94d37e2f0a2"
+  },
+  "samples": 252,
+  "selection": "32 uniformly spaced indices plus +/-4 indices around every gripper sign change",
+  "source_sha256": "c8b43ef961a8d6c1fc0995cdc4ac66f87de87981a61a988be5509ed960a3768d"
+}
