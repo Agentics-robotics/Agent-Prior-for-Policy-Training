@@ -1,0 +1,50 @@
+{
+  "control_hz": 20,
+  "description": "Move the red and blue blocks from their starting regions onto their respective separate marked pads.",
+  "fixtures": [],
+  "goal_half_xy_m": [
+    0.06,
+    0.06
+  ],
+  "goal_z_tolerance_m": 0.011,
+  "goals": {
+    "blue": [
+      -0.18,
+      0.25,
+      0.02
+    ],
+    "red": [
+      -0.18,
+      -0.25,
+      0.02
+    ]
+  },
+  "id_half_width_m": 0.012,
+  "initial": {
+    "blue": [
+      -0.42,
+      0.22,
+      0.02
+    ],
+    "red": [
+      -0.42,
+      -0.2,
+      0.02
+    ]
+  },
+  "object_half_m": 0.02,
+  "ood_inner_m": 0.022,
+  "ood_outer_m": 0.04,
+  "program": [
+    [
+      "red",
+      "red"
+    ],
+    [
+      "blue",
+      "blue"
+    ]
+  ],
+  "shared_xy": false,
+  "task_id": "two_block_sort"
+}

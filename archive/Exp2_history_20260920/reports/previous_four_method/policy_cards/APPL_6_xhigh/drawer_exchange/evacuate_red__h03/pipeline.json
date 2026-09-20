@@ -1,0 +1,44 @@
+{
+  "policy_id": "evacuate_red__h03",
+  "skill_id": "evacuate_red",
+  "heuristic_index": 3,
+  "prior_summary": "Attachment-consistent action diffusion: a causal learned none/handle/red/blue posterior and per-block continuous tool-relative transform refinement condition an absolute-joint DDPM. A learned action-conditioned rollout predicts TCP, block, drawer and finger states. Masked predicted block-relative translation and rotation changes are penalized only on confident co-motion windows; the handle receives an X-only prismatic coupling penalty. Release observations and commands deactivate the training constraint, not the denoiser.",
+  "applicable_conditions": "The entire assigned expanded slice, from a partially opened handle-attached drawer through handle release, free approach, red acquisition, red transport and release, empty retreat, blue acquisition and initial lift. Inputs are two causal world-frame state observations with wxyz quaternions, finger qpos, qvel and drawer state. Stable Panda grasps of rigid blocks and approximately conserved tool-relative transforms are supported; contact is inferred rather than measured.",
+  "termination_guidance": "Continue while a demonstrated transition is unfinished. Red containment on the outside pad alone does not imply that the physical handoff is finished. An insertion policy supporting the outgoing overlap may take over during red descent/release; the late handoff is released red near z=0.020 m, drawer about 0.297 m open and blue co-moving with the closed tool during initial lift near z=0.14 m. Pass causal physical history, not private latents. These are invocation cues, not added task-success conditions: the supplied simultaneous drawer/red/blue completion contract alone defines task success.",
+  "limitations": "Only two observations, no contact sensor, no previous-command input, no images, no analytic FK or IK. Co-motion pseudo-labels are uncertain at rest and around support contact; their thresholds are training label construction, not applicability guarantees. Learned dynamics is a supervised surrogate and may extrapolate poorly on noisy or off-demonstration actions. Local rigidity losses are soft and do not guarantee rigid transport or prevent accumulated drift. No slip recovery, dropped-object recovery or regrasp capability is established. No learned performance claim follows from interface checks.",
+  "config": {
+    "experiment_version": "M1_v2",
+    "training_budget_updates": 20000,
+    "segmentation": "All twelve assigned expanded slices, unchanged; no phase filtering, timestamp conditioning or scripted schedule.",
+    "normalization": "The common complete-demonstration limits normalizer in spec, unchanged. Relative translation features use the largest common TCP/block positional half-range; handle feature X scale combines common TCP-X and drawer scales. No per-skill fitted scales.",
+    "architecture": {
+      "history_steps": 2,
+      "causal_feature_dimension": 145,
+      "history_encoder_widths": [256, 192],
+      "attachment_classes": ["none", "handle", "red", "blue"],
+      "continuous_transform_head": "Two measured tool-relative poses plus trainable translation/quaternion refinements; quaternion signs use the largest-magnitude component.",
+      "condition_dimension": 256,
+      "diffusion_backbone": "Public conditional U-Net, configured by the fixed training spec.",
+      "auxiliary_rollout": "192-wide GRUCell, recursively predicting a 24-dimensional TCP/red/blue pose, drawer-position and per-finger state from absolute encoded actions; 128-wide output MLP. No future teacher states are fed to the rollout.",
+      "predicted_action_representation": "Eight shared-normalized absolute Panda joint/gripper actions; epsilon prediction."
+    },
+    "loss_weights": {
+      "diffusion_epsilon": 1.0,
+      "ground_truth_action_state_prediction": 0.20,
+      "denoised_action_state_prediction": 0.10,
+      "attachment_classification": 0.05,
+      "continuous_transform_supervision": 0.02,
+      "ground_truth_action_attachment_consistency": 0.05,
+      "denoised_action_attachment_consistency": 0.10
+    },
+    "auxiliary_details": {
+      "predicted_action_sample_weight": "alpha_bar squared; weight is not renormalized away",
+      "predicted_action_training_clip": [-1.5, 1.5],
+      "state_prediction_alignment": "Action slot zero ends at the current observation and is copied, not learned as a future transition. Action slots 1 through 15 drive rollout state predictions.",
+      "block_pseudo_labels": "Finger aperture, object proximity, consecutive tool-relative pose agreement and TCP/object co-motion. Static closed near-object cases remain uncertain. Confident moving windows alone enable rigidity; valid future pairs and a negative gripper command are also required.",
+      "handle_pseudo_labels": "Narrow aperture, observed handle-region proximity and conservation of TCP-X plus drawer position. No handle pose sensor is assumed.",
+      "loss_geometry": "Translation errors use shared range scales. Quaternion errors are sign-invariant squared SO(3) geodesic angles divided by pi squared. Predicted state scalars use shared-scale smooth-L1.",
+      "deployment": "Only model.forward uses raw causal history and a noisy action chunk. No auxiliary planning, online state-head optimization, projection, IK, action replay, hard attachment gate or adaptive-prefix controller. Fixed DDPM sampling, bounds and eight-step execution remain framework-owned."
+    }
+  }
+}

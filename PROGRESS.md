@@ -2,115 +2,15 @@
 
 ## 当前摘要
 
-**2026-09-19 四方法夹爪复核：** 已只读检查全部 1,200 条选定正式轨迹，三组 prior 方法均沿用连续夹爪接口，没有统一二值化。四个新增任务各 120 ID/120 OOD 回合中，“渐进空中闭合”保守筛查：naive DP **68/91**、single-policy prior **24/52**、旧 APPL **15/32**、新 APPL **0/10**；这些是现象计数，不是因果归因失败数。旧 APPL 检出的 15 个 ID 回合有 13 个最终成功，托盘 seed20301 的原始 API 日志明确记录调用释放策略重新张开空夹爪、换抓取 prior 后于 910 步完成。见[跨方法报告](experiments/exp2/analysis/cross_method_gripper_20260919/REPORT.md)、[逐回合证据](experiments/exp2/analysis/cross_method_gripper_20260919/episodes.json)和[源码/完成核验](experiments/exp2/analysis/cross_method_gripper_20260919/completion.json)。0 新仿真/训练/Runtime API；92 个 API 源码与论文归档一致。三组 prior 尚未做夹爪二值化因果消融。
+**核对日期：2026-09-20。Exp2 目录整理完成，实验仍已停止。** 当前唯一主线为 **Exp2_new：五任务 × 每任务 15 个位置 OOD × DP / Agent Prior DP / APPL GPT-6 Astra/xhigh，共 225 个完整结果**。成功分别为 **5/75、10/75、30/75**；无新增 API、训练或仿真。
 
-**2026-09-19 DP 闭环诊断完成：** 冻结 DP 在原始 12 个训练初态上，抽屉 **9/12**，四个新增任务各 **0/12**（诊断上限 1,500 步）；60 次示范动作重放全部成功。定位到连续夹爪输出导致手指逐渐闭合、模型进一步预测闭合的反馈放大。仅将夹爪按正负执行成全开/全关，同三个训练初态上分拣 **0→3/3**、交换 **0→2/3**、拆堆 **0→3/3**，托盘仍 **0/3**，抽屉维持 **2/3**。示范前缀接管：抽屉/分拣/拆堆/托盘各 **3/3**，交换 **1/3**；托盘示范的红块放置 Y 范围仅约 1.3 mm，修正夹爪后两次合格放置偏离示范 28–33 mm 后无法接续。见[完整英文诊断](experiments/exp2/analysis/dp_diagnosis_20260919/REPORT.md)、[配对视频](experiments/exp2/analysis/dp_diagnosis_20260919/videos.html)和[完成核验](experiments/exp2/analysis/dp_diagnosis_20260919/completion.json)。这是独立训练初态与自适应诊断，不替换原 30 ID/OOD 主表；0 新训练、0 Runtime API，Exp1 和冻结科学输入未改。
+- [当前入口与目录结构](experiments/exp2/README.md)、[完整报告](experiments/exp2/reports/REPORT.md)、[失败分析](experiments/exp2/reports/FAILURE_ANALYSIS.md)、[恢复案例](experiments/exp2/reports/RECOVERY_CASES.md)、[225 个视频](experiments/exp2/reports/VIDEOS.html)。
+- [唯一资产清单](runs/exp2/current/manifest.json)：225 个 OOD 回合、46 个冻结模型及哈希。三个方法使用同初态与修正后的二值夹爪执行器；没有重新训练、选择模型或筛除失败。
+- 旧错误夹爪实验、其余轮次、部分 ID 和诊断移入 [归档](archive/Exp2_history_20260920/README.md)。历史报告/API 输出/轨迹/模型保留；旧路径通过兼容链接可解析。Exp1 原有资产与冻结科学框架保持不变，见[迁移核验](archive/Exp2_history_20260920/migration/validation.json)。
+- 已删除 Exp2 写作 ZIP、重复打包目录和打包脚本；其中独有报告、表格、图与分析已保留。详见[删除清单](archive/Exp2_history_20260920/migration/deletion_inventory.json)。
+- GPT-6 Astra/xhigh 的示范切分、prior、源码、部署决策仍为 API 产物；开发者提供环境、示范、工具、训练与判定。此整理没有修改实验逻辑。未来 Exp2/其他新实验使用 `xhigh`；Exp1 相关使用 `max`。
 
-**2026-09-19 实验合理性只读复核：** 确认 APPL 切换 Policy 时清空历史并复制当前帧作为两帧输入；旧/新 APPL 的选定 300 回合分别出现 1,867/1,385 次非初始策略切换。其对成功率的影响尚未做消融，不能把切换次数视作失败数。复核同时指出弱 DP baseline、训练量/时间信息差异、未验证的交接能力和单帧几何成功口径等限制。见[详细复核](experiments/exp2/analysis/experimental_review_20260919/REVIEW.md)及[原始计数与源码核验](experiments/exp2/analysis/experimental_review_20260919/evidence.json)。0 新 Runtime API 请求、0 训练、0 仿真；冻结代码和结果未改。报告有一处仍写补测前 180/299 的摘要句，当前有效结果为 181/300，已在复核中标注。
-
-**2026-09-19 唯一 unknown 补测成功：** 旧 APPL GPT-5.5/high 的 `buffer_swap / ID / 20116` 按原设置从相同初态重跑，**945 步成功、10 次 API 请求**；初态、prompt、首请求、冻结策略、全部动作和字面停止规则核验通过。交换任务 ID 现为 **29/30**，旧 APPL 总 ID **131/150**、OOD **50/150**；主矩阵为 **1,200 个完整结果、0 个 unknown**。见[补测完成回执](runs/exp2/M1_scaleup/evaluation_recovery_20260919/completion.json)、[补测视频](runs/exp2/M1_scaleup/evaluation_recovery_20260919/buffer_swap/evaluation/APPL/ID/20116/replay.mp4)。原 650 步中断、冻结结果及[更新前 ZIP](archive/Exp2_paper_before_20260919_recovery/)全部保留，当前论文报告通过显式补测记录更新。GPU 3 进程已正常退出；没有训练或其他回合重跑。报告、图表和 ZIP 已同步更新，[最终核验](experiments/exp2/paper_bundle_validation.json)通过：893 个包内文件、379 个主文档链接、原 40 段示例加 1 段补测视频；1,292 次保留尝试包含 92 次历史中断。下方 2026-09-18 摘要描述补测前状态。
-
-**Exp2 论文资料已完成（2026-09-18 复核）：** [完整英文报告](experiments/exp2/paper/REPORT.md)、[中文入口](experiments/exp2/paper/START_HERE.md)、[写作 AI 指引](experiments/exp2/paper/WRITING_GUIDE.md)和[资料 ZIP](experiments/exp2/Exp2_paper_bundle.zip)均已生成并核验。四方法主矩阵为 1,200 个预定结果、1,199 个完整结果和 1 个保留的旧 APPL 5.5 未知结果。资料包含方法/数学接口、M0 和初始 M1 历史、结果及失败分析、成本口径、表格/图、97 模型索引、92 个 API 原样策略包、10 组切分及实际 prompt、40 段配对原始视频。876 个包内文件的哈希、ZIP 完整性和 371 个主文档链接通过[资料核验](experiments/exp2/paper_bundle_validation.json)。历史中断/授权重跑另外导出为尝试清单，不当作新的独立初态或任务失败。
-
-**新增 single-policy baseline 已完成（2026-09-18）：** 每任务一个 GPT-6 Astra/xhigh 候选，使用各 12 条完整示范、共享归一化和 60,000 更新；5 个模型、300 个新测试及视频全部通过核验。最终 **126/300 成功：ID 110/150（73.3%），位置 OOD 16/150（10.7%）**；部署 API 调用为 0。实际离线设计为 116 个已消费请求及 1 个保留的 HTTP 502；托盘按授权原样恢复同候选，原历史与未报告的中断用量保留。见[本轮报告](runs/exp2/single_policy_astra_xhigh/REPORT.md)、[完成回执](runs/exp2/single_policy_astra_xhigh/completion.json)、[恢复及最终计费口径](runs/exp2/single_policy_astra_xhigh/incidents/tray_design_http502/recovery_completed.json)。Exp1、M0 和原三组对照未改变；本轮与 APPL 的差异还包括切分、模型数量和总训练量，不是单独移除 runtime agent 的消融。
-
-**执行已收尾：** 原协调器实际执行 120 回合，[补充分配](runs/exp2/single_policy_astra_xhigh/evaluation_supplement/completed.json)执行 150 回合，[提前调度](runs/exp2/single_policy_astra_xhigh/evaluation_tail/completed.json)执行 30 回合；原队列随后仅读取已有结果，物理总数仍为 300。[逐回合实际进程核验](experiments/exp2/paper/physical_execution_audit.json)已通过。三个协调器和 300 个策略 worker 均正常退出，使用 GPU 0/1/4/6/7，未超过五张；[收尾核验](experiments/exp2/paper/resource_release.json)未发现本实验遗留 GPU 进程，无关进程保留。报告整理没有新增 API、候选训练或仿真。
-
-**最终核对：2026-09-18。额外的 GPT-6 Astra / xhigh 五任务 APPL 实验已完成。** 全部 36 个 API policy 已训练并通过部署检查；本轮取得 **300/300 个完整结果：197 成功、103 任务失败、0 未知**。ID **124/150（82.7%）**，位置 OOD **73/150（48.7%）**。[最终结果与三方法对比](runs/exp2/M1_astra_xhigh/evaluation_followup_20260918/REPORT.md)、[证据分析](runs/exp2/M1_astra_xhigh/evaluation_followup_20260918/ANALYSIS.md)、[完成回执](runs/exp2/M1_astra_xhigh/evaluation_followup_20260918/completion.json)、[配对视频](runs/exp2/M1_astra_xhigh/evaluation_followup_20260918/paired_examples.html)、[全部 300 段选定回放](runs/exp2/M1_astra_xhigh/evaluation_followup_20260918/replays.html)。
-
-结果由原 211 个完整回合、首次恢复的 68 个完整回合和最后授权续跑的 21 个回合组成。所有原尝试、HTTP 中断、API 原文和费用记录保留；32,209 个已有文件 hash 未变，新增轨迹及视频全部通过独立核验。补测没有新增训练或修改 policy/prompt；全轮次正式训练仍为 720,000 次更新。[执行核验](runs/exp2/M1_astra_xhigh/evaluation_followup_20260918/evaluation_audit.json)、[视频核验](runs/exp2/M1_astra_xhigh/evaluation_followup_20260918/videos.json)、[进程退出与 GPU 释放](runs/exp2/M1_astra_xhigh/evaluation_followup_20260918/resource_release.json)。原 DP 和 GPT-5.5/high 对照直接复用，后者原有的 1 个未知结果仍单列。
-
-双块分拣和托盘的 OOD 成功数相较旧 APPL 从 4/30 提升至 18/30、23/30；抽屉退步（ID 8/30，OOD 7/30），交换任务 OOD 也下降（8/30）。本次同时更换 API 模型、推理档位和 API 生成的切分/策略库，训练总量也不同，不能把差异单独归因于模型或 xhigh。103 个失败均由 API 在 437–2408 步主动结束；188 个成功发生在 1500 步内，另 9 个在 3000 步内，无成功超过 3000 步。Exp1、冻结 M0 和既有对照保持不变。今后新实验使用 xhigh，Exp1 相关实验使用 max。
-
-**抽屉退步专项复核（2026-09-18）：** 对旧、新 APPL 的 120 个完整抽屉轨迹做只读分析。新 ID 30/30 都打开过抽屉，但只有 8/30 抬起蓝块；这 8 个全部完成。首次红块搬运选 h03 的 26 个回合中，16 个因抽屉回缩到 0.26 m 以下触发 API 停止条件，仅 1 个随后成功。定位到动作、交接和恢复的共同问题，尚未通过消融隔离因果；归一化 payload 和 DDPM100 一致。新增 [专项报告](experiments/exp2/analysis/drawer_astra_regression/REPORT.md)、[逐回合证据](experiments/exp2/analysis/drawer_astra_regression/evidence.json)、[配对状态曲线](experiments/exp2/analysis/drawer_astra_regression/seed6302_timeline.png)。0 新 API、0 训练、0 仿真，冻结结果保持不变。
-
-### Astra 原始尝试与中断恢复历史
-
-**2026-09-17 核对：** 额外的五任务 APPL `gpt-6-astra/xhigh` 轮次已完成全部新切分和 **36/36 个 API policy 提交、训练及部署检查**，共 720,000 次正式更新。原定 300 次评估尝试全部结束，**211 个完整结果（141 成功、70 任务失败），89 个 API 中断结果未知**，尚未取得 300 个完整结果。所有评估进程已退出，原始记录保留。[结果与比较](runs/exp2/M1_astra_xhigh/REPORT.md)、[证据分析](runs/exp2/M1_astra_xhigh/ANALYSIS.md)、[原轮次退出回执](runs/exp2/M1_astra_xhigh/evaluation_supervisor/process_result.json)。
-
-评估中断为 82 次 HTTP 503、2 次 HTTP 429、5 次 HTTP 502；其中 79 次在 0 步发生，10 次保留物理前缀。211 个完整回合和全部 89 条中断前缀已核验原始 API 选择、字面停止条件、冻结模型、配对初态与隐藏预算；300 段原始帧视频通过核验，其中 79 段仅有初始帧。[完整执行核验](runs/exp2/M1_astra_xhigh/evaluation_audit.json)、[中断核验](runs/exp2/M1_astra_xhigh/incidents/evaluation_outage/audit.json)、[配对回放](runs/exp2/M1_astra_xhigh/paired_examples.html)、[全部回放](runs/exp2/M1_astra_xhigh/replays.html)。
-
-**2026-09-17 已执行授权恢复，但服务仍不可用：** 用户回复“ok，把实验做完”后，按[89 项精确方案](runs/exp2/M1_astra_xhigh/incidents/evaluation_outage/retest_proposal.json)执行了首个补测 `buffer_swap / ID / 20122`。第 1 次实际 `gpt-6-astra/xhigh` 请求再次返回 HTTP 503，0 个物理步、0 个新增完整结果；首请求、prompt 与原初态逐字/逐项一致。调度按约定停止，另 88 项未启动，当前没有后台评估进程。24,318 个原文件 hash 未变，36 个模型与冻结科学设置复核通过。原矩阵仍为 211 个完整结果和 89 个未知，不能宣称实验已做完。[授权](runs/exp2/M1_astra_xhigh/incidents/evaluation_outage/retest_authorization.json)、[恢复报告](runs/exp2/M1_astra_xhigh/evaluation_recovery/REPORT.md)、[核验](runs/exp2/M1_astra_xhigh/evaluation_recovery/validation.json)、[未启动队列](runs/exp2/M1_astra_xhigh/evaluation_recovery/execution.json)。当前阻塞是 API 服务；88 个尚未启动项的授权保留，20122 已用掉本方案的一次补测，未自动再次尝试。此次仅增加 1 个明确失败的 API 请求，未返回用量，费用未知。
-
-当前可确定：抽屉 ID 明显退步（6 次成功，即使 9 次未知全部成功仍低于旧轮次 29/30）；双块和托盘 OOD 的已确认成功数已超过旧轮次。70 个真正任务失败全部由 API 在 437–2408 步主动结束，没有触及 5000 步上限。完整配对计数、因果限制与计算量差异见[分析](runs/exp2/M1_astra_xhigh/ANALYSIS.md)，不能把 unknown 当成任务失败或声称已获得最终成功率。
-
-四项授权设计恢复已全部完成，原失败回执及外层记录错误分别保留，没有额外候选或正式训练重跑。[恢复与模型完整核验](runs/exp2/M1_astra_xhigh/authorized_recovery/completion.json)、[模型与文档入口](runs/exp2/M1_astra_xhigh/POLICIES.md)。全部切分及设计共 663 次请求：660 次正常消费、3 次原 HTTP 中断；加上部署后共 3,566 次请求：3,474 次消费、92 次 HTTP 中断。未报告的中断成本保留为未知。[设计账本](runs/exp2/M1_astra_xhigh/design_completion.json)、[全轮次计费字段](runs/exp2/M1_astra_xhigh/results.json)。
-
-[切分核验](runs/exp2/M1_astra_xhigh/segmentation_summary.json)与[恢复前调用账本](runs/exp2/M1_astra_xhigh/design_accounting_before_recovery.json)确认实际请求和正常响应均为 `gpt-6-astra/xhigh`；恢复前 621 次请求中 618 次正常消费、3 次 HTTP 中断，无待消费请求。完整覆盖原始示范，没有手工修改 API 输出。复用原示范、归一化、DP 对照和全部 300 个配对初态。[新轮次规范](experiments/exp2/ASTRA_XHIGH.md)、[输入核验](runs/exp2/M1_astra_xhigh/preparation.json)。长期规则：今后 Exp2 和其他新实验使用 `xhigh`，Exp1 相关实验使用 `max`；历史记录保持原值。
-
-最新资源授权允许同时最多五张卡，当前使用池为 1/2/3/5/7，恢复前已重新检查占用；0/4/6 上无关进程保留。[恢复占用记录](runs/exp2/M1_astra_xhigh/incidents/recovery_gpu_occupancy.json)、[五卡修订](runs/exp2/M1_astra_xhigh/allocation_5gpu/amendment.json)、[多任务补位](runs/exp2/M1_astra_xhigh/ready_training_additions/admission_amendment.json)、[并行准备](runs/exp2/M1_astra_xhigh/preparation_overlap/schedule.json)、[并行训练](runs/exp2/M1_astra_xhigh/training_overlap/schedule.json)。资源调度使用原有 package/checkpoint 锁，没有增加候选、正式更新或改变训练配方。
-
-三例原 API 设计中断发生时均无代码输出：托盘 `deliver_block__h02` 首请求 HTTP 429；双块分拣 `deliver_disengage__h01` 在六次读取后 HTTP 502；拆叠分拣 `acquire_lift__h02` 在七次读取后 HTTP 502。用户已[授权各恢复一次](runs/exp2/M1_astra_xhigh/incidents/design_recovery_authorization.json)，旧调用仍计入原预算，原尝试完整保留于 `retained_design_attempts`。[429 事件](runs/exp2/M1_astra_xhigh/incidents/tray_deliver_block_h02_429/incident.json)、[分拣 502](runs/exp2/M1_astra_xhigh/incidents/sort_deliver_disengage_h01_502/incident.json)、[拆叠 502](runs/exp2/M1_astra_xhigh/incidents/unstack_acquire_lift_h02_502/incident.json)。后续评估通过独立的四请求并发门限排队，无自动重试；8 进程竞争验证通过且未调用 API，[排队机制回执](runs/exp2/M1_astra_xhigh/api_capacity/amendment.json)。
-
-托盘恢复已完成 API 提交和接口检查，但随后外层记录代码因重复 `status` 参数退出；这发生在成功提交之后，没有新 API 中断。原脚本、退出记录与修正前回执保留，经核验原 API 提交、源码归属及成功检查后，仅补正外层状态；托盘模型随后完成训练。其余两个授权恢复通过明确子集入口执行并完成，没有再次调用托盘 API。[记录错误与核验](runs/exp2/M1_astra_xhigh/incidents/tray_recovery_recording_error/incident.json)、[剩余恢复进程](runs/exp2/M1_astra_xhigh/authorized_recovery/network_remaining/)。
-
-另定位并修复了 `buffer_swap/buffer_red__h02` 的重载检查误报：权重完全相同，但 EMA 与重载模型的 `requires_grad` 设置不同，DDPM100 输出相差约 0.000101；统一设置后差异为 0。原设计耗尽 36 次 API 调用和 5 次检查，其中四次检查遇到此误报。两次只读复现共 10 个 DDPM100 采样批次、0 次 policy 更新、0 次 API、0 步仿真。32 个无关模型全部完成后，已应用仅改重载验证一行的修正；训练、采样和部署行为保持原实现，原源码和回执保留。框架从 `93460e…` 变为 `6af981…`，严格检查只允许这一处差异。[诊断](runs/exp2/M1_astra_xhigh/incidents/buffer_red_h02_reload/incident.json)、[具体修正](runs/exp2/M1_astra_xhigh/incidents/buffer_red_h02_reload/proposed_fix.patch)、[版本回执](runs/exp2/M1_astra_xhigh/incidents/buffer_red_h02_reload/framework_revision.json)、[验证](runs/exp2/M1_astra_xhigh/incidents/buffer_red_h02_reload/correction_validation.json)。用户已[授权同会话有限延长](runs/exp2/M1_astra_xhigh/incidents/buffer_red_h02_reload/recovery_authorization.json)；实际用 2 次新调用、1 次接口检查完成 API 提交。原 36 次响应、工具输出和完整对话前缀逐项保持一致，开发者未改 policy 文件。[恢复回执](runs/exp2/M1_astra_xhigh/incidents/buffer_red_h02_reload/continuation.json)。
-
-### 原始五任务 scale-up（GPT-5.5 / high）
-
-**最终核对：2026-09-17。五任务 scale-up 的训练、600 次预定测试尝试与独立核验均已结束。** DP 有 300 个完整结果；APPL 有 299 个完整结果和 1 次临时 HTTP 502 中断，后者最终结果仍未知、未补测。全部 600 个进程已退出，599 个完整轨迹、中断前缀和 600 段视频通过核验，实验 GPU 已释放。[五任务结果](runs/exp2/M1_scaleup/REPORT.md)、[完整分析](runs/exp2/M1_scaleup/ANALYSIS.md)、[完成回执](runs/exp2/M1_scaleup/completion.json)。
-
-新任务 DP 的 ID 成功为 2/120；APPL 的 ID 结果明显更好，但位置 OOD 仍有大量失败。所有 DP 成功均在 1500 步内；APPL 在 1500 步之后新增 22 次完成，其中 3 次超过 3000 步。这是同一条轨迹的前缀比较，完整的逐任务数字、不确定性、失败证据及计算量差异见上方分析。
-
-- **范围与输入：** 原抽屉加分拣、临时区域交换、拆叠分拣、开放托盘装载，共五任务；每任务 12 条示范，DP/APPL 各 30 ID + 30 位置 OOD，共 600 次预定测试。[规范](experiments/exp2/SCALEUP.md)、[48 条新示范核验](runs/exp2/M1_scaleup/data_validation.json)。初版采集器腕部限位问题及统一修订保留在[采集回执](runs/exp2/M1_scaleup/collector_v1_incident.json)，未筛选训练 seeds。
-- **训练与 API 所有权：** 新增 4 个 naive DP 各 60,000 更新、33 个 API prior 各 20,000 更新，合计 900,000 次正式更新；原抽屉模型直接复用。37 个真实部署检查通过，全部模型在正式测试前[全局冻结](runs/exp2/M1_scaleup/study_freeze.json)。切分、heuristic、prior 源码和交接语义由真实 API 生成，33 份新提交逐字来源核验通过。[训练回执](runs/exp2/M1_scaleup/training_completion.json)、[51 个 API policy 入口](runs/exp2/M1_scaleup/POLICIES.md)。
-- **执行规则：** 双方使用同一配对初态、几何目标、DDPM100 / 执行 8 和 5000 物理步上限；API 看不到总预算或剩余步数。API 自己选择 policy、时长、数值停止条件和 notebook。共享尺度按每任务完整训练示范拟合。环境和 diffusion seeds 固定，API 生成未设 seed；APPL 与 DP 的总训练量不匹配。
-- **API 模型复核（2026-09-17）：** 当前五任务的全部切分 148 次、51 个 policy 设计 708 次、正式部署 5049 次请求均为 `gpt-5.5 / high`；正常响应也均标识 `gpt-5.5`，唯一 HTTP 502 无模型响应。Exp1 的冻结配置及 1150 条调用报告为 `gpt-6-astra / max`，与 Exp2 不同。[全量调用字段审计](experiments/exp2/analysis/api_model_audit.json)另含历史轮次；这是请求/响应身份复核，不独立证明本地代理后端权重身份，未新增 API、训练或仿真。
-- **中断与审计：** 交换任务 APPL／ID 20116 在第 650 步、第 11 次 API 请求遭遇上游 HTTP 502；最终结果及失败请求费用未知，未重试。[原始中断](experiments/exp2/analysis/transport_incident_20116.json)、[待授权的单次补测方案](experiments/exp2/analysis/transport_retest_proposal.json)。[独立执行审计](experiments/exp2/analysis/scaleup_execution_audit.json)已覆盖全部 599 个完整回合及中断前缀；冻结模型、API 原始选择、数值停止条件、配对初态和[600 段视频](runs/exp2/M1_scaleup/video_validation.json)全部通过核验。
-- **实现与保全：** 四个新 DP 的训练窗口、尺度、动作变换和同 EMA 的 DDPM100 采样已与原 M0 做[只读等价核验](experiments/exp2/analysis/naive_equivalence_audit.json)。[85,576 个受保护文件](experiments/exp2/analysis/protected_preservation.json)及[120,298 个输入/切分/配置文件](experiments/exp2/analysis/frozen_inputs_audit.json)的 hash 核验通过。Exp1、原 M0 源码、模型、判定器和旧结果保留。
-- **资源与观看：** 用户授权 0–7 中同时最多四张、每卡可多任务；本轮正式测试使用 1/2/3/7，现已释放。[资源分配](runs/exp2/M1_scaleup/allocation/amendment.json)和[DP 槽位交接](runs/exp2/M1_scaleup/allocation/dp_slot_handoff.json)仅改变调度，预定矩阵仍为 600 次。[五任务配对回放](runs/exp2/M1_scaleup/paired_examples.html)固定展示每任务首个 ID/OOD seed；[全部回放索引](runs/exp2/M1_scaleup/replays.html)已生成，并包含中断前的可用影像。
-
-初始研究已整理为 [M1_initial_test](runs/exp2/M1_initial_test/README.md)，当前入口指向 [5000 步结果](runs/exp2/M1_initial_test/inference_5000/REPORT.md)。原 1500／3000 步研究和设置已迁入 [archive/Exp2_M1_initial_tests](archive/Exp2_M1_initial_tests/README.md)，4,615 个文件与原配置逐字保全，历史路径保留兼容链接。[迁移回执](experiments/exp2/M1_INITIAL_LAYOUT.json)。
-
-## 已完成的初始研究与历史摘要
-
-**最新完成核对（2026-09-16）：** [隐藏 5,000 步上限的反馈修正轮次](experiments/exp2/INFERENCE_5000.md)已完成，配置 [m1_v2_5000.json](experiments/exp2/configs/m1_v2_5000.json)。相同 ID 初态复测 **4/5 成功**，训练初态诊断 **1/1 成功**；ID 成功步数为 6200：1,529、6202：1,453、6203：1,197、6204：1,058，6201 在 2,070 步由 API 主动结束失败。新轨迹前 1,500 步成功 3 个、前 3,000 步成功 4 个，没有回合用到 5,000 步上限。复用全部 18 个模型，无新增训练。API 自己选择 policy、调用时长、数值停止条件及 notebook；框架逐步检查其原始条件，实际发生 30 次提前返回。94 次 API 请求均成功消费，逐条核验未向 API 暴露总预算或剩余步数；输入峰值为 56,969 token。39 项测试通过、8,294 个物理步完成核验，原 3,747 个文件 hash 保持不变。[报告](runs/exp2/M1_v2/inference_5000/REPORT.md)、[分析](runs/exp2/M1_v2/inference_5000/ANALYSIS.md)、[回放](runs/exp2/M1_v2/inference_5000/visualizations/README.md)、[完成回执](runs/exp2/M1_v2/inference_5000/completion.json)。
-
-6201 与上一轮成功轨迹的前 400 步动作/状态完全一致，随后 API 将 h03 换成 h02；上一轮继续 h03 到第 600 步已经打开抽屉。这轮切换后恢复未成功，剩余 2,930 步未使用。因此问题包含继续/切换判断与偏移状态恢复，不能归因于总预算不足。本轮同时修改了反馈、prompt、上下文、预算可见性和 API 请求上限，且复用已分析过的 seeds；4/5 是开发复测结果，不是新的独立泛化估计，也不是单因素因果结论。成功定义仍为三个几何目标，部分成功终态蓝块仍可能被夹持，不代表已验证释放或持续稳定。[逐回合对照](runs/exp2/M1_v2/inference_5000/analysis_evidence.json)。
-
-**此前 3,000 步追加轮次（核对 2026-09-16）：** M1_v2 采用 [3,000 物理步配置](experiments/exp2/configs/m1_v2_3000.json)，复用原 18 个模型、相同 6 个初态与原英文 prompt。5 个 ID 尝试为 **2 成功、2 任务失败、1 上下文超限中断**；示范初态诊断失败。新轨迹前 1,500 步成功 1 个，6201 在第 1,782 步新增成功，说明额外时间对这一轨迹有用，但尚不能声称总体成功率提高。6202 在 2,740 步的第 30 次 API 请求返回 HTTP 502（上下文超限）；未自动重试，其 3,000 步最终结果仍未知，不能把完成的 2/4 与原 2/5 直接比较。[报告](runs/exp2/M1_v2/budget_3000/REPORT.md)、[分析](runs/exp2/M1_v2/budget_3000/ANALYSIS.md)、[上下文诊断](runs/exp2/M1_v2/budget_3000/context_limit_incident.json)、[回放](runs/exp2/M1_v2/budget_3000/visualizations/README.md)。31 项测试通过、12,825 个记录动作逐步核验；2,545 个原轮次文件保持原 hash，训练更新为 0。追加 API 请求 131 次（130 消费、1 明确失败，失败请求费用未知）。[状态回执](runs/exp2/M1_v2/budget_3000/completion.json)明确记录全部尝试已终止，但完整五个最终评估结果尚未齐全。
-
-2026-09-16 追加只读[失败与可复现性复核](runs/exp2/M1_v2/budget_3000/FAILURE_REVIEW.md)：六个回合的原始/实际动作及状态在前 300–360 步逐项一致，首次轨迹分叉均与 API 切换到不同 policy 对齐；两轮首条 API 消息仅 remaining_steps 不同，环境和 DP seed 相同，但 API 未设生成 seed。6200、6202 和诊断 1000 在单次调用内部曾成功抬高蓝块，调用结束前又降下，当前 API 只收到调用边界状态，可能错过交接时机。完整[对照数据](runs/exp2/M1_v2/budget_3000/failure_review.json)保留事实与未验证反事实的区分；本次复核无代码修改、新 API、训练或仿真。
-
-### 原 1,500 步轮次
-
-核对日期：2026-09-16。**M1_v2 已完成：18/18 个 API-authored policy 各训练 20,000 步，独立 ID 2/5、示范初态诊断 1/1 成功。** 完整训练示范统一归一化、约 7.9 倍的切分重叠、每条 heuristic/policy 的 API 交接文档均已落实；冻结后完成全部六个回合并核验 7,799 个物理步。其中 ID 6203 在一次高速度恢复动作后瞬时达到三个几何目标，按约定计成功，但不能视为稳定终态；详细限制见[分析](runs/exp2/M1_v2/ANALYSIS.md)。上一轮保留为 **M1_v1**（独立 ID 0/5），其 checkpoint 已按授权删除。Exp1 与 M0 保留。这是唯一的人工进度摘要，详细数字以链接的报告和原始记录为准。
-
-| 工作线 | 当前状态 | 证据入口 | 待完成事项 |
-| --- | --- | --- | --- |
-| Exp1 正式实验 | 已完成；现有报告记录训练、dev、hidden test 均完成全部正式槽位 | [完整报告](experiments/experiment1/EXPERIMENT1_REPORT.md)、[模型结果](experiments/experiment1/reports/model_results.csv)、[完成记录](experiments/experiment1/reports/completion_manifest.json) | 保全冻结代码、数据、选择与结果；没有待补跑槽位 |
-| Exp2 M0 | 保留 12 条示范 / DDPM100 / 执行 8：开发 2/5，独立确认 4/15 | [最终 M0 报告](experiments/exp2/M0_REPORT.md)、[保留模型与评估](runs/exp2/m0/)、[诊断归档](archive/Exp2_M0DP/README.md) | 本轮保持代码、模型与原判定；不将新任务定义追溯应用于旧指标 |
-| Exp2 M1_v2 原轮次 | 已完成训练与 1,500 步测试；独立 ID 2/5，示范初态 1/1；尚不稳健 | [结果报告](runs/exp2/M1_v2/REPORT.md)、[分析](runs/exp2/M1_v2/ANALYSIS.md)、[逐步审计](runs/exp2/M1_v2/evaluation_audit.json)、[完成回执](runs/exp2/M1_v2/completion.json) | 保留冻结策略库与原评估证据；3,000 步追加测试的中断单独记录在上方摘要 |
-| Exp2 M1_v1 | 15/15 policy 各 20,000 步；独立 ID 0/5、示范初态 0/1。旧 checkpoint 已授权删除，原核验结论为历史记录 | [报告](runs/exp2/M1_v1/REPORT.md)、[分析](runs/exp2/M1_v1/ANALYSIS.md)、[版本说明](runs/exp2/M1_v1/VERSION.md)、[删除回执](runs/exp2/M1_v2/setup/v1_checkpoint_deletion_receipt.json) | 保全源码、API 来源、训练记录和评估轨迹 |
-| Exp2 示范拆分 | M1_v2：6 类技能、72 个片段、18 条 prior；完整覆盖、5,220 个重叠动作，30 次 API 请求全部消费 | [新报告](runs/exp2/M1_v2/segmentation/REPORT.md)、[API 核验](runs/exp2/M1_v2/segmentation/validation.json)、[manifest](data/exp2/processed/M1_v2/manifest.json) | 保全 API 提交，不手工修改边界或 prior；M1_v1 切分保留供追溯 |
-
-M1_v2 的 28 项框架测试、18 个 checkpoint 契约核验和 18 个真实部署 worker 检查均通过。每个 policy 保存 API-authored HANDOFF.json、示范交接/结束状态、共享归一化 hash，以及实际测试调用前后状态；14/18 个 policy 在整任务测试中被 API 调用，其余明确标记为未调用。本轮 360,000 次正式更新、36 次接口检查更新；API 共 371 次请求（切分 30、设计 255、推理 86），全部消费，无自动重试或未决结果。[保全核验](runs/exp2/M1_v2/setup/preservation_check.json)确认 85,576 个受保护文件与 12,599 个 M1_v1 切分文件未变。
-
-旧轨迹用新尺度重新编码后，红块合法落点的 38.36 降为 0.92，原关节速度峰值对应坐标的 58.86 降为 5.76；这些旧轨迹在新尺度下的全局最大值为 11.39，[完整记录](runs/exp2/M1_v2/setup/normalization_reencoding.json)。新轨迹仍出现恢复动作造成的速度尖峰，最高重新编码值 17.62；不能把共享尺度修复理解为消除了真实状态偏移。本轮同时改了切分、prior、归一化和交接信息，且使用不同的 ID seeds，不作为单因素因果消融。
-
-2026-09-16 已将六个回合的原始相机帧整理为[可播放回放](runs/exp2/M1_v2/visualizations/README.md)，另有成功、空抓和预算耗尽的交互对照。原始分辨率 128×128，每 20 控制步一帧；所有源图 hash 保持不变，未新增 API、训练或物理仿真。[来源清单](runs/exp2/M1_v2/visualizations/manifest.json)记录帧与视频对应关系。
-
-## M1_v1 已完成轮次与前期整理记录
-
-以下训练、核验和 GPU 调度描述属于 M1_v1 的历史执行，不能视作 M1_v2 已完成。M1_v1 已迁入同名目录，旧路径保留为别名；31 个 checkpoint 共 11,075,462,809 字节已按清单删除。
-
-新流程按用户最新指令直接消费保留切分，每条 heuristic 对应独立源码、API prior 文档、训练和 checkpoint 目录。开发者提供框架；API 自己实现科学机制并在推理时根据 prior 选 policy。初始使用 GPU 4/7；确认 GPU 6 原有进程已自行结束后，在授权的 4–7 范围内加入 GPU 6 执行最后一个模型，保留所有无关进程。推理测试采用三个几何目标，M0 判定不改。依赖与命令见 [Exp2 入口](experiments/exp2/README.md)。
-
-本轮共 300,000 次正式训练更新、30 次接口检查更新；API 200 次设计请求、87 次推理请求，均有完整回执，无自动传输重试。五个独立 ID 回合中，三个未完成红块抓取交接，两个完成红块放置后未抓起蓝块；所有回合的蓝块均停留在桌面高度，失败不是额外末尾判定导致。逐动作判定与冻结模型调用核验见[测试审计](runs/exp2/prior_policies_20260916/evaluation_audit.json)。分技能归一化仍有窄范围敏感性：最大归一化值约 58.86；蓝块技能中红块合法落点偏移 2.08 cm 被编码为约 38.36。它与交接偏移共同构成下一步应检验的假设，尚未做因果消融；详见[失败分析](runs/exp2/prior_policies_20260916/ANALYSIS.md)。26 项框架测试、真实模拟器零动作检查及所有 API 源码逐字审计通过。
-
-[最终保全核验](runs/exp2/prior_policies_20260916/preservation_final.json)确认 85,576 个受保护文件及 12,599 个保留切分文件未变；[完成回执](runs/exp2/prior_policies_20260916/completion.json)区分了实现/训练/测试完成与整任务成功尚未得到证明。
-
-2026-09-16 最新示范处理：按用户澄清，以[三个几何目标](experiments/exp2/configs/demonstration_goals.json)判断本轮完成；英文 prompt 鼓励有依据的少量重叠、逐条选择边界。API 27 次请求、1 个方案版本，检查中补读证据后显式提交。5 类技能各 3 条 prior，覆盖全部 12,809 个原始动作、排除 0 个、重叠 660 个；新终态 12/12 满足三个目标。前四类技能仍采用共同时间点，末类按轨迹实际终点结束；不能把末尾长度差异当作内部边界全面自适应的证据。12,599 个新文件和两版旧产物 hash 核验通过；24 项 Exp2 测试及 8 个完成条件检查通过，训练更新/模拟器调用均为 0。
-
-对前次审阅的澄清：上一版排除 569 个尾段动作，但在当时传入的“抽屉打开、红块在垫子、蓝块在抽屉”目标下，截断点同样 12/12 达标；先前额外使用释放/离物/持续 10 步要求，属于输入目标与审阅标准不一致，不能据此认定 API 未完成所收到的任务。新旧比较见[目标核验](runs/exp2/demonstration_processing_20260916_overlap/goal_validation.json)。该定义现按最新授权用于示范处理及新 prior policy 测试；已冻结 M0 判定和历史指标保持不变。
-
-按用户最新清理授权，旧两版 processed 示范、对应旧运行目录和旧 M1/M2 专属产物已按精确清单删除，只保留当前 overlap 版本。旧 library/formal/deployment 三个独占编排模块已删除，共享功能保留；[删除回执](runs/exp2/prior_policies_20260916/cleanup/deletion_receipt.json)及[源码回执](runs/exp2/prior_policies_20260916/cleanup/retired_m1_m2_receipt.json)记录实际范围。自动审批曾拒绝较广共享源码清理，随后收窄为经过依赖核对的专属删除，未执行被拒绝的广泛修改。所有新 policy 内容和文档仍由 API 生成。
-
-M0 活跃流程为 `src/appl/dp_baseline` → `experiments/exp2/configs/m0.json` → `runs/exp2/m0` → [最终报告](experiments/exp2/M0_REPORT.md)。保留原始 12 条数据、60,000 步最后 EMA、DDPM100 和执行 8；已实现非零成功，尚不稳健。
-
-首次修复、120 条数据/增量动作/DDPM200 等设置研究均已完成并移入 [Exp2_M0DP](archive/Exp2_M0DP/README.md)。120 条模型独立确认 5/15，相比基线 4/15 未提供可靠提升证据，因此不替换当前基线。历史模型、失败轨迹、源码、额外示范和费用记录完整保留。2026-09-16 整理只改变入口与代码组织，未新增训练、API 请求或模拟器动作；校验记录见 [M0_LAYOUT.json](experiments/exp2/M0_LAYOUT.json)。
-
-当前资源范围：Exp1 物理 GPU 0–7，依据 [2026-09-13 资源修订](experiments/experiment1/execution_allocation.json)；Exp2 主实验按其[配置](experiments/exp2/configs/main.json)限制为物理 4–7。调度前检查实际占用。下方旧卡号、PID、运行中描述及恢复命令只代表历史时点。
+完整 Exp2 执行沿革见[整理前进度记录](archive/Exp2_history_20260920/navigation_before/PROGRESS.md)；各阶段原报告均保留，不在当前摘要重复历史状态。
 
 ## 历史记录：Exp1 执行过程
 

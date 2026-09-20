@@ -1,0 +1,134 @@
+[
+  {
+    "task": "drawer_exchange",
+    "success": 2,
+    "failure": 13,
+    "terminal_statuses": {
+      "succeeded": 2,
+      "agent_finished": 13
+    },
+    "bottlenecks": {
+      "red_placement_not_reached": 10,
+      "blue_insertion_not_reached": 3
+    },
+    "ever_goal_counts": {
+      "blue_inside": 2,
+      "drawer_open": 15,
+      "red_on_pad": 5,
+      "success": 2
+    },
+    "max_rise_4cm_counts": {
+      "red": 7,
+      "blue": 2
+    },
+    "failure_step_range": [
+      602,
+      2663
+    ]
+  },
+  {
+    "task": "two_block_sort",
+    "success": 3,
+    "failure": 12,
+    "terminal_statuses": {
+      "agent_finished": 12,
+      "succeeded": 3
+    },
+    "bottlenecks": {
+      "blue_rose_but_goal_not_reached": 4,
+      "blue_rise_under_4cm": 8
+    },
+    "ever_goal_counts": {
+      "blue_at_goal": 3,
+      "red_at_goal": 15,
+      "success": 3
+    },
+    "max_rise_4cm_counts": {
+      "red": 15,
+      "blue": 7
+    },
+    "failure_step_range": [
+      694,
+      1786
+    ]
+  },
+  {
+    "task": "buffer_swap",
+    "success": 4,
+    "failure": 11,
+    "terminal_statuses": {
+      "agent_finished": 11,
+      "succeeded": 4
+    },
+    "bottlenecks": {
+      "red_final_goal_not_reached_after_blue_goal": 4,
+      "blue_rise_under_4cm": 3,
+      "initial_red_rise_under_4cm": 4
+    },
+    "ever_goal_counts": {
+      "blue_at_goal": 8,
+      "red_at_goal": 4,
+      "success": 4
+    },
+    "max_rise_4cm_counts": {
+      "red": 11,
+      "blue": 8
+    },
+    "failure_step_range": [
+      418,
+      2568
+    ]
+  },
+  {
+    "task": "unstack_sort",
+    "success": 11,
+    "failure": 4,
+    "terminal_statuses": {
+      "succeeded": 11,
+      "agent_finished": 4
+    },
+    "bottlenecks": {
+      "red_goal_not_reached": 3,
+      "blue_goal_not_reached": 1
+    },
+    "ever_goal_counts": {
+      "blue_at_goal": 11,
+      "red_at_goal": 12,
+      "success": 11
+    },
+    "max_rise_4cm_counts": {
+      "red": 12,
+      "blue": 11
+    },
+    "failure_step_range": [
+      560,
+      765
+    ]
+  },
+  {
+    "task": "tray_pack",
+    "success": 10,
+    "failure": 5,
+    "terminal_statuses": {
+      "succeeded": 10,
+      "agent_finished": 5
+    },
+    "bottlenecks": {
+      "blue_goal_not_reached": 4,
+      "red_goal_not_reached": 1
+    },
+    "ever_goal_counts": {
+      "blue_at_goal": 10,
+      "red_at_goal": 14,
+      "success": 10
+    },
+    "max_rise_4cm_counts": {
+      "red": 14,
+      "blue": 10
+    },
+    "failure_step_range": [
+      422,
+      1159
+    ]
+  }
+]

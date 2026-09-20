@@ -1,0 +1,86 @@
+{
+  "study": "Exp2_new",
+  "scope": "Five tasks x 15 matched position-OOD initial states x three methods",
+  "summary": {
+    "drawer_exchange": {
+      "naive_DP": {
+        "successes": 0,
+        "episodes": 15
+      },
+      "SinglePrior_6_xhigh": {
+        "successes": 0,
+        "episodes": 15
+      },
+      "APPL_6_xhigh": {
+        "successes": 2,
+        "episodes": 15
+      }
+    },
+    "two_block_sort": {
+      "naive_DP": {
+        "successes": 0,
+        "episodes": 15
+      },
+      "SinglePrior_6_xhigh": {
+        "successes": 4,
+        "episodes": 15
+      },
+      "APPL_6_xhigh": {
+        "successes": 3,
+        "episodes": 15
+      }
+    },
+    "buffer_swap": {
+      "naive_DP": {
+        "successes": 0,
+        "episodes": 15
+      },
+      "SinglePrior_6_xhigh": {
+        "successes": 1,
+        "episodes": 15
+      },
+      "APPL_6_xhigh": {
+        "successes": 4,
+        "episodes": 15
+      }
+    },
+    "unstack_sort": {
+      "naive_DP": {
+        "successes": 5,
+        "episodes": 15
+      },
+      "SinglePrior_6_xhigh": {
+        "successes": 3,
+        "episodes": 15
+      },
+      "APPL_6_xhigh": {
+        "successes": 11,
+        "episodes": 15
+      }
+    },
+    "tray_pack": {
+      "naive_DP": {
+        "successes": 0,
+        "episodes": 15
+      },
+      "SinglePrior_6_xhigh": {
+        "successes": 2,
+        "episodes": 15
+      },
+      "APPL_6_xhigh": {
+        "successes": 10,
+        "episodes": 15
+      }
+    }
+  },
+  "validation": {
+    "passed": true,
+    "episodes": 225,
+    "matched_layouts": 75,
+    "models": 46,
+    "original_result_trace_checkpoint_hashes": true,
+    "API_submissions_verified": 41,
+    "recorded_episode_audits": true,
+    "experiment_execution": false
+  }
+}

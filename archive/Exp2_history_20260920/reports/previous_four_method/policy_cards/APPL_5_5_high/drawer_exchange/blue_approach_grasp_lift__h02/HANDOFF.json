@@ -1,0 +1,24 @@
+{
+  "policy_id": "blue_approach_grasp_lift__h02",
+  "entry_conditions": "Enter after or during red-pad release when the drawer is open and the red block is observed on or very near the outside pad. Causal cues are the world TCP pose near the red pad or already in high transit, open fingers from qpos[7:9] near 0.08 m total width, red_pose close to red_goal, and blue_pose still on the table at the blue side. The model is designed to accept starts inside the [650,760) transition overlap, not only an exact post-retreat arm pose.",
+  "exit_conditions": "Prefer exiting after the gripper has closed around the blue block and the blue block and TCP are lifting, as indicated by qpos[7:9] total width near the closed range, TCP xy centered near blue_pose, and blue_pose z increasing above table height. A weaker exit is possible when the TCP is centered over blue_pose with an active closing/lift phase, but that is less successor-ready than an observed rising grasp.",
+  "overlap_role": "The leading overlap with red_transport_place_pad covers retreat from the red pad and high-clearance global motion; this policy learns those transition actions so it can take over before the predecessor has reached a canonical blue-side pose. The trailing overlap with blue_transport_to_drawer covers the first closed-grasp lift, allowing continuation until the successor receives a useful lifted blue-block state.",
+  "successor_readiness": "The blue transport successor should receive a closed or closing grasp with the TCP and blue block co-located in xy and the blue block no longer resting flat at table z. Merely being above the blue block with open fingers is a local approach state and this policy should normally continue through closure and initial lift.",
+  "failure_signatures": "Potential failures include driving from the red pad to the blue block at low z, disturbing the red block during retreat, arriving above the blue block with the gripper not open, closing away from the blue block, or handing off before the blue block follows the TCP upward. These are observation-level signatures, not hard constraints inside the learned model.",
+  "continuation_guidance": "Continue this policy while the TCP is still retreating from the red pad, during high transit across the workspace, during open-gripper descent over the blue block, and through finger closure until a lifted blue object is visible. If the state is already in the trailing overlap with closed fingers and rising blue_pose, it is appropriate to transfer to blue transport.",
+  "limitations": "The handoff cues are based on state observations in metres and joint/gripper positions. The policy has no explicit contact sensor, IK solver, image encoder, or hard collision/clearance monitor; observed closed fingers and rising blue_pose are only inferred grasp evidence. Recovery from off-distribution obstacle contacts or a displaced drawer geometry is untested.",
+  "evidence": [
+    {
+      "trajectory_id": "demo1001",
+      "indices": [650, 760, 810, 830, 850, 869]
+    },
+    {
+      "trajectory_id": "demo1005",
+      "indices": [650, 760, 810]
+    },
+    {
+      "trajectory_id": "demo1008",
+      "indices": [650, 760, 810]
+    }
+  ]
+}

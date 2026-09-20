@@ -1,0 +1,56 @@
+{
+  "policy_id": "evacuate_red__h02",
+  "skill_id": "evacuate_red",
+  "heuristic_index": 2,
+  "prior_summary": "Clearance waypoint hierarchy: a causal full-state encoder predicts event and manipulated-entity probabilities and conditions a learned spatial waypoint diffusion denoiser. A separate conditional action DDPM consumes the resulting robot/object intent and current state. Local future waypoints, event changes, capped duration and ongoing motion are supervised; teacher and predicted intents are mixed during action training.",
+  "applicable_conditions": "The complete assigned expanded evacuation slices, including a moving drawer handle at entry, release and retreat, red approach/grasp/lift/transport/place, and red release/retreat followed by blue acquisition and initial lift. Supported by similar drawer/pad geometry and one ordered route; use world-frame poses, finger positions, object-to-TCP relations and causal motion to identify unfinished prerequisites.",
+  "termination_guidance": "Do not terminate merely because red is horizontally over the pad. Continue descending and releasing when appropriate, or transfer within the shared placement-to-blue-lift chain to a successor that can finish those prerequisites. A useful late exit has red resting near z=0.020 m, drawer near 0.297 m open and blue moving with TCP during initial lift, not a forced stop at a high waypoint. The global success contract alone determines task completion and does not require release, clearance or a hold.",
+  "limitations": "Training exposes only 15 genuinely future states beyond the current state, so waypoint targets are next observed semantic changes or censored local progress, not full distant transition endpoints. Event/contact labels are geometric proxies. The auxiliary waypoint denoiser uses a five-step deterministic central DDIM estimate, while actions retain the fixed 100-step stochastic DDPM. No persistent event-aware high-level cache, IK, collision certification, image encoder, joint-action equivariance or established failure recovery is implemented.",
+  "config": {
+    "experiment_version": "M1_v2",
+    "segmentation": "All 12 assigned expanded slices, unchanged; starts at 195 and retains each assigned trajectory-specific stop.",
+    "normalization": "Shared complete-demonstration limits normalizer; relative xyz scales are the elementwise maximum of its TCP, red and blue xyz half-ranges. No refitting.",
+    "architecture": {
+      "frame_features": 71,
+      "temporal_features": "previous frame, current frame, four times their difference",
+      "causal_context_dimension": 256,
+      "spatial_waypoint_dimension": 35,
+      "events": ["opening-prerequisite", "release", "retreat-high", "pickup-low", "lift-high", "target-high", "place-low"],
+      "entities": ["drawer-frame", "red", "blue"],
+      "auxiliary_denoiser": "256-wide residual MLP, three blocks, continuous log-SNR encoding and epsilon prediction",
+      "auxiliary_inference_alphas": [0.05, 0.2, 0.5, 0.8, 0.95, 1.0],
+      "auxiliary_inference": "Five deterministic DDIM updates from a zero central latent; predicted clean waypoint components numerically clamped to [-5,5].",
+      "action_condition_dimension": 384,
+      "action_decoder": "DiffusionBackbone with fixed U-Net widths 128/256/512, kernel 5, groups 8 and timestep embedding 128",
+      "teacher_intent_probability": 0.5,
+      "teacher_waypoint_noise_std": 0.02
+    },
+    "loss_weights": {
+      "action_epsilon": 1.0,
+      "waypoint_epsilon": 0.4,
+      "central_waypoint_huber": 0.6,
+      "event_cross_entropy": 0.15,
+      "entity_cross_entropy": 0.1,
+      "duration_censor_bce": 0.05
+    },
+    "training": {
+      "seed": 0,
+      "updates": 20000,
+      "batch_size": 128,
+      "horizon": 16,
+      "observation_steps": 2,
+      "execution_steps": 8,
+      "sampler": "ddpm",
+      "denoising_train_steps": 100,
+      "denoising_inference_steps": 100,
+      "clip_sample": true,
+      "learning_rate": 0.0001,
+      "weight_decay": 0.000001,
+      "warmup_steps": 500,
+      "lr_schedule": "cosine",
+      "ema_decay": 0.999,
+      "max_grad_norm": 1,
+      "selection": "last EMA at the predeclared budget"
+    }
+  }
+}

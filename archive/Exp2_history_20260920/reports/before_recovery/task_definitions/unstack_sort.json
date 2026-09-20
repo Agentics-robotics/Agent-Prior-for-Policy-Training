@@ -1,0 +1,50 @@
+{
+  "control_hz": 20,
+  "description": "Separate the initially stacked blocks, with red above blue, and place each block on its own marked pad.",
+  "fixtures": [],
+  "goal_half_xy_m": [
+    0.06,
+    0.06
+  ],
+  "goal_z_tolerance_m": 0.011,
+  "goals": {
+    "blue": [
+      -0.24,
+      0.25,
+      0.02
+    ],
+    "red": [
+      -0.24,
+      -0.25,
+      0.02
+    ]
+  },
+  "id_half_width_m": 0.012,
+  "initial": {
+    "blue": [
+      -0.35,
+      0,
+      0.02
+    ],
+    "red": [
+      -0.35,
+      0,
+      0.06
+    ]
+  },
+  "object_half_m": 0.02,
+  "ood_inner_m": 0.022,
+  "ood_outer_m": 0.04,
+  "program": [
+    [
+      "red",
+      "red"
+    ],
+    [
+      "blue",
+      "blue"
+    ]
+  ],
+  "shared_xy": true,
+  "task_id": "unstack_sort"
+}

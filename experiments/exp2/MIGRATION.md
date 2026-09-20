@@ -1,3 +1,28 @@
+# Current storage layout — 2026-09-20
+
+The current Exp2 comparison is `runs/exp2/current/manifest.json`: 225 complete
+OOD outcomes and 46 frozen models. `runs/exp2` still points to the same external
+storage. Current assets are physically under its `current/` directory; historical
+runtime trees are under `/home/storage/oscar/appl_exp2/legacy/Exp2_history_20260920/runs`,
+exposed by `archive/Exp2_history_20260920/runs`.
+
+Original runtime names and moved input paths are compatibility symlinks, so frozen
+configuration, API journal and submission paths remain valid. These aliases are
+not additional active experiments. Model source/checkpoint contents, environment
+locks and Exp1 are unchanged. Current reports live in `experiments/exp2/reports`.
+All Exp2 writing ZIPs and duplicate export trees are deleted after retaining their
+scientific reports, tables, figures and evidence.
+
+See the [current entry](README.md), [archive index](../../archive/Exp2_history_20260920/README.md)
+and [verified migration receipt](../../archive/Exp2_history_20260920/migration/validation.json).
+Archived source/reports and compact receipts are trackable in Git; checkpoints,
+raw runtime/data and exhaustive local inventories retain the existing external/local
+storage model. A repository-only clone does not include those large artifacts.
+
+The sections below describe earlier migrations and remain historical records.
+
+---
+
 # Exp2 migration
 
 ## M1 version naming and checkpoint retirement (2026-09-16)

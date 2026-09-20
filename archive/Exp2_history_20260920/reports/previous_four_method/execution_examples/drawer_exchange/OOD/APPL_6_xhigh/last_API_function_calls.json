@@ -1,0 +1,15 @@
+{
+  "extraction": "All function_call objects in the final recorded response, unchanged.",
+  "function_calls": [
+    {
+      "arguments": "{\"notebook\":\"Step907: evacuation h03 inv4-5 placed/released red and acquired blue. Red stayed on pad, now(-0.16007,-0.29815,0.020), drawer0.29702 stationary. Blue lifted from0.020 to0.11612 at(-0.41331,0.27681), TCP(-0.41360,0.27663,0.12118), width0.03694, distance0.00508. Blue source shifted ~9mm Y during acquisition but observed rise supports held state; offset differs from nominal by ~9mm. Read insert h01 full docs/support: margin-conditioned transformer, initial-blue-lift overlap supports takeover, no hard constraint guarantee. Plan transport/lower into cavity, preserving measured red and opening; stop immediately at supplied success.\",\"policy_id\":\"insert_blue__h01\",\"reason\":\"Red released on pad and blue rising close to closed fingers with upward joint motion match supported late overlap; drawer near0.297 is nominal. Use articulated containment-margin policy for actual moving cavity geometry. Its auxiliary is supervision, so monitor measured success and grasp/goal losses.\",\"steps\":180,\"stop_when\":[{\"conditions\":[{\"comparison\":\"eq\",\"metric\":\"success\",\"reference\":\"absolute\",\"value\":1}],\"label\":\"Simultaneous task success\"},{\"conditions\":[{\"comparison\":\"eq\",\"metric\":\"red_on_pad\",\"reference\":\"absolute\",\"value\":0}],\"label\":\"Red goal lost\"},{\"conditions\":[{\"comparison\":\"le\",\"metric\":\"drawer_position\",\"reference\":\"absolute\",\"value\":0.26}],\"label\":\"Drawer goal lost\"},{\"conditions\":[{\"comparison\":\"gt\",\"metric\":\"tcp_blue_distance\",\"reference\":\"absolute\",\"value\":0.06}],\"label\":\"Possible blue grasp loss\"},{\"conditions\":[{\"comparison\":\"lt\",\"metric\":\"blue_z\",\"reference\":\"absolute\",\"value\":0.05}],\"label\":\"Blue dropped below cavity height\"}]}",
+      "call_id": "call_CdhVznSan3yml1sfZuigRipC",
+      "id": "fc_04bd27e4140da0e0016aaba722edf087d0a63282ef51f5237e",
+      "name": "invoke_policy",
+      "status": "completed",
+      "type": "function_call"
+    }
+  ],
+  "source": "runs/exp2/M1_astra_xhigh/drawer_exchange/evaluation/APPL/OOD/6400/api/api/0009.response.json",
+  "source_sha256": "4f7f032167fd5bb4e08bedbef03c41af450e3a08ec2b7cb0cba81ed0ff016c1d"
+}

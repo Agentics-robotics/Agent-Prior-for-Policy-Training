@@ -1,0 +1,69 @@
+{
+  "policy_id": "transfer_blue__h01",
+  "skill_id": "transfer_blue",
+  "heuristic_index": 1,
+  "prior_summary": "Learned attachment-conditioned action diffusion with a causal two-object TCP-relative transform estimator, none/red/blue attachment probabilities, and an action-conditioned recurrent future-state predictor. Masked future-state supervision and attachment-gated relative-pose consistency train both the representation and, through reconstructed clean actions, the denoiser. The full expanded slice includes initial red descent/release, blue acquisition/carry/setdown/release, and buffered-red regrasp/lift.",
+  "applicable_conditions": "World-frame Panda joint/velocity, TCP and both cube poses, finger positions, and goal observations are available as two causal samples. Supported entries range from red still attached while descending at the central buffer to red released, empty blue approach, blue closing/lifting/carry, and the outgoing blue-release/red-reacquisition overlap. Rigidity is a soft training bias for inferred attached intervals, not an assumption that blue is held at entry.",
+  "termination_guidance": "Continue through the currently observed release, empty travel, or pickup when needed. A useful late handoff to finish_red has blue supported within its goal near [-0.35,-0.20,0.02] metres and red regrasped and rising near the buffer, with closed fingers and near-constant red/TCP relative pose. Earlier transfer during the shared blue descent/release or red pickup phases is supported if finish_red receives actual causal history and finishes the transition. Blue horizontal alignment alone is not readiness; the task completion contract, not these guidance cues, determines global success.",
+  "limitations": "No force/contact sensing, analytical FK/IK, hard rigidity, slip recovery guarantee, image encoder, task-wide equivariance, or candidate rescoring is implemented. Attachment labels are geometric/co-motion and gripper-command proxies; stationary close contact is ambiguous. Two observations support local offset smoothing only. Rotations and grasp offsets vary little in the available data, and learned dynamics can be inaccurate outside demonstration support. Reconstructed-action losses are weak, masked, bounded, and noise-weighted rather than a guarantee of physical feasibility.",
+  "config": {
+    "architecture": "Conditional U-Net from appl.public with a 175-to-256 causal MLP, 3-class attachment head, 14-output transform head, 367-dimensional global condition, and a 256-unit action-conditioned GRUCell dynamics head",
+    "action_representation": "Shared full-demo affine-normalized eight absolute joint/gripper commands; epsilon prediction",
+    "observation_representation": "Shared normalized causal history and its difference, full TCP-inverse object transforms, and goal-minus-object translations; wxyz unit quaternions",
+    "normalization": "Use supplied full-original-demo normalizer without fitting. Relative translations use max of the three shared TCP position half-ranges for both objects; quaternion components retain unit bounds.",
+    "transform_estimator": {
+      "history_steps": 2,
+      "translation_residual_bound_m": 0.005,
+      "rotation_residual_component_bound_rad": 0.05,
+      "method": "Learned blend of the two causal relative transforms with bounded corrections, independently for red and blue"
+    },
+    "attachment_labels": {
+      "classes": ["none", "red", "blue"],
+      "aperture_midpoint_m": 0.055,
+      "aperture_softness_m": 0.004,
+      "relative_distance_midpoint_m": 0.035,
+      "distance_softness_m": 0.006,
+      "translation_change_scale_m": 0.006,
+      "rotation_change_scale_rad": 0.12,
+      "release_gating": "Training native opening commands suppress attachment targets; continuous-anchor masks stop at the first attachment score at or below 0.6"
+    },
+    "loss_weights": {
+      "diffusion": 1.0,
+      "demonstration_dynamics": 0.08,
+      "reconstructed_action_dynamics": 0.04,
+      "causal_attachment": 0.03,
+      "demonstration_rollout_attachment": 0.015,
+      "reconstructed_rollout_attachment": 0.005,
+      "causal_transform_supervision": 0.015,
+      "demonstration_rigidity": 0.01,
+      "reconstructed_rigidity": 0.01
+    },
+    "rigidity_metric": "Smooth-L1 translation error divided by 0.02 metres plus shortest SO(3) log error divided by 0.15 radians; pairwise and continuously attached causal-anchor terms",
+    "reconstructed_action_auxiliary": "x0 from fixed DDPM epsilon equation, clamped to [-1.25,1.25] only for training dynamics; weighted by alpha_bar squared",
+    "alignment": "Slot 0 is current state after action t-1. Recurrent state advances only at slots 1 through 15, using actions t through t+14. All labels use joint action/future masks.",
+    "segmentation": "Unchanged twelve expanded transfer_blue slices, including both measured overlaps; no phase filter or sample reweighting",
+    "fixed_training": {
+      "seed": 0,
+      "updates": 20000,
+      "batch_size": 128,
+      "horizon": 16,
+      "observation_steps": 2,
+      "execution_steps": 8,
+      "sampler": "ddpm",
+      "denoising_train_steps": 100,
+      "denoising_inference_steps": 100,
+      "clip_sample": true,
+      "learning_rate": 0.0001,
+      "weight_decay": 0.000001,
+      "warmup_steps": 500,
+      "lr_schedule": "cosine",
+      "ema_decay": 0.999,
+      "max_grad_norm": 1,
+      "down_dims": [128, 256, 512],
+      "timestep_embed_dim": 128,
+      "kernel_size": 5,
+      "groups": 8,
+      "selection": "Last EMA at the fixed declared budget"
+    }
+  }
+}

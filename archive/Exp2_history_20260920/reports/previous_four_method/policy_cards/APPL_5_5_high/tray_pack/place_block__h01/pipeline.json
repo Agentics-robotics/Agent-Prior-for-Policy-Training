@@ -1,0 +1,16 @@
+{
+  "policy_id": "place_block__h01",
+  "skill_id": "place_block",
+  "heuristic_index": 1,
+  "prior_summary": "Active-goal placement funnel: the learned diffusion policy conditions on world-frame block-to-goal residuals, TCP-to-object offsets, finger state, and a causal soft red/blue role estimate so one controller can learn the carry-in, descent, release, and retreat pattern for both tray targets.",
+  "applicable_conditions": "Use when a red or blue block is already grasped or is in the goal funnel for placement into the fixed tray goal regions, including the measured transition overlaps from the predecessor carry-in phase. The observation must provide the two block poses, TCP pose, joint/finger state, and red/blue goal positions in metres in the standard state vector.",
+  "termination_guidance": "For red placement, terminate or hand off when the red block is resting near the red goal at approximately z=0.036 m, the gripper has opened, and the TCP has retreated enough that acquiring blue will not drag red. For final blue placement, continue until both blocks are in their goal regions and the TCP is open/retreating; task success itself is the completion contract predicates.",
+  "limitations": "The model is not an IK controller and has no image or contact estimator. It relies on demonstrations with successful grasps and fixed tray geometry, and is not intended to recover from a dropped block outside the tray or a wrongly identified active object beyond what the learned state-conditioned diffusion model can infer.",
+  "config": {
+    "condition_dim": 256,
+    "encoder_hidden_dim": 384,
+    "prior_loss_weight": 0.05,
+    "auxiliary_head": "predicts horizon-wise active block residual to goal, TCP-to-active-object offset, and open-finger progress from the denoised action estimate",
+    "role_conditioning": "causal soft red/blue score from lifted height, TCP proximity, and current goal error; both colour-specific and role-pooled features are also supplied"
+  }
+}

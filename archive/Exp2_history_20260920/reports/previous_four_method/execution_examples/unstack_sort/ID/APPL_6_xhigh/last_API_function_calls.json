@@ -1,0 +1,15 @@
+{
+  "extraction": "All function_call objects in the final recorded response, unchanged.",
+  "function_calls": [
+    {
+      "arguments": "{\"notebook\":\"Clean sequence: inv1 A3 red pickup; inv2 C3 red placement first attained step254; inv3 A3 241 steps completed red release/retreat then acquired exposed blue. Red stayed at goal throughout and now rests (-.24119,-.24480,.020). Fingers opened to .08 during transition then pinched to .03650. Blue now upright (-.35348,-.00182,.22609), TCP (-.36276,-.00160,.22549), distance .00930; over .20 m measured lift, source XY shifted only ~2 mm. No fixture or grasp failures. C3 full overlap supports finishing blue lift and placing while preserving red. Finish immediately on measured simultaneous predicates; no required release/clearance.\",\"policy_id\":\"carry_place_clear__h03\",\"reason\":\"Blue has actual support separation, narrow fingers and the demonstrated ~9 mm negative-x TCP offset; red has stayed low at its pad through empty retreat. C3 can enter this coupled partial lift in its blue overlap and complete transport/descent. Prior red success and both goal features provide context, not a guarantee of preservation.\",\"steps\":190,\"stop_when\":[{\"conditions\":[{\"comparison\":\"eq\",\"metric\":\"success\",\"reference\":\"absolute\",\"value\":1}],\"label\":\"Both blocks meet supplied goal contract\"},{\"conditions\":[{\"comparison\":\"eq\",\"metric\":\"red_at_goal\",\"reference\":\"absolute\",\"value\":0}],\"label\":\"Red displaced from achieved goal\"},{\"conditions\":[{\"comparison\":\"ge\",\"metric\":\"tcp_blue_distance\",\"reference\":\"absolute\",\"value\":0.05},{\"comparison\":\"gt\",\"metric\":\"blue_z\",\"reference\":\"absolute\",\"value\":0.06}],\"label\":\"Possible blue coupling loss in free space\"},{\"conditions\":[{\"comparison\":\"lt\",\"metric\":\"blue_z\",\"reference\":\"absolute\",\"value\":0.045},{\"comparison\":\"eq\",\"metric\":\"blue_at_goal\",\"reference\":\"absolute\",\"value\":0},{\"comparison\":\"lt\",\"metric\":\"blue_y\",\"reference\":\"absolute\",\"value\":0.19}],\"label\":\"Blue lowered outside destination vicinity\"}]}",
+      "call_id": "call_00hdhGTg8x0zBC3Ul1Th5Ii3",
+      "id": "fc_0569c555c4d75d91016aaba6ac04c487d08a7257a4db516f4b",
+      "name": "invoke_policy",
+      "status": "completed",
+      "type": "function_call"
+    }
+  ],
+  "source": "runs/exp2/M1_astra_xhigh/unstack_sort/evaluation/APPL/ID/20200/api/api/0006.response.json",
+  "source_sha256": "8c6616b414ffa40155aa6df20aa988d5af37620e73e917ba6a85580ed1c33f8b"
+}

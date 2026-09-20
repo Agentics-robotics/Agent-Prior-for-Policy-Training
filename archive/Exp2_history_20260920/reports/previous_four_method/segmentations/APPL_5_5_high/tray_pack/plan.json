@@ -1,0 +1,616 @@
+{
+  "exclusions": [],
+  "overlap_rationale": "All source actions are covered. The plan intentionally uses two recurrent skills rather than four color-specific ones: each trajectory alternates acquire_block(red), place_block(red), acquire_block(blue), place_block(blue). M1_v2 overlap is large at every transfer. The red acquire/place overlap [185,250) covers about 3.25 s while the red block is already grasped, elevated (red_pose z about 0.28-0.31 m in most trajectories; 0.23 m in demos 10304/10307/10310), and being carried toward the red tray goal, so the place skill can start before a single exact pre-place pose. The red place/blue acquire overlap [330,420) covers about 4.5 s after the red block has been released at z\u22480.036 m and while the gripper is open and the arm is retreating/crossing toward the blue block; this supports successor takeover while predecessor retreat and inter-object travel are still evolving. The blue acquire/place overlap [580,625) covers about 2.25 s while the blue block is grasped and transported high over/near the blue goal, including demonstrations where it is still high (z\u22480.26-0.31 m) and where it has begun descent (z\u22480.13-0.22 m). These overlaps improve temporal handoff coverage but do not demonstrate recovery from off-demonstration spatial errors, missed grasps, collisions, or abnormal contact states; the successor policies only see successful transitions along the demonstrated manifold.",
+  "skills": [
+    {
+      "heuristics": [
+        {
+          "applicability": "Transfers when a single active cuboid block sits on the table/tray approach surface and the gripper can reach it top-down with the same Panda, mimic gripper and world-frame observation schema. It assumes the held/active object can be inferred from causal observations plus task stage: before red_at_goal the red block is active; after red is at its goal and the gripper is open, the blue block is active. It should tolerate modest initial XY variation like the demonstrations (red table positions roughly x -0.39 to -0.41, y -0.25 to -0.27; blue roughly x -0.39 to -0.41, y 0.25 to 0.27), but not unseen block shapes or side grasps.",
+          "evidence": [
+            {
+              "indices": [
+                0,
+                100,
+                150,
+                185,
+                250
+              ],
+              "trajectory_id": "demo10300"
+            },
+            {
+              "indices": [
+                0,
+                185,
+                250,
+                330,
+                500,
+                580,
+                625
+              ],
+              "trajectory_id": "demo10302"
+            },
+            {
+              "indices": [
+                330,
+                420,
+                500,
+                580,
+                625
+              ],
+              "trajectory_id": "demo10301"
+            },
+            {
+              "indices": [
+                185,
+                250,
+                330,
+                580,
+                625
+              ],
+              "trajectory_id": "demo10307"
+            }
+          ],
+          "handoff": {
+            "entry_conditions": "Measured support: red acquisition starts at observation 0 with qpos fingers \u22480.04 m, tcp_pose about [-0.384,0,0.442] m, red_pose on table z\u22480.020 m. Blue acquisition starts at observation 330 with red already at its goal z\u22480.036 m, fingers open \u22480.04 m, and tcp_pose still retreating above the red goal/tray (e.g. demo10300 z\u22480.279 m; demo10301 z\u22480.213 m; demo10304 z\u22480.305 m). The role prior assumes a causal stage selector can choose red first, blue second from object poses and gripper state.",
+            "exit_conditions": "Useful end state is a stable grasp of the active block, fingers near 0.018 m, active block lifted and carried toward/over its goal at z commonly 0.23-0.31 m by index 250 for red and 0.13-0.31 m by index 625 for blue; gripper_command remains -1.0. The handoff does not require zero velocity; several endpoint qvel entries show ongoing transport/descent.",
+            "failure_signatures": "Wrong active-object selection (tcp moves to red after red_at_goal or to blue before red is placed), gripper_command closing while tcp is not above the active block, finger qpos staying \u22480.04 after closure command, active object z remaining \u22480.02 m after lift phase, active object slipping away from tcp, or collision-induced jumps in inactive block pose.",
+            "overlap_role": "The prior explicitly learns the overlapped carry-in/carry-out states: red [185,250) is both late acquisition and early placement; [330,420) is both red-place retreat and blue-acquire approach; blue [580,625) is both late acquisition and early placement. The role representation should remain valid while the predecessor's manipulation state is still changing, not only at a discrete cut.",
+            "successor_readiness": "place_block is ready when the active block is grasped, tcp and active block are above or approaching the correct goal in world frame, and the role selector exposes active_pose/active_goal. The successor needs relative active-object-to-goal features and assurance that the gripper is closed around the block; tolerances beyond the demonstrated height/XY ranges are hypotheses."
+          },
+          "limitations": "The demonstrations never show ambiguity in task order, failed grasps, or both blocks already partially moved, so active-role inference may be brittle. Expected failure is confident pursuit of the inactive block or oscillation between role choices. A falsifying ablation is a plain absolute-state diffusion policy or a policy given the correct role one-hot: if learned role-relative features do not improve transfer to shifted block starts or if oracle role greatly outperforms causal role selection, this prior is not the main benefit. Successful demonstrations cannot establish recovery from missed grasp or from off-table block positions.",
+          "pipeline_implications": "Candidate policy input at inference: qpos, qvel, tcp_pose, red_pose, blue_pose, red_goal, blue_goal in world/native frames. Add a causal role module g(o_t)->r_t in {red,blue}, initialized from segment labels and optionally constrained by predicates red_at_goal/blue_at_goal computed from current poses. Form role-normalized features x_t=[qpos,qvel, finger_width, p_tcp-p_obj^r, quat_rel(tcp,obj), p_goal^r-p_obj^r, p_inactive-p_obj^r]. A diffusion/sequence policy predicts either normalized joint targets directly or a Cartesian delta plus learned IK head: a_t=[q_arm_target, gripper_cmd]. Training labels include role r from segment membership/future-free stage labels; future-computed labels may be used only to supervise g during training. Deployment computes r_t causally, samples action sequence pi_theta(a_{t:t+H}|x_{t-K:t},r_t), and decodes to the action contract. The concrete prior is removal of color/absolute-position dependence by sharing weights across red and blue in the active-object frame.",
+          "rationale": "Across trajectories the same top-down pattern occurs for red and blue despite different absolute Y positions and different entry poses. At demo10300 index 0 the red is on the table while the arm is high/open; by 185-250 the red is grasped and elevated/near its goal. Later, after red placement, demo10301 index 330 shows the gripper open above the tray and the blue still on the table; by 580-625 the blue is grasped and carried high. The learning difficulty is that a joint-space policy must represent two spatially separated pickups and two very different entry poses. The prior assumes the manipulation law is mostly a function of active object-relative geometry and task stage. This differs from the phase and waypoint priors below: it changes the coordinate/role representation rather than imposing a temporal state machine or geometric via-points.",
+          "statement": "Active-object relative acquisition: represent pickup in the selected block's coordinate/goal frame, sharing one policy across red-first and blue-second occurrences. This should reduce sample complexity and improve transfer to modest object-position changes because the policy learns relative approach, closure and lift rather than memorizing two absolute joint-space routes."
+        },
+        {
+          "applicability": "Applies when grasp acquisition has a clear top-down contact event observable through gripper width, gripper command and object height: open fingers approach, close near block, object z rises with tcp after contact. It relies on the same gripper mechanics and roughly the same friction/contact behavior as the demonstrations. It is less tied to exact initial XY positions than a monolithic sequence, but it depends on the order and quality of the contact transition.",
+          "evidence": [
+            {
+              "indices": [
+                100,
+                150,
+                185,
+                250,
+                450,
+                500,
+                550,
+                625
+              ],
+              "trajectory_id": "demo10300"
+            },
+            {
+              "indices": [
+                100,
+                150,
+                185,
+                250,
+                450,
+                500,
+                550,
+                625
+              ],
+              "trajectory_id": "demo10301"
+            },
+            {
+              "indices": [
+                185,
+                250,
+                330,
+                500,
+                580,
+                625
+              ],
+              "trajectory_id": "demo10305"
+            }
+          ],
+          "handoff": {
+            "entry_conditions": "This phase prior can take over when the gripper is open (finger qpos around 0.04 m) and the active block is either on the table z\u22480.020 m or the arm is in the demonstrated red-to-blue transition with no block held and red already placed. Initial tcp may be high/home (red) or retreating above the tray at z\u22480.21-0.31 m (blue).",
+            "exit_conditions": "Exit is after the latent phase reaches carry/lift: gripper command and finger qpos indicate closure (command -1; observed finger qpos \u22480.018 m), active block z has risen well above table, and tcp-object relative pose remains small enough to infer a grasp. The successor place phase can start before a precise hover target, as in the [580,625) overlap.",
+            "failure_signatures": "The latent phase advances to lift without object z increasing, fingers do not close to \u22480.018 m, object pose lags behind tcp, or the model emits repeated open/close toggles near contact. Premature successor transfer is visible if place_block receives an ungrasped object or open fingers during its descend phase.",
+            "overlap_role": "The overlapped intervals intentionally label ambiguous phase boundaries for both policies: late acquisition phases include the beginning of place descent/carry, and acquire_blue includes the open-gripper retreat from red placement before the approach phase has fully stabilized. The phase model should learn that adjacent policies share these contact/carry states.",
+            "successor_readiness": "place_block needs the phase posterior p(carry/lift)>threshold or equivalent measured evidence: closed fingers and active object lifted. The demonstrated handoff supports heights from about 0.13 m to 0.31 m; robustness to lower or slipping carries is untested."
+          },
+          "limitations": "Phase labels are inferred from successful demonstrations, not force sensors, so true contact timing is uncertain. A failure signature is a correct geometric approach with wrong gripper timing, especially closing too early above the block or too late after contact. Falsify by comparing to a representation-identical policy without latent phase/contact auxiliary losses; if timing and grasp success do not improve under initial-pose perturbations, the bottleneck prior is not useful. Dataset cannot prove behavior under collision, partial grasps, or variable object heights.",
+          "pipeline_implications": "Train a latent-state sequence model z_t in {approach, align, close, lift, carry}. Inputs are causal observations plus relative active-object features. Training labels are computed from demonstration observations: close onset when gripper_command becomes -1 and finger qpos decreases; lift when active_pose.z exceeds table z by >~0.05 m; carry when z>~0.12 m and object-tcp offset is stable. Loss: diffusion action loss plus cross-entropy/ELBO for z_t and auxiliary predictions of next active z and finger width. Pseudocode: z_t ~ HMM/Transformer(o_{t-K:t}); a_{t:t+H} ~ DP_theta(o,z); L=L_action+lambda1 CE(z,z*)+lambda2 ||hat_z_obj(t+1)-z_obj(t+1)||^2. At inference, phase posterior is computed only from current/past qpos, tcp_pose and object poses; no future labels are used. The gripper decoder is phase-conditioned so closure commands are concentrated in the close/lift transition.",
+          "rationale": "At both pickups, gripper opening and object motion create a discrete bottleneck. Demo10300 shows red approach open at index 100, closed/lifted by 150, and high carry by 185-250. Blue similarly is open approaching around 450, closed with the blue just leaving the surface by 500, lifted by 550 and carried by 580-625. A monolithic diffusion model can blur this switch and produce averaged gripper commands; the phase prior makes the contact event an explicit latent variable. Unlike the active-object prior, this is about temporal/contact organization rather than spatial role sharing.",
+          "statement": "Contact-phase bottleneck for pickup: model acquisition as approach -> align -> close -> lift -> carry, with phase-conditioned gripper and arm actions. This should improve grasp timing and avoid averaging across open-loop approach and closed-gripper lift."
+        },
+        {
+          "applicability": "Applies when top-down pickup and transport must avoid the table, tray rim and previously placed block using similar object/tray geometry. It assumes a reliable world-frame tcp_pose and object poses and that the robot can follow Cartesian via-points with the same kinematic reach. It is most useful for position generalization within the tray/table workspace; it is not intended for radically different obstacles or side grasps.",
+          "evidence": [
+            {
+              "indices": [
+                0,
+                50,
+                100,
+                150,
+                185,
+                250
+              ],
+              "trajectory_id": "demo10300"
+            },
+            {
+              "indices": [
+                330,
+                420,
+                450,
+                500,
+                550,
+                580,
+                625
+              ],
+              "trajectory_id": "demo10300"
+            },
+            {
+              "indices": [
+                185,
+                250,
+                580,
+                625
+              ],
+              "trajectory_id": "demo10304"
+            },
+            {
+              "indices": [
+                185,
+                250,
+                580,
+                625
+              ],
+              "trajectory_id": "demo10310"
+            }
+          ],
+          "handoff": {
+            "entry_conditions": "The waypoint prior accepts the same acquisition entries but additionally assumes a collision-free vertical approach corridor above the active block and a feasible clearance corridor to the active goal. Demonstrated tcp starts include home z\u22480.442 m and red-to-blue transfer z\u22480.21-0.31 m with fingers open.",
+            "exit_conditions": "Exit when the active block has passed a learned clearance waypoint and is on a descending/transport route to the goal: examples include red at z\u22480.30 m near the red goal at index 250 in demos 10301/10302/10305/10311 and blue at z\u22480.26-0.31 m near the blue goal at index 625 in demos 10300/10301/10302/10311. In faster demos the stop can be lower (blue z\u22480.13 m in 10307/10310), which is deliberately shared with place_block.",
+            "failure_signatures": "Predicted via-point below the tray rim/table clearance, tcp path grazing the tray walls, object z not increasing after the lift waypoint, or large deviation from p_obj-to-p_goal corridor. Premature handoff occurs if the place policy receives a block outside the funnel above the target.",
+            "overlap_role": "Overlaps teach that waypoints are not hard cutpoints. Red place starts while acquisition is still carrying through the clearance corridor, acquire_blue starts while the previous place retreat is still clearing the tray, and blue place starts before acquisition has fully completed the goal approach. Both adjacent policies can therefore produce safe clear-and-carry motions.",
+            "successor_readiness": "place_block needs a block that is either above the target funnel or entering it with adequate clearance. This prior can pass explicit predicted via-point progress s in [0,1] or the current active-object height/goal-relative vector; demonstrated support is along successful high arcs only."
+          },
+          "limitations": "The via-points are inferred, not annotated, and some demonstrations (e.g. 10304/10307/10310) have red/blue endpoints at lower heights, so a rigid waypoint schedule could overconstrain. Falsification: compare to an unconstrained object-relative policy and to a phase-only policy under shifted starts; if waypoint prediction does not reduce collisions or improve target approach, the assumed geometric skeleton is unnecessary. Dataset cannot prove obstacle avoidance for novel tray geometry or recovery from collisions.",
+          "pipeline_implications": "Augment the policy with a learned or analytic waypoint head. From demonstration futures compute labels w1=pregrasp hover, w2=grasp, w3=lift-clearance, w4=handoff-above-goal in world frame for the active role. At inference compute current progress by nearest waypoint segment using only current tcp/active poses. The diffusion policy conditions on [relative state, w_next-p_tcp, progress] and either outputs joint targets directly or desired Cartesian delta clipped toward w_next, then a learned IK/action head maps to arm_joint_positions; gripper command is tied to waypoint phase. Add auxiliary MSE on predicted w_next and barrier losses for z above table/tray rim during lift/carry. This concrete mechanism encodes the prior as explicit subgoal geometry rather than only sequence history.",
+          "rationale": "The inspected motions are not arbitrary curves: the arm descends near the table block, closes, lifts to a clearance height, then translates with the object high before placing. Demo10300 red moves from high home to near red at 100, red z\u22480.284 at 185 and near the goal at 250; blue is approached from the red retreat, closed near 500, lifted around 550-580 and high near the blue goal at 625. These repeated geometric milestones address the learning difficulty of long-horizon continuous motion from sparse demos. This differs from the phase prior by adding explicit spatial waypoints and clearance constraints.",
+          "statement": "Clearance via-point acquisition: constrain the learned pickup to pass through reusable hover, grasp, lift-clearance and goal-approach waypoints in world/active-object coordinates. This should improve long-range transport generalization and reduce unsafe low paths."
+        }
+      ],
+      "name": "Acquire selected block and carry toward its tray goal",
+      "segmentation_rationale": "This dataset groups both red-first and blue-second acquisitions because the core learning problem is top-down approach, gripper closure, lift, and carry of the active block. The red occurrences start at action 0 from the common home/open configuration; by observation 250 the red block is grasped and elevated/near the red goal across demonstrations. The blue occurrences start at action 330, intentionally before the red-place retreat has fully transitioned to a blue pregrasp pose, so the skill learns to take over from a broad handoff state with the gripper open and red already settled. They stop at observation 625, when the blue is grasped and elevated or beginning descent toward its goal. These stops are not exact subgoal predicates; they are expanded transition windows chosen from observed state changes.",
+      "segments": [
+        {
+          "start": 0,
+          "stop": 250,
+          "trajectory_id": "demo10300"
+        },
+        {
+          "start": 330,
+          "stop": 625,
+          "trajectory_id": "demo10300"
+        },
+        {
+          "start": 0,
+          "stop": 250,
+          "trajectory_id": "demo10301"
+        },
+        {
+          "start": 330,
+          "stop": 625,
+          "trajectory_id": "demo10301"
+        },
+        {
+          "start": 0,
+          "stop": 250,
+          "trajectory_id": "demo10302"
+        },
+        {
+          "start": 330,
+          "stop": 625,
+          "trajectory_id": "demo10302"
+        },
+        {
+          "start": 0,
+          "stop": 250,
+          "trajectory_id": "demo10303"
+        },
+        {
+          "start": 330,
+          "stop": 625,
+          "trajectory_id": "demo10303"
+        },
+        {
+          "start": 0,
+          "stop": 250,
+          "trajectory_id": "demo10304"
+        },
+        {
+          "start": 330,
+          "stop": 625,
+          "trajectory_id": "demo10304"
+        },
+        {
+          "start": 0,
+          "stop": 250,
+          "trajectory_id": "demo10305"
+        },
+        {
+          "start": 330,
+          "stop": 625,
+          "trajectory_id": "demo10305"
+        },
+        {
+          "start": 0,
+          "stop": 250,
+          "trajectory_id": "demo10306"
+        },
+        {
+          "start": 330,
+          "stop": 625,
+          "trajectory_id": "demo10306"
+        },
+        {
+          "start": 0,
+          "stop": 250,
+          "trajectory_id": "demo10307"
+        },
+        {
+          "start": 330,
+          "stop": 625,
+          "trajectory_id": "demo10307"
+        },
+        {
+          "start": 0,
+          "stop": 250,
+          "trajectory_id": "demo10308"
+        },
+        {
+          "start": 330,
+          "stop": 625,
+          "trajectory_id": "demo10308"
+        },
+        {
+          "start": 0,
+          "stop": 250,
+          "trajectory_id": "demo10309"
+        },
+        {
+          "start": 330,
+          "stop": 625,
+          "trajectory_id": "demo10309"
+        },
+        {
+          "start": 0,
+          "stop": 250,
+          "trajectory_id": "demo10310"
+        },
+        {
+          "start": 330,
+          "stop": 625,
+          "trajectory_id": "demo10310"
+        },
+        {
+          "start": 0,
+          "stop": 250,
+          "trajectory_id": "demo10311"
+        },
+        {
+          "start": 330,
+          "stop": 625,
+          "trajectory_id": "demo10311"
+        }
+      ],
+      "skill_id": "acquire_block",
+      "subgoal": "Move from an open-gripper start or transition state to a stable grasp of the active table block, lift it, and carry it into the handoff funnel toward that block's tray goal."
+    },
+    {
+      "heuristics": [
+        {
+          "applicability": "Transfers to top-down placement of the same cuboid blocks into fixed or observed goal regions inside the same tray geometry, with active block pose and goal available in world coordinates. It assumes the object is already grasped or very near the goal funnel at entry and that the controller can command absolute joint targets with similar compliance. It should cover both red and blue placement if a role selector provides the currently held active object.",
+          "evidence": [
+            {
+              "indices": [
+                185,
+                250,
+                300,
+                330,
+                420,
+                580,
+                625,
+                650,
+                700,
+                742
+              ],
+              "trajectory_id": "demo10300"
+            },
+            {
+              "indices": [
+                185,
+                250,
+                300,
+                330,
+                420,
+                580,
+                625,
+                650,
+                700,
+                742
+              ],
+              "trajectory_id": "demo10301"
+            },
+            {
+              "indices": [
+                185,
+                250,
+                330,
+                420,
+                580,
+                625,
+                752
+              ],
+              "trajectory_id": "demo10302"
+            },
+            {
+              "indices": [
+                185,
+                250,
+                330,
+                420,
+                580,
+                625,
+                730
+              ],
+              "trajectory_id": "demo10310"
+            }
+          ],
+          "handoff": {
+            "entry_conditions": "Measured entries: red place begins at observation 185 with the red block already grasped/elevated (z\u22480.28 m in most demos, z\u22480.286 for demo10304, z\u22480.281 for demo10311) and fingers closed \u22480.018 m. Blue place begins at 580 with the blue block grasped and elevated (z\u22480.30 m in many demos) while moving toward the blue goal. Hypothesized tolerance includes entries as low as observed at the acquire/place overlap endpoint (blue z\u22480.13 m in demos 10307/10310 at 625).",
+            "exit_conditions": "Exit is a block resting within its goal region in the tray with pose z\u22480.036 m and the gripper open/retreating. Red exits are visible by index 330 while the tcp retreats above the red goal; blue exits by the final observation with both red and blue at goal and tcp z\u22480.316 m, fingers open \u22480.04 m. A full release is not required by the task contract, but the demonstrations release and retreat.",
+            "failure_signatures": "Active object remains outside the goal XY tolerance after opening, object z stays high after intended placement, gripper opens while the object is not supported, tcp pushes the object out of the tray, or the inactive object moves noticeably. Premature acquisition-to-place handoff appears as open fingers or a non-held object at entry.",
+            "overlap_role": "The goal-relative policy is trained on the early carry-in overlap [185,250) and [580,625), so it can take over while the predecessor is still transporting the block. Its red tail [330,420) overlaps acquire_blue, teaching it to finish release/retreat while the next policy begins approach.",
+            "successor_readiness": "For red placement, acquire_block(blue) is ready when red_pose is near red_goal with z\u22480.036 m, fingers are open, and tcp has retreated enough to avoid dragging the red block (examples index 330-420). For final blue placement there is no successor other than task completion; readiness is both goal predicates true."
+          },
+          "limitations": "Goal-relative placement assumes a good grasp and does not learn recovery from dropping a block outside the tray. If the role selector misidentifies the active block, the same relative controller will place the wrong object. Falsify by comparing to absolute-state and color-specific baselines under shifted goals/starts; if relative errors do not improve or if role-conditioned sharing hurts final precision, this prior is unsupported. Successful data cannot establish tolerance to clutter or tray pose changes beyond the fixed fixture.",
+          "pipeline_implications": "Use active role r and build features e_t=[p_obj^r-p_goal^r, p_tcp-p_obj^r, object orientation yaw/quat, finger_width, p_inactive-p_goal_inactive, qpos,qvel]. A goal-funnel diffusion policy predicts joint targets and gripper command with an auxiliary head for next active object pose relative to goal. Training labels include active role from segment identity and release timing from gripper/finger observations; goal-relative errors are computed from current observations, not futures. Objective L=L_action+lambda ||(p_obj_{t+1}-p_goal)-hat_e_{t+1}||^2+lambda_goal terminal-funnel weighting for samples near release. At deployment, all features are causal; the policy samples actions conditioned on current relative error and opens only when the learned decoder probability of support/release is high. The specific prior is translation into the active goal frame and heavier loss near goal-funnel convergence.",
+          "rationale": "Both objects are placed by aligning the grasped block to its color goal and descending. In demo10300, the red is high near the goal at 250, settled at z\u22480.036 by 300, and the tcp has retreated by 330/420. The blue is high near its goal at 625, low/settling at 650, released/open by 700 and final. The same pattern appears in demo10301 and across final endpoints. The hard learning problem is precise placement after a long carry; goal-frame features make the final action depend on residual error rather than absolute color/location. This differs from the release-phase prior below, which focuses on support/open timing, and from the noninterference prior, which focuses on the inactive object/tray context.",
+          "statement": "Active-goal placement funnel: express placement as reducing the active block's world-frame error to its goal, sharing one precision controller across red and blue. This should improve final XY/Z accuracy and transfer to modest target variations because the policy sees residual goal error directly."
+        },
+        {
+          "applicability": "Applies when the block can be quasi-statically lowered into the tray and released by opening the same mimic gripper after support contact. It assumes the tray floor height and object height are similar to the demonstrations (goal z\u22480.036 m) and that support can be inferred from object z/velocity and finger width; no force sensing is available.",
+          "evidence": [
+            {
+              "indices": [
+                250,
+                300,
+                330,
+                650,
+                700,
+                742
+              ],
+              "trajectory_id": "demo10300"
+            },
+            {
+              "indices": [
+                250,
+                300,
+                330,
+                650,
+                700,
+                742
+              ],
+              "trajectory_id": "demo10301"
+            },
+            {
+              "indices": [
+                580,
+                625,
+                730
+              ],
+              "trajectory_id": "demo10307"
+            },
+            {
+              "indices": [
+                580,
+                625,
+                730
+              ],
+              "trajectory_id": "demo10310"
+            }
+          ],
+          "handoff": {
+            "entry_conditions": "Requires a held active block in or near the goal funnel, fingers closed around \u22480.018 m, and a descent path into the tray. Red entries at 185/250 have the object high and moving; blue entries at 580/625 range from high carry to early descent. The prior assumes enough grasp stability for a controlled descent, which is observed but not stress-tested.",
+            "exit_conditions": "Exit after the phase posterior reaches released/retreat: active object z\u22480.036 m, finger qpos\u22480.04 m or gripper command +1, tcp has risen to a safe clearance (e.g. final tcp z\u22480.316 m; red retreat at 330 often z\u22480.21-0.30 m). Object velocity thresholds are not part of the task contract, but observed final qvel is near zero.",
+            "failure_signatures": "Opening before object z approaches tray height, closing during retreat, object following the gripper upward after open, or repeated vertical poking. Premature successor handoff is detectable if acquire_blue starts before gripper is open and red object stable.",
+            "overlap_role": "The latent phases deliberately span adjacent skills: acquisition and placement both learn the high-carry phase before descent, while red place and blue acquisition both learn open-gripper retreat. This avoids a brittle cut where release and retreat belong to only one policy.",
+            "successor_readiness": "For blue acquisition, successor readiness is released/open plus tcp moving upward/away from red: examples include red at z\u22480.036 by 300-330 and open fingers by 330; acquire_blue can take over anywhere through 330-420. For task end, readiness is simply both objects at their goals with no need for further gripper action."
+          },
+          "limitations": "Support/contact is inferred from kinematics; no force/torque labels confirm when the tray supports the block. Expected failure is gripper opening at the wrong height or vertical retreat dragging the block. Falsify by ablation removing the latent release/support classifier while keeping goal-relative features; if release timing is unchanged, this prior is unnecessary. Dataset cannot establish behavior with tilted blocks, soft contacts, or disturbances during release.",
+          "pipeline_implications": "Train a phase-conditioned placement model with latent z_t in {carry_to_funnel, descend, supported_settle, open_release, retreat}. Infer labels from current/future demo observations: supported when active_pose.z is within goal z tolerance (~0.036\u00b10.011) and gripper/tcp vertical velocity is small; release when gripper_command switches to +1 and finger qpos increases; retreat when tcp.z rises while object remains fixed. Use DP_theta(a|o,z) with a gripper decoder gated by z: gripper_cmd=-1 except in open_release/retreat. Add auxiliary support probability and next object height predictions. Inference uses only past/current object pose, tcp_pose and finger state to update z; future labels are training-only. This prior changes the temporal computation and gripper gating, not just input coordinates.",
+          "rationale": "The demonstrations show a consistent hold-lower-open-retreat sequence. In demo10300, red is still held high at 250; by 300 red is at z\u22480.036 with qpos fingers opening to \u22480.04, and by 330 the tcp has retreated. Blue remains held at 625, is low at 650 with fingers still closed, then is open/retreating by 700 and final. Demo10307/10310 show faster descent by 625 but still follow the same release logic. This addresses a diffusion policy's tendency to average across closed descent and open retreat; it differs from the goal-funnel prior by explicitly gating release on support state.",
+          "statement": "Support-gated release and retreat: treat placement as carry -> descend -> supported-settle -> open -> retreat, with gripper opening only after the object is supported near goal height. This should improve release timing and reduce dragging/lifting the placed block."
+        },
+        {
+          "applicability": "Applies to packing multiple objects into the same tray where the inactive object should remain undisturbed and tray walls define containment. It depends on reliable poses for both objects and fixed tray geometry from the task contract. It is most relevant to the second placement and the red-to-blue transition tail; it may be less critical for single-object placement but should regularize both.",
+          "evidence": [
+            {
+              "indices": [
+                185,
+                250,
+                300,
+                330,
+                420
+              ],
+              "trajectory_id": "demo10300"
+            },
+            {
+              "indices": [
+                580,
+                625,
+                650,
+                700,
+                742
+              ],
+              "trajectory_id": "demo10300"
+            },
+            {
+              "indices": [
+                185,
+                250,
+                330,
+                420,
+                580,
+                625,
+                752
+              ],
+              "trajectory_id": "demo10305"
+            },
+            {
+              "indices": [
+                330,
+                420,
+                580,
+                625,
+                749
+              ],
+              "trajectory_id": "demo10306"
+            }
+          ],
+          "handoff": {
+            "entry_conditions": "Can take over when one block is held and the other block has either not yet been placed (red placement: blue still on table at z\u22480.020 m) or is already placed (blue placement: red at red_goal z\u22480.036 m from index 330 onward). It assumes the inactive object's pose is observable and should be treated as a keep-out/non-disturb region.",
+            "exit_conditions": "Exit when the active block is in its target region and the inactive block has not moved outside its current/goal tolerance. For red placement, blue should remain on the table until acquire_blue begins; for blue placement, red should remain at red_goal while blue is placed and the tcp retreats.",
+            "failure_signatures": "Inactive block pose changes during active placement, tcp path crosses too close to the placed block/tray wall, active object ends outside full rotated XY containment, or the policy pushes a block while retreating. A premature handoff is indicated if acquire_blue starts after red placement with red displaced or gripper not open.",
+            "overlap_role": "The large [330,420) overlap is particularly important for this prior: it teaches that red must remain undisturbed while the arm retreats and heads to blue. The [580,625) overlap teaches entry to blue placement with red already occupying the tray, so both acquisition and placement learn the two-object context.",
+            "successor_readiness": "acquire_block(blue) needs red stable in its goal, gripper open, and a collision-free path from the retreat pose to the blue block. The final completion consumer needs both predicates red_at_goal and blue_at_goal true for at least the required single observation; no sustained hold is required."
+          },
+          "limitations": "No demonstrations include near-collisions or displaced inactive blocks, so obstacle costs are extrapolations from invariance rather than corrective behavior. Expected failure is overconservative motion or ignoring a displaced inactive block because the training set never reacts. Falsify with an ablation that masks inactive object/tray features; if masking does not increase disturbance/collision under goal shifts, the noninterference prior is not useful. Dataset cannot establish recovery if a placed block is bumped.",
+          "pipeline_implications": "Augment place policy inputs with inactive object pose, both goal boxes, and analytic tray-wall signed distances from the task contract. Add auxiliary losses: inactive-pose constancy prediction ||hat_p_inactive(t+1)-p_inactive(t)||, active containment margin, and optional differentiable keep-out cost for tcp/object paths near inactive block and tray walls. A diffusion policy can be guided at sampling by score = log pi_theta - alpha collision_cost(path, tray, inactive) - beta goal_error. All quantities are causal except future path/object deltas used as training targets. The action output remains the action contract. This candidate differs by encoding a multi-object/tray scene prior, not only role-relative placement or release timing.",
+          "rationale": "Throughout red placement the blue block stays at its table pose, and after red is placed it remains fixed while the arm retreats and handles blue. Demo10300 shows red at goal by 330 and unchanged through 742 while blue is acquired and placed; demo10305/10306 show the same invariance at indices 330, 420, 580, 625 and final. The final task success requires both goals simultaneously, so a policy that only optimizes the active block may inadvertently disturb the other block when generalized. This prior adds explicit noninterference and tray-containment structure, unlike the previous two which focus on the active object alone.",
+          "statement": "Tray packing noninterference: condition placement on both objects and tray geometry, optimizing active-goal accuracy while preserving inactive object pose and containment. This should improve robustness when placing the second block and during retreat/transition because task success is conjunctive."
+        }
+      ],
+      "name": "Place selected block in tray and release/retreat",
+      "segmentation_rationale": "This dataset groups red and blue placements because the shared problem is carrying a held active block into its goal region, lowering to tray height, opening the gripper, and retreating without disturbing the other block. Red placement starts at action 185 while the red is still high and moving, not at a fixed pre-place pose, and continues to 420 so it includes release, upward retreat, and the early transition toward the blue object. Blue placement starts at 580 while blue is still high/in transit and continues to each trajectory's final action, retaining release and final settling/retreat context needed by the task completion contract. The red tail overlaps with blue acquisition so the successor sees broad open-gripper retreat states.",
+      "segments": [
+        {
+          "start": 185,
+          "stop": 420,
+          "trajectory_id": "demo10300"
+        },
+        {
+          "start": 580,
+          "stop": 742,
+          "trajectory_id": "demo10300"
+        },
+        {
+          "start": 185,
+          "stop": 420,
+          "trajectory_id": "demo10301"
+        },
+        {
+          "start": 580,
+          "stop": 742,
+          "trajectory_id": "demo10301"
+        },
+        {
+          "start": 185,
+          "stop": 420,
+          "trajectory_id": "demo10302"
+        },
+        {
+          "start": 580,
+          "stop": 752,
+          "trajectory_id": "demo10302"
+        },
+        {
+          "start": 185,
+          "stop": 420,
+          "trajectory_id": "demo10303"
+        },
+        {
+          "start": 580,
+          "stop": 743,
+          "trajectory_id": "demo10303"
+        },
+        {
+          "start": 185,
+          "stop": 420,
+          "trajectory_id": "demo10304"
+        },
+        {
+          "start": 580,
+          "stop": 737,
+          "trajectory_id": "demo10304"
+        },
+        {
+          "start": 185,
+          "stop": 420,
+          "trajectory_id": "demo10305"
+        },
+        {
+          "start": 580,
+          "stop": 752,
+          "trajectory_id": "demo10305"
+        },
+        {
+          "start": 185,
+          "stop": 420,
+          "trajectory_id": "demo10306"
+        },
+        {
+          "start": 580,
+          "stop": 749,
+          "trajectory_id": "demo10306"
+        },
+        {
+          "start": 185,
+          "stop": 420,
+          "trajectory_id": "demo10307"
+        },
+        {
+          "start": 580,
+          "stop": 730,
+          "trajectory_id": "demo10307"
+        },
+        {
+          "start": 185,
+          "stop": 420,
+          "trajectory_id": "demo10308"
+        },
+        {
+          "start": 580,
+          "stop": 737,
+          "trajectory_id": "demo10308"
+        },
+        {
+          "start": 185,
+          "stop": 420,
+          "trajectory_id": "demo10309"
+        },
+        {
+          "start": 580,
+          "stop": 741,
+          "trajectory_id": "demo10309"
+        },
+        {
+          "start": 185,
+          "stop": 420,
+          "trajectory_id": "demo10310"
+        },
+        {
+          "start": 580,
+          "stop": 730,
+          "trajectory_id": "demo10310"
+        },
+        {
+          "start": 185,
+          "stop": 420,
+          "trajectory_id": "demo10311"
+        },
+        {
+          "start": 580,
+          "stop": 742,
+          "trajectory_id": "demo10311"
+        }
+      ],
+      "skill_id": "place_block",
+      "subgoal": "With the active block already grasped or entering the goal funnel, align it to its tray target, lower/support it, open the gripper, and retreat/transition while preserving the other block."
+    }
+  ]
+}

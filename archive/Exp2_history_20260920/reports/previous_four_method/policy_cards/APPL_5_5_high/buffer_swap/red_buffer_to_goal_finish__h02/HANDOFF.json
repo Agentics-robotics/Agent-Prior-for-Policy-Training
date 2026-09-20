@@ -1,0 +1,15 @@
+{
+  "policy_id": "red_buffer_to_goal_finish__h02",
+  "entry_conditions": "Enter during the shared transition after the blue block has been placed at blue_goal and the red block is still buffered, being grasped, lifted, or carried toward red_goal. Causal observation cues are blue_pose close to blue_goal in world metres, red_pose not yet satisfying red_at_goal, and TCP/finger state consistent with approaching or holding red; the expanded training slice starts at index 700 and includes the overlap before red is lifted.",
+  "exit_conditions": "Exit to the task-level completion monitor when current observations satisfy or the learned predicate heads confidently indicate red_at_goal and blue_at_goal. The demonstrated final context often has both fingers open near 0.04 m each, red and blue at their goals, low qvel, and TCP retreated upward around z=0.30 m, but the task contract itself does not require retreat, release, or a sustained hold.",
+  "overlap_role": "The 700-860 overlap with the blue_to_goal_handoff skill teaches this policy to take over before final red manipulation is complete: blue is already at the blue goal, red is still at the buffer and then grasped/lifted, and the policy learns the continuation from partial completion to final task predicates rather than assuming success from blue placement alone.",
+  "successor_readiness": "The successor is normally the task success monitor. It should receive red_pose and blue_pose in world coordinates within the contracted goal containment and z tolerance. If a separate retreat or settle behavior is used, it should only take over after red is placed and the gripper is open/opening or safely clear, because post-success recovery beyond the observed retreat is not trained here.",
+  "failure_signatures": "Potential failures include the predicate head indicating success while red_pose has high z or lies outside full rotated goal containment, blue_pose has been displaced from blue_goal, the gripper remains closed around red after placement, or continued actions after success knock a block out of its region. These are monitoring cues, not hard constraints implemented by the model.",
+  "continuation_guidance": "Continue this policy while blue remains at blue_goal but red_at_goal is false, while red is elevated in the gripper, or while the TCP is descending to place red. After both predicates are true, a short learned open/retreat context is supported by the data, but prolonged execution is unnecessary and can risk disturbing the blocks.",
+  "limitations": "Handoff conditions are semantic guidance derived from successful demonstrations and measured overlap support, not a scripted rejection controller. The learned model uses only causal low-dimensional state history and cannot recover from unobserved large perturbations, external block movement, or states outside the final red-placement slice distribution.",
+  "evidence": [
+    {"trajectory_id": "demo10100", "indices": [700, 860, 950, 1000, 1064]},
+    {"trajectory_id": "demo10102", "indices": [860, 1060]},
+    {"trajectory_id": "demo10111", "indices": [860, 1061]}
+  ]
+}

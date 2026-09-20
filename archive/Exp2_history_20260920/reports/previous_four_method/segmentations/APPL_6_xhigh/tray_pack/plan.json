@@ -1,0 +1,680 @@
+{
+  "exclusions": [],
+  "overlap_rationale": "Two recurring skills, not two color-specific policies: acquire_block and deliver_block. Each has a red occurrence and a blue occurrence in every trajectory. All 8,897 source actions are retained, including initial approach, closing, lifting, release, retreat, settling and terminal holds. Segments are half-open in actions and include observations at both endpoints. All proposed endpoints have been inspected. No same-skill segments overlap; adjacent different-skill occurrences deliberately share long transitions. In trajectory order demo10300 through demo10311, the three shared intervals (red acquisition->delivery; red delivery->blue acquisition; blue acquisition->delivery) are respectively: 00 [75,182),[265,415),[445,562); 01 [76,184),[267,418),[447,564); 02 [78,188),[273,427),[454,576); 03 [74,185),[268,420),[450,566); 04 [73,180),[263,414),[443,558); 05 [79,190),[274,428),[457,578); 06 [77,187),[271,424),[453,571); 07 [72,178),[259,408),[439,552); 08 [74,181),[264,416),[445,561); 09 [75,183),[266,419),[448,564); 10 [71,177),[258,407),[438,551); 11 [76,184),[267,420),[449,566). Acquisition->delivery overlaps are 106-122 actions (5.30-6.10 s); delivery->acquisition overlaps are 149-154 actions (7.45-7.70 s), not short boundary tails. Boundaries were retained based on individually inspected states, not equal-duration partitions: delivery entries span open-finger descent at TCP world z 0.088-0.160 m for red and 0.108-0.178 m for blue; acquisition exits span closed-finger elevated early translation, red center z 0.280-0.283 m and blue 0.287-0.293 m. Blue acquisition starts while red is still held and descending over its region (red z 0.084-0.169 m), before opening or settling; red delivery ends only after red is released, TCP has retreated and traversed toward blue, fingers are open and TCP is above blue at z about 0.267 m. Thus both neighbors can finish the actual transition rather than require a single cut pose. No data establish recovery from lateral grasp misses, dropped objects, unexpected wall contact, disturbed blocks or arbitrary arm configurations; greater temporal overlap is not greater spatial/contact-error coverage.\nShared implementation contract for all six separate Diffusion Policy candidates: use the supplied 20 Hz pd_joint_pos action contract, seven absolute Panda joint targets (rad) and one dimensionless gripper command, clipped to supplied limits. qpos[0:7]/qvel[0:7] are arm rad/rad/s; qpos[7:9]/qvel[7:9] are finger m/m/s. Gripper +1 requests 0.04 m per finger, -1 requests -0.01 m; actual grasped finger readings near 0.0183 m are not commanded target widths. All candidates use the SAME observation/action normalizer fitted once on the complete original demonstrations, never per skill, role or overlap. Geometric transformations are computed in physical units before shared scaling; no per-skill rescaling. Drop the two constant zero drawer compatibility channels from learnable conditioning. State inputs are available causally; front images were inspected for grounding but vision-only deployment is not established. World poses are metre/wxyz; use sign-invariant rotations or rotation matrices. Past finite differences use dt=0.05 s; object velocities are derived, not measured qvel channels. Starting research configuration: H=16 future action steps and causal observation history, receding-horizon execution; horizons and any numeric tolerances other than the task contract are tunable hypotheses, not measured robustness. Train only on valid within-segment action/future-observation windows, mask terminal padding and avoid stitching red and blue segments as if contiguous. Split by original trajectory, with both skills and all copies of each overlap in the same split; balance roles and phases to avoid holds and shared samples dominating. Retain unique source indices for weighting and evaluation.\nInterface includes an intended object/goal role token, mapped to red_pose/red_goal or blue_pose/blue_goal, and the other object's state. For acquire_block this denotes the object to acquire NEXT; the other object may still need incoming placement/release. For deliver_block it denotes the object being packed, even if not yet grasped; an optional pending-object role enables its exit approach. Role metadata are segment-purpose labels for training, not timestep inputs. A caller/learned task selector must supply or infer these roles from causal scene and invocation intent; this is an explicitly declared interface, not an assumed deployment facility. All data are red-first and then blue; arbitrary order/goal assignment is untested. Do not immediately switch intended object just because the contract predicate becomes true while still holding it. Preserve observation history and previous issued commands across policy transfer, or train masked-history resets from all overlap phases. A role token must be latched through its manipulation, and the outgoing policy's learned retreat/approach must not silently change payload identity.\nCompletion is precisely the supplied contract: all rotated object corners projected to world xy must lie in the assigned square of half-width 0.06 m, with center |z-0.036|<=0.011 m, for BOTH objects in one observation. Cubes have half-size 0.02 m. Neither opening, low velocity, sustained holding nor TCP clearance is required by that predicate. The demonstrations nevertheless open, allow center z to settle from about 0.0455 to 0.036 m, retreat to TCP z about 0.3165 m and hold. Keep these useful interface actions, but do not invent extra task-success requirements. Candidate readiness heads distinguish task containment from safe manipulation transfer. Fixture boxes from the supplied contract have rim tops at 0.09 m. Representative front images at demo10300 0/120/280, demo10307 310/505 and demo10305 752 support the open-tray, top-grasp, release/retreat interpretation; numeric decisions use synchronized states, not pixel-derived precision.",
+  "skills": [
+    {
+      "heuristics": [
+        {
+          "applicability": "Same Panda/controller and accessible top-down grasps on similar 0.04 m cubes, with causal object poses and goal roles available. Transfer hypothesis concerns modest source-position changes and sharing red/blue acquisition parameters, not rigidly rotating the entire fixed-base robot or arbitrary relocation of the tray. Retain gravity/world height, other object and joint configuration.",
+          "evidence": [
+            {
+              "indices": [
+                0,
+                75,
+                120,
+                160,
+                265,
+                290,
+                320,
+                400,
+                445,
+                480,
+                500,
+                520
+              ],
+              "trajectory_id": "demo10300"
+            },
+            {
+              "indices": [
+                0,
+                72,
+                100,
+                110,
+                130,
+                150,
+                259,
+                287,
+                408,
+                439,
+                477,
+                505,
+                530
+              ],
+              "trajectory_id": "demo10307"
+            },
+            {
+              "indices": [
+                0,
+                79,
+                274,
+                303,
+                428,
+                457,
+                496
+              ],
+              "trajectory_id": "demo10305"
+            }
+          ],
+          "handoff": {
+            "entry_conditions": "Intended next-object token and both object/goal poses are required. Supported entries are initial open Panda state (qpos fingers 0.04 m, TCP world z 0.442 m, stationary cubes z 0.020 m), or incoming red placement while requesting blue: red center z 0.084-0.169 m above red_goal, qpos fingers about 0.0183 m, continuing descent. Also support internal overlap states with incoming red already released, retreat underway, or approach/closing/lift of the selected block. World/base and role streams must agree; no unseen free-space reinitialization is implied.",
+            "exit_conditions": "Useful acquisition exit is selected block co-moving with TCP above source and beginning goalward translation, command -1, fingers about 0.0183 m. Observed red center z 0.280-0.283 m and blue 0.287-0.293 m, nonzero arm qvel, near-downward TCP wxyz approximately [0,1,0,0]. Earlier transfer during aligned descent is permitted because delivery has the shared approach/close/lift data; do not open during this transfer.",
+            "failure_signatures": "Selected token addresses a settled block instead of the source; role-conditioned TCP-to-object xy error grows during descent; fingers close without object elevation; object drifts away from TCP during lift; incoming red is moved laterally before release. Larger spatial errors than inspected millimetre-scale offsets are unsupported.",
+            "overlap_role": "Learn incoming red lowering/opening/retreat and traversal to blue in the 149-154-action overlap; learn selected-block final approach, close, lift and initial translation in the 106-122-action overlaps. Relative representation changes its reference by explicit role, not at a hard world pose.",
+            "successor_readiness": "Deliver policy receives the SAME selected payload identity, full qpos/qvel and causal TCP/object history plus its goal. It can continue lowering and close if transfer was early, or preserve -1 and translate if late. Observed grasp offsets include TCP x about 0.008-0.010 m behind object x in world, not perfect center coincidence. Any proposed tolerance band around these offsets must be validated."
+          },
+          "limitations": "Both cube geometries and goals are nearly fixed and starts vary only centimetres, so color-independent geometry is a hypothesis, not established broad equivariance. Removing world/base inputs can fail at joint limits or tray walls. Falsify by comparing matched-capacity raw-world DP, shared role encoder without relative features, and this candidate on held-out trajectories and controlled source translations; measure grasp/lift success and joint-limit violations. Successful data cannot establish arbitrary yaw grasps, order changes or recovery.",
+          "pipeline_implications": "Inputs: last 4 causal qpos/qvel, tcp_pose, both object poses/goals and intended role. Form e_i=p_i-p_tcp and R_tcp^T(p_i-p_tcp), R_tcp^T R_i for both object slots, goal-minus-object vectors, absolute world z and qpos arm. A shared MLP encodes object slots; role embeddings plus attention pool selected/other/goal interactions. Keep a separate fixed-base robot stream so object-relative sharing does not falsely imply joint-space translation invariance. Condition a temporal diffusion denoiser on these features; diffuse H=16 normalized original eight-dimensional actions and decode with the shared action normalizer to absolute joint/gripper commands. Train standard noise/score loss, role-balanced sampling; optionally test slot-permutation consistency by relabeling pose+goal+role together while keeping the physical scene/actions identical, not by reflecting joint actions. Inference uses only the causal history and role, samples a chunk and executes 2 steps then replans. No future object labels are inputs. Distinguishing change is representation and parameter tying, not a phase classifier or model-based action ranking. Testable prediction: less overfitting to red/blue world coordinates and lower data requirement for shifted source positions.",
+          "rationale": "Across demo10300 and demo10307, both colors are approached with open fingers, then supported at about 0.0183 m finger position and lifted while TCP and object move together, despite markedly different arm configurations and source y signs. Demo10305 varies the source position but retains the relation. The TCP is not exactly object-centered, so learn offsets rather than impose coincidence. A raw state network can memorize separate color routes from 12 highly similar demonstrations; role-factored relative geometry pools the reusable local grasp problem while retaining world constraints. This is an assumed generalization benefit of representation sharing, distinct from temporal-mode inference and attachment-based future prediction.",
+          "statement": "Role-factored relative geometry: acquisition depends more on TCP-to-block geometry and manipulation roles than block color or absolute source xy. Share object-slot encoders and expose relative transforms to reduce coordinate memorization while retaining the fixed-base robot state."
+        },
+        {
+          "applicability": "Useful when the same near-object pose occurs during approach, dwell, closing and lifting, and when successor entry can occur at any supported transition phase. Requires sequential observations or a trained missing-history mask, the same gripper actuation delay and accurate qpos/qvel. No clock-based or fixed-duration assumption should transfer.",
+          "evidence": [
+            {
+              "indices": [
+                75,
+                120,
+                160,
+                265,
+                280,
+                290,
+                300,
+                320,
+                360,
+                415,
+                445,
+                465,
+                480,
+                500,
+                520
+              ],
+              "trajectory_id": "demo10300"
+            },
+            {
+              "indices": [
+                72,
+                100,
+                110,
+                130,
+                150,
+                165,
+                259,
+                287,
+                310,
+                335,
+                365,
+                439,
+                455,
+                465,
+                477,
+                487,
+                505,
+                530,
+                540
+              ],
+              "trajectory_id": "demo10307"
+            },
+            {
+              "indices": [
+                76,
+                267,
+                293,
+                418,
+                447,
+                485
+              ],
+              "trajectory_id": "demo10301"
+            }
+          ],
+          "handoff": {
+            "entry_conditions": "Have intended next-object role and an 8-observation causal buffer (0.40 s sampling span nominally; first-to-last is 0.35 s), or an explicitly masked reset trained inside overlaps. Fingers may be open at initial approach, closing at the selected source, or closed on the previous red payload descending over the tray while blue is pending. The latent must initialize from qpos[7:9], previous gripper commands and pose differences, not assume every invocation starts empty.",
+            "exit_conditions": "Posterior favors selected-block attached/lifting or initial transfer, with object elevation and TCP/object co-motion corroborating closed command -1. Demonstrated exits remain in motion at center heights about 0.28-0.293 m; no zero-qvel requirement. An earlier switch is supported only with the inferred approach/closing phase and buffer passed along.",
+            "failure_signatures": "Phase toggles between release and grasp; predicted progress advances while object remains on table; gripper alternates +1/-1 near the same pose; latent labels a stationary closed hold as empty because fingers are not at -0.01 m. Long uncertainty after reset or a jump to late transport indicates unsupported handoff.",
+            "overlap_role": "Both skills learn the ordered progression through approach/dwell/close/lift/translate; incoming placement/release/retreat/blue-approach is also shared. Expanded windows train phase recognition well before and after each plausible transfer, including partially opening fingers at demo10300 290 and early lifting at demo10307 487.",
+            "successor_readiness": "Pass causal history, role and optionally phase posterior with confidence. Delivery must be able to finish close and vertical lift instead of assuming attachment. For incoming blue acquisition, retain red's identity until its release/retreat is completed. Use posterior readiness as a learned signal; numeric confidence or delay thresholds are proposed hyperparameters, not demonstrated robustness."
+          },
+          "limitations": "Mode ordering is observed, but contact itself is not instrumented and the dataset contains no successful reversals or interrupted-grasp recoveries. A strict irreversible automaton can trap an error; use learned transitions with uncertainty, not hard replay timing. Compare recurrent DP without auxiliary phase supervision, feedforward relative DP and the proposed semi-Markov model. Falsification signatures are no improvement at randomized within-overlap entry or worse performance under modest timing/actuator-delay changes. Spatial/contact recovery remains untested.",
+          "pipeline_implications": "Use last 8 qpos/qvel, TCP and both block/goal poses, intended role and past issued actions; compute causal 20 Hz pose differences. Train a recurrent belief encoder with discrete latent modes: incoming lower/release, empty retreat/approach, aligned dwell, closing, attached vertical lift, early translation. A semi-Markov transition prior penalizes skipped demonstrated dependencies but allows variable dwell and uncertainty. Obtain training-only soft phase labels from source gripper actions, finger aperture, table/goal-relative height and future co-motion over several frames; mask ambiguous labels, never feed future labels at inference. A phase-conditioned diffusion denoiser generates the original normalized absolute-joint/gripper H=16 action chunk; loss is denoising plus phase CE and transition/duration likelihood, with duration conditioned on progress rather than timestep ID. Deployment recursively filters the latent from causal state, samples a chunk and executes 1-2 actions near contact changes, 2-4 in approach, with learned readiness output. Ablate duration prior separately from recurrence. Expected effect is reduced mode averaging and fewer premature lifts/releases on variable-time transfers, not geometric equivariance.",
+          "rationale": "Demo10307 100 and 110 have nearly the same TCP z about 0.020 m, but fingers change from 0.040 to 0.0183 m and the next useful action changes from close to lift. At 465 and 477 the blue case repeats. Demo10300 280-320 shows the inverse contact transition: near-goal closed hold, partial opening, then empty retreat. Demo10301 release is only being commanded at 293, whereas demo10300 290 is already partly open. A single clock or static pose cannot represent these dependencies. Temporal mode inference addresses this ambiguity; it is a different bias from changing geometric coordinates or learning action-conditioned attachment consequences.",
+          "statement": "Contact-dependent phase, not elapsed time: infer variable-duration manipulation modes and make closing, lifting and incoming release conditional on observed progress. A semi-Markov latent-conditioned DP should avoid averaging incompatible actions at visually/geometrically similar poses."
+        },
+        {
+          "applicability": "Transfer depends on frictional parallel-jaw attachment, comparable cube mass/compliance and reliable pose tracking. Applies to table pickup and finishing the incoming placement before another pickup. Retain object identity and distinguish the currently attached object from the requested next object; no force sensor is assumed.",
+          "evidence": [
+            {
+              "indices": [
+                120,
+                160,
+                182,
+                265,
+                290,
+                300,
+                445,
+                480,
+                500,
+                520,
+                560
+              ],
+              "trajectory_id": "demo10300"
+            },
+            {
+              "indices": [
+                100,
+                110,
+                130,
+                150,
+                165,
+                259,
+                287,
+                310,
+                477,
+                487,
+                505,
+                530,
+                540
+              ],
+              "trajectory_id": "demo10307"
+            },
+            {
+              "indices": [
+                78,
+                273,
+                302,
+                454,
+                495
+              ],
+              "trajectory_id": "demo10302"
+            }
+          ],
+          "handoff": {
+            "entry_conditions": "Causal history of TCP and both object poses, measured finger positions and commands is needed to initialize attachment beliefs. Initial empty entry at TCP z 0.442 m or late red descent with fingers about 0.0183 m while requesting blue is supported. At blue grasp entry, red should be treated as an independent settled object around z 0.036 m, not the attached payload merely because it is at goal.",
+            "exit_conditions": "Selected block has risen with TCP and the relative transform stays consistent over the recent lift, fingers remain near the demonstrated grasp width with command -1. Observed endpoints are elevated and already translating; readiness should depend on co-motion confidence, not height alone. If transferred before confirmed attachment, expose that uncertainty rather than report successful pickup.",
+            "failure_signatures": "Closed fingers with selected z stuck at 0.020 m; TCP rises without selected block; relative transform drifts abruptly; incoming red rises during an intended empty retreat; model predicts attachment to both blocks. Do not interpret oscillatory finger qvel alone as a slipping object.",
+            "overlap_role": "Both policies see empty descent, gripper closure, first object motion and lifted translation over 5.3-6.1 s, enabling evaluation before/after attachment. In the reverse 7.45-7.70 s overlap both learn the red attachment breaking, settling to 0.036 m and remaining stationary while TCP travels toward blue.",
+            "successor_readiness": "Provide selected identity, goal, qpos/qvel, current estimated TCP-to-payload transform and uncertainty, or enough causal history to re-estimate it. Delivery continues closed-finger transport only when supported, or completes the remaining close/lift portion from shared training. A proposed confidence gate must be validated; this dataset supports nominal attachment transitions only."
+          },
+          "limitations": "Nearly all demonstrated grasps succeed, so a learned outcome model can be overconfident on misses and has no counterfactual failure labels. Attachment estimates are kinematic proxies, not measured forces. Compare DP with the same auxiliary encoder but no co-motion loss/ranking, and DP with future prediction but no two-regime attachment structure. The hypothesis is falsified if model ranking does not improve early/late overlap transfers or instead favors immobility. Robust slip recovery and safe rejection thresholds cannot be established here.",
+          "pipeline_implications": "Condition an original-action DP on causal history of qpos/qvel, tcp_pose, selected/other object poses/goals, role and past actions. Add a trainable action-conditioned rollout model F(history, action_chunk) predicting each object's next pose and an attachment probability. Encode a two-regime dynamics prior: attached object uses T_obj(t+k) approximately T_tcp(t+k)*C with slowly varying C; unattached object uses an independent support/stationary branch. Learn TCP rollout as well, using actual future tcp_pose and object poses within each segment as training-only targets. Joint loss combines diffusion denoising, robust multi-step pose loss, relative-transform constancy when co-motion labels support attachment, and a detach label around demonstrated opening; mask impact/contact frames instead of forcing rigidity there. Labels for successful lifting use future object elevation, not future information at deployment. At inference sample a small set of original joint/gripper chunks and rank with the learned model for selected-object elevation with maintained attachment, preservation of already settled red, and lack of premature lateral motion before lifting; fall back to the highest-likelihood diffusion sample when ranking uncertainty is high. Coefficients and fallback threshold require calibration. Decode all candidates through the common action normalizer and controller bounds. Expected effect: better causal discrimination of close-with-object versus close-empty, beyond a phase label alone.",
+          "rationale": "Demo10300 120->160 moves red from z 0.021 to 0.274 m with TCP at essentially the same height and nearly constant 9.5 mm world-x offset; 480->520 does the same for blue with an approximately 8.2 mm offset. Demo10307 110/130/150 and 477/487/505 corroborate attachment formation. After red release, red remains at z 0.036 while TCP retreats and moves elsewhere. These support different dynamical relations for held versus independent objects, though not failure classification. The proposed bias learns consequences of candidate actions rather than just representing geometry or recognizing elapsed manipulation mode.",
+          "statement": "Attachment as an action-conditioned invariant: a grasped cube should co-move with TCP under a nearly constant relative transform, whereas a released cube should decouple. A structured future model and uncertainty-aware diffusion-sample ranking should make pickup readiness depend on actual object motion rather than the close command alone."
+        }
+      ],
+      "name": "Acquire a selected block with incoming-release context",
+      "segmentation_rationale": "Group both red and blue top-down acquisitions across all 12 demonstrations: shared subproblem is transition from an empty or soon-to-be-empty gripper to a lifted, co-moving selected block. Red segments start at observation 0; they include high approach, descent, finger closing, vertical lifting and early goalward motion. Blue segments deliberately start much earlier than empty approach, while red is still closed-grasped over its tray region, so acquisition can finish incoming lowering/release, empty retreat and traversal rather than depend on a perfect single release cut. These phases are contextual lead-in, not an instruction to always place an object before a pickup. Blue ends after grasp, vertical lift and initial translation. Individually inspected red stop indices 182,184,188,185,180,190,187,178,181,183,177,184 have red z about 0.280-0.283 m; blue stops 562,564,576,566,558,578,571,552,561,564,551,566 have blue z about 0.287-0.293 m and fingers about 0.0183 m. They are moving states, not arbitrary fixed poses. Incoming starts 265,267,273,268,263,274,271,259,264,266,258,267 retain differing descent stages (z 0.084-0.169 m). All endpoints were read; intermediate release/retreat/grasp/lift states and representative images were inspected in detail for demo10300 and demo10307 and compared to other trajectories. The contextual incoming transition requires a next-object role distinct from the incoming payload. The three priors isolate representation sharing, variable-duration latent state, and action-conditioned attachment dynamics as independently testable DP changes.",
+      "segments": [
+        {
+          "start": 0,
+          "stop": 182,
+          "trajectory_id": "demo10300"
+        },
+        {
+          "start": 265,
+          "stop": 562,
+          "trajectory_id": "demo10300"
+        },
+        {
+          "start": 0,
+          "stop": 184,
+          "trajectory_id": "demo10301"
+        },
+        {
+          "start": 267,
+          "stop": 564,
+          "trajectory_id": "demo10301"
+        },
+        {
+          "start": 0,
+          "stop": 188,
+          "trajectory_id": "demo10302"
+        },
+        {
+          "start": 273,
+          "stop": 576,
+          "trajectory_id": "demo10302"
+        },
+        {
+          "start": 0,
+          "stop": 185,
+          "trajectory_id": "demo10303"
+        },
+        {
+          "start": 268,
+          "stop": 566,
+          "trajectory_id": "demo10303"
+        },
+        {
+          "start": 0,
+          "stop": 180,
+          "trajectory_id": "demo10304"
+        },
+        {
+          "start": 263,
+          "stop": 558,
+          "trajectory_id": "demo10304"
+        },
+        {
+          "start": 0,
+          "stop": 190,
+          "trajectory_id": "demo10305"
+        },
+        {
+          "start": 274,
+          "stop": 578,
+          "trajectory_id": "demo10305"
+        },
+        {
+          "start": 0,
+          "stop": 187,
+          "trajectory_id": "demo10306"
+        },
+        {
+          "start": 271,
+          "stop": 571,
+          "trajectory_id": "demo10306"
+        },
+        {
+          "start": 0,
+          "stop": 178,
+          "trajectory_id": "demo10307"
+        },
+        {
+          "start": 259,
+          "stop": 552,
+          "trajectory_id": "demo10307"
+        },
+        {
+          "start": 0,
+          "stop": 181,
+          "trajectory_id": "demo10308"
+        },
+        {
+          "start": 264,
+          "stop": 561,
+          "trajectory_id": "demo10308"
+        },
+        {
+          "start": 0,
+          "stop": 183,
+          "trajectory_id": "demo10309"
+        },
+        {
+          "start": 266,
+          "stop": 564,
+          "trajectory_id": "demo10309"
+        },
+        {
+          "start": 0,
+          "stop": 177,
+          "trajectory_id": "demo10310"
+        },
+        {
+          "start": 258,
+          "stop": 551,
+          "trajectory_id": "demo10310"
+        },
+        {
+          "start": 0,
+          "stop": 184,
+          "trajectory_id": "demo10311"
+        },
+        {
+          "start": 267,
+          "stop": 566,
+          "trajectory_id": "demo10311"
+        }
+      ],
+      "skill_id": "acquire_block",
+      "subgoal": "Acquire the intended table block in a stable parallel-jaw grasp, lift it clear and begin goalward motion. When entering from another placement, first finish lowering/releasing that incoming payload and retreat toward the intended block. Preserve the earlier placed object. End ready for delivery, without requiring one exact arm pose or zero velocity."
+    },
+    {
+      "heuristics": [
+        {
+          "applicability": "Top-down carrying and placing with known object/goal poses, the same robot and controller, and small grasp-offset variation. Relative-goal conditioning may transfer to small target/source changes, but fixed tray geometry, world height and robot state remain inputs. Learned inverse dynamics is local to the demonstrated Panda manifold; neither arbitrary robot transfer nor perfect IK is assumed.",
+          "evidence": [
+            {
+              "indices": [
+                75,
+                120,
+                160,
+                182,
+                200,
+                240,
+                265,
+                280,
+                290,
+                320,
+                445,
+                480,
+                520,
+                562,
+                600,
+                640,
+                655,
+                665,
+                720
+              ],
+              "trajectory_id": "demo10300"
+            },
+            {
+              "indices": [
+                72,
+                110,
+                130,
+                165,
+                178,
+                259,
+                287,
+                439,
+                477,
+                505,
+                530,
+                552,
+                632,
+                641,
+                646,
+                659,
+                700
+              ],
+              "trajectory_id": "demo10307"
+            },
+            {
+              "indices": [
+                79,
+                190,
+                274,
+                303,
+                496,
+                578,
+                685
+              ],
+              "trajectory_id": "demo10305"
+            }
+          ],
+          "handoff": {
+            "entry_conditions": "Payload identity/goal token must be available even at pre-grasp entry. Supported open-finger descent entries have selected block z 0.020 m and TCP world z 0.088-0.178 m, fingers near 0.04 m, aligned above source. Later supported entry includes closing, initial lift or elevated transport. The payload-relative transform must be marked invalid until causal grasp/co-motion evidence exists; do not apply carried-block decoding to empty descent.",
+            "exit_conditions": "Selected object is contained at its goal; in demonstrated useful exit it has been released to z about 0.036 m and fingers approach 0.04 m. Red occurrence additionally retreats and approaches blue with TCP z about 0.267 m and empty hand; final blue occurrence retreats to z about 0.3165 m and holds. Task completion may occur earlier near z 0.0455 m while still grasping; this is not equivalent to empty-hand readiness.",
+            "failure_signatures": "TCP reaches the goal marker but cube remains offset/outside containment; inverse decoder yields discontinuous arm targets or moves the wrong null-space branch; estimated payload offset changes during nominal rigid transport; object follows retreat after expected release. These require uncertainty signalling rather than unvalidated correction.",
+            "overlap_role": "Shared descent/close/lift identifies the actual TCP-to-payload offset before transport. Shared final lowering/opening/retreat/next approach allows the next acquire policy to take over while that transform is still transitioning from attached to invalid.",
+            "successor_readiness": "Next acquisition needs the pending identity (blue in these demos), actual finger aperture and causal history indicating whether red is still attached or has settled. It can finish late descent/release if transferred early. At late transfer continue +1 while approaching the pending source, not a closed payload-conditioned motion. Retain goal-relative and world/base states so no coordinate reset creates an action jump."
+          },
+          "limitations": "Payload and TCP orientations barely vary, so full rotational generalization and learned inverse dynamics far from demonstrated joint configurations are unsupported. Diffusing Cartesian paths plus decoding may introduce off-manifold poses; validate action reconstruction and restrict sampling to learned support rather than claiming exact kinematics. Compare original absolute-joint DP, goal-frame TCP diffusion without attachment-offset conditioning, and the full candidate. Benefit is falsified by no decrease in placement error under small grasp offsets or increased joint-target discontinuity. No collision or recovery guarantee follows.",
+          "pipeline_implications": "Inputs are causal qpos/qvel, tcp_pose, both object poses/goals, payload/pending role and past commands. Compute sign-invariant R_tcp, R_obj and online C=T_tcp^-1*T_obj when attached; retain an attachment-validity feature and current world/base state. Train a DP over H=16 future realized TCP translations relative to the selected goal, continuous rotations and original gripper commands. These path targets come from future tcp_pose observations inside the segment (training only); they are sampled, not observed, at deployment. A trainable local inverse-dynamics decoder D(current qpos/qvel, history, sampled path, C, validity, roles) predicts the original normalized seven absolute arm targets for each step, trained against source actions with reconstruction loss; retain current arm configuration/history to select the demonstrated redundancy branch. Joint objective: path diffusion loss plus original-action decoding loss and, on attached frames only, payload-goal consistency using T_tcp_future*C against observed future object poses. For approach/release/retreat, the TCP path remains defined but rigid payload loss is masked. Use global original normalization statistics for physical features and original action decoder outputs; do not fit per-skill or derived-path normalizers. At inference sample a path, decode bounded absolute joint targets, execute 1-2 steps near placement and re-estimate C from new observations. No exact FK/IK model is supplied or assumed. Distinguishing mechanism is action-space geometry and a learned inverse-dynamics decoder, not sample ranking or a phase-hazard controller. Predict improved payload placement under changed but still supported grasp offsets.",
+          "rationale": "Red and blue follow analogous high carry and vertical descent despite very different joint vectors. In demo10300, red center at 280 is about [-0.1362,-0.0699,0.0457] while TCP is [-0.1457,-0.0702,0.0455]; blue at 655 has about an 8.2 mm world-x offset instead of 9.5 mm. Demo10307 repeats this nonzero offset. A TCP-only goal loss can therefore solve the wrong geometry. Goal-relative TCP path diffusion with explicit carried transform separates task displacement from arm configuration, and a learned decoder addresses the absolute-joint action contract. The rigid relation is observed only during nominal holding; its validity outside those intervals is an assumption to avoid.",
+          "statement": "Move the payload, not just the TCP: diffuse goal-relative Cartesian motion and explicitly account for the current grasp transform when learning placement, then decode through local inverse dynamics to absolute joint targets. This should decouple placement precision from modest grasp-offset and joint-route variations."
+        },
+        {
+          "applicability": "Open tray with known fixture boxes, upright world gravity and a held cube that should clear the rim during lateral transit. Transfer to altered tray geometry requires that geometry be supplied correctly and appropriate training/evaluation; only one tray is observed. Requires credible action-conditioned pose predictions and preserves the other packed block as an obstacle.",
+          "evidence": [
+            {
+              "indices": [
+                120,
+                160,
+                182,
+                200,
+                240,
+                265,
+                280,
+                290,
+                320,
+                360,
+                400,
+                480,
+                520,
+                562,
+                600,
+                640,
+                655,
+                665,
+                680,
+                720
+              ],
+              "trajectory_id": "demo10300"
+            },
+            {
+              "indices": [
+                110,
+                130,
+                150,
+                165,
+                178,
+                259,
+                287,
+                310,
+                335,
+                365,
+                477,
+                505,
+                530,
+                540,
+                552,
+                632,
+                641,
+                659,
+                680,
+                700
+              ],
+              "trajectory_id": "demo10307"
+            },
+            {
+              "indices": [
+                78,
+                188,
+                273,
+                302,
+                427,
+                495,
+                576,
+                684
+              ],
+              "trajectory_id": "demo10302"
+            }
+          ],
+          "handoff": {
+            "entry_conditions": "Open aligned descent, closing or attached lifting states inside acquisition overlap are supported; selected source z is about 0.020 m before lift. Geometry model needs payload and pending identities, both poses, supplied fixture boxes and current robot state. Clearance cost must be mode-conditioned so it does not forbid intentional source approach or final tray lowering.",
+            "exit_conditions": "Predicted and then observed payload is inside its intended region, released in nominal demonstrations to center z 0.036 m; TCP retreats vertically before long lateral movement. Red exit at the blue overhead approach has TCP z about 0.267 m with open fingers; final exit holds at z 0.3165 m. These are demonstrated routes, not certified safe configurations of every link.",
+            "failure_signatures": "Cube bottom or oriented corners approach a rim box during lateral carry; descending before entering the tray opening; already placed red moves while packing blue; learned rollout disagrees with observed object motion; geometrically clear TCP trajectory nonetheless produces joint/link collision. The last failure is outside this simplified geometry prior's guarantee.",
+            "overlap_role": "The 5.3-6.1 s approach/close/lift overlap teaches when a cube transitions from supported-at-source to a payload that needs rim clearance. The 7.45-7.70 s outgoing overlap teaches final descent, detach, vertical retreat and open-hand traversal, not merely containment at one frame.",
+            "successor_readiness": "Pass role, actual measured state/history and whether payload remains attached; predicted clearance alone is insufficient. If successor takes over early, it must retain descent/release mode and avoid lateral retreat until detach; late handoff is to an open gripper over blue. No numeric safety margin beyond observed paths is validated; the selection agent must test any chosen clearance buffer."
+          },
+          "limitations": "The rim-crossing explanation is plausible but the demonstrations could simply use a generic high waypoint even without obstacles. No collisions or alternative-height successful routes are present. Test matched raw-joint DP, geometry-free future-model ranking, and fixture-conditioned ranking under controlled rim-height/goal changes; benefit should be strongest near changed obstacles, not just at nominal starts. Cube/TCP geometry does not certify arm or gripper clearance and the model can exploit inaccurate predictions. Off-demonstration rerouting and recovery remain unsupported.",
+          "pipeline_implications": "Inputs: causal state history qpos/qvel, tcp_pose, object poses/goals, role tokens, plus the five supplied world-frame axis-aligned fixture boxes. Condition an original normalized eight-action joint-space DP on these features. Train an auxiliary action-chunk-conditioned rollout network predicting future TCP and both object poses; future observations supply training targets only. For each predicted attached cube, transform its eight +/-0.02 m corners by predicted orientation, assess intersection/signed distance to fixture boxes and the other cube. Define an energy E=sum_k collision_cost + misplaced_descent_cost + terminal_containment_error, with mode weights learned from causal contact/height features and demonstrated motion, not a hard time schedule. In free carry, lateral rim crossing penalizes cube-bottom clearance below rim top 0.09 m plus a tunable margin; near the goal, turn off the free-carry height term and allow downward insertion. Also penalize motion of a previously settled other block. Train denoising and multi-step pose prediction; test optional soft energy fine-tuning separately. Deployment samples several action chunks, rolls them out and selects low-E high-likelihood candidates, rejecting guidance when rollout uncertainty is high; execute a short prefix and update. Use bounded original absolute joint/gripper decoding, not Cartesian commands. A TCP proxy can encourage empty-hand retreat clearance, but full gripper/link collision checking is unavailable from the supplied fields. Distinguishing bias is fixture-aware planning/ranking rather than changing action coordinates or release memory.",
+          "rationale": "The rim tops are 0.09 m from declared fixtures. Demo10300 lifts near source to center z 0.274-0.282, carries across to z about 0.309, then descends over the region to 0.0457. Blue does likewise; demo10307 supports the same lift/carry/lower topology. After release TCP rises before traversing to the next block while the first remains still. These regularities suggest free-space topology and payload clearance, but do not prove the reason for the waypoint. A raw behavioral clone has little evidence for how to change trajectory around a changed obstacle. Explicit geometry energy gives a falsifiable inductive bias on that gap, separate from pose-frame decoding and event-memory inference.",
+          "statement": "Rim-aware transport topology: lateral payload transfer should occur in free space above tray walls, while low-altitude motion is reserved for aligned pickup or insertion. Fixture-conditioned predictive ranking of diffusion samples should preserve this dependency when goals or obstacle heights change modestly."
+        },
+        {
+          "applicability": "Applies when release commands precede measured finger opening and payload settling, and successful containment can precede full disengagement. Requires the same controller or relearned temporal dynamics, causal finger and object observations, and an intended/pending role interface. Does not require zero velocity or sustained hold for task success.",
+          "evidence": [
+            {
+              "indices": [
+                265,
+                280,
+                290,
+                300,
+                320,
+                360,
+                400,
+                640,
+                655,
+                665,
+                680,
+                720
+              ],
+              "trajectory_id": "demo10300"
+            },
+            {
+              "indices": [
+                259,
+                287,
+                310,
+                335,
+                365,
+                632,
+                641,
+                646,
+                659,
+                680,
+                700
+              ],
+              "trajectory_id": "demo10307"
+            },
+            {
+              "indices": [
+                267,
+                293,
+                418,
+                668
+              ],
+              "trajectory_id": "demo10301"
+            },
+            {
+              "indices": [
+                274,
+                303,
+                428,
+                685
+              ],
+              "trajectory_id": "demo10305"
+            }
+          ],
+          "handoff": {
+            "entry_conditions": "Can start with open fingers approaching source at the measured delivery entry heights or at any supported close/lift/carry/lower state. Initialize a causal recurrent buffer or trained missing-history state. Keep payload identity latched even if red_at_goal/blue_at_goal becomes true while qpos fingers remain about 0.0183 m and gripper command is -1.",
+            "exit_conditions": "Report contract success separately from manipulation readiness. Demonstrated readiness progresses through closed hold near object z 0.0455 m, open command, fingers increasing toward 0.04 m, object settling to 0.036 m, then TCP retreat. Red useful end is empty open approach above blue at z about 0.267 m; final blue useful end is open retreat/hold at 0.3165 m. A caller may stop on contract success without these extra requirements, but must not label that state an empty-handed acquisition handoff.",
+            "failure_signatures": "Goal flag true but cube rises with retreat; open command issued but fingers remain near grasp width; policy re-closes after opening or switches payload identity before settling; object exits containment after release; repeated phase changes from noisy finger qvel. Readiness should decrease under these observable discrepancies, not be forced by elapsed time.",
+            "overlap_role": "Both adjacent policies learn the entire pre-release lower, close-held goal entry, opening transient, settling, vertical retreat and next approach. Early successor transfer may legitimately receive a held red cube at z 0.084-0.169 m while requesting blue, not an already empty hand. The incoming approach/close/lift overlap also prevents the delivery recurrent state from assuming every entry is held.",
+            "successor_readiness": "Pass intended/pending role, history and separate estimates of containment, attachment and disengagement. Next acquisition can continue lower/open when attachment remains likely, then maintain +1 during retreat/approach; it must not jump directly to closing on blue. Supported partial opening example is demo10300 290 with fingers 0.0371 m, red z 0.036 and TCP z 0.0453 m. Any fixed wait or velocity threshold beyond these observations is a hypothesis to test, not part of task success."
+          },
+          "limitations": "Only successful release/settle trajectories are available; sustained stiction, bouncing out and regrasp failures are not represented. Learned hysteresis can be too conservative or can freeze the wrong belief. Compare a memoryless DP, a recurrent DP without separate containment/disengagement heads and this candidate at randomized outgoing-overlap entry times and perturbed release latency. Falsify benefit if readiness calibration or post-release object preservation does not improve, or if needless dwell increases without fewer transfer errors. A learned classifier is not proof of contact safety.",
+          "pipeline_implications": "Use causal 8-frame qpos/qvel, tcp_pose, both object poses/goals, past actions and role tokens. A recurrent belief encoder predicts attached, opening, released/settling and empty-retreat probabilities, plus two distinct heads: contract containment computed from current rotated cube corners and center z, and manipulation-readiness learned from future opening/co-motion loss and subsequent object persistence in training. Pseudo-label readiness using demonstration future finger expansion, object settling and TCP/object decoupling; mask ambiguous periods and never provide those futures at deployment. Condition an original-action H=16 diffusion denoiser on the belief; add CE/calibration losses, release-event hazard likelihood and a soft consistency penalty against re-closing during the demonstrated detached-retreat branch. Hysteresis is probabilistic persistence of the contact belief, not a scripted fixed delay; allow uncertainty updates from actual aperture and relative motion. Decode to bounded absolute joint/gripper targets with the global normalizer. At inference filter from current/past observations, sample actions, execute 1-2 steps near release and replan, continuing the learned retreat/hold after the success predicate if the caller needs a reusable empty-hand state. No timestamp or demo ID is an input. Expected effect is fewer premature successor switches and less close/open chatter without changing the contract's success definition.",
+          "rationale": "Demo10300 280 and 655 already have object centers near 0.0455 m, within the contract's 0.011 m z tolerance, but command remains -1 and fingers are about 0.0183 m. At 290 and 665 fingers are still opening while objects have settled near 0.036; TCP initially stays near 0.0453 before retreat. Demo10301 293 is only the first open command at a still-closed observed state. Demo10307 641/646 to 659/680 confirms the command-to-state lag and subsequent decoupling. Thus task truth, gripper command and usable manipulation interface are different quantities. Separating their temporal beliefs addresses handoff failures that neither geometric action decoding nor obstacle-aware ranking inherently resolves.",
+          "statement": "Containment is not disengagement: learn release hysteresis and separate task-success and empty-hand readiness beliefs. A recurrent event-conditioned DP should preserve placed objects and avoid premature next-skill control even when the formal goal becomes true before fingers open."
+        }
+      ],
+      "name": "Deliver a selected block into the tray with grasp and exit context",
+      "segmentation_rationale": "Group red and blue deliveries because the shared problem is moving a potentially not-yet-grasped selected cube into its assigned tray region and leaving a usable manipulation state. Each starts during aligned open-finger descent, not at an idealized fully lifted grasp: red starts 75,76,78,74,73,79,77,72,74,75,71,76 and blue starts 445,447,454,450,443,457,453,439,445,448,438,449. Measured TCP heights span 0.088-0.178 m, blocks are still at source z 0.020 m and fingers near 0.04 m. Include complete closing, vertical lift, early and full transfer, lowering, release and settling. Red segments stop only at the next block's high approach (415,418,427,420,414,428,424,408,416,419,407,420): red z about 0.036 m, fingers open, TCP z about 0.267 m above blue after retreat/traversal. They do not claim to complete the next grasp. Blue delivery segments retain all remaining actions through the supplied final observations, where both objects are contained, released and settled and TCP is open/high. Keeping the terminal holds supports idle behaviour instead of cropping at the first predicate satisfaction. Full rotated containment and z tolerance, rather than opening or clearance, determine formal completion. Individually inspected endpoints and intermediate observations support all these phase ranges. The three candidates intentionally differ in action representation/decoder, fixture-aware predictive computation, and temporal release/readiness inference; none is merely a paraphrase of the expert chronology.",
+      "segments": [
+        {
+          "start": 75,
+          "stop": 415,
+          "trajectory_id": "demo10300"
+        },
+        {
+          "start": 445,
+          "stop": 742,
+          "trajectory_id": "demo10300"
+        },
+        {
+          "start": 76,
+          "stop": 418,
+          "trajectory_id": "demo10301"
+        },
+        {
+          "start": 447,
+          "stop": 742,
+          "trajectory_id": "demo10301"
+        },
+        {
+          "start": 78,
+          "stop": 427,
+          "trajectory_id": "demo10302"
+        },
+        {
+          "start": 454,
+          "stop": 752,
+          "trajectory_id": "demo10302"
+        },
+        {
+          "start": 74,
+          "stop": 420,
+          "trajectory_id": "demo10303"
+        },
+        {
+          "start": 450,
+          "stop": 743,
+          "trajectory_id": "demo10303"
+        },
+        {
+          "start": 73,
+          "stop": 414,
+          "trajectory_id": "demo10304"
+        },
+        {
+          "start": 443,
+          "stop": 737,
+          "trajectory_id": "demo10304"
+        },
+        {
+          "start": 79,
+          "stop": 428,
+          "trajectory_id": "demo10305"
+        },
+        {
+          "start": 457,
+          "stop": 752,
+          "trajectory_id": "demo10305"
+        },
+        {
+          "start": 77,
+          "stop": 424,
+          "trajectory_id": "demo10306"
+        },
+        {
+          "start": 453,
+          "stop": 749,
+          "trajectory_id": "demo10306"
+        },
+        {
+          "start": 72,
+          "stop": 408,
+          "trajectory_id": "demo10307"
+        },
+        {
+          "start": 439,
+          "stop": 730,
+          "trajectory_id": "demo10307"
+        },
+        {
+          "start": 74,
+          "stop": 416,
+          "trajectory_id": "demo10308"
+        },
+        {
+          "start": 445,
+          "stop": 737,
+          "trajectory_id": "demo10308"
+        },
+        {
+          "start": 75,
+          "stop": 419,
+          "trajectory_id": "demo10309"
+        },
+        {
+          "start": 448,
+          "stop": 741,
+          "trajectory_id": "demo10309"
+        },
+        {
+          "start": 71,
+          "stop": 407,
+          "trajectory_id": "demo10310"
+        },
+        {
+          "start": 438,
+          "stop": 730,
+          "trajectory_id": "demo10310"
+        },
+        {
+          "start": 76,
+          "stop": 420,
+          "trajectory_id": "demo10311"
+        },
+        {
+          "start": 449,
+          "stop": 742,
+          "trajectory_id": "demo10311"
+        }
+      ],
+      "skill_id": "deliver_block",
+      "subgoal": "Finish acquisition if needed, carry the selected block above tray obstacles, lower it into its own marked region and preserve the other block. Learn release, settling and empty-hand retreat; if another block remains, continue the open approach toward it. Satisfy the supplied containment contract while exposing manipulation state separately from formal task success."
+    }
+  ]
+}

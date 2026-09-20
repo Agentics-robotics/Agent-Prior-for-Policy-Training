@@ -1,0 +1,1 @@
+These are the one-off scripts executed from experiments/exp2/maintenance during the authorized 2026-09-20 layout cleanup. Retained for provenance, not as supported rerun commands. The current read-only entry is python -m experiments.exp2.current. Do not rerun the migration.

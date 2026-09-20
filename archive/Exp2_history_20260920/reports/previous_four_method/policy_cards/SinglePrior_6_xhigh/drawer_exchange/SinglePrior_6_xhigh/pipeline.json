@@ -1,0 +1,12 @@
+{
+  "policy_id": "SinglePrior_6_xhigh",
+  "skill_id": "full_task",
+  "heuristic_index": 1,
+  "prior_summary": "Object/drawer-relative anticipation: shared object encoders and a causally predicted short-horizon relational future condition one learned action diffusion U-Net. A masked future-relation regression loss supervises the same anticipation features used by the denoiser.",
+  "applicable_conditions": "The complete drawer-exchange task with the supplied 47-dimensional world-state observations, two causal observation frames, moving drawer, two named blocks and their observed goal positions. All twelve complete training trajectories are retained, including approach, opening, both transfers, release and retreat transitions.",
+  "termination_guidance": "Use only the evaluator's simultaneous geometric success: drawer position strictly above 0.26 m, red fully contained on the pad with its specified height, and blue fully inside the drawer with its specified height. The policy has no termination controller and imposes no extra gripper-release, velocity, clearance or holding-time condition.",
+  "limitations": "Only twelve nearby successful layouts support the design. Relational forecasts approximate demonstrated continuation, not physics or a guaranteed plan; near-identical dwell states can remain ambiguous with two observations. The forecast is deterministic and can average possible futures. Absolute Panda joint targets are not made equivariant by relative geometry. No recovery guarantee, exact IK, collision guarantee, phase scheduler, test-layout information or rollout-based model selection is used.",
+  "config": {
+    "forecast_loss_weight": 0.1
+  }
+}

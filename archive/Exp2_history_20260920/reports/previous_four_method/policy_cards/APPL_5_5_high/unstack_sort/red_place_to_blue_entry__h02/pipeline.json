@@ -1,0 +1,21 @@
+{
+  "policy_id": "red_place_to_blue_entry__h02",
+  "skill_id": "red_place_to_blue_entry",
+  "heuristic_index": 2,
+  "prior_summary": "Release-reset prior implemented as a learned epsilon-predicting diffusion policy with a causal four-state phase latent for carry, descent/contact, open-release, and retreat/switch-to-blue. The phase latent and auxiliary gripper/red-future heads bias the model to release the red block at the red pad, leave it stable, retreat with open fingers, and then enter the blue acquisition/lift transition.",
+  "applicable_conditions": "Use when the observation history shows the red block being carried or already at the red goal while the blue block remains the next object. Causal cues are TCP pose, red/blue poses, red/blue goals, finger joint aperture and finger velocity in world metres/radians from the 47-dimensional state history.",
+  "termination_guidance": "A useful handoff is reached when red is on the red pad near z=0.02 m, the gripper has opened and retreated from red, and the TCP is either above/away from red or has moved to and lifted blue. The policy may be continued through the shared overlap until blue is grasped/lifted if the successor needs a blue-lift entry state.",
+  "limitations": "The model has no force/contact sensing, no inverse kinematics, no image encoder, and no hard guarantee that release will leave red stable under unobserved friction or wedging. Auxiliary labels are derived from state/action demonstrations and do not constitute a scripted controller.",
+  "config": {
+    "phase_latent": "four learned causal release-reset phases: carry, descend_contact, open_release, retreat_switch",
+    "condition_dimension": 256,
+    "feature_source": "shared-normalized two-step observation history plus world-frame relative TCP/object/goal and finger aperture cues",
+    "auxiliary_losses": {
+      "stage_cross_entropy_weight": 0.05,
+      "gripper_intent_bce_weight": 0.03,
+      "diffusion_clean_gripper_bce_weight": 0.03,
+      "action_conditioned_red_future_weight": 0.05
+    },
+    "normalization": "uses the assignment shared full-demonstration normalizer; no per-skill refit"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "policy_id": "red_buffer_to_goal_finish__h03",
+  "skill_id": "red_buffer_to_goal_finish",
+  "heuristic_index": 3,
+  "prior_summary": "Waypoint-chain transport prior implemented as a learned action diffusion model: a causal state encoder predicts progress through lift, high carry, descend, release and retreat plus relative task-space waypoints, and a Conditional U-Net denoises joint/gripper action chunks conditioned on that bottleneck.",
+  "applicable_conditions": "Use after the blue block is already at the blue goal and the red block must be moved from the buffer region to the red goal. The supported entries are the demonstrated transition states from the expanded slice: open high TCP after blue release, approach to red, or red already grasped/lifted. The workspace is obstacle-free and the model observes qpos, qvel, TCP pose, red/blue poses and goal coordinates in the world frame.",
+  "termination_guidance": "Continue until observations indicate red is low at the red goal, the gripper is open, and the TCP has retreated upward toward the demonstrated safe height near 0.30 m. The task success contract itself is red_at_goal and blue_at_goal; the retreat cue is a handoff and safety guide rather than an extra success predicate.",
+  "limitations": "The policy has no analytical IK, no image input and no explicit collision constraints. Waypoints are a learned conditioning representation for diffusion, not a scripted controller, and may fail outside the free-workspace top-down transport pattern or under large object/goal perturbations not represented in the data.",
+  "config": {
+    "architecture": "causal waypoint/progress encoder plus ConditionalUnet1D epsilon diffusion backbone",
+    "condition_dim": 256,
+    "waypoint_count": 5,
+    "waypoint_frame": "relative to current TCP, normalized by shared metre-scale constants [0.30, 0.30, 0.30]",
+    "phases": ["approach_or_open_to_red", "closed_grasp_or_initial_lift", "lifted_carry_toward_goal", "goal_descent_or_closed_at_goal", "released_and_retreating"],
+    "prior_loss_weights": {
+      "phase_cross_entropy": 0.02,
+      "progress_mse": 0.05,
+      "waypoint_mse": 0.10,
+      "x0_action_reconstruction": 0.02
+    },
+    "normalization": "uses the supplied shared M1_v2 full-demonstration normalizer; no per-skill refit",
+    "training_budget_updates": 20000
+  }
+}

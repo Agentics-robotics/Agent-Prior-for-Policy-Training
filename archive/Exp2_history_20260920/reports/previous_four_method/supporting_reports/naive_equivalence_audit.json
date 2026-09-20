@@ -1,0 +1,151 @@
+{
+  "api_requests": 0,
+  "checks": [
+    {
+      "action_encode_decode_max_error": 1.1920928955078125e-07,
+      "causal_histories_actions_masks_exactly_equal": true,
+      "checkpoint_sha256": "eac4a4476d2f1caff0ead47337eff21a03056c5348cda8b220b9d2079b124871",
+      "execution_slice": [
+        1,
+        9
+      ],
+      "final_optimizer_learning_rate": 0.0,
+      "full_DDPM100_samples_exactly_equal": true,
+      "full_trajectory_windows": 9237,
+      "non_scientific_config_differences": {
+        "checkpoint_every": {
+          "new": 2000,
+          "original": 5000
+        },
+        "seeds": {
+          "new": [
+            0
+          ],
+          "original": [
+            0,
+            1,
+            2
+          ]
+        }
+      },
+      "normalizer_equal_to_original_full_trajectory_fitter": true,
+      "passed": true,
+      "sample_exposures": 7680000,
+      "sample_max_error": 0.0,
+      "sampling_inputs": "First, middle and final training windows; CPU; identical final EMA and RNG.",
+      "task": "two_block_sort",
+      "training_updates": 60000
+    },
+    {
+      "action_encode_decode_max_error": 1.1920928955078125e-07,
+      "causal_histories_actions_masks_exactly_equal": true,
+      "checkpoint_sha256": "ad8ee8ff95cc2b745180201024d88022724098942af0d4c02530fbfaf2a7caac",
+      "execution_slice": [
+        1,
+        9
+      ],
+      "final_optimizer_learning_rate": 0.0,
+      "full_DDPM100_samples_exactly_equal": true,
+      "full_trajectory_windows": 12742,
+      "non_scientific_config_differences": {
+        "checkpoint_every": {
+          "new": 2000,
+          "original": 5000
+        },
+        "seeds": {
+          "new": [
+            0
+          ],
+          "original": [
+            0,
+            1,
+            2
+          ]
+        }
+      },
+      "normalizer_equal_to_original_full_trajectory_fitter": true,
+      "passed": true,
+      "sample_exposures": 7680000,
+      "sample_max_error": 0.0,
+      "sampling_inputs": "First, middle and final training windows; CPU; identical final EMA and RNG.",
+      "task": "buffer_swap",
+      "training_updates": 60000
+    },
+    {
+      "action_encode_decode_max_error": 8.940696716308594e-08,
+      "causal_histories_actions_masks_exactly_equal": true,
+      "checkpoint_sha256": "98215b169a5246928dc4f0993aa1dc8fdcd2e7164d6d884cd7fb3fd0753fbd8d",
+      "execution_slice": [
+        1,
+        9
+      ],
+      "final_optimizer_learning_rate": 0.0,
+      "full_DDPM100_samples_exactly_equal": true,
+      "full_trajectory_windows": 8729,
+      "non_scientific_config_differences": {
+        "checkpoint_every": {
+          "new": 2000,
+          "original": 5000
+        },
+        "seeds": {
+          "new": [
+            0
+          ],
+          "original": [
+            0,
+            1,
+            2
+          ]
+        }
+      },
+      "normalizer_equal_to_original_full_trajectory_fitter": true,
+      "passed": true,
+      "sample_exposures": 7680000,
+      "sample_max_error": 0.0,
+      "sampling_inputs": "First, middle and final training windows; CPU; identical final EMA and RNG.",
+      "task": "unstack_sort",
+      "training_updates": 60000
+    },
+    {
+      "action_encode_decode_max_error": 1.1920928955078125e-07,
+      "causal_histories_actions_masks_exactly_equal": true,
+      "checkpoint_sha256": "ba8b7152d864205c9a343bee45fc1c83e5aa5dff021f7023600559892de2a8f2",
+      "execution_slice": [
+        1,
+        9
+      ],
+      "final_optimizer_learning_rate": 0.0,
+      "full_DDPM100_samples_exactly_equal": true,
+      "full_trajectory_windows": 8897,
+      "non_scientific_config_differences": {
+        "checkpoint_every": {
+          "new": 2000,
+          "original": 5000
+        },
+        "seeds": {
+          "new": [
+            0
+          ],
+          "original": [
+            0,
+            1,
+            2
+          ]
+        }
+      },
+      "normalizer_equal_to_original_full_trajectory_fitter": true,
+      "passed": true,
+      "sample_exposures": 7680000,
+      "sample_max_error": 0.0,
+      "sampling_inputs": "First, middle and final training windows; CPU; identical final EMA and RNG.",
+      "task": "tray_pack",
+      "training_updates": 60000
+    }
+  ],
+  "limits": "Checks implementation equivalence and recorded configuration, not policy competence or causal explanations of failures. No additional test rollouts or tuning.",
+  "optimizer_updates": 0,
+  "passed": true,
+  "physical_steps": 0,
+  "reviewed_utc": "2026-09-16T16:42:58.475825+00:00",
+  "scientific_framework_unchanged": true
+}

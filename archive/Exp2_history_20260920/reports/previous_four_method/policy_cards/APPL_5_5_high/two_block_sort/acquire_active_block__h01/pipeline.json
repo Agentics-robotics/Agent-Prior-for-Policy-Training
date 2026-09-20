@@ -1,0 +1,19 @@
+{
+  "policy_id": "acquire_active_block__h01",
+  "skill_id": "acquire_active_block",
+  "heuristic_index": 1,
+  "prior_summary": "A learned DDPM action policy conditions its denoiser on active-object-relative features: TCP-to-selected-block, selected-block-to-goal, gripper state, qpos/qvel, and inactive-block context. The same encoder is used for red-first acquisition and blue-after-red acquisition; the active block is selected causally from the observed red-at-goal state rather than by a separate color-specific policy.",
+  "applicable_conditions": "Use when the two-block-sort state observations are available in world metres, the blocks are on or being lifted from the table, and the task order is red acquisition until the red block is placed on its pad, then blue acquisition. Demonstrated entries include an open gripper near 0.04 m per finger and a downward TCP either at home or retreating from the red goal.",
+  "termination_guidance": "Continue while the selected block is still near table height, the TCP has not reached the small demonstrated TCP-object lateral offset, or the fingers are not closing/closed. A useful handoff to delivery is when the active block is between the fingers, finger qpos are about 0.018-0.02 m, and the active block has begun lifting or is already near 0.28-0.29 m z in early carry.",
+  "limitations": "The active selection is a causal task-order adaptation for the provided interface, not a general scheduler. The model has no image encoder, no IK module, no analytic contact detector, and no recovery behavior for missed grasps, fallen blocks, severe collisions, or unseen object sizes. It predicts normalized absolute joint/gripper actions through diffusion and only uses geometry as learned conditioning and an auxiliary training loss.",
+  "config": {
+    "condition_dim": 192,
+    "prior_loss_weight": 0.02,
+    "red_done_xy_m": 0.075,
+    "red_done_z_m": 0.055,
+    "feature_dim_per_observation": 59,
+    "auxiliary_geometry_dim": 8,
+    "active_selector": "blue iff the latest observed red block is within red_done_xy_m laterally and red_done_z_m vertically of red_goal; otherwise red",
+    "normalization": "complete-demonstration shared normalizer supplied by the assignment; relative Cartesian features use shared tcp/red/blue position half-ranges"
+  }
+}

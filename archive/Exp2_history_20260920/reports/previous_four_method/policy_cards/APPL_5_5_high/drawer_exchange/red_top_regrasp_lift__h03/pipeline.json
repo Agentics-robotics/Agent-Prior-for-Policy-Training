@@ -1,0 +1,20 @@
+{
+  "policy_id": "red_top_regrasp_lift__h03",
+  "skill_id": "red_top_regrasp_lift",
+  "heuristic_index": 3,
+  "prior_summary": "Attachment-switch prior: a learned causal encoder infers free, contact, and carry probabilities from joint, TCP, red block, and drawer state history, then conditions a DDPM action denoiser for the expanded red top-regrasp and lift slice.",
+  "applicable_conditions": "Use after the drawer has been opened and the robot is either retreating/reorienting from the drawer-pull posture or approaching the red block for a top grasp. The observations should include qpos/qvel, TCP pose, red pose, drawer position, and gripper aperture; no image or force signal is assumed.",
+  "termination_guidance": "Continue until the causal observations show closed fingers, close and stable TCP-red offset, co-motion of TCP and red across the two-step history, and red height lifted to roughly 0.30 m; at that point the transport/place policy can take over.",
+  "limitations": "Attachment is inferred from state history and learned labels, not measured by force. The model does not implement IK, geometry constraints, image encoding, or a scripted controller. Recovery from a badly missed top pinch is only learned if represented in the demonstrations.",
+  "config": {
+    "condition_dim": 320,
+    "encoder_hidden": 256,
+    "mode_loss_weight": 0.05,
+    "attach_loss_weight": 0.05,
+    "lift_loss_weight": 0.02,
+    "rel_loss_weight": 0.01,
+    "gripper_consistency_weight": 0.01,
+    "mode_names": ["free_or_approach", "closed_contact", "carried_attachment"],
+    "feature_note": "Full two-step observations are normalized by the shared M1_v2 normalizer; additional relative TCP-red, finger, drawer, and red-goal features use broad metre/radian scales rather than per-skill refits."
+  }
+}

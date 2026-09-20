@@ -1,0 +1,32 @@
+{
+  "policy_id": "blue_acquire_transport__h01",
+  "skill_id": "blue_acquire_transport",
+  "heuristic_index": 1,
+  "prior_summary": "Identity-conditioned top-grasp reuse for the blue target: a learned DDPM action policy encodes blue as the active object, red as an already placed context object, and uses object-relative TCP, goal, lift, and finger cues to learn approach, closure, lift, and high carry toward the blue goal over the full expanded slice.",
+  "applicable_conditions": "Use when red has already been placed on or near the red goal, the blue block remains upright near the source at table height or is already in an early grasp/lift transition, and the causal state history provides qpos, qvel, TCP pose, red_pose, blue_pose, and both goal positions in world metres.",
+  "termination_guidance": "Continue until the blue block is grasped with a closed gripper and has been lifted and transported near or above the blue goal, or until a successor placement policy should take over for the final descent/release. Terminate early on observed loss of centering before closure, no blue lift after closure, or disturbance of the placed red block.",
+  "limitations": "The model uses only state observations and joint-action diffusion; it does not implement IK, hard collision constraints, image perception, or a scripted controller. Training support contains small source variation and assumes red was successfully placed before this skill. Recovery from a failed red placement or tipped blue block is not represented.",
+  "config": {
+    "condition_dim": 256,
+    "object_token_dim": 64,
+    "relative_feature_scales_m": {
+      "xy_position": 0.35,
+      "object_absolute": 0.5,
+      "z_lift": 0.3,
+      "history_delta": 0.05
+    },
+    "auxiliary_targets": [
+      "future_blue_z",
+      "future_blue_xy_error_to_goal",
+      "future_blue_lift_delta",
+      "future_tcp_minus_blue",
+      "future_lifted_and_closed_logit",
+      "future_closed_logit"
+    ],
+    "aux_regression_weight": 0.05,
+    "aux_classification_weight": 0.01,
+    "uses_shared_normalizer": true,
+    "expanded_slice_start": 330,
+    "expanded_slice_stop": 590
+  }
+}

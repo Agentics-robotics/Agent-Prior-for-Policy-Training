@@ -1,0 +1,24 @@
+{
+  "policy_id": "blue_to_goal_handoff__h03",
+  "entry_conditions": "This policy can be entered during the predecessor overlap after the red block has been released in the buffer, with the gripper open and the TCP high, or later while the TCP is descending to and closing on the blue block. Causal cues are the world-frame TCP pose, blue pose, red pose, qpos/qvel, and finger aperture: early entry has blue on the upper/red-goal region near z=0.02 m and fingers about 0.08 m total width, while later entry has TCP xy close to blue, TCP z near table height, and fingers closing or closed.",
+  "exit_conditions": "A useful exit begins once blue is placed at the blue goal on the table and the arm has left the blue carry/place mode. Conservative transfer is after an open/high retreat from the blue goal; later transfer is also supported when the TCP is near the buffered red block and the fingers are closing or the red block is already lifted. Observationally this corresponds to blue pose near [-0.35, -0.20, 0.02] m, and then either open fingers with high TCP or a red-handoff state with red z above the table and fingers near the closed width.",
+  "overlap_role": "The overlaps are part of the learned skill, not discarded tails. The entry overlap teaches approach and grasp of blue under timing uncertainty. The exit overlap teaches retreat from blue and the beginning of red reacquisition, so the selector can switch either after blue release or after the red handoff has become visible.",
+  "successor_readiness": "The successor should prefer states where blue_at_goal is true and the mode evidence is retreat or red_handoff rather than blue_carry or blue_place_release. Strong successor readiness is present when blue remains at the goal, the TCP is near the buffered red block, and the gripper is closing on red or red has been lifted; the successor should not take over during high blue transport or before blue has been released at its goal.",
+  "failure_signatures": "Potential failures include a mode posterior inconsistent with observations, such as carry-like actions while the blue block is on the table and the gripper is open, red-handoff actions before blue is at goal, skipped lift phases, premature lowering before the blue goal, or lingering closed fingers after the blue release. These signatures are cues for the inference agent, not hard safety predicates implemented inside the neural policy.",
+  "continuation_guidance": "If the policy is entered near index-320-like states, continue through blue approach, closing, lift, carry to the lower goal, lowering, release, and retreat. If it is entered around index-460-like states, continue through lift/carry/place. If blue is already placed but the TCP is still over the blue goal, continue until the arm is open/high or moving toward red. If the TCP is already near red or red is lifted, the policy may be continued briefly or handed to the successor depending on selector confidence.",
+  "limitations": "The handoff description is based on successful demonstrations and weak inferred modes. It is not proof of physical contact and does not include branching recovery after missed grasps or large object displacements. The learned model uses only proprioceptive and object-pose state channels; there are no images, hard constraints, IK, or scripted corrective behaviours.",
+  "evidence": [
+    {
+      "trajectory_id": "demo10100",
+      "indices": [320, 460, 500, 550, 600, 650, 700, 780, 860]
+    },
+    {
+      "trajectory_id": "demo10102",
+      "indices": [320, 460, 700, 860]
+    },
+    {
+      "trajectory_id": "demo10107",
+      "indices": [320, 460, 700, 860]
+    }
+  ]
+}

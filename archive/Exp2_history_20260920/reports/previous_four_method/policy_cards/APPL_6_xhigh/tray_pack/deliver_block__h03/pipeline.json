@@ -1,0 +1,50 @@
+{
+  "policy_id": "deliver_block__h03",
+  "skill_id": "deliver_block",
+  "heuristic_index": 3,
+  "prior_summary": "Containment is not disengagement. A learned two-frame recurrent contact belief with probabilistic phase persistence conditions an original-action diffusion policy. Separate containment, attachment and readiness predictions, future motion supervision, release-event survival likelihood and a detached-branch anti-reclosing loss distinguish closed-held goal entry from reusable empty-hand transitions.",
+  "applicable_conditions": "State-based Panda tray packing with the supplied world-frame object poses, goals, qpos, qvel and TCP poses, and the original joint/gripper controller. Covers every assigned expanded slice: open source approach, closing, lift, carry, lowering, release, settling, retreat and red-to-blue open approach. Partial-transition entries are supported by measured aperture, object/TCP relation, two-frame displacement and inferred intended/pending roles; no external role or past-action input is available.",
+  "termination_guidance": "Evaluate the supplied rotated-cube containment contract separately from manipulation readiness. Both goal predicates may hold before fingers open. The caller may stop immediately on contract success. For an empty-hand successor, continue lower/open/settle and retreat while attachment remains plausible; useful demonstrated red exits are open approaches above blue near TCP z 0.267 m, and final blue exits are open retreat/hold near z 0.3165 m. These are interface cues, not additional task-success predicates or automatic learned stopping rules.",
+  "limitations": "Only successful demonstrations are supplied. The fixed interface has history 2, no action history, no external role tokens, and execution chunks of 8; it cannot realize an eight-frame cross-call latch or 1-2-step adaptive execution. Beliefs are weakly supervised estimates, not measured contact, safety guarantees or validated calibration. Release timing in almost identical closed holds is partially unobservable. No recovery from prolonged stiction, bouncing out or failed grasp is established. No IK, image encoder, geometric action equivariance or hard collision constraint is implemented.",
+  "config": {
+    "representation": "Shared-normalized absolute seven-joint and gripper epsilon diffusion; no alternative action decoder",
+    "observation_history": 2,
+    "horizon": 16,
+    "execution_steps": 8,
+    "training_updates": 20000,
+    "normalization": "Use spec.normalizer unchanged, fitted on all complete original demonstrations",
+    "frame_feature_dimension": 118,
+    "frame_embedding_dimension": 160,
+    "belief_hidden_dimension": 192,
+    "condition_dimension": 256,
+    "belief_phases": ["acquisition_or_idle", "likely_attached", "opening", "released_or_settling_near_tcp", "placed_and_separated"],
+    "belief_heads": ["per_object_attachment", "per_object_contract_containment", "per_object_disengagement", "empty_hand_readiness", "inferred_intended_role", "inferred_pending_role", "15_slot_release_hazard", "16_slot_tcp_objects_fingers_displacement"],
+    "backbone": "appl.public.DiffusionBackbone with the unchanged fixed training configuration",
+    "missing_history_probability": 0.15,
+    "loss_weights": {
+      "diffusion_epsilon": 1.0,
+      "phase_nll": 0.10,
+      "attachment_bce": 0.05,
+      "containment_bce": 0.05,
+      "readiness_bce": 0.08,
+      "brier_calibration": 0.02,
+      "role_ce": 0.025,
+      "release_hazard_likelihood": 0.03,
+      "future_displacement": 0.10,
+      "future_relative_motion": 0.05,
+      "belief_persistence": 0.02,
+      "detached_branch_no_reclose": 0.05
+    },
+    "readiness_label_parameters_m": {
+      "near_tcp_radius": 0.045,
+      "closed_per_finger_upper": 0.024,
+      "wide_per_finger_lower": 0.035,
+      "settled_center_z_error": 0.003,
+      "future_object_persistence_radius": 0.004,
+      "future_tcp_motion_lower": 0.003,
+      "relative_clearance_proxy": 0.006
+    },
+    "selection": "Last EMA at predeclared fixed budget; no performance-based selection",
+    "segmentation": "All 24 assigned M1_v2 expanded deliver_block slices, unchanged"
+  }
+}
