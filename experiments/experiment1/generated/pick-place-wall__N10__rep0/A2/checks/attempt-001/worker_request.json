@@ -1,0 +1,418 @@
+{
+  "environment": {
+    "CUDA_CACHE_DISABLE": "1",
+    "CUDA_DEVICE_ORDER": "PCI_BUS_ID",
+    "CUDA_VISIBLE_DEVICES": "",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "MKL_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PATH": "/usr/bin:/bin",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONUNBUFFERED": "1",
+    "TMPDIR": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/experiments/experiment1/generated/pick-place-wall__N10__rep0/A2/checks/attempt-001",
+    "XDG_CACHE_HOME": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/experiments/experiment1/generated/pick-place-wall__N10__rep0/A2/checks/attempt-001/cache"
+  },
+  "gpu": null,
+  "handler": "validate",
+  "output_dir": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/experiments/experiment1/generated/pick-place-wall__N10__rep0/A2/checks/attempt-001",
+  "payload": {
+    "baseline_system": null,
+    "candidate_dir": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/experiments/experiment1/generated/pick-place-wall__N10__rep0/A2/work",
+    "candidate_hashes": {
+      "candidate.py": "46269888efc364187546756f1b9823394a0b5538277dab12eb4123a45c17dc8d",
+      "config.json": "7c6db69d91a8b55c5d19c1b831aa96e69aed91dd96df6a09582964c5e330c8d8",
+      "design.json": "a98579ec43d77402964c2e61d102f950130f7d233c65fdd440bdf420def4fffd"
+    },
+    "common_spec": {
+      "action_schema": {
+        "control_dt_seconds": 0.0125,
+        "control_frequency_hz": 80.0,
+        "dim": 4,
+        "end_effector_rotation": "fixed native orientation",
+        "fields": [
+          "world_dx",
+          "world_dy",
+          "world_dz",
+          "gripper"
+        ],
+        "gripper_actuator_controls": "[action[3], -action[3]]",
+        "high": [
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "low": [
+          -1.0,
+          -1.0,
+          -1.0,
+          -1.0
+        ],
+        "native_xyz_scale_m": 0.01,
+        "world_clip": "native action cube after candidate decoding"
+      },
+      "dependencies": {
+        "metaworld": "3.1.1",
+        "mujoco": "3.3.0",
+        "numpy": "2.2.6"
+      },
+      "distribution": {
+        "C_cells": [
+          "LH",
+          "HL"
+        ],
+        "E_cells": [
+          "LL",
+          "LH",
+          "HL",
+          "HH"
+        ],
+        "E_definition": "Both factor values are sampled in extrap_low/extrap_high outside training intervals; all four sign cells balanced.",
+        "balanced_training_sequence": [
+          "LL",
+          "HH",
+          "LL",
+          "HH",
+          "LL",
+          "HH",
+          "LL",
+          "HH",
+          "LL",
+          "HH",
+          "LL",
+          "HH",
+          "LL",
+          "HH",
+          "LL",
+          "HH",
+          "LL",
+          "HH",
+          "LL",
+          "HH"
+        ],
+        "factors": {
+          "a": {
+            "extrap_high": [
+              0.04,
+              0.05
+            ],
+            "extrap_low": [
+              -0.05,
+              -0.04
+            ],
+            "high": [
+              0.015,
+              0.03
+            ],
+            "low": [
+              -0.03,
+              -0.015
+            ],
+            "name": "object_x",
+            "units": "m"
+          },
+          "b": {
+            "extrap_high": [
+              0.04,
+              0.05
+            ],
+            "extrap_low": [
+              -0.05,
+              -0.04
+            ],
+            "high": [
+              0.015,
+              0.03
+            ],
+            "low": [
+              -0.03,
+              -0.015
+            ],
+            "name": "goal_x",
+            "units": "m"
+          }
+        },
+        "nuisance_ranges": {
+          "goal_y": [
+            0.85,
+            0.9
+          ],
+          "goal_z": [
+            0.12,
+            0.25
+          ],
+          "object_y": [
+            0.6,
+            0.65
+          ],
+          "object_z": 0.015
+        },
+        "reset_range_extension": "none; native bounds, or previously calibrated Round 2 cabinet extension",
+        "train_cells": [
+          "LL",
+          "HH"
+        ],
+        "version": "round3-layout-v1"
+      },
+      "hash": "c7b4e27811eb7f1c50e7878dc6f089acc74105637491986dec9f249d303438fc",
+      "historical_exposure": "Shared task semantics and raw support originate in historical development; fresh evaluation seeds do not constitute unseen tasks.",
+      "implementation_hashes": {
+        "distribution": "4183b28ad75aa87e7af7de061824370f11926df938d9e2abfe1fda9264b3399e",
+        "geometry": "34eedfa53c72e99102762c43e047641a097a9c3650601dcce9ef0b524427dbb4",
+        "native_control": "4282580b80befc557f67d25acffffec737ad0dae2c440601be76fc09139f351d",
+        "native_task": "723a32b049557b6daf3bd44c65527f185a4ff4ef2ed216bd06887516efdfe10e",
+        "native_xml": "2297248460e449b79cc6ec78771ac1a65b35eee080eb74425443b196ea378688",
+        "snapshot": "900966bf1dc18c98a98bc4f628c1e5fb5ad89643202fa1c49ef32ddacf205b09",
+        "task_reset": "cf9884aab05f89b61c6272a0f2ca52c8a639cb3c125301c0d38a46faad483cc4"
+      },
+      "max_steps": 500,
+      "native_id": "pick-place-wall-v3",
+      "observation_schema": {
+        "all_methods_receive_identical_raw_fields": true,
+        "dp_history": "two whole observations, initial repeated",
+        "extra_physical_pose_channels": "ring body center for assembly; pegHead site for peg-insert-side; same declared channel for B0 and all candidates",
+        "fields": [
+          {
+            "name": "current.hand_xyz",
+            "slice": [
+              0,
+              3
+            ],
+            "units": "m"
+          },
+          {
+            "name": "current.gripper",
+            "slice": [
+              3,
+              4
+            ],
+            "units": "unitless aperture / .1 m"
+          },
+          {
+            "name": "current.object_xyz",
+            "slice": [
+              4,
+              7
+            ],
+            "units": "m"
+          },
+          {
+            "name": "current.object_quaternion",
+            "slice": [
+              7,
+              11
+            ],
+            "units": "unit quaternion"
+          },
+          {
+            "name": "current.object2_xyz",
+            "slice": [
+              11,
+              14
+            ],
+            "units": "m or absent zeros"
+          },
+          {
+            "name": "current.object2_quaternion",
+            "slice": [
+              14,
+              18
+            ],
+            "units": "unit quaternion or absent zeros"
+          },
+          {
+            "name": "previous.hand_xyz",
+            "slice": [
+              18,
+              21
+            ],
+            "units": "m"
+          },
+          {
+            "name": "previous.gripper",
+            "slice": [
+              21,
+              22
+            ],
+            "units": "unitless aperture / .1 m"
+          },
+          {
+            "name": "previous.object_xyz",
+            "slice": [
+              22,
+              25
+            ],
+            "units": "m"
+          },
+          {
+            "name": "previous.object_quaternion",
+            "slice": [
+              25,
+              29
+            ],
+            "units": "unit quaternion"
+          },
+          {
+            "name": "previous.object2_xyz",
+            "slice": [
+              29,
+              32
+            ],
+            "units": "m or absent zeros"
+          },
+          {
+            "name": "previous.object2_quaternion",
+            "slice": [
+              32,
+              36
+            ],
+            "units": "unit quaternion or absent zeros"
+          },
+          {
+            "name": "goal_xyz",
+            "slice": [
+              36,
+              39
+            ],
+            "units": "m"
+          },
+          {
+            "name": "wall_center_xyz",
+            "slice": [
+              39,
+              42
+            ],
+            "units": "m"
+          },
+          {
+            "name": "wall_half_size_xyz",
+            "slice": [
+              42,
+              45
+            ],
+            "units": "m"
+          }
+        ],
+        "frame": "world; native current18+previous18+goal3",
+        "native_history_reset": "current repeated as previous",
+        "object2_present": false,
+        "object_point": "objGeom center",
+        "policy": "state-input",
+        "quaternion_order": "xyzw",
+        "raw_dim": 45,
+        "runtime_oracles_provided": false,
+        "version": "round3-common-observation-v1"
+      },
+      "schema_version": "experiment1.common_spec.v1",
+      "success_hold_steps": 1,
+      "success_semantics": "unchanged public task evaluator; runner stops on success, termination or truncation; any invalid joint invalidates the episode",
+      "task": "pick-place-wall"
+    },
+    "config": {
+      "branch_dim": 32,
+      "gate_floor": 0.05,
+      "hidden_dim": 96,
+      "lift_action_threshold": 0.5,
+      "lift_lateral_limit": 0.2,
+      "metric_scale_m": 0.1,
+      "motion_scale_m": 0.01,
+      "phase_hidden_dim": 64,
+      "phase_loss_weight": 0.1,
+      "world_scale_m": 0.5
+    },
+    "entrypoint": "candidate:build_design",
+    "result_path": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/experiments/experiment1/generated/pick-place-wall__N10__rep0/A2/checks/attempt-001/contract_checks.json",
+    "support_manifest": {
+      "n_demos": 10,
+      "phase": "support",
+      "records": [
+        {
+          "episode_id": "r3_pick-place-wall_train_IID_000_31000000",
+          "path": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/archive/legacy_rounds/round3/repository/round3/data/pick-place-wall/train20/r3_pick-place-wall_train_IID_000_31000000.npz",
+          "sha256": "79800928ed795f02b1e074f8e8146ed775f6d87bc8abed32774183ae1dff9e38"
+        },
+        {
+          "episode_id": "r3_pick-place-wall_train_IID_001_31000100",
+          "path": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/archive/legacy_rounds/round3/repository/round3/data/pick-place-wall/train20/r3_pick-place-wall_train_IID_001_31000100.npz",
+          "sha256": "42b43a5d801e1a004b4752ce157c8654e84638a0781a42caf2b455b14710d994"
+        },
+        {
+          "episode_id": "r3_pick-place-wall_train_IID_002_31000200",
+          "path": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/archive/legacy_rounds/round3/repository/round3/data/pick-place-wall/train20/r3_pick-place-wall_train_IID_002_31000200.npz",
+          "sha256": "14c6d220950d5508b960fa9eca4398102a614b650d6aa4de963e827d1094d475"
+        },
+        {
+          "episode_id": "r3_pick-place-wall_train_IID_003_31000300",
+          "path": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/archive/legacy_rounds/round3/repository/round3/data/pick-place-wall/train20/r3_pick-place-wall_train_IID_003_31000300.npz",
+          "sha256": "ca1ef31d25d92bebe93a8bceffb182fb495c99079ed6ff9a05162d969f29d235"
+        },
+        {
+          "episode_id": "r3_pick-place-wall_train_IID_004_31000400",
+          "path": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/archive/legacy_rounds/round3/repository/round3/data/pick-place-wall/train20/r3_pick-place-wall_train_IID_004_31000400.npz",
+          "sha256": "5b2c0636eda73d6f7fc90c1c123774307769c7bac85aea7f46cfaaaa79ea34e9"
+        },
+        {
+          "episode_id": "r3_pick-place-wall_train_IID_005_31000500",
+          "path": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/archive/legacy_rounds/round3/repository/round3/data/pick-place-wall/train20/r3_pick-place-wall_train_IID_005_31000500.npz",
+          "sha256": "180b3194ec51181d2adb147a95136ec8da11ad598498cad2985e28121d2bcfe5"
+        },
+        {
+          "episode_id": "r3_pick-place-wall_train_IID_006_31000600",
+          "path": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/archive/legacy_rounds/round3/repository/round3/data/pick-place-wall/train20/r3_pick-place-wall_train_IID_006_31000600.npz",
+          "sha256": "27f983b32e2f7d750a897001ee657db947aa3ed8e3354f595fb0b3b39b393efd"
+        },
+        {
+          "episode_id": "r3_pick-place-wall_train_IID_007_31000700",
+          "path": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/archive/legacy_rounds/round3/repository/round3/data/pick-place-wall/train20/r3_pick-place-wall_train_IID_007_31000700.npz",
+          "sha256": "cf668df4659ed626398c3ccb877d3525f1cd8bee945286cb0ed5c8824ad2d812"
+        },
+        {
+          "episode_id": "r3_pick-place-wall_train_IID_008_31000800",
+          "path": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/archive/legacy_rounds/round3/repository/round3/data/pick-place-wall/train20/r3_pick-place-wall_train_IID_008_31000800.npz",
+          "sha256": "de0df15898471eeffc78caf2880fbf09aae36ffb698d2e686acc4b78d7214ea9"
+        },
+        {
+          "episode_id": "r3_pick-place-wall_train_IID_009_31000900",
+          "path": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/archive/legacy_rounds/round3/repository/round3/data/pick-place-wall/train20/r3_pick-place-wall_train_IID_009_31000900.npz",
+          "sha256": "0b45f01febd0b3e5adc427ba6fede92c35b9c8988f9807a7983278acaf0f0bd0"
+        }
+      ]
+    }
+  },
+  "read_only_paths": [
+    "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/experiments/experiment1/generated/pick-place-wall__N10__rep0/A2/work",
+    "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/archive/legacy_rounds/round3/repository/round3/data/pick-place-wall/train20/r3_pick-place-wall_train_IID_000_31000000.npz",
+    "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/archive/legacy_rounds/round3/repository/round3/data/pick-place-wall/train20/r3_pick-place-wall_train_IID_001_31000100.npz",
+    "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/archive/legacy_rounds/round3/repository/round3/data/pick-place-wall/train20/r3_pick-place-wall_train_IID_002_31000200.npz",
+    "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/archive/legacy_rounds/round3/repository/round3/data/pick-place-wall/train20/r3_pick-place-wall_train_IID_003_31000300.npz",
+    "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/archive/legacy_rounds/round3/repository/round3/data/pick-place-wall/train20/r3_pick-place-wall_train_IID_004_31000400.npz",
+    "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/archive/legacy_rounds/round3/repository/round3/data/pick-place-wall/train20/r3_pick-place-wall_train_IID_005_31000500.npz",
+    "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/archive/legacy_rounds/round3/repository/round3/data/pick-place-wall/train20/r3_pick-place-wall_train_IID_006_31000600.npz",
+    "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/archive/legacy_rounds/round3/repository/round3/data/pick-place-wall/train20/r3_pick-place-wall_train_IID_007_31000700.npz",
+    "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/archive/legacy_rounds/round3/repository/round3/data/pick-place-wall/train20/r3_pick-place-wall_train_IID_008_31000800.npz",
+    "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/archive/legacy_rounds/round3/repository/round3/data/pick-place-wall/train20/r3_pick-place-wall_train_IID_009_31000900.npz",
+    "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/src/experiment1/__init__.py",
+    "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/src/experiment1/contracts.py",
+    "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/src/experiment1/learning.py",
+    "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/src/experiment1/plugin_validation.py",
+    "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/src/experiment1/isolation.py",
+    "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/src/relative_dp/__init__.py",
+    "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/src/relative_dp/model.py",
+    "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/src/relative_dp/train.py",
+    "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/src/relative_dp/dataset.py",
+    "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/src/relative_dp/config.py",
+    "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/src/relative_dp/representation.py",
+    "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/src/relative_dp/utils.py",
+    "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/src/relative_dp/vendor/__init__.py",
+    "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/src/relative_dp/vendor/diffusion_policy/__init__.py",
+    "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/src/relative_dp/vendor/diffusion_policy/conditional_unet1d.py",
+    "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/src/relative_dp/vendor/diffusion_policy/conv1d_components.py",
+    "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/src/relative_dp/vendor/diffusion_policy/positional_embedding.py"
+  ],
+  "timeout_seconds": 120,
+  "write_dirs": [
+    "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/experiments/experiment1/generated/pick-place-wall__N10__rep0/A2/checks/attempt-001"
+  ]
+}

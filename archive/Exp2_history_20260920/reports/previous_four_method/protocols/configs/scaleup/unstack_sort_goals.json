@@ -1,0 +1,38 @@
+{
+  "coordinate_frame": "world",
+  "description": "Separate the initially stacked blocks, with red above blue, and place each block on its own marked pad.",
+  "drawer_channels": "No drawer in this task: drawer_position and drawer_velocity are fixed zero compatibility channels.",
+  "fixtures": [],
+  "full_rotated_xy_containment": true,
+  "gripper_release_required": false,
+  "half_xy_m": [
+    0.06,
+    0.06
+  ],
+  "object_half_m": 0.02,
+  "predicates": [
+    "red_at_goal",
+    "blue_at_goal"
+  ],
+  "required_observations": 1,
+  "schema": "appl.scaleup.goals.v1",
+  "success_expression": "red_at_goal AND blue_at_goal",
+  "sustained_hold_required": false,
+  "targets": {
+    "blue": [
+      -0.24,
+      0.25,
+      0.02
+    ],
+    "red": [
+      -0.24,
+      -0.25,
+      0.02
+    ]
+  },
+  "task_id": "unstack_sort",
+  "tcp_clearance_required": false,
+  "units": "metres",
+  "velocity_threshold_required": false,
+  "z_tolerance_m": 0.011
+}

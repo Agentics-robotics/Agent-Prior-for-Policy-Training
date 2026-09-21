@@ -1,0 +1,72 @@
+{
+  "policy_id": "deliver_block__h01",
+  "skill_id": "deliver_block",
+  "heuristic_index": 1,
+  "prior_summary": "Move the payload rather than only the TCP. A learned goal-relative TCP path latent with continuous rotations and gripper commands is conditioned on causal TCP-to-object transforms and attachment confidence. A local learned inverse-dynamics decoder supplies bounded normalized joint proposals to the joint-action DDPM denoiser. Future-path supervision, attached-payload consistency and a differentiable denoised-action/path cycle train the geometry. The mandatory sampler remains in joint-action space; this is an explicitly documented geometric-latent adaptation, not a separate Cartesian DDPM or exact IK.",
+  "applicable_conditions": "The demonstrated Panda, absolute joint-target controller, world-frame state observations and top-down tray placements, including both full expanded occurrences: open descent, closing, lift, carry, lowering, opening, settling, empty retreat and red-to-blue open approach. Causal nearest-object roles and both goal states substitute for an unavailable external payload token. Supported modest pose and grasp-offset changes only; intended identity must be unambiguous from state.",
+  "termination_guidance": "Formal completion is exactly red_at_goal AND blue_at_goal under the supplied rotated-containment and height contract; it does not require release or clearance. For useful manipulation handoff, inspect actual fingers, object height and TCP/object co-motion separately. Continue through late lowering/opening when still attached, or transfer within the trained overlap to acquisition with the actual two-state history. After red settles near z=0.036 m and fingers open toward 0.04 m per finger, the model learns empty retreat and approach toward blue near TCP z=0.267 m. After blue it learns empty retreat toward z=0.3165 m and hold. These are support cues, not a prescribed schedule or hard success gates.",
+  "limitations": "Fixed H=16 joint-action DDPM with execution chunks of eight, not the heuristic's proposed one-to-two-step near-placement resampling. Only two observations and no past commands, explicit task token, force/contact sensor, FK, IK or images are supplied. Attachment and roles are causal geometric estimates, not verified contact or calibrated uncertainty. The score can use world/proprioceptive context as well as geometry; exact Cartesian-only factorization and exact invariance are not claimed. No collision avoidance, hard smoothness, recovery or rotational generalization guarantee. Interface checking is not performance evidence.",
+  "config": {
+    "mechanism": "attachment-conditioned Cartesian path latent and learned local inverse dynamics inside joint-action epsilon diffusion",
+    "scope": "all 24 assigned expanded slices, all phases, unchanged masks and shared normalization",
+    "representation": {
+      "sampler_space": "eight shared-normalized original joint/gripper actions",
+      "path_space": "three TCP translations relative to a causal soft goal anchor, six world rotation components, one gripper command",
+      "path_translation_scale": "the complete-demonstration shared TCP XYZ half-ranges, without a derived-path fit",
+      "rotation": "quaternion-wxyz to sign-invariant matrices; first two columns with Gram-Schmidt reconstruction",
+      "causal_roles": "soft proximity roles for both objects plus goal-completion and pending-object cues",
+      "attachment": "two-state closure, proximity, stable relative transform and elevated or moving-together evidence"
+    },
+    "architecture": {
+      "context_input_dimension": 159,
+      "context_dimension": 128,
+      "path_width": 128,
+      "path_block_dilations": [1, 2, 4, 1],
+      "decoder_width": 128,
+      "decoder_block_dilations": [1, 2, 1],
+      "score_condition_dimension": 256,
+      "score_backbone": "public Conditional U-Net with fixed recipe widths 128/256/512",
+      "joint_proposal_bounds": "tanh about shared-normalized current-q anchor; final action bounds also supplied by fixed DDPM clipping"
+    },
+    "loss_weights": {
+      "epsilon": 1.0,
+      "noisy_action_path_supervision": 1.0,
+      "clean_action_path_supervision": 0.5,
+      "teacher_path_inverse_reconstruction": 0.5,
+      "predicted_path_action_reconstruction": 0.5,
+      "demonstrated_joint_increment_reconstruction": 0.1,
+      "attached_payload_consistency": 2.0,
+      "denoised_action_path_cycle": 0.2,
+      "denoised_action_payload_cycle": 1.0
+    },
+    "loss_details": {
+      "path_error": "mean translation squared error + 0.1 mean rotation-six squared error + 0.25 gripper squared error",
+      "payload_error": "mean goal-relative payload-position squared error in shared TCP scales + 0.1 mean rotation-matrix squared error",
+      "noisy_auxiliary_reliability": "0.25 + 0.75 * alpha_bar",
+      "cycle_reliability": "alpha_bar squared; auxiliary clean-action estimates clipped to [-1.25,1.25]",
+      "padding": "future_mask times action mask for future-derived losses; paired valid masks for increments; no cross-slice target access"
+    },
+    "fixed_training": {
+      "seed": 0,
+      "updates": 20000,
+      "batch_size": 128,
+      "horizon": 16,
+      "observation_steps": 2,
+      "execution_steps": 8,
+      "ddpm_train_steps": 100,
+      "ddpm_inference_steps": 100,
+      "learning_rate": 0.0001,
+      "weight_decay": 0.000001,
+      "ema_decay": 0.999,
+      "warmup_steps": 500,
+      "selection": "last EMA at predeclared budget"
+    },
+    "normalizer_identity": "874039c9e091b43eacce196d1283f9944073808a6049a059b2e07938248a7ce8",
+    "unimplemented_original_proposals": [
+      "independent DDPM sampling of Cartesian path coordinates",
+      "external payload/pending token and past-command history",
+      "adaptive execution of one or two actions near placement",
+      "exact kinematics or off-manifold correction"
+    ]
+  }
+}

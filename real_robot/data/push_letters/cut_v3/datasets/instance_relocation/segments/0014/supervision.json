@@ -1,0 +1,40 @@
+{
+  "boundary_evidence_indices": [
+    1439,
+    1440,
+    1800,
+    1899,
+    1900
+  ],
+  "condition_evidence_indices": [
+    1440,
+    1800,
+    1899
+  ],
+  "deployment_condition_source": "Common instance placement call; internal tool-contact selection can use a visible inner boundary.",
+  "label_derivation": "G at 1899, goal box [590,148,713,252]. Select the D-like single-hole piece initially at lower-left third-preview (158,274).",
+  "merge_check": "I before and O after change instance; later b_d_align has a distinct D pose goal.",
+  "objective": "Engage D's opening and transport the piece from lower-left to the upper-right temporary location.",
+  "rationale": "1800 wrist/third supports D-hole engagement and transport; 1899 shows upper D and withdrawn tool.",
+  "segment_id": "b_d_stage",
+  "split_check": "One instance transport plus approach/withdrawal; inner-hole contact is not a second task.",
+  "start": 1440,
+  "stop": 1900,
+  "supervised_start": 1440,
+  "supervised_stop": 1900,
+  "supervision_exclusions": [
+    {
+      "reason": "I release/D approach uncertainty.",
+      "start": 1440,
+      "stop": 1470
+    },
+    {
+      "reason": "D release/O approach uncertainty.",
+      "start": 1870,
+      "stop": 1900
+    }
+  ],
+  "training_condition": "D-like instance; staging placement G(1899).",
+  "trajectory_id": "episode_2026091922062101",
+  "uncertainty": "Possible neighboring contact near O is not a multi-object supervision assignment. No force/contact labels are claimed."
+}

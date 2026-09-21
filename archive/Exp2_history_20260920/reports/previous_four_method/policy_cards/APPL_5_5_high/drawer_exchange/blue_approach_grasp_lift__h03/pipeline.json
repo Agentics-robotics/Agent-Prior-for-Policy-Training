@@ -1,0 +1,17 @@
+{
+  "policy_id": "blue_approach_grasp_lift__h03",
+  "skill_id": "blue_approach_grasp_lift",
+  "heuristic_index": 3,
+  "prior_summary": "Learn a causal blue-attachment latent from qpos/qvel, TCP pose, blue pose and relative motion, inject it into the diffusion U-Net condition, and supervise it from future lift/contact evidence during training.",
+  "applicable_conditions": "Use when the robot is leaving the red-pad area or is already above/near the blue block with an open or closing gripper, and the state observation includes reliable finger positions, TCP pose and blue block pose in world coordinates.",
+  "termination_guidance": "Continue until the blue block is visibly carried with the gripper closed and the blue center is lifted well above the table, approximately z greater than 0.20 m or near the observed handoff height around 0.28 m, with small TCP-blue relative motion.",
+  "limitations": "The model has no explicit inverse kinematics, no image encoder and no recovery behavior for missed grasps or slipped blue blocks. Attachment is a learned latent supervised from demonstrations, not a hard contact detector.",
+  "config": {
+    "condition_dim": 256,
+    "encoder_hidden_dim": 256,
+    "attachment_loss_weight": 0.05,
+    "gripper_phase_loss_weight": 0.015,
+    "relative_feature_design": "shared-normalizer observation history plus world-frame TCP-blue, TCP-red, object-goal, drawer-center, finger-width and short-history motion features",
+    "attachment_target_rule": "training-only label from closed fingers, TCP-blue proximity, future blue height increase and stable TCP-blue transform within the sampled future window"
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "archive_sha256": "5080cb3d8adbbaf6cc1b00064ddc6f868493b329ab4c2158784f3694639f4ca3",
+  "relocated_root": "/tmp/push-deployment-relocated-k1lb5_nu/push_v1_bundle",
+  "returncode": 0,
+  "stdout": "{\"root\": \"/tmp/push-deployment-relocated-k1lb5_nu/push_v1_bundle\", \"models\": [{\"policy_id\": \"contour_push\", \"ready\": {\"status\": \"ready\", \"policy_id\": \"contour_push\", \"device\": {\"physical_gpu\": 2, \"uuid\": \"GPU-7a6705f2-1132-637d-000e-c94d37e2f0a2\", \"logical_gpu\": 0, \"minor\": 1}, \"checkpoint_sha256\": \"396822bbccaa7c5247910f7f9ed5aafcf929dcd2f1b03fc23c9efeaad94c4704\", \"hardware_io\": false}, \"empty_observation_refused\": true, \"unverified_controller_refused\": true, \"logs\": \"/tmp/push-contour_push-ga7s_cr7\"}, {\"policy_id\": \"visual_push\", \"ready\": {\"status\": \"ready\", \"policy_id\": \"visual_push\", \"device\": {\"physical_gpu\": 2, \"uuid\": \"GPU-7a6705f2-1132-637d-000e-c94d37e2f0a2\", \"logical_gpu\": 0, \"minor\": 1}, \"checkpoint_sha256\": \"7b33d10c41f2706816d9f7c3221b1bc8b4026fd680288ca77c871f301aa39aa4\", \"hardware_io\": false}, \"empty_observation_refused\": true, \"unverified_controller_refused\": true, \"logs\": \"/tmp/push-visual_push-nmgwbi05\"}], \"robot_actions_executed\": 0}\n",
+  "stderr": "",
+  "checkpoint_bytes": 51025976,
+  "training_runs_present": false,
+  "original_data_reader_present": false,
+  "API_calls": 0,
+  "optimizer_updates": 0,
+  "performance_evaluation": false,
+  "result": {
+    "root": "/tmp/push-deployment-relocated-k1lb5_nu/push_v1_bundle",
+    "models": [
+      {
+        "policy_id": "contour_push",
+        "ready": {
+          "status": "ready",
+          "policy_id": "contour_push",
+          "device": {
+            "physical_gpu": 2,
+            "uuid": "GPU-7a6705f2-1132-637d-000e-c94d37e2f0a2",
+            "logical_gpu": 0,
+            "minor": 1
+          },
+          "checkpoint_sha256": "396822bbccaa7c5247910f7f9ed5aafcf929dcd2f1b03fc23c9efeaad94c4704",
+          "hardware_io": false
+        },
+        "empty_observation_refused": true,
+        "unverified_controller_refused": true,
+        "logs": "/tmp/push-contour_push-ga7s_cr7"
+      },
+      {
+        "policy_id": "visual_push",
+        "ready": {
+          "status": "ready",
+          "policy_id": "visual_push",
+          "device": {
+            "physical_gpu": 2,
+            "uuid": "GPU-7a6705f2-1132-637d-000e-c94d37e2f0a2",
+            "logical_gpu": 0,
+            "minor": 1
+          },
+          "checkpoint_sha256": "7b33d10c41f2706816d9f7c3221b1bc8b4026fd680288ca77c871f301aa39aa4",
+          "hardware_io": false
+        },
+        "empty_observation_refused": true,
+        "unverified_controller_refused": true,
+        "logs": "/tmp/push-visual_push-nmgwbi05"
+      }
+    ],
+    "robot_actions_executed": 0
+  },
+  "status": "passed"
+}

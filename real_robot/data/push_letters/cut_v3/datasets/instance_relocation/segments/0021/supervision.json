@@ -1,0 +1,34 @@
+{
+  "boundary_evidence_indices": [
+    7299,
+    7300,
+    7350,
+    7729
+  ],
+  "condition_evidence_indices": [
+    7300,
+    7350,
+    7729
+  ],
+  "deployment_condition_source": "HLA supplies H-instance correction goal and subsequently verifies the entire requested word/layout.",
+  "label_derivation": "G at 7729, goal box [352,370,529,493]. Select the lower-left crossbar/H-like track previously staged by b_h_stage.",
+  "merge_check": "Previous I is a different selected instance. Do not invent an unrecorded successor or task-completion phase.",
+  "objective": "Re-approach staged H and adjust it right/up near I, then stop/withdraw.",
+  "rationale": "7300 approach, wrist/third 7350 local target and 7729 final placement/stationary command support the last local goal.",
+  "segment_id": "b_h_align",
+  "split_check": "Fixed H goal throughout final correction; episode end supplies no additional success semantics.",
+  "start": 7300,
+  "stop": 7730,
+  "supervised_start": 7300,
+  "supervised_stop": 7730,
+  "supervision_exclusions": [
+    {
+      "reason": "I withdrawal/H approach uncertainty.",
+      "start": 7300,
+      "stop": 7330
+    }
+  ],
+  "training_condition": "Upper-left-origin crossbar/H-like instance; last recorded local placement G(7729), without success label.",
+  "trajectory_id": "episode_2026091922062101",
+  "uncertainty": "No verified final-word success or sustained stability annotation. Preserve original last record; no synthetic terminal row."
+}

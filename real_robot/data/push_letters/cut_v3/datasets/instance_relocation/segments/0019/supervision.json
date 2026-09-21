@@ -1,0 +1,38 @@
+{
+  "boundary_evidence_indices": [
+    6079,
+    6080,
+    6899,
+    6900
+  ],
+  "condition_evidence_indices": [
+    6080,
+    6899
+  ],
+  "deployment_condition_source": "HLA may choose a staging location for a blocking instance before final placement.",
+  "label_derivation": "G at 6899, goal box [201,387,415,529]. Select the upper-left crossbar/H-like instance initially near third-preview (158,104).",
+  "merge_check": "L and I neighbors differ. Later b_h_align returns to H with a new endpoint; merging through I would conceal a conditioning switch.",
+  "objective": "Rotate and move the upper-left crossbar piece downward to a lower-left staging location.",
+  "rationale": "6080 begins after L, 6500-6800 shows H reorientation/downward travel, 6899 shows released H before approach to I at 6949.",
+  "segment_id": "b_h_stage",
+  "split_check": "One H staging goal; intermediate rotations are continuous execution, not unspecified subtask labels.",
+  "start": 6080,
+  "stop": 6900,
+  "supervised_start": 6080,
+  "supervised_stop": 6900,
+  "supervision_exclusions": [
+    {
+      "reason": "L-to-H handoff uncertainty.",
+      "start": 6080,
+      "stop": 6110
+    },
+    {
+      "reason": "H release/I approach uncertainty; 6949 already engages I.",
+      "start": 6870,
+      "stop": 6900
+    }
+  ],
+  "training_condition": "Upper-left crossbar/H-like instance; temporary placement G(6899).",
+  "trajectory_id": "episode_2026091922062101",
+  "uncertainty": "Purpose of staging is not recorded. Preserve physical instance identity despite rotation-dependent H/I appearance."
+}

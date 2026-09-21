@@ -1,0 +1,35 @@
+{
+  "environment": {
+    "CUDA_CACHE_DISABLE": "1",
+    "CUDA_DEVICE_ORDER": "PCI_BUS_ID",
+    "CUDA_VISIBLE_DEVICES": "GPU-13ce441a-9b9f-d327-08cf-e7e9f728b580",
+    "EXPERIMENT1_GPU_MINOR": "7",
+    "EXPERIMENT1_GPU_PCI_BUS_ID": "00000000:A1:00.0",
+    "EXPERIMENT1_GPU_UUID": "GPU-13ce441a-9b9f-d327-08cf-e7e9f728b580",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "MKL_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PATH": "/usr/bin:/bin",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONUNBUFFERED": "1",
+    "TMPDIR": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/experiments/experiment1/allocation_20260913/gpu5-probe",
+    "XDG_CACHE_HOME": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/experiments/experiment1/allocation_20260913/gpu5-probe/cache"
+  },
+  "gpu": 5,
+  "handler": "probe",
+  "output_dir": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/experiments/experiment1/allocation_20260913/gpu5-probe",
+  "payload": {
+    "operation": "allowed",
+    "public_file": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/experiments/experiment1/allocation_20260913/gpu5-public.txt",
+    "write_file": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/experiments/experiment1/allocation_20260913/gpu5-probe/ok.txt"
+  },
+  "read_only_paths": [
+    "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/experiments/experiment1/allocation_20260913/gpu5-public.txt"
+  ],
+  "timeout_seconds": 60,
+  "write_dirs": [
+    "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/experiments/experiment1/allocation_20260913/gpu5-probe"
+  ]
+}

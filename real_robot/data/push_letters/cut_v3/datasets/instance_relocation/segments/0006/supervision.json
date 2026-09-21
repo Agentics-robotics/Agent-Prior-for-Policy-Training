@@ -1,0 +1,40 @@
+{
+  "boundary_evidence_indices": [
+    4619,
+    4620,
+    4800,
+    4949,
+    4950
+  ],
+  "condition_evidence_indices": [
+    4620,
+    4800,
+    4949
+  ],
+  "deployment_condition_source": "Same common selected-instance/placement interface; internal contact choice may engage a visible hole but is not caller-mandated.",
+  "label_derivation": "G at 4949, goal box [528,150,645,260]. Select the D-like single-hole piece initially near third-preview (105,215); wrist 4800 shows inner-hole engagement.",
+  "merge_check": "H before and R after are different pieces. Later a_d_align changes D's attained position/orientation after the intervening R manipulation.",
+  "objective": "Engage the D-like piece, including its inner opening, and transport it upward/right to a temporary upper location.",
+  "rationale": "4620 departure toward D, wrist/third 4800 interaction and 4949 withdrawn tool beside displaced D support this local placement.",
+  "segment_id": "a_d_stage",
+  "split_check": "Single D transport/withdrawal with one endpoint; inner versus outer contact is a policy-internal choice rather than an unresolved task switch.",
+  "start": 4620,
+  "stop": 4950,
+  "supervised_start": 4620,
+  "supervised_stop": 4950,
+  "supervision_exclusions": [
+    {
+      "reason": "H release/D approach uncertainty.",
+      "start": 4620,
+      "stop": 4650
+    },
+    {
+      "reason": "D release/R approach uncertainty; 5000 already approaches R, so cut is earlier.",
+      "start": 4920,
+      "stop": 4950
+    }
+  ],
+  "training_condition": "D-like instance; staging placement G(4949).",
+  "trajectory_id": "episode_2026091922002701",
+  "uncertainty": "Inner-hole contact is visually supported, not instrumented contact ground truth; unfamiliar holes may jam and are not certified safe."
+}

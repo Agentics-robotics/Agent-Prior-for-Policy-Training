@@ -1,0 +1,20 @@
+{
+  "policy_id": "red_buffer_to_goal_finish__h01",
+  "skill_id": "red_buffer_to_goal_finish",
+  "heuristic_index": 1,
+  "prior_summary": "Active-red final-transfer diffusion policy. The learned denoiser predicts normalized absolute Panda joint/gripper actions while conditioning on causal red-relative, red-goal-relative, blue-goal-error and finger/TCP phase features. Trainable auxiliary heads predict future red lift and red-goal error from the shared condition and from denoised action estimates.",
+  "applicable_conditions": "Use after the blue block is already observed near blue_goal and the red block is available in the central buffer or is already being approached/lifted during the shared transition. Causal cues are current red_pose, blue_pose, red_goal, blue_goal, tcp_pose, qpos/qvel and finger aperture in world metres/radians.",
+  "termination_guidance": "Continue until the completion monitor observes red_at_goal and blue_at_goal. The data also show gripper opening and TCP retreat to about 0.30 m above the red goal, but these are guidance cues rather than task success requirements.",
+  "limitations": "The policy is not a recovery controller for a misplaced blue block or a missing red block. It does not implement analytic IK, hard collision constraints, or a scripted grasp/place sequence; all actions are learned through diffusion over joint targets.",
+  "config": {
+    "condition_dimension": 256,
+    "encoder_hidden": 256,
+    "aux_hidden": 256,
+    "relative_position_scale_m": 0.25,
+    "relative_delta_scale_m": 0.08,
+    "future_geometry_loss_weight": 0.025,
+    "final_goal_loss_weight": 0.02,
+    "action_effect_loss_weight": 0.005,
+    "action_aux_timestep_scale": 99.0
+  }
+}

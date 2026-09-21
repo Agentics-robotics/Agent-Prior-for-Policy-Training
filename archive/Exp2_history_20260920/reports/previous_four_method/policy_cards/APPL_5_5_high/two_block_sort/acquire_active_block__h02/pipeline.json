@@ -1,0 +1,27 @@
+{
+  "policy_id": "acquire_active_block__h02",
+  "skill_id": "acquire_active_block",
+  "heuristic_index": 2,
+  "prior_summary": "A learned phase-conditioned DDPM action policy for acquisition. A causal two-observation encoder predicts an ordered posterior over approach, descent, closure, lift and early-carry modes; the diffusion denoiser is conditioned on that posterior and trained with masked phase and monotonic-progress auxiliary losses.",
+  "applicable_conditions": "Use when an active rigid block is still to be acquired or is in the close/lift overlap: the red block first, then the blue block once red is visibly on its red goal pad at table height. Causal observations should include TCP pose, red/blue object poses, finger qpos/qvel and goals in the world frame.",
+  "termination_guidance": "Continue through open approach, vertical alignment, gripper closure and lift. Transfer to delivery when the active object is visibly lifted above the table, the fingers are near the closed/loaded width, and the TCP is moving with the object, or earlier inside the demonstrated close/lift overlap if the successor accepts that state.",
+  "limitations": "The phase labels are heuristic and state-derived; they are not contact sensors or proof of a grasp. The model does not implement IK, geometric constraints, images, hard rejection thresholds or scripted recovery. It relies on the shared complete-trajectory normalizer supplied by the framework and on training support for the assigned expanded slices.",
+  "config": {
+    "condition_dim": 256,
+    "phase_embed_dim": 24,
+    "num_phases": 5,
+    "phase_names": [
+      "approach_above",
+      "descend_align",
+      "close_contact",
+      "lift_attach",
+      "early_carry"
+    ],
+    "auxiliary_loss": {
+      "current_phase_ce_weight": 0.035,
+      "future_phase_ce_weight": 0.025,
+      "future_monotone_weight": 0.01
+    },
+    "active_block_feature_rule": "soft blue-active feature after red is close to the red goal in xy and z; both object poses remain available in normalized input"
+  }
+}

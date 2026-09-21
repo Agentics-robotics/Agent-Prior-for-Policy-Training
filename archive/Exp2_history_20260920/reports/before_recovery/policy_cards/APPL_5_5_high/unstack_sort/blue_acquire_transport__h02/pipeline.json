@@ -1,0 +1,35 @@
+{
+  "policy_id": "blue_acquire_transport__h02",
+  "skill_id": "blue_acquire_transport",
+  "heuristic_index": 2,
+  "prior_summary": "A height-staged learned diffusion policy for the full blue acquire-and-transport slice. It conditions the denoiser on learned phase, waypoint, gripper, and short-horizon blue-motion predictions so the action diffusion model represents red-to-blue transition, pregrasp descent, grasp/lift, high lateral carry, and goal-near handoff as connected phases rather than a single unstructured motion.",
+  "applicable_conditions": "Use when the red block is already placed and static near the red goal, the blue block and blue goal are visible in world-frame state observations, and the robot may take over during the transition from the red place pose, during blue approach/grasp, during lift, or during high carry toward the blue goal. The model expects no drawer interaction and uses only the two-step causal state history.",
+  "termination_guidance": "Continue while the causal state shows the TCP approaching or holding the blue block, the gripper closing/closed, and the blue block being lifted or carried toward the blue goal. Transfer to the final blue-place policy when blue-goal xy error is small, the blue block is still in the gripper, and height margin remains for controlled descent; this may happen high above the goal rather than at table height.",
+  "limitations": "The prior is learned from the assigned demonstrations and does not implement inverse kinematics, collision checking, force/contact sensing, or a scripted controller. Stage labels and waypoint targets are heuristic supervision for trainable heads, so recovery from missed grasps, slips, unexpected obstacles, or a red block not already placed is not established.",
+  "config": {
+    "prior_name": "height_staged_blue_transport",
+    "phase_names": [
+      "red_to_blue_transition_open",
+      "pregrasp_descent_open",
+      "grasp_and_settle",
+      "lift_at_source",
+      "high_xy_transport",
+      "goal_near_high_handoff"
+    ],
+    "safe_height_m": 0.28,
+    "goal_xy_threshold_m": 0.04,
+    "closed_finger_width_m": 0.032,
+    "latent_dim": 192,
+    "condition_dim": 256,
+    "auxiliary_loss_weights": {
+      "stage_cross_entropy": 0.05,
+      "staged_waypoint_mse": 0.10,
+      "future_blue_delta_mse": 0.10,
+      "gripper_phase_mse": 0.02,
+      "low_noise_gripper_action_prior": 0.02
+    },
+    "uses_shared_normalizer": true,
+    "causal_observation_steps": 2,
+    "future_label_slots_for_auxiliary_blue_motion": [3, 7, 15]
+  }
+}

@@ -34,9 +34,53 @@ __pycache__/
 /outputs/
 /wandb/
 
+# Local historical archives; existing tracked history remains tracked.
+/archive/
+
 # Round 3 local training state and generated media (preserved on disk)
 round3/checkpoints/
 round3/debug/
 round3/locks/
 round3/logs/
 round3/videos/*.mp4
+
+# Round 4 local assets, trajectories, weights and generated media.
+round4/assets/
+round4/checkpoints/
+round4/debug/
+round4/data/**/*.npz
+round4/feasibility/**/*.npz
+round4/feasibility/**/*.mp4
+round4/videos/*.mp4
+round4/locks/
+round4/logs/
+
+# Experiment 1 local execution artifacts; public code/specifications/reports stay trackable.
+archive/**/checkpoints/
+archive/**/debug/
+archive/**/*.pt
+archive/**/*.pth
+archive/**/*.npz
+archive/**/*.mp4
+experiments/experiment1/state.sqlite*
+experiments/experiment1/objects/
+experiments/experiment1/locks/
+experiments/experiment1/runs/
+experiments/experiment1/attempts/
+experiments/experiment1/logs/
+experiments/experiment1/preflight/
+experiments/experiment1/api_records/
+experiments/experiment1/evidence/
+experiments/experiment1/hidden_test/
+experiments/experiment1/manifests/**/*.npz
+
+# Exp2's curated archive keeps source, reports and compact receipts trackable.
+# Large scientific assets and exhaustive local inventories remain on storage.
+!/archive/
+/archive/*
+!/archive/Exp2_history_20260920/
+/archive/Exp2_history_20260920/data/
+/archive/Exp2_history_20260920/runs
+/archive/Exp2_history_20260920/migration/*_before.json
+/archive/Exp2_history_20260920/migration/deletion_inventory.json
+/archive/Exp2_history_20260920/migration/export_original_sources.json

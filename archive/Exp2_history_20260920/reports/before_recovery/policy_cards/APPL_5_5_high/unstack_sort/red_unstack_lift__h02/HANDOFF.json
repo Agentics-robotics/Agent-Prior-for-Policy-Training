@@ -1,0 +1,15 @@
+{
+  "policy_id": "red_unstack_lift__h02",
+  "entry_conditions": "This policy may enter from the initial stack or a pre-grasp state when red is still above blue, qpos finger channels are open or closing, and the TCP is approaching the red block. It may also enter during the demonstrated overlap after closure when qpos[7]+qpos[8] is about 0.036 m and red_pose z is already above the stack, because the model infers its latent phase from causal qpos/qvel, TCP pose, red pose, and blue pose rather than from an absolute timestep.",
+  "exit_conditions": "A useful exit state for the red placing successor has closed fingers, red moving with the TCP, blue still near its original support pose, and red clearly lifted above blue with lateral motion toward the red goal. In the expanded training slice this is supported from the overlap around index 130, where red_pose z is about 0.13-0.16 m, through the end near index 190, where red_pose is around z 0.30 m and x,y have moved toward the red goal.",
+  "overlap_role": "The shared interval [130, 190) is learned as a lift-to-carry transition, not as a hard boundary. This policy uses its latent lift_carry mode and transition head to continue vertical clearance and start red-goal-directed lateral motion, exposing the successor to a range of closed-finger elevated-red states rather than a single fixed handoff timestep.",
+  "successor_readiness": "The successor should receive observations showing closed gripper aperture in qpos[7:9], red_pose elevated and close to tcp_pose, little or no blue displacement, and red/TCP lateral motion toward red_goal in world metres. A geometric subgoal such as red height alone is not sufficient if the fingers have reopened or red is not following the TCP.",
+  "failure_signatures": "Potential failures are phase oscillation between close_contact and lift_carry, gripper reopening while red is elevated, qvel finger channels indicating continuing closure without red z increase, red_pose not moving with tcp_pose after closure, or blue_pose being disturbed. These signatures suggest the successor may receive an ungrasped or unstable red block.",
+  "continuation_guidance": "Continue this policy when the red block has not yet cleared blue, when the fingers are still closing near the red block, or when lateral carry has not started. Transfer to a place/carry successor once the causal observations show closed fingers, red-blue vertical separation, red/TCP co-motion, and early transport toward the red goal. If the policy is invoked mid-transition, the learned phase cues use the current aperture and object height rather than requiring replay from the beginning.",
+  "limitations": "The handoff cues are based on observed training support and inferred grasp/contact, not a contact sensor or formal success proof. The policy has no hard controller, no IK module, and no recovery guarantee for empty grasps or large off-distribution perturbations.",
+  "evidence": [
+    {"trajectory_id": "demo10200", "indices": [80, 100, 130, 190]},
+    {"trajectory_id": "demo10207", "indices": [90, 100, 130, 190]},
+    {"trajectory_id": "demo10201", "indices": [80, 100, 140, 180]}
+  ]
+}

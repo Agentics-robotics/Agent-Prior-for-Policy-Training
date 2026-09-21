@@ -1,0 +1,15 @@
+{
+  "policy_id": "blue_transport_to_drawer__h03",
+  "entry_conditions": "Enter after or during blue lift when the drawer is open, the TCP is close to the blue block, and the blue block is rising from table height toward a high carry. The model can also take over within the approach-lift overlap if the current observation shows a closed or closing gripper near the blue block and the blue/TCP pose indicates upward transport has begun.",
+  "exit_conditions": "Exit when the blue block is laterally aligned with the drawer insertion goal and has descended into the drawer z band around 0.063 m, with the gripper fingers opening or open. If the block is still high over the cavity, continue this policy through the descent part of the shared release overlap rather than transferring solely on xy alignment.",
+  "overlap_role": "The [810,870) overlap covers the transition from predecessor lift into high-clearance transport, and [930,1030) covers aligned descent, insertion, and release/retreat onset. This policy learns both shared phases so it can take over partway through a lift and hand off only after the successor receives a near-cavity, low or inserted blue-block state.",
+  "successor_readiness": "The successor should receive observations with blue xy close to the drawer goal/cavity, blue z near the insertion band rather than at the high carry apex, and the fingers opening or already open. In the demonstrations, final observations show blue around x=-0.172 m, y=0.073-0.074 m, z=0.063 m while the TCP has retreated upward and the fingers are near 0.04 m per side.",
+  "failure_signatures": "Likely failure modes are low lateral transport before clearing the drawer lip, descent while blue xy is still far from the cavity, opening the gripper while the block remains high, or losing the close TCP-blue relationship during transport. These are observed-support interpretations, not hard rejection thresholds or guaranteed recovery detectors.",
+  "continuation_guidance": "Continue while the causal state indicates lift_high or translate: blue z below clearance with large xy error, or blue z above roughly 0.245 m but blue-to-goal xy error still large. Continue after xy alignment until the blue center descends toward the drawer z interval and the release/opening cue appears. Transfer when blue_inside is almost satisfied and the gripper/TCP state matches the release overlap.",
+  "limitations": "The handoff description assumes unchanged world-frame drawer geometry, state observations only, and a previously successful or ongoing grasp. It does not prove contact from the state alone and does not provide an IK, collision, or recovery controller; it documents how the learned diffusion model uses causal cues from successful demonstrations.",
+  "evidence": [
+    {"trajectory_id": "demo1003", "indices": [810, 870, 930, 1030]},
+    {"trajectory_id": "demo1008", "indices": [810, 870, 930, 1030]},
+    {"trajectory_id": "demo1010", "indices": [810, 870, 930, 1030]}
+  ]
+}

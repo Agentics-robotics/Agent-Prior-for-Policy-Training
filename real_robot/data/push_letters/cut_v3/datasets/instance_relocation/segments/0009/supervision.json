@@ -1,0 +1,40 @@
+{
+  "boundary_evidence_indices": [
+    6139,
+    6140,
+    8000,
+    8049,
+    8050
+  ],
+  "condition_evidence_indices": [
+    6140,
+    8000,
+    8049
+  ],
+  "deployment_condition_source": "HLA supplies selected-instance and placement, leaving repeated re-contact choices to the policy.",
+  "label_derivation": "G at 8049, goal box [490,190,635,284]. Select the L-shaped piece initially at upper-left third-preview (142,98).",
+  "merge_check": "Preceding D and following I change instance. Do not combine them merely because they contribute to the same apparent word.",
+  "objective": "Repeatedly reorient/re-contact the L-shaped piece, then move it between the R and D placements.",
+  "rationale": "Overview 6400,7200 and 8000 shows prolonged L work with corrections and eventual rightward transport; 8049 pins its achieved placement.",
+  "segment_id": "a_l",
+  "split_check": "The intermediate L rotations and delayed translation retain one selected instance and fixed hindsight endpoint; no intervening other-instance manipulation is supported by inspected evidence. Do not cut solely because it is long.",
+  "start": 6140,
+  "stop": 8050,
+  "supervised_start": 6140,
+  "supervised_stop": 8050,
+  "supervision_exclusions": [
+    {
+      "reason": "D release/L approach uncertainty.",
+      "start": 6140,
+      "stop": 6170
+    },
+    {
+      "reason": "L release/I approach uncertainty.",
+      "start": 8020,
+      "stop": 8050
+    }
+  ],
+  "training_condition": "L-shaped instance; achieved placement G(8049).",
+  "trajectory_id": "episode_2026091922002701",
+  "uncertainty": "Repeated contact attempts are not separate verified failures or intentions. Preserve them as closed-loop corrections; no new-shape benefit is proven."
+}

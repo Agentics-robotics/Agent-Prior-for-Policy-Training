@@ -1,0 +1,25 @@
+{
+  "policy_id": "blue_approach_grasp_lift__h02",
+  "skill_id": "blue_approach_grasp_lift",
+  "heuristic_index": 2,
+  "prior_summary": "Pad-to-blue transit waypoint prior implemented as a learned recurrent causal encoder that predicts soft retreat, high-transit, blue-descent, and grasp-lift region latents plus short-horizon TCP waypoint and z-clearance summaries. These trainable predictions condition an epsilon-predicting DDPM action U-Net.",
+  "applicable_conditions": "Use after or during the red-pad release transition when the drawer is already open, the red block is on the outside pad, the gripper is open or beginning to close only near the blue block, and the TCP must retreat from the pad, cross at safe height, descend over the blue block, close, and start lifting.",
+  "termination_guidance": "Continue this policy until the causal state shows a closed gripper near the blue block and the blue block/TCP are rising, or at minimum the TCP is centered over the blue block with a closing command in progress for handoff to blue transport.",
+  "limitations": "The prior uses only state vectors and learned joint-action diffusion. It has no image input, no inverse kinematics, no collision checker, and no hard geometric constraints; its transit is tied to the fixed drawer/table layout represented in the demonstrations.",
+  "config": {
+    "condition_dimension": 256,
+    "stage_count": 4,
+    "stage_names": [
+      "pad_retreat",
+      "high_global_transit",
+      "blue_descent",
+      "grasp_lift"
+    ],
+    "stage_loss_weight": 0.03,
+    "waypoint_loss_weight": 0.15,
+    "clearance_loss_weight": 0.10,
+    "waypoint_target": "masked terminal future TCP position over the DDPM horizon, normalized by broad workspace scales",
+    "clearance_target": "masked maximum and terminal future TCP z over the DDPM horizon",
+    "normalization": "uses the supplied M1_v2 shared full-demonstration normalizer; no per-skill refit"
+  }
+}

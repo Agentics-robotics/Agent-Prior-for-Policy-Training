@@ -1,0 +1,24 @@
+{
+  "policy_id": "blue_place_release_retreat__h03",
+  "skill_id": "blue_place_release_retreat",
+  "heuristic_index": 3,
+  "prior_summary": "Post-release verification and retreat prior implemented as a learned state-conditioned action diffusion policy with auxiliary terminal-success, object-disturbance-risk, release-phase, and open-gripper losses.",
+  "applicable_conditions": "Use after or during the shared blue transport-to-place transition when red is already at its goal and the blue cube is being carried above or lowered onto the blue goal. It is especially applicable once the blue cube is at table height near [-0.24, 0.25, 0.02] and the fingers are opening or open.",
+  "termination_guidance": "The policy is terminal when red and blue satisfy the task goal predicates; demonstration-consistent terminal cues are open fingers near 0.04 m per finger, blue and red at z about 0.02 m, and the TCP retreated upward near z 0.30 m without object motion.",
+  "limitations": "This implementation has no inverse kinematics, no image input, and no hard safety constraint. The retreat and stability behavior is learned from state/action demonstrations and auxiliary labels; task success itself does not require TCP clearance or sustained stability beyond the completion predicates.",
+  "config": {
+    "condition_dim": 256,
+    "encoder_hidden_dim": 384,
+    "aux_hidden_dim": 192,
+    "success_loss_weight": 0.04,
+    "disturbance_loss_weight": 0.04,
+    "phase_loss_weight": 0.015,
+    "open_gripper_loss_weight": 0.025,
+    "relative_feature_scales": {
+      "workspace_xyz_m": 0.25,
+      "local_tcp_object_m": 0.10,
+      "finger_width_m": 0.08
+    },
+    "auxiliary_clean_action_noise_weighting": "alpha_bar_weighted"
+  }
+}

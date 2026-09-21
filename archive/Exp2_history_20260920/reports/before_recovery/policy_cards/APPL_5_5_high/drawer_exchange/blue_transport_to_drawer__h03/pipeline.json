@@ -1,0 +1,33 @@
+{
+  "policy_id": "blue_transport_to_drawer__h03",
+  "skill_id": "blue_transport_to_drawer",
+  "heuristic_index": 3,
+  "prior_summary": "A learned action diffusion policy conditioned on a causal latent stage representation for high-arc blue-block transport: lift to clearance, translate laterally while high, then descend and begin release in the open drawer cavity.",
+  "applicable_conditions": "Use when the blue block is grasped or being lifted, the drawer is already open, and the current observation shows the TCP and blue block in the table-to-drawer transport phase. Causal cues are blue/TCP world pose, blue-to-goal and blue-to-drawer errors, gripper width, drawer opening, and two-step pose changes.",
+  "termination_guidance": "Transfer when the blue block is near the drawer cavity, blue z is in or approaching the insertion band, lateral error to the blue drawer goal is small, and the fingers are opening or open. Continue through the shared release overlap if the block is still descending or the gripper has not opened.",
+  "limitations": "The prior is learned only from successful high-arc demonstrations in the assigned expanded slice. It does not implement IK, collision checking, image perception, or a scripted recovery controller, and it assumes the same world geometry and shared M1_v2 normalization.",
+  "config": {
+    "architecture": "Stage-aware Conditional U-Net diffusion policy",
+    "condition_dim": 256,
+    "causal_history_steps": 2,
+    "stage_names": ["lift_high", "translate", "descend_insert"],
+    "stage_label_rule": "descend_insert when blue-to-blue-goal xy error < 0.060 m; otherwise translate when blue z > 0.245 m; otherwise lift_high",
+    "engineered_causal_features": [
+      "shared-normalized two-observation state history",
+      "blue-goal, tcp-blue, tcp-goal and blue-drawer relative positions scaled by shared position ranges",
+      "two-step blue and TCP deltas",
+      "drawer open margin, drawer velocity, q velocities and finger width",
+      "soft high, aligned, lift, translate, descend, near-insert-z, open and closed indicators"
+    ],
+    "auxiliary_losses": {
+      "future_blue_goal_relative_mse_weight": 0.06,
+      "future_stage_ce_weight": 0.025,
+      "future_blue_inside_bce_weight": 0.02,
+      "future_gripper_open_bce_weight": 0.015,
+      "denoised_gripper_release_mse_weight": 0.01,
+      "current_stage_ce_weight": 0.01,
+      "alpha_bar_confidence_min": 0.05
+    },
+    "normalization": "Uses the assignment shared normalizer fitted on complete original demonstrations; no per-skill refit is performed."
+  }
+}

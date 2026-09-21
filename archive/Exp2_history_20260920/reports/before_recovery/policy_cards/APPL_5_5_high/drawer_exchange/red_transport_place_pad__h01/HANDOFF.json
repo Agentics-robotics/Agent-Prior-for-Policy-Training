@@ -1,0 +1,24 @@
+{
+  "policy_id": "red_transport_place_pad__h01",
+  "entry_conditions": "Supported entries are within the 455:530 overlap after the drawer has been opened. Causal cues are drawer_position around 0.30 m, red_pose close to tcp_pose with the TCP just above the red block, closed fingers with total finger width about 0.036 m, and red z rising from table height toward the carry height. These are observed support conditions, not hard rejection thresholds or a proof of contact.",
+  "exit_conditions": "The intended exit is after the red block is on the outside pad: red_pose center near red_goal [-0.18, -0.30, 0.02] with z near 0.02 m, the gripper open with total finger width about 0.08 m, and the TCP no longer attached to red. By the later overlap the TCP is high above the table and moving away from the pad toward the blue block.",
+  "overlap_role": "Indices 455:530 overlap the predecessor red top-grasp/lift behavior, so this model learns to continue from a closed-finger carried-red state rather than requiring a perfect cruise pose. Indices 650:760 overlap the successor blue approach behavior, so this model also learns the release, upward retreat, and early global transit after red placement.",
+  "successor_readiness": "The blue-approach successor should receive a state in which red is settled on the pad, the gripper is open, the red block is not following the TCP, the drawer is still open, and the TCP is clear enough to move toward the observed blue pose/blue_goal region. A single red_on_pad geometry observation is sufficient for task accounting, but handoff is safer after finger opening and TCP separation are visible.",
+  "failure_signatures": "Likely failures include red xy outside the pad containment region, red remaining high while the fingers open, red continuing to move with the TCP after attempted release, the TCP retreating before red has reached pad height, drawer_position falling below the open region, or the policy entering from a state where the red block is not near the TCP despite closed fingers.",
+  "continuation_guidance": "Continue this policy while red-to-goal error is decreasing, the TCP remains near the carried red block, or the block is descending toward the pad. After placement, continue briefly if the gripper has not visibly opened or the TCP has not separated upward. Transfer to the blue approach policy once red remains on the pad, fingers are open, and TCP motion is directed away from the pad toward blue.",
+  "limitations": "The handoff description is based on state observations from the assigned slice and measured overlaps. It does not certify contact, grasp force, or recovery capability. The implemented model uses learned state features and diffusion actions only; it has no hard guard, no IK solver, and no scripted placement controller.",
+  "evidence": [
+    {
+      "trajectory_id": "demo1000",
+      "indices": [455, 530, 620, 650, 700, 760]
+    },
+    {
+      "trajectory_id": "demo1002",
+      "indices": [455, 530, 620, 650, 700, 760]
+    },
+    {
+      "trajectory_id": "demo1008",
+      "indices": [455, 530, 620, 650, 700, 760]
+    }
+  ]
+}

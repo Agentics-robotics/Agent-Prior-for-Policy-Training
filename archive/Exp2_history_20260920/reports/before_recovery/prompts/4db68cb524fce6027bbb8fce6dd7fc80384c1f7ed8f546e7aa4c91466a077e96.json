@@ -1,0 +1,154 @@
+{
+  "include": [
+    "reasoning.encrypted_content"
+  ],
+  "instructions": "You are the scientific implementation agent for one prior-based Diffusion Policy.\nRead your assigned skill and heuristic, then implement that heuristic as a real\nlearned diffusion policy. Your source code, pipeline metadata and prior document\nare your scientific deliverables. The repository supplies data, fixed DDPM\nnoising/sampling, optimizer, safe execution and accounting, not your prior design.\nKeep the assigned segmentation and heuristic identity. Choose the representation,\nlearned modules, conditioning structure and differentiable losses appropriate to\nthat heuristic. Every policy must remain a learned action diffusion model.\nRead INTERFACE.md and the numerical capabilities before coding. Read actual\ntraining observations to resolve details. Future observations are training labels\nonly; deployment forward receives only causal observation history. Make auxiliary\nlosses depend on trainable predictions: a penalty computed only from observed\nposes is constant with respect to the model and cannot train it. Explicitly\ndocument any adaptation needed to turn the research hypothesis into an executable\ndiffusion model with the provided data. Do not claim unimplemented IK, image\nencoders, invariance or constraints. No scripted action controller or replay.\nThis is M1_v2. Read the assigned heuristic's handoff interface and the measured\ntraining boundary/overlap evidence. Implement a coherent policy over its FULL\nexpanded slice, including the shared transition phases. Explain the observation\ninformation that lets it take over partway through a transition and reach a\nuseful exit state. All models share one normalization fit on the complete original\ntraining demonstrations. Do not refit tiny per-skill scales in your model.\nWrite policy.py, pipeline.json, PRIOR.md and HANDOFF.json with write_file, then check_policy.\nYou may repair failed interface checks yourself. After a successful check, submit\nthe exact checked package hash. Submitted code is immutable. The outer framework\nwill train the final package at the declared budget; no performance feedback is\navailable during this design session. All source, documentation and tool text\nmust be in English. Never modify the source heuristic; document your implementation\nchoices and limitations separately in your own PRIOR.md.\n",
+  "max_output_tokens": 16384,
+  "model": "gpt-5.5",
+  "parallel_tool_calls": false,
+  "reasoning": {
+    "effort": "high"
+  },
+  "store": false,
+  "tool_choice": "auto",
+  "tools": [
+    {
+      "description": "Read the assigned original API heuristic, skill, segment ranges and completion contract.",
+      "name": "read_assignment",
+      "parameters": {
+        "additionalProperties": false,
+        "properties": {},
+        "required": [],
+        "type": "object"
+      },
+      "strict": true,
+      "type": "function"
+    },
+    {
+      "description": "Read the English implementation interface or numerical source.",
+      "name": "read_public",
+      "parameters": {
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "enum": [
+              "INTERFACE.md",
+              "public.py",
+              "backbone.py"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "type": "object"
+      },
+      "strict": true,
+      "type": "function"
+    },
+    {
+      "description": "Read original states/actions at source indices within your assigned skill.",
+      "name": "read_steps",
+      "parameters": {
+        "additionalProperties": false,
+        "properties": {
+          "indices": {
+            "items": {
+              "minimum": 0,
+              "type": "integer"
+            },
+            "maxItems": 24,
+            "minItems": 1,
+            "type": "array"
+          },
+          "trajectory_id": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "trajectory_id",
+          "indices"
+        ],
+        "type": "object"
+      },
+      "strict": true,
+      "type": "function"
+    },
+    {
+      "description": "Write your unsubmitted policy source, metadata or prior document; records exact bytes.",
+      "name": "write_file",
+      "parameters": {
+        "additionalProperties": false,
+        "properties": {
+          "content": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "path": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "path",
+          "content"
+        ],
+        "type": "object"
+      },
+      "strict": true,
+      "type": "function"
+    },
+    {
+      "description": "Read your current policy file.",
+      "name": "read_file",
+      "parameters": {
+        "additionalProperties": false,
+        "properties": {
+          "path": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "path"
+        ],
+        "type": "object"
+      },
+      "strict": true,
+      "type": "function"
+    },
+    {
+      "description": "Validate package and run 2 real GPU training updates plus DDPM/EMA reload checks.",
+      "name": "check_policy",
+      "parameters": {
+        "additionalProperties": false,
+        "properties": {},
+        "required": [],
+        "type": "object"
+      },
+      "strict": true,
+      "type": "function"
+    },
+    {
+      "description": "Freeze the exact successfully checked package hash.",
+      "name": "submit_policy",
+      "parameters": {
+        "additionalProperties": false,
+        "properties": {
+          "expected_hash": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "expected_hash"
+        ],
+        "type": "object"
+      },
+      "strict": true,
+      "type": "function"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "policy_id": "side_grasp_red_pull_drawer_open__h01",
+  "skill_id": "side_grasp_red_pull_drawer_open",
+  "heuristic_index": 1,
+  "prior_summary": "A learned DDPM action policy conditioned on red-relative side-grasp geometry, drawer progress, finger aperture, and TCP/object motion; auxiliary trainable heads predict manipulation phase and short-horizon TCP/red/drawer consequences to bias the shared encoder toward the assigned side-grasp pull heuristic.",
+  "applicable_conditions": "Use when the red block starts on the drawer-front region near z=0.063 m, the drawer slides along world x, the Panda gripper is initially open, and the observation fields match the M1_v2 state layout with qpos, qvel, TCP pose, red pose, blue pose, drawer position/velocity, and goals. The learned model expects variations similar to the twelve demonstrations rather than large pose, friction, or contact changes.",
+  "termination_guidance": "Continue through approach, side pinch, drawer pull, release, and upward/away retreat until drawer_position is above about 0.26 m, the gripper fingers have reopened near 0.04 m each, the red block remains at the open drawer front, and the TCP has moved upward/away enough for the next top regrasp. Task success is still the external three-goal completion contract, not these handoff cues.",
+  "limitations": "The policy is not an IK controller and contains no scripted fallback. It may fail if the first pinch misses, the red block rotates/slips out of the drawer face, the drawer sticks, or the initial red pose is outside the measured support. It uses only state observations and does not implement image encoders or hard geometric constraints.",
+  "config": {
+    "condition_dim": 256,
+    "encoder_hidden_dim": 256,
+    "phase_count": 5,
+    "future_target_dim": 25,
+    "prior_loss_weight": 0.05,
+    "phase_loss_relative_weight": 0.10,
+    "representation": "shared-normalized two-step observation history plus broad-scale red/TCP/drawer relative features",
+    "auxiliary_targets": "future qpos, TCP xyz, red xyz, drawer position/velocity, TCP-red relative offset, inferred red_x_plus_drawer invariant, finger width, and TCP side-grasp error over the DDPM horizon"
+  }
+}

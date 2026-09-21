@@ -1,0 +1,20 @@
+{
+  "policy_id": "blue_release_retreat_complete__h03",
+  "skill_id": "blue_release_retreat_complete",
+  "heuristic_index": 3,
+  "prior_summary": "Near-goal learned residual stabilizer for centering the blue block in the open drawer, releasing it, and retreating. A learned nominal action trajectory, conditioned on causal drawer-frame state features, is used as the local stabilizing prior for a DDPM action diffusion model.",
+  "applicable_conditions": "Use when the drawer is already open, the red block is on the outside pad, and the blue block is already above or inside the drawer neighborhood with the TCP close to it. The assigned slice starts at index 930, where the gripper is still closed around the blue block and the arm is descending toward the drawer; it is not a transporter from the table start.",
+  "termination_guidance": "Terminate or hand control to the evaluator once the blue center is in the observed drawer goal neighborhood near z 0.063 m, the gripper is open, the TCP has retreated upward, drawer_position remains above the open threshold, and joint/object velocities are small. Task success is still only the supplied drawer-open, red-on-pad, blue-inside predicate.",
+  "limitations": "The model has no analytic IK, contact estimator, image encoder, or hard geometric constraint. The nominal stabilizer is a learned action prior, not a scripted controller, and is expected to fail if invoked before the near-goal handoff support.",
+  "config": {
+    "architecture": "state_feature_encoder_plus_learned_nominal_conditioned_unet",
+    "latent_dim": 256,
+    "condition_dim": 256,
+    "relative_feature_scale_m": 0.15,
+    "nominal_action_loss_weight": 0.10,
+    "residual_clean_action_loss_weight": 0.005,
+    "future_descriptor_loss_weight": 0.01,
+    "future_descriptor": "blue-goal error, TCP-blue relation, finger opening, joint-speed norm, drawer position, TCP height",
+    "uses_shared_normalizer": true
+  }
+}

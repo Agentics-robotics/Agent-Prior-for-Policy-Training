@@ -1,0 +1,15 @@
+{
+  "extraction": "All function_call objects in the final recorded response, unchanged.",
+  "function_calls": [
+    {
+      "arguments": "{\"notebook\":\"Blue is grasped and lifting: blue z=.156, TCP-blue=.013, fingers closed .036, red remains on pad, drawer open. I read blue_transport h02/h03; h03's high-arc stage prior supports takeover during lift_high and should lift to clearance, translate to the drawer, descend, and begin release. Monitor for success/inside or near-insertion handoff to final release.\",\"policy_id\":\"blue_transport_to_drawer__h03\",\"reason\":\"Transport the grasped blue block via the documented high-arc lift/translate/descent sequence into the open drawer cavity.\",\"steps\":300,\"stop_when\":[{\"conditions\":[{\"comparison\":\"ge\",\"metric\":\"success\",\"reference\":\"absolute\",\"value\":1}],\"label\":\"task success\"},{\"conditions\":[{\"comparison\":\"ge\",\"metric\":\"blue_inside\",\"reference\":\"absolute\",\"value\":1}],\"label\":\"blue inside drawer; should imply task success with red/drawer goals\"},{\"conditions\":[{\"comparison\":\"ge\",\"metric\":\"finger_width\",\"reference\":\"absolute\",\"value\":0.055},{\"comparison\":\"ge\",\"metric\":\"blue_z\",\"reference\":\"absolute\",\"value\":0.045},{\"comparison\":\"le\",\"metric\":\"blue_z\",\"reference\":\"absolute\",\"value\":0.10},{\"comparison\":\"ge\",\"metric\":\"blue_x\",\"reference\":\"absolute\",\"value\":-0.24},{\"comparison\":\"le\",\"metric\":\"blue_x\",\"reference\":\"absolute\",\"value\":-0.11},{\"comparison\":\"ge\",\"metric\":\"blue_y\",\"reference\":\"absolute\",\"value\":0.0},{\"comparison\":\"le\",\"metric\":\"blue_y\",\"reference\":\"absolute\",\"value\":0.16}],\"label\":\"near drawer insertion with gripper opening; reassess release\"},{\"conditions\":[{\"comparison\":\"lt\",\"metric\":\"red_on_pad\",\"reference\":\"absolute\",\"value\":1}],\"label\":\"red disturbed; reassess\"},{\"conditions\":[{\"comparison\":\"ge\",\"metric\":\"tcp_blue_distance\",\"reference\":\"absolute\",\"value\":0.12},{\"comparison\":\"le\",\"metric\":\"finger_width\",\"reference\":\"absolute\",\"value\":0.05},{\"comparison\":\"lt\",\"metric\":\"blue_z\",\"reference\":\"absolute\",\"value\":0.08}],\"label\":\"blue slipped low while gripper closed\"}]}",
+      "call_id": "call_dYjC5mOU8xu6pmojSDeFcFul",
+      "id": "fc_033535842db31333016aaab769af6c87d09088987fef3dac21",
+      "name": "invoke_policy",
+      "status": "completed",
+      "type": "function_call"
+    }
+  ],
+  "source": "runs/exp2/M1_scaleup/drawer_exchange/evaluation/APPL/OOD/6400/api/api/0024.response.json",
+  "source_sha256": "79441d8331f7082f44a75c084952ba18dfd13f1dea87412d7432eafa4e574538"
+}

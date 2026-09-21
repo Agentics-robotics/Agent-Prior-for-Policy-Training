@@ -1,0 +1,93 @@
+{
+  "environment": {
+    "CUDA_CACHE_DISABLE": "1",
+    "CUDA_VISIBLE_DEVICES": "",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "MKL_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PATH": "/usr/bin:/bin",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONUNBUFFERED": "1",
+    "TMPDIR": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/experiments/experiment1/generated/infrastructure-smoke/A1/checks/attempt-001",
+    "XDG_CACHE_HOME": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/experiments/experiment1/generated/infrastructure-smoke/A1/checks/attempt-001/cache"
+  },
+  "gpu": null,
+  "handler": "validate",
+  "output_dir": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/experiments/experiment1/generated/infrastructure-smoke/A1/checks/attempt-001",
+  "payload": {
+    "baseline_system": null,
+    "candidate_dir": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/experiments/experiment1/generated/infrastructure-smoke/A1/work",
+    "candidate_hashes": {
+      "candidate.py": "057ca221e72f021f822b70df5f603736076f181a0d88764986875cbdd82cbda0",
+      "config.json": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356",
+      "design.json": "f850a3f719960144fcd599bb7bacccf94b60b00c31e0924194e55569b9b484fd"
+    },
+    "common_spec": {
+      "action_schema": {
+        "dim": 4,
+        "semantics": "synthetic interface fixture; no robot trajectory"
+      },
+      "observation_schema": {
+        "fields": [
+          {
+            "name": "synthetic",
+            "slice": [
+              0,
+              4
+            ],
+            "units": "unitless"
+          }
+        ],
+        "raw_dim": 4
+      },
+      "task": "infrastructure-smoke"
+    },
+    "config": {},
+    "entrypoint": "candidate:build_design",
+    "result_path": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/experiments/experiment1/generated/infrastructure-smoke/A1/checks/attempt-001/contract_checks.json",
+    "support_manifest": {
+      "n_demos": 2,
+      "phase": "support",
+      "records": [
+        {
+          "episode_id": "synthetic-interface-only-0",
+          "path": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/experiments/experiment1/preflight/api-smoke/support-0.npz",
+          "sha256": "fd72eba44eef578bae3eed948df1a0c0834b74783501c1c10bd4f1d8d4e2a24d"
+        },
+        {
+          "episode_id": "synthetic-interface-only-1",
+          "path": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/experiments/experiment1/preflight/api-smoke/support-1.npz",
+          "sha256": "03fbbe4143b211eb4c7e8b7370ed6aea3a5936fd3711deae8d25bf31d18ffbc0"
+        }
+      ]
+    }
+  },
+  "read_only_paths": [
+    "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/experiments/experiment1/generated/infrastructure-smoke/A1/work",
+    "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/experiments/experiment1/preflight/api-smoke/support-0.npz",
+    "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/experiments/experiment1/preflight/api-smoke/support-1.npz",
+    "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/src/experiment1/__init__.py",
+    "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/src/experiment1/contracts.py",
+    "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/src/experiment1/learning.py",
+    "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/src/experiment1/plugin_validation.py",
+    "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/src/experiment1/isolation.py",
+    "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/src/relative_dp/__init__.py",
+    "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/src/relative_dp/model.py",
+    "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/src/relative_dp/train.py",
+    "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/src/relative_dp/dataset.py",
+    "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/src/relative_dp/config.py",
+    "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/src/relative_dp/representation.py",
+    "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/src/relative_dp/utils.py",
+    "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/src/relative_dp/vendor/__init__.py",
+    "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/src/relative_dp/vendor/diffusion_policy/__init__.py",
+    "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/src/relative_dp/vendor/diffusion_policy/conditional_unet1d.py",
+    "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/src/relative_dp/vendor/diffusion_policy/conv1d_components.py",
+    "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/src/relative_dp/vendor/diffusion_policy/positional_embedding.py"
+  ],
+  "timeout_seconds": 120,
+  "write_dirs": [
+    "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/experiments/experiment1/generated/infrastructure-smoke/A1/checks/attempt-001"
+  ]
+}

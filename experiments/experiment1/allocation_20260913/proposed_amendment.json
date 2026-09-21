@@ -1,0 +1,40 @@
+{
+  "schema_version": "experiment1.resource-amendment.v1",
+  "protocol_sha256": "9bc943948fad36344181492a8b94f8515685fffc5fc6cd6d245d74eff289fedb",
+  "previous_gpus": [
+    4,
+    5,
+    6,
+    7
+  ],
+  "gpus": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "changes": {
+    "src/experiment1/cli.py": {
+      "before": "a8c850c376d72aa1bd70ce2ba089819bae7a7d47a91a1a146ac546251516b093",
+      "after": "6a32754f6fdbc5f951b964a4b85f5d84afb11209154dc0666d149fd868e8a6c3"
+    },
+    "src/experiment1/isolation.py": {
+      "before": "883cc4809275c40825694d7304c313376f178798e13835616d65e36ecf507cd4",
+      "after": "60c845460bc392398dc8f26779cb092e2b86e26e9110fe1c965673d6d2053a44"
+    },
+    "src/experiment1/protocol.py": {
+      "before": "9d191a07ff3f0fe6b1022ee6125c59f4b308425f4a5e7e1a50a82b523d206620",
+      "after": "76c38dbad15d98a9178d616caac0c0bb864b9c978124c1225df71f22bd0538ba"
+    },
+    "src/experiment1/runner.py": {
+      "before": "f33fb27b77fdbf459e5390c69ed9b43d05a6cd74792e9afcd60be38f797b03e1",
+      "after": "6d840a32d08d17aeeecb692c95a8a5db0d3ab3afca5b9c7ef6f901cdee650d51"
+    }
+  },
+  "authority": "User explicitly authorized all eight physical GPUs on 2026-09-13",
+  "scope": "Resource authorization and scheduler concurrency only; original scientific protocol retained"
+}

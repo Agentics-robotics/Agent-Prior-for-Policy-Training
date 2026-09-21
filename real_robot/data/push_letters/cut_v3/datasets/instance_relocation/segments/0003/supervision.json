@@ -1,0 +1,41 @@
+{
+  "boundary_evidence_indices": [
+    3219,
+    3220,
+    3300,
+    3450,
+    3599,
+    3600
+  ],
+  "condition_evidence_indices": [
+    3220,
+    3450,
+    3599
+  ],
+  "deployment_condition_source": "Caller may request temporary placement of any selected piece; no fixed final-word target is implied.",
+  "label_derivation": "G at 3599, goal box [405,135,545,245]. Select the R-like piece initially near third-preview (155,150), not the nearby lower crossbar piece.",
+  "merge_check": "Target changes from O to R and then to I. Later a_r has a DIFFERENT local R goal and is not merged through intervening objects.",
+  "objective": "Move and rotate the R-like piece upward to a temporary location near the upper crossbar piece.",
+  "rationale": "3300 approach passes the crossbar, 3450 directly engages R, and 3599-3600 shows R at an upper location, unlike its eventual row placement.",
+  "segment_id": "a_r_stage",
+  "split_check": "Passage near I is approach context, not a second assigned target; the supervised interior is tied to R and its upper staging pose.",
+  "start": 3220,
+  "stop": 3600,
+  "supervised_start": 3220,
+  "supervised_stop": 3600,
+  "supervision_exclusions": [
+    {
+      "reason": "O release/R approach boundary ambiguity.",
+      "start": 3220,
+      "stop": 3250
+    },
+    {
+      "reason": "R withdrawal/next-I transit boundary ambiguity.",
+      "start": 3570,
+      "stop": 3600
+    }
+  ],
+  "training_condition": "R-like instance, temporary placement G(3599), not the final R row slot.",
+  "trajectory_id": "episode_2026091922002701",
+  "uncertainty": "Original staging intention is inferred, not recorded. Small neighboring shifts may be incidental; no multi-object goal is labeled."
+}

@@ -1,0 +1,328 @@
+{
+  "condition": "OOD",
+  "first_goals": {
+    "blue_inside": 3492,
+    "drawer_open": 204,
+    "red_on_pad": 2445
+  },
+  "invocations_sha256": "9a4de9a2d9b124e9d03539d75ff7fed1e78adbcbb431750a5c0da2524bce72bf",
+  "method": "APPL",
+  "result": {
+    "actuator_saturated_steps": 0,
+    "completed_evaluation": true,
+    "condition": "OOD",
+    "elapsed_seconds": 1624.698872087989,
+    "final": {
+      "blue_inside": true,
+      "drawer_open": true,
+      "red_on_pad": true,
+      "success": true
+    },
+    "invocations": 42,
+    "method": "APPL",
+    "seed": 6406,
+    "status": "succeeded",
+    "steps": 3492,
+    "success": true,
+    "task_id": "drawer_exchange"
+  },
+  "seed": 6406,
+  "selection": "Illustrative first observed success after step 3000; selected after outcomes, not a representative sample or causal ablation.",
+  "task": "drawer_exchange",
+  "timeline": [
+    {
+      "end_step": 232,
+      "invocation": 1,
+      "policy_id": "side_grasp_red_pull_drawer_open__h01",
+      "start_step": 0,
+      "stop_reason": "api_condition"
+    },
+    {
+      "end_step": 268,
+      "invocation": 2,
+      "policy_id": "side_grasp_red_pull_drawer_open__h01",
+      "start_step": 232,
+      "stop_reason": "api_condition"
+    },
+    {
+      "end_step": 538,
+      "invocation": 3,
+      "policy_id": "red_top_regrasp_lift__h01",
+      "start_step": 268,
+      "stop_reason": "requested_duration"
+    },
+    {
+      "end_step": 545,
+      "invocation": 4,
+      "policy_id": "red_top_regrasp_lift__h03",
+      "start_step": 538,
+      "stop_reason": "api_condition"
+    },
+    {
+      "end_step": 558,
+      "invocation": 5,
+      "policy_id": "red_top_regrasp_lift__h03",
+      "start_step": 545,
+      "stop_reason": "api_condition"
+    },
+    {
+      "end_step": 658,
+      "invocation": 6,
+      "policy_id": "side_grasp_red_pull_drawer_open__h03",
+      "start_step": 558,
+      "stop_reason": "requested_duration"
+    },
+    {
+      "end_step": 778,
+      "invocation": 7,
+      "policy_id": "side_grasp_red_pull_drawer_open__h01",
+      "start_step": 658,
+      "stop_reason": "requested_duration"
+    },
+    {
+      "end_step": 938,
+      "invocation": 8,
+      "policy_id": "side_grasp_red_pull_drawer_open__h01",
+      "start_step": 778,
+      "stop_reason": "requested_duration"
+    },
+    {
+      "end_step": 944,
+      "invocation": 9,
+      "policy_id": "side_grasp_red_pull_drawer_open__h02",
+      "start_step": 938,
+      "stop_reason": "api_condition"
+    },
+    {
+      "end_step": 1150,
+      "invocation": 10,
+      "policy_id": "red_top_regrasp_lift__h02",
+      "start_step": 944,
+      "stop_reason": "api_condition"
+    },
+    {
+      "end_step": 1157,
+      "invocation": 11,
+      "policy_id": "side_grasp_red_pull_drawer_open__h03",
+      "start_step": 1150,
+      "stop_reason": "api_condition"
+    },
+    {
+      "end_step": 1176,
+      "invocation": 12,
+      "policy_id": "side_grasp_red_pull_drawer_open__h03",
+      "start_step": 1157,
+      "stop_reason": "api_condition"
+    },
+    {
+      "end_step": 1179,
+      "invocation": 13,
+      "policy_id": "side_grasp_red_pull_drawer_open__h02",
+      "start_step": 1176,
+      "stop_reason": "api_condition"
+    },
+    {
+      "end_step": 1306,
+      "invocation": 14,
+      "policy_id": "side_grasp_red_pull_drawer_open__h02",
+      "start_step": 1179,
+      "stop_reason": "api_condition"
+    },
+    {
+      "end_step": 1329,
+      "invocation": 15,
+      "policy_id": "side_grasp_red_pull_drawer_open__h02",
+      "start_step": 1306,
+      "stop_reason": "api_condition"
+    },
+    {
+      "end_step": 1629,
+      "invocation": 16,
+      "policy_id": "red_top_regrasp_lift__h01",
+      "start_step": 1329,
+      "stop_reason": "requested_duration"
+    },
+    {
+      "end_step": 1660,
+      "invocation": 17,
+      "policy_id": "red_top_regrasp_lift__h01",
+      "start_step": 1629,
+      "stop_reason": "api_condition"
+    },
+    {
+      "end_step": 1682,
+      "invocation": 18,
+      "policy_id": "side_grasp_red_pull_drawer_open__h02",
+      "start_step": 1660,
+      "stop_reason": "api_condition"
+    },
+    {
+      "end_step": 1688,
+      "invocation": 19,
+      "policy_id": "side_grasp_red_pull_drawer_open__h03",
+      "start_step": 1682,
+      "stop_reason": "api_condition"
+    },
+    {
+      "end_step": 1808,
+      "invocation": 20,
+      "policy_id": "side_grasp_red_pull_drawer_open__h03",
+      "start_step": 1688,
+      "stop_reason": "requested_duration"
+    },
+    {
+      "end_step": 2028,
+      "invocation": 21,
+      "policy_id": "side_grasp_red_pull_drawer_open__h03",
+      "start_step": 1808,
+      "stop_reason": "requested_duration"
+    },
+    {
+      "end_step": 2071,
+      "invocation": 22,
+      "policy_id": "side_grasp_red_pull_drawer_open__h01",
+      "start_step": 2028,
+      "stop_reason": "api_condition"
+    },
+    {
+      "end_step": 2113,
+      "invocation": 23,
+      "policy_id": "side_grasp_red_pull_drawer_open__h01",
+      "start_step": 2071,
+      "stop_reason": "api_condition"
+    },
+    {
+      "end_step": 2141,
+      "invocation": 24,
+      "policy_id": "side_grasp_red_pull_drawer_open__h01",
+      "start_step": 2113,
+      "stop_reason": "api_condition"
+    },
+    {
+      "end_step": 2352,
+      "invocation": 25,
+      "policy_id": "red_top_regrasp_lift__h01",
+      "start_step": 2141,
+      "stop_reason": "api_condition"
+    },
+    {
+      "end_step": 2364,
+      "invocation": 26,
+      "policy_id": "red_top_regrasp_lift__h01",
+      "start_step": 2352,
+      "stop_reason": "api_condition"
+    },
+    {
+      "end_step": 2445,
+      "invocation": 27,
+      "policy_id": "red_transport_place_pad__h03",
+      "start_step": 2364,
+      "stop_reason": "api_condition"
+    },
+    {
+      "end_step": 2470,
+      "invocation": 28,
+      "policy_id": "red_transport_place_pad__h03",
+      "start_step": 2445,
+      "stop_reason": "api_condition"
+    },
+    {
+      "end_step": 2480,
+      "invocation": 29,
+      "policy_id": "red_transport_place_pad__h03",
+      "start_step": 2470,
+      "stop_reason": "api_condition"
+    },
+    {
+      "end_step": 2740,
+      "invocation": 30,
+      "policy_id": "blue_approach_grasp_lift__h02",
+      "start_step": 2480,
+      "stop_reason": "requested_duration"
+    },
+    {
+      "end_step": 2900,
+      "invocation": 31,
+      "policy_id": "blue_approach_grasp_lift__h02",
+      "start_step": 2740,
+      "stop_reason": "requested_duration"
+    },
+    {
+      "end_step": 2922,
+      "invocation": 32,
+      "policy_id": "blue_approach_grasp_lift__h01",
+      "start_step": 2900,
+      "stop_reason": "api_condition"
+    },
+    {
+      "end_step": 2934,
+      "invocation": 33,
+      "policy_id": "blue_approach_grasp_lift__h03",
+      "start_step": 2922,
+      "stop_reason": "api_condition"
+    },
+    {
+      "end_step": 3034,
+      "invocation": 34,
+      "policy_id": "blue_approach_grasp_lift__h02",
+      "start_step": 2934,
+      "stop_reason": "requested_duration"
+    },
+    {
+      "end_step": 3052,
+      "invocation": 35,
+      "policy_id": "red_transport_place_pad__h03",
+      "start_step": 3034,
+      "stop_reason": "api_condition"
+    },
+    {
+      "end_step": 3087,
+      "invocation": 36,
+      "policy_id": "blue_approach_grasp_lift__h02",
+      "start_step": 3052,
+      "stop_reason": "api_condition"
+    },
+    {
+      "end_step": 3134,
+      "invocation": 37,
+      "policy_id": "blue_approach_grasp_lift__h03",
+      "start_step": 3087,
+      "stop_reason": "api_condition"
+    },
+    {
+      "end_step": 3144,
+      "invocation": 38,
+      "policy_id": "red_transport_place_pad__h03",
+      "start_step": 3134,
+      "stop_reason": "api_condition"
+    },
+    {
+      "end_step": 3188,
+      "invocation": 39,
+      "policy_id": "blue_approach_grasp_lift__h02",
+      "start_step": 3144,
+      "stop_reason": "api_condition"
+    },
+    {
+      "end_step": 3193,
+      "invocation": 40,
+      "policy_id": "blue_approach_grasp_lift__h02",
+      "start_step": 3188,
+      "stop_reason": "api_condition"
+    },
+    {
+      "end_step": 3227,
+      "invocation": 41,
+      "policy_id": "blue_transport_to_drawer__h02",
+      "start_step": 3193,
+      "stop_reason": "api_condition"
+    },
+    {
+      "end_step": 3492,
+      "invocation": 42,
+      "policy_id": "blue_transport_to_drawer__h02",
+      "start_step": 3227,
+      "stop_reason": "task_success"
+    }
+  ]
+}

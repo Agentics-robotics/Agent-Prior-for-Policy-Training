@@ -1,0 +1,90 @@
+{
+  "schema": "appl.dp_baseline.v1",
+  "seed": 0,
+  "data": {
+    "directory": "data/exp2/demonstrations_v2",
+    "train_ids": [
+      "demo1000",
+      "demo1001",
+      "demo1002",
+      "demo1003",
+      "demo1004",
+      "demo1005",
+      "demo1006",
+      "demo1007",
+      "demo1008",
+      "demo1009",
+      "demo1010",
+      "demo1011"
+    ],
+    "validation_ids": [
+      "demo1012",
+      "demo1013",
+      "demo1014"
+    ]
+  },
+  "training": {
+    "updates": 60000,
+    "batch_size": 128,
+    "learning_rate": 0.0001,
+    "weight_decay": 0.000001,
+    "ema_decay": 0.999,
+    "observation_steps": 2,
+    "horizon": 16,
+    "execution_steps": 8,
+    "denoising_train_steps": 100,
+    "denoising_inference_steps": 100,
+    "down_dims": [
+      128,
+      256,
+      512
+    ],
+    "timestep_embed_dim": 128,
+    "kernel_size": 5,
+    "groups": 8,
+    "observation_std_floor": 0.001,
+    "action_scale_floor": 0.01,
+    "clip_sample": true,
+    "checkpoint_every": 5000,
+    "selection": "last EMA at predeclared budget",
+    "seeds": [
+      0,
+      1,
+      2
+    ],
+    "observation_normalization": "limits",
+    "quaternion_normalization": "unit_component_bounds",
+    "sampler": "ddpm",
+    "lr_schedule": "cosine",
+    "warmup_steps": 500,
+    "max_grad_norm": 1
+  },
+  "evaluation": {
+    "max_steps": 1500,
+    "control_hz": 20,
+    "drawer_open_m": 0.26,
+    "linear_speed_m_s": 0.02,
+    "angular_speed_rad_s": 0.2,
+    "sustained_steps": 10,
+    "finger_open_m": 0.035,
+    "tcp_clearance_m": 0.08,
+    "red_pad_half_m": 0.06,
+    "object_half_m": 0.02,
+    "confirmation_actions": "none; policy must release/settle during its recorded actions",
+    "conditions": [
+      "ID",
+      "OOD-position",
+      "OOD-state"
+    ],
+    "paired_resets_per_condition": 10
+  },
+  "scope": "id_development",
+  "evaluation_seeds": [
+    6000,
+    6001,
+    6002,
+    6003,
+    6004
+  ],
+  "output": "runs/exp2/m0_20260915/03_limits_full"
+}

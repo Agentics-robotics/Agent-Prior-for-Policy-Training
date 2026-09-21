@@ -1,0 +1,15 @@
+{
+  "extraction": "All function_call objects in the final recorded response, unchanged.",
+  "function_calls": [
+    {
+      "arguments": "{\"notebook\":\"Step551 inv6 confirms blue attachment: blue/TCP rose .11437m together to .26509/.26452; distance stayed .023981-.023986, fingers about .0369, near-downward TCP. Offset is larger than nominal but stable, no slip or collision observed. Red remains fixed at (-.13861,-.06737,.03600), at_goal=1. Inv1-4 h03 pickup then h02 delivery and release succeeded for red; inv5-6 h03 acquired blue. Both docs read. Use h02 supported attached-lift/carry/insertion, watch rim and red preservation. Finish immediately on measured simultaneous predicates.\",\"policy_id\":\"deliver_block__h02\",\"reason\":\"Stable elevated blue co-motion and closed fingers support delivery handoff in the trained lift/transport overlap. Actual blue pose is provided despite its larger grasp offset. Tray geometry matches h02 configuration; fixture preference only supports a plausible route, so stop for low-rim transport, separation, or red displacement.\",\"steps\":180,\"stop_when\":[{\"conditions\":[{\"comparison\":\"eq\",\"metric\":\"success\",\"reference\":\"absolute\",\"value\":1}],\"label\":\"Both blocks satisfy task contract\"},{\"conditions\":[{\"comparison\":\"eq\",\"metric\":\"red_at_goal\",\"reference\":\"absolute\",\"value\":0}],\"label\":\"Packed red disturbed\"},{\"conditions\":[{\"comparison\":\"ge\",\"metric\":\"blue_x\",\"reference\":\"absolute\",\"value\":-0.293},{\"comparison\":\"le\",\"metric\":\"blue_x\",\"reference\":\"absolute\",\"value\":-0.223},{\"comparison\":\"lt\",\"metric\":\"blue_z\",\"reference\":\"absolute\",\"value\":0.12}],\"label\":\"Blue too low near left tray rim\"},{\"conditions\":[{\"comparison\":\"gt\",\"metric\":\"tcp_blue_distance\",\"reference\":\"absolute\",\"value\":0.055},{\"comparison\":\"gt\",\"metric\":\"blue_z\",\"reference\":\"absolute\",\"value\":0.07}],\"label\":\"Possible lost blue attachment\"}]}",
+      "call_id": "call_O8MbROXs7Kltdtu7ugLKLOlg",
+      "id": "fc_0aa4ab252c31cf83016aaba6ff8b9087d083b9d437e96e332e",
+      "name": "invoke_policy",
+      "status": "completed",
+      "type": "function_call"
+    }
+  ],
+  "source": "runs/exp2/M1_astra_xhigh/tray_pack/evaluation/APPL/ID/20300/api/api/0009.response.json",
+  "source_sha256": "69381a9af97aa38f02adad7b5d53e9b9594d54fced208e89f593c032bbc4d1c6"
+}

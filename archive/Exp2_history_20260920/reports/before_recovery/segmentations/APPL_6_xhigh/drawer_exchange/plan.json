@@ -1,0 +1,782 @@
+{
+  "exclusions": [],
+  "overlap_rationale": "These are transition-complete options, not disjoint elementary motions. All 12,809 original actions are retained. Open-access and red-evacuation share [195,475) in demo1000/1002/1003/1004/1006/1009/1010/1011, [195,476) in demo1001, and [195,474) in demo1005/1007/1008: 3,358 shared actions. These intervals cover late loaded drawer pulling, stopping, handle release, upward retreat, rotation/translation to red, descent with open fingers, closure, and initial red lift. Red-evacuation and blue-insertion share [575,845) in demo1000/1003, [581,859) in demo1001, [575,847) in demo1002/1007, [575,846) in demo1004/1006/1009/1011, [582,852) in demo1005, [575,853) in demo1008, and [575,849) in demo1010: 3,268 shared actions. These intervals cover red still held and descending over the pad, release, retreat, approach to blue, descent, closure, and initial blue lift. There is no triple overlap. Total unique shared actions = 6,626, approximately 51.7% of the originals and 10.04 times the supplied M1_v1 count of 660. Each shared interval lasts approximately 13.5-14.05 seconds at 20 Hz. The large windows let either neighbor finish an evolving manipulation state rather than require pose-perfect transfer. Each predecessor retains a distinctive opening/access or red-evacuation goal, with a suffix establishing the next pickup. Each successor has a prerequisite-completion prefix rather than an assumed already-released gripper. Boundaries were checked separately in every trajectory: identical opening boundaries reflect essentially identical measured drawer states at 195; red-lift, red-descent and blue-lift boundaries reflect observed rate differences. Support is for successful temporal paths, not arbitrary spatial error, lost grasp, unexpected force or drawer blockage. Do not concatenate overlapping copies as sequential time or put copies of one source trajectory in both training and validation. All candidates are separately trained Diffusion Policies using the single observation/action normalizer fitted to complete original demonstrations, never per-skill statistics. Geometry calculations use unnormalized physical fields before encoding. Common external action decoding is eight absolute pd_joint_pos targets at 20 Hz: seven Panda joint positions in radians within supplied bounds, plus g in [-1,1]. Finger target per side is 0.025*g+0.015 metres; measured qpos[7:9] is not equal to that target in contact. qvel arm units are rad/s and finger units m/s. Use causal history at deployment, mask unavailable history at segment starts, and mask training futures beyond segment ends. No additional robot model, force sensor, deployment requirement or recovery data is assumed. The terminal contract uses simultaneous world-frame states and rotated block extents; every inspected final endpoint satisfies it. Release and retreat are retained for useful interfaces, not as extra success requirements. The nine priors deliberately vary representation, temporal/hierarchical computation, auxiliary physical objectives or inference-time selection. All benefits below are testable hypotheses, not measured performance results.",
+  "skills": [
+    {
+      "heuristics": [
+        {
+          "applicability": "Same Panda and pd_joint_pos controller, drawer translating along world -X, gravity direction and drawer geometry retained. Most plausible transfer is modest variation of red placement and opening amount. A changed cabinet pose requires a newly supplied cabinet frame, not assumed global SE(3) invariance. State poses and drawer_position must be available causally.",
+          "evidence": [
+            {
+              "indices": [
+                0,
+                140,
+                150,
+                160,
+                195,
+                215,
+                230,
+                240,
+                300,
+                390,
+                440,
+                450,
+                465
+              ],
+              "trajectory_id": "demo1000"
+            },
+            {
+              "indices": [
+                0,
+                195,
+                240,
+                300,
+                390,
+                440,
+                450,
+                475
+              ],
+              "trajectory_id": "demo1001"
+            },
+            {
+              "indices": [
+                0,
+                195,
+                240,
+                450,
+                475
+              ],
+              "trajectory_id": "demo1009"
+            }
+          ],
+          "handoff": {
+            "entry_conditions": "Demonstrated initial entry: drawer_position=0 m, drawer_velocity=0 m/s, qpos arm=[0,-0.3,0,-2.1,0,1.8,0.7854] rad, fingers=0.04 m each, tcp_pose xyz approximately [-0.384,0,0.442] m world, red z=0.063 m inside, blue z=0.020 m outside. Later entries along the observed approach/contact manifold can be encoded by drawer-relative features; arbitrary open-drawer starts are not established.",
+            "exit_conditions": "Primary exit has drawer_position approximately 0.300 m after release, then upward retreat and red approach. Expanded endpoint: red z approximately 0.142-0.143 m, TCP about 0.009 m to red's -X side, fingers approximately 0.0182 m, g=-1 and positive red/TCP lift motion. Preserve the red grasp when transferring this late; opening completion is not a reason to open fingers again.",
+            "failure_signatures": "d does not rise while TCP moves -X, red fails to translate with drawer before pickup, d falls below 0.26 m, fingers close without red lifting, or red approach begins while the tool remains attached to the handle. These are alarms, not demonstrated recovery cases.",
+            "overlap_role": "Both policies learn [195,474-476): continue a pull from d approximately 0.1863 m and drawer_velocity approximately 0.1071 m/s with fingers approximately 0.0071 m, release at full opening, retreat to TCP z approximately 0.369 m, approach red, close and lift. Retain both handle-relative and red-relative features during the change.",
+            "successor_readiness": "Red-evacuation receives qpos/qvel, tcp/red/blue poses and drawer states. Early takeover still requires pulling/releasing and upward retreat; late takeover must continue lifting held red before translation. The measured endpoints define supported examples, not a validated millimetre tolerance."
+          },
+          "limitations": "Drawer motion and robot starts are virtually identical across demonstrations; benefit over a time-indexed memorizer is therefore hypothetical. Initial red slip means red_x+d is only approximately conserved. Compare a relational encoder to a capacity-matched world-state encoder on held-out trajectories and placement/opening variation; no gain or systematic d-dependent errors falsify the claim. Successful data do not establish blocked-drawer recovery, arbitrary cabinet rotation or noisy-pose robustness.",
+          "pipeline_implications": "Inputs: causal qpos/qvel, tcp_pose/red_pose/blue_pose (world metres, wxyz), drawer_position d and drawer_velocity. Construct c=[0.19-d,0,0.035] m, tcp-c, red-c, TCP-to-red and blue-to-TCP relations; use quaternion-sign-invariant rotation matrices. A typed relational encoder has robot/drawer/red/blue nodes and separate axial-X and transverse-YZ channels on drawer edges. Keep qpos and world-height/base-relative features for reachability and gravity. Condition an action-chunk diffusion denoiser on these tokens; predict eight original-normalized absolute controller targets, inverse-normalize and bound at output. Train noise-prediction loss plus auxiliary next-drawer-displacement regression from the relational latent. Next d is a future training target, never an inference input. Deploy by recomputing c and denoising a short receding-horizon prefix; no IK is needed. The prior is moving-frame/axis-structured conditioning, not projection of joint actions. Prediction: better sample efficiency for separating loaded pull from red approach than an unstructured world-state MLP.",
+          "rationale": "In demo1000 red x changes from 0.1055 at 0 to -0.0835 at 195 and -0.1972 at 240 while blue is stationary; demo1001/1009 preserve different red placements on nearly identical drawer motion. After release the TCP rises and rotates while red stays still until pickup. Absolute coordinates entangle articulation and object placement. Axis/relative encoding addresses this without pretending joint actions are translation invariant. This is a representation hypothesis, distinct from phase memory or action-candidate lookahead.",
+          "statement": "Prismatic relational coordinates: separate articulation along the drawer axis from object offsets while retaining robot reachability. Hypothesis: this representation improves generalization to placement and opening variation rather than memorizing an absolute TCP path."
+        },
+        {
+          "applicability": "Contact is unobserved but causal pose, proprioception and available command history exist at 20 Hz. Retain observed handle/block widths, compliance and task ordering. Timing transfer is more plausible than transfer to new contact mechanics.",
+          "evidence": [
+            {
+              "indices": [
+                125,
+                140,
+                150,
+                160,
+                195,
+                230,
+                240,
+                260,
+                300,
+                390,
+                440,
+                450,
+                465
+              ],
+              "trajectory_id": "demo1000"
+            },
+            {
+              "indices": [
+                195,
+                240,
+                390,
+                440,
+                450,
+                476
+              ],
+              "trajectory_id": "demo1001"
+            },
+            {
+              "indices": [
+                450,
+                474
+              ],
+              "trajectory_id": "demo1008"
+            }
+          ],
+          "handoff": {
+            "entry_conditions": "Initial entry uses the demonstrated open-finger rest state and a masked history buffer. Later entry initializes a phase posterior from qpos[7:9] in metres, available command history, TCP-object distances in world metres, drawer_velocity in m/s and recent pose changes, not elapsed episode time.",
+            "exit_conditions": "Progress from pull through released-handle retreat and red approach to attached-red initial lift. Supported late exit: d approximately 0.300 m, g=-1, fingers approximately 0.0182 m, red/TCP rising near z=0.143 m. Handle release at TCP z approximately 0.128 m with fingers opening toward 0.04 m is an intermediate handoff, not a stop-all-motion state.",
+            "failure_signatures": "Phase chatter, predicted free fingers while width remains near 0.007 m and drawer moves, or predicted red attachment without correlated lift. Near-zero TCP speed is ambiguous because pauses occur before closure and after contact. Posterior certainty outside the demonstrated history manifold is not established.",
+            "overlap_role": "The 279-281-action shared interval supervises handle attachment through free travel to red attachment, including fingers changing from approximately 0.04 to 0.0182 m while TCP pose initially barely changes. Both policies learn the contact evolution instead of an instantaneous skill switch.",
+            "successor_readiness": "Pass causal observations and optionally a recent action/history buffer, not a required private latent. The successor must infer whether to finish pulling, release/retreat, approach or continue red lift. Do not reset g to open at option switches. Test timing tolerance by switching throughout the overlap."
+          },
+          "limitations": "Geometry/future-co-motion phase labels are proxies, not measured contact forces. Ordered phase bias may obstruct retries after missed grasps. Compare to memoryless and clock-conditioned denoisers; ablate dwell regularization and test truncated histories/timing-shifted handoffs. Successful-only data cannot calibrate uncertainty on failures or validate reversed-phase recovery.",
+          "pipeline_implications": "Use a causal recurrent encoder over approximately 0.5-1 s of qpos/qvel, tcp/red/blue poses, d/vd and previous available commands. Train an ordered semi-Markov latent over handle approach/closure/pull/release, retreat, red approach/closure/lift. Soft phase targets use finger changes, drawer displacement, TCP height and red/TCP co-motion; future motion may label training phases but is not an input. Condition phase-specific adapters of a shared diffusion denoiser on the filtered posterior and time-since-inferred-event, not episode timestep. Loss = noise prediction + soft phase supervision + dwell/transition regularization. Output original-normalized absolute joint/gripper chunks; re-infer phase at each observation and execute short prefixes with standard bounds. Prediction: fewer premature grip/release actions and less sensitivity to dwell duration than a purely geometric encoder.",
+          "rationale": "At 140 TCP is at handle height with open fingers; at 150 nearly the same pose has fingers near 0.007 m and drawer displacement. At 230/240 the TCP stays near z=0.128 while fingers release. At 440/450 similarly close TCP poses precede/follow red closure, then red rises by 465-476. Static pose can be ambiguous. Recurrent contact-event state is the proposed bias; different red-lift timing in demo1001 and demo1008 argues against a global clock even though drawer timing is nearly identical.",
+          "statement": "Contact-event memory rather than episode clock: an ordered latent should disambiguate similar pre-contact, attached and released poses, improving gripper timing and takeover consistency."
+        },
+        {
+          "applicability": "Same dynamics and accurate object/drawer state observations. Most useful for short local continuation near full opening and red acquisition. It is not long-horizon planning through unseen collisions.",
+          "evidence": [
+            {
+              "indices": [
+                195,
+                215,
+                230,
+                240,
+                260,
+                300,
+                440,
+                450,
+                465
+              ],
+              "trajectory_id": "demo1000"
+            },
+            {
+              "indices": [
+                195,
+                240,
+                440,
+                450,
+                476
+              ],
+              "trajectory_id": "demo1001"
+            },
+            {
+              "indices": [
+                195,
+                240,
+                450,
+                475
+              ],
+              "trajectory_id": "demo1006"
+            }
+          ],
+          "handoff": {
+            "entry_conditions": "Accept the demonstrated initial rest state or an in-distribution partial pull/approach with qpos/qvel and poses known. Evaluate forward-model uncertainty before relying on candidate scores. Current d/vd distinguishes useful articulation from mere TCP travel; failed entry states are not in training.",
+            "exit_conditions": "Choose prefixes retaining d>0.26 m and a feasible next manipulation state. Expanded endpoint has d approximately 0.300 m, red z approximately 0.143 m, fingers approximately 0.0182 m and g=-1. Earlier supported exits include release and rising retreat without requiring zero velocity.",
+            "failure_signatures": "Predicted/observed d diverge, selection proposes continued over-pull or lateral travel before release, predicted red lift is absent, or d decreases during red approach. Low ensemble disagreement alone is not safety evidence.",
+            "overlap_role": "Both policies train on late pull through red lift. This candidate additionally predicts successor-relevant outcomes across release and reattachment. It must not reward transporting red while still attached to the handle or force every transition into a static pose.",
+            "successor_readiness": "Transfer actual observed state/history after the prefix, not predicted state as fact. Red policy supports takeover while d approximately 0.186 m is still increasing, after release near 0.300 m, or during initial red lift. A learned readiness score is advisory, not a scripted switching predicate."
+          },
+          "limitations": "Only successful action neighborhoods support the learned dynamics. This does not justify a reliable safe/unsafe discriminator. Keep short horizons and demonstration-likelihood penalties. Compare to the identical diffusion proposal without lookahead; low-likelihood selections, worsened pickup or merely longer pauses falsify benefit. Jam recovery and impact response remain untested.",
+          "pipeline_implications": "Train a full-state action diffusion proposal using original normalized targets. Separately train an ensemble action-conditioned recurrent dynamics model on qpos/qvel, TCP/object poses, d/vd to predict physical increments for short observed prefixes, with geodesic rotation loss. A progress/readiness head uses training-only future labels for opening, release/retreat and red lift. At deployment sample K chunks, roll out short predictions and rank by demonstration likelihood minus uncertainty and stage-conditioned penalties for loss of opening, implausible red/drawer coupling during pulling, and loss of red/TCP coupling after pickup. Infer stage from current geometry/history; deactivate pull coupling after release. Replan after a short executed prefix, using original absolute action decoding and bounds. No unavailable kinematics or force model is assumed. Scoring weights require validation. Prediction: fewer over-pulls and more consistent red-ready handoffs than proposal-only imitation.",
+          "rationale": "At 195 d=0.1863 m is moving; at 215 d=0.2970 it slows; at 230 it reaches 0.300 before fingers release. The robot retreats while preserving opening, then establishes another grasp. Action matching alone need not preserve these consequences under its own sampled actions. Short action-conditioned consequence prediction is an optimization/inference prior, distinct from coordinates or phase memory. The dependencies are observed; counterfactual prediction accuracy is an assumption to test.",
+          "statement": "Successor-aware short-horizon diffusion selection: favor demonstrated-like chunks predicted to preserve opening and establish red pickup. Hypothesis: consequence prediction improves handoff quality beyond marginal action imitation."
+        }
+      ],
+      "name": "Open drawer and establish red pickup",
+      "segmentation_rationale": "All 12 demonstrations begin from the same robot rest configuration with red in a closed drawer and blue outside. The primary manipulation is handle approach, closure and prismatic pulling. Retain handle release, full retreat, red approach/descent/closure and measurable initial red lift as a transition suffix. Individually inspected endpoints have red z approximately 0.142-0.143 m, fingers approximately 0.0182 m and continued upward motion: 475 for most, 476 for demo1001 and 474 for demo1005/1007/1008. Thus the outgoing interface covers acquisition, not only a released-handle pose. Images demo1000:0/240/480 confirm layout, extended drawer and red pickup; state/action samples determine exact boundaries. This option does not learn complete red placement beyond its shared suffix.",
+      "segments": [
+        {
+          "start": 0,
+          "stop": 475,
+          "trajectory_id": "demo1000"
+        },
+        {
+          "start": 0,
+          "stop": 476,
+          "trajectory_id": "demo1001"
+        },
+        {
+          "start": 0,
+          "stop": 475,
+          "trajectory_id": "demo1002"
+        },
+        {
+          "start": 0,
+          "stop": 475,
+          "trajectory_id": "demo1003"
+        },
+        {
+          "start": 0,
+          "stop": 475,
+          "trajectory_id": "demo1004"
+        },
+        {
+          "start": 0,
+          "stop": 474,
+          "trajectory_id": "demo1005"
+        },
+        {
+          "start": 0,
+          "stop": 475,
+          "trajectory_id": "demo1006"
+        },
+        {
+          "start": 0,
+          "stop": 474,
+          "trajectory_id": "demo1007"
+        },
+        {
+          "start": 0,
+          "stop": 474,
+          "trajectory_id": "demo1008"
+        },
+        {
+          "start": 0,
+          "stop": 475,
+          "trajectory_id": "demo1009"
+        },
+        {
+          "start": 0,
+          "stop": 475,
+          "trajectory_id": "demo1010"
+        },
+        {
+          "start": 0,
+          "stop": 475,
+          "trajectory_id": "demo1011"
+        }
+      ],
+      "skill_id": "open_access",
+      "subgoal": "Open the drawer beyond 0.26 m, relinquish the handle without losing opening, and establish red pickup through initial lift so red evacuation can take over across a broad range of manipulation states."
+    },
+    {
+      "heuristics": [
+        {
+          "applicability": "Same Panda workspace/gravity with object and pad poses known. Transfer is most plausible for the demonstrated centimetre-scale source variation and modest reachable goal shifts. Global joint translation invariance is not assumed; pad location is supplied, not visually inferred.",
+          "evidence": [
+            {
+              "indices": [
+                195,
+                240,
+                390,
+                450,
+                475,
+                480,
+                560,
+                575,
+                595,
+                615,
+                680,
+                750,
+                805,
+                815,
+                845
+              ],
+              "trajectory_id": "demo1000"
+            },
+            {
+              "indices": [
+                195,
+                240,
+                390,
+                450,
+                476,
+                581,
+                600,
+                615,
+                760,
+                825,
+                859
+              ],
+              "trajectory_id": "demo1001"
+            },
+            {
+              "indices": [
+                195,
+                474,
+                575,
+                615,
+                760,
+                825,
+                853
+              ],
+              "trajectory_id": "demo1008"
+            }
+          ],
+          "handoff": {
+            "entry_conditions": "Earliest entry at 195: d approximately 0.1863 m, vd approximately 0.1071 m/s, TCP approximately [-0.326,0,0.128] m world, fingers approximately 0.0071 m and g=-1, red moving with drawer and blue on table at z=0.020 m. Later supported entries include released handle, empty retreat, red closure or red rising near z=0.143 m. Do not assume red is already held.",
+            "exit_conditions": "Primary goal is full red containment on the world pad centered [-0.18,-0.30,0.02] m with z in (0.014,0.031) and d>0.26 m. Retained suffix releases red, retreats and acquires blue. Late exit has blue z approximately 0.139-0.146 m, fingers approximately 0.0182 m, g=-1 and ongoing lift; preserve that grasp.",
+            "failure_signatures": "Attention stays on red after placement/release, switches to blue before release, uses moving-drawer coordinates for the fixed pad, or blue rises while red is outside the pad. Red/TCP decoupling during transport and d<0.26 m are observable violations.",
+            "overlap_role": "Incoming overlap covers late pull through red pickup; outgoing overlap covers red held-descent through release/retreat and blue acquisition. Retain both objects and drawer in the encoder instead of cropping away the object whose state is becoming a constraint.",
+            "successor_readiness": "Blue-insertion receives full causal state. Its earliest supported takeover still has red z approximately 0.211 m and closed fingers at 575 or 581/582, so it must finish red lowering/release. Later takeover may be free travel or blue lift. The supported set is a temporal manifold, not a rectangular spatial tolerance region."
+          },
+          "limitations": "Source variation is only centimetres, objects never swap roles and all targets use one workspace. Compare typed relations to absolute-state concatenation and target-only crops; no gain on held-out placements or erroneous role switching falsifies the claim. Color-role exchange, arbitrary object count, broad obstacle avoidance and dropped-block recovery are not established.",
+          "pipeline_implications": "Build typed robot/drawer/red/blue/pad tokens from causal qpos/qvel, tcp/red/blue poses and d/vd. Include red-TCP and blue-TCP transforms, red-pad displacement, object-drawer relations, physical heights and absolute/base anchors. Use quaternion-sign-invariant rotations and learned role attention conditioned on observed grasp/release evidence, not an elapsed-time selector. Condition action diffusion on these tokens; output eight original-normalized absolute joint/gripper targets with common decoding/bounds. Train denoising plus auxiliary next-object-displacement prediction on attended tokens, using future poses only as targets. At inference recompute relations, infer soft attention and denoise/replan short prefixes. This prior makes object-to-tool/target dependencies explicit while retaining background goals. Prediction: improved sample efficiency for differing red y and blue xy placements relative to a world-coordinate MLP.",
+          "rationale": "Red pickup shifts from approximately [-0.197,-0.063] m in demo1000 to [-0.195,-0.077] in demo1001, yet placement uses the same pad. Blue approach shifts across approximately [-0.401,0.291], [-0.409,0.311] and [-0.408,0.315]. TCP is roughly 9 mm to the held object's -X side, so tool position and object goal cannot be equated. Relational encoding shares these dependencies while retaining reachability. It changes observation structure, unlike waypoint hierarchy or an attachment-physics objective.",
+          "statement": "Object-role relational attention: represent pickup/placement with object-to-tool and object-to-target relations while retaining drawer and completed-goal context. Hypothesis: explicit roles reduce spurious absolute-coordinate dependence and improve transition reuse."
+        },
+        {
+          "applicability": "Observed ordered relocation with room for vertical clearance and similar drawer/pad geometry. Assumes similar route topology without required regrasp. The hierarchy includes the drawer-release prerequisite and blue-acquisition suffix, not just already-grasped transport.",
+          "evidence": [
+            {
+              "indices": [
+                240,
+                260,
+                300,
+                390,
+                440,
+                450,
+                480,
+                560,
+                575,
+                595,
+                605,
+                615,
+                625,
+                640,
+                680,
+                750,
+                805,
+                815,
+                830,
+                845
+              ],
+              "trajectory_id": "demo1000"
+            },
+            {
+              "indices": [
+                300,
+                390,
+                476,
+                581,
+                600,
+                615,
+                625,
+                680,
+                760,
+                825,
+                835,
+                859
+              ],
+              "trajectory_id": "demo1001"
+            },
+            {
+              "indices": [
+                474,
+                582,
+                615,
+                815,
+                845,
+                852
+              ],
+              "trajectory_id": "demo1005"
+            }
+          ],
+          "handoff": {
+            "entry_conditions": "Infer the next feasible waypoint from current manipulation state. Earliest entry is still attached to the moving handle with fingers approximately 0.0071 m; later entries may have open fingers at TCP z approximately 0.369 m or red held near z=0.143 m. Predict unfinished release/retreat prerequisites rather than jumping directly to transport.",
+            "exit_conditions": "Red reaches approximately z=0.020 m on the pad after release; TCP retreats to approximately 0.300 m before blue approach/grasp. The expanded endpoint is during blue lift near z=0.14 m, not at a static completed high waypoint. Replan from ongoing motion instead of forcing a zero-velocity boundary.",
+            "failure_signatures": "Waypoint crosses the drawer rim too low, skips release and moves laterally with red near the table, or is chased after the object fails to follow. Advancing by duration despite unchanged object state is premature transfer.",
+            "overlap_role": "Incoming overlap contains the full release-to-red-lift chain. Outgoing overlap includes red descent/release/retreat and blue pickup/lift. Both policies learn to resume inside these chains rather than only at abstract waypoint boundaries.",
+            "successor_readiness": "Transfer physical state and optionally an advisory predicted waypoint, not a compulsory private code. Blue policy must finish red placement from z approximately 0.211 m on early takeover or continue blue lift with g=-1 on late takeover. Demonstrated heights are references; clearance tolerances remain untested."
+          },
+          "limitations": "Point poses do not specify complete collision geometry, so a high waypoint is not collision certification. Only one route is demonstrated. Compare to flat action diffusion with the same observations/history; ablate waypoint supervision and vary action horizon. Skipped contacts, high-level lag or no improvement across switch times falsify benefit. Alternative-route and failure recovery behavior are not established.",
+          "pipeline_implications": "Train a two-level Diffusion Policy. A causal full-state encoder feeds a waypoint diffusion model predicting next robot/object waypoint, event type (release, retreat-high, pickup-low, lift-high, target-high, place-low) and estimated duration. Targets come from future tcp_pose, selected object pose, finger width and qpos at observed transitions; they are labels, not causal inputs. Waypoints use object/goal-relative xyz, sign-invariant orientation and robot qpos for posture. A low-level action diffusion decoder conditions on current state and predicted waypoint, outputting seven original-normalized absolute joints plus g. Loss combines waypoint/event/duration supervision and action denoising; mix teacher-forced and predicted waypoints to reduce mismatch. At deployment refresh waypoints at a slower event-aware cadence and actions at 20 Hz, advancing from current state rather than clock alone. No external planner or IK is required. Prediction: a spatial-intent bottleneck improves long-window consistency and tolerance to variable approach duration.",
+          "rationale": "TCP retreats from 0.128 to 0.369 m after handle release; red travels high around z=0.296 at 560 before descent; after red release TCP rises from 0.033 to about 0.300 m before crossing toward blue. Demo1001/1005 reach comparable phases later. Flat long chunks entangle route organization and PD transients. A future spatial-waypoint bottleneck addresses this scale separation; unlike an event classifier it predicts where to go and conditions a separate local policy.",
+          "statement": "Clearance waypoint hierarchy: factor relocation into learned spatial intents and local action diffusion. Hypothesis: hierarchical prediction preserves lift-before-translate and release-before-retreat organization across timing variation."
+        },
+        {
+          "applicability": "Rigid blocks, parallel Panda fingers and approximately stable grasps without intended in-hand motion. Causal pose history is needed to estimate attachment; g=-1 is not a contact measurement. Handle attachment requires a prismatic constraint distinct from block rigidity.",
+          "evidence": [
+            {
+              "indices": [
+                195,
+                450,
+                465,
+                475,
+                480,
+                560,
+                575,
+                595,
+                605,
+                615,
+                815,
+                830,
+                845
+              ],
+              "trajectory_id": "demo1000"
+            },
+            {
+              "indices": [
+                450,
+                476,
+                581,
+                600,
+                615,
+                825,
+                859
+              ],
+              "trajectory_id": "demo1001"
+            },
+            {
+              "indices": [
+                450,
+                474,
+                575,
+                615,
+                825,
+                853
+              ],
+              "trajectory_id": "demo1008"
+            },
+            {
+              "indices": [
+                815,
+                845,
+                849
+              ],
+              "trajectory_id": "demo1010"
+            }
+          ],
+          "handoff": {
+            "entry_conditions": "Earliest entry is handle-attached: d approximately 0.186 m increasing and fingers approximately 0.0071 m. Infer attachment identity from relative pose history instead of initializing a fixed red transform. Supported later entries include free motion, fingers closing from 0.04 toward 0.0182 m around red, and red lift.",
+            "exit_conditions": "Deactivate red rigidity after fingers open and red stays around z=0.020 m while TCP rises. At full suffix endpoint, blue's tool-relative transform is approximately conserved during initial lift: blue near z=0.14 m, TCP roughly 9-10 mm to its -X side, fingers approximately 0.0182 m and g=-1. Preserve blue attachment at transfer.",
+            "failure_signatures": "Object/TCP transform drifts during intended transport, object stays on support as TCP rises, attachment identity changes without release, or red co-motion is enforced during empty retreat. Asymmetric finger qvel alone is not slipping evidence because it occurs in successful grasps.",
+            "overlap_role": "Incoming overlap changes handle coupling to free motion to red attachment; outgoing overlap changes red attachment to released red and then blue attachment. Both policies observe enough before/after closure to estimate a transform instead of assuming a nominal offset.",
+            "successor_readiness": "Give the successor causal pose/finger history to re-estimate attachment. A private transform latent cannot replace physical observations. Early blue-policy takeover needs red descent/release; late takeover needs continuous gripped-blue lift. Greater attachment-error tolerance and slip recovery are unestablished."
+          },
+          "limitations": "The roughly 9 mm offset is empirical, not universal calibration. Co-motion can indicate support or pushing as well as grasping, so masks are uncertain. Ablate attachment consistency while holding the denoiser fixed and compare lift/drop prediction and handoffs. Suppressing legitimate release falsifies the bias. No dropped-object or regrasp recovery is demonstrated.",
+          "pipeline_implications": "Compute causal T_tcp^-1*T_object, recent transform changes, qpos[7:9], qvel and available previous commands. Learn an attachment-identity posterior over handle/red/blue/none and a continuous held-object transform. Use co-motion windows for training labels; future windows are labels only. Feed the posterior/transform and full state into an absolute-action diffusion denoiser. Train an action-conditioned short-rollout state head on observed future TCP/object poses. On confidently attached block windows, penalize predicted geodesic/translation changes of T_tcp^-1*T_object; supervise release masks so free retreat is not constrained. For handle windows use only prismatic X coupling. Objective = noise loss + state prediction + masked attachment consistency. At deployment infer attachment causally, denoise and replan short absolute-action prefixes with common normalization/bounds; optionally shorten prefixes when the auxiliary prediction is uncertain. Prediction: this physical dependency reduces independent arm/gripper errors and loss of held objects without prescribing a route hierarchy.",
+          "rationale": "Demo1000 red/TCP pairs at 480 and 560 preserve approximately [-0.0090,0.0002,0.0009] m offset while the arm moves substantially; at 615 red becomes stationary as TCP retreats. Blue has analogous coupled motion at 815-845. Demo1008/1010 have different small rotations/finger dynamics, arguing against one hard-coded grasp transform. The prior constrains consequences of coordinated actions, unlike a relational observation encoder or spatial waypoint plan.",
+          "statement": "Attachment-consistent action learning: approximately conserve a held block's tool-relative transform, then switch that constraint off at release. Hypothesis: a masked rigidity objective improves coordinated arm/gripper chunks without imposing one nominal grasp offset."
+        }
+      ],
+      "name": "Evacuate red to pad and establish blue pickup",
+      "segmentation_rationale": "All demonstrations share red evacuation with centimetre-scale source variation and a fixed outside pad. Begin at independently inspected index 195 in every trajectory: d approximately 0.1863 m, vd approximately 0.1071 m/s, handle-gripped fingers and red moving with drawer. This intentionally precedes release and supports taking over while the predecessor still manipulates the drawer. After red acquisition, carry to the pad, lower, release and retreat. Retain the following complete blue approach/pickup through blue z approximately 0.139-0.146 m. Endpoints vary from 845 to 859: demo1001 is at blue z=0.0346 at 845 and 0.1405 at 859; demo1005 reaches 0.1404 at 852; demo1008 reaches 0.1409 at 853; demo1010 reaches 0.1461 at 849. Other individually inspected endpoints are 845/846/847. Images demo1001:615 and demo1008:815 corroborate red release and outside-blue approach. This long option learns prerequisite completion and successor preparation; its unique goal is red evacuation, not complete blue insertion.",
+      "segments": [
+        {
+          "start": 195,
+          "stop": 845,
+          "trajectory_id": "demo1000"
+        },
+        {
+          "start": 195,
+          "stop": 859,
+          "trajectory_id": "demo1001"
+        },
+        {
+          "start": 195,
+          "stop": 847,
+          "trajectory_id": "demo1002"
+        },
+        {
+          "start": 195,
+          "stop": 845,
+          "trajectory_id": "demo1003"
+        },
+        {
+          "start": 195,
+          "stop": 846,
+          "trajectory_id": "demo1004"
+        },
+        {
+          "start": 195,
+          "stop": 852,
+          "trajectory_id": "demo1005"
+        },
+        {
+          "start": 195,
+          "stop": 846,
+          "trajectory_id": "demo1006"
+        },
+        {
+          "start": 195,
+          "stop": 847,
+          "trajectory_id": "demo1007"
+        },
+        {
+          "start": 195,
+          "stop": 853,
+          "trajectory_id": "demo1008"
+        },
+        {
+          "start": 195,
+          "stop": 846,
+          "trajectory_id": "demo1009"
+        },
+        {
+          "start": 195,
+          "stop": 849,
+          "trajectory_id": "demo1010"
+        },
+        {
+          "start": 195,
+          "stop": 846,
+          "trajectory_id": "demo1011"
+        }
+      ],
+      "skill_id": "evacuate_red",
+      "subgoal": "Finish remaining opening/release if necessary, acquire red and place it fully on the outside pad while retaining drawer opening, then release/retreat and establish blue pickup through initial lift for the insertion policy."
+    },
+    {
+      "heuristics": [
+        {
+          "applicability": "Known world-frame pad/drawer geometry, block half-size 0.02 m, wxyz orientation and prismatic drawer axis. Poses and d are causal inputs. Changed target geometry requires a supplied revised contract; cabinet pose is not inferred from an unspecified visual model.",
+          "evidence": [
+            {
+              "indices": [
+                575,
+                595,
+                605,
+                615,
+                815,
+                845,
+                880,
+                960,
+                980,
+                1000,
+                1040,
+                1065
+              ],
+              "trajectory_id": "demo1000"
+            },
+            {
+              "indices": [
+                581,
+                615,
+                825,
+                859,
+                990,
+                1015,
+                1077
+              ],
+              "trajectory_id": "demo1001"
+            },
+            {
+              "indices": [
+                575,
+                825,
+                853,
+                985,
+                1005,
+                1071
+              ],
+              "trajectory_id": "demo1008"
+            },
+            {
+              "indices": [
+                575,
+                815,
+                849,
+                985,
+                1005,
+                1069
+              ],
+              "trajectory_id": "demo1010"
+            }
+          ],
+          "handoff": {
+            "entry_conditions": "Earliest entry has red still held and descending over pad: red/TCP z approximately 0.211/0.212 m, fingers approximately 0.0182 m, g=-1, d approximately 0.300 m and blue z=0.020 m. Later supported entries are red release, empty retreat, blue approach/closure or initial blue lift near z=0.14 m. Compute both objects' margins; red success cannot be assumed at segment start.",
+            "exit_conditions": "Apply exactly the simultaneous contract: d>0.26 m; red z in (0.014,0.031), blue z in (0.053,0.074); full rotated XY containment on pad/in cavity. Inspected finals have d approximately 0.2973-0.2974 m, red near [-0.176 to -0.177,-0.298 to -0.304,0.020] m and blue near [-0.1717 to -0.1728,0.0728 to 0.0742,0.063] m. Retained useful terminal continuation has fingers near 0.04 m and TCP z near 0.323 m; these are not additional success conditions.",
+            "failure_signatures": "Center-inside but negative full-containment margin, blue z>=0.074 m, drawer d<=0.26 m or red leaving pad. Grasped blue near z=0.067 m can already satisfy success; lack of release alone is not failure.",
+            "overlap_role": "Both policies learn red descent/release/retreat and blue approach/closure/lift. Retain unfinished red margins during early takeover and red preservation thereafter rather than deleting red when the option name changes.",
+            "successor_readiness": "No required downstream manipulation. A task monitor can accept one simultaneous successful observation, including grasped blue. If continuing to idle, the retained suffix teaches release, settling and upward retreat. Do not introduce speed, hold-time or clearance requirements; demonstrated terminal values provide context only."
+          },
+          "limitations": "Final placements are far from XY boundaries and nearly upright. Exact predicate computation is known, but benefits for highly rotated/edge placements remain hypothetical. Compare margin-aware, center-distance-only and unstructured encoders at matched capacity. No gain or oversensitivity at strict Z thresholds falsifies benefit. Arbitrary rim-clearance and collision-free insertion are not established.",
+          "pipeline_implications": "From causal state compute c=[0.19-d,0,0.035], pad p=[-0.18,-0.30,0.02] m, and extents e_i=0.02*sum_j abs(R_ij) from wxyz block quaternions. Features: m_blue_xy=[0.172,0.182]-abs(blue_xy-c_xy)-e_blue_xy; m_red_xy=[0.06,0.06]-abs(red_xy-p_xy)-e_red_xy; signed Z-interval margins; d-0.26. Include sign-invariant rotations, TCP-object relations, heights and qpos/qvel. Condition a transformer action diffusion network on goal-margin/object/robot tokens; output original-normalized absolute eight-channel actions with shared decoding and bounds. Add future-margin regression from denoiser latents at several horizons, using masked demonstration futures as targets only. Preserve red and blue tokens throughout; do not require blue-inside at every training frame. At inference compute causal margins and replan short denoised prefixes. Prediction: more robust placement under opening/orientation variation than center-distance conditioning, without changing the completion rule.",
+          "rationale": "Drawer d changes from 0.300 to about 0.297 m during red placement, so the receiving cavity is articulated, not a fixed world point. At demo1000:980 and demo1001:990 blue z approximately 0.067 satisfies the goal while g=-1; release changes position/orientation before z settles near 0.063. Demo1008/1010 have different final yaw yet remain contained. The relevant relation is rotated full containment, not exact centering, release or dwell time. This prior changes geometry representation and supervised prediction, not contact memory or candidate scoring.",
+          "statement": "Articulated containment margins: encode moving-cavity/pad geometry, rotated extents and strict opening/height thresholds. Hypothesis: goal-margin learning generalizes better than aiming TCP or block center at a single demonstrated point."
+        },
+        {
+          "applicability": "Same contact mechanics and reliable causal pose/proprioception history. Especially relevant during red release, blue closure and insertion where supported/held poses can look similar. No force/torque sensor is assumed.",
+          "evidence": [
+            {
+              "indices": [
+                575,
+                595,
+                605,
+                615,
+                625,
+                680,
+                750,
+                805,
+                815,
+                825,
+                830,
+                845,
+                960,
+                980,
+                1000,
+                1040
+              ],
+              "trajectory_id": "demo1000"
+            },
+            {
+              "indices": [
+                581,
+                600,
+                615,
+                625,
+                815,
+                825,
+                835,
+                859,
+                990,
+                1015
+              ],
+              "trajectory_id": "demo1001"
+            },
+            {
+              "indices": [
+                575,
+                615,
+                630,
+                815,
+                825,
+                853,
+                985,
+                1005,
+                1071
+              ],
+              "trajectory_id": "demo1008"
+            },
+            {
+              "indices": [
+                575,
+                815,
+                845,
+                846,
+                980,
+                1000,
+                1065
+              ],
+              "trajectory_id": "demo1011"
+            }
+          ],
+          "handoff": {
+            "entry_conditions": "Initialize belief from actual fingers and recent red/blue/TCP relative motion, masking missing history. Earliest entry still has red descending with g=-1. At blue approach g can be +1 at TCP z approximately 0.019 m (demo1001:815), whereas demo1000:815 is already closed. Equal timesteps are not equal contact states.",
+            "exit_conditions": "Belief progresses red-held to red-released/free, blue-closing/held, lowered-blue and released-blue/retreating. Task success may occur in blue-held mode near z=0.067 m. Retained terminal mode has blue resting near z=0.063, fingers approximately 0.04 m and TCP near z=0.323 m. Release is useful continuation, not a mandatory success label.",
+            "failure_signatures": "Release while blue height remains outside its interval, retreat before blue decouples from the tool, unsupported phase reversal, or held-blue belief while blue remains at its source as TCP rises. Finger-velocity asymmetry is present in successful data and is not automatic failure.",
+            "overlap_role": "The long overlap trains belief through red grasp persistence, finger opening, empty travel and blue attachment. It supports switching with fingers moving or the arm lifting, but not an unseen drop or obstruction.",
+            "successor_readiness": "A terminal monitor requires measured simultaneous goal fields, not the belief's release label. Continued idle should use observed decoupling to sustain release/retreat. A history buffer may transfer, but another policy must re-infer without shared private latent semantics. Switching confidence thresholds require evaluation."
+          },
+          "limitations": "Co-motion labels do not resolve every support/contact configuration. Successful-only training can make posteriors overconfident. Compare with a memoryless margin denoiser and fixed prefix lengths; ablate contact supervision and adaptive horizon separately. No recovery, force regulation or uncertainty calibration under novel contacts is established.",
+          "pipeline_implications": "Train a causal recurrent state-space encoder on qpos/qvel, tcp/red/blue poses, d/vd and available previous commands. Infer a discrete contact mode and continuous relative-pose latent. Training labels use finger widths, transform changes, elevation and short future co-motion windows; futures are targets only and g alone is not attachment. Condition one action diffusion decoder on the filtered posterior, retaining original-normalized absolute joint/gripper outputs and common decoding. Train denoising plus contact-transition and next-relative-motion prediction losses with variable-prefix masks. At inference update belief at 20 Hz; shorten execution prefixes when posterior entropy or predicted contact-change probability is high and allow longer prefixes during confident free transport. This changes temporal computation rather than scripting a contact threshold controller. Prediction: fewer premature releases and stale long chunks across changing takeover times.",
+          "rationale": "At demo1000:805 TCP is already at blue height with open fingers; at 815 width is approximately 0.0182 m, but substantial lift appears only by 830-845. Demo1001 delays this sequence: 815 is still open and 835 is closed on the table. Demo1011:980 is held-blue near z=0.067 whereas 1000 is released-blue near z=0.063 with retreat starting. Similar geometry needs different actions. Causal contact belief plus adaptive replanning addresses ambiguity and stale chunks, unlike a geometric encoder alone.",
+          "statement": "Contact-belief adaptive diffusion: infer attachment/support transitions from causal history and shorten commitment around uncertain changes. Hypothesis: event-aware replanning improves release and handoff timing without an episode clock."
+        },
+        {
+          "applicability": "Known completion geometry, same robot/controller dynamics and action proposals near the demonstrations. Appropriate for local selection near red release and blue placement, not new recovery plans or collision certification.",
+          "evidence": [
+            {
+              "indices": [
+                575,
+                595,
+                605,
+                615,
+                640,
+                845,
+                880,
+                960,
+                980,
+                1000,
+                1040,
+                1065
+              ],
+              "trajectory_id": "demo1000"
+            },
+            {
+              "indices": [
+                581,
+                600,
+                615,
+                859,
+                990,
+                1015,
+                1077
+              ],
+              "trajectory_id": "demo1001"
+            },
+            {
+              "indices": [
+                575,
+                853,
+                985,
+                1005,
+                1071
+              ],
+              "trajectory_id": "demo1008"
+            },
+            {
+              "indices": [
+                575,
+                849,
+                985,
+                1005,
+                1069
+              ],
+              "trajectory_id": "demo1010"
+            }
+          ],
+          "handoff": {
+            "entry_conditions": "Allow demonstrated red-lowering entry with d approximately 0.300 m, red z approximately 0.211 m, blue at outside source and closed fingers, or later shared release/approach/lift states. Condition the predictor on the currently coupled object. Off-manifold lost-grasp predictions cannot justify aggressive selection.",
+            "exit_conditions": "Optimize actual simultaneous success, not an exact final joint pose. After success, continue only demonstrated-like release/retreat predicted to preserve d>0.26 and red/blue containment. Retained final state has red z approximately 0.020, blue z approximately 0.063, d approximately 0.2974 m, open fingers and high TCP; stopping earlier on a valid observed conjunction is allowed.",
+            "failure_signatures": "Predicted containment improves but measured blue stays outside, red leaves the pad during blue travel, d declines toward its threshold, or selection favors unnatural pauses/unsupported commands. Prediction error motivates replanning/uncertainty reporting, not a claim of trained recovery.",
+            "overlap_role": "Both policies learn actual red placement/release and blue acquisition. The scorer must preserve those prerequisites rather than seek immediate blue containment while the gripper carries red. Progress conditioning covers the entire overlap.",
+            "successor_readiness": "No mandatory successor. The task monitor uses actual poses/d at one observation; predicted success is insufficient. Continued release/retreat should stay within demonstration support and preserve achieved goals. Never replace the supplied rule with hold-time, speed or release requirements."
+          },
+          "limitations": "Counterfactual dynamics are weakly identified from successful trajectories; accurate on-path prediction need not rank sampled alternatives correctly. Restrict proposals with support/likelihood penalties and test uncertainty calibration. Compare proposal-only, guided and randomly reranked variants with equal sampling budget. Model exploitation, goal violations or no gain falsify benefit. Rim collision avoidance and failed-placement recovery remain unproven.",
+          "pipeline_implications": "Train an action-conditioned ensemble transition model on original state/action sequences to predict qpos/qvel, TCP/object poses and d/vd over short horizons using physical increment/geodesic losses. Independently train a full-state/history diffusion proposal on original-normalized absolute actions. At inference sample K chunks, predict rollouts and compute exact margins from world poses with e_i=0.02*sum_j|R_ij|. Rank by state-conditioned progress minus loss of already-achieved red/drawer goals, negative blue containment margins near placement, uncertainty and deviation from demonstrated action likelihood. Learn a remaining-progress head from demonstration futures to avoid forcing blue-inside during the red prerequisite prefix; those labels are never inference inputs. Execute only a short prefix and recompute from actual observations. After observed success score goal preservation, not a compulsory release/dwell objective. Use common action normalization/bounds. There is no force or full collision model. Prediction: local lookahead better preserves concurrent goals than unscored diffusion or an encoder-only geometric prior.",
+          "rationale": "Success is conjunctive: correct blue motion is insufficient if red leaves the pad or the drawer closes. Demo1000:595-615 shows d retreating slightly from nearly 0.300 to 0.2973 m while staying open. Blue descends from 0.165 at 960 to approximately 0.067 at 980, then changes pose and settles to 0.063 after release. Demo1008/1010 have different release yaw/translation yet preserve all goals. These observations motivate jointly evaluating action consequences. This is an inference/objective prior, unlike margin encoding or contact filtering; its counterfactual usefulness is a hypothesis.",
+          "statement": "Concurrent-goal preserving lookahead: rerank diffusion proposals by predicted containment progress and retention of red/drawer goals. Hypothesis: short-horizon checks reduce destructive terminal actions and improve simultaneous success beyond imitation alone."
+        }
+      ],
+      "name": "Place blue inside open drawer with terminal release context",
+      "segmentation_rationale": "Start with red still held and descending over pad at z approximately 0.211 m: 575 in ten trajectories, 581 in demo1001 and 582 in demo1005. The prefix finishes red placement, finger opening, settling, retreat, blue approach/descent/closure and initial lift, shared with red evacuation. Then retain blue lift/transport, insertion lowering, release, settling and full terminal retreat/dwell. Stop at each inspected original terminal observation (1063-1077); exclude nothing. All final endpoints have d approximately 0.2973-0.2974 m, red on pad near z=0.020 and blue fully contained near z=0.063. Earlier sampled observations such as demo1000:980 and demo1001:990 already satisfy the one-observation contract while blue is held. The suffix is useful release/idle context, not evidence that release, sustained hold, speed or clearance is required. The final image demo1010:1069 corroborates the arrangement. Group across demonstrations because receiving geometry and manipulation dependencies match despite pickup timing, source placement and release-yaw differences.",
+      "segments": [
+        {
+          "start": 575,
+          "stop": 1065,
+          "trajectory_id": "demo1000"
+        },
+        {
+          "start": 581,
+          "stop": 1077,
+          "trajectory_id": "demo1001"
+        },
+        {
+          "start": 575,
+          "stop": 1063,
+          "trajectory_id": "demo1002"
+        },
+        {
+          "start": 575,
+          "stop": 1066,
+          "trajectory_id": "demo1003"
+        },
+        {
+          "start": 575,
+          "stop": 1065,
+          "trajectory_id": "demo1004"
+        },
+        {
+          "start": 582,
+          "stop": 1070,
+          "trajectory_id": "demo1005"
+        },
+        {
+          "start": 575,
+          "stop": 1064,
+          "trajectory_id": "demo1006"
+        },
+        {
+          "start": 575,
+          "stop": 1069,
+          "trajectory_id": "demo1007"
+        },
+        {
+          "start": 575,
+          "stop": 1071,
+          "trajectory_id": "demo1008"
+        },
+        {
+          "start": 575,
+          "stop": 1065,
+          "trajectory_id": "demo1009"
+        },
+        {
+          "start": 575,
+          "stop": 1069,
+          "trajectory_id": "demo1010"
+        },
+        {
+          "start": 575,
+          "stop": 1065,
+          "trajectory_id": "demo1011"
+        }
+      ],
+      "skill_id": "insert_blue",
+      "subgoal": "Finish incoming red placement/release if necessary, acquire blue outside and place it fully inside the still-open drawer while red is simultaneously on the pad. Retain release, settling and retreat as useful optional terminal continuation under the one-observation completion rule."
+    }
+  ]
+}

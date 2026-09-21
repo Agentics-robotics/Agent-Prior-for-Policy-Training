@@ -1,0 +1,23 @@
+{
+  "API_generation_seeded": false,
+  "initial_case": {
+    "condition": "ID",
+    "method": "APPL",
+    "seed": 20116,
+    "task": "buffer_swap"
+  },
+  "new_training_updates": 0,
+  "reason": "Exp2 AGENTS.md explicitly says no provider retries.",
+  "reporting": "Original interruption, unknown failed-request cost, new attempt and its costs remain separate; any reconciled comparison is explicitly identified as including supplemental attempts.",
+  "scope": "One separate fresh-reset supplemental attempt for each temporary HTTP 502/503/504 interrupted evaluation; never retry a completed policy failure, never overwrite the original attempt.",
+  "status": "awaiting_user_authorization",
+  "transport_retry_limit_per_case": 1,
+  "unchanged": [
+    "training/checkpoints",
+    "source",
+    "configuration/prompt",
+    "initial layout/environment/diffusion seed",
+    "geometric success",
+    "private 5000-step cap"
+  ]
+}

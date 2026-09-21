@@ -1,0 +1,33 @@
+{
+  "policy_id": "buffer_red__h01",
+  "skill_id": "buffer_red",
+  "heuristic_index": 1,
+  "prior_summary": "Occupancy-conditioned staging graph with learned role probabilities and a probabilistic staging-site prediction conditioning an absolute-joint action diffusion model. A full five-node causal scene graph distinguishes red, blue, their different goal regions, and TCP. A blue-plus-goals layout subgraph proposes a free red buffer; the robot/world branch retains absolute Panda configuration. Training combines masked epsilon MSE, locally available supported-buffer likelihood, five-role cross-entropy, and soft predicted-site footprint/table penalties. All deployment conditioning uses predictions, never future labels or a scripted controller.",
+  "applicable_conditions": "Red-first two-block buffer swap with the demonstrated Panda, table, fixed goal regions and free central staging area. Initial training states have the common home arm configuration, open fingers and both objects supported near their opposite-color destinations. The full expanded slice also supports taking over during held-red descent, red opening/retreat, blue approach, closure, or initial blue lift. Use world TCP/object poses, causal motion, joint state and finger opening to identify transition state; arbitrary poses, new layouts and failed-contact recovery are untested.",
+  "termination_guidance": "Do not stop merely because red is geometrically outside both regions. Prefer red remaining supported near the demonstrated buffer while TCP retreats, followed by blue acquisition with approximately 0.03651 m total measured finger width and blue/TCP upward co-motion. End-boundary blue heights span about 0.126-0.211 m and TCP is about 0.009 m negative world x from blue. transfer_blue can take over earlier within the shared red-setdown-to-blue-lift overlap if given actual observations; maintain closed grip during blue lift and do not reset home. These are handoff cues, not added task-success predicates.",
+  "limitations": "Only twelve red-first demonstrations with one staging site and modest initial-position variation are available. Reachability is represented only through demonstrated staging labels and motor learning, not IK or a planner. Buffer supervision is restricted to valid 16-action future windows containing supported, released-or-separated red; no global release label is available at initial samples. The layout head deliberately omits moving red/TCP to transfer that local supervision to earlier matching blue-goal layouts. Role labels are weak geometric/action annotations, not contact truth. Soft projected-footprint penalties do not guarantee collision-free motion, physical support or calibrated uncertainty. No SE(2) equivariance, image encoder, out-of-distribution recovery, new buffer search or color-order reversal is claimed.",
+  "config": {
+    "experiment_version": "M1_v2",
+    "expanded_slice": "All assigned source ranges, with no trimming, no phase filtering, and the full transfer_blue overlap retained",
+    "observation_steps": 2,
+    "horizon": 16,
+    "execution_steps": 8,
+    "normalization": "Unmodified shared normalizer fitted on complete original demonstrations; geometric vectors use its TCP XYZ half-ranges uniformly, without per-skill fitting",
+    "nodes": ["tcp", "red", "blue", "red_goal", "blue_goal"],
+    "graph_width": 64,
+    "graph_rounds": 2,
+    "edge_dimension": 11,
+    "staging_layout_nodes": ["blue", "red_goal", "blue_goal"],
+    "staging_distribution": "Diagonal Gaussian in shared TCP-normalized world coordinates; normalized sigma = 0.05 + 0.95*sigmoid(logit)",
+    "role_names": ["approach_red", "carry_red", "buffer_release", "approach_blue", "blue_lift"],
+    "role_conditioning": "Learned soft role probabilities produce node-wise FiLM modulation and also enter the denoiser condition",
+    "robot_branch": "Both normalized qpos, qvel and TCP pose frames, 50 inputs to 128 outputs",
+    "condition_dimension": 352,
+    "action_representation": "Shared-normalized absolute seven Panda joint targets plus scalar gripper command",
+    "denoiser": "Public Conditional U-Net; widths 128/256/512, timestep embedding 128, kernel 5, groups 8",
+    "loss_weights": {"diffusion": 1.0, "staging_nll": 0.05, "role_cross_entropy": 0.10, "predicted_free_site": 0.02},
+    "staging_target_rules": "Valid future states only: red center within 0.006 m of goal center height, footprint outside both marked regions, less than 0.003 m inter-state displacement, and fingers wider than 0.06 m total or TCP farther than 0.06 m",
+    "teacher_forcing": "None: predicted staging mean, uncertainty and role probabilities condition denoising at every training and inference call",
+    "training": {"updates": 20000, "batch_size": 128, "seed": 0, "optimizer": "AdamW", "learning_rate": 0.0001, "weight_decay": 0.000001, "warmup_steps": 500, "lr_schedule": "cosine", "max_grad_norm": 1, "ema_decay": 0.999, "selection": "Last EMA at fixed budget", "sampler": "ddpm", "denoising_train_steps": 100, "denoising_inference_steps": 100, "clip_sample": true}
+  }
+}

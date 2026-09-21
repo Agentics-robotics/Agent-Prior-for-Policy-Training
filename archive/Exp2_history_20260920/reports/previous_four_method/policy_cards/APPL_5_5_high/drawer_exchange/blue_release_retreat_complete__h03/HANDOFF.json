@@ -1,0 +1,15 @@
+{
+  "policy_id": "blue_release_retreat_complete__h03",
+  "entry_conditions": "Invoke when causal state observations show the final blue manipulation is already near the drawer: drawer_position is in the open range, the red block is on or very near the outside pad, the blue block is above or close to the drawer goal XY, the TCP is close to the blue block, and the gripper is closed or closing around the blue block. The demonstrated starts at index 930 have finger width about 0.0365 m, blue/TCP heights around 0.32 m, and drawer_position about 0.297 m, so this is a late descent handoff rather than a table-to-drawer transport entry.",
+  "exit_conditions": "A useful exit observation has the drawer still open, red still on the pad, blue centered in the drawer near z 0.063 m, open fingers near 0.08 m total width, TCP retreated upward around 0.32 m, and small qvel/object motion. These are handoff cues only; task completion remains the supplied simultaneous drawer-open, red-on-pad, blue-inside predicate.",
+  "overlap_role": "The [930, 1030) overlap is part of this policy's support. It teaches the local policy to take over while the TCP and grasped blue block are still descending into the drawer, continue fine centering/lowering, then open the gripper and begin retreat. It is not merely a terminal hold segment.",
+  "successor_readiness": "There is no required manipulation successor after this policy. A downstream evaluator or inference monitor should receive a state with the blue block inside the drawer, red on the pad, drawer open, and the arm no longer contacting the block; it should check predicates rather than expect a particular final joint pose.",
+  "failure_signatures": "Do not continue this policy if the blue block is far from the drawer goal in XY, the TCP is not near the blue block during the closed-gripper entry, the drawer is not open, the red block has left the pad, the gripper opens before the blue block reaches the cavity, or observations show oscillatory corrections around the drawer without reducing blue-goal error. These are outside or at the edge of the observed local support.",
+  "continuation_guidance": "Continue through the transition while blue-goal error and TCP-blue separation are decreasing, the drawer remains open, and the sequence follows the observed phases: closed-gripper descent, brief low-height placement with blue near the goal, finger opening, then TCP retreat upward while the blue pose stays fixed. Because the model sees two causal observations, it can infer whether it is still descending, releasing, or retreating from position, finger width, drawer velocity, and qvel trends.",
+  "limitations": "Observed support is not proof of grasp/contact or recovery from arbitrary disturbances. This policy has no hard applicability gate, IK solver, image perception, or geometric constraint; the inference API must select it only for near-goal states matching the handoff description.",
+  "evidence": [
+    {"trajectory_id": "demo1006", "indices": [930, 1030, 1064]},
+    {"trajectory_id": "demo1007", "indices": [930, 1030, 1069]},
+    {"trajectory_id": "demo1010", "indices": [930, 1030, 1069]}
+  ]
+}

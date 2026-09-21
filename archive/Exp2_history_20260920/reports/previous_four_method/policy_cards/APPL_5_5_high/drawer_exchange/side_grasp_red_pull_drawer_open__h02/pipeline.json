@@ -1,0 +1,23 @@
+{
+  "policy_id": "side_grasp_red_pull_drawer_open__h02",
+  "skill_id": "side_grasp_red_pull_drawer_open",
+  "heuristic_index": 2,
+  "prior_summary": "Learned action diffusion policy conditioned by a soft contact-phase latent prior for approach, close, pull, release, and retreat. The phase belief is inferred from the two causal state observations and trained with heuristic phase labels, drawer-progress regression, and gripper-intention prediction while the U-Net still learns the full normalized joint/gripper action diffusion distribution.",
+  "applicable_conditions": "Use when the red block is on or near the drawer front, drawer_position is near the closed range for initial entry or already partway through the demonstrated open/release transition, and state observations include qpos, qvel, tcp_pose, red_pose, drawer_position, and drawer_velocity. The prior assumes the drawer opens monotonically along the demonstrated x axis and that finger gap plus drawer/red motion are informative contact cues.",
+  "termination_guidance": "Continue through the expanded slice until the drawer is open around or above 0.26 m, the fingers have reopened near the demonstrated 0.08 m total width, the red block is no longer being pulled, and the TCP is retreating upward/away so a top regrasp policy can take over. Task completion itself is only the three-goal evaluator contract and is not redefined here.",
+  "limitations": "This is not a scripted controller and contains no force sensing, IK, image encoder, hard contact detector, or guaranteed recovery from a missed side grasp. The HSMM idea is implemented as a stateless learned soft phase classifier because the provided forward API supplies only two observations, not persistent hidden state. Phase labels are heuristic supervision from demonstrations rather than measured contacts.",
+  "config": {
+    "condition_dim": 192,
+    "hidden_dim": 256,
+    "phase_embedding_dim": 32,
+    "phase_names": ["approach", "close", "pull", "release", "retreat"],
+    "phase_loss_weight": 0.05,
+    "progress_loss_weight": 0.10,
+    "gripper_loss_weight": 0.05,
+    "progress_target_slots": [3, 7, 15],
+    "gripper_target_slots": [0, 3, 7, 15],
+    "full_expanded_slice": {"start": 0, "stop": 330},
+    "shared_transition_overlap": {"start": 240, "stop": 330, "successor_skill_id": "red_top_regrasp_lift"},
+    "normalization": "Use the shared M1_v2 normalizer supplied in spec; no per-skill scale refit. Handcrafted relative features use broad physical scales such as 0.30 m drawer travel."
+  }
+}

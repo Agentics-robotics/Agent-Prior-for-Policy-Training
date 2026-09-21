@@ -1,0 +1,33 @@
+{
+  "schema": "real_robot.train_config.v1",
+  "config_path": "real_robot/configs/push_train_v1.json",
+  "run": "real_robot/runs/push_letters/train_v1",
+  "cut_config": "real_robot/configs/push_cut_v3.json",
+  "cut_output": "real_robot/data/push_letters/cut_v3",
+  "cut_run": "real_robot/runs/push_letters/cut_v3",
+  "prompt": "real_robot/prompts/implement_policies.md",
+  "interface": "real_robot/policy_training/INTERFACE.md",
+  "task_specification": "real_robot/task_specifications/push_letters.md",
+  "model": "gpt-6-astra",
+  "reasoning_effort": "xhigh",
+  "service_tier": "default",
+  "request_timeout_seconds": 1200,
+  "execution_guard_usd": 100,
+  "max_api_calls": 96,
+  "max_tool_calls": 160,
+  "max_output_tokens": 32000,
+  "policies": ["contour_push", "visual_push"],
+  "devices": [0, 1],
+  "training": {
+    "updates": 20000,
+    "seed": 0,
+    "optimizer": "AdamW",
+    "ema_decay": 0.999,
+    "checkpoint_every": 2000,
+    "log_every": 100,
+    "parameter_limit": 64000000,
+    "max_cache_bytes": 64000000000
+  },
+  "authorization": "用户：别验证了，调用API像之前一样，根据这些写code训练这两个Policy吧！ Latest authorization supersedes the earlier cut-only stage. No separate preliminary validation study; necessary execution checks only. Official API destination authorization persists.",
+  "scope": "API implementation, preprocessing, goal conversion, learned policy training, checkpoint and callable package publication for the two frozen cut_v3 priors. No new cuts, extra policy candidates, physical robot execution or Flip egg."
+}

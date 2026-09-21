@@ -1,0 +1,23 @@
+{
+  "policy_id": "red_top_regrasp_lift__h02",
+  "skill_id": "red_top_regrasp_lift",
+  "heuristic_index": 2,
+  "prior_summary": "Learned state-conditioned DDPM action policy for the full expanded regrasp-and-lift slice, with an auxiliary learned future-geometry head that biases denoised actions toward the demonstrated open-drawer clearance envelope, top regrasp, finger closure, and red lift.",
+  "applicable_conditions": "Use when the drawer is already open or opening beyond the task threshold, the red block remains near the opened drawer area, and the robot must withdraw/reorient, top-grasp red, and lift it clear for transport. The model conditions only on the two most recent 47-D state observations in world metres and unit quaternions.",
+  "termination_guidance": "Transfer when the causal observation shows the red block carried close to the TCP with closed fingers and red center height roughly above 0.30 m, with drawer_position still greater than 0.26 m. Continue if the robot is still withdrawing, aligning above red, closing on red, or lifting below that clearance height.",
+  "limitations": "The prior is learned from successful demonstrations only; it is not a certified collision checker, IK solver, image model, or hard safety constraint. It relies on the shared M1_v2 normalizer and on observed state fields; unusual drawer geometry, large state errors, or a missed grasp may not be recovered.",
+  "config": {
+    "condition_dim": 256,
+    "encoder_hidden_dim": 256,
+    "aux_hidden_dim": 192,
+    "aux_state_weight": 0.08,
+    "clearance_weight": 0.15,
+    "drawer_geometry_weight": 0.03,
+    "finger_phase_weight": 0.03,
+    "drawer_origin_world": [0.19, 0.0, 0.035],
+    "drawer_open_threshold_m": 0.26,
+    "drawer_clearance_reference_z_m": 0.115,
+    "auxiliary_prediction_targets": ["future_tcp_xyz", "future_red_xyz", "future_left_finger", "future_right_finger"],
+    "uses_shared_normalizer_only": true
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "policy_id": "blue_release_retreat_complete__h02",
+  "skill_id": "blue_release_retreat_complete",
+  "heuristic_index": 2,
+  "prior_summary": "Support-before-retreat prior implemented as a learned epsilon-predicting action diffusion model. A causal observation encoder predicts trainable support, opening, and retreat-readiness latents; these latents condition the diffusion U-Net, and auxiliary future-prediction losses train them from the demonstrated release and withdrawal outcomes.",
+  "applicable_conditions": "Use after the red block is already on the outside pad, the drawer is open, and the blue block is held over or just inside the drawer by the gripper. Causal cues are qpos finger width, TCP pose, blue pose, drawer position, goals, and their two-frame motion; no force/contact sensor is assumed.",
+  "termination_guidance": "Continue until the fingers are open, the blue block remains in the drawer around z 0.053-0.074 m near the demonstrated blue goal, and the TCP has withdrawn upward toward approximately z 0.30-0.323 m without carrying the blue block. Task completion itself remains the three-goal contract, not this guidance.",
+  "limitations": "The policy learns from successful release/retreat demonstrations only. It does not contain analytic IK, contact verification, force control, recovery from an early release, or a scripted geometric controller. Auxiliary targets use training future observations; deployment uses only the two causal state observations.",
+  "config": {
+    "architecture": "Causal feature MLP plus trainable support latent conditioning a standard Conditional U-Net diffusion backbone",
+    "condition_dim": 256,
+    "feature_dim": 175,
+    "support_latent_logits": 4,
+    "auxiliary_future_channels": ["blue_delta_xyz", "tcp_delta_z", "finger_width", "support_sequence_logit"],
+    "prior_loss_weights": {
+      "support_bce": 0.05,
+      "future_continuous_prediction": 0.02,
+      "future_support_sequence_bce": 0.02,
+      "gripper_clean_estimate_mse": 0.01
+    },
+    "normalization": "Uses the shared M1_v2 complete-demonstration normalizer supplied in spec; relative geometric features are scaled only by task-scale metre constants, not per-skill refits.",
+    "expanded_slice": "Trained over the full assigned 930-to-end release-retreat slice, including the 930-1030 overlap with blue_transport_to_drawer."
+  }
+}

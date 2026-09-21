@@ -1,0 +1,68 @@
+{
+  "Runtime_API_requests": 0,
+  "active_owned_scientific_workers": [],
+  "allocated_physical_devices": [
+    2,
+    3,
+    4,
+    5,
+    7
+  ],
+  "completed_expert_replays": 60,
+  "completed_policy_rollouts": {
+    "binary_gripper": 15,
+    "original_DP": 60,
+    "takeover": 15
+  },
+  "diagnostic_source_hashes": {
+    "audit.py": "15bc70d74211fc7a0bd92009c11e9cede8737e06cf685d550ea5ae6e90f6cef0",
+    "conditioning.py": "e8de45fafd077336ec381a8a05500dbac310ffdfa423adef0b8dde388ae20845",
+    "grip_sensitivity.py": "a5ba02ca497b920c3a6d95b27ecaa2a9523bf84d90970fa08a41fed8ea654c7a",
+    "gripper.py": "79044b2d9b9de516cd8674441896b122f89fff86f8d0a4878befe6a4b1ee29b1",
+    "run.py": "a8acd83ee9e3e48edfca3cba7558ed1fef230b890850467b08f6dbbe5f4d7358",
+    "summarize.py": "cebb344b557cb53538a10c58b33e5d1e6bcc0a20eb7876c04da436ed609d84f7",
+    "support.py": "420c475ba3a82959364c7751557cd44f027591b87115f52c6b0f1f1d6aef8ccd",
+    "takeover.py": "e6e7817ede15da1d0e83e203eb69a768931afd7e30d62e7e95920885c65dc685",
+    "teacher.py": "c8b43ef961a8d6c1fc0995cdc4ac66f87de87981a61a988be5509ed960a3768d",
+    "videos.py": "c4b1c406f15a8bf1b69bd8963d41128565c9bccd4f1f44bc6c5e2842a4ed7913"
+  },
+  "final_occupancy": "pid, gpu_uuid, used_gpu_memory [MiB], process_name\n1433373, GPU-3a21dde0-fd97-6ab3-4abb-5c98696a4bc3, 5786 MiB, /home/storage/haozhe/Reward-Model/envs/ms-tasks/bin/python3.11\n1440863, GPU-3a21dde0-fd97-6ab3-4abb-5c98696a4bc3, 2448 MiB, /home/users/haozhe/miniconda3/envs/lerobot/bin/python3.12\n1450043, GPU-98220a3d-407e-9de2-bdc8-c061c57a041c, 5786 MiB, /home/storage/haozhe/Reward-Model/envs/ms-tasks/bin/python3.11\n",
+  "finished": 1789805826.2968738,
+  "guarded_prefix_attempts": [
+    {
+      "demonstration": "demo1005",
+      "policy_steps": 0,
+      "reason": "Exact-state guard stopped after physical expert prefix; retained follow-up records replay differences.",
+      "steps": 784,
+      "task": "drawer_exchange"
+    },
+    {
+      "demonstration": "demo10011",
+      "policy_steps": 0,
+      "reason": "Exact-state guard stopped after physical expert prefix; retained follow-up records replay differences.",
+      "steps": 468,
+      "task": "two_block_sort"
+    },
+    {
+      "demonstration": "demo10105",
+      "policy_steps": 0,
+      "reason": "Exact-state guard stopped after physical expert prefix; retained follow-up records replay differences.",
+      "steps": 408,
+      "task": "buffer_swap"
+    }
+  ],
+  "guarded_prefix_steps": 1660,
+  "model_source_training_data_goal_hashes_unchanged": true,
+  "optimizer_updates": 0,
+  "physical_steps_by_completed_operation": {
+    "binary_gripper": 15540,
+    "expert_replay": 52414,
+    "original_DP": 85827,
+    "takeover": 13539
+  },
+  "total_physical_steps": 168980,
+  "validated": true,
+  "validated_stepwise_goals": true,
+  "validated_videos": 155,
+  "zero_action_setup_incident": "incidents/instrumentation_before_physics"
+}

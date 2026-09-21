@@ -1,0 +1,29 @@
+{
+  "policy_id": "blue_approach_grasp_lift__h01",
+  "skill_id": "blue_approach_grasp_lift",
+  "heuristic_index": 1,
+  "prior_summary": "A learned action DDPM for the full expanded blue approach, grasp and lift slice. The prior is implemented as blue-relative conditioning around the observed block pose, TCP pose, gripper opening, red-on-pad cue and drawer-open cue, plus a differentiable auxiliary future-readiness loss for contact and lift predictions from the denoised action estimate.",
+  "applicable_conditions": "Use when the red block is already released on or near the outside pad, the drawer is open, the gripper is open or closing, and the blue block is still observable near the tabletop at roughly the demonstrated start region. The policy can also take over during the shared transition when the TCP is moving from the red pad region toward the blue block because it conditions causally on current TCP-blue offset and gripper state rather than on an absolute time index.",
+  "termination_guidance": "Continue until the blue block is co-moving with the TCP, the fingers are closed around it, and the blue center has lifted well above table height, approximately the observed end state near z 0.24-0.28 m. Transfer to blue_transport_to_drawer once the successor receives a lifted, attached blue block and a stable closed grasp.",
+  "limitations": "This implementation does not include inverse kinematics, image encoders, hard collision constraints, or a scripted controller. It learns absolute joint/gripper actions from state observations and uses blue-relative features to aid generalization. It is not trained to recover if red was not released, the blue block was bumped far outside the demonstrated range, or the gripper arrives closed before approach.",
+  "config": {
+    "condition_dim": 256,
+    "encoder_hidden_dim": 256,
+    "aux_weight": 0.05,
+    "aux_state_weight": 1.0,
+    "aux_binary_weight": 0.25,
+    "relative_feature_scales_m": {
+      "tcp_object_xyz": [0.25, 0.25, 0.35],
+      "object_goal_xyz": [0.50, 0.50, 0.30],
+      "aux_tcp_blue_xyz": [0.15, 0.15, 0.30]
+    },
+    "auxiliary_targets": [
+      "future blue z relative to current blue z",
+      "future TCP minus blue xyz",
+      "future summed finger opening",
+      "future contact label",
+      "future lift label"
+    ],
+    "normalization_policy": "Uses the shared M1_v2 observation/action normalizer supplied in spec; fixed relative feature scales are broad metre-scale constants, not per-skill refits."
+  }
+}

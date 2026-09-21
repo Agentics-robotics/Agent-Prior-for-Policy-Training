@@ -1,0 +1,36 @@
+{
+  "policy_id": "finish_red__h02",
+  "skill_id": "finish_red",
+  "heuristic_index": 2,
+  "prior_summary": "Soft, observation-correctable progress-memory diffusion policy. A learned state initializer and two-observation GRU infer six contact/progress modes; their belief, predicted goal geometry, and observation disagreement condition a learned action DDPM. Action-conditioned recurrent progress forecasts, supervised only by training future labels, teach ordering and persistence. This is a bounded-memory adaptation, not a persistent hidden-state controller.",
+  "applicable_conditions": "The demonstrated red-final buffer-swap order on the same Panda/table, over the entire assigned expanded slice. Entry can occur during attached-blue descent, blue support/opening, empty retreat, red approach/closure, or red lift/carry. Use causal joint position/velocity, per-finger aperture, world TCP and block poses, and both goals; do not assume blue is already done from the skill name. All twelve expanded slices and their transfer_blue overlaps remain training support.",
+  "termination_guidance": "Task success is determined externally by both blocks meeting the supplied rotated-XY-containment and height predicates, not by the learned mode. The demonstrated useful continuation is red opening, settling, and upward empty retreat to approximately TCP z=0.300 m with open fingers and nearly zero joint velocity. These are continuation/readiness cues, not additional success requirements. A terminal belief contradicted by measured geometry is not success; calibrated uncertainty and disturbance recovery are not established.",
+  "limitations": "The forward API supplies two observations and no carried recurrent state, so the policy reinitializes on every call and cannot retain an arbitrary earlier manipulation history. The auxiliary forecast does not extend actual deployment history. Six labels are weak geometry/aperture/motion-derived contact proxies with short hindsight during training, not measured grasp or force states. No IK, FK service, images, hard mode graph, guaranteed collision avoidance, stopping latch, failed-placement recovery, or geometric action constraint is implemented. The action head remains absolute-joint diffusion and is not equivariant. No success-performance evidence is available from interface checking.",
+  "config": {
+    "experiment_version": "M1_v2",
+    "architecture": "State-initialized 128-dimensional observation GRU with six-mode and eight-output goal heads, 238-dimensional conditioning of the supplied Conditional U-Net",
+    "frame_features": {"dimension": 77, "normalized_raw_state": 47, "relative_world_positions": 12, "backward_joint_and_position_differences": 18},
+    "mode_names": ["finish_blue_placement_release", "empty_retreat", "red_approach_closing", "red_attached_carry", "red_place_open", "final_retreat_terminal"],
+    "memory": {"history_steps": 2, "hidden_dimension": 128, "initializer": "Learned from the first causal frame; no preset mode", "cross_invocation_state": false, "forecast_steps_training_only": 15, "forecast_inputs": "Current causal hidden state and encoded actions; never future observations"},
+    "normalization": {"source": "Shared range normalizer fitted on all complete original demonstrations", "normalizer_sha256": "fc51579717dc36a089ba2d22956960d65828acd5bcb57e93d6362641102d37d1", "refit": false, "derived_xyz_scale": "Axiswise maximum of shared TCP/red/blue position half-ranges", "observation_clipping": false},
+    "loss_weights": {"mode_cross_entropy": 0.12, "goal_margin_smooth_l1": 0.05, "goal_binary_cross_entropy": 0.06, "soft_ordering": 0.025, "same_mode_persistence": 0.01, "state_initializer_consistency": 0.04, "denoised_action_progress_coupling": 0.03},
+    "diffusion_weighting": {"base": 1.0, "gripper_command_change_increment": 0.75, "mode_change_increment": 0.5, "terminal_tail_increment": 0.35},
+    "auxiliary_safety": {"future_targets_masked": true, "future_lookahead_for_labels": 6, "x0_auxiliary_clip": [-1.25, 1.25], "x0_auxiliary_weight": "alpha_bar; retained in numerator", "goal_loss_disables_ordering_when_geometry_is_lost": true},
+    "training": {"updates": 20000, "batch_size": 128, "horizon": 16, "observation_steps": 2, "execution_steps": 8, "denoising_train_steps": 100, "denoising_inference_steps": 100, "sampler": "ddpm", "prediction": "epsilon", "clip_sample": true, "learning_rate": 0.0001, "weight_decay": 0.000001, "ema_decay": 0.999, "warmup_steps": 500, "lr_schedule": "cosine", "max_grad_norm": 1, "down_dims": [128, 256, 512], "timestep_embed_dim": 128, "kernel_size": 5, "groups": 8, "seed": 0, "selection": "Last EMA at the predeclared budget"},
+    "segmentation": "Unchanged full expanded slices, inclusive start and exclusive stop; no phase filtering or exact-cut handoff assumption",
+    "segment_ranges": [
+      {"trajectory_id": "demo10100", "start": 600, "stop": 1064},
+      {"trajectory_id": "demo10101", "start": 605, "stop": 1064},
+      {"trajectory_id": "demo10102", "start": 602, "stop": 1060},
+      {"trajectory_id": "demo10103", "start": 606, "stop": 1065},
+      {"trajectory_id": "demo10104", "start": 598, "stop": 1057},
+      {"trajectory_id": "demo10105", "start": 599, "stop": 1056},
+      {"trajectory_id": "demo10106", "start": 601, "stop": 1059},
+      {"trajectory_id": "demo10107", "start": 613, "stop": 1071},
+      {"trajectory_id": "demo10108", "start": 600, "stop": 1058},
+      {"trajectory_id": "demo10109", "start": 604, "stop": 1063},
+      {"trajectory_id": "demo10110", "start": 607, "stop": 1064},
+      {"trajectory_id": "demo10111", "start": 603, "stop": 1061}
+    ]
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "policy_id": "buffer_red__h03",
+  "skill_id": "buffer_red",
+  "heuristic_index": 3,
+  "prior_summary": "Hierarchical learned diffusion: an internally denoised, ordered four-waypoint TCP route with orientation, gripper and within-window timing conditions the fixed joint-action epsilon diffuser. A supervised action-conditioned TCP trajectory predictor couples task geometry to decoded motor trajectories, with weak low-height lateral-sweep regularization.",
+  "applicable_conditions": "The complete assigned expanded buffer_red slice: open high home, red acquisition and vertical lift, free-space buffer transport, supported red setdown and release, open vertical retreat, high blue approach, low blue closure and the beginning of its rising lift. World z is up; upright cubes, downward TCP and uncluttered tabletop transfers are demonstrated. Two causal state observations and the shared complete-demonstration normalizer are required.",
+  "termination_guidance": "Use observed progress rather than a waypoint clock. Red vacating its initial region is not alone manipulation readiness: continue through release and blue acquisition unless deliberately handing the shared transition to transfer_blue. The nominal useful exit has red supported and released and blue rising with closed fingers and TCP-relative co-motion. Transfer the current history and qpos/qvel, not the internal route. This guidance is distinct from final task success, which is only the supplied red_at_goal AND blue_at_goal contract.",
+  "limitations": "No IK, analytic kinematics, obstacle planner, image encoder, contact sensor, hard joint-limit constraint, action equivariance or certified recovery. The coarse route is a deterministic conditional sample of a trained auxiliary diffuser, and orientation outputs are unconstrained six-component predictions. Fixed 16-step labels cannot supply a full long-horizon route or a 32-command refinement. The learned trajectory model can be inaccurate under generated actions, and no task-performance evidence is available at design time.",
+  "config": {
+    "architecture": "event_weighted_task_space_route_diffusion_conditioned_joint_unet",
+    "horizon": 16,
+    "observation_steps": 2,
+    "execution_steps": 8,
+    "training_updates": 20000,
+    "normalization": "unchanged_shared_complete_original_demonstration_limits",
+    "context_dimension": 256,
+    "context_inputs": "two normalized 47-dimensional observations, their normalized difference and both-object world-relative geometry",
+    "waypoint_count": 4,
+    "waypoint_channels": ["reference_relative_tcp_x", "reference_relative_tcp_y", "reference_relative_tcp_z", "rotation_column_1_x", "rotation_column_1_y", "rotation_column_1_z", "rotation_column_2_x", "rotation_column_2_y", "rotation_column_2_z", "encoded_gripper", "within_quartile_time"],
+    "reference": "learned soft red-blue local reference; no hard active-object switch",
+    "route_label_sampling": "event-weighted pooling within four ordered four-slot bins; increased weight for opening, closure, upward crossing of 0.26 m and vertical reversals",
+    "route_training_noising": "100-step cosine alpha_bar with 0.008 offset and 1e-4 floor; epsilon MSE",
+    "route_inference": "six differentiable deterministic DDIM revisions at 99,79,59,39,19,0 from a checkpointed fixed Gaussian seed; recomputed from causal history on each motor denoising call",
+    "motor_sampling": "unchanged_framework_100_step_DDPM_epsilon_prediction",
+    "motor_backbone": "public DiffusionBackbone with fixed 128,256,512 widths and 256-dimensional learned condition",
+    "phase_targets": ["rising", "descending", "high_lateral_transit", "opening", "closing"],
+    "trajectory_predictor": "nonrecurrent temporal convolution of encoded action horizon, learned position features and observation context, predicting subsequent normalized TCP XYZ and six-dimensional orientation",
+    "loss_weights": {
+      "motor_epsilon": 1.0,
+      "coarse_epsilon": 0.4,
+      "sampled_route_supervision": 0.25,
+      "native_and_decoded_trajectory_supervision": 0.15,
+      "route_motor_consistency": 0.1,
+      "phase_BCE": 0.03,
+      "soft_reference_cross_entropy": 0.01,
+      "low_height_sweep": 0.02
+    },
+    "auxiliary_reliability": "decoded-action auxiliaries weighted by motor alpha_bar; x0 clipped to [-1.5,1.5] only for learned-trajectory losses",
+    "sweep_prior": "soft height gate centered at 0.12 m with 0.025 m width; penalizes predicted per-slot XY displacement beyond 0.0015 m, normalized by 0.01 m; observed aligned supported approach/placement is exempt",
+    "selection": "last EMA at the fixed declared budget; no validation-based selection"
+  }
+}

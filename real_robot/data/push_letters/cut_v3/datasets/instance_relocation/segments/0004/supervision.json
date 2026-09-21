@@ -1,0 +1,41 @@
+{
+  "boundary_evidence_indices": [
+    3599,
+    3600,
+    4150,
+    4229,
+    4230,
+    4400
+  ],
+  "condition_evidence_indices": [
+    3600,
+    4150,
+    4229
+  ],
+  "deployment_condition_source": "HLA chooses a new placement for the same scene instance when re-planning; changing its old placement starts a fresh invocation.",
+  "label_derivation": "G at 4229, goal box [250,245,425,385]. Select the lower crossbar/I-like instance from a_i_stage1; at this endpoint it is left/up of its prior staging pose.",
+  "merge_check": "Preceding R and following upper crossbar/H are different pieces. Earlier I-stage1 has a different local endpoint and an intervening O/R manipulation.",
+  "objective": "Re-approach and move the lower crossbar piece further left/up, opening space around the upper crossbar piece.",
+  "rationale": "3600 begins the return from R, 3900-4150 shows I interaction and changed orientation/location, and 4229-4230 shows withdrawal before H motion.",
+  "segment_id": "a_i_stage2",
+  "split_check": "The curved approach and I correction share the fixed local endpoint; no additional target switch is supported inside the supervised interior.",
+  "start": 3600,
+  "stop": 4230,
+  "supervised_start": 3600,
+  "supervised_stop": 4230,
+  "supervision_exclusions": [
+    {
+      "reason": "R release/I approach uncertain.",
+      "start": 3600,
+      "stop": 3630
+    },
+    {
+      "reason": "I release/H approach uncertain.",
+      "start": 4200,
+      "stop": 4230
+    }
+  ],
+  "training_condition": "Lower crossbar/I-like instance; second local staging placement G(4229).",
+  "trajectory_id": "episode_2026091922002701",
+  "uncertainty": "Opening space is an interpretation of the observed displacement, not a recorded task instruction. Do not merge it with the final I alignment goal."
+}

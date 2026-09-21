@@ -1,0 +1,41 @@
+{
+  "instance": "assembly__N10__rep0",
+  "selections": {
+    "1": {
+      "budget": 1,
+      "candidate_id": "A1",
+      "provenance": "pre_feedback_first_rank",
+      "training_reused": true
+    },
+    "3": {
+      "api_candidate_id": "A2",
+      "api_selection_noncompliant": false,
+      "budget": 3,
+      "candidate_id": "A2",
+      "feedback_hash": "320cff78e9df2871580f544b3f424daccb45d7f0cec759ca28730bf2a3505938",
+      "provenance": "RuntimePriorAPI",
+      "rationale": "q3: A2 uniquely maximizes the frozen equal-distribution score: 0.5*0.6000000000000001 + 0.5*0.35 = 0.47500000000000003. A1 scores 0.375 and A3 scores 0.25. C and E rates already use equal cell weights. All three completed and are eligible; no tie-break is needed. IID success, training curves and baselines were not used to select.",
+      "rule": "Maximize 0.5*dev_C_success + 0.5*dev_E_success; within each distribution use equal subcondition weights. Ties: lower fixed-method inference latency, fewer complete-system parameters, smaller candidate ID. Invalid candidates are ineligible. No eligible candidate means null. IID and hidden test do not select."
+    },
+    "4": {
+      "api_candidate_id": "A2",
+      "api_selection_noncompliant": false,
+      "budget": 4,
+      "candidate_id": "A2",
+      "feedback_hash": "514ae67a02740774d652d089032763d4ddf3756719d083298974201655197fbe",
+      "provenance": "RuntimePriorAPI",
+      "rationale": "q4: Select A2, the unique eligible maximizer of 0.5*dev_C_success + 0.5*dev_E_success with equal cell weights: A2=0.47500000000000003, A1=0.375, A3=0.25. A4 failed during formal training and has no completed eligible development result; it is excluded, not assigned a zero success score. No tie-break is needed. IID results, support loss, baselines and hidden tests do not select. A4's failure remains recorded; no code changes, retry, new checkpoint choice or additional training is requested.",
+      "rule": "Maximize 0.5*dev_C_success + 0.5*dev_E_success; within each distribution use equal subcondition weights. Ties: lower fixed-method inference latency, fewer complete-system parameters, smaller candidate ID. Invalid candidates are ineligible. No eligible candidate means null. IID and hidden test do not select."
+    }
+  },
+  "submissions": {
+    "A1": "b377ad7a57de7461944c9d3a3b2e072e4859594740eb3a1e2808f5b311261a57",
+    "A2": "d498b9bf577e66dbfb6f0cd6271b69f68451a93d6b7da46adb54bc73e040f205",
+    "A3": "65b9a562e841392935a097a16d7a3b4433da39df6d1cc8165d752295806f50ce",
+    "A4": "3b3e46749f7490d132e6a4310cbcedc59313706f44ed98da736cbd74b0a032a0"
+  },
+  "feedback_hashes": {
+    "initial": "b232bfc2108eed98f59e25a50c982dc0fbe9a042609d8bb3bcdb783e5dd1d2da",
+    "final": "4cfbf1ac106d3a842c59157aa846b10fc55ab20094b12dbd9edc9e5913f66086"
+  }
+}

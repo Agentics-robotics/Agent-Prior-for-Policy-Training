@@ -1,0 +1,15 @@
+{
+  "extraction": "All function_call objects in the final recorded response, unchanged.",
+  "function_calls": [
+    {
+      "arguments": "{\"notebook\":\"Step1067 inv16 verified blue attachment kinematically: z0.1251->0.25263 as TCP0.1294->0.25693, distance stable5.642mm, object-minus-TCP(+0.00365,-0.00027,-0.00430)m, width0.036557. Blue(-0.42831,0.26998,0.25263), red unchanged at_goal1(-0.14748,-0.10008,0.036). Transfer to previously successful red-delivery h02 (docs read; supplied tray matches0.09m wall tops). Blue is near-upright and clear above rim; actual offset differs modestly from nominal8mm but co-motion excellent. Route recovered first blue miss using delivery h03 open-retreat then h01 full pickup. Only blue predicate pending. Stop automatically on simultaneous goals; no release or clearance required. Monitor loss of attachment, low carry outside tray, or red disturbance.\",\"policy_id\":\"deliver_block__h02\",\"reason\":\"Blue has risen another128mm with virtually constant TCP-relative pose and nominal grasp aperture, while red stays independently settled. This is supported attached-lift overlap for delivery h02, whose fixture conditioning matches the supplied open tray. Its rim-aware training prior is not a collision guarantee, so stop on low outside-tray motion or separation. Formal success requires only blue containment now.\",\"steps\":200,\"stop_when\":[{\"conditions\":[{\"comparison\":\"eq\",\"metric\":\"red_at_goal\",\"reference\":\"absolute\",\"value\":0}],\"label\":\"Placed red loses containment\"},{\"conditions\":[{\"comparison\":\"gt\",\"metric\":\"tcp_blue_distance\",\"reference\":\"absolute\",\"value\":0.05},{\"comparison\":\"eq\",\"metric\":\"blue_at_goal\",\"reference\":\"absolute\",\"value\":0}],\"label\":\"Blue separates before delivery\"},{\"conditions\":[{\"comparison\":\"lt\",\"metric\":\"blue_z\",\"reference\":\"absolute\",\"value\":0.125},{\"comparison\":\"lt\",\"metric\":\"blue_x\",\"reference\":\"absolute\",\"value\":-0.225}],\"label\":\"Blue too low outside west tray opening\"},{\"conditions\":[{\"comparison\":\"lt\",\"metric\":\"blue_z\",\"reference\":\"absolute\",\"value\":0.125},{\"comparison\":\"gt\",\"metric\":\"blue_y\",\"reference\":\"absolute\",\"value\":0.145}],\"label\":\"Blue too low outside north tray opening\"},{\"conditions\":[{\"comparison\":\"ge\",\"metric\":\"finger_width\",\"reference\":\"absolute\",\"value\":0.06},{\"comparison\":\"gt\",\"metric\":\"blue_z\",\"reference\":\"absolute\",\"value\":0.08}],\"label\":\"Premature opening with elevated blue\"}]}",
+      "call_id": "call_sXLMga9v20NW1s7rtXF9RNGR",
+      "id": "fc_0376b0a60eea4750016aaba96d104087d099014dc66bcf3aa9",
+      "name": "invoke_policy",
+      "status": "completed",
+      "type": "function_call"
+    }
+  ],
+  "source": "runs/exp2/M1_astra_xhigh/tray_pack/evaluation/APPL/OOD/30300/api/api/0022.response.json",
+  "source_sha256": "c1f963d8a9095505a74a7f145d80168b0664626e0a947cfbcf78c9bfba49143d"
+}

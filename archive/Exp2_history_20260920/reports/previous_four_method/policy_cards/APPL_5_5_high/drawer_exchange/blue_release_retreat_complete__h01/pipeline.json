@@ -1,0 +1,23 @@
+{
+  "policy_id": "blue_release_retreat_complete__h01",
+  "skill_id": "blue_release_retreat_complete",
+  "heuristic_index": 1,
+  "prior_summary": "Completion-predicate local insertion prior: a learned state-conditioned DDPM action policy uses drawer-frame blue error, red-pad/drawer-open/blue-inside predicate features, and auxiliary future-completion supervision to center/release the blue block in the open drawer and retreat.",
+  "applicable_conditions": "Use when the drawer is already open, the red block is on or very near the outside pad, and the blue block/TCP are in the late transport-to-drawer region: from high carried blue near x about -0.18, y 0.065-0.08, z about 0.32 with closed fingers through the lower release and retreat phase. The causal observations must include qpos/qvel, TCP pose, red pose, blue pose, drawer position/velocity, and red/blue goals.",
+  "termination_guidance": "The task may be declared complete at any observation satisfying drawer_position > 0.26, red center on the outside pad, and blue center inside the drawer cavity with z in the specified open interval. For skill-level safety, continue briefly after first completion if the gripper is still near or touching the blue block; demonstrations end with fingers open and TCP retreated upward around z 0.323 m.",
+  "limitations": "This policy is trained only on the assigned expanded late slice and is not a recovery policy for a blue block dropped outside the drawer. It does not implement analytic IK, image processing, hard constraints, or a scripted sampler guidance controller; predicate information is represented through learned conditioning and differentiable auxiliary losses.",
+  "config": {
+    "condition_dim": 256,
+    "prior_bce_weight": 0.05,
+    "prior_geom_weight": 0.02,
+    "auxiliary_horizon": 16,
+    "relative_feature_scales": {
+      "position_m": 0.15,
+      "drawer_relative_m": 0.20,
+      "tcp_object_m": 0.25,
+      "drawer_margin_m": 0.15,
+      "finger_sum_m": 0.08
+    },
+    "uses_shared_normalizer_only": true
+  }
+}

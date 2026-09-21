@@ -1,0 +1,74 @@
+{
+  "API_accounting": {
+    "calls": 10,
+    "seconds": 124.88230102299713,
+    "states": {
+      "consumed": 10
+    },
+    "usage": {
+      "cached_input_tokens": 143872,
+      "input_tokens": 242307,
+      "output_tokens": 5662,
+      "total_tokens": 247969
+    }
+  },
+  "API_audit": {
+    "API_arguments_unchanged": true,
+    "all_actions_use_selected_frozen_policy": true,
+    "invocations": 7,
+    "literal_condition_returns": 4,
+    "private_budget_fields_absent": true,
+    "requests": 10,
+    "states": {
+      "consumed": 10
+    },
+    "terminal_http_failure_retained": false
+  },
+  "actual_effort": "high",
+  "actual_model": "gpt-5.5",
+  "additional_training_updates": 0,
+  "automatic_retries": 0,
+  "ended": 1789789251.683221,
+  "first_request_identical": true,
+  "initial_prompt_identical": true,
+  "initial_state_identical": true,
+  "original_files_unchanged": 80,
+  "passed": true,
+  "physical_reset_attempts": 1,
+  "replacement": {
+    "completed": true,
+    "condition": "ID",
+    "episode_root": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/runs/exp2/M1_scaleup/evaluation_recovery_20260919/buffer_swap/evaluation/APPL/ID/20116",
+    "first_goals": {
+      "blue_at_goal": 600,
+      "red_at_goal": 945,
+      "success": 945
+    },
+    "first_success": 945,
+    "method": "APPL_5_5_high",
+    "original_episode_root": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/runs/exp2/M1_scaleup/buffer_swap/evaluation/APPL/ID/20116",
+    "reused_original_result": false,
+    "seed": 20116,
+    "selected_attempt": "authorized_reset_retest_20260919",
+    "status": "succeeded",
+    "steps": 945,
+    "success": true,
+    "success_by_1500": true,
+    "success_by_3000": true,
+    "success_by_5000": true,
+    "task": "buffer_swap"
+  },
+  "result_sha256": "ac8cb7e309702f2390d3e1caed65947a3659a0417f88f39b9147c40ee67b97e1",
+  "status": "complete",
+  "trace_sha256": "ff55c5e6a05886629631423cc737c451c4d940c7a76748df72d7f3bbe54cb23e",
+  "video": {
+    "codec": "h264",
+    "frames": 50,
+    "passed": true,
+    "resolution": [
+      128,
+      128
+    ]
+  },
+  "video_sha256": "d7567cd68e26361d5dce0c388217241ea609c21caa09908cb4c1bae89c3f27cb"
+}

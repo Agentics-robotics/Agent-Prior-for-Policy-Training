@@ -1,0 +1,34 @@
+{
+  "policy_id": "deliver_active_block__h03",
+  "skill_id": "deliver_active_block",
+  "heuristic_index": 3,
+  "prior_summary": "Predicate-and-readiness prior implemented as a learned action diffusion policy. The denoiser is conditioned on causal forecasts of red/blue goal predicates and release/readiness predicates, and training adds differentiable auxiliary losses for those forecasts plus a terminal-phase clean-action consistency term.",
+  "applicable_conditions": "Use for the deliver_active_block skill in two_block_sort when the observation history shows a block being carried, lowered, released, or the arm retreating after placement. It relies on state observations for tcp_pose, red_pose, blue_pose, finger qpos, qvel, and the fixed red/blue goal positions in world metres.",
+  "termination_guidance": "The selector may transfer after the active object is on its target pad, the gripper is open, and the TCP has retreated clear of the table/object. For red delivery this is successor readiness for blue acquisition; for blue delivery it is a safe terminal state. The formal task success remains red_at_goal AND blue_at_goal.",
+  "limitations": "The model is not an IK controller and has no image input or hard constraints. Readiness is learned from successful demonstrations and synthetic in-trajectory labels, so recovery from large disturbances, regrasping, or off-pad placement is untested. The auxiliary labels guide training but do not redefine the task contract.",
+  "config": {
+    "condition_dimension": 256,
+    "encoder_hidden": 256,
+    "auxiliary_bce_weight": 0.2,
+    "terminal_action_weight": 0.05,
+    "auxiliary_label_order": [
+      "red_at_goal_current",
+      "blue_at_goal_current",
+      "red_successor_ready_current",
+      "blue_terminal_ready_current",
+      "red_at_goal_mid_horizon",
+      "blue_at_goal_mid_horizon",
+      "red_successor_ready_mid_horizon",
+      "blue_terminal_ready_mid_horizon",
+      "red_at_goal_end_horizon",
+      "blue_at_goal_end_horizon",
+      "red_successor_ready_end_horizon",
+      "blue_terminal_ready_end_horizon"
+    ],
+    "at_goal_xy_linf_tolerance_m": 0.04,
+    "at_goal_z_tolerance_m": 0.011,
+    "open_finger_qpos_threshold_m": 0.035,
+    "tcp_clear_z_threshold_m": 0.15,
+    "uses_shared_normalizer": true
+  }
+}

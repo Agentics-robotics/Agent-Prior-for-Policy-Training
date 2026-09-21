@@ -1,0 +1,15 @@
+{
+  "policy_id": "red_transport_place_pad__h02",
+  "entry_conditions": "Enter when the drawer is already open and the causal state shows the red block attached to or very near the TCP with mostly closed fingers. Supported entries include the lift overlap near index 455, where red is close to the gripper and still low, and the high-carry state near index 530, where red z is about 0.31 m and the fingers are closed around total width 0.036 m.",
+  "exit_conditions": "Exit after the red block is at the outside pad around world [-0.18, -0.30, 0.02] m, the fingers have opened to about total width 0.08 m, and the TCP is no longer constrained by the red block, retreating upward and laterally toward the blue-block approach region.",
+  "overlap_role": "This policy intentionally includes both shared transitions: the preceding red lift/regrasp overlap teaches takeover while the red block is already being lifted, and the successor blue-approach overlap teaches the arm to leave the red placement zone rather than stopping at release.",
+  "successor_readiness": "The blue successor should receive an open gripper, red remaining on the pad at low z, TCP separated from the red block, and TCP motion or pose oriented toward the blue block side of the workspace. A single red-on-pad geometric condition can occur before the release/retreat state is ready for transfer.",
+  "failure_signatures": "Concerning states include red travelling laterally with low clearance before reaching pad xy, fingers opening while red is still high or far from the pad, red not remaining near pad xy after release, or TCP staying close to the placed red block instead of lifting away.",
+  "continuation_guidance": "Continue this policy through the soft-release and retreat transition if causal observations show red on the pad but fingers are not fully open, or if the TCP is still close to or just above the red block. Transfer once finger opening and TCP/red separation are visible. The model uses red pose, TCP pose, finger qpos, drawer position, red goal, blue pose, and blue goal in world metres to infer these phases.",
+  "limitations": "The handoff cues are supported by successful demonstrations and measured boundary states, not by hard contact sensing or tested recovery behavior. The implementation does not include scripted IK, analytic collision avoidance, or guarantees for dropped/rolled blocks outside the demonstrated distribution.",
+  "evidence": [
+    {"trajectory_id": "demo1001", "indices": [455, 530, 600, 620, 650, 760]},
+    {"trajectory_id": "demo1005", "indices": [455, 530, 650, 760]},
+    {"trajectory_id": "demo1011", "indices": [455, 530, 650, 760]}
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "policy_id": "deliver_disengage__h02",
+  "skill_id": "deliver_disengage",
+  "heuristic_index": 2,
+  "prior_summary": "Contract-aware learned action diffusion with a causal placement-window predictor, separate disengagement-readiness predictions, and a recurrent action-conditioned pose/aperture forecast. Analytic rotated-corner containment and centre-height losses train the forecast and, through a detached-parameter forecast, regularize denoised action chunks. Already released contained objects receive a preservation loss. Outcome guidance is amortized during training; this implementation does not change the fixed DDPM sampler or perform online rollout-energy optimization.",
+  "applicable_conditions": "World-frame qpos/qvel, TCP and both object wxyz poses, and exact pad goals are available. Use with the demonstrated Panda absolute-joint/gripper controller and 0.04 m cubes on separate pads. All assigned expanded segments are retained, including open low approach, grasp, lift, airborne carry, lowering, opening, retreat, and the high next-object approach. Object roles are inferred causally from proximity and observed protection support, not from trajectory time or future completion labels.",
+  "termination_guidance": "Evaluate live per-object margins using all eight rotated cube corners inside the 0.12 m square pad and centre-height error no greater than 0.011 m. One observed red_at_goal AND blue_at_goal suffices for task completion, including a closed grip. For a useful empty-hand transfer, separately inspect finger opening, settled object pose and increasing TCP separation. Continue learned disengagement when needed; after red placement the model can also continue the shared high approach to blue. Learned readiness and predicted future margins are not measured success.",
+  "limitations": "Only successful demonstrations with near-centre placements are available. The recurrent forecast has no counterfactual dynamics validation, contact model, IK, image encoder or guaranteed safety constraints. Full corner geometry is implemented but novel rotations, moving goals, unseen heights, clutter and recovery are untested. Runtime candidate reranking, online energy descent and persistent live-forecast disagreement tracking are not implemented: the epsilon-only interface is served by training-time outcome regularization and causal event/readiness conditioning. All masks and shared original-demonstration normalization are retained.",
+  "config": {
+    "implementation": "causal_contract_regularized_diffusion_v1",
+    "guidance_adaptation": "training_time_amortized_outcome_guidance",
+    "normalization": "shared_complete_original_demonstrations_only",
+    "segmentation": "all_24_assigned_expanded_segments_without_trimming",
+    "history_steps": 2,
+    "horizon": 16,
+    "execution_steps": 8,
+    "training_updates": 20000,
+    "batch_size": 128,
+    "seed": 0,
+    "sampler": "fixed_ddpm_100_steps_epsilon_prediction",
+    "checkpoint_selection": "last_EMA_at_declared_budget",
+    "encoder_input_dimension": 164,
+    "encoder_dimension": 256,
+    "denoiser_condition_dimension": 290,
+    "unet_down_dims": [128, 256, 512],
+    "forecast_hidden_dimension": 128,
+    "forecast_context_dimension": 64,
+    "forecast_targets": ["TCP_pose", "red_pose", "blue_pose", "two_finger_apertures"],
+    "cube_half_extent_m": 0.02,
+    "pad_half_xy_m": 0.06,
+    "centre_height_tolerance_m": 0.011,
+    "protection_support": {
+      "contained": true,
+      "opening_total_width_above_m": 0.065,
+      "or_TCP_object_separation_above_m": 0.08,
+      "two_observation_object_displacement_below_m": 0.003
+    },
+    "readiness_proxy": {
+      "contained": true,
+      "each_finger_above_m": 0.035,
+      "TCP_object_separation_above_m": 0.06,
+      "TCP_above_object_by_m": 0.05,
+      "is_task_success_requirement": false
+    },
+    "loss_weights": {
+      "diffusion": 1.0,
+      "rollout": 0.5,
+      "placement_window_BCE": 0.05,
+      "readiness_BCE": 0.025,
+      "forecast_contract": 0.01,
+      "forecast_protection": 0.05,
+      "action_contract": 0.02,
+      "action_protection": 0.05,
+      "action_trust": 0.02
+    },
+    "action_outcome_reliability": {
+      "minimum_alpha_bar": 0.5,
+      "alpha_bar_power": 2,
+      "encoded_action_MSE_exponential_scale": 0.04,
+      "normalized_forecast_position_MSE_exponential_scale": 0.02,
+      "event_gate": "relu(2*causal_probability-1)",
+      "frozen_forecast_for_action_gradient": true
+    },
+    "runtime_guidance_optimizer": false,
+    "diagnostics_method": "model.diagnostics(raw_history)",
+    "additional_data_or_simulator": false
+  }
+}

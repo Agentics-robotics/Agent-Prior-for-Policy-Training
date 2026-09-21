@@ -1,0 +1,1163 @@
+{
+  "exclusions": [],
+  "overlap_rationale": "All original actions are covered; there are no exclusions. Adjacent skills deliberately share multi-second transition bands rather than short tails: S1/S2 share [240,330) where the drawer is already open, the first side grasp has released, and the robot is retreating/reorienting above the red block; S2/S3 share [455,530) where the top grasp has just closed and red is being lifted/accelerated toward the pad; S3/S4 share [650,760) where red has been released and the arm retreats from the pad and traverses toward the blue start area; S4/S5 share [810,870) where blue contact, closing and initial lift occur; S5/S6 share [930,1030) where the carried blue block is brought above/into the open drawer and released/early-retreated. These overlaps support successor take-over while finger state, object attachment and arm motion are still evolving. They do not show recovery from off-demonstration spatial/contact errors; the supported entry states remain near the demonstrated poses and object contacts.",
+  "skills": [
+    {
+      "heuristics": [
+        {
+          "applicability": "Transfers when red begins on/in the drawer front region at z about 0.063 m, the drawer slides along world x, and the gripper can side-pinch the red block strongly enough to pull the drawer. Requires the same Panda joint/gripper actuation and comparable drawer friction/contact geometry.",
+          "evidence": [
+            {
+              "indices": [
+                0,
+                125,
+                145,
+                240,
+                330
+              ],
+              "trajectory_id": "demo1000"
+            },
+            {
+              "indices": [
+                0,
+                125,
+                145,
+                240,
+                330
+              ],
+              "trajectory_id": "demo1001"
+            },
+            {
+              "indices": [
+                0,
+                240,
+                330
+              ],
+              "trajectory_id": "demo1009"
+            }
+          ],
+          "handoff": {
+            "entry_conditions": "Measured support: at segment starts index 0, qpos arm is the home posture [0,-0.3,0,-2.1,0,1.8,0.785] rad, gripper qpos fingers are open near 0.04 m, drawer_position=0 m, red_pose is near x 0.093-0.108, y -0.077 to -0.055, z 0.063 m, blue is untouched on the table. Hypothesized tolerance is only small object-pose variation similar to the 12 demos.",
+            "exit_conditions": "Useful end state is an open drawer (drawer_position approximately 0.300 m), red translated to x about -0.195 to -0.210 at z 0.063 m, gripper open near 0.04 m, and tcp_pose retreating upward/away by index 330 so the red top can be approached.",
+            "failure_signatures": "drawer_position remains below about 0.26 m by the retreat portion, red_pose is not co-moving with tcp during the pull, gripper qpos does not close to about 0.007 m during contact or reopen near 0.04 m before retreat, or tcp collides/jams at the drawer face.",
+            "overlap_role": "The [240,330) overlap teaches both this skill and red top-regrasp to handle the first-grasp release, drawer-open confirmation, and upward reorientation; successor need not assume a single exact release pose.",
+            "successor_readiness": "red_top_regrasp_lift needs drawer_position >0.26 m, red visible at front-left of the open drawer, gripper open, tcp above/front of red with enough clearance to descend, and red still on the drawer surface rather than already carried."
+          },
+          "limitations": "Successful demos do not establish behavior if the first side pinch misses, if red rotates out of the drawer slot, or if the drawer sticks. Falsify by comparing to an unconstrained DP on held-out red y positions and drawer friction; this prior should reduce drawer-axis errors and premature release but could fail if the object-relative frame is misestimated.",
+          "pipeline_implications": "Policy candidate uses causal observations qpos,qvel,tcp_pose,red_pose,drawer_position,drawer_velocity and outputs normalized arm_joint_positions plus gripper_command. Encode features e=[T_tcp^{-1}red, drawer_position, drawer_velocity, qpos_fingers]. The prior is a red-relative spatial transformer before a diffusion action decoder: a_t ~ D_theta(a_t | e_t, history). Demonstration futures provide labels for phase/progress only during training, not inference.",
+          "rationale": "Across demonstrations, tcp moves from home to a pose just behind red, fingers close around index 145, drawer_position rises to 0.30 by index 240, then fingers reopen and tcp retreats by index 330. The learning difficulty is that absolute joint replay must generalize over red y/x variation; using red/tcp relative geometry should make the initial approach and side grasp reusable rather than memorizing one joint path.",
+          "statement": "Red-relative side-grasp servo: represent the pull as reaching a fixed pose relative to red, closing, then pulling the red/drawer system, reducing sensitivity to initial red lateral placement."
+        },
+        {
+          "applicability": "Best for the same mechanical sequence with a drawer whose opening is observable as drawer_position and whose motion is monotonic along the demonstrated axis. It assumes contact transitions can be inferred from qpos finger gap, red/tcp co-motion and drawer velocity.",
+          "evidence": [
+            {
+              "indices": [
+                125,
+                145,
+                240,
+                330
+              ],
+              "trajectory_id": "demo1002"
+            },
+            {
+              "indices": [
+                125,
+                145,
+                240,
+                330
+              ],
+              "trajectory_id": "demo1003"
+            },
+            {
+              "indices": [
+                240,
+                330
+              ],
+              "trajectory_id": "demo1011"
+            }
+          ],
+          "handoff": {
+            "entry_conditions": "Can start with open fingers at home or already approaching red as in indices 0-125, provided red_pose is on the drawer front and drawer_position <0.02 m. The gripper_command should be open before the close phase.",
+            "exit_conditions": "Exit after the release/retreat latent state: gripper open near 0.04 m, drawer_position stable near 0.30 m, red on the open drawer surface, tcp rising toward z about 0.37 m by index 330.",
+            "failure_signatures": "Latent state sequence skips close before pulling, drawer_velocity does not become positive during pull, red_pose lags tcp by more than a block width, or the policy remains in pull after drawer_position saturates.",
+            "overlap_role": "The release-and-retreat part is intentionally shared with the next skill so either policy can learn whether to finish opening or begin the top-grasp reorientation from a partially changing arm pose.",
+            "successor_readiness": "Successor receives a discrete/continuous state with phase=retreat/open, drawer_position >0.26 m and gripper open, not phase=pull with fingers closed."
+          },
+          "limitations": "Phase labels inferred from demonstrations are not measured contact forces. The prior cannot prove recovery from a bad pinch or drawer overshoot. Ablate the latent phase model against a single diffusion model; benefit is falsified if phase-conditioned prediction does not improve close/release timing on held-out demos.",
+          "pipeline_implications": "Train a hybrid diffusion/HSMM candidate. Causal inputs are qpos,qvel,tcp_pose,red_pose,drawer_position,drawer_velocity. Training labels z_t in {approach,close,pull,release,retreat} are computed from demonstration futures/thresholds: gripper qpos, drawer_position derivative, and red motion. Inference maintains p(z_t|o_<=t); action decoder D_theta(a|o,z) produces joint targets and gripper command. Loss = diffusion denoising + CE(z_t) + drawer progress regression.",
+          "rationale": "The same indices show abrupt control logic: open gripper during approach, close at contact, maintain closed while drawer opens, then reopen and retreat. A single stationary policy must learn discontinuous gripper/arm couplings; an explicit mode prior separates contact decisions from continuous motion.",
+          "statement": "Contact-phase automaton: encode approach-close-pull-release-retreat as a latent temporal organization to improve gripper timing and avoid blending incompatible actions."
+        },
+        {
+          "applicability": "Applies to drawers whose useful progress is the scalar drawer_position and where pulling red/drawer along world -x is adequate. Requires reliable state observation of drawer_position and drawer_velocity.",
+          "evidence": [
+            {
+              "indices": [
+                145,
+                240,
+                330
+              ],
+              "trajectory_id": "demo1004"
+            },
+            {
+              "indices": [
+                145,
+                240,
+                330
+              ],
+              "trajectory_id": "demo1005"
+            },
+            {
+              "indices": [
+                145,
+                240,
+                330
+              ],
+              "trajectory_id": "demo1006"
+            }
+          ],
+          "handoff": {
+            "entry_conditions": "Start is supported from closed drawer_position 0 and red at z 0.063 with tcp above/approaching. It can also take over in overlap after the drawer is already open if gripper has released.",
+            "exit_conditions": "Drawer_position strictly exceeds the task threshold 0.26 m and is near 0.30 m; drawer_velocity near zero; red and tcp no longer need to apply pulling force; fingers open for successor descent.",
+            "failure_signatures": "Drawer progress is nonmonotonic, tcp moves mostly off the world-x pull line while fingers are closed, or release occurs before drawer_position >0.26 m.",
+            "overlap_role": "In [240,330), both policies see drawer progress already achieved and learn the transition from progress-controlled pulling to pose-controlled top-grasp setup.",
+            "successor_readiness": "The next policy needs stable drawer_position >0.26 m and a red_pose that remains reachable; this prior should hand off only after its progress head predicts completion with high confidence."
+          },
+          "limitations": "A pure 1-D progress bias may ignore lateral alignment or red grasp quality; if red slips sideways it may still believe progress is adequate. Compare against the red-relative prior; falsification is good drawer progress prediction but worse grasp/release accuracy.",
+          "pipeline_implications": "Candidate augments DP with scalar progress c=drawer_position/0.30 and target c*=1. Inputs include drawer_position and drawer_velocity in native metres and world tcp/red features. Add auxiliary heads predicting c_{t+H} and sign(drawer_velocity). Decoder action is penalized during closed-gripper phases for tcp velocity components orthogonal to world x in Cartesian reconstruction from FK: L=L_diff+lambda||v_tcp,yz||^2+MSE(c_{future}). Labels c_future are from future observations for training only.",
+          "rationale": "The task-relevant result of this skill is the drawer crossing 0.26 m, observed consistently by index 240. A progress coordinate can give the learner a low-dimensional termination and control variable, reducing ambiguity between pulling farther and retreating.",
+          "statement": "Drawer-progress coordinate: organize the pull around monotonic scalar drawer opening, biasing actions toward world-x progress until the drawer-open threshold is safely exceeded."
+        }
+      ],
+      "name": "side_grasp_red_pull_drawer_open",
+      "segmentation_rationale": "Segments start at the initial home/open-gripper state and end after drawer opening, side-grasp release and upward reorientation. At index 0 drawer_position is 0 and red is at x about 0.09-0.11; by index 145 fingers are closed around red and drawer begins moving; by index 240 drawer_position is about 0.30 and gripper has reopened; by index 330 tcp is retreating above the open drawer. Stop 330 preserves substantial transition context for the following regrasp skill.",
+      "segments": [
+        {
+          "start": 0,
+          "stop": 330,
+          "trajectory_id": "demo1000"
+        },
+        {
+          "start": 0,
+          "stop": 330,
+          "trajectory_id": "demo1001"
+        },
+        {
+          "start": 0,
+          "stop": 330,
+          "trajectory_id": "demo1002"
+        },
+        {
+          "start": 0,
+          "stop": 330,
+          "trajectory_id": "demo1003"
+        },
+        {
+          "start": 0,
+          "stop": 330,
+          "trajectory_id": "demo1004"
+        },
+        {
+          "start": 0,
+          "stop": 330,
+          "trajectory_id": "demo1005"
+        },
+        {
+          "start": 0,
+          "stop": 330,
+          "trajectory_id": "demo1006"
+        },
+        {
+          "start": 0,
+          "stop": 330,
+          "trajectory_id": "demo1007"
+        },
+        {
+          "start": 0,
+          "stop": 330,
+          "trajectory_id": "demo1008"
+        },
+        {
+          "start": 0,
+          "stop": 330,
+          "trajectory_id": "demo1009"
+        },
+        {
+          "start": 0,
+          "stop": 330,
+          "trajectory_id": "demo1010"
+        },
+        {
+          "start": 0,
+          "stop": 330,
+          "trajectory_id": "demo1011"
+        }
+      ],
+      "skill_id": "side_grasp_red_pull_drawer_open",
+      "subgoal": "Open the drawer by side-grasping/pulling the red block, then release and retreat so red can be regrasped from above."
+    },
+    {
+      "heuristics": [
+        {
+          "applicability": "Transfers when the drawer is already open, red rests on the open drawer surface/front region at z about 0.063 m, and the gripper can approach vertically/top-down. Requires red_pose observation and enough clearance above the open drawer.",
+          "evidence": [
+            {
+              "indices": [
+                240,
+                330,
+                455,
+                530
+              ],
+              "trajectory_id": "demo1000"
+            },
+            {
+              "indices": [
+                240,
+                330,
+                455,
+                530
+              ],
+              "trajectory_id": "demo1002"
+            },
+            {
+              "indices": [
+                240,
+                330,
+                455,
+                530
+              ],
+              "trajectory_id": "demo1011"
+            }
+          ],
+          "handoff": {
+            "entry_conditions": "Measured starts include index 240: drawer_position around 0.300 m, gripper opening near 0.039 m, red_pose x about -0.195 to -0.210, z 0.063 m, tcp just after side release near the red/front of drawer. The policy also supports later overlap entries around index 330 with tcp at z about 0.37 m and gripper open.",
+            "exit_conditions": "Exit when top grasp is established and red is being lifted/transported: at index 530 red_pose z is about 0.307-0.322 m, fingers closed near 0.018 m, tcp is co-moving with red above the drawer/pad path.",
+            "failure_signatures": "tcp descends beside rather than over red, gripper closes before reaching low z, red z does not increase after close, or red_pose separates from tcp while fingers are closed.",
+            "overlap_role": "[455,530) is shared with red place/transport so both skills learn the fragile attachment transition and initial acceleration of the carried block.",
+            "successor_readiness": "red_transport_place_pad needs red attached in a top grasp, lifted clear of drawer lips (red z > about 0.25 m), drawer remains open, and the arm is moving toward the outside pad rather than still searching."
+          },
+          "limitations": "The demonstrations do not show retrying a missed top grasp or avoiding collisions with a partially closed drawer. Ablate top-down affordance features against raw state DP; benefit is falsified if held-out red y variation is not improved.",
+          "pipeline_implications": "Use causal qpos,qvel,tcp_pose,red_pose,drawer_position. Construct a red-centered vertical grasp frame with features [tcp_xy-red_xy, tcp_z-red_z, yaw/quat difference, finger gap]. A diffusion decoder is conditioned on this frame. Training labels for grasp success/attachment are computed from future red z increase and persistent tcp-red offset; inference only uses current observations.",
+          "rationale": "The overlap starts while the first skill is still retreating and continues through top contact. Across demos, red remains at variable x/y but the top grasp geometry relative to red is stable. This prior targets the learning gap between global reorientation and local grasp closure.",
+          "statement": "Red-centered top-grasp affordance: learn descent, closure and lift in a frame anchored on red_pose, improving tolerance to red placement left by the drawer-opening skill."
+        },
+        {
+          "applicability": "Applies when the drawer is open and forms an obstacle/clearance constraint around the red block. Assumes the top of the drawer and robot kinematics are similar, with tcp_pose z available in world metres.",
+          "evidence": [
+            {
+              "indices": [
+                240,
+                330,
+                455,
+                530
+              ],
+              "trajectory_id": "demo1001"
+            },
+            {
+              "indices": [
+                240,
+                330,
+                455,
+                530
+              ],
+              "trajectory_id": "demo1004"
+            },
+            {
+              "indices": [
+                240,
+                330,
+                455,
+                530
+              ],
+              "trajectory_id": "demo1008"
+            }
+          ],
+          "handoff": {
+            "entry_conditions": "Can take over during S1/S2 overlap once drawer_position is >0.26 m and gripper is open. tcp may be low near x -0.44,z 0.128 at index 240 or high/reoriented near z 0.37 at index 330.",
+            "exit_conditions": "Red lifted above clutter, typically red_pose z >0.30 at index 530, with closed fingers and tcp z approximately red z + 0.001 m; path has cleared the drawer lip.",
+            "failure_signatures": "tcp path cuts through the drawer rim, red is dragged along the drawer surface after close, or lift height stagnates below 0.15 m.",
+            "overlap_role": "The shared [240,330) region trains safe withdrawal from the drawer-open pose; [455,530) trains both this skill and successor to respect clearance while red becomes carried.",
+            "successor_readiness": "Successor should see red high enough for lateral travel, not still inside the drawer frame; drawer_position must still exceed 0.26 m."
+          },
+          "limitations": "No negative collision data exists; a learned clearance field is inferred only from successful paths. Falsify via a comparison without clearance auxiliary losses on perturbations near the drawer rim; if both collide equally, the prior adds no value.",
+          "pipeline_implications": "Candidate uses a learned cost-map/clearance auxiliary from state, not images: input [tcp_pose, red_pose, drawer_position] defines approximate drawer obstacle frame with drawer_center=[0.19-drawer_position,0,0.035]. Train decoder with L_diff plus hinge losses on tcp_z and red_z clearance during approach/lift, labels from demonstration positions. At deployment, compute clearance features causally and condition diffusion sampling or rescore samples by predicted collision risk.",
+          "rationale": "The robot rises high after release, then descends vertically to red and lifts again before traversing. This repeated clearance pattern likely protects against the open drawer lip and red/drawer contact; encoding it prevents a learner from shortcutting between poses.",
+          "statement": "Open-drawer clearance prior: maintain a safe vertical approach/lift envelope around the opened drawer while regrasping red."
+        },
+        {
+          "applicability": "Useful for top grasps where object attachment can be recognized by stable tcp-red offset after finger closure. Depends on gripper aperture qpos and red_pose being observable.",
+          "evidence": [
+            {
+              "indices": [
+                455,
+                530
+              ],
+              "trajectory_id": "demo1003"
+            },
+            {
+              "indices": [
+                455,
+                530
+              ],
+              "trajectory_id": "demo1005"
+            },
+            {
+              "indices": [
+                455,
+                530
+              ],
+              "trajectory_id": "demo1010"
+            }
+          ],
+          "handoff": {
+            "entry_conditions": "Supported entry includes open fingers descending near red at index 455 with red z about 0.063 and tcp z about 0.064. The policy may also enter from earlier retreat states in [240,330).",
+            "exit_conditions": "End with latent attachment probability high: fingers about 0.018 m, tcp and red z co-increase, red_pose z around 0.307 by index 530.",
+            "failure_signatures": "Attachment head remains low after close, tcp moves but red z stays near 0.063, or gripper gap is inconsistent/asymmetric indicating a poor pinch.",
+            "overlap_role": "The [455,530) overlap makes attachment establishment a shared responsibility; the successor can begin when attachment is recognized rather than at a fixed timestep.",
+            "successor_readiness": "Successor needs a carried red block with stable tcp-red offset and clearance; if attachment probability is low it should not take over."
+          },
+          "limitations": "Attachment is inferred, not force-sensed; future red motion labels may confound contact with incidental pushing. Test against a no-attachment-latent model; improvement should appear mainly in gripper close/lift timing.",
+          "pipeline_implications": "Train a latent binary attachment model b_t with labels from future red_pose displacement when qpos fingers <0.025 m and ||(tcp-red)_{t:t+H}|| variance is low. Inputs are causal qpos/qvel/tcp_pose/red_pose. Decoder D_theta(a|o,b) uses b to switch from descent/closure to lift/transport. At inference b is filtered online from current history, no future data.",
+          "rationale": "A key ambiguity is when to stop grasping and start lifting. Demonstrations show red is static at index 455, then high and co-moving by index 530. An attachment latent gives the policy a manipulable success signal not present in raw joint states.",
+          "statement": "Attachment-switch prior: explicitly represent free/contact/carry modes so the policy lifts only after a stable red grasp is likely."
+        }
+      ],
+      "name": "red_top_regrasp_lift",
+      "segmentation_rationale": "This dataset begins in the S1 release/retreat overlap at index 240, when the drawer is open and red is still on the drawer surface, includes the high reorientation around index 330, top-down descent and closure near index 455, and ends after the red block is clearly lifted and moving toward the pad around index 530. This groups the learning problem of converting an opened-drawer red block into a carried object.",
+      "segments": [
+        {
+          "start": 240,
+          "stop": 530,
+          "trajectory_id": "demo1000"
+        },
+        {
+          "start": 240,
+          "stop": 530,
+          "trajectory_id": "demo1001"
+        },
+        {
+          "start": 240,
+          "stop": 530,
+          "trajectory_id": "demo1002"
+        },
+        {
+          "start": 240,
+          "stop": 530,
+          "trajectory_id": "demo1003"
+        },
+        {
+          "start": 240,
+          "stop": 530,
+          "trajectory_id": "demo1004"
+        },
+        {
+          "start": 240,
+          "stop": 530,
+          "trajectory_id": "demo1005"
+        },
+        {
+          "start": 240,
+          "stop": 530,
+          "trajectory_id": "demo1006"
+        },
+        {
+          "start": 240,
+          "stop": 530,
+          "trajectory_id": "demo1007"
+        },
+        {
+          "start": 240,
+          "stop": 530,
+          "trajectory_id": "demo1008"
+        },
+        {
+          "start": 240,
+          "stop": 530,
+          "trajectory_id": "demo1009"
+        },
+        {
+          "start": 240,
+          "stop": 530,
+          "trajectory_id": "demo1010"
+        },
+        {
+          "start": 240,
+          "stop": 530,
+          "trajectory_id": "demo1011"
+        }
+      ],
+      "skill_id": "red_top_regrasp_lift",
+      "subgoal": "Reorient after drawer opening, top-grasp the red block and lift it clear for transport."
+    },
+    {
+      "heuristics": [
+        {
+          "applicability": "Transfers when the target outside pad is fixed at world [-0.18,-0.30,0.02], red is top-grasped and carried, and a red center in the pad xy region with z 0.014-0.031 completes the red part of the task. Requires world-frame red_pose and tcp_pose.",
+          "evidence": [
+            {
+              "indices": [
+                455,
+                530,
+                650,
+                760
+              ],
+              "trajectory_id": "demo1000"
+            },
+            {
+              "indices": [
+                455,
+                530,
+                650,
+                760
+              ],
+              "trajectory_id": "demo1002"
+            },
+            {
+              "indices": [
+                455,
+                530,
+                650,
+                760
+              ],
+              "trajectory_id": "demo1008"
+            }
+          ],
+          "handoff": {
+            "entry_conditions": "Supported entries include index 455/530 while fingers are closed around red (finger qpos about 0.018 m), drawer open, red z rising to ~0.31 m, and tcp co-located with red. The policy can take over before full cruising speed due to overlap.",
+            "exit_conditions": "Red is placed on the outside pad: by index 650 red_pose is near [-0.176,-0.298 to -0.304,0.020] with gripper open near 0.04 m and tcp retreating upward; by index 760 the arm is traveling toward blue.",
+            "failure_signatures": "red final xy outside pad half-size, red z remains high while fingers open, red follows tcp after release, or tcp retreats before red has reached pad height.",
+            "overlap_role": "[455,530) shares grasp-to-carry with predecessor; [650,760) shares release/retreat/global transit with the blue approach skill, supporting successor starts while arm is still leaving the pad.",
+            "successor_readiness": "blue_approach_grasp needs red settled on pad, gripper open, no red attachment, drawer still open, and the arm clear enough to move toward blue."
+          },
+          "limitations": "The pad is fixed in all demos; this prior may overfit to a single world goal and would not transfer to moved pads without explicit goal input. Compare pad-frame representation to absolute replay under artificial pad perturbations; success on current fixed task alone cannot prove generality.",
+          "pipeline_implications": "Use causal inputs qpos,qvel,tcp_pose,red_pose,drawer_position and constant goal g_red=[-0.18,-0.30,0.02]. Encode red-to-goal error and tcp-red offset. Diffusion decoder predicts joint/gripper actions; add auxiliary future-label losses for red_on_pad predicate computed from future red_pose and task contract. Inference computes predicate from current red_pose only.",
+          "rationale": "Across demos red is carried from variable drawer y to a very consistent pad location. Expressing the motion in red-goal error can focus learning on reducing the object placement error rather than memorizing the exact joint path.",
+          "statement": "Pad-frame red placement: control the carried red block relative to the outside pad goal, improving precision of place and release."
+        },
+        {
+          "applicability": "Useful when red must be transported over obstacles and then placed softly. Requires sufficient vertical workspace and world z in tcp/red poses.",
+          "evidence": [
+            {
+              "indices": [
+                530,
+                650,
+                760
+              ],
+              "trajectory_id": "demo1001"
+            },
+            {
+              "indices": [
+                530,
+                650,
+                760
+              ],
+              "trajectory_id": "demo1005"
+            },
+            {
+              "indices": [
+                530,
+                650,
+                760
+              ],
+              "trajectory_id": "demo1011"
+            }
+          ],
+          "handoff": {
+            "entry_conditions": "Enter with red carried high (red z about 0.307 at index 530 or already approaching pad), fingers closed near 0.018 m, and drawer open. It may start in overlap from the initial lift.",
+            "exit_conditions": "Exit once red has descended to z about 0.020 on the pad, fingers have opened to 0.04 m, and tcp is retreating upward and laterally toward blue by index 760.",
+            "failure_signatures": "red travels laterally at low clearance, collides with drawer/table, or release occurs at high z causing drop/roll.",
+            "overlap_role": "The successor blue skill shares the retreat after red release so it learns the arm leaves the placement zone before blue approach rather than assuming a static post-place pose.",
+            "successor_readiness": "Next skill needs open gripper and tcp no longer constrained by red; red pose should be pad-stable with z in [0.014,0.031]."
+          },
+          "limitations": "No failed drops are shown; soft-placement stability is inferred from success only. Ablate a height-stage bottleneck versus unconstrained DP; falsify if no reduction in low-clearance path errors or premature opening.",
+          "pipeline_implications": "Candidate is a staged latent policy with z_t in {carry_high, descend, open, retreat}; labels are derived from red_pose z, gripper qpos and future red velocity. Inputs are causal state. Decoder conditions on stage and goal error; train with diffusion loss + stage CE + hinge red_z>0.25 during carry_high until near pad_xy. At inference a recurrent stage filter updates from current red_pose/qpos.",
+          "rationale": "The trajectory has a high transport plateau from index 530 then a controlled descent/release near index 650. A height-stage bottleneck addresses the difficulty of not opening early while still making a precise low-z placement.",
+          "statement": "High-carry then soft-place temporal prior: separate transport clearance from final descent/release to reduce collisions and drops."
+        },
+        {
+          "applicability": "Applies when the red block remains rigidly attached during carry and release is detected by opening fingers. Requires reliable red_pose and gripper qpos observations.",
+          "evidence": [
+            {
+              "indices": [
+                455,
+                530,
+                650
+              ],
+              "trajectory_id": "demo1003"
+            },
+            {
+              "indices": [
+                455,
+                530,
+                650
+              ],
+              "trajectory_id": "demo1004"
+            },
+            {
+              "indices": [
+                455,
+                530,
+                650
+              ],
+              "trajectory_id": "demo1009"
+            }
+          ],
+          "handoff": {
+            "entry_conditions": "Supported starts include attached red in the shared lift interval; qpos finger gap about 0.018 m and tcp-red relative pose stable. Drawer_position remains >0.26 m.",
+            "exit_conditions": "Fingers open near 0.04 m and red no longer co-moves with tcp; red_pose is in pad region and tcp has lifted away to z ~0.20-0.26 by index 650 or is transiting by 760.",
+            "failure_signatures": "tcp-red offset changes before intended release, red slips during transport, or red continues to move with tcp after gripper opens.",
+            "overlap_role": "Both predecessor and successor share object-attachment transitions: first from grasp to carry, then from release to free-retreat.",
+            "successor_readiness": "Successor can start when attachment latent for red is false, gripper is open, and tcp path toward blue is unobstructed by red."
+          },
+          "limitations": "Rigid attachment may not hold for loose grasps or rotations; demos do not contain red slipping. Compare to policy without attachment consistency auxiliary; if object pose prediction is not improved, the prior is unsupported.",
+          "pipeline_implications": "Train an object-centric dynamics auxiliary: while fingers closed, predict red_pose_{t+1} from tcp motion using a learned rigid offset r=T_tcp^{-1}red; after open, predict red stationary. Inputs causal state, labels future red_pose from demonstrations. Diffusion decoder is conditioned on predicted attachment and r. Deployment rolls one-step object prediction to score/action-sample consistency.",
+          "rationale": "During transport the red block's motion is mostly governed by tcp motion; at release it becomes stationary while tcp retreats. Encoding this switch can improve generalization of carrying across start variations and reduce object slippage.",
+          "statement": "Carry-release object dynamics prior: model red as rigidly attached until gripper opens, then stationary on the pad."
+        }
+      ],
+      "name": "red_transport_place_pad",
+      "segmentation_rationale": "Segments start before red is fully lifted (index 455) to share the grasp-to-carry transition, continue through high transport (530), pad placement and opening (around 600-650), and include retreat/travel toward blue until index 760. This groups actions whose subgoal is to move red from carried state to a released, task-satisfying pad state and hand off during the post-release transit.",
+      "segments": [
+        {
+          "start": 455,
+          "stop": 760,
+          "trajectory_id": "demo1000"
+        },
+        {
+          "start": 455,
+          "stop": 760,
+          "trajectory_id": "demo1001"
+        },
+        {
+          "start": 455,
+          "stop": 760,
+          "trajectory_id": "demo1002"
+        },
+        {
+          "start": 455,
+          "stop": 760,
+          "trajectory_id": "demo1003"
+        },
+        {
+          "start": 455,
+          "stop": 760,
+          "trajectory_id": "demo1004"
+        },
+        {
+          "start": 455,
+          "stop": 760,
+          "trajectory_id": "demo1005"
+        },
+        {
+          "start": 455,
+          "stop": 760,
+          "trajectory_id": "demo1006"
+        },
+        {
+          "start": 455,
+          "stop": 760,
+          "trajectory_id": "demo1007"
+        },
+        {
+          "start": 455,
+          "stop": 760,
+          "trajectory_id": "demo1008"
+        },
+        {
+          "start": 455,
+          "stop": 760,
+          "trajectory_id": "demo1009"
+        },
+        {
+          "start": 455,
+          "stop": 760,
+          "trajectory_id": "demo1010"
+        },
+        {
+          "start": 455,
+          "stop": 760,
+          "trajectory_id": "demo1011"
+        }
+      ],
+      "skill_id": "red_transport_place_pad",
+      "subgoal": "Carry the red block to the marked outside pad, release it there, and retreat toward the blue block."
+    },
+    {
+      "heuristics": [
+        {
+          "applicability": "Transfers when blue starts on the table near world x -0.39 to -0.41, y 0.287-0.315, z 0.02 and can be top-grasped. Requires blue_pose observation and open gripper after red release.",
+          "evidence": [
+            {
+              "indices": [
+                650,
+                760,
+                810,
+                870
+              ],
+              "trajectory_id": "demo1000"
+            },
+            {
+              "indices": [
+                650,
+                760,
+                810,
+                870
+              ],
+              "trajectory_id": "demo1002"
+            },
+            {
+              "indices": [
+                650,
+                760,
+                810,
+                870
+              ],
+              "trajectory_id": "demo1010"
+            }
+          ],
+          "handoff": {
+            "entry_conditions": "Supported entry at index 650 has red on pad, gripper open near 0.04 m, tcp still over/near pad at z 0.20-0.26, drawer open. Later entry at 760 has tcp near the blue area but high (z ~0.27).",
+            "exit_conditions": "Blue has been contacted, fingers are closing/closed and blue is lifted: by index 870 blue z is ~0.27-0.28 m in most demos, gripper gap ~0.018 m, tcp co-moving above blue.",
+            "failure_signatures": "red not actually released at entry, gripper remains closed while approaching blue, tcp misses blue xy, or blue z does not increase after closure.",
+            "overlap_role": "[650,760) shares red-retreat/global transit with predecessor; [810,870) shares blue contact/lift with transport successor.",
+            "successor_readiness": "blue_transport_to_drawer needs blue attached or imminently attached, fingers closed, and tcp/blue lifted clear of the table for travel."
+          },
+          "limitations": "Does not demonstrate recovering if red is not on pad or if blue has been bumped. Compare blue-relative representation to absolute joint replay on held-out blue y/x; benefit should appear in approach and lift accuracy.",
+          "pipeline_implications": "Causal inputs: qpos,qvel,tcp_pose,blue_pose,red_pose,drawer_position. Encode blue-centered features [tcp-blue pose, finger gap, red_on_pad current predicate]. Diffusion decoder outputs joint/gripper commands; train with auxiliary labels for blue attachment/lift from future blue z. No future labels at inference.",
+          "rationale": "After a global transit, the local grasp geometry is similar across demonstrations despite blue start variation. Anchoring on blue_pose addresses the generalization problem that the same joint target cannot exactly fit all blue locations.",
+          "statement": "Blue-relative top-grasp servo: approach, close and lift in a frame anchored on blue_pose while conditioning on red already released."
+        },
+        {
+          "applicability": "Useful for long transitions where the robot begins near the red pad and must move around the open drawer to the blue block. Assumes workspace layout fixed and drawer remains open.",
+          "evidence": [
+            {
+              "indices": [
+                650,
+                760,
+                810
+              ],
+              "trajectory_id": "demo1001"
+            },
+            {
+              "indices": [
+                650,
+                760,
+                810
+              ],
+              "trajectory_id": "demo1005"
+            },
+            {
+              "indices": [
+                650,
+                760,
+                810
+              ],
+              "trajectory_id": "demo1008"
+            }
+          ],
+          "handoff": {
+            "entry_conditions": "Can start immediately after red release: index 650 states show gripper open, red z about 0.02 on pad, tcp not yet near blue. The policy includes retreat and global transit before local blue descent.",
+            "exit_conditions": "Ready to hand off after the gripper has closed on/near blue and the object is lifting, or at least tcp is centered over blue with closing command in the shared [810,870) interval.",
+            "failure_signatures": "Policy drives directly from pad to blue at low z, clipping table/drawer; red gets disturbed during retreat; or it arrives at blue with gripper not open.",
+            "overlap_role": "The expanded overlap lets this skill learn to take control before predecessor has completed retreat, rather than requiring an exact arm pose at the blue side.",
+            "successor_readiness": "Transport successor requires not just near-blue pose but a stable closed grasp and blue z increasing; otherwise this skill should continue through attachment."
+          },
+          "limitations": "The learned global transit is tied to fixed table/drawer geometry and may not generalize to obstacles. Falsify by comparing with/without a waypoint/clearance latent; no benefit on starts from index 650 would reject it.",
+          "pipeline_implications": "Implement a two-level policy: a recurrent waypoint latent w_t moves from pad-retreat to blue-approach. Inputs are causal full state; training labels for waypoint stage are inferred from tcp_pose regions (pad, midair, blue). DP decoder D(a|o,w). Add z-clearance auxiliary from current/future tcp_pose. Deployment filters w_t from current tcp region and red_on_pad predicate.",
+          "rationale": "The transition is long relative to contact phases and begins with the arm still leaving red. A waypoint/region prior prevents the learner from averaging between retreat and descent actions and supports multiple entry poses inside the [650,760) overlap.",
+          "statement": "Pad-to-blue transit waypoint prior: decompose the post-red retreat into high-clearance global motion followed by local blue approach."
+        },
+        {
+          "applicability": "Applies when gripper aperture reliably indicates contact and blue can be lifted without complex reorientation. Requires blue_pose and finger qpos.",
+          "evidence": [
+            {
+              "indices": [
+                810,
+                870
+              ],
+              "trajectory_id": "demo1003"
+            },
+            {
+              "indices": [
+                810,
+                870
+              ],
+              "trajectory_id": "demo1004"
+            },
+            {
+              "indices": [
+                810,
+                870
+              ],
+              "trajectory_id": "demo1011"
+            }
+          ],
+          "handoff": {
+            "entry_conditions": "Entry includes open gripper over/near blue at index 810; blue still on table z ~0.02; tcp z near 0.019-0.020 when closing starts in some demos.",
+            "exit_conditions": "Exit with blue z raised to about 0.28 at index 870 or with stable closed fingers and low relative tcp-blue variance; gripper command closed/closing.",
+            "failure_signatures": "fingers close with tcp not centered on blue, blue rotates/escapes, or gripper gap stays open while commanded closed.",
+            "overlap_role": "[810,870) is intentionally assigned to both blue approach and blue transport so the contact-to-carry switch is learned by both candidates.",
+            "successor_readiness": "Next policy needs attachment probability for blue high, blue off the table, and tcp positioned to begin travel toward the drawer cavity."
+          },
+          "limitations": "No regrasp or slipped blue examples exist; attachment labels from future lift may be optimistic. Ablate attachment latent versus direct DP and test on slight initial blue offsets; expected benefit is better close/lift timing.",
+          "pipeline_implications": "Same attachment-switch mechanism as for red but using blue_pose. Labels b_t from future blue_z increase and stable tcp-blue transform while finger gap <0.025 m. Inputs qpos/qvel/tcp_pose/blue_pose. Decoder uses b_t to switch from centering/closing to lift. At inference b_t is filtered causally from recent observations.",
+          "rationale": "The most important handoff variable is whether blue is actually grasped. The demos show transition from table z to high z between indices 810 and 870; encoding attachment avoids handing off on a mere near-pose.",
+          "statement": "Blue attachment latent: represent the contact-to-carry switch explicitly to decide when blue transport can begin."
+        }
+      ],
+      "name": "blue_approach_grasp_lift",
+      "segmentation_rationale": "This skill starts at index 650 while the robot is still retreating from the red placement, spans the global move toward blue, includes local descent/contact around index 810, and stops after blue is lifted by index 870. The broad start overlap supports entry before the predecessor's motion has settled; the stop overlap supports the successor taking over during initial blue lift.",
+      "segments": [
+        {
+          "start": 650,
+          "stop": 870,
+          "trajectory_id": "demo1000"
+        },
+        {
+          "start": 650,
+          "stop": 870,
+          "trajectory_id": "demo1001"
+        },
+        {
+          "start": 650,
+          "stop": 870,
+          "trajectory_id": "demo1002"
+        },
+        {
+          "start": 650,
+          "stop": 870,
+          "trajectory_id": "demo1003"
+        },
+        {
+          "start": 650,
+          "stop": 870,
+          "trajectory_id": "demo1004"
+        },
+        {
+          "start": 650,
+          "stop": 870,
+          "trajectory_id": "demo1005"
+        },
+        {
+          "start": 650,
+          "stop": 870,
+          "trajectory_id": "demo1006"
+        },
+        {
+          "start": 650,
+          "stop": 870,
+          "trajectory_id": "demo1007"
+        },
+        {
+          "start": 650,
+          "stop": 870,
+          "trajectory_id": "demo1008"
+        },
+        {
+          "start": 650,
+          "stop": 870,
+          "trajectory_id": "demo1009"
+        },
+        {
+          "start": 650,
+          "stop": 870,
+          "trajectory_id": "demo1010"
+        },
+        {
+          "start": 650,
+          "stop": 870,
+          "trajectory_id": "demo1011"
+        }
+      ],
+      "skill_id": "blue_approach_grasp_lift",
+      "subgoal": "Move from the red pad area to the blue block, top-grasp it and lift it clear of the table."
+    },
+    {
+      "heuristics": [
+        {
+          "applicability": "Transfers when drawer is open (drawer_position ~0.297-0.300 m), blue is grasped/lifted, and the goal is the cavity defined by drawer_center=[0.19-drawer_position,0,0.035] with allowed blue z 0.053-0.074. Requires blue_pose and drawer_position.",
+          "evidence": [
+            {
+              "indices": [
+                810,
+                870,
+                930,
+                1030
+              ],
+              "trajectory_id": "demo1000"
+            },
+            {
+              "indices": [
+                810,
+                870,
+                930,
+                1030
+              ],
+              "trajectory_id": "demo1002"
+            },
+            {
+              "indices": [
+                810,
+                870,
+                930,
+                1030
+              ],
+              "trajectory_id": "demo1009"
+            }
+          ],
+          "handoff": {
+            "entry_conditions": "Supported entry at index 810/870: blue is being grasped/lifted, fingers close near 0.018 m by 870, blue_pose z around 0.27-0.28, drawer_position >0.26, red on pad.",
+            "exit_conditions": "Blue is brought to/into drawer: by 1030 blue_pose is near x -0.172, y 0.073, z 0.063 and the gripper is open or opening, satisfying blue-inside z/xy when drawer remains open.",
+            "failure_signatures": "blue is not attached at entry, blue xy path misses drawer cavity, drawer_position falls below threshold, or release occurs outside cavity/too high.",
+            "overlap_role": "[810,870) shares attachment with predecessor; [930,1030) shares insertion/release with final skill so both learn late corrections rather than a one-step cut.",
+            "successor_readiness": "blue_release_retreat_complete needs blue centered in/above the open drawer cavity, z descending toward 0.063, gripper ready to open, and no collision with drawer lip."
+          },
+          "limitations": "Drawer target is fixed except for small drawer_position variation; no closed/partially open insertion failures are shown. Compare drawer-frame target encoding to absolute target replay; benefit should be reduced cavity miss rate under drawer_position variation.",
+          "pipeline_implications": "Inputs causal qpos,qvel,tcp_pose,blue_pose,drawer_position,red_pose. Compute drawer frame origin d=[0.19-drawer_position,0,0.035] and blue error e=blue_pose.xyz-d. Condition diffusion decoder on e, tcp-blue attachment features, and current completion predicates. Training auxiliary predicts future blue_inside predicate from task contract; labels use future blue_pose/drawer_position.",
+          "rationale": "The insertion target moves with drawer_position, not with a fixed joint posture. Encoding drawer-frame blue error addresses the generalization difficulty of aiming a carried object into an articulated container.",
+          "statement": "Drawer-frame blue insertion: represent transport target relative to the open drawer cavity to improve placement inside the drawer."
+        },
+        {
+          "applicability": "Useful once blue is grasped and co-moving with tcp during transport. Requires stable blue_pose and gripper state; assumes no deliberate in-hand reorientation.",
+          "evidence": [
+            {
+              "indices": [
+                870,
+                930,
+                1030
+              ],
+              "trajectory_id": "demo1001"
+            },
+            {
+              "indices": [
+                870,
+                930,
+                1030
+              ],
+              "trajectory_id": "demo1005"
+            },
+            {
+              "indices": [
+                870,
+                930,
+                1030
+              ],
+              "trajectory_id": "demo1011"
+            }
+          ],
+          "handoff": {
+            "entry_conditions": "Enter when blue attachment latent is high: at 870 fingers are closed ~0.018 m and blue z is high; tcp-blue offset is stable. Red is already on pad and drawer open.",
+            "exit_conditions": "Exit once blue is near the drawer target and release has begun; blue z near 0.063 by 1030 and gripper open near 0.04 m.",
+            "failure_signatures": "tcp moves while blue_pose lags/slips, blue rotates excessively, or the policy treats blue as attached after gripper opens.",
+            "overlap_role": "The initial lift and final release are both shared, teaching predecessor/successor to agree on attachment and detachment boundaries.",
+            "successor_readiness": "Final skill should see blue no longer requiring long-range travel, with object pose close enough for local centering/release and fingers opening."
+          },
+          "limitations": "Rigid-carry assumption fails under slip or collisions with drawer wall. A comparison without rigid-offset prediction should show worse blue future-pose prediction if this prior is useful.",
+          "pipeline_implications": "Train a carried-object dynamics model with latent offset r=T_tcp^{-1}blue while fingers closed. Diffusion samples are rescored by predicted future blue_pose following tcp motion until release. Inputs are causal state; labels use future blue_pose for supervised offset/prediction loss. Deployment updates r online from current tcp/blue poses.",
+          "rationale": "From 870 to 930 blue remains high and moves with tcp toward the drawer, then descends to final z by 1030. Modeling this rigid relation helps convert desired object motion into arm joint actions rather than learning from joints alone.",
+          "statement": "Rigid blue-carry prior: maintain a stable tcp-to-blue transform during transport and use it to aim object motion into the drawer."
+        },
+        {
+          "applicability": "Applies when the path from table to drawer requires a high carry followed by controlled descent into an open cavity. Requires world z features and drawer geometry unchanged.",
+          "evidence": [
+            {
+              "indices": [
+                810,
+                870,
+                930,
+                1030
+              ],
+              "trajectory_id": "demo1003"
+            },
+            {
+              "indices": [
+                810,
+                870,
+                930,
+                1030
+              ],
+              "trajectory_id": "demo1008"
+            },
+            {
+              "indices": [
+                810,
+                870,
+                930,
+                1030
+              ],
+              "trajectory_id": "demo1010"
+            }
+          ],
+          "handoff": {
+            "entry_conditions": "Starts after or during blue lift with blue z rising from table to ~0.28; gripper closed, drawer open, tcp above table/drawer obstacles.",
+            "exit_conditions": "Ends in local insertion/release overlap when blue has descended into the drawer z band around 0.063 and gripper is open/opening.",
+            "failure_signatures": "low lateral travel clips the drawer edge, descent starts before blue xy aligns with drawer, or the object is dropped while still above the cavity.",
+            "overlap_role": "[930,1030) is shared so the final policy can take over before release is complete and learn descent corrections while predecessor still controls carried blue.",
+            "successor_readiness": "The successor receives a near-cavity, low-speed, near-release state instead of a distant carry state; blue_inside predicate should be almost satisfied."
+          },
+          "limitations": "Only successful high arcs are shown; no alternative shorter paths. Falsify by testing if a high-arc latent reduces drawer-edge contacts versus flat transport; if not, the constraint is unnecessary.",
+          "pipeline_implications": "Use a temporal latent s_t={lift_high, translate, descend_insert}. Labels from blue z and blue-drawer xy error: high while z>0.25, descend when xy error small. DP decoder conditioned on s_t; add auxiliary losses predicting future z stage and blue_inside. Inference filters s_t causally from current blue z and drawer-frame error.",
+          "rationale": "The object moves from table z to high z, across the workspace, then down into the drawer. A stage prior prevents blending lateral transport and descent, which could cause collisions or premature release.",
+          "statement": "High-arc transport then descent prior: separate clearance transport from local insertion into the drawer."
+        }
+      ],
+      "name": "blue_transport_to_drawer",
+      "segmentation_rationale": "Segments begin before blue is fully attached (index 810) to include the contact/lift overlap, pass through high carried transport (870-930), and stop at 1030 after the block has reached the drawer z band and release/retreat is underway. This groups long-range carried-object aiming into the open drawer with enough final overlap for local completion.",
+      "segments": [
+        {
+          "start": 810,
+          "stop": 1030,
+          "trajectory_id": "demo1000"
+        },
+        {
+          "start": 810,
+          "stop": 1030,
+          "trajectory_id": "demo1001"
+        },
+        {
+          "start": 810,
+          "stop": 1030,
+          "trajectory_id": "demo1002"
+        },
+        {
+          "start": 810,
+          "stop": 1030,
+          "trajectory_id": "demo1003"
+        },
+        {
+          "start": 810,
+          "stop": 1030,
+          "trajectory_id": "demo1004"
+        },
+        {
+          "start": 810,
+          "stop": 1030,
+          "trajectory_id": "demo1005"
+        },
+        {
+          "start": 810,
+          "stop": 1030,
+          "trajectory_id": "demo1006"
+        },
+        {
+          "start": 810,
+          "stop": 1030,
+          "trajectory_id": "demo1007"
+        },
+        {
+          "start": 810,
+          "stop": 1030,
+          "trajectory_id": "demo1008"
+        },
+        {
+          "start": 810,
+          "stop": 1030,
+          "trajectory_id": "demo1009"
+        },
+        {
+          "start": 810,
+          "stop": 1030,
+          "trajectory_id": "demo1010"
+        },
+        {
+          "start": 810,
+          "stop": 1030,
+          "trajectory_id": "demo1011"
+        }
+      ],
+      "skill_id": "blue_transport_to_drawer",
+      "subgoal": "Carry the grasped blue block from the table area to the open drawer cavity and begin insertion/release."
+    },
+    {
+      "heuristics": [
+        {
+          "applicability": "Transfers when the drawer is open, red is on the pad, blue is already near/inside the drawer mouth, and task completion is blue_inside plus drawer_open plus red_on_pad. Requires state observations for all three predicates.",
+          "evidence": [
+            {
+              "indices": [
+                930,
+                1030,
+                1065
+              ],
+              "trajectory_id": "demo1000"
+            },
+            {
+              "indices": [
+                930,
+                1030,
+                1077
+              ],
+              "trajectory_id": "demo1001"
+            },
+            {
+              "indices": [
+                930,
+                1030,
+                1065
+              ],
+              "trajectory_id": "demo1011"
+            }
+          ],
+          "handoff": {
+            "entry_conditions": "Supported entry at index 930 has blue carried high near x -0.17 to -0.18,y 0.065-0.080,z ~0.32, fingers closed, drawer_position ~0.297, red already on pad. It may also enter later when blue is lower/near release.",
+            "exit_conditions": "Task-complete useful end state: drawer_position >0.26, red_pose inside pad bounds at z ~0.02, blue_pose inside drawer cavity with z about 0.063, and gripper open/retreated upward by final observation (tcp z ~0.323).",
+            "failure_signatures": "blue final xy not inside drawer bounds, z outside [0.053,0.074], drawer closes below threshold, or tcp remains pressing on blue causing displacement.",
+            "overlap_role": "[930,1030) is shared with transport so both learn local centering/descent before and during release; this final policy also includes post-release retreat/settle through the last action.",
+            "successor_readiness": "No successor for task, but a monitor can declare completion when current predicates satisfy drawer_open AND red_on_pad AND blue_inside at one observation."
+          },
+          "limitations": "Completion rule does not require gripper release or object velocity, though retreat is retained for interface safety. The dataset cannot show recovery if blue is dropped outside the drawer. Compare predicate-conditioned local policy to pure end-of-demo cloning; expected benefit is fewer near-threshold cavity misses.",
+          "pipeline_implications": "Inputs causal full state. Compute current predicates red_on_pad, drawer_open, blue_inside from task contract and drawer center. Candidate DP conditions on drawer-frame blue error and predicate vector; train auxiliary classifier for future completion C_{t+H}. At inference sample actions that maximize DP likelihood plus predicted completion score, without using future labels.",
+          "rationale": "Late actions are local corrections and retreat around the task completion boundary. Providing explicit predicate features and future completion supervision should focus the learner on the evaluator-relevant geometry rather than arbitrary final joint pose.",
+          "statement": "Completion-predicate local insertion prior: guide final blue release using drawer/red/blue success predicates and drawer-frame error."
+        },
+        {
+          "applicability": "Useful when the gripper can open after blue reaches a stable support surface inside the drawer and then retreat vertically without disturbing it. Requires qpos finger state and blue_pose.",
+          "evidence": [
+            {
+              "indices": [
+                930,
+                1030,
+                1063
+              ],
+              "trajectory_id": "demo1002"
+            },
+            {
+              "indices": [
+                930,
+                1030,
+                1066
+              ],
+              "trajectory_id": "demo1003"
+            },
+            {
+              "indices": [
+                930,
+                1030,
+                1071
+              ],
+              "trajectory_id": "demo1008"
+            }
+          ],
+          "handoff": {
+            "entry_conditions": "Enter with blue held over/in the open drawer, fingers closed or just opening, and blue z descending toward the 0.053-0.074 band. Red must already be on pad and drawer open.",
+            "exit_conditions": "Fingers open near 0.04 m, blue remains in drawer at z ~0.063, tcp retreats upward to z about 0.30-0.323; final qvels nearly zero in many demos.",
+            "failure_signatures": "blue follows tcp upward after opening, object is pushed out during retreat, or gripper opens before blue is supported in the drawer.",
+            "overlap_role": "The overlap with transport includes release initiation; both policies learn the open/retreat transition, reducing reliance on an exact release timestep.",
+            "successor_readiness": "Completion monitor needs stable object predicates; if blue moves with tcp after opening, retreat should be slowed or aborted by a trained candidate, though no recovery examples exist."
+          },
+          "limitations": "No force or contact label confirms support, and no failed early releases are present. Falsify by ablation without support/stability auxiliary on perturbations in release height; prior should reduce blue-out-of-drawer after retreat.",
+          "pipeline_implications": "Train a release-support latent r_t. Labels from future: blue_pose remains within cavity after gripper qpos opens and tcp z increases. Inputs are causal blue_pose,tcp_pose,drawer_position,qpos. Decoder conditions on r_t: if not supported, continue small descent/centering; if supported, open and retreat. Objective adds future blue displacement prediction after release.",
+          "rationale": "At index 1030 the gripper is open while tcp is already lifting, and final observations keep blue fixed in the drawer. A support latent separates object placement from arm retreat, reducing disturbances during withdrawal.",
+          "statement": "Support-before-retreat prior: open and withdraw only after blue is likely supported inside the drawer."
+        },
+        {
+          "applicability": "Applies when final motion can be seen as a short-horizon stabilizing controller around the drawer cavity, not a long-range planner. Requires near-goal entry; not meant for earlier blue transport.",
+          "evidence": [
+            {
+              "indices": [
+                930,
+                1030,
+                1064
+              ],
+              "trajectory_id": "demo1006"
+            },
+            {
+              "indices": [
+                930,
+                1030,
+                1069
+              ],
+              "trajectory_id": "demo1007"
+            },
+            {
+              "indices": [
+                930,
+                1030,
+                1069
+              ],
+              "trajectory_id": "demo1010"
+            }
+          ],
+          "handoff": {
+            "entry_conditions": "Blue should already be above/near drawer xy, drawer open, red on pad, gripper closed/closing around blue. States far from the drawer at table blue start are outside support.",
+            "exit_conditions": "Final observation has blue stationary at z about 0.063, drawer_position ~0.297, tcp high/clear, gripper open; action sequence ends with low qvel.",
+            "failure_signatures": "Large blue-drawer error at entry, oscillatory corrections around cavity, or retreat before convergence into the z/xy acceptance box.",
+            "overlap_role": "[930,1030) supplies near-goal entries with the arm still descending, so the local controller can learn to take over before exact predicate satisfaction.",
+            "successor_readiness": "No manipulation successor; downstream evaluator/monitor should check predicates rather than require a particular tcp pose."
+          },
+          "limitations": "This prior assumes near-goal initialization and cannot transport blue from the table. Compare against the full transport policy on early entries; this local policy should fail there but be more precise near the drawer. Failure to improve near-goal precision would falsify it.",
+          "pipeline_implications": "Implement as residual local policy around a nominal drawer-frame controller: u_nom drives blue_error to zero and opens at small error; DP predicts residual joint action \u0394a and gripper residual. Inputs causal full state; training targets are residuals obtained by subtracting nominal IK/action approximation from demonstration actions. At inference only activate when ||blue_xy-drawer_xy|| is within a demonstrated near-goal envelope (about states at 930 onward).",
+          "rationale": "The final segment is much narrower in state distribution and task objective than long-range transport. A residual stabilizer should learn smaller corrections and be testably better at avoiding threshold misses while explicitly acknowledging it is not a general transporter.",
+          "statement": "Near-goal residual stabilizer: specialize final actions to small drawer-frame corrections, release and retreat from near-completion states."
+        }
+      ],
+      "name": "blue_release_retreat_complete",
+      "segmentation_rationale": "This final dataset begins at index 930, before insertion is finished, when blue is still carried high near the drawer mouth, continues through the open/release state at index 1030, and includes all remaining actions to the final observation so settling/retreat context is retained. Under the task contract, completion is achieved when drawer_open, red_on_pad and blue_inside hold at one observation; release and retreat are not required but retained as useful interface context.",
+      "segments": [
+        {
+          "start": 930,
+          "stop": 1065,
+          "trajectory_id": "demo1000"
+        },
+        {
+          "start": 930,
+          "stop": 1077,
+          "trajectory_id": "demo1001"
+        },
+        {
+          "start": 930,
+          "stop": 1063,
+          "trajectory_id": "demo1002"
+        },
+        {
+          "start": 930,
+          "stop": 1066,
+          "trajectory_id": "demo1003"
+        },
+        {
+          "start": 930,
+          "stop": 1065,
+          "trajectory_id": "demo1004"
+        },
+        {
+          "start": 930,
+          "stop": 1070,
+          "trajectory_id": "demo1005"
+        },
+        {
+          "start": 930,
+          "stop": 1064,
+          "trajectory_id": "demo1006"
+        },
+        {
+          "start": 930,
+          "stop": 1069,
+          "trajectory_id": "demo1007"
+        },
+        {
+          "start": 930,
+          "stop": 1071,
+          "trajectory_id": "demo1008"
+        },
+        {
+          "start": 930,
+          "stop": 1065,
+          "trajectory_id": "demo1009"
+        },
+        {
+          "start": 930,
+          "stop": 1069,
+          "trajectory_id": "demo1010"
+        },
+        {
+          "start": 930,
+          "stop": 1065,
+          "trajectory_id": "demo1011"
+        }
+      ],
+      "skill_id": "blue_release_retreat_complete",
+      "subgoal": "Locally center/release the blue block inside the open drawer and retreat while preserving the completed task state."
+    }
+  ]
+}

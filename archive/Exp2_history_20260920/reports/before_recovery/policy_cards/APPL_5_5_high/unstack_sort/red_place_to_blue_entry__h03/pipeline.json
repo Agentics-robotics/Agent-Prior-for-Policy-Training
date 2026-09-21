@@ -1,0 +1,22 @@
+{
+  "policy_id": "red_place_to_blue_entry__h03",
+  "skill_id": "red_place_to_blue_entry",
+  "heuristic_index": 3,
+  "prior_summary": "Sequential object-attention diffusion policy. The denoiser is conditioned by learned red and blue object-centric embeddings and a learned two-way attention switch that is trained to move from red to blue after red is observed at its goal with an open gripper, and during blue approach/lift.",
+  "applicable_conditions": "Use for the expanded red_place_to_blue_entry slice of unstack_sort: the red block is initially in the gripper or being carried toward the red pad, red must be finished before blue, and observations provide qpos/qvel, tcp_pose, red_pose, blue_pose, red_goal and blue_goal in world metres. It is intended to cover the shared transition corridor from red placement and retreat into blue acquisition.",
+  "termination_guidance": "Continue while the policy is carrying/placing red, opening on red, retreating, or approaching/closing/lifting blue. A useful exit for the successor is red fixed at the red pad, attention effectively on blue, TCP at or above blue, and blue lifted to an entry height around 0.13-0.28 m with fingers closed; transfer may also occur during the demonstrated blue approach if the successor is selected for blue acquisition.",
+  "limitations": "The demonstrations encode the fixed order red then blue; the learned switch is not a general task planner and may fail if blue should be manipulated first, object identities are swapped, red starts already done in an unseen pose, or the robot drops red outside the demonstrated release/retreat states. No IK, image encoder, geometric constraint solver, or scripted controller is implemented.",
+  "config": {
+    "architecture": "Conditional DDPM epsilon model with causal object-centric encoder, learned red/blue attention, phase auxiliary head, and standard ConditionalUnet1D backbone.",
+    "condition_dimension": 256,
+    "object_embedding_dimension": 96,
+    "history_observations": 2,
+    "object_features": "For each object: tcp-object, object-goal, tcp-goal, object and tcp deltas from the two causal observations, quaternion, smooth at-goal/lift features, finger opening features, and identity token.",
+    "attention_losses": {
+      "soft_attention_cross_entropy_weight": 0.06,
+      "phase_bce_weight": 0.03,
+      "red_done_open_consistency_weight": 0.02
+    },
+    "normalization": "Uses the single shared normalizer supplied by the experiment for raw observation history; relative features use broad metre-scale constants rather than per-skill refits."
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "policy_id": "acquire_lift__h03",
+  "skill_id": "acquire_lift",
+  "heuristic_index": 3,
+  "prior_summary": "Clear support before lateral loading. A history-conditioned action diffusion U-Net is trained with an action-conditioned response ensemble, frozen-response matching, and a soft world-z clearance energy. Small late-denoising energy-gradient steps are accepted only against an unguided candidate with bounded action changes and low ensemble disagreement. Explicit causal selected/previous-object role features separate red pickup, prior-red completion, and blue pickup.",
+  "applicable_conditions": "Upright 0.04 m blocks, gravity-aligned table, an unobstructed vertical escape corridor, and the demonstrated stiff joint-position dynamics. Supports the entire assigned expanded slice: initial open approach to red through pinch, lift and early transport; or red held near its pad through descent, opening, vertical retreat, return to blue, blue pinch, lift and early transport. World TCP/object poses, goals, qpos and qvel are required. There is no invocation-tag input; selected and previous roles are inferred from red goal proximity, gripper width, TCP-object geometry and causal co-motion.",
+  "termination_guidance": "Continue through incomplete alignment, closure, separation and lift, or through unfinished prior-red placement and release. Transfer to carry/place using actual qpos/qvel, both object poses, TCP pose and finger positions: the selected block should visibly follow the TCP with a stable relative transform and closed fingers, with observed support clearance. Training reaches red/blue centers around 0.32/0.28 m and includes early lateral transport, but these are examples rather than required thresholds. The successor can finish lifting in the shared overlap. Predicted clearance alone is not readiness and skill cues do not change the task completion contract.",
+  "limitations": "No force sensing, image encoder, IK, analytic forward kinematics, hard collision constraint, or recovery guarantee. The response ensemble is trained on successful action paths, so agreement is not proof of accuracy off distribution. The role proxy cannot distinguish different requested roles at identical physical states and is not an external invocation tag. Guidance is soft, trust-capped, late-step and disabled per candidate on excessive disagreement, saturation, nonfinite gradients or failure to reduce predicted energy. Gripper closure is learned and softly encouraged, not hard commanded. High lift height is learned from demonstrations, not imposed as a waypoint. Final efficacy and proposed ablations have not been measured.",
+  "config": {
+    "architecture": "Flat causal state encoder and Conditional U-Net; two action-conditioned causal convolutional response models",
+    "condition_dimension": 256,
+    "response_widths": [128, 160],
+    "response_dilations": [1, 2, 4, 8],
+    "guidance_strength": 0.02,
+    "energy_weight": 0.02,
+    "other_stability_weight": 0.25,
+    "clearance_margin_m": 0.025,
+    "guidance_max_timestep": 24,
+    "guidance_rms_cap_encoded": 0.005,
+    "guidance_component_cap_encoded": 0.015,
+    "response_supervision_weight": 0.5,
+    "response_matching_weight": 0.05,
+    "normalization": "Unmodified shared full-original-demonstration range normalizer",
+    "training_budget_updates": 20000,
+    "horizon": 16,
+    "observation_steps": 2,
+    "execution_steps": 8,
+    "training_scope": "All assigned expanded segments, including every shared transition phase; no phase filtering or per-skill scale fitting",
+    "deployment_schedule": "Fixed repository DDPM; alpha coefficients recorded from supplied training alpha_bar for exact clean-estimate conversion only",
+    "ablation_guidance_off": "Set guidance_strength and energy_weight to zero, retaining the response ensemble and its matching loss",
+    "ablation_other_block_off": "Set other_stability_weight to zero while retaining the rest of the clearance prior"
+  }
+}

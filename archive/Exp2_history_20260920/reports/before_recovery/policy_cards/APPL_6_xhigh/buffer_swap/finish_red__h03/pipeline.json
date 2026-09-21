@@ -1,0 +1,43 @@
+{
+  "policy_id": "finish_red__h03",
+  "skill_id": "finish_red",
+  "heuristic_index": 3,
+  "prior_summary": "Grasp-frame-conditioned joint-action diffusion. A learned two-observation blue/empty/red attachment encoder gates measured object-to-TCP transforms and grasp-compensated goal TCP errors. A state-conditioned learned joint-noise decoder and masked action-conditioned future-pose losses learn local action/motion coupling without IK. Every action is sampled by the supplied joint-action DDPM.",
+  "applicable_conditions": "The complete expanded finish_red slice, including blue descent and release, empty transit to buffered red, red closure/lift, red placement, opening and retreat. Intended for the demonstrated fixed-base Panda, world-frame metre/wxyz poses, similarly sized rigid blocks and near-upright top-down grasps. Two causal observations containing qpos/qvel, fingers, TCP, both objects and both goals support entry partway through the shared transition; a measured contact sensor is not available.",
+  "termination_guidance": "Use only the declared red_at_goal AND blue_at_goal completion contract, with rotated footprint containment and the supplied height tolerance. Finger release, TCP clearance, zero speed, exact centering and a sustained hold are not additional success conditions. The full learned slice retains opening, settling and retreat to about 0.30 m if execution continues. Read current object poses and finger/TCP motion before selecting further invocation; do not regrasp or center-correct an already valid terminal placement merely to reduce coordinate error.",
+  "limitations": "No analytic IK/FK, hard contact guarantee, global SE(3) equivariance, contract-margin guidance, scripted action controller or recurrent progress memory. DDPM remains in shared-normalized absolute joint/gripper coordinates, not a separately sampled Cartesian latent space. Attachment supervision is a weak causal geometry/finger/co-motion proxy. Two observations cannot resolve all dwell/contact ambiguity or slips. Demonstrated offsets and yaws vary little; changed grasps, large rotations, unseen configurations and recovery are unvalidated. Pose prediction is a soft learned regularizer, not a dynamics constraint.",
+  "config": {
+    "architecture": "GraspFramePolicy with public conditional U-Net and learned residual joint-noise decoder",
+    "condition_dimension": 256,
+    "role_order": ["blue_attached", "empty", "red_attached"],
+    "role_input_dimension": 238,
+    "condition_input_dimension": 276,
+    "joint_noise_decoder_hidden": [128, 128],
+    "future_pose_predictor": "128-channel causal convolutions with dilations 1, 2, 4, 8; 18 output displacement/rotation coordinates",
+    "geometric_target": "D = inverse(T_tcp) T_object; upright current-yaw object goal; T_tcp_star = T_object_goal inverse(D)",
+    "geometry_rotation_convention": "World metre translations, normalized wxyz quaternions, local SE(3) log error, world goal axes retained",
+    "relative_length_scale": "Maximum of shared full-original-demo TCP/red/blue xyz half-ranges, no slice refit",
+    "normalizer_sha256": "fc51579717dc36a089ba2d22956960d65828acd5bcb57e93d6362641102d37d1",
+    "loss_weights": {"diffusion": 1.0, "weak_attachment_cross_entropy": 0.02, "teacher_action_future_pose": 0.10, "denoised_action_future_pose": 0.05},
+    "auxiliary_clean_action_bound": [-2.0, 2.0],
+    "auxiliary_noise_weight": "alpha_bar on denoised-action future loss, without renormalizing away attenuation",
+    "future_target_alignment": "Use slot j directly: state after action t-1+j; intersect action and future masks",
+    "sampling": "Unmodified 100-step epsilon-prediction DDPM with clip_sample true and framework inverse normalization/bounds",
+    "training_recipe": {"seed": 0, "updates": 20000, "batch_size": 128, "horizon": 16, "observation_steps": 2, "execution_steps": 8, "learning_rate": 0.0001, "weight_decay": 0.000001, "warmup_steps": 500, "lr_schedule": "cosine", "ema_decay": 0.999, "selection": "last EMA at predeclared budget"},
+    "segmentation": "All 12 assigned expanded segments, unchanged; no phase filtering, truncation, resampling or per-skill normalization",
+    "source_ranges": [
+      {"trajectory_id": "demo10100", "start": 600, "stop": 1064},
+      {"trajectory_id": "demo10101", "start": 605, "stop": 1064},
+      {"trajectory_id": "demo10102", "start": 602, "stop": 1060},
+      {"trajectory_id": "demo10103", "start": 606, "stop": 1065},
+      {"trajectory_id": "demo10104", "start": 598, "stop": 1057},
+      {"trajectory_id": "demo10105", "start": 599, "stop": 1056},
+      {"trajectory_id": "demo10106", "start": 601, "stop": 1059},
+      {"trajectory_id": "demo10107", "start": 613, "stop": 1071},
+      {"trajectory_id": "demo10108", "start": 600, "stop": 1058},
+      {"trajectory_id": "demo10109", "start": 604, "stop": 1063},
+      {"trajectory_id": "demo10110", "start": 607, "stop": 1064},
+      {"trajectory_id": "demo10111", "start": 603, "stop": 1061}
+    ]
+  }
+}

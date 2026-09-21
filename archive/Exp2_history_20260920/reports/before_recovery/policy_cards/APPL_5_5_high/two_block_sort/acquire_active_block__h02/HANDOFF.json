@@ -1,0 +1,28 @@
+{
+  "policy_id": "acquire_active_block__h02",
+  "entry_conditions": "The policy may be entered from an initial open-gripper approach state or from the red-placement-to-blue-acquisition transition. Causal observations should show an active block still at table height: initially red, and after red is visibly near the red goal pad at z about 0.02 m, blue. The gripper is normally open at entry (finger qpos sum about 0.08 m) and the TCP may be either high over the workspace/home side or retreating from the red goal toward the blue block.",
+  "exit_conditions": "A useful exit to delivery is reached when the active block has been lifted well above table height, the fingers are near the closed loaded width (finger qpos sum around 0.036 m in the demonstrations), and the TCP remains close to and moving with the active object. In the demonstrated support this appears by indices near 160-220 for red and 540-600 for blue, with object z roughly 0.10 m rising to about 0.29 m.",
+  "overlap_role": "This acquisition model is trained on the close, lift and early-carry overlap with delivery, not only on the free-space approach. It can continue through closure and lift, while a delivery successor can take over once observations indicate attachment/lift. The second expanded slice also includes the transition after red placement, so the model learns blue acquisition starting from an open gripper near the red goal rather than only from a home pose.",
+  "successor_readiness": "A successor should receive the normal causal world-frame observation history containing qpos/qvel, TCP pose, both object poses and goal positions. Delivery is ready when causal cues imply lift-or-carry phase: active object z above the table, small TCP-object separation, closed fingers, and preferably recent object/TCP co-motion. If only the geometric goal relation is good but the object is still on the table or fingers are open, continue acquisition rather than transfer.",
+  "failure_signatures": "Observable failures include descending while still laterally far from the active block, closing the gripper in free space, fingers commanded/observed open while the object is expected to be lifted, lifting with the active object still at table height, losing small TCP-object separation after closure, or remaining in the low contact phase after object z has risen. These are cues for the inference agent to continue cautiously, retry with another policy, or avoid handoff; they are not hard-coded controller checks inside this model.",
+  "continuation_guidance": "Continue this policy while the posterior/cues correspond to approach, descent or closure: active object on table, TCP approaching or aligned above it, and fingers open or closing. It is also reasonable to continue through early lift when the object has just started rising. Transfer to delivery after stable lifted/carry observations, especially in the assigned overlap windows, because delivery is specialized for transport to the goal pads.",
+  "limitations": "The handoff cues are based on observed poses, finger width and velocities, not on a measured contact or grasp sensor. The model does not guarantee recovery from wrong active-block selection, missed grasps, collisions or out-of-distribution starts. The evidence below is observed training support for the expanded slices and overlap phases, not a proof that these thresholds are sufficient in deployment.",
+  "evidence": [
+    {
+      "trajectory_id": "demo10000",
+      "indices": [0, 80, 120, 160, 220]
+    },
+    {
+      "trajectory_id": "demo10000",
+      "indices": [340, 420, 500, 540, 600]
+    },
+    {
+      "trajectory_id": "demo10001",
+      "indices": [0, 120, 160, 220]
+    },
+    {
+      "trajectory_id": "demo10008",
+      "indices": [340, 440, 500, 600]
+    }
+  ]
+}

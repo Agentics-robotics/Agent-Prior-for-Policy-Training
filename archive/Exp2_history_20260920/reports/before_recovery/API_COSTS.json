@@ -1,0 +1,49 @@
+{
+  "accounting": [
+    {
+      "method": "APPL_5_5_high",
+      "scope": "Scale-up incremental API usage: four new tasks design/segmentation plus five-task evaluation; excludes reused historical drawer design.",
+      "states": {
+        "consumed": 5619,
+        "http_failed": 1
+      },
+      "usage": {
+        "cached_input_tokens": 125503488,
+        "input_tokens": 195335211,
+        "output_tokens": 3414583,
+        "total_tokens": 198749794
+      }
+    },
+    {
+      "method": "APPL_6_xhigh",
+      "scope": "Entire additional five-task APPL study, including retained interruptions and authorized continuations.",
+      "states": {
+        "consumed": 4742,
+        "http_failed": 94
+      },
+      "usage": {
+        "cache_write_tokens": 0,
+        "cached_input_tokens": 11169664,
+        "input_tokens": 185052860,
+        "output_tokens": 2180887,
+        "reasoning_tokens": 416672,
+        "total_tokens": 187233747
+      }
+    },
+    {
+      "method": "SinglePrior_6_xhigh",
+      "scope": "All five offline designs, including one retained tray HTTP failure; no segmentation and zero deployment API requests.",
+      "states": {
+        "consumed": 116,
+        "http_failed": 1
+      },
+      "usage": {
+        "cached_input_tokens": 838016,
+        "input_tokens": 4178397,
+        "output_tokens": 56594,
+        "total_tokens": 4234991
+      }
+    }
+  ],
+  "caution": "Scopes differ. Reported usage is not an invoice; unreported failed-request usage remains unknown. Cached input is a subset of input. Excludes Codex conversation and GPU billing."
+}

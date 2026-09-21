@@ -1,0 +1,32 @@
+{
+  "policy_id": "deliver_active_block__h02",
+  "skill_id": "deliver_active_block",
+  "heuristic_index": 2,
+  "prior_summary": "A learned action diffusion policy conditioned by a trainable latent vertical stage classifier for lift/clearance, high transport, goal descent, low release, and open retreat. The model uses world-frame block/goal/TCP geometry from the two causal observations and learns DDPM epsilon for normalized joint and gripper action sequences.",
+  "applicable_conditions": "Use when the active block delivery is expected to follow the demonstrated open-table pattern: grasp or close/lift overlap, high-clearance carry, near-goal vertical lowering, opening at table support, and retreat with fingers open. The observations must include world-frame TCP pose, red and blue block poses, goals, joint positions and velocities as in the two_block_sort state schema.",
+  "termination_guidance": "Continue through low placement until the relevant block is on or very near its goal pad and the gripper has opened. For red delivery, this model can also execute the observed open retreat/traverse transition toward the blue side; for blue delivery, it can continue to a high clear state near the blue goal after release. Termination for task success is still determined only by the task completion predicates.",
+  "limitations": "The prior does not implement inverse kinematics, collision checking, image encoding, hard constraints, or a scripted controller. Its stage labels are heuristic training supervision derived from successful demonstrations and fixed tabletop geometry; transfer to obstacles, different object heights, or off-pad recovery is untested.",
+  "config": {
+    "latent_stages": ["lift_to_clearance", "high_translate", "descend_at_goal", "release_low", "retreat_open"],
+    "condition_dimension": 384,
+    "encoder_hidden_dimension": 256,
+    "stage_embedding_dimension": 32,
+    "world_relative_feature_scales_m": {"xy": 0.5, "z": 0.3},
+    "auxiliary_losses": {
+      "stage_cross_entropy_weight": 0.10,
+      "predicted_gripper_stage_weight": 0.02,
+      "predicted_future_state_weight": 0.05
+    },
+    "stage_label_thresholds": {
+      "goal_xy_m": 0.055,
+      "goal_xy_descend_m": 0.070,
+      "table_object_z_m": 0.045,
+      "release_object_z_m": 0.055,
+      "high_object_z_m": 0.18,
+      "low_tcp_release_z_m": 0.080,
+      "retreat_tcp_z_m": 0.060,
+      "open_finger_sum_m": 0.065
+    },
+    "normalization": "Uses the shared M1_v2 normalizer supplied in the spec; no per-skill scale fitting is performed."
+  }
+}

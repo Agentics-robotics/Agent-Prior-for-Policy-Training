@@ -1,0 +1,91 @@
+[
+  {
+    "affected_episodes": 0,
+    "api_requests": 0,
+    "cause": "CombinedController exposes configs, not config",
+    "fix": "Read actual controller.configs in the sole diagnostic entry",
+    "id": "setup-controller-introspection",
+    "optimizer_steps": 0,
+    "rerun": "D0 from original seed resets; no completed rollout replaced",
+    "stage": "D0 setup"
+  },
+  {
+    "affected_episodes": 0,
+    "cause": "Transient appl import failure during parallel Pixi launches; explicit portable source activation added",
+    "fix": "PYTHONPATH=$PIXI_PROJECT_ROOT/../../src; launcher uses the sole CLI",
+    "id": "editable-import-setup",
+    "optimizer_steps": 0,
+    "stage": "D3 red startup"
+  },
+  {
+    "affected_episodes": 0,
+    "cause": "Nested launcher incorrectly queried original physical index within already isolated one-device NVML enumeration",
+    "evidence": "/home/storage/oscar/appl_exp2/runs/rebuild_20260915/incidents/capability_nested_namespace",
+    "fix": "Inherit and verify exact parent namespace/UUID; do not enumerate original index again",
+    "id": "nested-device-namespace",
+    "optimizer_steps": 0,
+    "stage": "API capability deployment initialization"
+  },
+  {
+    "affected_episodes": 0,
+    "api_transport_retries": 0,
+    "cause": "Absolute ElementTree XPath raised an uncaught SyntaxError; initial JSON contract equality also compared tuples with decoded lists",
+    "fix": "Pure batch edit, diagnostic result on SyntaxError, unchanged-model-hash reconciliation of exact call ID, canonical JSON contract hash",
+    "id": "xml-xpath-atomicity",
+    "model_edits_by_developer": 0,
+    "stage": "API reconstruction"
+  },
+  {
+    "affected_episodes": 0,
+    "cause": "viser vector setter requires tuple/array; saved JSON state contains lists",
+    "fix": "Convert TCP pose to tuple at visualization boundary",
+    "id": "viser-vector-type",
+    "optimizer_steps": 0,
+    "stage": "Viewer startup"
+  },
+  {
+    "affected_formal_jobs": 0,
+    "cause": "CUDA computations diverged before the interruption, although initialization and sampling-generator states matched",
+    "evidence": "runs/exp2/rebuild_20260915/checks/exact_resume/verification.json",
+    "fix": "Deterministic cuDNN/operators and CUBLAS workspace; isolate trusted warmup from seeded candidate initialization",
+    "id": "cuda-resume-determinism",
+    "old_comparison": "runs/exp2/rebuild_20260915/checks/exact_resume_nondeterministic/verification.json",
+    "rerun": "Only infrastructure comparison and frozen API candidate interface regression; old unresumed diagnostic results retain original provenance",
+    "retained_uninterrupted_diagnostics": true,
+    "stage": "Infrastructure resume regression"
+  },
+  {
+    "affected_episodes": 0,
+    "cause": "Importing SQLite after SAPIEN resolved older system libstdc++; pinned ICU requires CXXABI_1.3.15",
+    "evidence": "runs/exp2/rebuild_20260915/checks/native_journal/result.json",
+    "fix": "Single GPU launcher and worker environment put the locked Pixi lib directory first; formal gates checked before heavy environment imports",
+    "id": "native-sqlite-cxxabi",
+    "new_training": 0,
+    "stage": "Formal entry gate validation before any episode"
+  },
+  {
+    "authorization": "2026-09-15 user explicitly authorized focused M0 cleanup, training and development iteration; Exp1 read-only reference.",
+    "cause": "Near-static quaternion components divided by a 0.001 demonstration standard deviation; a legal 0.02 rad red-block rotation causes 0.138923 rad RMS joint-target change with old D2 weights.",
+    "classification": "Numerical robustness defect; historical completed rollouts remain valid policy failures",
+    "evidence": [
+      "runs/exp2/m0_20260915/pretraining_audit.json",
+      "runs/exp2/m0_20260915/01_legacy_ddpm100/offline_probe.json",
+      "runs/exp2/m0_20260915/04_legacy_quaternion_probe/offline_probe.json",
+      "runs/exp2/m0_20260915/02_limits_single/evaluation.json"
+    ],
+    "fix": "New M0 configurations use training-only limits normalization, unit-component quaternion bounds and full DDPM100 sampling. Original default configuration and historical checkpoints remain unchanged.",
+    "id": "m0-low-variance-observation-scaling",
+    "qualification": "Quaternion scaling alone had already reduced local sensitivity but did not solve the task. Combined revised scaling and inference achieved a full training-reset success; independent ID generalization is evaluated separately.",
+    "stage": "M0 development diagnosis"
+  },
+  {
+    "date": "2026-09-15",
+    "evidence": "runs/exp2/m0_setting_study_20260915/extended_time_prefix_audit.json",
+    "finding": "Same model/layout/RNG and identical recorded actions through step 440; state first differs at red contact step 434 across original sequential evaluation and fresh extended-time rerun. Initial observed state and steps 1-433 match exactly.",
+    "id": "m0-native-contact-prefix-divergence",
+    "limitation": "Extended 1663-step success is not a bit-exact continuation of the original 1500-step failure, and cannot alone prove the original failure was caused only by timeout.",
+    "response": "Preserve both runs; no automatic retry, no replacement of original results, no simulator or success-predicate change. Original-task comparisons retain all planned trials.",
+    "scope": "Exp2 M0 development",
+    "status": "observed; simulator internals unchanged"
+  }
+]

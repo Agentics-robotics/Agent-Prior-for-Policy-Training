@@ -1,0 +1,15 @@
+{
+  "extraction": "All function_call objects in the final recorded response, unchanged.",
+  "function_calls": [
+    {
+      "arguments": "{\"notebook\":\"Blue grasp/lift succeeded: blue_z 0.201, TCP-blue distance 0.011, fingers closed total 0.0364; red remains on pad and drawer open. Read blue_transport h03 and h02. h03 high-arc stage prior supports takeover during lift_high/translate/descent (evidence 810/870/930/1030) and current state is a plausible lift_high overlap though below the 0.245 high-translate threshold. Plan: run h03 to lift/translate/descend toward drawer; if it reaches blue_inside, task completes; otherwise hand off to release policy near cavity/release.\",\"policy_id\":\"blue_transport_to_drawer__h03\",\"reason\":\"The blue block is grasped/being lifted with small TCP-blue offset and closed fingers; h03 is designed for high-arc transport then descent into the drawer from this overlap state.\",\"steps\":240,\"stop_when\":[{\"conditions\":[{\"comparison\":\"gt\",\"metric\":\"success\",\"reference\":\"absolute\",\"value\":0.5}],\"label\":\"task success\"},{\"conditions\":[{\"comparison\":\"gt\",\"metric\":\"blue_inside\",\"reference\":\"absolute\",\"value\":0.5}],\"label\":\"blue inside drawer observed\"},{\"conditions\":[{\"comparison\":\"gt\",\"metric\":\"finger_width\",\"reference\":\"absolute\",\"value\":0.055},{\"comparison\":\"lt\",\"metric\":\"blue_z\",\"reference\":\"absolute\",\"value\":0.09},{\"comparison\":\"gt\",\"metric\":\"blue_x\",\"reference\":\"absolute\",\"value\":-0.26},{\"comparison\":\"lt\",\"metric\":\"blue_x\",\"reference\":\"absolute\",\"value\":-0.08},{\"comparison\":\"gt\",\"metric\":\"blue_y\",\"reference\":\"absolute\",\"value\":-0.05},{\"comparison\":\"lt\",\"metric\":\"blue_y\",\"reference\":\"absolute\",\"value\":0.16}],\"label\":\"near drawer low and fingers opening - assess release\"},{\"conditions\":[{\"comparison\":\"gt\",\"metric\":\"tcp_blue_distance\",\"reference\":\"absolute\",\"value\":0.15},{\"comparison\":\"gt\",\"metric\":\"blue_z\",\"reference\":\"absolute\",\"value\":0.08},{\"comparison\":\"lt\",\"metric\":\"finger_width\",\"reference\":\"absolute\",\"value\":0.05}],\"label\":\"possible lost blue during closed carry\"}]}",
+      "call_id": "call_cNmMzcghkGQ8BeAVHUm8UoPz",
+      "id": "fc_0a9b32235b747f4a016aaab64edb7887d0897a26096012f41d",
+      "name": "invoke_policy",
+      "status": "completed",
+      "type": "function_call"
+    }
+  ],
+  "source": "runs/exp2/M1_scaleup/drawer_exchange/evaluation/APPL/ID/6300/api/api/0016.response.json",
+  "source_sha256": "e8094df93ce2e606d94b9203d006de2a8e00f1042b31e94441a896935ac36873"
+}

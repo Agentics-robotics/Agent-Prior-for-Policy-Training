@@ -1,0 +1,26 @@
+{
+  "policy_id": "blue_place_release_retreat__h02",
+  "skill_id": "blue_place_release_retreat",
+  "heuristic_index": 2,
+  "prior_summary": "Supported-release diffusion policy: a learned causal support/event classifier conditions the action denoiser and auxiliary losses discourage open-gripper denoised actions until the blue block is aligned with its goal and near table height.",
+  "applicable_conditions": "Use when the blue block is already in or very near the gripper during transport/descent to the blue goal pad, with red already at its goal. The causal observation should show the blue pose, TCP pose, finger aperture, and blue goal in the world-frame state vector.",
+  "termination_guidance": "Terminate after the fingers are open, the blue block remains near [-0.24, 0.25, 0.02] m, and the TCP has retreated upward or stabilized without dragging the block. Task success itself is still evaluated only by the completion contract.",
+  "limitations": "The prior has no force/contact sensor, IK solver, image encoder, or hard safety constraint. Support is inferred from state history and demonstration labels, so unusual friction, a wedged block, bouncing, or off-distribution grasp geometry may not be recovered.",
+  "config": {
+    "condition_dim": 256,
+    "encoder_hidden": 256,
+    "latent_dim": 192,
+    "support_bce_weight": 0.05,
+    "event_ce_weight": 0.05,
+    "unsupported_open_weight": 0.08,
+    "gripper_bce_weight": 0.02,
+    "event_names": [
+      "carry_closed",
+      "descend_closed",
+      "release_open",
+      "retreat_open"
+    ],
+    "causal_history_steps": 2,
+    "unsupported_open_margin_command": -0.2
+  }
+}

@@ -1,0 +1,102 @@
+{
+  "efforts": {
+    "xhigh": 4836
+  },
+  "estimate_caveat": "Counterfactual direct API charge at current Standard list prices and identical reported usage/cache behavior, before taxes. Unknown HTTP-error usage excluded, not assumed zero. Not an actual provider invoice.",
+  "final_results_sha256": "7440a669be17688713d4c49e8323cde87f68711469bce9a206bcef2a7694115d",
+  "journals": 435,
+  "matches_final_summary": true,
+  "max_input_per_request": 163521,
+  "models": {
+    "gpt-6-astra": 4836
+  },
+  "new_API_requests": 0,
+  "new_simulator_steps": 0,
+  "new_training_updates": 0,
+  "phase_estimates": {
+    "deployment": {
+      "cache_writes_USD": 0.0,
+      "cached_input_USD": 7.535872,
+      "output_USD": 72.6042,
+      "total_USD": 1597.394592,
+      "uncached_input_USD": 1517.25452
+    },
+    "policy_design": {
+      "cache_writes_USD": 0.0,
+      "cached_input_USD": 1.029376,
+      "output_USD": 31.7779,
+      "total_USD": 175.736006,
+      "uncached_input_USD": 142.92873
+    },
+    "segmentation": {
+      "cache_writes_USD": 0.0,
+      "cached_input_USD": 2.604416,
+      "output_USD": 4.66225,
+      "total_USD": 85.915376,
+      "uncached_input_USD": 78.64871
+    }
+  },
+  "phases": {
+    "deployment": {
+      "cache_write_tokens": 0,
+      "cached_input_tokens": 7535872,
+      "calls": 4173,
+      "input_tokens": 159261324,
+      "output_tokens": 1452084,
+      "reasoning_tokens": 207852,
+      "total_tokens": 160713408
+    },
+    "policy_design": {
+      "cache_write_tokens": 0,
+      "cached_input_tokens": 1029376,
+      "calls": 517,
+      "input_tokens": 15322249,
+      "output_tokens": 635558,
+      "reasoning_tokens": 187042,
+      "total_tokens": 15957807
+    },
+    "segmentation": {
+      "cache_write_tokens": 0,
+      "cached_input_tokens": 2604416,
+      "calls": 146,
+      "input_tokens": 10469287,
+      "output_tokens": 93245,
+      "reasoning_tokens": 21778,
+      "total_tokens": 10562532
+    }
+  },
+  "price_source": "https://developers.openai.com/api/docs/models/gpt-6-astra",
+  "requests_missing_usage": 94,
+  "requests_over_272k": 0,
+  "review_date": "2026-09-18",
+  "scope": "Exp2 M1_astra_xhigh Runtime API only; includes retained interrupted attempts and all authorized continuations; excludes Codex conversation, old experiments and GPU compute.",
+  "service_tiers": {
+    "(None, 'default')": 4742,
+    "(None, None)": 94
+  },
+  "standard_estimate": {
+    "cache_writes_USD": 0.0,
+    "cached_input_USD": 11.169664,
+    "output_USD": 109.04435,
+    "total_USD": 1859.045974,
+    "uncached_input_USD": 1738.83196
+  },
+  "standard_price_USD_per_million": {
+    "cache_write": 12.5,
+    "cached_input": 1,
+    "input": 10,
+    "output": 50
+  },
+  "states": {
+    "consumed": 4742,
+    "http_failed": 94
+  },
+  "usage": {
+    "cache_write_tokens": 0,
+    "cached_input_tokens": 11169664,
+    "input_tokens": 185052860,
+    "output_tokens": 2180887,
+    "reasoning_tokens": 416672,
+    "total_tokens": 187233747
+  }
+}

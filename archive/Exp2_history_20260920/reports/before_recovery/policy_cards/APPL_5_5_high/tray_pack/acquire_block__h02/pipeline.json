@@ -1,0 +1,24 @@
+{
+  "policy_id": "acquire_block__h02",
+  "skill_id": "acquire_block",
+  "heuristic_index": 2,
+  "prior_summary": "Learned contact-phase bottleneck diffusion policy for block acquisition. A causal observation encoder predicts approach, align, close, lift and carry phase posteriors, uses them to condition a DDPM action denoiser, and is trained with phase and grasp-state auxiliary losses in addition to epsilon prediction.",
+  "applicable_conditions": "Use when the gripper is open or closing around a table block and the desired behavior is to approach, align, close, lift and carry the active red or blue block toward the tray handoff. The observation should contain two recent state vectors with TCP pose, finger qpos, object poses and fixed goal coordinates in world metres. It is also applicable in the red-to-blue transition after red has been placed and the gripper is open, where the causal state makes blue the active remaining object.",
+  "termination_guidance": "Consider transferring to a place policy when the active block is lifted above the table, the observed fingers are near the closed width, and TCP-to-object translation remains small enough to indicate a stable carry. The successor can take over over a range of carry heights, including the demonstrated overlap into the descent toward the tray.",
+  "limitations": "This policy does not implement IK, force sensing, image perception, hard contact constraints or a scripted grasp controller. Phase labels are heuristic labels computed from successful demonstrations, so the learned latent state can be wrong under unseen collisions, slipping or partial grasps. It uses the single shared M1_v2 normalizer and does not refit per-skill ranges.",
+  "config": {
+    "architecture": "Conditional diffusion U-Net with a trainable causal contact-phase encoder and small phase-conditioned residual epsilon decoder",
+    "condition_dim": 384,
+    "phase_count": 5,
+    "phase_names": ["approach", "align", "close", "lift", "carry"],
+    "feature_dim": 135,
+    "auxiliary_losses": {
+      "current_phase_ce_weight": 0.05,
+      "horizon_phase_ce_weight": 0.05,
+      "future_active_z_and_finger_width_mse_weight": 0.05,
+      "low_noise_gripper_x0_mse_weight": 0.02
+    },
+    "active_object_rule_for_training_labels": "red is considered complete, hence blue active, only when red is low and within roughly 9 cm XY of its red goal; otherwise red is active",
+    "normalization": "uses the shared complete-demonstration observation and action normalizer supplied by the assignment"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "policy_id": "blue_transport_to_drawer__h02",
+  "skill_id": "blue_transport_to_drawer",
+  "heuristic_index": 2,
+  "prior_summary": "Rigid blue-carry prior implemented as a learned action diffusion policy: a conditional U-Net predicts normalized joint/gripper action noise, while an auxiliary differentiable dynamics head learns to predict future TCP and blue-block positions from the denoised action estimate. The dynamics head contains a gated rigid branch that keeps the current TCP-to-blue offset during closed-finger carry and a free branch for pre-grasp and release portions of the expanded slice.",
+  "applicable_conditions": "Use after the drawer is open and the red block is already on the outside pad, when the blue block and TCP are near each other and the policy may need to close, lift, carry, descend into the drawer, release, or retreat within the 810-1030 expanded transition. Strongest support is when fingers are closed near 0.018 m per finger, blue is above the table, and the TCP-blue offset is stable.",
+  "termination_guidance": "Transfer to the successor or stop when the blue block is centered near the drawer blue goal around world [-0.172, 0.075, 0.063] m and the fingers have begun opening toward 0.04 m per finger, or when the task-level completion contract is already satisfied. Continue this policy through local descent/release if the blue block is still co-moving with the TCP and not yet at drawer height.",
+  "limitations": "The implementation has no analytic inverse kinematics, collision checking, contact estimator, image input, or hard geometric constraint. The rigid relation is learned from state/action data and can fail under slip, drawer-wall collision, unexpected object rotation, or states far outside the demonstrated transport corridor.",
+  "config": {
+    "condition_dim": 256,
+    "aux_hidden_dim": 128,
+    "tcp_delta_limit_m": 0.5,
+    "free_blue_delta_limit_m": 0.5,
+    "prior_loss_weight": 0.08,
+    "blue_position_loss_scale_m": 0.12,
+    "tcp_position_loss_scale_m": 0.12,
+    "rigid_offset_loss_scale_m": 0.04,
+    "attachment_finger_width_threshold_m": 0.028,
+    "attachment_blue_height_threshold_m": 0.04
+  }
+}

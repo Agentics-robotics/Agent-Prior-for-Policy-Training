@@ -1,0 +1,20 @@
+{
+  "policy_id": "red_to_buffer_handoff__h03",
+  "skill_id": "red_to_buffer_handoff",
+  "heuristic_index": 3,
+  "prior_summary": "A learned action diffusion policy for the full red-to-buffer slice that adds an auxiliary overlap-readiness head. The readiness head is trained from causal geometric state cues so the red-release to blue-approach overlap can be treated as a continuum instead of a fixed switch index.",
+  "applicable_conditions": "Use when the red block is still being moved to the demonstrated central buffer or when it has been released there and the robot is retreating and translating toward the blue block. The intended handoff portion assumes red is on the table near the buffer, the blue block is not yet moved or only just contacted, and the TCP/gripper state resembles the observed open high retreat or low blue-contact corridor.",
+  "termination_guidance": "Continue this policy while red is not yet buffered, while the fingers remain inconsistent with release, or while the TCP is outside the demonstrated buffer-to-blue approach tube. Consider transfer to the blue-to-goal successor when the learned readiness is high: red is table-height near the buffer, the gripper is open during high approach or closing in contact with blue, and the TCP is above or at the blue block along the demonstrated corridor.",
+  "limitations": "Readiness labels are inferred from demonstrations rather than intervention tests. The model has no external IK, no hard geometric constraint, no image input, and no scripted recovery after a missed blue grasp or after carrying red away from the buffer.",
+  "config": {
+    "architecture": "causal two-observation state encoder plus ConditionalUnet1D DDPM backbone",
+    "condition_dim": 256,
+    "step_feature_dim": 85,
+    "readiness_head": true,
+    "readiness_loss_weight": 0.05,
+    "readiness_smoothness_weight": 0.01,
+    "buffer_feature_xyz_m": [-0.181, -0.001, 0.02],
+    "uses_shared_normalizer": true,
+    "handoff_readiness_method": "model.handoff_readiness(raw_history) returns a causal probability for the latest observation"
+  }
+}

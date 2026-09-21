@@ -1,0 +1,23 @@
+{
+  "policy_id": "red_to_buffer_handoff__h02",
+  "skill_id": "red_to_buffer_handoff",
+  "heuristic_index": 2,
+  "prior_summary": "Swap-topology buffer prior implemented as a learned DDPM action policy: causal state history is encoded with explicit red-in-blue-goal, blue-in-red-goal and red-buffered geometric features; trainable heads predict the temporary red buffer placement and red-buffered predicate; those predictions condition the action diffusion backbone.",
+  "applicable_conditions": "Use when the red block starts in or near the lower region that is the future blue goal, the blue block occupies the upper red-goal region, and the central tabletop buffer around world x=-0.181 m, y near the midpoint of the two goal stripes is free. Inputs are the state channels only: qpos/qvel, tcp_pose, red_pose, blue_pose, red_goal and blue_goal in world metres/quaternion components.",
+  "termination_guidance": "The useful exit state is topological: red_pose has settled on the tabletop near the central buffer, blue_pose remains near the upper/red-goal region, the gripper is open during the retreat after release or is entering the overlapping approach/closing phase on blue, and the TCP has moved from high above the buffer toward the blue block. The inference API may transfer after red_buffered is clear and the successor can see open or closing fingers near blue.",
+  "limitations": "The model does not implement IK, collision constraints, image perception, or a scripted controller. The buffer x location is encoded from the demonstrated world-frame prior rather than discovered by planning, and robustness to an occupied buffer or large unseen goal rearrangements is not demonstrated. Auxiliary labels use only causal current observations and short-horizon future observations available in training batches; at deployment no future labels are used.",
+  "config": {
+    "architecture": "Conditional 1D U-Net DDPM backbone with learned state/topology encoder",
+    "condition_dim": 192,
+    "latent_dim": 160,
+    "prior_feature_dim": 39,
+    "subgoal_residual_bounds_m": [0.08, 0.08, 0.035],
+    "buffer_center_rule": "x=-0.181 world metres, y=(red_goal_y+blue_goal_y)/2, z=(red_goal_z+blue_goal_z)/2",
+    "loss_weights": {
+      "diffusion_epsilon": 1.0,
+      "subgoal_l2_normalized": 0.2,
+      "red_buffered_bce": 0.05
+    },
+    "normalization": "uses the assignment shared normalizer fitted on complete original demonstrations; no per-skill scale fitting"
+  }
+}

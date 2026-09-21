@@ -1,0 +1,74 @@
+{
+  "policy_id": "acquire_lift__h01",
+  "skill_id": "acquire_lift",
+  "heuristic_index": 1,
+  "prior_summary": "Role-relative geometry with support context, implemented as a learned two-object message-passing encoder conditioning an action DDPM. Shared object and edge networks combine TCP/object/goal differences, table and inter-object height context, sign-invariant rotation matrices, and causal motion with a global robot branch. Three learned latent attention slots replace unavailable invocation tags; both objects also remain in an ungated pooled path.",
+  "applicable_conditions": "The demonstrated ordered red-then-blue unstack/sort task with Panda absolute joint-position control, two causal 47D world-frame observations, approximately axis-aligned 0.04 m cubes and a horizontal table. Covers initial red pickup and the entire expanded blue invocation, including finishing red placement before blue approach. Observed stack XY variation is only about 2 cm. The forward interface has no selected/previous-object tag input, so arbitrary caller-selected ordering is not supported.",
+  "termination_guidance": "Use causal TCP and object motion, finger positions and qvel to assess progress, not elapsed time or a single pose. Typical late exits have the selected block following the TCP, about 0.0182-0.0183 m per finger, and closed-command transport: roughly red z 0.308-0.318 m or blue z 0.280-0.285 m. Earlier transfer within the shared aligned open-descent/closing/lifting band is supported if carry/place can continue that phase. On blue entry with red held over its pad, continue red descent, opening and clearance rather than treating proximity to blue as readiness. These are handoff cues, not additions to task success.",
+  "limitations": "No explicit invocation metadata is available in the numerical interface; latent attention slots are not calibrated selected/previous/held labels. The fixed loader is retained, with no guaranteed equal red/blue invocation sampling. The prior does not enforce contact, support preservation, IK, collision avoidance, joint-space equivariance or goal containment. Translation generalization, changed orientations, wrong-order instructions and failed-grasp recovery are unvalidated. Two-step history cannot resolve every dwell or hidden-contact ambiguity.",
+  "config": {
+    "experiment_version": "M1_v2",
+    "segmentation": "All 24 assigned expanded half-open slices are retained unchanged, with action/future padding restricted by the supplied masks; no core-only cropping or transition filtering.",
+    "plan_hash": "0e3f8786c4e487b5a53b71cd8e8be0df0632a70507056ca218ac53f500ed77b1",
+    "dataset_sha256": "acabc5f50cae7b2a20e146b480d56c97ac945154b273e71f9bea20f4116d96c2",
+    "normalizer_sha256": "5445b8ee07ea31ca96be698930aa68aa28456023af51c213860aed01a97316fb",
+    "normalization": {
+      "fit": "The supplied shared range normalizer fitted on all 8729 samples of the twelve complete original demonstrations; no fitting inside the policy.",
+      "relative_geometry_scale": "Coordinatewise maximum of the shared TCP, red and blue position half-ranges, used for both objects and both directed edges.",
+      "object_position_center": "Arithmetic mean of the supplied red and blue position centers; no new empirical statistics.",
+      "drawer_channels": "Discarded after the common observation normalization operation.",
+      "quaternions": "Unit wxyz quaternions converted to world rotation matrices and relative rotation matrices."
+    },
+    "encoder": {
+      "node_count": 2,
+      "node_features": 40,
+      "edge_features": 17,
+      "robot_features": 33,
+      "node_width": 96,
+      "message_passing_rounds": 2,
+      "shared_across": "Object identities, edge directions, and the two causal observation times; separate parameters for the two message-passing rounds.",
+      "attention_slots": 3,
+      "attention_null_option": true,
+      "explicit_invocation_tags": false,
+      "identity_features": "One-hot red/blue observation-field identity, not selected/previous tags.",
+      "role_adaptation": "State-conditioned learned latent attention slots with no semantic role supervision. The ungated mean-node path retains both objects throughout every phase.",
+      "frame_embedding": 192,
+      "temporal_fusion": "Previous frame, latest frame, and latest-minus-previous embedding.",
+      "condition_dimension": 256
+    },
+    "denoiser": {
+      "type": "appl.public.DiffusionBackbone conditional temporal U-Net",
+      "action_representation": "Original affinely normalized eight-dimensional actions: seven absolute Panda joint targets and a dimensionless gripper command.",
+      "down_dims": [128, 256, 512],
+      "timestep_embed_dim": 128,
+      "kernel_size": 5,
+      "groups": 8
+    },
+    "loss": {
+      "diffusion": "Masked epsilon MSE over all valid original action coordinates and slots.",
+      "prior": "Zero explicit auxiliary loss; the learned relational architecture is the prior.",
+      "future_observations_used": false,
+      "invocation_reweighting": false
+    },
+    "training": {
+      "updates": 20000,
+      "batch_size": 128,
+      "horizon": 16,
+      "observation_steps": 2,
+      "execution_steps": 8,
+      "sampler": "ddpm",
+      "denoising_train_steps": 100,
+      "denoising_inference_steps": 100,
+      "clip_sample": true,
+      "learning_rate": 0.0001,
+      "weight_decay": 0.000001,
+      "ema_decay": 0.999,
+      "lr_schedule": "cosine",
+      "warmup_steps": 500,
+      "max_grad_norm": 1,
+      "checkpoint_every": 2000,
+      "seeds": [0],
+      "selection": "last EMA at predeclared budget"
+    }
+  }
+}

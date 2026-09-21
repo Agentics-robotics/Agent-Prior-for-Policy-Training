@@ -1,0 +1,23 @@
+{
+  "policy_id": "red_top_regrasp_lift__h01",
+  "skill_id": "red_top_regrasp_lift",
+  "heuristic_index": 1,
+  "prior_summary": "Learn a DDPM action policy conditioned on a red-centered top-grasp affordance frame: TCP-minus-red position, block-relative motion, gripper aperture, relative quaternions, drawer opening and red-goal geometry are encoded causally, with an auxiliary learned future relative-state loss for lift/attachment consistency.",
+  "applicable_conditions": "Use when the drawer is already open near 0.30 m, the red block is visible on the open drawer/front surface around z=0.063 m, and the gripper is open or closing above/near the red block so a top-down regrasp and lift are feasible. The policy can begin at the measured transition start near index 240 or at later overlap states where the TCP is high above the red block.",
+  "termination_guidance": "Continue through retreat, centering over the red block, descent, closure and initial lift. Transfer after the gripper is closed, red and TCP are co-moving with small relative offset, red z is roughly above 0.25 m, and motion is leaving the drawer toward the outside pad. Stop early if the TCP misses the red top, closes far from the block, or red height fails to rise after closure.",
+  "limitations": "The model has no scripted controller, IK solver, image encoder or explicit collision constraints. It is trained only on successful demonstrations with an already open drawer and does not implement retry logic for a missed top grasp or recovery from a partially closed drawer.",
+  "config": {
+    "condition_dim": 256,
+    "encoder_hidden_dim": 128,
+    "aux_hidden_dim": 128,
+    "action_embed_dim": 64,
+    "aux_context_dim": 64,
+    "step_embed_dim": 16,
+    "aux_geom_weight": 0.03,
+    "aux_attach_weight": 0.01,
+    "relative_position_scale_m": 0.15,
+    "goal_position_scale_m": 0.30,
+    "finger_gap_scale_m": 0.08,
+    "prior_name": "red_centered_top_grasp_affordance_with_learned_lift_dynamics"
+  }
+}

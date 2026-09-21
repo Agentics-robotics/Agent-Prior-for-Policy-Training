@@ -1,0 +1,3242 @@
+[
+  {
+    "task": "drawer_exchange",
+    "condition": "OOD",
+    "seed": 6400,
+    "method": "APPL_6_xhigh",
+    "success": true,
+    "steps": 987,
+    "status": "succeeded",
+    "final": {
+      "blue_inside": true,
+      "drawer_open": true,
+      "red_on_pad": true,
+      "success": true
+    },
+    "source_root": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/runs/exp2/Exp2_new/APPL_GPT6_astra_xhigh/drawer_exchange/OOD/6400",
+    "bundle_root": "episodes/APPL_6_xhigh/drawer_exchange/OOD/6400",
+    "result_sha256": "8e5405bc13c77bfaa9bfa9312801dd713ba605ef25d47c10c48c3a83197edae4",
+    "initial_sha256": "3abfc87c8b3f986626a6480eba71b5c4808df7d7223dc2dd1700691f8b710b1b",
+    "trace_sha256": "d119f9bfe6e53116ed809188348ecbaeeb0bf849dee79984ab60ed310a40cc13",
+    "video": "episodes/APPL_6_xhigh/drawer_exchange/OOD/6400/replay.mp4",
+    "first_goal_steps": {
+      "blue_inside": 987,
+      "drawer_open": 231,
+      "red_on_pad": 613,
+      "success": 987
+    },
+    "ever_goals": {
+      "blue_inside": true,
+      "drawer_open": true,
+      "red_on_pad": true,
+      "success": true
+    },
+    "max_rise_from_initial_m": {
+      "red": 0.2419837936758995,
+      "blue": 0.28225285932421684
+    },
+    "distinct_policies": 3,
+    "invocation_count": 5,
+    "generation_calls": 8,
+    "API_finish": [],
+    "API_arguments_equal_execution": true
+  },
+  {
+    "task": "two_block_sort",
+    "condition": "OOD",
+    "seed": 30000,
+    "method": "APPL_6_xhigh",
+    "success": false,
+    "steps": 1786,
+    "status": "agent_finished",
+    "final": {
+      "blue_at_goal": false,
+      "red_at_goal": true,
+      "success": false
+    },
+    "source_root": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/runs/exp2/Exp2_new/APPL_GPT6_astra_xhigh/two_block_sort/OOD/30000",
+    "bundle_root": "episodes/APPL_6_xhigh/two_block_sort/OOD/30000",
+    "result_sha256": "b6d9051542d557543683187abdcc15cdd4e945ea0cdafae5fde3993dd53faa0d",
+    "initial_sha256": "9f06699d86efd8287197b2d26f440ab59276f5b97c54a58960ea384213f9daba",
+    "trace_sha256": "39b1824334a6e5db502d4a1ef58f1383cd594a04ee335510587c60673809b094",
+    "video": "episodes/APPL_6_xhigh/two_block_sort/OOD/30000/replay.mp4",
+    "first_goal_steps": {
+      "blue_at_goal": null,
+      "red_at_goal": 354,
+      "success": null
+    },
+    "ever_goals": {
+      "blue_at_goal": false,
+      "red_at_goal": true,
+      "success": false
+    },
+    "max_rise_from_initial_m": {
+      "red": 0.2632880322635174,
+      "blue": 0.31725136563181877
+    },
+    "distinct_policies": 5,
+    "invocation_count": 17,
+    "generation_calls": 23,
+    "API_finish": [
+      {
+        "file": "0023.response.json",
+        "reason": "The task is incomplete. Red remains measured at its goal, but blue_at_goal is false: blue is at approximately (-0.2742, 0.1814, 0.2962) m, far above and outside its pad. Blue remains close to the TCP (0.0217 m) with narrow fingers, consistent with the maintained grasp. All three delivery variants were tested: h02 repeatedly drifted away in Y, h03 corrected X but hovered and lost Y alignment, and h01 restored Y but stalled at high elevation despite bounded extended continuation. A brief acquisition-h03 attempt to restore the demonstrated carrying state instead regressed in XY and was stopped. The documented overlap does not establish recovery from this displaced, atypical grasp, and I no longer have a credible supported route to placement using the available policies. Stopping honestly rather than claiming success or repeating stalled motions."
+      }
+    ],
+    "API_arguments_equal_execution": true,
+    "observed_bottleneck": "blue_rose_but_goal_not_reached"
+  },
+  {
+    "task": "buffer_swap",
+    "condition": "OOD",
+    "seed": 30100,
+    "method": "APPL_6_xhigh",
+    "success": false,
+    "steps": 2305,
+    "status": "agent_finished",
+    "final": {
+      "blue_at_goal": true,
+      "red_at_goal": false,
+      "success": false
+    },
+    "source_root": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/runs/exp2/Exp2_new/APPL_GPT6_astra_xhigh/buffer_swap/OOD/30100",
+    "bundle_root": "episodes/APPL_6_xhigh/buffer_swap/OOD/30100",
+    "result_sha256": "84bed6d07c0b325109f88bd02cbc55b2c40a6be93e4f1d9cf4696fcc91db6bd7",
+    "initial_sha256": "fc0646fbda651149b83197228a014cf1645ba98d039a19a4dfe0c9d38b73fa71",
+    "trace_sha256": "0786eed7f66456ef54a928584be408e05bfa13dec32c00072eaf6bd04f35351a",
+    "video": "episodes/APPL_6_xhigh/buffer_swap/OOD/30100/replay.mp4",
+    "first_goal_steps": {
+      "blue_at_goal": 1390,
+      "red_at_goal": null,
+      "success": null
+    },
+    "ever_goals": {
+      "blue_at_goal": true,
+      "red_at_goal": false,
+      "success": false
+    },
+    "max_rise_from_initial_m": {
+      "red": 0.28205395862460136,
+      "blue": 0.2348698191344738
+    },
+    "distinct_policies": 9,
+    "invocation_count": 35,
+    "generation_calls": 47,
+    "API_finish": [
+      {
+        "file": "0047.response.json",
+        "reason": "The exchange is incomplete. At physical step 2305, blue_at_goal=1, red_at_goal=0, success=0. Blue is supported at (-0.368146,-0.196609,0.020000). Red is supported at (-0.308708,0.161379,0.020000), but its rotated footprint protrudes approximately 3.1 mm beyond the positive-x boundary and 0.4 mm beyond the negative-y boundary of its goal. Final placement and bounded recovery attempts did not correct this: finish h01 released with an invalid footprint, finish h03 and h02 retreated without moving red, and a transfer h02 reacquisition attempt traveled toward the old buffer instead of the displaced red. The available policies have not shown a credible remaining correction route from this state; further blind continuation is not justified. No additional release or clearance requirement is being imposed—the supplied geometric conjunction itself remains false."
+      }
+    ],
+    "API_arguments_equal_execution": true,
+    "observed_bottleneck": "red_final_goal_not_reached_after_blue_goal"
+  },
+  {
+    "task": "unstack_sort",
+    "condition": "OOD",
+    "seed": 30200,
+    "method": "APPL_6_xhigh",
+    "success": true,
+    "steps": 617,
+    "status": "succeeded",
+    "final": {
+      "blue_at_goal": true,
+      "red_at_goal": true,
+      "success": true
+    },
+    "source_root": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/runs/exp2/Exp2_new/APPL_GPT6_astra_xhigh/unstack_sort/OOD/30200",
+    "bundle_root": "episodes/APPL_6_xhigh/unstack_sort/OOD/30200",
+    "result_sha256": "d048266d2fe7d2fee31701d8db63fc7ba6ad130538d2b8bc7d611ce033366771",
+    "initial_sha256": "f46625f0638f0f112c9496b1fb89c716eb052688555331973688bc53f89a356b",
+    "trace_sha256": "732125fe21c008d8f931b3e4e72836a982d6c13c79d939be0309646c9d8d254c",
+    "video": "episodes/APPL_6_xhigh/unstack_sort/OOD/30200/replay.mp4",
+    "first_goal_steps": {
+      "blue_at_goal": 617,
+      "red_at_goal": 256,
+      "success": 617
+    },
+    "ever_goals": {
+      "blue_at_goal": true,
+      "red_at_goal": true,
+      "success": true
+    },
+    "max_rise_from_initial_m": {
+      "red": 0.2580934800207615,
+      "blue": 0.28230954334139824
+    },
+    "distinct_policies": 2,
+    "invocation_count": 5,
+    "generation_calls": 7,
+    "API_finish": [],
+    "API_arguments_equal_execution": true
+  },
+  {
+    "task": "tray_pack",
+    "condition": "OOD",
+    "seed": 30300,
+    "method": "APPL_6_xhigh",
+    "success": true,
+    "steps": 947,
+    "status": "succeeded",
+    "final": {
+      "blue_at_goal": true,
+      "red_at_goal": true,
+      "success": true
+    },
+    "source_root": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/runs/exp2/Exp2_new/APPL_GPT6_astra_xhigh/tray_pack/OOD/30300",
+    "bundle_root": "episodes/APPL_6_xhigh/tray_pack/OOD/30300",
+    "result_sha256": "62f522aace45d2a0b9ff6791b43f1d3be3463cdcd1fc536ebc0d6c8f3fd57b72",
+    "initial_sha256": "d89ffb2b485552f17c400a7f70c6fcbd7d47eab1738ee0c48ac90e935b8a9e33",
+    "trace_sha256": "a28ae3204c93d50ad05cab362a6e3921b859312359ebedf57a2c8bd2e36b860b",
+    "video": "episodes/APPL_6_xhigh/tray_pack/OOD/30300/replay.mp4",
+    "first_goal_steps": {
+      "blue_at_goal": 947,
+      "red_at_goal": 276,
+      "success": 947
+    },
+    "ever_goals": {
+      "blue_at_goal": true,
+      "red_at_goal": true,
+      "success": true
+    },
+    "max_rise_from_initial_m": {
+      "red": 0.283368032425642,
+      "blue": 0.29903344437479973
+    },
+    "distinct_policies": 5,
+    "invocation_count": 13,
+    "generation_calls": 18,
+    "API_finish": [],
+    "API_arguments_equal_execution": true
+  },
+  {
+    "task": "drawer_exchange",
+    "condition": "OOD",
+    "seed": 6401,
+    "method": "APPL_6_xhigh",
+    "success": true,
+    "steps": 1275,
+    "status": "succeeded",
+    "final": {
+      "blue_inside": true,
+      "drawer_open": true,
+      "red_on_pad": true,
+      "success": true
+    },
+    "source_root": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/runs/exp2/Exp2_new/APPL_GPT6_astra_xhigh/drawer_exchange/OOD/6401",
+    "bundle_root": "episodes/APPL_6_xhigh/drawer_exchange/OOD/6401",
+    "result_sha256": "3c36362a8ee4dd28f569fb1236a1ac372501e1f614ec07e49d99a47e9294f76f",
+    "initial_sha256": "2708c621b5db590534c6ccc37795741836ec6d9311297f3b47d782c73a5e6a9e",
+    "trace_sha256": "66fae185bf55d33491213596c9789efd91473a5c61902666b4b77ce95f8889e4",
+    "video": "episodes/APPL_6_xhigh/drawer_exchange/OOD/6401/replay.mp4",
+    "first_goal_steps": {
+      "blue_inside": 1275,
+      "drawer_open": 206,
+      "red_on_pad": 897,
+      "success": 1275
+    },
+    "ever_goals": {
+      "blue_inside": true,
+      "drawer_open": true,
+      "red_on_pad": true,
+      "success": true
+    },
+    "max_rise_from_initial_m": {
+      "red": 0.2324134036898613,
+      "blue": 0.29583732411265373
+    },
+    "distinct_policies": 3,
+    "invocation_count": 9,
+    "generation_calls": 12,
+    "API_finish": [],
+    "API_arguments_equal_execution": true
+  },
+  {
+    "task": "two_block_sort",
+    "condition": "OOD",
+    "seed": 30001,
+    "method": "APPL_6_xhigh",
+    "success": false,
+    "steps": 1667,
+    "status": "agent_finished",
+    "final": {
+      "blue_at_goal": false,
+      "red_at_goal": true,
+      "success": false
+    },
+    "source_root": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/runs/exp2/Exp2_new/APPL_GPT6_astra_xhigh/two_block_sort/OOD/30001",
+    "bundle_root": "episodes/APPL_6_xhigh/two_block_sort/OOD/30001",
+    "result_sha256": "7ff5be8c20320c051efc8777d37aac5e8ad70102a4a758a50cd9bd5d38837368",
+    "initial_sha256": "3f9564bbcfc84f56271fa6c277d1d3cc2f292f2c3a8480a518ae81b4ae952a92",
+    "trace_sha256": "4465db5a1bb983da254a7998ca64aea5215be74597ff5b09ff045d4b6bdd40fc",
+    "video": "episodes/APPL_6_xhigh/two_block_sort/OOD/30001/replay.mp4",
+    "first_goal_steps": {
+      "blue_at_goal": null,
+      "red_at_goal": 262,
+      "success": null
+    },
+    "ever_goals": {
+      "blue_at_goal": false,
+      "red_at_goal": true,
+      "success": false
+    },
+    "max_rise_from_initial_m": {
+      "red": 0.2731856219470501,
+      "blue": 0.26872868463397026
+    },
+    "distinct_policies": 6,
+    "invocation_count": 25,
+    "generation_calls": 35,
+    "API_finish": [
+      {
+        "file": "0035.response.json",
+        "reason": "Task incomplete: measured red_at_goal=1, blue_at_goal=0, success=0. Red remains contained at approximately (-0.1751,-0.2416,0.0200); blue remains off-pad at (-0.1314,0.0885,0.0200). Bounded recovery attempts failed to reacquire the displaced blue block. The final acquisition h03 attempt descended toward the former source and began closing 0.263 m away from blue; earlier alternatives returned to red or stalled. Although delivery h03 could restore an empty high bridge, no tested successor followed the displaced blue source. The available successful-demonstration local policies provide no credible remaining recovery route, so I am stopping without claiming completion."
+      }
+    ],
+    "API_arguments_equal_execution": true,
+    "observed_bottleneck": "blue_rose_but_goal_not_reached"
+  },
+  {
+    "task": "buffer_swap",
+    "condition": "OOD",
+    "seed": 30101,
+    "method": "APPL_6_xhigh",
+    "success": false,
+    "steps": 1189,
+    "status": "agent_finished",
+    "final": {
+      "blue_at_goal": false,
+      "red_at_goal": false,
+      "success": false
+    },
+    "source_root": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/runs/exp2/Exp2_new/ood_continuation_20260920/episodes/buffer_swap/OOD/30101",
+    "bundle_root": "episodes/APPL_6_xhigh/buffer_swap/OOD/30101",
+    "result_sha256": "8a1bfa0669f4a04b68d074e66aa6e2fc4b6162f6b1df912356f83afcc37d2994",
+    "initial_sha256": "249e84aa2c0cb705986d3cefcd66608f3e449fa9f21e59c9bf7e58dbb5870387",
+    "trace_sha256": "dbaf92c7a0252f77dd984669e2c00c10d12bc755b451e7a36175af04e8a4162c",
+    "video": "episodes/APPL_6_xhigh/buffer_swap/OOD/30101/replay.mp4",
+    "first_goal_steps": {
+      "blue_at_goal": null,
+      "red_at_goal": null,
+      "success": null
+    },
+    "ever_goals": {
+      "blue_at_goal": false,
+      "red_at_goal": false,
+      "success": false
+    },
+    "max_rise_from_initial_m": {
+      "red": 0.28088338300585747,
+      "blue": 0.011478766798973083
+    },
+    "distinct_policies": 6,
+    "invocation_count": 15,
+    "generation_calls": 22,
+    "API_finish": [
+      {
+        "file": "0022.response.json",
+        "reason": "The swap is incomplete: both measured goal predicates remain false. Red was successfully staged at approximately (-0.184,-0.005,0.020), but blue pickup failed. Bounded recovery attempts reopened the gripper, then contact rotated and displaced blue to approximately (-0.359,0.142,0.020). The latest transfer policy still approaches the nominal source: TCP y=0.201 versus blue y=0.142, with open fingers and no grasp. Its last precontact descent did not reduce this 59 mm lateral error. The available buffer/transfer policies have not established a reliable pickup from this disturbed state; their documented overlap covers successful transitions, not these failed-contact states. Finish-red policies do not provide a supported route to recover unplaced blue here. I judge further repeated contact attempts lack a credible route to simultaneous goals and am ending without claiming success."
+      }
+    ],
+    "API_arguments_equal_execution": true,
+    "observed_bottleneck": "blue_rise_under_4cm"
+  },
+  {
+    "task": "unstack_sort",
+    "condition": "OOD",
+    "seed": 30201,
+    "method": "APPL_6_xhigh",
+    "success": true,
+    "steps": 624,
+    "status": "succeeded",
+    "final": {
+      "blue_at_goal": true,
+      "red_at_goal": true,
+      "success": true
+    },
+    "source_root": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/runs/exp2/Exp2_new/ood_continuation_20260920/episodes/unstack_sort/OOD/30201",
+    "bundle_root": "episodes/APPL_6_xhigh/unstack_sort/OOD/30201",
+    "result_sha256": "26decec85043b41350c89018933b98e8b80583aeb4b9124ab7a12a3e6731bd26",
+    "initial_sha256": "bbb3fe99f00e95fd1ecdf123c249596391614991d810b5b30e0de214ebb2053a",
+    "trace_sha256": "d9b4e1b73090177352a010d326e5d33fc109d0e8c46989dfd299b12da70ad7e0",
+    "video": "episodes/APPL_6_xhigh/unstack_sort/OOD/30201/replay.mp4",
+    "first_goal_steps": {
+      "blue_at_goal": 624,
+      "red_at_goal": 236,
+      "success": 624
+    },
+    "ever_goals": {
+      "blue_at_goal": true,
+      "red_at_goal": true,
+      "success": true
+    },
+    "max_rise_from_initial_m": {
+      "red": 0.24595454707741737,
+      "blue": 0.27417565509676933
+    },
+    "distinct_policies": 2,
+    "invocation_count": 7,
+    "generation_calls": 9,
+    "API_finish": [],
+    "API_arguments_equal_execution": true
+  },
+  {
+    "task": "tray_pack",
+    "condition": "OOD",
+    "seed": 30301,
+    "method": "APPL_6_xhigh",
+    "success": false,
+    "steps": 1033,
+    "status": "agent_finished",
+    "final": {
+      "blue_at_goal": false,
+      "red_at_goal": false,
+      "success": false
+    },
+    "source_root": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/runs/exp2/Exp2_new/ood_continuation_20260920/episodes/tray_pack/OOD/30301",
+    "bundle_root": "episodes/APPL_6_xhigh/tray_pack/OOD/30301",
+    "result_sha256": "6e6488339f04c494ab94087c9958a31dfca1c09dcc1353c56f5325770493d103",
+    "initial_sha256": "e655781963ed0e20bc8735943dc176dbac5e39b8037450aedfc2623c5a28d919",
+    "trace_sha256": "be103f41f73d3e048b5f42f28ab6b997f9ec6015f9c076f9709342f0c55a9559",
+    "video": "episodes/APPL_6_xhigh/tray_pack/OOD/30301/replay.mp4",
+    "first_goal_steps": {
+      "blue_at_goal": null,
+      "red_at_goal": 304,
+      "success": null
+    },
+    "ever_goals": {
+      "blue_at_goal": false,
+      "red_at_goal": true,
+      "success": false
+    },
+    "max_rise_from_initial_m": {
+      "red": 0.2870769016444683,
+      "blue": 0.0032989662140607834
+    },
+    "distinct_policies": 6,
+    "invocation_count": 15,
+    "generation_calls": 22,
+    "API_finish": [
+      {
+        "file": "0022.response.json",
+        "reason": "Task not completed: latest measured red_at_goal=0, blue_at_goal=0, success=0. Red was initially placed successfully, but repeated blue pickups closed empty; blue remains at its table source near(-0.37686,0.24692,0.020) after a large yaw change. Different acquisition/delivery priors did not establish blue lift or co-motion. One empty-hand reset successfully reopened the gripper, but a second reset displaced red to(-0.13494,-0.11377,0.036) and rotated it out of full goal containment. I stopped immediately on that loss. The available nominal policies have not shown a credible recovery route for this combined displaced-red/rotated-blue state, and further blind reset attempts risk additional displacement."
+      }
+    ],
+    "API_arguments_equal_execution": true,
+    "observed_bottleneck": "blue_goal_not_reached"
+  },
+  {
+    "task": "drawer_exchange",
+    "condition": "OOD",
+    "seed": 6402,
+    "method": "APPL_6_xhigh",
+    "success": false,
+    "steps": 2663,
+    "status": "agent_finished",
+    "final": {
+      "blue_inside": false,
+      "drawer_open": true,
+      "red_on_pad": false,
+      "success": false
+    },
+    "source_root": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/runs/exp2/Exp2_new/ood_continuation_20260920/episodes/drawer_exchange/OOD/6402",
+    "bundle_root": "episodes/APPL_6_xhigh/drawer_exchange/OOD/6402",
+    "result_sha256": "ab4ea418461452bf3769c8ba00226edb4016e7afc1eca4bc56c6bdbb05b9c5e6",
+    "initial_sha256": "a41d3848a576b827fe84fdfe9cb98aaa3a937a0fc1fe23f7dd9de645c3b2ee82",
+    "trace_sha256": "2d0702b737c8eae7cd66ebadb4200cf27a99b7f98228cd5c0f868c08ae134007",
+    "video": "episodes/APPL_6_xhigh/drawer_exchange/OOD/6402/replay.mp4",
+    "first_goal_steps": {
+      "blue_inside": null,
+      "drawer_open": 210,
+      "red_on_pad": null,
+      "success": null
+    },
+    "ever_goals": {
+      "blue_inside": false,
+      "drawer_open": true,
+      "red_on_pad": false,
+      "success": false
+    },
+    "max_rise_from_initial_m": {
+      "red": 0.08330453187227249,
+      "blue": -8.568167686462402e-08
+    },
+    "distinct_policies": 6,
+    "invocation_count": 25,
+    "generation_calls": 32,
+    "API_finish": [
+      {
+        "file": "0032.response.json",
+        "reason": "Stopping without success. Measured drawer_position is 0.296400 m, so drawer-open is true, but red-on-pad and blue-inside are both false. Red remains in the drawer at approximately [-0.19065,-0.04493,0.06300] m; blue remains outside at [-0.39288,0.27148,0.02000] m. Multiple documented opening/acquisition/evacuation variants and bounded recovery attempts failed to establish sustained red transport. One actual red lift occurred, but the nonnominal grasp slipped immediately; the final retry transferred before closure from an open high-approach state and again produced empty-tool motion with drawer disturbance instead of pickup. The observed missed grasps, changed block pose and disturbed drawer exceed demonstrated successful-transition support. I do not judge further repeated local-policy retries to offer a credible route to completing all three goals in this trial."
+      }
+    ],
+    "API_arguments_equal_execution": true,
+    "observed_bottleneck": "red_placement_not_reached"
+  },
+  {
+    "task": "two_block_sort",
+    "condition": "OOD",
+    "seed": 30002,
+    "method": "APPL_6_xhigh",
+    "success": false,
+    "steps": 1509,
+    "status": "agent_finished",
+    "final": {
+      "blue_at_goal": false,
+      "red_at_goal": true,
+      "success": false
+    },
+    "source_root": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/runs/exp2/Exp2_new/ood_continuation_20260920/episodes/two_block_sort/OOD/30002",
+    "bundle_root": "episodes/APPL_6_xhigh/two_block_sort/OOD/30002",
+    "result_sha256": "40e1b7e88ba368a20221e3bbff272220a5807b68bea8b50d02c915a9ee8a4b80",
+    "initial_sha256": "07c1ef7b950ed40f791be850d8c6e51645d8bddd9cb0f2470f9ffe14823b212d",
+    "trace_sha256": "1b4201692d01542caae0b27cd6fb5731367d690843259bfaed3e2a5874b75a69",
+    "video": "episodes/APPL_6_xhigh/two_block_sort/OOD/30002/replay.mp4",
+    "first_goal_steps": {
+      "blue_at_goal": null,
+      "red_at_goal": 329,
+      "success": null
+    },
+    "ever_goals": {
+      "blue_at_goal": false,
+      "red_at_goal": true,
+      "success": false
+    },
+    "max_rise_from_initial_m": {
+      "red": 0.2580885998904705,
+      "blue": 0.0029329750686883926
+    },
+    "distinct_policies": 6,
+    "invocation_count": 19,
+    "generation_calls": 28,
+    "API_finish": [
+      {
+        "file": "0028.response.json",
+        "reason": "Incomplete: red_at_goal is true, but blue_at_goal and success remain false. Blue is still on the table at approximately (-0.4561, 0.2310, 0.0200), far from its pad at (-0.18, 0.25, 0.02). Repeated pickup attempts closed without lifting blue; later contact displaced and rotated it. Bounded recovery attempts across the available policies did not restore a reliable grasp. The final delivery-h03 continuation remained closed-empty and oscillated without opening or object progress. I judge further repetition of these local controllers has no sufficiently credible route to completion and am stopping without disturbing the placed red block."
+      }
+    ],
+    "API_arguments_equal_execution": true,
+    "observed_bottleneck": "blue_rise_under_4cm"
+  },
+  {
+    "task": "buffer_swap",
+    "condition": "OOD",
+    "seed": 30102,
+    "method": "APPL_6_xhigh",
+    "success": true,
+    "steps": 1245,
+    "status": "succeeded",
+    "final": {
+      "blue_at_goal": true,
+      "red_at_goal": true,
+      "success": true
+    },
+    "source_root": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/runs/exp2/Exp2_new/ood_continuation_20260920/episodes/buffer_swap/OOD/30102",
+    "bundle_root": "episodes/APPL_6_xhigh/buffer_swap/OOD/30102",
+    "result_sha256": "ed91fd41437b5a8d6f465587bbf822590c66145a1d01058a8d5cff2021173c33",
+    "initial_sha256": "9082ae64887b0690b6449fa5d1d8d1aa1ff7d00ab1ba5b3136351b107d897210",
+    "trace_sha256": "621d6e0dcf7aecb214337c686da57af7c1146b08d896cb0733c59e80a1d56a6b",
+    "video": "episodes/APPL_6_xhigh/buffer_swap/OOD/30102/replay.mp4",
+    "first_goal_steps": {
+      "blue_at_goal": 912,
+      "red_at_goal": 1245,
+      "success": 1245
+    },
+    "ever_goals": {
+      "blue_at_goal": true,
+      "red_at_goal": true,
+      "success": true
+    },
+    "max_rise_from_initial_m": {
+      "red": 0.2831968478858471,
+      "blue": 0.28425921127200127
+    },
+    "distinct_policies": 4,
+    "invocation_count": 11,
+    "generation_calls": 15,
+    "API_finish": [],
+    "API_arguments_equal_execution": true
+  },
+  {
+    "task": "unstack_sort",
+    "condition": "OOD",
+    "seed": 30202,
+    "method": "APPL_6_xhigh",
+    "success": false,
+    "steps": 560,
+    "status": "agent_finished",
+    "final": {
+      "blue_at_goal": false,
+      "red_at_goal": false,
+      "success": false
+    },
+    "source_root": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/runs/exp2/Exp2_new/ood_continuation_20260920/episodes/unstack_sort/OOD/30202",
+    "bundle_root": "episodes/APPL_6_xhigh/unstack_sort/OOD/30202",
+    "result_sha256": "42877eb68afe5ca01824574356f435c4275869ed2287854e55673995577a2672",
+    "initial_sha256": "f3bdf004403bbe19afef4f05f34f42ae473a46fba70f256916e5c836bba1fd24",
+    "trace_sha256": "6340c0d79390d4fb52d8814f9be077ed6c529768083e9fa3f7e01fc6848d580f",
+    "video": "episodes/APPL_6_xhigh/unstack_sort/OOD/30202/replay.mp4",
+    "first_goal_steps": {
+      "blue_at_goal": null,
+      "red_at_goal": null,
+      "success": null
+    },
+    "ever_goals": {
+      "blue_at_goal": false,
+      "red_at_goal": false,
+      "success": false
+    },
+    "max_rise_from_initial_m": {
+      "red": 2.8267502784729004e-05,
+      "blue": 4.127994179725647e-05
+    },
+    "distinct_policies": 5,
+    "invocation_count": 7,
+    "generation_calls": 14,
+    "API_finish": [
+      {
+        "file": "0014.response.json",
+        "reason": "Task not completed: red_at_goal=0 and blue_at_goal=0 at step560. Red was knocked from the stack during an off-center failed grasp and now rests at (-0.2559,-0.0059,0.0200); blue remains at (-0.3112,0.0337,0.0200). No measured coupled lift succeeded. Bounded recovery with carry h01, renewed acquire h01, and carry h03 left the empty fingers fully closed and did not reacquire or move either block toward its pad. The latest carry policy moved only the TCP toward the red pad while both objects stayed still. The documented overlaps cover successful aligned pickup/release transitions, not this displaced, differently oriented red and persistent empty-grasp state. The remaining event-prior variant does not establish a credible recovery route, so I am ending honestly rather than treating empty-hand motion or goal predictions as progress."
+      }
+    ],
+    "API_arguments_equal_execution": true,
+    "observed_bottleneck": "red_goal_not_reached"
+  },
+  {
+    "task": "tray_pack",
+    "condition": "OOD",
+    "seed": 30302,
+    "method": "APPL_6_xhigh",
+    "success": true,
+    "steps": 579,
+    "status": "succeeded",
+    "final": {
+      "blue_at_goal": true,
+      "red_at_goal": true,
+      "success": true
+    },
+    "source_root": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/runs/exp2/Exp2_new/ood_continuation_20260920/episodes/tray_pack/OOD/30302",
+    "bundle_root": "episodes/APPL_6_xhigh/tray_pack/OOD/30302",
+    "result_sha256": "f0fd67109ba1b788207902065f1f9edf3f1e318af2fcbefb04a015705f047924",
+    "initial_sha256": "ece158e2cb761bf79bee733ca5e34f8a2a34f47cde1015a261b908a2b9f72096",
+    "trace_sha256": "c7b54041de759fc186fd8b3e5c8a57ab7103cb7194fc527e42c92cad659c4e2e",
+    "video": "episodes/APPL_6_xhigh/tray_pack/OOD/30302/replay.mp4",
+    "first_goal_steps": {
+      "blue_at_goal": 579,
+      "red_at_goal": 238,
+      "success": 579
+    },
+    "ever_goals": {
+      "blue_at_goal": true,
+      "red_at_goal": true,
+      "success": true
+    },
+    "max_rise_from_initial_m": {
+      "red": 0.2857719175517559,
+      "blue": 0.28412045165896416
+    },
+    "distinct_policies": 2,
+    "invocation_count": 7,
+    "generation_calls": 9,
+    "API_finish": [],
+    "API_arguments_equal_execution": true
+  },
+  {
+    "task": "drawer_exchange",
+    "condition": "OOD",
+    "seed": 6403,
+    "method": "APPL_6_xhigh",
+    "success": false,
+    "steps": 1283,
+    "status": "agent_finished",
+    "final": {
+      "blue_inside": false,
+      "drawer_open": false,
+      "red_on_pad": true,
+      "success": false
+    },
+    "source_root": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/runs/exp2/Exp2_new/ood_continuation_20260920/episodes/drawer_exchange/OOD/6403",
+    "bundle_root": "episodes/APPL_6_xhigh/drawer_exchange/OOD/6403",
+    "result_sha256": "fdfc6d228df134d8527d895f9e2b074b806b3e8609d40a92855c1cc091b67b32",
+    "initial_sha256": "440d4d8ddaff78068a026d8805b9c636d4cb569dec9529340d5cc3eeac0f26b6",
+    "trace_sha256": "aeaea8d5bbd3c1142e704a4be09433ade1c3630bbe2925e5f975c42b8cf04047",
+    "video": "episodes/APPL_6_xhigh/drawer_exchange/OOD/6403/replay.mp4",
+    "first_goal_steps": {
+      "blue_inside": null,
+      "drawer_open": 232,
+      "red_on_pad": 669,
+      "success": null
+    },
+    "ever_goals": {
+      "blue_inside": false,
+      "drawer_open": true,
+      "red_on_pad": true,
+      "success": false
+    },
+    "max_rise_from_initial_m": {
+      "red": 0.24542739242315292,
+      "blue": 0.0012070946395397186
+    },
+    "distinct_policies": 6,
+    "invocation_count": 14,
+    "generation_calls": 21,
+    "API_finish": [
+      {
+        "file": "0021.response.json",
+        "reason": "Task not completed. At step1283, measured red_on_pad=1, blue_inside=0, drawer_open=0 and success=0; drawer_position=0.1670739 m, blue=(-0.3562456,0.2893048,0.0199999). Opening and red placement initially succeeded, but blue pickup missed and subsequent empty-tool motion disturbed the drawer. Bounded recoveries using contact-aware, containment-relational, attachment-aware and waypoint policies failed to acquire blue or restore access. Waypoint evacuation did reopen the fingers, but then approached 8cm away from blue; containment insertion subsequently closed at TCP-blue distance0.1341 m rather than correcting the source alignment. The current displaced-source, under-open-drawer state is outside established successful transition support, and observed retries give no credible remaining completion route with the frozen local policies. Stopping honestly preserves the still-achieved red-pad goal rather than claiming success or continuing phantom transport."
+      }
+    ],
+    "API_arguments_equal_execution": true,
+    "observed_bottleneck": "blue_insertion_not_reached"
+  },
+  {
+    "task": "two_block_sort",
+    "condition": "OOD",
+    "seed": 30003,
+    "method": "APPL_6_xhigh",
+    "success": false,
+    "steps": 931,
+    "status": "agent_finished",
+    "final": {
+      "blue_at_goal": false,
+      "red_at_goal": true,
+      "success": false
+    },
+    "source_root": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/runs/exp2/Exp2_new/ood_continuation_20260920/episodes/two_block_sort/OOD/30003",
+    "bundle_root": "episodes/APPL_6_xhigh/two_block_sort/OOD/30003",
+    "result_sha256": "a3f234bda3902ec5e402aea29edfd01ffce7006adce22ec33ee56e1ec5758c9b",
+    "initial_sha256": "e9c496748ef67575e4c7393d9223ac716251573415a7f1c7fdd8280a3b429774",
+    "trace_sha256": "5ae54ae708f9eb90f069216594ed6a4b58d443b989f8d25b55d36390377d216f",
+    "video": "episodes/APPL_6_xhigh/two_block_sort/OOD/30003/replay.mp4",
+    "first_goal_steps": {
+      "blue_at_goal": null,
+      "red_at_goal": 361,
+      "success": null
+    },
+    "ever_goals": {
+      "blue_at_goal": false,
+      "red_at_goal": true,
+      "success": false
+    },
+    "max_rise_from_initial_m": {
+      "red": 0.2803056947886944,
+      "blue": 0.004541076719760895
+    },
+    "distinct_policies": 6,
+    "invocation_count": 12,
+    "generation_calls": 19,
+    "API_finish": [
+      {
+        "file": "0019.response.json",
+        "reason": "Incomplete: latest measured state has red_at_goal=1, blue_at_goal=0, success=0. Red is safely on its pad at approximately (-0.18754,-0.26512,0.02000); blue remains near its source at (-0.38812,0.21623,0.02000). Blue acquisition missed, leaving an empty fully closed gripper. Bounded recovery attempts using the other acquisition policies and all delivery variants failed to reopen or lift blue; the latest 100-step contract-aware attempt also left both objects unchanged and finger width zero. The successful-demonstration overlaps do not establish recovery from this state, and the observed repeated failures leave no credible route to completion with the available frozen controllers. Stopping honestly with only red placed."
+      }
+    ],
+    "API_arguments_equal_execution": true,
+    "observed_bottleneck": "blue_rise_under_4cm"
+  },
+  {
+    "task": "buffer_swap",
+    "condition": "OOD",
+    "seed": 30103,
+    "method": "APPL_6_xhigh",
+    "success": true,
+    "steps": 1365,
+    "status": "succeeded",
+    "final": {
+      "blue_at_goal": true,
+      "red_at_goal": true,
+      "success": true
+    },
+    "source_root": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/runs/exp2/Exp2_new/ood_continuation_20260920/episodes/buffer_swap/OOD/30103",
+    "bundle_root": "episodes/APPL_6_xhigh/buffer_swap/OOD/30103",
+    "result_sha256": "49e74899d3a4da0b9e44688c4288aeb940f50dfcd5edd95252b66fb3016fb0ae",
+    "initial_sha256": "2cc84875bb4b4c992769fcf6f1c524b3a7c14ae99a617dd68d7cec5dafc23043",
+    "trace_sha256": "8de2a564c8b4955c67ab55cad9d0faa91c64c6ae61f8bcd56ade9def10a6b508",
+    "video": "episodes/APPL_6_xhigh/buffer_swap/OOD/30103/replay.mp4",
+    "first_goal_steps": {
+      "blue_at_goal": 1058,
+      "red_at_goal": 1365,
+      "success": 1365
+    },
+    "ever_goals": {
+      "blue_at_goal": true,
+      "red_at_goal": true,
+      "success": true
+    },
+    "max_rise_from_initial_m": {
+      "red": 0.2814909927546978,
+      "blue": 0.28748730942606926
+    },
+    "distinct_policies": 5,
+    "invocation_count": 15,
+    "generation_calls": 20,
+    "API_finish": [],
+    "API_arguments_equal_execution": true
+  },
+  {
+    "task": "unstack_sort",
+    "condition": "OOD",
+    "seed": 30203,
+    "method": "APPL_6_xhigh",
+    "success": true,
+    "steps": 575,
+    "status": "succeeded",
+    "final": {
+      "blue_at_goal": true,
+      "red_at_goal": true,
+      "success": true
+    },
+    "source_root": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/runs/exp2/Exp2_new/ood_continuation_20260920/episodes/unstack_sort/OOD/30203",
+    "bundle_root": "episodes/APPL_6_xhigh/unstack_sort/OOD/30203",
+    "result_sha256": "03685cfa26545c15b654d25b3950eb45154d4de42e493d0041c8e47be61fd512",
+    "initial_sha256": "3b247531a72b23bdfd2a18a3453c0d0d7d5ae2442538b701cb18d24b4da14e22",
+    "trace_sha256": "6c451a7c6f45ca7aa1c6d76b9b3e15142265c23ad0a35c43f260d4dfe4b0eb21",
+    "video": "episodes/APPL_6_xhigh/unstack_sort/OOD/30203/replay.mp4",
+    "first_goal_steps": {
+      "blue_at_goal": 575,
+      "red_at_goal": 244,
+      "success": 575
+    },
+    "ever_goals": {
+      "blue_at_goal": true,
+      "red_at_goal": true,
+      "success": true
+    },
+    "max_rise_from_initial_m": {
+      "red": 0.25016293302178383,
+      "blue": 0.2717566601932049
+    },
+    "distinct_policies": 2,
+    "invocation_count": 7,
+    "generation_calls": 9,
+    "API_finish": [],
+    "API_arguments_equal_execution": true
+  },
+  {
+    "task": "tray_pack",
+    "condition": "OOD",
+    "seed": 30303,
+    "method": "APPL_6_xhigh",
+    "success": true,
+    "steps": 677,
+    "status": "succeeded",
+    "final": {
+      "blue_at_goal": true,
+      "red_at_goal": true,
+      "success": true
+    },
+    "source_root": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/runs/exp2/Exp2_new/ood_continuation_20260920/episodes/tray_pack/OOD/30303",
+    "bundle_root": "episodes/APPL_6_xhigh/tray_pack/OOD/30303",
+    "result_sha256": "bbf4ca86ba81a2a208e7bdcbbda9eaa85803b6182b51c4b65d4a2d2c5f440bd3",
+    "initial_sha256": "2316b7c2190c96810644378ea99f21eee887f30a2864cd04eaa1bd28f449c761",
+    "trace_sha256": "50d972c17294605516f9f11907ca9f235d363c019de1fc5d23ee0ad6a877cb06",
+    "video": "episodes/APPL_6_xhigh/tray_pack/OOD/30303/replay.mp4",
+    "first_goal_steps": {
+      "blue_at_goal": 677,
+      "red_at_goal": 333,
+      "success": 677
+    },
+    "ever_goals": {
+      "blue_at_goal": true,
+      "red_at_goal": true,
+      "success": true
+    },
+    "max_rise_from_initial_m": {
+      "red": 0.2994292788207531,
+      "blue": 0.2825722210109234
+    },
+    "distinct_policies": 2,
+    "invocation_count": 5,
+    "generation_calls": 7,
+    "API_finish": [],
+    "API_arguments_equal_execution": true
+  },
+  {
+    "task": "drawer_exchange",
+    "condition": "OOD",
+    "seed": 6404,
+    "method": "APPL_6_xhigh",
+    "success": false,
+    "steps": 1101,
+    "status": "agent_finished",
+    "final": {
+      "blue_inside": false,
+      "drawer_open": true,
+      "red_on_pad": false,
+      "success": false
+    },
+    "source_root": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/runs/exp2/Exp2_new/ood_continuation_20260920/episodes/drawer_exchange/OOD/6404",
+    "bundle_root": "episodes/APPL_6_xhigh/drawer_exchange/OOD/6404",
+    "result_sha256": "795ca343d86a2c3072c3da8ba7a4485a56ac96f40de0e021528c3f66b4aeaae9",
+    "initial_sha256": "37224a5ca6d3d183c4b7207dce43308ae73c28c3659c1fef4bde94615553870b",
+    "trace_sha256": "bec590d7b1aa481c2955e6e8165e2255ae97a7cb1a661217e7b66f3d46efbe8d",
+    "video": "episodes/APPL_6_xhigh/drawer_exchange/OOD/6404/replay.mp4",
+    "first_goal_steps": {
+      "blue_inside": null,
+      "drawer_open": 177,
+      "red_on_pad": null,
+      "success": null
+    },
+    "ever_goals": {
+      "blue_inside": false,
+      "drawer_open": true,
+      "red_on_pad": false,
+      "success": false
+    },
+    "max_rise_from_initial_m": {
+      "red": 4.842877388000488e-06,
+      "blue": -8.568167686462402e-08
+    },
+    "distinct_policies": 6,
+    "invocation_count": 10,
+    "generation_calls": 17,
+    "API_finish": [
+      {
+        "file": "0017.response.json",
+        "reason": "Stopping without success after repeated acquisition and bounded recovery attempts. At physical step 1101, measured drawer_position=0.2947556 m and drawer_open=true, but red_on_pad=false, blue_inside=false, success=false. Red remains in the drawer at approximately (-0.19065,-0.10446,0.06300); blue is untouched outside at (-0.43691,0.27136,0.02000). Open h01 and evacuation h02 approaches disturbed the drawer without lifting red. Open h03 restored full opening but closed away from red and lifted empty. Evacuation h01 and h03 then hovered with fully closed empty fingers, and open h02 reopened/descended but again failed to acquire red. Observed ranges confirm no meaningful red lift. The remaining insertion policies support held-red descent/release or blue acquisition, not recovering ungrasped red from this failed approach. Their training overlap does not establish a credible recovery here; continued cycling would be unsupported extrapolation rather than demonstrated progress."
+      }
+    ],
+    "API_arguments_equal_execution": true,
+    "observed_bottleneck": "red_placement_not_reached"
+  },
+  {
+    "task": "two_block_sort",
+    "condition": "OOD",
+    "seed": 30004,
+    "method": "APPL_6_xhigh",
+    "success": false,
+    "steps": 983,
+    "status": "agent_finished",
+    "final": {
+      "blue_at_goal": false,
+      "red_at_goal": true,
+      "success": false
+    },
+    "source_root": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/runs/exp2/Exp2_new/ood_continuation_20260920/episodes/two_block_sort/OOD/30004",
+    "bundle_root": "episodes/APPL_6_xhigh/two_block_sort/OOD/30004",
+    "result_sha256": "689494d198fb9bb78d2362627cfac416b51201fb4067c8eaef3c7af5884d477a",
+    "initial_sha256": "de2b7648602ab2109cdd5890e168dc8148c03c02bd3875ec140ba15d436f1405",
+    "trace_sha256": "b45d778e7fbd323a6efa89050dcd747885c25a1ca48606a5d6841db8ed53aa93",
+    "video": "episodes/APPL_6_xhigh/two_block_sort/OOD/30004/replay.mp4",
+    "first_goal_steps": {
+      "blue_at_goal": null,
+      "red_at_goal": 318,
+      "success": null
+    },
+    "ever_goals": {
+      "blue_at_goal": false,
+      "red_at_goal": true,
+      "success": false
+    },
+    "max_rise_from_initial_m": {
+      "red": 0.2690987400710583,
+      "blue": 0.007933985441923141
+    },
+    "distinct_policies": 6,
+    "invocation_count": 18,
+    "generation_calls": 26,
+    "API_finish": [
+      {
+        "file": "0026.response.json",
+        "reason": "Task incomplete: latest measured red_at_goal=1, blue_at_goal=0, success=0. Red is contained at(-0.19104,-0.25275,0.020). Blue remains off-pad at(-0.47368,0.22638,0.020). Two blue pickup attempts failed, with fingers collapsing without object lift; recovery restored an open approach once, but the next attempt also missed and reoriented blue. The final monitored delivery-h03 probe stopped after2 steps as TCP-blue separation grew to0.128m with fingers fully closed and blue still on the table. All available policies are local successful-demonstration controllers without validated missed-grasp recovery; observed probes have not produced a credible remaining route to secure blue. Stopping rather than continuing unsupported empty transport or risking further disturbance."
+      }
+    ],
+    "API_arguments_equal_execution": true,
+    "observed_bottleneck": "blue_rise_under_4cm"
+  },
+  {
+    "task": "buffer_swap",
+    "condition": "OOD",
+    "seed": 30104,
+    "method": "APPL_6_xhigh",
+    "success": false,
+    "steps": 418,
+    "status": "agent_finished",
+    "final": {
+      "blue_at_goal": false,
+      "red_at_goal": false,
+      "success": false
+    },
+    "source_root": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/runs/exp2/Exp2_new/ood_continuation_20260920/episodes/buffer_swap/OOD/30104",
+    "bundle_root": "episodes/APPL_6_xhigh/buffer_swap/OOD/30104",
+    "result_sha256": "26d63792269d585d77541344d8e9a52e5df42b4390406df5ae15e337b0042a8e",
+    "initial_sha256": "8ea7a4cbeb30522a8fbf0ae9a4fc6e9b8962bed8854421adbdacc83198ab83c5",
+    "trace_sha256": "a7ec3b647187574b763187d405784af3300db660db32f3d267ff2be8b658d6e9",
+    "video": "episodes/APPL_6_xhigh/buffer_swap/OOD/30104/replay.mp4",
+    "first_goal_steps": {
+      "blue_at_goal": null,
+      "red_at_goal": null,
+      "success": null
+    },
+    "ever_goals": {
+      "blue_at_goal": false,
+      "red_at_goal": false,
+      "success": false
+    },
+    "max_rise_from_initial_m": {
+      "red": -8.195638656616211e-08,
+      "blue": -8.381903171539307e-08
+    },
+    "distinct_policies": 3,
+    "invocation_count": 5,
+    "generation_calls": 9,
+    "API_finish": [
+      {
+        "file": "0009.response.json",
+        "reason": "The exchange was not completed: red_at_goal=0 and blue_at_goal=0. All three buffer policies were attempted with observation-based checks. h02 and h01 approached red then ascended empty; h03 returned to red but remained open through another pickup opportunity and began moving laterally away near the table. Across the attempts the fingers stayed approximately 0.080 m wide and neither block lifted or materially moved. Current red remains near (-0.3253,-0.1818,0.020) and blue near (-0.3726,0.2095,0.020). Their shared successor overlaps cover successful buffering/acquisition transitions, not this repeated missed-closure state with red still occupying the blue destination. I do not have a credible supported continuation using the available local policies, and further low-height empty motion risks unnecessary disturbance."
+      }
+    ],
+    "API_arguments_equal_execution": true,
+    "observed_bottleneck": "initial_red_rise_under_4cm"
+  },
+  {
+    "task": "unstack_sort",
+    "condition": "OOD",
+    "seed": 30204,
+    "method": "APPL_6_xhigh",
+    "success": true,
+    "steps": 859,
+    "status": "succeeded",
+    "final": {
+      "blue_at_goal": true,
+      "red_at_goal": true,
+      "success": true
+    },
+    "source_root": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/runs/exp2/Exp2_new/ood_continuation_20260920/episodes/unstack_sort/OOD/30204",
+    "bundle_root": "episodes/APPL_6_xhigh/unstack_sort/OOD/30204",
+    "result_sha256": "7310bc71d46f1b4021c47ed07c930302539ae4010714589cdcba3ba5902273d4",
+    "initial_sha256": "ea5bbb57d0eeec213f9fcef57c442d508279f2ba8e37a55b1b493111e5b40478",
+    "trace_sha256": "ad7208b399fea7f7047db0571ada74896a9086d299b34f0cfcfe9673309f634d",
+    "video": "episodes/APPL_6_xhigh/unstack_sort/OOD/30204/replay.mp4",
+    "first_goal_steps": {
+      "blue_at_goal": 859,
+      "red_at_goal": 360,
+      "success": 859
+    },
+    "ever_goals": {
+      "blue_at_goal": true,
+      "red_at_goal": true,
+      "success": true
+    },
+    "max_rise_from_initial_m": {
+      "red": 0.25654542818665504,
+      "blue": 0.26630155369639397
+    },
+    "distinct_policies": 4,
+    "invocation_count": 11,
+    "generation_calls": 15,
+    "API_finish": [],
+    "API_arguments_equal_execution": true
+  },
+  {
+    "task": "tray_pack",
+    "condition": "OOD",
+    "seed": 30304,
+    "method": "APPL_6_xhigh",
+    "success": true,
+    "steps": 605,
+    "status": "succeeded",
+    "final": {
+      "blue_at_goal": true,
+      "red_at_goal": true,
+      "success": true
+    },
+    "source_root": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/runs/exp2/Exp2_new/ood_continuation_20260920/episodes/tray_pack/OOD/30304",
+    "bundle_root": "episodes/APPL_6_xhigh/tray_pack/OOD/30304",
+    "result_sha256": "826b35efbe71cfce02b9c33406e5b9f128fd67c0b1ca4c21fa81d1cbe6826972",
+    "initial_sha256": "76c766714f2ffdb9220e889b19a7668b56cd595bc9ecbfcc3b4d51b95cddf240",
+    "trace_sha256": "3e3e7682b62635414308a30afdb72f85dff1fc94429700272e140c5b321df812",
+    "video": "episodes/APPL_6_xhigh/tray_pack/OOD/30304/replay.mp4",
+    "first_goal_steps": {
+      "blue_at_goal": 605,
+      "red_at_goal": 262,
+      "success": 605
+    },
+    "ever_goals": {
+      "blue_at_goal": true,
+      "red_at_goal": true,
+      "success": true
+    },
+    "max_rise_from_initial_m": {
+      "red": 0.2774694077670574,
+      "blue": 0.2842199020087719
+    },
+    "distinct_policies": 2,
+    "invocation_count": 7,
+    "generation_calls": 9,
+    "API_finish": [],
+    "API_arguments_equal_execution": true
+  },
+  {
+    "task": "drawer_exchange",
+    "condition": "OOD",
+    "seed": 6405,
+    "method": "APPL_6_xhigh",
+    "success": false,
+    "steps": 1392,
+    "status": "agent_finished",
+    "final": {
+      "blue_inside": false,
+      "drawer_open": true,
+      "red_on_pad": false,
+      "success": false
+    },
+    "source_root": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/runs/exp2/Exp2_new/ood_continuation_20260920/episodes/drawer_exchange/OOD/6405",
+    "bundle_root": "episodes/APPL_6_xhigh/drawer_exchange/OOD/6405",
+    "result_sha256": "5908a7120b6cac6c8912ddf62bb1faa7be13d72039aa4155cdb4be9282c8893f",
+    "initial_sha256": "95220a88c0d4898b8b990904a2f0dbf8e7e7cfaba4974b3d2c6ced4f234d085e",
+    "trace_sha256": "d48c7d079bcb3b5173679e992be3cadfd61802247d61b1215cc26c8d067a1158",
+    "video": "episodes/APPL_6_xhigh/drawer_exchange/OOD/6405/replay.mp4",
+    "first_goal_steps": {
+      "blue_inside": null,
+      "drawer_open": 234,
+      "red_on_pad": null,
+      "success": null
+    },
+    "ever_goals": {
+      "blue_inside": false,
+      "drawer_open": true,
+      "red_on_pad": false,
+      "success": false
+    },
+    "max_rise_from_initial_m": {
+      "red": 0.021545417606830597,
+      "blue": -8.195638656616211e-08
+    },
+    "distinct_policies": 6,
+    "invocation_count": 13,
+    "generation_calls": 21,
+    "API_finish": [
+      {
+        "file": "0021.response.json",
+        "reason": "Stopping incomplete after repeated failed red acquisition and bounded recovery attempts. The latest measured drawer position is0.294356 m, so the drawer is open, but red remains at[-0.23504,-0.01349,0.06300] rather than on the pad and blue remains outside at[-0.38130,0.27500,0.02000]. The latest evacuation h03 attempt again lifted an empty fully closed tool while red never rose above0.063003 m. Alternate opening and evacuation mechanisms have either missed red, repeated empty-hand motion, or disturbed the drawer. Their documented successful transition overlap does not establish regrasp recovery from this displaced red state. I judge no further credible local route with the available frozen policies; measured success is false."
+      }
+    ],
+    "API_arguments_equal_execution": true,
+    "observed_bottleneck": "red_placement_not_reached"
+  },
+  {
+    "task": "two_block_sort",
+    "condition": "OOD",
+    "seed": 30005,
+    "method": "APPL_6_xhigh",
+    "success": false,
+    "steps": 982,
+    "status": "agent_finished",
+    "final": {
+      "blue_at_goal": false,
+      "red_at_goal": true,
+      "success": false
+    },
+    "source_root": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/runs/exp2/Exp2_new/ood_continuation_20260920/episodes/two_block_sort/OOD/30005",
+    "bundle_root": "episodes/APPL_6_xhigh/two_block_sort/OOD/30005",
+    "result_sha256": "a1daf2d91e19cbbae5186c7f0756203dbd4c9515d25528afa75ae115adaf9a3b",
+    "initial_sha256": "c5bf7ea5d715215b969e4272446027d56342f814f9c045718aa2ec19a124dfa9",
+    "trace_sha256": "9a671a5286ebe5866eaf280185869caa8f839324d7604fc66e34570dda5f8a2d",
+    "video": "episodes/APPL_6_xhigh/two_block_sort/OOD/30005/replay.mp4",
+    "first_goal_steps": {
+      "blue_at_goal": null,
+      "red_at_goal": 570,
+      "success": null
+    },
+    "ever_goals": {
+      "blue_at_goal": false,
+      "red_at_goal": true,
+      "success": false
+    },
+    "max_rise_from_initial_m": {
+      "red": 0.27330930158495903,
+      "blue": 0.006552858278155327
+    },
+    "distinct_policies": 6,
+    "invocation_count": 15,
+    "generation_calls": 23,
+    "API_finish": [
+      {
+        "file": "0023.response.json",
+        "reason": "Partial completion only: red_at_goal=1, blue_at_goal=0, success=0. Red is contained on its pad at approximately (-0.19557,-0.25274,0.020). Blue acquisition missed; blue remains on the table at approximately (-0.39017,0.19814,0.020). Bounded recovery attempts with all available policy variants failed to reopen the empty gripper or reacquire blue; subsequent arm motion approached the already placed red instead. The latest trial again maintained zero finger width with no blue motion. I judge there is no credible remaining recovery route with these frozen policies and stop rather than risk disturbing the achieved red placement or claim success."
+      }
+    ],
+    "API_arguments_equal_execution": true,
+    "observed_bottleneck": "blue_rise_under_4cm"
+  },
+  {
+    "task": "buffer_swap",
+    "condition": "OOD",
+    "seed": 30105,
+    "method": "APPL_6_xhigh",
+    "success": false,
+    "steps": 1043,
+    "status": "agent_finished",
+    "final": {
+      "blue_at_goal": true,
+      "red_at_goal": false,
+      "success": false
+    },
+    "source_root": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/runs/exp2/Exp2_new/ood_continuation_20260920/episodes/buffer_swap/OOD/30105",
+    "bundle_root": "episodes/APPL_6_xhigh/buffer_swap/OOD/30105",
+    "result_sha256": "079d82b7f250a5cd6569d3ffcba7c26579571944ad9cd08142081ec5012a7bd4",
+    "initial_sha256": "4ebb199f51291ac968d60d422930b40f9a058a92c2e2ffb7e14f68750172a76d",
+    "trace_sha256": "bff60694ed8c4b4fd4561e059d46f9397df00e1ba7cbb08266868cad877530f2",
+    "video": "episodes/APPL_6_xhigh/buffer_swap/OOD/30105/replay.mp4",
+    "first_goal_steps": {
+      "blue_at_goal": 704,
+      "red_at_goal": null,
+      "success": null
+    },
+    "ever_goals": {
+      "blue_at_goal": true,
+      "red_at_goal": false,
+      "success": false
+    },
+    "max_rise_from_initial_m": {
+      "red": 0.28195519372820854,
+      "blue": 0.27975664660334587
+    },
+    "distinct_policies": 5,
+    "invocation_count": 10,
+    "generation_calls": 16,
+    "API_finish": [
+      {
+        "file": "0016.response.json",
+        "reason": "The swap is incomplete: measured blue_at_goal=1, red_at_goal=0, success=0. Blue is supported at approximately (-0.3712,-0.2049,0.0200), but red remains at (-0.2336,0.0235,0.0200), outside its positive-y goal. Red retrieval missed and displaced the block; subsequent finish-policy, transfer-policy, and buffer-release recovery attempts did not produce reopening or red/TCP co-lift. The latest buffer attempt descended and rose again with zero finger width while both objects stayed supported. The documented overlap covers successful approach/release/lift transitions, not this displaced-red, closed-empty failure. With repeated lack of recovery and no credible supported route left using the available frozen controllers, I am ending honestly without claiming success."
+      }
+    ],
+    "API_arguments_equal_execution": true,
+    "observed_bottleneck": "red_final_goal_not_reached_after_blue_goal"
+  },
+  {
+    "task": "unstack_sort",
+    "condition": "OOD",
+    "seed": 30205,
+    "method": "APPL_6_xhigh",
+    "success": true,
+    "steps": 641,
+    "status": "succeeded",
+    "final": {
+      "blue_at_goal": true,
+      "red_at_goal": true,
+      "success": true
+    },
+    "source_root": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/runs/exp2/Exp2_new/ood_continuation_20260920/episodes/unstack_sort/OOD/30205",
+    "bundle_root": "episodes/APPL_6_xhigh/unstack_sort/OOD/30205",
+    "result_sha256": "dc255259c0d2083ab82146d1c3447388c4ce0bf1c9a243e5438e3b5d8369adae",
+    "initial_sha256": "393734201cb4e3e7334782413b6a694cb7dc9971fc8bd7b4d81a46c2b0a5bcf9",
+    "trace_sha256": "d27cfe84bdfe00158cba92b975b71733a7d4131e3841dc81a94447e117c6af28",
+    "video": "episodes/APPL_6_xhigh/unstack_sort/OOD/30205/replay.mp4",
+    "first_goal_steps": {
+      "blue_at_goal": 641,
+      "red_at_goal": 252,
+      "success": 641
+    },
+    "ever_goals": {
+      "blue_at_goal": true,
+      "red_at_goal": true,
+      "success": true
+    },
+    "max_rise_from_initial_m": {
+      "red": 0.25955677404999733,
+      "blue": 0.27740828320384026
+    },
+    "distinct_policies": 2,
+    "invocation_count": 5,
+    "generation_calls": 7,
+    "API_finish": [],
+    "API_arguments_equal_execution": true
+  },
+  {
+    "task": "tray_pack",
+    "condition": "OOD",
+    "seed": 30305,
+    "method": "APPL_6_xhigh",
+    "success": false,
+    "steps": 1159,
+    "status": "agent_finished",
+    "final": {
+      "blue_at_goal": false,
+      "red_at_goal": false,
+      "success": false
+    },
+    "source_root": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/runs/exp2/Exp2_new/ood_continuation_20260920/episodes/tray_pack/OOD/30305",
+    "bundle_root": "episodes/APPL_6_xhigh/tray_pack/OOD/30305",
+    "result_sha256": "dbee9a399e3eb34b4596ac93608000896e7d8394b7a424fa292f18ae33c4f128",
+    "initial_sha256": "643d11199523b2bce1a27ce5c934f11db3d3fe38f660b38eaff7e25799817149",
+    "trace_sha256": "7910bda81ba7a2572a9a7988c9fd8d7c6bfe9dd5865ad5c66fb10b383ddd2ace",
+    "video": "episodes/APPL_6_xhigh/tray_pack/OOD/30305/replay.mp4",
+    "first_goal_steps": {
+      "blue_at_goal": null,
+      "red_at_goal": 277,
+      "success": null
+    },
+    "ever_goals": {
+      "blue_at_goal": false,
+      "red_at_goal": true,
+      "success": false
+    },
+    "max_rise_from_initial_m": {
+      "red": 0.270405363291502,
+      "blue": 0.004587491974234581
+    },
+    "distinct_policies": 6,
+    "invocation_count": 17,
+    "generation_calls": 25,
+    "API_finish": [
+      {
+        "file": "0025.response.json",
+        "reason": "The task is incomplete: both measured goal predicates are false. Red was initially delivered, but subsequent failed-blue recovery disturbed it; it is now at approximately [-0.13581,-0.13831,0.03600], outside its marked region near the tray wall. Blue remains on the table at approximately [-0.36502,0.23767,0.02000] after missed grasps and rotation. Several distinct acquisition and delivery controllers were assessed from closed-empty, open-retreat, and local-source states. The latest local correction again closed empty and raised the TCP while blue stayed at table height (finger width 0, TCP-blue distance 0.09266 m). Observed training overlap does not establish recovery of these displaced/rotated blocks, and further attempts have already caused fixture contact and loss of red containment. I judge there is no credible remaining recovery route with the available frozen policies and am stopping without claiming success."
+      }
+    ],
+    "API_arguments_equal_execution": true,
+    "observed_bottleneck": "blue_goal_not_reached"
+  },
+  {
+    "task": "drawer_exchange",
+    "condition": "OOD",
+    "seed": 6406,
+    "method": "APPL_6_xhigh",
+    "success": false,
+    "steps": 924,
+    "status": "agent_finished",
+    "final": {
+      "blue_inside": false,
+      "drawer_open": false,
+      "red_on_pad": false,
+      "success": false
+    },
+    "source_root": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/runs/exp2/Exp2_new/ood_continuation_20260920/episodes/drawer_exchange/OOD/6406",
+    "bundle_root": "episodes/APPL_6_xhigh/drawer_exchange/OOD/6406",
+    "result_sha256": "fa15df3d2c8e213614cd7b8f706a2b8821cb9cf874f14f22ac592d6914a8adff",
+    "initial_sha256": "c951b9b0c8899dcc3caada67b1cdcd9ada185389356a0e1a4e81225f357b1155",
+    "trace_sha256": "5fcfbc1a873ff165efc85148c09f014e68e46206e01416f0807e68028508dd5f",
+    "video": "episodes/APPL_6_xhigh/drawer_exchange/OOD/6406/replay.mp4",
+    "first_goal_steps": {
+      "blue_inside": null,
+      "drawer_open": 193,
+      "red_on_pad": null,
+      "success": null
+    },
+    "ever_goals": {
+      "blue_inside": false,
+      "drawer_open": true,
+      "red_on_pad": false,
+      "success": false
+    },
+    "max_rise_from_initial_m": {
+      "red": 1.7955899238586426e-06,
+      "blue": -8.568167686462402e-08
+    },
+    "distinct_policies": 6,
+    "invocation_count": 10,
+    "generation_calls": 17,
+    "API_finish": [
+      {
+        "file": "0017.response.json",
+        "reason": "The task is not complete. Latest measurements: drawer_position=0.258629 m, below the strict >0.26 m threshold; red remains in the drawer at (-0.126589,-0.090215,0.063000), not on the pad; blue remains at its source, not inside. Repeated acquisition attempts produced no red lift. Open-access h02 restored open fingers twice, but its descent missed red; an earlier open-finger transfer to relational evacuation h01 also descended with approximately 9.8 cm TCP-red separation. Other bounded acquisition probes did not restore grasp and one disturbed the drawer toward closure. The latest low approach is substantially misaligned, not successor-ready. Given these observed failures and the policies' lack of established missed-grasp/disturbed-drawer recovery, I no longer judge there to be a credible supported route to complete the task without repeating ineffective motions."
+      }
+    ],
+    "API_arguments_equal_execution": true,
+    "observed_bottleneck": "red_placement_not_reached"
+  },
+  {
+    "task": "two_block_sort",
+    "condition": "OOD",
+    "seed": 30006,
+    "method": "APPL_6_xhigh",
+    "success": false,
+    "steps": 1049,
+    "status": "agent_finished",
+    "final": {
+      "blue_at_goal": false,
+      "red_at_goal": true,
+      "success": false
+    },
+    "source_root": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/runs/exp2/Exp2_new/ood_continuation_20260920/episodes/two_block_sort/OOD/30006",
+    "bundle_root": "episodes/APPL_6_xhigh/two_block_sort/OOD/30006",
+    "result_sha256": "4b67daa668480f4de42b365252c3b9e30fb466beba699c9b533b46a87ae8b7f6",
+    "initial_sha256": "4e1c2c2af5e5bb9bf5f8691c7d4a7bf96b08187502a258ddd02c5b800906fe72",
+    "trace_sha256": "4d8ff0f1fe58a6cdd541e8e3f9ac2da292d1939e3032d4b221aa5f82e5909171",
+    "video": "episodes/APPL_6_xhigh/two_block_sort/OOD/30006/replay.mp4",
+    "first_goal_steps": {
+      "blue_at_goal": null,
+      "red_at_goal": 490,
+      "success": null
+    },
+    "ever_goals": {
+      "blue_at_goal": false,
+      "red_at_goal": true,
+      "success": false
+    },
+    "max_rise_from_initial_m": {
+      "red": 0.28006578609347343,
+      "blue": 0.2841744236648083
+    },
+    "distinct_policies": 6,
+    "invocation_count": 22,
+    "generation_calls": 33,
+    "API_finish": [
+      {
+        "file": "0033.response.json",
+        "reason": "Stopping with partial completion, not success. Latest measured red_at_goal=1, blue_at_goal=0, success=0. Red rests on its pad; blue remains held near (-0.306,-0.016,0.288), far from its pad. Delivery h01 stalled in a high source-side hover over a 100-step attempt, and bounded alternatives across all acquisition policies plus delivery h02/h03 repeatedly moved blue away from its goal in Y. The grasp stayed approximately rigid and red stayed contained, but the displaced blue state is outside demonstrated transfer geometry. Shared temporal overlap and learned conditioning have not provided a credible remaining placement/recovery route, so further cycling is not justified."
+      }
+    ],
+    "API_arguments_equal_execution": true,
+    "observed_bottleneck": "blue_rose_but_goal_not_reached"
+  },
+  {
+    "task": "buffer_swap",
+    "condition": "OOD",
+    "seed": 30106,
+    "method": "APPL_6_xhigh",
+    "success": false,
+    "steps": 637,
+    "status": "agent_finished",
+    "final": {
+      "blue_at_goal": false,
+      "red_at_goal": false,
+      "success": false
+    },
+    "source_root": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/runs/exp2/Exp2_new/ood_continuation_20260920/episodes/buffer_swap/OOD/30106",
+    "bundle_root": "episodes/APPL_6_xhigh/buffer_swap/OOD/30106",
+    "result_sha256": "15e16093b40bd80581218ff064e0c21988ef02e029654101b45e378711568a8d",
+    "initial_sha256": "99fd53342c3403b1ad823a750cf93b7b209aebe2575e7bfeabc21a1cd564d64a",
+    "trace_sha256": "5b98426d924153b5eec170a95517c8be402c2953fe36ae944e66ab67b3ac0650",
+    "video": "episodes/APPL_6_xhigh/buffer_swap/OOD/30106/replay.mp4",
+    "first_goal_steps": {
+      "blue_at_goal": null,
+      "red_at_goal": null,
+      "success": null
+    },
+    "ever_goals": {
+      "blue_at_goal": false,
+      "red_at_goal": false,
+      "success": false
+    },
+    "max_rise_from_initial_m": {
+      "red": -8.195638656616211e-08,
+      "blue": -8.381903171539307e-08
+    },
+    "distinct_policies": 3,
+    "invocation_count": 6,
+    "generation_calls": 10,
+    "API_finish": [
+      {
+        "file": "0010.response.json",
+        "reason": "Unable to complete the exchange with the available frozen policies. All three buffer_red variants were tried, including a targeted low-approach handoff to h03 after h01 reacquired red. Each observed acquisition attempt kept total finger width near 0.080 m; red never rose above table height and the TCP subsequently moved away empty. Both blocks remain near their initial regions, and red_at_goal=0, blue_at_goal=0, success=0 at step637. The transfer/finish overlap documents cover successful red buffering and later transitions, not this repeated failure to acquire red while it still occupies blue's destination. With the targeted recovery also unsuccessful, I do not have a credible supported route to progress and am ending without claiming success."
+      }
+    ],
+    "API_arguments_equal_execution": true,
+    "observed_bottleneck": "initial_red_rise_under_4cm"
+  },
+  {
+    "task": "unstack_sort",
+    "condition": "OOD",
+    "seed": 30206,
+    "method": "APPL_6_xhigh",
+    "success": true,
+    "steps": 633,
+    "status": "succeeded",
+    "final": {
+      "blue_at_goal": true,
+      "red_at_goal": true,
+      "success": true
+    },
+    "source_root": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/runs/exp2/Exp2_new/ood_continuation_20260920/episodes/unstack_sort/OOD/30206",
+    "bundle_root": "episodes/APPL_6_xhigh/unstack_sort/OOD/30206",
+    "result_sha256": "a821a21cea1f2fefef42af2448a2c7c7dff1cdf1190598e194d8435552571fde",
+    "initial_sha256": "3b1be038317619e88f002c132c46942095b49f82610201873903fb0d3cde6453",
+    "trace_sha256": "35118408cf2629fae365ce2f57733d17e9747ec9e6d1f33ec87a6c47227de906",
+    "video": "episodes/APPL_6_xhigh/unstack_sort/OOD/30206/replay.mp4",
+    "first_goal_steps": {
+      "blue_at_goal": 633,
+      "red_at_goal": 260,
+      "success": 633
+    },
+    "ever_goals": {
+      "blue_at_goal": true,
+      "red_at_goal": true,
+      "success": true
+    },
+    "max_rise_from_initial_m": {
+      "red": 0.25732919946312904,
+      "blue": 0.276872169226408
+    },
+    "distinct_policies": 2,
+    "invocation_count": 5,
+    "generation_calls": 7,
+    "API_finish": [],
+    "API_arguments_equal_execution": true
+  },
+  {
+    "task": "tray_pack",
+    "condition": "OOD",
+    "seed": 30306,
+    "method": "APPL_6_xhigh",
+    "success": false,
+    "steps": 422,
+    "status": "agent_finished",
+    "final": {
+      "blue_at_goal": false,
+      "red_at_goal": false,
+      "success": false
+    },
+    "source_root": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/runs/exp2/Exp2_new/ood_continuation_20260920/episodes/tray_pack/OOD/30306",
+    "bundle_root": "episodes/APPL_6_xhigh/tray_pack/OOD/30306",
+    "result_sha256": "404d27653d426566492dcb70b2626d693281faf75febf0f02c12139e4d6b885b",
+    "initial_sha256": "68b57a46dd004d9c31a65c3364e10c5c7f09c2662ffc823b27e918789f557261",
+    "trace_sha256": "c6e53a227e910fa931f171188818179e2a88352ca7e7ad5f38aeb676df652c16",
+    "video": "episodes/APPL_6_xhigh/tray_pack/OOD/30306/replay.mp4",
+    "first_goal_steps": {
+      "blue_at_goal": null,
+      "red_at_goal": null,
+      "success": null
+    },
+    "ever_goals": {
+      "blue_at_goal": false,
+      "red_at_goal": false,
+      "success": false
+    },
+    "max_rise_from_initial_m": {
+      "red": 6.894581019878387e-05,
+      "blue": -8.195638656616211e-08
+    },
+    "distinct_policies": 5,
+    "invocation_count": 5,
+    "generation_calls": 11,
+    "API_finish": [
+      {
+        "file": "0011.response.json",
+        "reason": "Unable to complete the task with the available frozen policies. The initial red pickup missed and left red displaced and rotated on the table. Subsequent acquisition variants continued empty closed-hand motion, and bounded trials of two delivery variants did not reopen the hand or return to a viable pickup. At physical step 422 both cubes remain at table height about 0.020 m, both goal predicates and success are false, and the gripper is empty and fully closed. The documented overlap covers successful approach/lift/release transitions, not this persistent missed-grasp state; repeated observed nonprogress leaves no credible recovery route with these local controllers."
+      }
+    ],
+    "API_arguments_equal_execution": true,
+    "observed_bottleneck": "red_goal_not_reached"
+  },
+  {
+    "task": "drawer_exchange",
+    "condition": "OOD",
+    "seed": 6407,
+    "method": "APPL_6_xhigh",
+    "success": false,
+    "steps": 602,
+    "status": "agent_finished",
+    "final": {
+      "blue_inside": false,
+      "drawer_open": false,
+      "red_on_pad": false,
+      "success": false
+    },
+    "source_root": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/runs/exp2/Exp2_new/ood_continuation_20260920/episodes/drawer_exchange/OOD/6407",
+    "bundle_root": "episodes/APPL_6_xhigh/drawer_exchange/OOD/6407",
+    "result_sha256": "f49c08f4be9f1345f2f48a3a89212f2cf1326327a660a68ec0233ddbe43c4e7e",
+    "initial_sha256": "51e459b96f51d723aaadac742e371e467fa537880519af5f0999dbb224d445e3",
+    "trace_sha256": "d8f11d23b8219bec9aa2f5aa43acecd667a6de42e8af533753d9c1c7bfb4fd35",
+    "video": "episodes/APPL_6_xhigh/drawer_exchange/OOD/6407/replay.mp4",
+    "first_goal_steps": {
+      "blue_inside": null,
+      "drawer_open": 208,
+      "red_on_pad": null,
+      "success": null
+    },
+    "ever_goals": {
+      "blue_inside": false,
+      "drawer_open": true,
+      "red_on_pad": false,
+      "success": false
+    },
+    "max_rise_from_initial_m": {
+      "red": 1.459568738937378e-05,
+      "blue": -8.195638656616211e-08
+    },
+    "distinct_policies": 4,
+    "invocation_count": 6,
+    "generation_calls": 11,
+    "API_finish": [
+      {
+        "file": "0011.response.json",
+        "reason": "Task unsuccessful at physical step 602: drawer_position=0.072167 m (required >0.26), red_on_pad=0, blue_inside=0, success=0. Initial opening reached about 0.297 m but was lost during red approach. Bounded recovery with open_access h03, evacuate_red h02, revisited open_access h01 and open_access h02 did not establish red lift or durable handle contact. The last 96 steps left fingers fully closed and drawer stationary while TCP moved without coupled articulation, consistent with an empty pull. Current state is outside the demonstrated successful contact transitions; no credible recovery route remains among these local learned controllers. Ending without claiming completion."
+      }
+    ],
+    "API_arguments_equal_execution": true,
+    "observed_bottleneck": "red_placement_not_reached"
+  },
+  {
+    "task": "two_block_sort",
+    "condition": "OOD",
+    "seed": 30007,
+    "method": "APPL_6_xhigh",
+    "success": false,
+    "steps": 1152,
+    "status": "agent_finished",
+    "final": {
+      "blue_at_goal": false,
+      "red_at_goal": true,
+      "success": false
+    },
+    "source_root": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/runs/exp2/Exp2_new/ood_continuation_20260920/episodes/two_block_sort/OOD/30007",
+    "bundle_root": "episodes/APPL_6_xhigh/two_block_sort/OOD/30007",
+    "result_sha256": "7d933036c4ba8283484111ba4573d24be6de8bec773cfe3a041b8db98be079cd",
+    "initial_sha256": "971f2e7028812f6fe12d59f3d9cc8d871f6977865274810c3505c90c465c5180",
+    "trace_sha256": "d9c1e4f9f32cf6f61047ff68391257c0682c75be2fbe29c0cc6d1dce09403fa2",
+    "video": "episodes/APPL_6_xhigh/two_block_sort/OOD/30007/replay.mp4",
+    "first_goal_steps": {
+      "blue_at_goal": null,
+      "red_at_goal": 351,
+      "success": null
+    },
+    "ever_goals": {
+      "blue_at_goal": false,
+      "red_at_goal": true,
+      "success": false
+    },
+    "max_rise_from_initial_m": {
+      "red": 0.26045290753245354,
+      "blue": 9.285472333431244e-05
+    },
+    "distinct_policies": 6,
+    "invocation_count": 15,
+    "generation_calls": 22,
+    "API_finish": [
+      {
+        "file": "0022.response.json",
+        "reason": "Task incomplete: measured red_at_goal=1, blue_at_goal=0, success=0. Red remains on its pad at approximately (-0.2021,-0.2633,0.0200). Blue remains near its source at (-0.4607,0.2333,0.0200) and never established observed lift. After a missed blue grasp, bounded recovery attempts with the available acquisition and delivery mechanisms failed to reopen the empty gripper or resume acquisition. The final delivery h03 continuation only oscillated at TCP z=0.076-0.116 with finger_width=0 and neither block moving. I judge further execution lacks a credible observed route to progress; stopping preserves the completed red placement."
+      }
+    ],
+    "API_arguments_equal_execution": true,
+    "observed_bottleneck": "blue_rise_under_4cm"
+  },
+  {
+    "task": "buffer_swap",
+    "condition": "OOD",
+    "seed": 30107,
+    "method": "APPL_6_xhigh",
+    "success": true,
+    "steps": 1754,
+    "status": "succeeded",
+    "final": {
+      "blue_at_goal": true,
+      "red_at_goal": true,
+      "success": true
+    },
+    "source_root": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/runs/exp2/Exp2_new/ood_continuation_20260920/episodes/buffer_swap/OOD/30107",
+    "bundle_root": "episodes/APPL_6_xhigh/buffer_swap/OOD/30107",
+    "result_sha256": "726597ee898898b6496ec80f3bc8e03ea9d2acfb08a5f0dfb8ae75f83af2563e",
+    "initial_sha256": "6c000faae41af645afb3bd70837a7702c8b8b6569e624be8a24081d6d0da3fe2",
+    "trace_sha256": "8152aee823364a472cf3787c12cdad02784682d8f482f2596a830897108ab3bf",
+    "video": "episodes/APPL_6_xhigh/buffer_swap/OOD/30107/replay.mp4",
+    "first_goal_steps": {
+      "blue_at_goal": 1404,
+      "red_at_goal": 1754,
+      "success": 1754
+    },
+    "ever_goals": {
+      "blue_at_goal": true,
+      "red_at_goal": true,
+      "success": true
+    },
+    "max_rise_from_initial_m": {
+      "red": 0.28102849051356316,
+      "blue": 0.2906949035823345
+    },
+    "distinct_policies": 5,
+    "invocation_count": 15,
+    "generation_calls": 20,
+    "API_finish": [],
+    "API_arguments_equal_execution": true
+  },
+  {
+    "task": "unstack_sort",
+    "condition": "OOD",
+    "seed": 30207,
+    "method": "APPL_6_xhigh",
+    "success": true,
+    "steps": 813,
+    "status": "succeeded",
+    "final": {
+      "blue_at_goal": true,
+      "red_at_goal": true,
+      "success": true
+    },
+    "source_root": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/runs/exp2/Exp2_new/ood_continuation_20260920/episodes/unstack_sort/OOD/30207",
+    "bundle_root": "episodes/APPL_6_xhigh/unstack_sort/OOD/30207",
+    "result_sha256": "a11b76259c92474491b9fc3f0dbb34547c77ebe7f5b06e44e48c07058444c614",
+    "initial_sha256": "2c205da962af606a42f51f32943e99b58e34cdf2a7ea45133ef4bb688123f9ab",
+    "trace_sha256": "614a02248eac8edf4bda92a218b308ec6e96fdb32d7c04031a29e164f4e054f1",
+    "video": "episodes/APPL_6_xhigh/unstack_sort/OOD/30207/replay.mp4",
+    "first_goal_steps": {
+      "blue_at_goal": 813,
+      "red_at_goal": 475,
+      "success": 813
+    },
+    "ever_goals": {
+      "blue_at_goal": true,
+      "red_at_goal": true,
+      "success": true
+    },
+    "max_rise_from_initial_m": {
+      "red": 0.2594968415796757,
+      "blue": 0.27875490114092827
+    },
+    "distinct_policies": 3,
+    "invocation_count": 7,
+    "generation_calls": 10,
+    "API_finish": [],
+    "API_arguments_equal_execution": true
+  },
+  {
+    "task": "tray_pack",
+    "condition": "OOD",
+    "seed": 30307,
+    "method": "APPL_6_xhigh",
+    "success": true,
+    "steps": 1404,
+    "status": "succeeded",
+    "final": {
+      "blue_at_goal": true,
+      "red_at_goal": true,
+      "success": true
+    },
+    "source_root": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/runs/exp2/Exp2_new/ood_continuation_20260920/episodes/tray_pack/OOD/30307",
+    "bundle_root": "episodes/APPL_6_xhigh/tray_pack/OOD/30307",
+    "result_sha256": "992008af60f6fb04adc51df1a339541a89edb9d669af00e901cefab63ea0c7a9",
+    "initial_sha256": "34a10f6f76761838dbb9a65e05f5c49a9118ee92f77db287a625525fe5484ae7",
+    "trace_sha256": "ed86486257a161a89f775ada6c853b10dff0109acce0851f9cb1b68ce720dbf2",
+    "video": "episodes/APPL_6_xhigh/tray_pack/OOD/30307/replay.mp4",
+    "first_goal_steps": {
+      "blue_at_goal": 1404,
+      "red_at_goal": 742,
+      "success": 1404
+    },
+    "ever_goals": {
+      "blue_at_goal": true,
+      "red_at_goal": true,
+      "success": true
+    },
+    "max_rise_from_initial_m": {
+      "red": 0.2940624766051769,
+      "blue": 0.2954980246722698
+    },
+    "distinct_policies": 5,
+    "invocation_count": 15,
+    "generation_calls": 20,
+    "API_finish": [],
+    "API_arguments_equal_execution": true
+  },
+  {
+    "task": "drawer_exchange",
+    "condition": "OOD",
+    "seed": 6408,
+    "method": "APPL_6_xhigh",
+    "success": false,
+    "steps": 1432,
+    "status": "agent_finished",
+    "final": {
+      "blue_inside": false,
+      "drawer_open": false,
+      "red_on_pad": false,
+      "success": false
+    },
+    "source_root": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/runs/exp2/Exp2_new/ood_continuation_20260920/episodes/drawer_exchange/OOD/6408",
+    "bundle_root": "episodes/APPL_6_xhigh/drawer_exchange/OOD/6408",
+    "result_sha256": "e7b43d780155ee48de78831d7a5491f2b7a6ca6ea44718fa1a35ac9ab0edb23b",
+    "initial_sha256": "d123d03dd37f591e2e3dcb1054843331d135204e284b2554fae4ca4177524550",
+    "trace_sha256": "84f1392289fc3f218f743b8323c1a35e471a5a7711e61bd27ff7cd9132f7c79e",
+    "video": "episodes/APPL_6_xhigh/drawer_exchange/OOD/6408/replay.mp4",
+    "first_goal_steps": {
+      "blue_inside": null,
+      "drawer_open": 246,
+      "red_on_pad": null,
+      "success": null
+    },
+    "ever_goals": {
+      "blue_inside": false,
+      "drawer_open": true,
+      "red_on_pad": false,
+      "success": false
+    },
+    "max_rise_from_initial_m": {
+      "red": 0.021889396011829376,
+      "blue": -8.568167686462402e-08
+    },
+    "distinct_policies": 6,
+    "invocation_count": 13,
+    "generation_calls": 21,
+    "API_finish": [
+      {
+        "file": "0021.response.json",
+        "reason": "The task is not complete. Repeated red-acquisition attempts failed to establish a sustained TCP/red co-lift; the most recent attempt pushed and rotated red instead. A subsequent recovery disturbed the drawer, and the last monitored restoration attempt ended with drawer_position=0.133448 m and negative drawer velocity, red still at drawer-floor height (z=0.063 m), and blue outside at z=0.020 m. All three supplied goal predicates are currently false. The attempted opening and evacuation variants have not provided a reliable route back to a usable red grasp, and the documented successful-transition overlap does not establish recovery from this disturbed state. I am ending rather than claiming success or continuing unsupported retries."
+      }
+    ],
+    "API_arguments_equal_execution": true,
+    "observed_bottleneck": "red_placement_not_reached"
+  },
+  {
+    "task": "two_block_sort",
+    "condition": "OOD",
+    "seed": 30008,
+    "method": "APPL_6_xhigh",
+    "success": false,
+    "steps": 975,
+    "status": "agent_finished",
+    "final": {
+      "blue_at_goal": false,
+      "red_at_goal": true,
+      "success": false
+    },
+    "source_root": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/runs/exp2/Exp2_new/ood_continuation_20260920/episodes/two_block_sort/OOD/30008",
+    "bundle_root": "episodes/APPL_6_xhigh/two_block_sort/OOD/30008",
+    "result_sha256": "d6098fc281a3bc75de007897eaa7a6802f3081addce4e3165b751b15250cb82a",
+    "initial_sha256": "886f872230bfdaa8fc4f5568bf484e5fe34d44d8ae3cae97171821cf5a80d8e0",
+    "trace_sha256": "a54c6fe29d2c64c8ac39b4d3a5e2ba92669c4ed84c2dd4801a1c40fc69d9255a",
+    "video": "episodes/APPL_6_xhigh/two_block_sort/OOD/30008/replay.mp4",
+    "first_goal_steps": {
+      "blue_at_goal": null,
+      "red_at_goal": 324,
+      "success": null
+    },
+    "ever_goals": {
+      "blue_at_goal": false,
+      "red_at_goal": true,
+      "success": false
+    },
+    "max_rise_from_initial_m": {
+      "red": 0.2711050622165203,
+      "blue": 0.00047780200839042664
+    },
+    "distinct_policies": 6,
+    "invocation_count": 12,
+    "generation_calls": 19,
+    "API_finish": [
+      {
+        "file": "0019.response.json",
+        "reason": "The task is not complete: measured red_at_goal=1, blue_at_goal=0, success=0 at step975. Red remains correctly placed at approximately (-0.17093,-0.23889,0.02000). Blue remains off-pad at (-0.46812,0.23958,0.02000) after a missed grasp displaced and yaw-rotated it. Bounded recovery attempts using the other acquisition policies and all three delivery policies failed to reopen the empty gripper or lift blue; measured finger width stayed zero and blue remained stationary throughout these attempts. The latest event-progress attempt returned toward the already placed red block rather than restoring blue acquisition. The documentation provides successful-transition overlap, not validated missed-grasp recovery, and the actual observations no longer support a credible route to completion with these frozen policies. I am stopping without claiming success and without risking further disturbance of red."
+      }
+    ],
+    "API_arguments_equal_execution": true,
+    "observed_bottleneck": "blue_rise_under_4cm"
+  },
+  {
+    "task": "buffer_swap",
+    "condition": "OOD",
+    "seed": 30108,
+    "method": "APPL_6_xhigh",
+    "success": false,
+    "steps": 1676,
+    "status": "agent_finished",
+    "final": {
+      "blue_at_goal": false,
+      "red_at_goal": false,
+      "success": false
+    },
+    "source_root": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/runs/exp2/Exp2_new/ood_continuation_20260920/episodes/buffer_swap/OOD/30108",
+    "bundle_root": "episodes/APPL_6_xhigh/buffer_swap/OOD/30108",
+    "result_sha256": "bdc050b93397fb871d2ac1efec7f0382c763ad1b93f9142e6cdd34fd22c58627",
+    "initial_sha256": "070cde446ad785cb2f8ed9389c743e79fb2881e32e5a7b9c5d4f17ed162fccc1",
+    "trace_sha256": "8de21c60d1ec47b1905af8cbda509e26a1c343fc991ea29b7a5e57a9100664ba",
+    "video": "episodes/APPL_6_xhigh/buffer_swap/OOD/30108/replay.mp4",
+    "first_goal_steps": {
+      "blue_at_goal": null,
+      "red_at_goal": null,
+      "success": null
+    },
+    "ever_goals": {
+      "blue_at_goal": false,
+      "red_at_goal": false,
+      "success": false
+    },
+    "max_rise_from_initial_m": {
+      "red": 0.28047068044543266,
+      "blue": 0.00837007351219654
+    },
+    "distinct_policies": 6,
+    "invocation_count": 14,
+    "generation_calls": 21,
+    "API_finish": [
+      {
+        "file": "0021.response.json",
+        "reason": "The exchange is incomplete: measured red_at_goal=0 and blue_at_goal=0 at physical step 1676. Red was successfully released in the central buffer near (-0.195,-0.027,0.020), but the blue pickup missed and displaced/rotated blue; it is now supported near (-0.407,0.137,0.020), far from its negative-y goal. Bounded retries with all buffer and transfer variants failed to acquire blue. The route policy restored opening, and the graph policy restored an approach, but subsequent measured approaches remained misaligned and no actual blue lift occurred. The latest role-conditioned transfer also stayed open and moved away from blue's actual position. The finish policies' blue-placement/red-retrieval overlap does not supply a credible recovery for this unacquired, displaced blue. I judge there is no remaining credible route using the available frozen local policies; stopping without claiming success."
+      }
+    ],
+    "API_arguments_equal_execution": true,
+    "observed_bottleneck": "blue_rise_under_4cm"
+  },
+  {
+    "task": "unstack_sort",
+    "condition": "OOD",
+    "seed": 30208,
+    "method": "APPL_6_xhigh",
+    "success": false,
+    "steps": 658,
+    "status": "agent_finished",
+    "final": {
+      "blue_at_goal": false,
+      "red_at_goal": false,
+      "success": false
+    },
+    "source_root": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/runs/exp2/Exp2_new/ood_continuation_20260920/episodes/unstack_sort/OOD/30208",
+    "bundle_root": "episodes/APPL_6_xhigh/unstack_sort/OOD/30208",
+    "result_sha256": "6208e302d519ff3930ebdbfd2989f75d9d5bc2e7c8ea6b748389b23008f3ae2b",
+    "initial_sha256": "448edc4b2c4e089488f00084e41053e564bbe25dda5afa392c00298ccd19b1e4",
+    "trace_sha256": "58feab60c319e566c3b3b6ca9479cd182e0ada6e6a2827eb3cfd60d329c3741e",
+    "video": "episodes/APPL_6_xhigh/unstack_sort/OOD/30208/replay.mp4",
+    "first_goal_steps": {
+      "blue_at_goal": null,
+      "red_at_goal": null,
+      "success": null
+    },
+    "ever_goals": {
+      "blue_at_goal": false,
+      "red_at_goal": false,
+      "success": false
+    },
+    "max_rise_from_initial_m": {
+      "red": -1.0915100574493408e-06,
+      "blue": 1.9744038581848145e-07
+    },
+    "distinct_policies": 6,
+    "invocation_count": 7,
+    "generation_calls": 14,
+    "API_finish": [
+      {
+        "file": "0014.response.json",
+        "reason": "Unable to complete the task with the available frozen policies. The initial red grasp missed, and subsequent acquisition and carry-policy recovery attempts did not restore an open, aligned grasp. Across the latest attempts the fingers remained fully closed while both blocks stayed stacked at approximately (-0.326, 0.0365), with red z=0.060 and blue z=0.020. Both red_at_goal and blue_at_goal remain false after 658 physical steps. All six policy mechanisms were assessed and attempted; repeated empty-arm motion without object movement provides no credible remaining recovery route."
+      }
+    ],
+    "API_arguments_equal_execution": true,
+    "observed_bottleneck": "red_goal_not_reached"
+  },
+  {
+    "task": "tray_pack",
+    "condition": "OOD",
+    "seed": 30308,
+    "method": "APPL_6_xhigh",
+    "success": true,
+    "steps": 1375,
+    "status": "succeeded",
+    "final": {
+      "blue_at_goal": true,
+      "red_at_goal": true,
+      "success": true
+    },
+    "source_root": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/runs/exp2/Exp2_new/ood_resource_resume_20260920/episodes/tray_pack/OOD/30308",
+    "bundle_root": "episodes/APPL_6_xhigh/tray_pack/OOD/30308",
+    "result_sha256": "f3d5e3bd32618f511780f8155fe4dee8b8edbe14884af009751e6d2d5a5f75ce",
+    "initial_sha256": "b93ca209b2cb489b088114ca65f814ad3ea74c8dd1b502733503e09b4f662fa3",
+    "trace_sha256": "6bfedf2e5040a0f546ed0ba180b98d92882e0a1821d8871aefca51716e89a68a",
+    "video": "episodes/APPL_6_xhigh/tray_pack/OOD/30308/replay.mp4",
+    "first_goal_steps": {
+      "blue_at_goal": 1375,
+      "red_at_goal": 251,
+      "success": 1375
+    },
+    "ever_goals": {
+      "blue_at_goal": true,
+      "red_at_goal": true,
+      "success": true
+    },
+    "max_rise_from_initial_m": {
+      "red": 0.2888703756034374,
+      "blue": 0.29824961349368095
+    },
+    "distinct_policies": 5,
+    "invocation_count": 20,
+    "generation_calls": 27,
+    "API_finish": [],
+    "API_arguments_equal_execution": true
+  },
+  {
+    "task": "drawer_exchange",
+    "condition": "OOD",
+    "seed": 6409,
+    "method": "APPL_6_xhigh",
+    "success": false,
+    "steps": 617,
+    "status": "agent_finished",
+    "final": {
+      "blue_inside": false,
+      "drawer_open": false,
+      "red_on_pad": false,
+      "success": false
+    },
+    "source_root": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/runs/exp2/Exp2_new/ood_continuation_20260920/episodes/drawer_exchange/OOD/6409",
+    "bundle_root": "episodes/APPL_6_xhigh/drawer_exchange/OOD/6409",
+    "result_sha256": "ccb62b324839ef2d20529a6676ed3be5f52da8520f817e9220447e9eb5aae62b",
+    "initial_sha256": "f88282c5f69e14b469257d73aed0619e68538834c20cf00091397afdb8b84f98",
+    "trace_sha256": "cddacb1c6e53562524752be7fc0b0518fe27b8093decbd1ed68e43f5bc450012",
+    "video": "episodes/APPL_6_xhigh/drawer_exchange/OOD/6409/replay.mp4",
+    "first_goal_steps": {
+      "blue_inside": null,
+      "drawer_open": 194,
+      "red_on_pad": null,
+      "success": null
+    },
+    "ever_goals": {
+      "blue_inside": false,
+      "drawer_open": true,
+      "red_on_pad": false,
+      "success": false
+    },
+    "max_rise_from_initial_m": {
+      "red": 1.4007091522216797e-06,
+      "blue": -8.195638656616211e-08
+    },
+    "distinct_policies": 5,
+    "invocation_count": 7,
+    "generation_calls": 13,
+    "API_finish": [
+      {
+        "file": "0013.response.json",
+        "reason": "Task not completed. The latest measured drawer position is 0.17225 m, below the required >0.26 m; red remains in the drawer at z=0.063 m rather than on the pad, and blue remains at its outside source. Red acquisition failed: the gripper closed empty and TCP rose without red co-motion. Bounded retries using relational, attachment-conditioned, waypoint-conditioned and opening-consequence policies did not re-establish a grasp and increasingly disturbed the drawer. The last attempt caused rapid further closure within three steps. These failed-grasp/disturbed-drawer states are outside demonstrated recovery support, and I no longer judge further available-policy execution to offer a credible route to simultaneous completion."
+      }
+    ],
+    "API_arguments_equal_execution": true,
+    "observed_bottleneck": "red_placement_not_reached"
+  },
+  {
+    "task": "two_block_sort",
+    "condition": "OOD",
+    "seed": 30009,
+    "method": "APPL_6_xhigh",
+    "success": false,
+    "steps": 1292,
+    "status": "agent_finished",
+    "final": {
+      "blue_at_goal": false,
+      "red_at_goal": true,
+      "success": false
+    },
+    "source_root": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/runs/exp2/Exp2_new/ood_resource_resume_20260920/episodes/two_block_sort/OOD/30009",
+    "bundle_root": "episodes/APPL_6_xhigh/two_block_sort/OOD/30009",
+    "result_sha256": "17e4862b71e885febf97664e9d2494c10d4e60aaaf934a89464e4a4876a145ae",
+    "initial_sha256": "9005e4a04f8470fd3baa87ea13c9c2a7ad91677719111c68744a541d28626a6a",
+    "trace_sha256": "a54394c566b82882b800eedc6a2f42cdb72a0d6630ff1cd1195e46bcdfa8f8b3",
+    "video": "episodes/APPL_6_xhigh/two_block_sort/OOD/30009/replay.mp4",
+    "first_goal_steps": {
+      "blue_at_goal": null,
+      "red_at_goal": 731,
+      "success": null
+    },
+    "ever_goals": {
+      "blue_at_goal": false,
+      "red_at_goal": true,
+      "success": false
+    },
+    "max_rise_from_initial_m": {
+      "red": 0.27515868470072746,
+      "blue": -8.009374141693115e-08
+    },
+    "distinct_policies": 6,
+    "invocation_count": 18,
+    "generation_calls": 25,
+    "API_finish": [
+      {
+        "file": "0025.response.json",
+        "reason": "The task is incomplete: red_at_goal=1, blue_at_goal=0, success=0. Red was placed and remains contained on its pad. Blue was missed during acquisition and remains at its starting location (-0.39294, 0.22113, 0.02000) m. Guarded recovery attempts across the available acquisition and delivery mechanisms did not establish a blue grasp or restore a usable open approach; the gripper repeatedly continued empty closed motion. The final probe briefly widened the fingers but reclosed while retreating, with no blue movement. Given the repeated off-support recovery failures and risk of disturbing the completed red placement, I do not judge further invocations to offer a credible route to completion."
+      }
+    ],
+    "API_arguments_equal_execution": true,
+    "observed_bottleneck": "blue_rise_under_4cm"
+  },
+  {
+    "task": "buffer_swap",
+    "condition": "OOD",
+    "seed": 30109,
+    "method": "APPL_6_xhigh",
+    "success": false,
+    "steps": 2568,
+    "status": "agent_finished",
+    "final": {
+      "blue_at_goal": true,
+      "red_at_goal": false,
+      "success": false
+    },
+    "source_root": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/runs/exp2/Exp2_new/ood_resource_resume_20260920/episodes/buffer_swap/OOD/30109",
+    "bundle_root": "episodes/APPL_6_xhigh/buffer_swap/OOD/30109",
+    "result_sha256": "b7f25ecbd4593467f011fd4de7e657ce63afa9f87980efea3d8e3c371524bd74",
+    "initial_sha256": "0d15004500438d47eff70d0eadc35b5e40c8a9a042be5f4a221a781379172008",
+    "trace_sha256": "4895140ab10062d0ad8b6217d3b7f4a2e4b1cece501afea07d8f61d87ef0a86e",
+    "video": "episodes/APPL_6_xhigh/buffer_swap/OOD/30109/replay.mp4",
+    "first_goal_steps": {
+      "blue_at_goal": 1755,
+      "red_at_goal": null,
+      "success": null
+    },
+    "ever_goals": {
+      "blue_at_goal": true,
+      "red_at_goal": false,
+      "success": false
+    },
+    "max_rise_from_initial_m": {
+      "red": 0.2824290804564953,
+      "blue": 0.24454210326075554
+    },
+    "distinct_policies": 9,
+    "invocation_count": 31,
+    "generation_calls": 41,
+    "API_finish": [
+      {
+        "file": "0041.response.json",
+        "reason": "The exchange is incomplete: blue_at_goal is true, red_at_goal and success are false. Blue remains at approximately (-0.3251,-0.1907,0.0200); red remains near the buffer at (-0.1740,-0.0068,0.0203), not its positive-y goal. Multiple final-policy attempts closed above red or lifted an empty gripper. The last bounded recovery restored an open high approach, but finish_red__h03 then pushed red about 13 mm and rotated it further instead of acquiring it. Current fingers are open, and there is no evidence of a held red block. Given repeated acquisition failures and increasing departure from the near-upright, narrowly positioned training support, I do not judge further available-policy retries to offer a credible route to completion. Stopping honestly with blue's achieved placement preserved."
+      }
+    ],
+    "API_arguments_equal_execution": true,
+    "observed_bottleneck": "red_final_goal_not_reached_after_blue_goal"
+  },
+  {
+    "task": "unstack_sort",
+    "condition": "OOD",
+    "seed": 30209,
+    "method": "APPL_6_xhigh",
+    "success": true,
+    "steps": 803,
+    "status": "succeeded",
+    "final": {
+      "blue_at_goal": true,
+      "red_at_goal": true,
+      "success": true
+    },
+    "source_root": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/runs/exp2/Exp2_new/ood_resource_resume_20260920/episodes/unstack_sort/OOD/30209",
+    "bundle_root": "episodes/APPL_6_xhigh/unstack_sort/OOD/30209",
+    "result_sha256": "bb506c5fc3d0a8d01cd3221e79723279857bab04cdf3c3d50b389e74a356b645",
+    "initial_sha256": "9d072f7ef160f8f5c328c0dbde755da8a12cbf3b9128e365c54f8b1d56178ce4",
+    "trace_sha256": "891fa7f57a0688f660172ef6b1f5334f3ad26f425d182cec6c1cf1ba1ead8162",
+    "video": "episodes/APPL_6_xhigh/unstack_sort/OOD/30209/replay.mp4",
+    "first_goal_steps": {
+      "blue_at_goal": 803,
+      "red_at_goal": 270,
+      "success": 803
+    },
+    "ever_goals": {
+      "blue_at_goal": true,
+      "red_at_goal": true,
+      "success": true
+    },
+    "max_rise_from_initial_m": {
+      "red": 0.2532215155661106,
+      "blue": 0.27148736640810966
+    },
+    "distinct_policies": 3,
+    "invocation_count": 6,
+    "generation_calls": 9,
+    "API_finish": [],
+    "API_arguments_equal_execution": true
+  },
+  {
+    "task": "tray_pack",
+    "condition": "OOD",
+    "seed": 30309,
+    "method": "APPL_6_xhigh",
+    "success": true,
+    "steps": 668,
+    "status": "succeeded",
+    "final": {
+      "blue_at_goal": true,
+      "red_at_goal": true,
+      "success": true
+    },
+    "source_root": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/runs/exp2/Exp2_new/ood_resource_resume_20260920/episodes/tray_pack/OOD/30309",
+    "bundle_root": "episodes/APPL_6_xhigh/tray_pack/OOD/30309",
+    "result_sha256": "e14897f19a2fa58ec89ec6c504c2cef732c9ff7add504aab52ccaf530af1975a",
+    "initial_sha256": "9a4aa18962eae4124a819fb15db283df3b36555fa3cacdc4801f096b4a507ba9",
+    "trace_sha256": "5e2dcc67656375ed1be752330487e156b9ebf952422c69d153c5fb47a3943224",
+    "video": "episodes/APPL_6_xhigh/tray_pack/OOD/30309/replay.mp4",
+    "first_goal_steps": {
+      "blue_at_goal": 668,
+      "red_at_goal": 293,
+      "success": 668
+    },
+    "ever_goals": {
+      "blue_at_goal": true,
+      "red_at_goal": true,
+      "success": true
+    },
+    "max_rise_from_initial_m": {
+      "red": 0.2917131893336773,
+      "blue": 0.30052224919199944
+    },
+    "distinct_policies": 2,
+    "invocation_count": 8,
+    "generation_calls": 10,
+    "API_finish": [],
+    "API_arguments_equal_execution": true
+  },
+  {
+    "task": "drawer_exchange",
+    "condition": "OOD",
+    "seed": 6410,
+    "method": "APPL_6_xhigh",
+    "success": false,
+    "steps": 1568,
+    "status": "agent_finished",
+    "final": {
+      "blue_inside": false,
+      "drawer_open": false,
+      "red_on_pad": false,
+      "success": false
+    },
+    "source_root": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/runs/exp2/Exp2_new/ood_resource_resume_20260920/episodes/drawer_exchange/OOD/6410",
+    "bundle_root": "episodes/APPL_6_xhigh/drawer_exchange/OOD/6410",
+    "result_sha256": "9ec696195154eb7e982139e6f51e3d276f052f5bd61f30529151358dabd761d1",
+    "initial_sha256": "af7101bc279d7e80087198b9780cfdbda10fa71c78331ad75b471b306ffaf6d5",
+    "trace_sha256": "b7b91922cdea452bb97e4d28879ecc8c8c0c14355ed1dead72af815bd83ab01f",
+    "video": "episodes/APPL_6_xhigh/drawer_exchange/OOD/6410/replay.mp4",
+    "first_goal_steps": {
+      "blue_inside": null,
+      "drawer_open": 199,
+      "red_on_pad": null,
+      "success": null
+    },
+    "ever_goals": {
+      "blue_inside": false,
+      "drawer_open": true,
+      "red_on_pad": false,
+      "success": false
+    },
+    "max_rise_from_initial_m": {
+      "red": 1.4550983905792236e-05,
+      "blue": -8.381903171539307e-08
+    },
+    "distinct_policies": 6,
+    "invocation_count": 12,
+    "generation_calls": 20,
+    "API_finish": [
+      {
+        "file": "0020.response.json",
+        "reason": "Task incomplete at step1568: drawer_position=0.259107 m is below the strict >0.26 m requirement; red remains in the drawer at z=0.0630003 m, not on the pad; blue remains at its source at z=0.0199999 m. Repeated opening/acquisition attempts across all three opening and evacuation variants never established measured red/TCP co-lift. Some restored opening, but acquisition or release retries either closed empty, stalled, or disturbed the drawer. The latest relational evacuation retry also lost opening. The remaining insertion policies are not supported for an unacquired red block at its drawer source, and successful-only temporal overlap does not establish recovery from the present repeated contact failures. I judge there is no credible remaining completion route with the available frozen controllers."
+      }
+    ],
+    "API_arguments_equal_execution": true,
+    "observed_bottleneck": "red_placement_not_reached"
+  },
+  {
+    "task": "two_block_sort",
+    "condition": "OOD",
+    "seed": 30010,
+    "method": "APPL_6_xhigh",
+    "success": true,
+    "steps": 968,
+    "status": "succeeded",
+    "final": {
+      "blue_at_goal": true,
+      "red_at_goal": true,
+      "success": true
+    },
+    "source_root": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/runs/exp2/Exp2_new/ood_resource_resume_20260920/episodes/two_block_sort/OOD/30010",
+    "bundle_root": "episodes/APPL_6_xhigh/two_block_sort/OOD/30010",
+    "result_sha256": "7ff95cab161812fbacbdc99d2c3829e103fd67d545772b86a5752e461716022b",
+    "initial_sha256": "2021ce1c58f7eab15bf307eb5c6c4974b0db9cc001d8daa2b74d6344e22eee6b",
+    "trace_sha256": "ca1dc93d8586bd53cc5ba000b23564cf5b9831a725274183d3d7c456b2483601",
+    "video": "episodes/APPL_6_xhigh/two_block_sort/OOD/30010/replay.mp4",
+    "first_goal_steps": {
+      "blue_at_goal": 968,
+      "red_at_goal": 286,
+      "success": 968
+    },
+    "ever_goals": {
+      "blue_at_goal": true,
+      "red_at_goal": true,
+      "success": true
+    },
+    "max_rise_from_initial_m": {
+      "red": 0.27841467782855034,
+      "blue": 0.2941712848842144
+    },
+    "distinct_policies": 3,
+    "invocation_count": 13,
+    "generation_calls": 16,
+    "API_finish": [],
+    "API_arguments_equal_execution": true
+  },
+  {
+    "task": "buffer_swap",
+    "condition": "OOD",
+    "seed": 30110,
+    "method": "APPL_6_xhigh",
+    "success": false,
+    "steps": 603,
+    "status": "agent_finished",
+    "final": {
+      "blue_at_goal": false,
+      "red_at_goal": false,
+      "success": false
+    },
+    "source_root": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/runs/exp2/Exp2_new/ood_resource_resume_20260920/episodes/buffer_swap/OOD/30110",
+    "bundle_root": "episodes/APPL_6_xhigh/buffer_swap/OOD/30110",
+    "result_sha256": "052e0f93555975dcae59e93c0c07ef9b0d56963b385f9b09bf6f2d5acb010f46",
+    "initial_sha256": "83484a5c90439af09d38c0e84da59338c8f6d8bd8d221c94d6f2c96b3bda11b8",
+    "trace_sha256": "a41c047102476bddf7642c87446065c0b679a1b13d1cc9405a8d1fd6cc0897e1",
+    "video": "episodes/APPL_6_xhigh/buffer_swap/OOD/30110/replay.mp4",
+    "first_goal_steps": {
+      "blue_at_goal": null,
+      "red_at_goal": null,
+      "success": null
+    },
+    "ever_goals": {
+      "blue_at_goal": false,
+      "red_at_goal": false,
+      "success": false
+    },
+    "max_rise_from_initial_m": {
+      "red": -8.195638656616211e-08,
+      "blue": -8.568167686462402e-08
+    },
+    "distinct_policies": 3,
+    "invocation_count": 5,
+    "generation_calls": 9,
+    "API_finish": [
+      {
+        "file": "0009.response.json",
+        "reason": "Unable to complete the exchange with the available frozen policies. All three buffer variants approached red but never produced observed finger closure or object lift; an additional bounded h01 retry again approached and retreated empty. After 603 physical steps, finger width remains about 0.080 m, both blocks remain essentially at their initial supported poses, and red_at_goal=0, blue_at_goal=0. Red was never buffered, so the documented transfer/finish overlaps do not support treating this failed pickup as a valid successor state. With repeated failed acquisition and no demonstrated recovery controller, I do not judge further continuation to have a credible route to completion."
+      }
+    ],
+    "API_arguments_equal_execution": true,
+    "observed_bottleneck": "initial_red_rise_under_4cm"
+  },
+  {
+    "task": "unstack_sort",
+    "condition": "OOD",
+    "seed": 30210,
+    "method": "APPL_6_xhigh",
+    "success": false,
+    "steps": 765,
+    "status": "agent_finished",
+    "final": {
+      "blue_at_goal": false,
+      "red_at_goal": false,
+      "success": false
+    },
+    "source_root": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/runs/exp2/Exp2_new/ood_resource_resume_20260920/episodes/unstack_sort/OOD/30210",
+    "bundle_root": "episodes/APPL_6_xhigh/unstack_sort/OOD/30210",
+    "result_sha256": "b1b0ee421ae11e6503e21de10592522691c13069fc2c2115fa544c3b9e25a0d6",
+    "initial_sha256": "ee4cb5666e392e25aea594cc8b2b79c98664647252a6f0ce2becd568fd107f61",
+    "trace_sha256": "7afb386197e74f67a7527e8a716bfb9089eabc2ecdc320ea6d03cfbd92000413",
+    "video": "episodes/APPL_6_xhigh/unstack_sort/OOD/30210/replay.mp4",
+    "first_goal_steps": {
+      "blue_at_goal": null,
+      "red_at_goal": null,
+      "success": null
+    },
+    "ever_goals": {
+      "blue_at_goal": false,
+      "red_at_goal": false,
+      "success": false
+    },
+    "max_rise_from_initial_m": {
+      "red": 0.00017355382442474365,
+      "blue": 1.4994293451309204e-06
+    },
+    "distinct_policies": 6,
+    "invocation_count": 9,
+    "generation_calls": 17,
+    "API_finish": [
+      {
+        "file": "0017.response.json",
+        "reason": "The task was not completed: red_at_goal=0 and blue_at_goal=0 at physical step 765. Initial acquisition attempts stalled with open fingers; a later attempt displaced red off blue onto the table rather than grasping it. Carry-policy probes moved the empty hand without object progress. The final bounded reacquisition produced an empty pinch: finger width 0.0169 m, TCP-blue distance 0.0637 m, TCP-red distance 0.0931 m, and both blocks still at z approximately 0.020 m away from their pads. All six documented policies were assessed and tried; none established coupled lifting. With red displaced and rotated and the latest grasp missed, successful-path temporal overlap does not provide a credible recovery guarantee. I judge further repetition unlikely to complete both goals with the available frozen policies."
+      }
+    ],
+    "API_arguments_equal_execution": true,
+    "observed_bottleneck": "red_goal_not_reached"
+  },
+  {
+    "task": "tray_pack",
+    "condition": "OOD",
+    "seed": 30310,
+    "method": "APPL_6_xhigh",
+    "success": false,
+    "steps": 1127,
+    "status": "agent_finished",
+    "final": {
+      "blue_at_goal": false,
+      "red_at_goal": true,
+      "success": false
+    },
+    "source_root": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/runs/exp2/Exp2_new/ood_resource_resume_20260920/episodes/tray_pack/OOD/30310",
+    "bundle_root": "episodes/APPL_6_xhigh/tray_pack/OOD/30310",
+    "result_sha256": "175fb4ab5eb4adc2f72142d0c9d87b85b7cb93911feb1e17ed7ef253ce2ba77f",
+    "initial_sha256": "4f4e232c17f37e0879040a9ff9c3b20bcbe9fb697356491e5b5319c086fbfab8",
+    "trace_sha256": "c6b367056cbb20138a82c4a6569f610ebeec3eee1ca94a1ede4ffb04923c7ccf",
+    "video": "episodes/APPL_6_xhigh/tray_pack/OOD/30310/replay.mp4",
+    "first_goal_steps": {
+      "blue_at_goal": null,
+      "red_at_goal": 268,
+      "success": null
+    },
+    "ever_goals": {
+      "blue_at_goal": false,
+      "red_at_goal": true,
+      "success": false
+    },
+    "max_rise_from_initial_m": {
+      "red": 0.27675993368029594,
+      "blue": -8.381903171539307e-08
+    },
+    "distinct_policies": 6,
+    "invocation_count": 12,
+    "generation_calls": 19,
+    "API_finish": [
+      {
+        "file": "0019.response.json",
+        "reason": "Task incomplete: measured red_at_goal=1, blue_at_goal=0, success=0. Red is settled in its marked tray region, while blue remains at its original table position. The blue grasp was missed: the fingers closed empty and blue never lifted. Bounded attempts with the available acquisition and delivery variants did not reopen the gripper or restore a viable pickup; the latest continuation moved the closed empty TCP low toward the upper tray rim and was stopped for reassessment. The documented overlap covers nominal successful transitions, not this persistent closed-empty recovery. With no demonstrated or observed credible route to finish using the frozen policies, I am ending rather than claiming success or continuing unproductive rim-adjacent motion."
+      }
+    ],
+    "API_arguments_equal_execution": true,
+    "observed_bottleneck": "blue_goal_not_reached"
+  },
+  {
+    "task": "drawer_exchange",
+    "condition": "OOD",
+    "seed": 6411,
+    "method": "APPL_6_xhigh",
+    "success": false,
+    "steps": 1471,
+    "status": "agent_finished",
+    "final": {
+      "blue_inside": false,
+      "drawer_open": false,
+      "red_on_pad": false,
+      "success": false
+    },
+    "source_root": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/runs/exp2/Exp2_new/ood_resource_resume_20260920/episodes/drawer_exchange/OOD/6411",
+    "bundle_root": "episodes/APPL_6_xhigh/drawer_exchange/OOD/6411",
+    "result_sha256": "a4fb23c3c0e8aef3d5c05cda029808e2a450851d55c0669c73782d595324de93",
+    "initial_sha256": "e7a82404bdab84c6715e06ac9da05291f87047fb7e465574228c823b3cdfc6ae",
+    "trace_sha256": "ceee30a268764b49107ae1b3c5ad4b6e0a21d2a1ca16c76eb3e34c9c34d0c483",
+    "video": "episodes/APPL_6_xhigh/drawer_exchange/OOD/6411/replay.mp4",
+    "first_goal_steps": {
+      "blue_inside": null,
+      "drawer_open": 228,
+      "red_on_pad": null,
+      "success": null
+    },
+    "ever_goals": {
+      "blue_inside": false,
+      "drawer_open": true,
+      "red_on_pad": false,
+      "success": false
+    },
+    "max_rise_from_initial_m": {
+      "red": 0.11035504192113876,
+      "blue": -8.195638656616211e-08
+    },
+    "distinct_policies": 6,
+    "invocation_count": 14,
+    "generation_calls": 21,
+    "API_finish": [
+      {
+        "file": "0021.response.json",
+        "reason": "The task is not complete. At physical step 1471 the drawer displacement is 0.23618 m, below the required 0.26 m; red remains in the drawer at z=0.0630 m rather than on the pad, and blue remains at its outside source. The initial red lift slipped, and multiple bounded acquisition attempts with documented overlap policies failed to restore coupled lift. Recent attempts further closed the drawer and displaced red. These disturbed, empty-gripper states are outside demonstrated successful transition support, and I no longer judge the available local policies to offer a credible completion route without further uncontrolled disturbance."
+      }
+    ],
+    "API_arguments_equal_execution": true,
+    "observed_bottleneck": "red_placement_not_reached"
+  },
+  {
+    "task": "two_block_sort",
+    "condition": "OOD",
+    "seed": 30011,
+    "method": "APPL_6_xhigh",
+    "success": true,
+    "steps": 886,
+    "status": "succeeded",
+    "final": {
+      "blue_at_goal": true,
+      "red_at_goal": true,
+      "success": true
+    },
+    "source_root": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/runs/exp2/Exp2_new/ood_resource_resume_20260920/episodes/two_block_sort/OOD/30011",
+    "bundle_root": "episodes/APPL_6_xhigh/two_block_sort/OOD/30011",
+    "result_sha256": "3c2ec0f88285c5157e05f9b5248d5bc0d2787607bdb222390b15435740282446",
+    "initial_sha256": "1016eeb0646d5d75e0bf1a3a8452aff589e289a3ad71f984e152198a7f5e413c",
+    "trace_sha256": "ce73ff7456b60a14afc9c7e4b5ffc3e1c9ac8ea326e077940cfa309777c0009b",
+    "video": "episodes/APPL_6_xhigh/two_block_sort/OOD/30011/replay.mp4",
+    "first_goal_steps": {
+      "blue_at_goal": 886,
+      "red_at_goal": 278,
+      "success": 886
+    },
+    "ever_goals": {
+      "blue_at_goal": true,
+      "red_at_goal": true,
+      "success": true
+    },
+    "max_rise_from_initial_m": {
+      "red": 0.2694820575416088,
+      "blue": 0.29071639105677605
+    },
+    "distinct_policies": 2,
+    "invocation_count": 12,
+    "generation_calls": 14,
+    "API_finish": [],
+    "API_arguments_equal_execution": true
+  },
+  {
+    "task": "buffer_swap",
+    "condition": "OOD",
+    "seed": 30111,
+    "method": "APPL_6_xhigh",
+    "success": false,
+    "steps": 1216,
+    "status": "agent_finished",
+    "final": {
+      "blue_at_goal": false,
+      "red_at_goal": false,
+      "success": false
+    },
+    "source_root": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/runs/exp2/Exp2_new/ood_resource_resume_20260920/episodes/buffer_swap/OOD/30111",
+    "bundle_root": "episodes/APPL_6_xhigh/buffer_swap/OOD/30111",
+    "result_sha256": "e4d9c37f2b71710a16db391115e9282e6ec1778fba7d576d378ce66a2a6482cf",
+    "initial_sha256": "89df6f4cfee1ad5a6a2679da027be345f1a7268ae61a2d6aefb757aff6a78f3b",
+    "trace_sha256": "16aa707d936124d7f0fb631b5c2cd9e45a47238a85cd2debda3ab7fde38d6a10",
+    "video": "episodes/APPL_6_xhigh/buffer_swap/OOD/30111/replay.mp4",
+    "first_goal_steps": {
+      "blue_at_goal": null,
+      "red_at_goal": null,
+      "success": null
+    },
+    "ever_goals": {
+      "blue_at_goal": false,
+      "red_at_goal": false,
+      "success": false
+    },
+    "max_rise_from_initial_m": {
+      "red": 0.27282388135790825,
+      "blue": 0.008335022255778313
+    },
+    "distinct_policies": 6,
+    "invocation_count": 14,
+    "generation_calls": 21,
+    "API_finish": [
+      {
+        "file": "0021.response.json",
+        "reason": "Unable to complete the exchange. Measured red_at_goal=0 and blue_at_goal=0 at step1216: red is supported in the buffer near(-0.2029,-0.0145,0.020), blue remains near its source at(-0.3280,0.2251,0.020), and fingers are empty-closed. Initial red staging succeeded, but blue acquisition failed and displaced/rotated blue. Guarded attempts using attachment-, role-, route-, event-, and occupancy-conditioned policies did not establish blue/TCP co-lift; retries mostly stayed closed or transported the empty hand. The latest revisit also departed empty rather than reopening. These failed-contact and rotated-object states are outside demonstrated recovery support, and finish_red's overlap does not supply a credible route to move blue from its source. I judge further policy cycling lacks a credible path to both goals, so I am ending honestly without claiming success."
+      }
+    ],
+    "API_arguments_equal_execution": true,
+    "observed_bottleneck": "blue_rise_under_4cm"
+  },
+  {
+    "task": "unstack_sort",
+    "condition": "OOD",
+    "seed": 30211,
+    "method": "APPL_6_xhigh",
+    "success": true,
+    "steps": 646,
+    "status": "succeeded",
+    "final": {
+      "blue_at_goal": true,
+      "red_at_goal": true,
+      "success": true
+    },
+    "source_root": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/runs/exp2/Exp2_new/ood_resource_resume_20260920/episodes/unstack_sort/OOD/30211",
+    "bundle_root": "episodes/APPL_6_xhigh/unstack_sort/OOD/30211",
+    "result_sha256": "463ddca8f49b2b289b08791a4e2930961ca3d17b7ab63d6e0573cabb54cdc454",
+    "initial_sha256": "d193f04e463a1b317b6b23a0110379de1813d9b1e4c5a9c0ffc6223c9d3cf73b",
+    "trace_sha256": "688c5067f592d692ac44628bfea1b62be232c74c46070c36590570a42fe1712f",
+    "video": "episodes/APPL_6_xhigh/unstack_sort/OOD/30211/replay.mp4",
+    "first_goal_steps": {
+      "blue_at_goal": 646,
+      "red_at_goal": 237,
+      "success": 646
+    },
+    "ever_goals": {
+      "blue_at_goal": true,
+      "red_at_goal": true,
+      "success": true
+    },
+    "max_rise_from_initial_m": {
+      "red": 0.25370851531624794,
+      "blue": 0.27734754607081413
+    },
+    "distinct_policies": 2,
+    "invocation_count": 5,
+    "generation_calls": 7,
+    "API_finish": [],
+    "API_arguments_equal_execution": true
+  },
+  {
+    "task": "tray_pack",
+    "condition": "OOD",
+    "seed": 30311,
+    "method": "APPL_6_xhigh",
+    "success": true,
+    "steps": 673,
+    "status": "succeeded",
+    "final": {
+      "blue_at_goal": true,
+      "red_at_goal": true,
+      "success": true
+    },
+    "source_root": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/runs/exp2/Exp2_new/ood_resource_resume_20260920/episodes/tray_pack/OOD/30311",
+    "bundle_root": "episodes/APPL_6_xhigh/tray_pack/OOD/30311",
+    "result_sha256": "e6194e3c8f862801b8bfad7a9bc7e32bca1685575914bba532f3455ce45a2a3d",
+    "initial_sha256": "0cabe93896e73d0c47168b1d76eabac933379c7ede7ac2b9f85cc574d03a87e4",
+    "trace_sha256": "e0ffb9aa66f5caaa40269ed612a69f36d21b3071793755eb24742d214e331910",
+    "video": "episodes/APPL_6_xhigh/tray_pack/OOD/30311/replay.mp4",
+    "first_goal_steps": {
+      "blue_at_goal": 673,
+      "red_at_goal": 265,
+      "success": 673
+    },
+    "ever_goals": {
+      "blue_at_goal": true,
+      "red_at_goal": true,
+      "success": true
+    },
+    "max_rise_from_initial_m": {
+      "red": 0.2826581113040447,
+      "blue": 0.29241232201457024
+    },
+    "distinct_policies": 2,
+    "invocation_count": 7,
+    "generation_calls": 9,
+    "API_finish": [],
+    "API_arguments_equal_execution": true
+  },
+  {
+    "task": "drawer_exchange",
+    "condition": "OOD",
+    "seed": 6412,
+    "method": "APPL_6_xhigh",
+    "success": false,
+    "steps": 1219,
+    "status": "agent_finished",
+    "final": {
+      "blue_inside": false,
+      "drawer_open": false,
+      "red_on_pad": true,
+      "success": false
+    },
+    "source_root": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/runs/exp2/Exp2_new/ood_resource_resume_20260920/episodes/drawer_exchange/OOD/6412",
+    "bundle_root": "episodes/APPL_6_xhigh/drawer_exchange/OOD/6412",
+    "result_sha256": "238e0d63ea4e6cd1c1ba702fb4d2f0f899735b20f70b12d7e132bb322de40d2f",
+    "initial_sha256": "a936e4926a6fa555c0402f67a1c3f0342ae67c29c89273efbcd2e3b59df5ac35",
+    "trace_sha256": "363a965ef003cc896386f4b8f16685abc46ca792486e85154f0de4aa4be42f74",
+    "video": "episodes/APPL_6_xhigh/drawer_exchange/OOD/6412/replay.mp4",
+    "first_goal_steps": {
+      "blue_inside": null,
+      "drawer_open": 234,
+      "red_on_pad": 583,
+      "success": null
+    },
+    "ever_goals": {
+      "blue_inside": false,
+      "drawer_open": true,
+      "red_on_pad": true,
+      "success": false
+    },
+    "max_rise_from_initial_m": {
+      "red": 0.23509465903043747,
+      "blue": 0.00126614049077034
+    },
+    "distinct_policies": 6,
+    "invocation_count": 13,
+    "generation_calls": 21,
+    "API_finish": [
+      {
+        "file": "0021.response.json",
+        "reason": "Task not completed. Red is measured on the pad, but blue remains outside at approximately [-0.3572, 0.2531, 0.0200] m. Multiple bounded acquisition attempts produced empty-hand lift rather than blue/TCP co-lift; the latest full acquisition cycle only displaced blue slightly. The opening recovery also failed: drawer displacement decreased to 0.227708 m, below the strict 0.26 m threshold, and was still moving closed at the final observation. The measured state is outside the documented successful transition support, and the attempted local recoveries have not established a credible route to complete both remaining goals. Stopping honestly rather than claiming success or continuing ungrounded retries."
+      }
+    ],
+    "API_arguments_equal_execution": true,
+    "observed_bottleneck": "blue_insertion_not_reached"
+  },
+  {
+    "task": "two_block_sort",
+    "condition": "OOD",
+    "seed": 30012,
+    "method": "APPL_6_xhigh",
+    "success": true,
+    "steps": 872,
+    "status": "succeeded",
+    "final": {
+      "blue_at_goal": true,
+      "red_at_goal": true,
+      "success": true
+    },
+    "source_root": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/runs/exp2/Exp2_new/ood_resource_resume_20260920/episodes/two_block_sort/OOD/30012",
+    "bundle_root": "episodes/APPL_6_xhigh/two_block_sort/OOD/30012",
+    "result_sha256": "0f899df9599a2680b292c6fed172ad1b19f9aee7824df218db225bc2aed1a707",
+    "initial_sha256": "c74022f3328e0dbc3e9444057ca7815e46fdd3688847c392086f42f26863ecc4",
+    "trace_sha256": "6b2777bdbde74d806cdf1953d4e947e3d5c416576f2e91cd3c1b0b1ad10016c6",
+    "video": "episodes/APPL_6_xhigh/two_block_sort/OOD/30012/replay.mp4",
+    "first_goal_steps": {
+      "blue_at_goal": 872,
+      "red_at_goal": 398,
+      "success": 872
+    },
+    "ever_goals": {
+      "blue_at_goal": true,
+      "red_at_goal": true,
+      "success": true
+    },
+    "max_rise_from_initial_m": {
+      "red": 0.27574921771883965,
+      "blue": 0.27714185044169426
+    },
+    "distinct_policies": 2,
+    "invocation_count": 9,
+    "generation_calls": 11,
+    "API_finish": [],
+    "API_arguments_equal_execution": true
+  },
+  {
+    "task": "buffer_swap",
+    "condition": "OOD",
+    "seed": 30112,
+    "method": "APPL_6_xhigh",
+    "success": false,
+    "steps": 2160,
+    "status": "agent_finished",
+    "final": {
+      "blue_at_goal": true,
+      "red_at_goal": false,
+      "success": false
+    },
+    "source_root": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/runs/exp2/Exp2_new/ood_resource_resume_20260920/episodes/buffer_swap/OOD/30112",
+    "bundle_root": "episodes/APPL_6_xhigh/buffer_swap/OOD/30112",
+    "result_sha256": "7dd458d521cbc1d7f976877e04c01f29c1feae51b7ee60bd1ef0221dd209424d",
+    "initial_sha256": "2ad02a65acaacc73abadc46e17f641d1a86cb42f01e3662d16d04f468d30d419",
+    "trace_sha256": "d6cc934fc969c594ee317ed97a9d55dbe8f699293f94d766835ef738c34a99bd",
+    "video": "episodes/APPL_6_xhigh/buffer_swap/OOD/30112/replay.mp4",
+    "first_goal_steps": {
+      "blue_at_goal": 1387,
+      "red_at_goal": null,
+      "success": null
+    },
+    "ever_goals": {
+      "blue_at_goal": true,
+      "red_at_goal": false,
+      "success": false
+    },
+    "max_rise_from_initial_m": {
+      "red": 0.2819830887019634,
+      "blue": 0.3077077381312847
+    },
+    "distinct_policies": 9,
+    "invocation_count": 22,
+    "generation_calls": 33,
+    "API_finish": [
+      {
+        "file": "0033.response.json",
+        "reason": "The swap is incomplete: measured blue_at_goal=1, red_at_goal=0, success=0. Blue is supported at (-0.3722,-0.2060,0.0200); red remains near the buffer at (-0.1978,-0.0270,0.0200). Repeated red-retrieval attempts failed: the hand closed empty or pushed red, without red/TCP co-lift. A bounded buffer-policy recovery successfully reopened the gripper, but subsequent open-hand finish-policy attempts still failed to align and acquire the displaced red block; the latest closure reached only 0.0024 m finger width while red stayed on the table. All finish variants and relevant overlap controllers have been assessed. Their successful-demonstration overlap does not establish recovery from this displaced-buffer/missed-grasp state, and I no longer have a credible learned-policy route to completion without risking further disturbance."
+      }
+    ],
+    "API_arguments_equal_execution": true,
+    "observed_bottleneck": "red_final_goal_not_reached_after_blue_goal"
+  },
+  {
+    "task": "unstack_sort",
+    "condition": "OOD",
+    "seed": 30212,
+    "method": "APPL_6_xhigh",
+    "success": false,
+    "steps": 735,
+    "status": "agent_finished",
+    "final": {
+      "blue_at_goal": false,
+      "red_at_goal": true,
+      "success": false
+    },
+    "source_root": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/runs/exp2/Exp2_new/ood_resource_resume_20260920/episodes/unstack_sort/OOD/30212",
+    "bundle_root": "episodes/APPL_6_xhigh/unstack_sort/OOD/30212",
+    "result_sha256": "6d594778401b5b1fac16b4854bed36462e2617a68d9bbdc9216727c67b945dee",
+    "initial_sha256": "55868962821301e09b64bcfb72d6660bd3e61671ee6208d8c9fb2225cf8fb9e0",
+    "trace_sha256": "daa4e791406256b7bb62eed931b25aa83044b9c1344c365562cb3e72bd22e20e",
+    "video": "episodes/APPL_6_xhigh/unstack_sort/OOD/30212/replay.mp4",
+    "first_goal_steps": {
+      "blue_at_goal": null,
+      "red_at_goal": 255,
+      "success": null
+    },
+    "ever_goals": {
+      "blue_at_goal": false,
+      "red_at_goal": true,
+      "success": false
+    },
+    "max_rise_from_initial_m": {
+      "red": 0.25519007816910744,
+      "blue": 6.09084963798523e-07
+    },
+    "distinct_policies": 6,
+    "invocation_count": 9,
+    "generation_calls": 16,
+    "API_finish": [
+      {
+        "file": "0016.response.json",
+        "reason": "Partial completion only: measured red_at_goal=1, blue_at_goal=0, success=0. Red is released near (-0.24227,-0.24794,0.02000). Blue remains on the table at (-0.31968,-0.08502,0.02000), displaced and rotated after unsuccessful acquisition attempts. The clearance acquisition stayed open, alternative alignment policies pushed blue, the contact-belief acquisition closed empty, and the final grasp-transform policy transported the empty hand back toward already placed red without moving blue. I stopped before that low wrong-object approach could disturb red. The current state lacks any observed blue grasp or improving alignment; the documented temporal overlaps cover successful transitions, not this displaced/skewed failed-grasp state. I judge no credible remaining recovery route with the available frozen local policies and will not claim task success."
+      }
+    ],
+    "API_arguments_equal_execution": true,
+    "observed_bottleneck": "blue_goal_not_reached"
+  },
+  {
+    "task": "tray_pack",
+    "condition": "OOD",
+    "seed": 30312,
+    "method": "APPL_6_xhigh",
+    "success": true,
+    "steps": 757,
+    "status": "succeeded",
+    "final": {
+      "blue_at_goal": true,
+      "red_at_goal": true,
+      "success": true
+    },
+    "source_root": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/runs/exp2/Exp2_new/ood_resource_resume_20260920/episodes/tray_pack/OOD/30312",
+    "bundle_root": "episodes/APPL_6_xhigh/tray_pack/OOD/30312",
+    "result_sha256": "ffa01f02ea88ed26ba198797a480f84ee0b07f56affbb48f9bf291f2e1169e36",
+    "initial_sha256": "738e9316e0e3af6fd8e2c0b91e31e0c6e372ad60fae5398dd9d230167bbe2a75",
+    "trace_sha256": "1af594f752302f6c7d5d85323ad465b93a8b680bf70e726002209a492a6024f8",
+    "video": "episodes/APPL_6_xhigh/tray_pack/OOD/30312/replay.mp4",
+    "first_goal_steps": {
+      "blue_at_goal": 757,
+      "red_at_goal": 382,
+      "success": 757
+    },
+    "ever_goals": {
+      "blue_at_goal": true,
+      "red_at_goal": true,
+      "success": true
+    },
+    "max_rise_from_initial_m": {
+      "red": 0.2953302673995495,
+      "blue": 0.29400835558772087
+    },
+    "distinct_policies": 2,
+    "invocation_count": 8,
+    "generation_calls": 10,
+    "API_finish": [],
+    "API_arguments_equal_execution": true
+  },
+  {
+    "task": "drawer_exchange",
+    "condition": "OOD",
+    "seed": 6413,
+    "method": "APPL_6_xhigh",
+    "success": false,
+    "steps": 1079,
+    "status": "agent_finished",
+    "final": {
+      "blue_inside": false,
+      "drawer_open": false,
+      "red_on_pad": true,
+      "success": false
+    },
+    "source_root": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/runs/exp2/Exp2_new/ood_resource_resume_20260920/episodes/drawer_exchange/OOD/6413",
+    "bundle_root": "episodes/APPL_6_xhigh/drawer_exchange/OOD/6413",
+    "result_sha256": "c7565ac8f0c44271757fb41c8cdeacfd352ec3f422fff206e39aff4cace225a6",
+    "initial_sha256": "ae3fb6cc7f13302187795f10186b4c283a23afa2f5b1da5036af9957f3b250eb",
+    "trace_sha256": "039e0aaf6465b955c12d77cc2b2f96f9de18e5b733f05aa634554c6ed5bb8e4a",
+    "video": "episodes/APPL_6_xhigh/drawer_exchange/OOD/6413/replay.mp4",
+    "first_goal_steps": {
+      "blue_inside": null,
+      "drawer_open": 204,
+      "red_on_pad": 592,
+      "success": null
+    },
+    "ever_goals": {
+      "blue_inside": false,
+      "drawer_open": true,
+      "red_on_pad": true,
+      "success": false
+    },
+    "max_rise_from_initial_m": {
+      "red": 0.23902445286512375,
+      "blue": 0.001587124541401863
+    },
+    "distinct_policies": 6,
+    "invocation_count": 9,
+    "generation_calls": 16,
+    "API_finish": [
+      {
+        "file": "0016.response.json",
+        "reason": "The task is not complete. Red remains on its pad, but the drawer is at 0.240739 m (below the required >0.26 m) and blue remains outside at approximately [-0.4887, 0.3111, 0.0200] m. The initial blue pickup missed; subsequent bounded probes with alternative acquisition/contact/geometry priors did not establish blue co-lift. One probe disturbed the drawer, and the latest attempt pushed blue farther from demonstrated source positions before closing empty again. Observed ranges confirm blue never meaningfully lifted. With the current displaced block, empty grasp and disturbed drawer, I no longer judge these successful-demonstration local controllers to offer a credible completion route; continued nominal insertion would not accomplish the task."
+      }
+    ],
+    "API_arguments_equal_execution": true,
+    "observed_bottleneck": "blue_insertion_not_reached"
+  },
+  {
+    "task": "two_block_sort",
+    "condition": "OOD",
+    "seed": 30013,
+    "method": "APPL_6_xhigh",
+    "success": false,
+    "steps": 965,
+    "status": "agent_finished",
+    "final": {
+      "blue_at_goal": false,
+      "red_at_goal": false,
+      "success": false
+    },
+    "source_root": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/runs/exp2/Exp2_new/ood_resource_resume_20260920/episodes/two_block_sort/OOD/30013",
+    "bundle_root": "episodes/APPL_6_xhigh/two_block_sort/OOD/30013",
+    "result_sha256": "799e45331e6979cabcaa33b9312e6cda167f3240f7dd0a6bbfa4bc40e2483bd5",
+    "initial_sha256": "522b145b6758fa81a6dcd0c2906d8c179c7ce76c9276500d80bf5e29f91492a8",
+    "trace_sha256": "7b94f794e6d180285b5c8322fb073090226203f4d572ba9513bccad956d86d52",
+    "video": "episodes/APPL_6_xhigh/two_block_sort/OOD/30013/replay.mp4",
+    "first_goal_steps": {
+      "blue_at_goal": null,
+      "red_at_goal": 331,
+      "success": null
+    },
+    "ever_goals": {
+      "blue_at_goal": false,
+      "red_at_goal": true,
+      "success": false
+    },
+    "max_rise_from_initial_m": {
+      "red": 0.26751838251948357,
+      "blue": 0.2769043557345867
+    },
+    "distinct_policies": 6,
+    "invocation_count": 19,
+    "generation_calls": 26,
+    "API_finish": [
+      {
+        "file": "0026.response.json",
+        "reason": "The task is not complete: latest measurements show red_at_goal=0, blue_at_goal=0, success=0. Blue delivery repeatedly lowered short of its pad; subsequent bounded recovery attempts moved blue toward the red pad and disturbed red. Blue is now at approximately (-0.2315,-0.2190,0.0221), far from its goal (-0.18,0.25,0.02), and red at (-0.1775,-0.2856,0.0200) no longer satisfies rotated containment. The gripper is open and neither object has a verified grasp. All three acquisition and delivery priors have been inspected and attempted; the current displaced, nearby-object/contact state is outside their demonstrated recovery support. Further trials have been worsening placement rather than establishing a credible route to completion, so I am stopping without claiming success."
+      }
+    ],
+    "API_arguments_equal_execution": true,
+    "observed_bottleneck": "blue_rose_but_goal_not_reached"
+  },
+  {
+    "task": "buffer_swap",
+    "condition": "OOD",
+    "seed": 30113,
+    "method": "APPL_6_xhigh",
+    "success": true,
+    "steps": 1492,
+    "status": "succeeded",
+    "final": {
+      "blue_at_goal": true,
+      "red_at_goal": true,
+      "success": true
+    },
+    "source_root": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/runs/exp2/Exp2_new/ood_resource_resume_20260920/episodes/buffer_swap/OOD/30113",
+    "bundle_root": "episodes/APPL_6_xhigh/buffer_swap/OOD/30113",
+    "result_sha256": "59429af0a9cad1d91b3950010617cb6f552d4e4f87ac36f0626d4a64b60ca868",
+    "initial_sha256": "9941528f021292e11dafa4deeaad4436bea2d99d6030e14e29176aca1ddee7d1",
+    "trace_sha256": "e34d0439cee12d416d6008d924034c2d6558d1c1748f30eb7df47e684951b89f",
+    "video": "episodes/APPL_6_xhigh/buffer_swap/OOD/30113/replay.mp4",
+    "first_goal_steps": {
+      "blue_at_goal": 922,
+      "red_at_goal": 1492,
+      "success": 1492
+    },
+    "ever_goals": {
+      "blue_at_goal": true,
+      "red_at_goal": true,
+      "success": true
+    },
+    "max_rise_from_initial_m": {
+      "red": 0.2581617347896099,
+      "blue": 0.2688990943133831
+    },
+    "distinct_policies": 5,
+    "invocation_count": 15,
+    "generation_calls": 20,
+    "API_finish": [],
+    "API_arguments_equal_execution": true
+  },
+  {
+    "task": "unstack_sort",
+    "condition": "OOD",
+    "seed": 30213,
+    "method": "APPL_6_xhigh",
+    "success": true,
+    "steps": 615,
+    "status": "succeeded",
+    "final": {
+      "blue_at_goal": true,
+      "red_at_goal": true,
+      "success": true
+    },
+    "source_root": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/runs/exp2/Exp2_new/ood_resource_resume_20260920/episodes/unstack_sort/OOD/30213",
+    "bundle_root": "episodes/APPL_6_xhigh/unstack_sort/OOD/30213",
+    "result_sha256": "a861356accf0e9da50c547d6a0dd8c18211ce94952c5bdb879afff39b6ca8f4a",
+    "initial_sha256": "ca894b9285a89c9acc6a761c519bdb086f089b9b2d4bc702f0f90ad47f15abed",
+    "trace_sha256": "83ae49dfea657b7bb609653876ba9db4726df3ca9f71cf6ee09c4f8435e9d315",
+    "video": "episodes/APPL_6_xhigh/unstack_sort/OOD/30213/replay.mp4",
+    "first_goal_steps": {
+      "blue_at_goal": 615,
+      "red_at_goal": 259,
+      "success": 615
+    },
+    "ever_goals": {
+      "blue_at_goal": true,
+      "red_at_goal": true,
+      "success": true
+    },
+    "max_rise_from_initial_m": {
+      "red": 0.2593999244272709,
+      "blue": 0.2754072956740856
+    },
+    "distinct_policies": 2,
+    "invocation_count": 7,
+    "generation_calls": 9,
+    "API_finish": [],
+    "API_arguments_equal_execution": true
+  },
+  {
+    "task": "tray_pack",
+    "condition": "OOD",
+    "seed": 30313,
+    "method": "APPL_6_xhigh",
+    "success": true,
+    "steps": 606,
+    "status": "succeeded",
+    "final": {
+      "blue_at_goal": true,
+      "red_at_goal": true,
+      "success": true
+    },
+    "source_root": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/runs/exp2/Exp2_new/ood_resource_resume_20260920/episodes/tray_pack/OOD/30313",
+    "bundle_root": "episodes/APPL_6_xhigh/tray_pack/OOD/30313",
+    "result_sha256": "dccd06e92e1edd57faa46e2a492c4d904a8900d5ab3b64219c5a05b0a98b2fc8",
+    "initial_sha256": "aa33acf805aff4c100a8a84a6a3155ab8d2262fd48e08cb1d830af09a49bec2c",
+    "trace_sha256": "5a7c8959b2032fc1294e79cb6cbaba1c36321ba2a4a4645811dc43abd424032b",
+    "video": "episodes/APPL_6_xhigh/tray_pack/OOD/30313/replay.mp4",
+    "first_goal_steps": {
+      "blue_at_goal": 606,
+      "red_at_goal": 252,
+      "success": 606
+    },
+    "ever_goals": {
+      "blue_at_goal": true,
+      "red_at_goal": true,
+      "success": true
+    },
+    "max_rise_from_initial_m": {
+      "red": 0.277085792273283,
+      "blue": 0.2856900803744793
+    },
+    "distinct_policies": 2,
+    "invocation_count": 5,
+    "generation_calls": 7,
+    "API_finish": [],
+    "API_arguments_equal_execution": true
+  },
+  {
+    "task": "drawer_exchange",
+    "condition": "OOD",
+    "seed": 6414,
+    "method": "APPL_6_xhigh",
+    "success": false,
+    "steps": 676,
+    "status": "agent_finished",
+    "final": {
+      "blue_inside": false,
+      "drawer_open": false,
+      "red_on_pad": false,
+      "success": false
+    },
+    "source_root": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/runs/exp2/Exp2_new/ood_resource_resume_20260920/episodes/drawer_exchange/OOD/6414",
+    "bundle_root": "episodes/APPL_6_xhigh/drawer_exchange/OOD/6414",
+    "result_sha256": "65f8f9525ab81898892e5376a98a581d53aad0ed0f5fded1964c6a4b2d83c8ea",
+    "initial_sha256": "19dbb8433d2bf983dc618c01a0be9b9a01778839a905f84a8332ef82b0ed5a5b",
+    "trace_sha256": "13acb20ce3ec080c41a27a260b7bd1eb4089a72870222d1089b58affb1239d71",
+    "video": "episodes/APPL_6_xhigh/drawer_exchange/OOD/6414/replay.mp4",
+    "first_goal_steps": {
+      "blue_inside": null,
+      "drawer_open": 207,
+      "red_on_pad": null,
+      "success": null
+    },
+    "ever_goals": {
+      "blue_inside": false,
+      "drawer_open": true,
+      "red_on_pad": false,
+      "success": false
+    },
+    "max_rise_from_initial_m": {
+      "red": 0.001277633011341095,
+      "blue": -8.195638656616211e-08
+    },
+    "distinct_policies": 5,
+    "invocation_count": 7,
+    "generation_calls": 13,
+    "API_finish": [
+      {
+        "file": "0013.response.json",
+        "reason": "The task was not completed. Latest measured state at step 676 has drawer_position=0.25581 m, below the strict >0.26 m requirement; red remains in the drawer at z=0.063 m and is not on the pad; blue remains outside at z=0.020 m. Initial opening succeeded temporarily, but subsequent red approaches disturbed the drawer and missed the grasp. Bounded alternatives with different documented acquisition/attachment priors did not recover: the last two policies lifted or moved an empty, fully closed gripper while red stayed supported. The last invocation produced no reopening, regrasp, or object progress. These disturbed-drawer and missed-grasp states are not established recovery support, and no insertion handoff is ready. I do not judge further policy cycling to offer a credible route to simultaneous completion."
+      }
+    ],
+    "API_arguments_equal_execution": true,
+    "observed_bottleneck": "red_placement_not_reached"
+  },
+  {
+    "task": "two_block_sort",
+    "condition": "OOD",
+    "seed": 30014,
+    "method": "APPL_6_xhigh",
+    "success": false,
+    "steps": 694,
+    "status": "agent_finished",
+    "final": {
+      "blue_at_goal": false,
+      "red_at_goal": true,
+      "success": false
+    },
+    "source_root": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/runs/exp2/Exp2_new/ood_resource_resume_20260920/episodes/two_block_sort/OOD/30014",
+    "bundle_root": "episodes/APPL_6_xhigh/two_block_sort/OOD/30014",
+    "result_sha256": "7e6c5964696155cd9a0c56e4a3a85e8031cea8f10aefbe0581dec925303e978d",
+    "initial_sha256": "28e7c20cd75cb05ab8a11f45655f533d44f6ccb1163711874174f5d88f505984",
+    "trace_sha256": "3f3e6b9e5ab7bf876b9edfab625b9cf8db2aea9e75aae92c41d1f4badafbd92c",
+    "video": "episodes/APPL_6_xhigh/two_block_sort/OOD/30014/replay.mp4",
+    "first_goal_steps": {
+      "blue_at_goal": null,
+      "red_at_goal": 240,
+      "success": null
+    },
+    "ever_goals": {
+      "blue_at_goal": false,
+      "red_at_goal": true,
+      "success": false
+    },
+    "max_rise_from_initial_m": {
+      "red": 0.2643989436328411,
+      "blue": 0.00034633465111255646
+    },
+    "distinct_policies": 5,
+    "invocation_count": 13,
+    "generation_calls": 19,
+    "API_finish": [
+      {
+        "file": "0019.response.json",
+        "reason": "The task is incomplete: live red_at_goal=1, blue_at_goal=0, success=0. Red is placed at approximately (-0.1808,-0.2570,0.0200). The blue pickup missed and rotated blue near (-0.4609,0.2097,0.0200); no subsequent observation showed blue lifting. Bounded recovery attempts using alternative acquisition controllers, delivery attachment/free-motion behavior, and the predecessor release bridge all kept the empty gripper fully closed and failed to restore blue acquisition. Red remains contained. The current state is outside demonstrated successful-grasp transition support, and I no longer have a credible policy-only recovery route without further unproductive motion or risk to the completed red placement."
+      }
+    ],
+    "API_arguments_equal_execution": true,
+    "observed_bottleneck": "blue_rise_under_4cm"
+  },
+  {
+    "task": "buffer_swap",
+    "condition": "OOD",
+    "seed": 30114,
+    "method": "APPL_6_xhigh",
+    "success": false,
+    "steps": 648,
+    "status": "agent_finished",
+    "final": {
+      "blue_at_goal": false,
+      "red_at_goal": false,
+      "success": false
+    },
+    "source_root": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/runs/exp2/Exp2_new/ood_resource_resume_20260920/episodes/buffer_swap/OOD/30114",
+    "bundle_root": "episodes/APPL_6_xhigh/buffer_swap/OOD/30114",
+    "result_sha256": "89f5a6e96ad8c79caf11fa5e5a24219893d23b938bdad08d70f03d24952a1d52",
+    "initial_sha256": "75f3637d06a73fb7ea62b5e34d6fcf9900de7faf36b556dc4e5538ef687cd103",
+    "trace_sha256": "360aa8dc585b5c4e610499c78703ad0239a83ecf21f8b910f355923744c2d808",
+    "video": "episodes/APPL_6_xhigh/buffer_swap/OOD/30114/replay.mp4",
+    "first_goal_steps": {
+      "blue_at_goal": null,
+      "red_at_goal": null,
+      "success": null
+    },
+    "ever_goals": {
+      "blue_at_goal": false,
+      "red_at_goal": false,
+      "success": false
+    },
+    "max_rise_from_initial_m": {
+      "red": -8.009374141693115e-08,
+      "blue": -8.568167686462402e-08
+    },
+    "distinct_policies": 3,
+    "invocation_count": 4,
+    "generation_calls": 8,
+    "API_finish": [
+      {
+        "file": "0008.response.json",
+        "reason": "The exchange was not completed: measured red_at_goal=0 and blue_at_goal=0. Across 648 physical steps, all three buffer_red variants approached red but kept the fingers essentially fully open (about 0.080 m); red never lifted, and both blocks remain at their starting locations. A longer revisit of buffer_red h01 again produced only open approach/retreat. These observations give no credible acquisition route with the available buffer policies. The transfer and finish policies' documented overlaps presuppose progress through red buffering or later placements, not this repeated missed initial pickup with both destination regions still occupied. I am stopping rather than claiming success or treating unsupported downstream invocation as a valid handoff."
+      }
+    ],
+    "API_arguments_equal_execution": true,
+    "observed_bottleneck": "initial_red_rise_under_4cm"
+  },
+  {
+    "task": "unstack_sort",
+    "condition": "OOD",
+    "seed": 30214,
+    "method": "APPL_6_xhigh",
+    "success": true,
+    "steps": 642,
+    "status": "succeeded",
+    "final": {
+      "blue_at_goal": true,
+      "red_at_goal": true,
+      "success": true
+    },
+    "source_root": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/runs/exp2/Exp2_new/ood_resource_resume_20260920/episodes/unstack_sort/OOD/30214",
+    "bundle_root": "episodes/APPL_6_xhigh/unstack_sort/OOD/30214",
+    "result_sha256": "9762afbf5ec55823531d01f4b6d62dca547cbd1c9dc61989b3e591e1c9cc309e",
+    "initial_sha256": "e82f85daef4ebdf3a587aa9f3692c79995630f517fba28844c90832be3ad7453",
+    "trace_sha256": "cb7884a6895f146bd82dd85024bdc74872177cf2ab1a5920add92c472b94c47e",
+    "video": "episodes/APPL_6_xhigh/unstack_sort/OOD/30214/replay.mp4",
+    "first_goal_steps": {
+      "blue_at_goal": 642,
+      "red_at_goal": 268,
+      "success": 642
+    },
+    "ever_goals": {
+      "blue_at_goal": true,
+      "red_at_goal": true,
+      "success": true
+    },
+    "max_rise_from_initial_m": {
+      "red": 0.25801828876137733,
+      "blue": 0.2820427231490612
+    },
+    "distinct_policies": 2,
+    "invocation_count": 4,
+    "generation_calls": 6,
+    "API_finish": [],
+    "API_arguments_equal_execution": true
+  },
+  {
+    "task": "tray_pack",
+    "condition": "OOD",
+    "seed": 30314,
+    "method": "APPL_6_xhigh",
+    "success": false,
+    "steps": 966,
+    "status": "agent_finished",
+    "final": {
+      "blue_at_goal": false,
+      "red_at_goal": true,
+      "success": false
+    },
+    "source_root": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/runs/exp2/Exp2_new/ood_resource_resume_20260920/episodes/tray_pack/OOD/30314",
+    "bundle_root": "episodes/APPL_6_xhigh/tray_pack/OOD/30314",
+    "result_sha256": "9280f57a103ac2577d42a50e17808a91dfb511441647367c834762e3ff0efb8f",
+    "initial_sha256": "4faa1b25b940751a30636f5525b073136421bbc7ce653cb6d74ceadccdc68eea",
+    "trace_sha256": "cd233514f6535adf7f6023593e10b8fcb6e0c4d5f1be106a13a383927587c72b",
+    "video": "episodes/APPL_6_xhigh/tray_pack/OOD/30314/replay.mp4",
+    "first_goal_steps": {
+      "blue_at_goal": null,
+      "red_at_goal": 292,
+      "success": null
+    },
+    "ever_goals": {
+      "blue_at_goal": false,
+      "red_at_goal": true,
+      "success": false
+    },
+    "max_rise_from_initial_m": {
+      "red": 0.2914642207324505,
+      "blue": -7.82310962677002e-08
+    },
+    "distinct_policies": 6,
+    "invocation_count": 12,
+    "generation_calls": 19,
+    "API_finish": [
+      {
+        "file": "0019.response.json",
+        "reason": "The task is incomplete: measured red_at_goal=1, blue_at_goal=0, success=0. Red was picked and placed, but the blue acquisition missed and blue never left its source at approximately (-0.4391, 0.2794, 0.0200). Subsequent bounded probes of all acquisition variants and the delivery variants failed to reopen the empty gripper or establish a new blue approach. The latest delivery continuation pushed the already placed red about 7 mm rather than restoring opening, triggering the disturbance stop. Red remains contained, but further continuation risks losing that placement. Given the observed stalled closed-empty behavior and lack of demonstrated miss/contact recovery, I judge no credible remaining route with these frozen policies."
+      }
+    ],
+    "API_arguments_equal_execution": true,
+    "observed_bottleneck": "blue_goal_not_reached"
+  }
+]

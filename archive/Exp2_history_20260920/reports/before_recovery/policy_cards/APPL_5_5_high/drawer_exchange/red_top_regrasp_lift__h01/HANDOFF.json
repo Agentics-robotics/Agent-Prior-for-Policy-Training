@@ -1,0 +1,24 @@
+{
+  "policy_id": "red_top_regrasp_lift__h01",
+  "entry_conditions": "Observed entries start with the drawer already open near 0.30 m and the red block resting on the open drawer/front surface around z = 0.063 m. At the earliest handoff around index 240 the fingers are open with total width about 0.079 m and the TCP is still offset from the red block after side release. The policy may also enter later in the overlap around index 330, where the TCP is high above the red block and the fingers remain open. Causal cues are drawer_position, tcp_pose, red_pose, qpos finger positions, qvel and the two-step TCP-red motion in world metres/quaternions.",
+  "exit_conditions": "A useful exit is reached after top contact, closure and lift: the fingers are closed near total width 0.036 m, the TCP-red offset is small, red z is approximately 0.25 m or higher, and red and TCP are moving together away from the drawer toward the outside pad. The measured end around index 530 has red z around 0.307--0.322 m and a closed gripper, which is ready for the transport/place policy.",
+  "overlap_role": "The early overlap with side_grasp_red_pull_drawer_open teaches takeover during release/retreat from the drawer-opening motion. The late overlap with red_transport_place_pad teaches the fragile transition from just-closed top grasp through initial upward acceleration and the beginning of transport. This policy is therefore trained over the complete 240--530 slice rather than only the central grasp instant.",
+  "successor_readiness": "Transfer to red transport/place when the current observation shows the red block lifted clear of drawer lips, the gripper closed, TCP and red co-located/co-moving, and the arm beginning to leave the drawer area toward the red pad. A high red geometric position alone is not sufficient if the TCP is separated from the block or the gripper is open.",
+  "failure_signatures": "Possible failures include the TCP descending beside the red block instead of over its top, closing before reaching the block, a large TCP-red offset after closure, red z remaining near 0.063 m after closure, red separating from the TCP during lift, or the drawer no longer being open. These are failure cues for the inference agent; this model does not contain a scripted retry controller.",
+  "continuation_guidance": "If entering around index 240, continue through upward retreat/reorientation until the TCP is above the red-centered target frame, then through descent, closure and lift. If entering around index 330, the high TCP and open fingers indicate that the policy should continue with centering/descent rather than repeat the earlier side release. If entering after closure but before sufficient lift, continue until red z and TCP-red co-motion indicate stable handoff to transport.",
+  "limitations": "The handoff conditions are semantic guidance based on successful demonstrations, not hard rejection thresholds or proof of contact. The model uses only state observations and learned diffusion actions; it has no image-based search, IK, collision constraint, or recovery behavior for missed grasps or partially closed drawers.",
+  "evidence": [
+    {
+      "trajectory_id": "demo1000",
+      "indices": [240, 330, 400, 455, 500, 530]
+    },
+    {
+      "trajectory_id": "demo1002",
+      "indices": [240, 330, 400, 455, 500, 530]
+    },
+    {
+      "trajectory_id": "demo1011",
+      "indices": [240, 330, 455, 530]
+    }
+  ]
+}

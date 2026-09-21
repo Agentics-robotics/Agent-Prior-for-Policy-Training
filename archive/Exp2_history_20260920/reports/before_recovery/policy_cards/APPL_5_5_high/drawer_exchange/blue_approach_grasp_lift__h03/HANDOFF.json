@@ -1,0 +1,15 @@
+{
+  "policy_id": "blue_approach_grasp_lift__h03",
+  "entry_conditions": "The policy may enter during the expanded blue-approach slice with the gripper open over or leaving the red-pad area, or later with the TCP already above/near the blue block. Causal cues are qpos finger width near 0.08 m when open, TCP pose in world coordinates, blue_pose still near table height z about 0.02 m before grasp, and the TCP-blue relative position showing whether approach, descent or closure is already under way.",
+  "exit_conditions": "Exit when observations indicate a likely carried blue block: fingers are closed or closing, TCP and blue have small relative motion, and blue_pose z is clearly above the table, preferably approaching the demonstrated handoff height near 0.28 m. A geometric TCP-over-blue condition alone is not sufficient if the fingers remain open or the blue block has not lifted.",
+  "overlap_role": "Indices 810--870 are intentionally shared with blue_transport_to_drawer. This policy learns the same contact-to-carry transition as the successor so it can either finish the lift or hand off after the attachment evidence becomes strong.",
+  "successor_readiness": "The successor should receive closed fingers, blue off the table and coupled to the TCP, with the TCP/blue pose high enough to begin travel toward the drawer cavity. In the demonstrations this occurs near the end of the slice, where blue z is about 0.24--0.28 m and finger aperture is about 0.036 m total.",
+  "failure_signatures": "Potential failure observations include fingers closing while TCP-blue xy error remains large, blue remaining at table height after a close command, blue rotating or moving away from the TCP, or finger width staying open while the policy should be in the lift phase. These are observed-state cues for the inference agent, not hard constraints inside the model.",
+  "continuation_guidance": "Continue this policy from red-pad departure through blue approach while fingers are open, through the close command when TCP is low and centered over blue, and through the lift until the blue block is visibly carried. If invoked partway through the transition, the model uses the last two observations of finger width, TCP-blue relation and blue height to infer whether to approach, close or lift.",
+  "limitations": "Observed support shows nominal top grasps only. The learned attachment latent is supervised from future demonstration lift evidence and is not a physical contact sensor. There are no demonstrated regrasp or slip-recovery cases, and this policy should not be expected to recover from a missed blue grasp without higher-level intervention.",
+  "evidence": [
+    {"trajectory_id": "demo1003", "indices": [650, 760, 810, 830, 850, 870]},
+    {"trajectory_id": "demo1004", "indices": [650, 760, 810, 830, 850, 870]},
+    {"trajectory_id": "demo1011", "indices": [810, 870]}
+  ]
+}

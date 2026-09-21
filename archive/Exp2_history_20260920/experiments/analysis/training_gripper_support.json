@@ -1,0 +1,452 @@
+{
+  "interpretation": "Finger width alone is not proof of an empty or occupied gripper. The 5 mm threshold is a descriptive analysis convention, not an evaluation rule. No new training, simulation or API requests.",
+  "reviewed_utc": "2026-09-16T17:58:35.738797+00:00",
+  "scope": "All original causal action-input observations from twelve training demonstrations per task; terminal T+1 excluded.",
+  "tasks": [
+    {
+      "finger_width_max_m": 0.07999999821186066,
+      "finger_width_min_m": 0.014104821253567934,
+      "finger_width_quantiles_m": [
+        0.014104821253567934,
+        0.014105339646339416,
+        0.03647512346506119,
+        0.07999909669160843,
+        0.07999999076128006,
+        0.07999999821186066
+      ],
+      "observations": 12809,
+      "sources": {
+        "demo1000": {
+          "minimum_width_m": 0.014104825910180807,
+          "observations": 1065,
+          "sha256": "58d911a45df1915e4a74c254caf6de4e202ead11d89ed69197de0b5f0c17fde5",
+          "states_width_at_most_5mm": 0
+        },
+        "demo1001": {
+          "minimum_width_m": 0.014104824978858232,
+          "observations": 1077,
+          "sha256": "165f93f38197cd75050488a557609072e12ca0006771c36b72b90e8cae68f956",
+          "states_width_at_most_5mm": 0
+        },
+        "demo1002": {
+          "minimum_width_m": 0.014104829635471106,
+          "observations": 1063,
+          "sha256": "8c43a8c1562f90c040f0570aa1dde013fad47bbef1f786ccf8ab2ba3d766136d",
+          "states_width_at_most_5mm": 0
+        },
+        "demo1003": {
+          "minimum_width_m": 0.014104828704148531,
+          "observations": 1066,
+          "sha256": "01c617c320a46f6c3862737aad218921effe677e1630ab85e7a43d80e1fe082a",
+          "states_width_at_most_5mm": 0
+        },
+        "demo1004": {
+          "minimum_width_m": 0.01410482358187437,
+          "observations": 1065,
+          "sha256": "bfa82b20e4971095967e9981400d145771890c2a55fff0568853e2d77acf3a22",
+          "states_width_at_most_5mm": 0
+        },
+        "demo1005": {
+          "minimum_width_m": 0.014104830101132393,
+          "observations": 1070,
+          "sha256": "71eacabcb7799f216f03bb1e582e6aec3a42e83850c569b001de3cbc4e26778a",
+          "states_width_at_most_5mm": 0
+        },
+        "demo1006": {
+          "minimum_width_m": 0.014104825910180807,
+          "observations": 1064,
+          "sha256": "4d2e5f38fd0c80ef267e9ae877f9d9e1b098325ac5da5aa769b0e9abeceef06b",
+          "states_width_at_most_5mm": 0
+        },
+        "demo1007": {
+          "minimum_width_m": 0.014104824978858232,
+          "observations": 1069,
+          "sha256": "410c02b19c7511f551f3c69e21c88c7e386b4067ebfebc6c169e9b44e94cc930",
+          "states_width_at_most_5mm": 0
+        },
+        "demo1008": {
+          "minimum_width_m": 0.014104823116213083,
+          "observations": 1071,
+          "sha256": "7c7641d622180d497137b4560cadf5a4497bf22c7ffb5a5aef785fe0a1f17cc3",
+          "states_width_at_most_5mm": 0
+        },
+        "demo1009": {
+          "minimum_width_m": 0.01410482544451952,
+          "observations": 1065,
+          "sha256": "9ff9137a991b6a81fa0f9330449d359eeeeed398e225b1dbe22a449ea7b84d93",
+          "states_width_at_most_5mm": 0
+        },
+        "demo1010": {
+          "minimum_width_m": 0.014104821719229221,
+          "observations": 1069,
+          "sha256": "867210d90fa09b282d5a6190209251c0b69d6e64b6cef2bcaea97951df57711f",
+          "states_width_at_most_5mm": 0
+        },
+        "demo1011": {
+          "minimum_width_m": 0.014104821253567934,
+          "observations": 1065,
+          "sha256": "126c98245881a8ba6dde2da8707d8396d32d946fa4bbd62535b29d5eecc94eb7",
+          "states_width_at_most_5mm": 0
+        }
+      },
+      "states_width_at_most_5mm": 0,
+      "task": "drawer_exchange"
+    },
+    {
+      "finger_width_max_m": 0.07999999821186066,
+      "finger_width_min_m": 0.036509063094854355,
+      "finger_width_quantiles_m": [
+        0.036509063094854355,
+        0.03651063375174999,
+        0.036524349078536036,
+        0.07034364715218544,
+        0.0799998939037323,
+        0.07999999821186066
+      ],
+      "observations": 9237,
+      "sources": {
+        "demo10000": {
+          "minimum_width_m": 0.03651048801839352,
+          "observations": 773,
+          "sha256": "568b9d08ecc90c99a690c901ed0998fbd905af2ac4128f83b1f50e6e02ac77d0",
+          "states_width_at_most_5mm": 0
+        },
+        "demo10001": {
+          "minimum_width_m": 0.036510294303297997,
+          "observations": 765,
+          "sha256": "a014f7ae982315522efa47d5ef612d5eaad3a35fe6cbc089764bdd9e4bc26b91",
+          "states_width_at_most_5mm": 0
+        },
+        "demo10002": {
+          "minimum_width_m": 0.036509327590465546,
+          "observations": 770,
+          "sha256": "be5eebbed4274aef120b6a15cd8e6590077ad80e9ebea1780b42efda058dbe51",
+          "states_width_at_most_5mm": 0
+        },
+        "demo10003": {
+          "minimum_width_m": 0.036509063094854355,
+          "observations": 756,
+          "sha256": "5025face9e4992ab8b11c166ff77ade3f803c931bcf5a15ab7a35912121250d9",
+          "states_width_at_most_5mm": 0
+        },
+        "demo10004": {
+          "minimum_width_m": 0.03651028871536255,
+          "observations": 770,
+          "sha256": "bdd6f7d063ea869527924a4189ea815742386cb64f5e49e4eaa10a50d6fb9b3a",
+          "states_width_at_most_5mm": 0
+        },
+        "demo10005": {
+          "minimum_width_m": 0.03651321865618229,
+          "observations": 771,
+          "sha256": "10fe744977c2c8268b94942cef2437541ee8d1a060b332d7c2e5a06064f9b5c0",
+          "states_width_at_most_5mm": 0
+        },
+        "demo10006": {
+          "minimum_width_m": 0.03651077672839165,
+          "observations": 773,
+          "sha256": "c72efc95bb630ba4695d26a128099dba69a810344433803bb9238911939ff4cb",
+          "states_width_at_most_5mm": 0
+        },
+        "demo10007": {
+          "minimum_width_m": 0.03650980070233345,
+          "observations": 760,
+          "sha256": "a09898434a30e8a3de934966028cad6ca660705045522086b4a27df8bb256918",
+          "states_width_at_most_5mm": 0
+        },
+        "demo10008": {
+          "minimum_width_m": 0.0365110095590353,
+          "observations": 775,
+          "sha256": "a52451b885048ccd847106a3f5eb514520828e9f5ace6f445b3f64340c325a9d",
+          "states_width_at_most_5mm": 0
+        },
+        "demo10009": {
+          "minimum_width_m": 0.03651062026619911,
+          "observations": 773,
+          "sha256": "d139b01c2419e86e82ae85c8bae802a5a745d7c98560b800fa9c3a3927a0310a",
+          "states_width_at_most_5mm": 0
+        },
+        "demo10010": {
+          "minimum_width_m": 0.036512069404125214,
+          "observations": 774,
+          "sha256": "519d75d04dcf2b5889ea93268d1ce8c63292937e40a5650306bc00fd67cc14a6",
+          "states_width_at_most_5mm": 0
+        },
+        "demo10011": {
+          "minimum_width_m": 0.03650989942252636,
+          "observations": 777,
+          "sha256": "aee196b9485aa7e4e25e05e1195ac40c2d04e4e79a5bf59cfd5faf566ea6326e",
+          "states_width_at_most_5mm": 0
+        }
+      },
+      "states_width_at_most_5mm": 0,
+      "task": "two_block_sort"
+    },
+    {
+      "finger_width_max_m": 0.07999999821186066,
+      "finger_width_min_m": 0.03650064952671528,
+      "finger_width_quantiles_m": [
+        0.03650064952671528,
+        0.036502741277217865,
+        0.0365113677456975,
+        0.07034795545041561,
+        0.07999993488192558,
+        0.07999999821186066
+      ],
+      "observations": 12742,
+      "sources": {
+        "demo10100": {
+          "minimum_width_m": 0.03650281019508839,
+          "observations": 1064,
+          "sha256": "8143fbe3be71a1c631f5c7749d18b35e22bc92139fcfff7b5ebbf518d6fc335a",
+          "states_width_at_most_5mm": 0
+        },
+        "demo10101": {
+          "minimum_width_m": 0.03650733642280102,
+          "observations": 1064,
+          "sha256": "799625b2044bcc28a7a6eea51a4740935e9cf0d9f22b8374ff1e1fd6775609bf",
+          "states_width_at_most_5mm": 0
+        },
+        "demo10102": {
+          "minimum_width_m": 0.03650219365954399,
+          "observations": 1060,
+          "sha256": "fa8a632a17305449d85b05f19a29a04268ec6859c9c22eedc08f8a9e98a25917",
+          "states_width_at_most_5mm": 0
+        },
+        "demo10103": {
+          "minimum_width_m": 0.03650239109992981,
+          "observations": 1065,
+          "sha256": "bc5327538d11b7263aa843cfbf7cca57e277f228ab83827e6a6be39d17fb7359",
+          "states_width_at_most_5mm": 0
+        },
+        "demo10104": {
+          "minimum_width_m": 0.03650161437690258,
+          "observations": 1057,
+          "sha256": "ab4fdca4a826e13907c3634c17d0cedd822e5736cf37113947d7cd86e096a9a8",
+          "states_width_at_most_5mm": 0
+        },
+        "demo10105": {
+          "minimum_width_m": 0.03650727868080139,
+          "observations": 1056,
+          "sha256": "8dca03afe82b1247c339dba887d9f2bd2f2de158810338259d17bdcde391146f",
+          "states_width_at_most_5mm": 0
+        },
+        "demo10106": {
+          "minimum_width_m": 0.03650626540184021,
+          "observations": 1059,
+          "sha256": "835849cc15e004b22d320f6fdc36d9c0bcc18a5019712e0ea572dff0a4b0c51a",
+          "states_width_at_most_5mm": 0
+        },
+        "demo10107": {
+          "minimum_width_m": 0.036501724272966385,
+          "observations": 1071,
+          "sha256": "2ee06e92d7a0502499d2696e463e66a9bc5e58f2c9beab9b4819cfe9a6a4f7a0",
+          "states_width_at_most_5mm": 0
+        },
+        "demo10108": {
+          "minimum_width_m": 0.03650064952671528,
+          "observations": 1058,
+          "sha256": "a267623fe0603dff6f918dfd6f2d08e3da5b313580763e0a482af84e38ab43d6",
+          "states_width_at_most_5mm": 0
+        },
+        "demo10109": {
+          "minimum_width_m": 0.03650250844657421,
+          "observations": 1063,
+          "sha256": "5e77ab47c4b0b7e0c67997b120e9215fcf9a4473429c62e0207c5dee631be8a6",
+          "states_width_at_most_5mm": 0
+        },
+        "demo10110": {
+          "minimum_width_m": 0.03650704212486744,
+          "observations": 1064,
+          "sha256": "cd8edf45f317ef134effd4d03d206a23dba900ec9d39034ba19d0f51242e60a0",
+          "states_width_at_most_5mm": 0
+        },
+        "demo10111": {
+          "minimum_width_m": 0.03650403395295143,
+          "observations": 1061,
+          "sha256": "66f8244ef8020adfb90b028d50deb30d29f68dc21258d3981de4adebf3412646",
+          "states_width_at_most_5mm": 0
+        }
+      },
+      "states_width_at_most_5mm": 0,
+      "task": "buffer_swap"
+    },
+    {
+      "finger_width_max_m": 0.07999999821186066,
+      "finger_width_min_m": 0.03646733984351158,
+      "finger_width_quantiles_m": [
+        0.03646733984351158,
+        0.03648911789059639,
+        0.03649929538369179,
+        0.04080057516694069,
+        0.07999995723366737,
+        0.07999999821186066
+      ],
+      "observations": 8729,
+      "sources": {
+        "demo10200": {
+          "minimum_width_m": 0.03647845797240734,
+          "observations": 732,
+          "sha256": "907a25e5062deed56b5c3a0052405b5c5e58b905e406fc4d766abc96d66b50a7",
+          "states_width_at_most_5mm": 0
+        },
+        "demo10201": {
+          "minimum_width_m": 0.03647789545357227,
+          "observations": 717,
+          "sha256": "f543e7179face6fd9d6ff62e9af0ee974f003fd8f344f1714b1467a9e6eb803f",
+          "states_width_at_most_5mm": 0
+        },
+        "demo10202": {
+          "minimum_width_m": 0.03647363744676113,
+          "observations": 729,
+          "sha256": "905561c7d25d99223d95314ec1f8216a796e9760cfb07f9c7c3c11288c6f2582",
+          "states_width_at_most_5mm": 0
+        },
+        "demo10203": {
+          "minimum_width_m": 0.03648030757904053,
+          "observations": 728,
+          "sha256": "3f4867e41ae495430a220d20d20067c07997dd086289e90637f8044826ea0411",
+          "states_width_at_most_5mm": 0
+        },
+        "demo10204": {
+          "minimum_width_m": 0.0364711657166481,
+          "observations": 721,
+          "sha256": "0f0cbfd5286f2db05f4274ac1cb0d085ad8789ceab5634b429edb421d787b115",
+          "states_width_at_most_5mm": 0
+        },
+        "demo10205": {
+          "minimum_width_m": 0.03648450970649719,
+          "observations": 723,
+          "sha256": "37ce9a5d2515078815ece9507b1e2143d7ca3128cd428865c5d576c786c38804",
+          "states_width_at_most_5mm": 0
+        },
+        "demo10206": {
+          "minimum_width_m": 0.03646733984351158,
+          "observations": 729,
+          "sha256": "0ab1a86469dc86394397561347559ecbd07df24f0eb2bd2cc944b5b9d7f1a221",
+          "states_width_at_most_5mm": 0
+        },
+        "demo10207": {
+          "minimum_width_m": 0.03647552244365215,
+          "observations": 739,
+          "sha256": "2f52211b64cabf48cde88b6b7db45f92c58e9bbd5e25491fffe526c08da207e7",
+          "states_width_at_most_5mm": 0
+        },
+        "demo10208": {
+          "minimum_width_m": 0.03647048771381378,
+          "observations": 737,
+          "sha256": "f61e326e0471e86f79196c073c3bc5dc7c91ea1873cb05355eae26c7db293afa",
+          "states_width_at_most_5mm": 0
+        },
+        "demo10209": {
+          "minimum_width_m": 0.03647614270448685,
+          "observations": 723,
+          "sha256": "8573919b1c5fc185fdafbe96aec124d20c2140b37dbba7f74e869b3e5facf330",
+          "states_width_at_most_5mm": 0
+        },
+        "demo10210": {
+          "minimum_width_m": 0.03647361136972904,
+          "observations": 730,
+          "sha256": "8c81d3e2690ae827f038e262064498cbea3aed58757d35a54debfd6a7a1d2001",
+          "states_width_at_most_5mm": 0
+        },
+        "demo10211": {
+          "minimum_width_m": 0.0364849753677845,
+          "observations": 721,
+          "sha256": "1fc18812a86f4820d0d13a8407d8d17f5ce24c86bea946807a86fffc763f4e47",
+          "states_width_at_most_5mm": 0
+        }
+      },
+      "states_width_at_most_5mm": 0,
+      "task": "unstack_sort"
+    },
+    {
+      "finger_width_max_m": 0.07999999821186066,
+      "finger_width_min_m": 0.036511776968836784,
+      "finger_width_quantiles_m": [
+        0.036511776968836784,
+        0.03651521697640419,
+        0.03652167953550815,
+        0.07033959403634071,
+        0.07999991253018379,
+        0.07999999821186066
+      ],
+      "observations": 8897,
+      "sources": {
+        "demo10300": {
+          "minimum_width_m": 0.0365183986723423,
+          "observations": 742,
+          "sha256": "8b11249b50fbb65ffec84124f817d9f62332e3c1194acfe9b27926cd81455e05",
+          "states_width_at_most_5mm": 0
+        },
+        "demo10301": {
+          "minimum_width_m": 0.03651857562363148,
+          "observations": 742,
+          "sha256": "935fddfb0c3edc683e166e7e90419c18e1075e4d0b947fccae73b6f6a2474a83",
+          "states_width_at_most_5mm": 0
+        },
+        "demo10302": {
+          "minimum_width_m": 0.036511776968836784,
+          "observations": 752,
+          "sha256": "fd47dfd0441429462f0670a9970f401b0e2bc7b856f948134e8677fb2dd4e50c",
+          "states_width_at_most_5mm": 0
+        },
+        "demo10303": {
+          "minimum_width_m": 0.03651979938149452,
+          "observations": 743,
+          "sha256": "d005ac1ef61515c9be49d296af3e6a2a7e2e416ca73a21d2b9e3782d9e6da656",
+          "states_width_at_most_5mm": 0
+        },
+        "demo10304": {
+          "minimum_width_m": 0.03651469014585018,
+          "observations": 737,
+          "sha256": "dc380aeb19d2a9b9ba8d1437aabd4c88d2bbb7f23bb06862dea026fbc74986a5",
+          "states_width_at_most_5mm": 0
+        },
+        "demo10305": {
+          "minimum_width_m": 0.03651959262788296,
+          "observations": 752,
+          "sha256": "5858718c0ce4547f017cb27a2920b5c557e89af7bb10f14d14c54d2551ef87dd",
+          "states_width_at_most_5mm": 0
+        },
+        "demo10306": {
+          "minimum_width_m": 0.03651859611272812,
+          "observations": 749,
+          "sha256": "9d54aaeec42509804076770d9fead3e02b00b2750836208d6277be9d6ff7bae1",
+          "states_width_at_most_5mm": 0
+        },
+        "demo10307": {
+          "minimum_width_m": 0.03651479445397854,
+          "observations": 730,
+          "sha256": "31e7304114b6871b987193cd5cd7f961de61115e987889facda9a1471a553843",
+          "states_width_at_most_5mm": 0
+        },
+        "demo10308": {
+          "minimum_width_m": 0.03651851788163185,
+          "observations": 737,
+          "sha256": "5e82a2c77432bc12e90db1f7325fbd8b845e3fec2a3117a2f77b52c02ec2e6f3",
+          "states_width_at_most_5mm": 0
+        },
+        "demo10309": {
+          "minimum_width_m": 0.03651706501841545,
+          "observations": 741,
+          "sha256": "28797b3ea3d98198477e5484f424f53f46739e214cd8635f716e9fc6c046ef6e",
+          "states_width_at_most_5mm": 0
+        },
+        "demo10310": {
+          "minimum_width_m": 0.03651488572359085,
+          "observations": 730,
+          "sha256": "a630426b0107bb066d2087f76462985157214df68b68b121b55b618484ed8bed",
+          "states_width_at_most_5mm": 0
+        },
+        "demo10311": {
+          "minimum_width_m": 0.03651793114840984,
+          "observations": 742,
+          "sha256": "1218009057a2d11bc69f4f524e763ffbe2c3e24a5ad66915116e414bb3491055",
+          "states_width_at_most_5mm": 0
+        }
+      },
+      "states_width_at_most_5mm": 0,
+      "task": "tray_pack"
+    }
+  ]
+}

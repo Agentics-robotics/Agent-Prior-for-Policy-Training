@@ -1,0 +1,24 @@
+{
+  "policy_id": "blue_acquire_transport__h01",
+  "entry_conditions": "Enter when the causal world-state history indicates red is already placed near red_goal and should be treated as a finished context object, while blue is still at table height near the source or is already in an early blue grasp/lift transition. Supported entry examples include open fingers around 0.04 m per finger at index 330 with red at its goal, and later overlap states where TCP is near blue and the gripper is closing or closed.",
+  "exit_conditions": "Exit when blue is grasped with fingers near the demonstrated closed width, lifted clear of the table, and carried near or above the blue goal so that a placement policy can descend and finish. Demonstrated exits around index 590 have blue near x,y = [-0.24, 0.25] with z roughly 0.22-0.30 m and TCP maintaining a small top-grasp offset from blue.",
+  "overlap_role": "This policy covers the shared transition from red placement to blue acquisition in [330, 520) and the shared transition from blue high carry to final placement in [520, 590). In the first overlap it learns to leave the red-release region, approach the blue block, close, and lift. In the second overlap it learns to maintain the grasp and translate the lifted blue block toward the goal, but does not need to perform the final placement/release.",
+  "successor_readiness": "A successor placer should receive a state with blue in hand, fingers closed near 0.018 m per finger, TCP and blue poses nearly coincident in x-y with a small top-grasp z offset, blue high enough for controlled descent, and blue already close to the blue goal. The observation cues are qpos finger joints, tcp_pose, blue_pose, blue_goal-blue relative position, and recent blue/TCP motion from the two-state history.",
+  "failure_signatures": "Potential failures include the gripper closing while TCP is not centered over blue, blue z remaining near 0.02 m after the fingers close, increasing TCP-blue offset during lift, red_pose moving away from red_goal, or blue motion inconsistent with the TCP during the carry. These are observation-based warning signs, not hard proof of contact state or recovery ability.",
+  "continuation_guidance": "Continue invoking this policy while red remains stable at red_goal and blue is not yet both lifted and goal-near. If the current observation is midway through the transition, use causal cues: open fingers and high TCP indicate approach from red release; low TCP over blue and changing finger width indicate acquisition; increasing blue z with closed fingers indicates lift; high blue z with decreasing blue-goal XY error indicates transport. Transfer when transport reaches the goal-near high-carry state rather than waiting for table contact or release.",
+  "limitations": "Observed support assumes a top-down grasp, an upright blue block, small source variation, and a successful earlier red placement. The handoff text does not impose hard thresholds and does not claim unobserved recovery from missed grasp, tipped blocks, or red obstruction. The policy uses state features only and has no image-based verification, IK, or collision constraints.",
+  "evidence": [
+    {
+      "trajectory_id": "demo10200",
+      "indices": [330, 460, 520, 590]
+    },
+    {
+      "trajectory_id": "demo10207",
+      "indices": [330, 430, 460, 520, 590]
+    },
+    {
+      "trajectory_id": "demo10208",
+      "indices": [330, 520, 590]
+    }
+  ]
+}

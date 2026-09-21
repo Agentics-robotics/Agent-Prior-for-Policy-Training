@@ -1,0 +1,28 @@
+{
+  "policy_id": "acquire_block__h01",
+  "skill_id": "acquire_block",
+  "heuristic_index": 1,
+  "prior_summary": "Learned diffusion policy with an active-object-relative representation: red-active and blue-active candidate features are encoded by a shared network, a causal role module selects/mixes the active block, and a conditional U-Net predicts normalized joint/gripper action noise.",
+  "applicable_conditions": "Use when the task is tray_pack with the observed Panda state schema, two cuboid blocks, open tray goals, and one block should be acquired from the table or carried toward its goal. The causal stage cue is red first, then blue after the red block is observed near its tray goal at low placement height and the gripper has reopened.",
+  "termination_guidance": "Continue while approaching, closing on, lifting, or carrying the active block. Transfer to place_block when the active block is in the gripper, fingers are near the closed demonstration width, and the TCP/object are elevated and moving toward or above the active block goal. Do not treat this guidance as a task success predicate.",
+  "limitations": "The model has no external IK, no image input, no scripted recovery controller, and no explicit contact estimator. Role inference is learned from causal state and may fail on ambiguous states, missed grasps, both blocks already moved, or block positions far outside the demonstrated table/tray distribution.",
+  "config": {
+    "representation": "active_object_relative_shared_candidate_encoder",
+    "condition_dimension": 256,
+    "candidate_position_scale_m": 0.4,
+    "inactive_position_scale_m": 0.6,
+    "height_scale_m": 0.3,
+    "uses_shared_full_task_normalizer": true,
+    "role_supervision": "causal_red_placed_predicate_label_for_blue_active",
+    "auxiliary_losses": [
+      "role_binary_cross_entropy",
+      "phase_lift_and_finger_width_mse",
+      "active_tcp_and_goal_geometry_mse"
+    ],
+    "auxiliary_loss_weights": {
+      "role": 0.05,
+      "phase": 0.02,
+      "geometry": 0.01
+    }
+  }
+}

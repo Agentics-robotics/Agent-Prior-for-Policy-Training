@@ -1,0 +1,123 @@
+{
+  "candidate_id": "A2",
+  "status": "valid",
+  "files": {
+    "candidate.py": "7c931fb068987798fc8f03f63b45c010683bd1d64ebeaf9f12968a73f6232462",
+    "config.json": "ec258058ffe36a9891093afc1dd9dc974e6454e340897d462fffd668f8f240ce",
+    "design.json": "e4b4f63c35aa177c2ff5ae4a0b0ddeba3df5d4b5126713583f13ce0bf5e77032"
+  },
+  "code_hash": "41ce7b276d1d5163735a839240439ff0750c9eaa11e1423773bb05d1cf3f0066",
+  "fingerprint": "e8a35af72b983929effa95c7ed471710f900bbc27df47ee52853df5ce47cb22b",
+  "design": {
+    "title": "Weakly supervised causal skill routing with role-specific relational encoders",
+    "coverage_gap": "Only paired low/low and high/high layouts occur in N10. An unconstrained joint representation can couple where to grasp to where to insert, and can conflate closing, lifting and inserting because their relative hand/peg offsets are similar. Independent peg/box shifts require reusing skills without assuming the demonstrated timing or y correlation.",
+    "reusable_regularity": "Learn four soft representation branches for approach, contact/closing, transport and insertion. Approach/contact branches see peg-relative hand geometry rather than goal coordinates; transport/insertion branches see the pegHead-to-goal error and grasp contact. A causal router is trained with weak stage annotations made from support gripper/z commands and measured head height. At deployment it predicts solely from geometry, aperture and motion, without labels or a time clock. The DP consumes all soft-gated branches, a world-context encoder, an ungated metric safety skip and router logits (124 features per observation). Gates never prescribe native actions or plan a path.",
+    "dependencies_preserved": [
+      "all branches use signed world coordinates; reach and transport roles separate peg placement from goal placement",
+      "a 0.025 per-branch routing floor prevents any geometry branch from being completely discarded",
+      "the ungated grasp gap and pegHead-to-goal error keep robot/object/box relations accessible through stage uncertainty",
+      "an always-on world encoder receives absolute hand/goal, current orientation, orientation difference and hand/object motion, retaining finite-workspace, fixed box orientation and robot dependencies rather than claiming global translation or rotation symmetry",
+      "gripper aperture, gripper change, measured object movement and absolute heights distinguish approach, contact and carrying",
+      "the head-to-grasp offset remains explicit in transport encoders; the two sites are never substituted for one another"
+    ],
+    "evidence_refs": [
+      "bundle.json: ten current-support episode IDs, no development data or expert source",
+      "task_materials.json: LL/HH support, independent factor definitions, shared raw observation and native action semantics",
+      "support_summary.json: five support episodes per training cell; nonconstant gripper aperture and large vertical motion across demonstrations",
+      "images/frame_00_demo_00_step_000.png: initial open-hand approach to a tabletop peg",
+      "images/frame_02_demo_01_step_034.png: descending hand aligned over the peg, not yet inserting",
+      "images/frame_01_demo_00_step_056.png: low-height contact/early transport",
+      "images/frame_03_demo_01_step_091.png and images/frame_06_demo_03_step_079.png: raised peg at the side opening",
+      "trajectories/demo_00.json: actions[0:16] initially open with z positive then negative; actions[32:64] positive gripper with downward contact commands followed by upward/lateral transfer; obs[48:54] shows changing aperture and object movement",
+      "trajectories/demo_01.json: obs[34:37] shows approach/closing geometry while the head is still near table height",
+      "contracts.py and learning.py: learned modules registered in build_modules, training-only target path, valid-mask auxiliary normalization"
+    ],
+    "expected_failure_signature": "The key falsifiable risk is routing error under extrapolation: contact may be predicted too early before a secure grasp, or the transport branch may persist after height alignment. This would produce grasp misses or repeated rise/descend transitions despite reasonable initial reaching. Weak labels are not physical stage or success oracles; the 0.03 m height band can label a laterally misaligned peg as insertion, so large transverse E offsets may still cause premature insertion. Small N may also overfit the learned world branch. No performance claim is made.",
+    "required_runtime_fields": {
+      "source": "causal_context.raw_history [B,2,42] only",
+      "slices": {
+        "hand": [
+          0,
+          3
+        ],
+        "gripper": [
+          3,
+          4
+        ],
+        "pegGrasp": [
+          4,
+          7
+        ],
+        "peg_quaternion_xyzw": [
+          7,
+          11
+        ],
+        "previous_hand": [
+          18,
+          21
+        ],
+        "previous_gripper": [
+          21,
+          22
+        ],
+        "previous_pegGrasp": [
+          22,
+          25
+        ],
+        "previous_peg_quaternion_xyzw": [
+          25,
+          29
+        ],
+        "goal": [
+          36,
+          39
+        ],
+        "pegHead": [
+          39,
+          42
+        ]
+      },
+      "omitted": "Declared absent object2 zero fields only. No runtime stage, demonstration ID, reset factors, episode time, future state or action, or success label.",
+      "action_frame": "Identity world action4 encode/decode. XYZ remains native 0.01 m-per-unit world translation; the gripper coordinate is unchanged. No clipping or execution override exists in the candidate."
+    },
+    "training_only_targets": [
+      {
+        "name": "skill_stage",
+        "shape": "[windows,2], aligned to the two causal history timestamps, including repeated initial observation",
+        "source_fields": "Only this D_N: actions[u,3], actions[u,2], obs[u,41] (pegHead z), obs[u,38] (goal z), with u=max(0,t-1) or t",
+        "definition": "0 if gripper command is negative; otherwise 1 if head is more than 0.03 m below goal and z command is nonpositive; otherwise 2 if still below that band; otherwise 3. These are weak skill labels, not evaluator stages or success thresholds.",
+        "loss": "0.05 times cross-entropy of the causal router, separately normalized by mask[:,0].sum()*2. All class labels are on valid history points. Public action epsilon loss stays weight 1 and denominator mask.sum()*4.",
+        "inference_isolation": "Labels exist only in training_targets/training_loss. condition uses measured raw_history, and denoise exposes its router logits for the training loss. No teacher stage is concatenated at inference or training."
+      }
+    ],
+    "support_fit": "No fitted statistics, persistent episode cache or auxiliary pretraining. Learned encoders and router are registered in build_modules and optimized only jointly in the common fixed updates.",
+    "parents": [],
+    "change_summary": "Initial pre-feedback design with learned soft skill routing, four role-specific bounded MLP encoders, an always-on world encoder and a weak stage cross-entropy auxiliary. Unlike the deterministic contact-chain candidate, representation specialization is learned and stage-supervised. Common DP backbone and world action4 are unchanged."
+  },
+  "config": {
+    "encoder_width": 64,
+    "reach_scale_m": 0.1,
+    "fine_scale_m": 0.025,
+    "contact_scale_m": 0.05,
+    "transport_scale_m": 0.15,
+    "height_scale_m": 0.2,
+    "world_scale_m": 0.5,
+    "step_scale_m": 0.01,
+    "world_origin_m": [
+      0.0,
+      0.6,
+      0.0
+    ],
+    "routing_floor": 0.025,
+    "label_height_margin_m": 0.03,
+    "stage_aux_weight": 0.05
+  },
+  "instance_id": "peg-insert-side__N10__rep0",
+  "phase": "initial",
+  "submitted_at": "2026-09-12T22:49:01.452250+00:00",
+  "author": "RuntimePriorAPI",
+  "provenance": "openai_responses_api",
+  "rank_before_feedback": 2,
+  "submit_tool_call_id": "call_R5i3xGO7B2333bHAjOoMTSFZ",
+  "submission_hash": "0a646f22f9e03c5c86a516797063dbc2ef4cf594e404fd817fd5d8dbe14a805b"
+}

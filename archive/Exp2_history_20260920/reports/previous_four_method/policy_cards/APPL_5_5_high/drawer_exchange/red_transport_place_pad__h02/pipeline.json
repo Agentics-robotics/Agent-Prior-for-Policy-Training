@@ -1,0 +1,23 @@
+{
+  "policy_id": "red_transport_place_pad__h02",
+  "skill_id": "red_transport_place_pad",
+  "heuristic_index": 2,
+  "prior_summary": "A learned DDPM action policy whose conditioning is bottlenecked by a trainable four-stage high-carry, descend, release, and retreat representation for transporting the red block to the outside pad.",
+  "applicable_conditions": "Use when the drawer is already open and the red block is grasped or being lifted in the overlap from the red regrasp skill, with causal state showing the TCP close to the red block, fingers mostly closed, and the red block needing transport to the marked pad at world [-0.18, -0.30, 0.02] m.",
+  "termination_guidance": "Terminate or transfer when the red block is on the pad at low z, the gripper is open, and the TCP has retreated upward and laterally away from the red placement zone toward the blue block approach region.",
+  "limitations": "The model is learned from successful demonstrations only. It has no analytic inverse kinematics, no force feedback, no image encoder, and no guaranteed recovery for dropped or rolled red blocks outside the demonstrated state distribution.",
+  "config": {
+    "condition_dim": 256,
+    "stage_count": 4,
+    "stage_names": ["lift_and_high_carry", "pad_descent", "soft_release", "retreat_to_blue_transition"],
+    "observation_encoder": "shared-normalized two-step state history plus fixed-metre engineered relative features",
+    "auxiliary_losses": {
+      "stage_cross_entropy_weight": 0.15,
+      "future_red_tcp_finger_prediction_weight": 0.10,
+      "gripper_stage_hinge_weight": 0.02
+    },
+    "future_prediction_features": ["red_xyz_delta", "tcp_xyz_delta", "finger_width_delta"],
+    "uses_shared_normalizer": true,
+    "diffusion_backbone": "appl.public.DiffusionBackbone with assignment training hyperparameters"
+  }
+}

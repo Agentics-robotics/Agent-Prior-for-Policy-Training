@@ -1,0 +1,27 @@
+{
+  "policy_id": "SinglePrior_6_xhigh",
+  "skill_id": "full_task",
+  "heuristic_index": 1,
+  "prior_summary": "Occupancy-aware object relational conditioning with supervised causal interaction forecasts. A shared two-object encoder represents gripper contact geometry, each object's assigned and opposite goals, and the other object's occupancy of its goal. Learned short-horizon TCP, object and finger forecasts condition one epsilon-prediction diffusion U-Net alongside the full normalized observation history.",
+  "applicable_conditions": "The complete buffer-swap task with two color-identified block poses, their assigned goals, Panda proprioception and TCP pose in a common world frame. The same learned model runs from reset through both transfers and retrieval from the temporary area; all twelve complete demonstrations are used without phase cuts.",
+  "termination_guidance": "Use only the unchanged evaluator's simultaneous red_at_goal AND blue_at_goal geometric success or its physical step limit. This policy does not add a release, clearance, velocity, dwell-time or internal-phase termination condition. All demonstrated final release and retreat samples remain in training.",
+  "limitations": "Training has a single consistent transfer order, fixed goal locations, nearly upright blocks and small reset variation. Soft distance features are not exact rotated containment or contact tests; forecasts are supervised approximations rather than a dynamics solver or planner. The model has only two causal observations, cannot reconstruct an unobserved contact history, and has no guaranteed recovery or generalization to rearrangements outside the demonstrated distribution. Relative features do not make absolute joint targets equivariant. No rollout performance has been observed.",
+  "config": {
+    "design": "occupancy_relations_with_causal_interaction_forecast",
+    "forecast_weight": 0.1,
+    "forecast_slots": [4, 8, 15],
+    "forecast_translation_scale_m": 0.1,
+    "forecast_aperture_scale_m": 0.04,
+    "forecast_smooth_l1_beta": 0.25,
+    "relation_scale_m": 0.25,
+    "finite_difference_scale_m": 0.025,
+    "contact_scale_m": 0.04,
+    "goal_proximity_scales_m": [0.06, 0.06, 0.03],
+    "object_token_dimension": 96,
+    "robot_token_dimension": 96,
+    "message_rounds": 1,
+    "condition_dimension": 415,
+    "backbone": "public DiffusionBackbone with unchanged fixed training configuration",
+    "selection": "Last EMA at the fixed 60000-update seed-0 budget; no performance-based selection"
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "schema": "real_robot.policy_package.v1",
+  "policies": {
+    "contour_push": {
+      "heuristic_id": "boundary_graph",
+      "batch_size": 64,
+      "learning_rate": 0.0003,
+      "weight_decay": 0.0001,
+      "max_grad_norm": 1.0,
+      "config": {
+        "node_cap": 192,
+        "node_features": 19,
+        "boundary_message_passing_layers": 3,
+        "boundary_width": 192,
+        "temporal_width": 512,
+        "history_original_row_offsets": [7, 6, 5, 4, 3, 2, 1, 0],
+        "action_distribution": "five_component_diagonal_gaussian_mixture",
+        "prediction": "mean_of_highest_weight_component",
+        "auxiliary": "eligible_three_row_future_centroid_displacement",
+        "initialization": "independent_random_weights_seed_0"
+      },
+      "description": "Independent adjacency message-passing boundary graph with outer/inner loops, target/goal/neighbor/tool roles, learned proximity-biased attention, global robot-state path, causal GRU and seven-command mixture head. No alphabet IDs, replay, inverse kinematics or scripted pushing."
+    },
+    "visual_push": {
+      "heuristic_id": "dual_view_memory",
+      "batch_size": 12,
+      "learning_rate": 0.0002,
+      "weight_decay": 0.0001,
+      "max_grad_norm": 1.0,
+      "config": {
+        "third_global_wh": [256, 144],
+        "third_selected_tool_crop_wh": [128, 128],
+        "wrist_full_field_wh": [224, 128],
+        "goal_masked_rgb_wh": [256, 144],
+        "encoder_width": 384,
+        "temporal_width": 512,
+        "history_original_row_offsets": [14, 8, 4, 2, 0],
+        "action_distribution": "five_component_diagonal_gaussian_mixture",
+        "prediction": "mean_of_highest_weight_component",
+        "auxiliary": "eligible_three_row_future_centroid_displacement",
+        "initialization": "independent_random_weights_seed_0"
+      },
+      "description": "Independent trainable marked-third/detail, wrist and masked-RGB/foreground-goal convolutional encoders, state fusion, sparse causal fifteen-row-span GRU and seven-command mixture head. Shared third-view weights across scales only; no motor or perception-network weights shared with contour_push."
+    }
+  },
+  "preprocessing": {
+    "cuts": "frozen cut_v3, all 22 original intervals unchanged",
+    "paired_rows": "original indices only, no timestamp realignment or fabricated terminal row",
+    "native_action_source": "finite action_json.dq only, retained in float64 cache",
+    "chart": "1280x720 Brown-Conrady undistorted using calibration K unchanged",
+    "depth": "unused; scale and registration unverified",
+    "perception": "deterministic warm-material chroma components with neutral-surround evidence; forward Hungarian tracking; no alphabet lookup or weights",
+    "goal_labels": "verbatim frozen original-pixel boxes at stop-1; foreground isolated before undistortion; track identity association does not revise current features",
+    "invalid_rows": "explicit coverage accounting by precedence: supervision, command, goal, perception, required state or timing",
+    "context": "edge exclusions may be causal context within their original cut; future auxiliary uses only fully eligible intervals",
+    "normalization": "loss-weighted native-command and state statistics saved in metadata and model buffers",
+    "sampling": "positive elapsed-time weights with equal per-episode physical-referent mass, divided among that referent's calls",
+    "cache": "numeric arrays, approximately 5.5 GB; RGB decoded once per current row during preparation, with anchor-only rereads; no update-time image decoding",
+    "augmentation": "bounded boundary extraction noise; past-frame dropout; consistent current/reference photometry and separate wrist exposure; no physical scene rotation or relabeled goal",
+    "tool": "project recorded T_base_ee directly; do not apply TCP offset twice; image-edge support is a weak confidence cue, not a tool-width or contact calibration",
+    "assets": []
+  },
+  "dependencies": "Python with torch, numpy, cv2 and scipy.optimize, plus read-only real_robot.policy_training.public. All neural components are trained from scratch. No downloaded weights, external model packages, pretrained assets or additional licenses are assumed; the environment supplies library versions listed in INTERFACE.md.",
+  "adaptations": "The unavailable generic learned instance/flow models are explicitly replaced by executable class-free warm-chroma foreground proposals and forward geometric/appearance association. This removes the pretrained-segmentation asset assumption but restricts observability to separated, contrasting warm-material pieces; it is not generic arbitrary-material segmentation. Graphs cap variable loop counts at 192 nodes and preserve separate adjacency per hole/instance. Physical workspace is enforced as a caller image-polygon gate rather than claimed metric graph geometry. The visual policy uses smaller cached resolutions and five sparse frames over a fifteen-row causal span for a 24-GiB GPU, with selected/tool detail in a separate crop and the whole wrist field rather than an unverified tool-centered wrist crop. Goal RGB is foreground-isolated in a full-chart stream rather than using a future scene or an independently high-resolution goal crop. Tool projection is weak image-supported point geometry; no silhouette width or metric clearance is invented. Online geometric goal agreement is reported separately from completed withdrawal or word success.",
+  "limitations": "Both policies are scientific candidates trained independently for the fixed 20000 updates, not validated robot skills. No preliminary semantic/performance study, held-out result, robot rollout, character recognizer or open-alphabet training is claimed. The HLA owns semantic interpretation, instance choice, layout and sequencing. Missing/ambiguous tracks and failed anchors are counted and refused rather than filled from future frames; excluded motion is not claimed trained. Small image-similarity goals are approximate; large perspective or metric goals require commissioned plane geometry. Tool clearance, safety limits and controller units/order/timing are unverified recording dependencies. The decoder requires explicit commissioned and current-action-bound safety attestations and performs no hardware IO. New shapes, words, materials, collisions, occlusions and generalization remain unproven; shared deterministic perception failures are not independent safety redundancy."
+}

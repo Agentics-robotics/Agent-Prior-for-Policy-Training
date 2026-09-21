@@ -1,0 +1,40 @@
+{
+  "boundary_evidence_indices": [
+    6899,
+    6900,
+    7050,
+    7299,
+    7300
+  ],
+  "condition_evidence_indices": [
+    6900,
+    7050,
+    7299
+  ],
+  "deployment_condition_source": "Caller selects the previously staged central crossbar instance and a new layout goal.",
+  "label_derivation": "G at 7299, goal box [368,232,529,333]. Select the central crossbar/I-like track from b_i_stage.",
+  "merge_check": "Both adjacent H blocks target a different physical piece and different H placements; do not merge.",
+  "objective": "Re-contact I, translate/reorient it upward and align to the left of the R/L area.",
+  "rationale": "6900 tool transits from H, 7050 shows I interaction and 7299 shows its new local placement before H revisit.",
+  "segment_id": "b_i_align",
+  "split_check": "One I goal through small corrections; earlier I stage endpoint is explicitly different.",
+  "start": 6900,
+  "stop": 7300,
+  "supervised_start": 6900,
+  "supervised_stop": 7300,
+  "supervision_exclusions": [
+    {
+      "reason": "H release/I approach uncertainty.",
+      "start": 6900,
+      "stop": 6930
+    },
+    {
+      "reason": "I release/H approach uncertainty.",
+      "start": 7270,
+      "stop": 7300
+    }
+  ],
+  "training_condition": "Central crossbar/I-like instance; later placement G(7299).",
+  "trajectory_id": "episode_2026091922062101",
+  "uncertainty": "Goal is a visually inferred placement, not a certified glyph reading or task success."
+}

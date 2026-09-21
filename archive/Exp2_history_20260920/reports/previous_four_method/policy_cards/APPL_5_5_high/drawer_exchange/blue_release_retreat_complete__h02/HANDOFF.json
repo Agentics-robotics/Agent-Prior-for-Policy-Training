@@ -1,0 +1,16 @@
+{
+  "policy_id": "blue_release_retreat_complete__h02",
+  "entry_conditions": "Enter when the drawer is already open and the red block is already on the outside pad, with the blue block held by or immediately between the gripper fingers over the drawer or just inside it. Useful causal cues are world-frame tcp_pose, blue_pose, drawer_position, qpos finger width, and their two-frame motion. The expanded slice permits entry before the actual release: in the overlap the fingers are still mostly closed and the TCP/blue are descending toward the drawer.",
+  "exit_conditions": "A suitable exit observation has the gripper fingers open near the demonstrated open width, the blue block remaining in the drawer around the z 0.053-0.074 m band near the blue goal, and the TCP retreated upward to about z 0.30-0.323 m. The formal task success check is still only drawer open, red on pad, and blue inside drawer at one observation.",
+  "overlap_role": "This policy covers the 930-1030 transition shared with blue_transport_to_drawer. It learns the late descent, local centering, release initiation, and early upward withdrawal so the inference API does not need an exact handoff at the instant the gripper command changes from closed to open.",
+  "successor_readiness": "After exit, a successor or completion monitor should receive an open drawer, red on the pad, blue no longer moving with the TCP, open fingers, and a TCP safely above the drawer. If only the geometric blue-in-drawer predicate is true but the gripper is still closed or the TCP is still adjacent to the block, continue this policy rather than transferring immediately.",
+  "failure_signatures": "Observed-risk signatures are blue moving upward with the TCP after opening, blue being pushed out of the drawer during withdrawal, fingers opening while blue is still high above the support surface, or the TCP remaining low and laterally close to blue after release. No demonstrated recovery from these failures is encoded.",
+  "continuation_guidance": "Continue through the close-to-open gripper transition and the vertical retreat while causal observations show stable blue pose relative to the drawer/goal. If entry occurs early in the overlap, the model has training coverage for descending and centering before opening. If entry occurs after the fingers are already open and blue is placed, the same support latent conditions the diffusion model toward maintaining open fingers and completing the upward retreat.",
+  "limitations": "Finger width and object/TCP motion are observations, not proof of contact or support. The policy contains no force sensing, analytic IK, hand-coded abort, or recovery controller. The evidence comes from successful demonstrations only, so the handoff text should be treated as guidance for policy selection and not as a hard safety certificate.",
+  "evidence": [
+    {"trajectory_id": "demo1002", "indices": [930, 1030, 1063]},
+    {"trajectory_id": "demo1003", "indices": [930, 980, 990, 1030, 1066]},
+    {"trajectory_id": "demo1008", "indices": [930, 1030, 1071]},
+    {"trajectory_id": "demo1000", "indices": [930, 990, 1030, 1064]}
+  ]
+}

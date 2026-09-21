@@ -1,0 +1,21 @@
+{
+  "policy_id": "deliver_active_block__h01",
+  "skill_id": "deliver_active_block",
+  "heuristic_index": 1,
+  "prior_summary": "Goal-relative active-block delivery implemented as a learned DDPM action policy. Red and blue candidate blocks are encoded with a shared object-goal-relative module, a learned active-object gate aggregates the selected delivery candidate, and a Conditional U-Net predicts normalized action noise.",
+  "applicable_conditions": "Use when one of the two blocks is in the delivery or delivery-transition portion of the sort task: the active block is being grasped, carried, lowered, released, or the arm is retreating after release toward the next acquisition. Causal state must include TCP pose, both block poses, both goal pads, qpos and qvel in the shared world-frame observation schema.",
+  "termination_guidance": "Continue while the selected block is not yet at its goal pad or while the demonstrated release/retreat transition is still preparing successor control. Transfer after the block pose is within the pad, the fingers are open, and the TCP is clear; after red delivery the useful exit is a high/open approach toward the blue side, and after blue delivery the task can terminate when both predicates are satisfied.",
+  "limitations": "The model is not an IK controller and does not enforce hard contact, collision, grasp, stability or containment constraints. Active-object selection is learned with a geometric auxiliary label and may be ambiguous during recovery states not represented in the demonstrations. The goals are fixed in the training data, so generalization to substantially moved pads remains a hypothesis.",
+  "config": {
+    "condition_dimension": 256,
+    "candidate_feature_dimension": 33,
+    "candidate_embedding_dimension": 64,
+    "history_observations": 2,
+    "relative_position_scale_m": [0.30, 0.30, 0.30],
+    "goal_absolute_scale_m": [0.50, 0.50, 0.30],
+    "active_gate_auxiliary_weight": 0.05,
+    "terminal_goal_state_auxiliary_weight": 0.05,
+    "backbone": "appl.public.DiffusionBackbone ConditionalUnet1D with assignment training widths",
+    "normalization": "uses the single shared observation/action normalizer supplied in the assignment; no per-skill refit"
+  }
+}

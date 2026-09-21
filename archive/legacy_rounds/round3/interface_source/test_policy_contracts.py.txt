@@ -1,0 +1,30 @@
+import json
+from pathlib import Path
+
+import pytest
+
+from experiment_interfaces.envs import EnvSpec
+from experiment_interfaces.policies import Round3Policy, file_sha256, validate_device
+
+
+@pytest.mark.parametrize("visible,device", [("4", "cuda:0"), ("0,5", "cuda:0"), ("0,0", "cuda:0"),
+                                           ("0,1", "cuda:2"), ("GPU-uuid", "cuda:0")])
+def test_unauthorized_or_ambiguous_gpu_visibility_is_rejected(monkeypatch, visible, device):
+    monkeypatch.setenv("CUDA_VISIBLE_DEVICES", visible)
+    with pytest.raises(ValueError):
+        validate_device(device)
+
+
+def test_round3_source_change_is_not_bypassed_by_deployment_adapter(tmp_path):
+    root = Path(__file__).resolve().parents[2]
+    checkpoint = tmp_path / "not_loaded.pt"
+    checkpoint.write_bytes(b"checkpoint loading must not be reached")
+    identity = tmp_path / "identity.json"
+    identity.write_text(json.dumps({"source_hashes": {"pixi.lock": "0" * 64}}))
+    spec = EnvSpec(2, {"fields": ["synthetic"]}, (-1.,) * 4, (1.,) * 4, "synthetic", 20.)
+    manifest = tmp_path / "deployment.json"
+    manifest.write_text(json.dumps(dict(schema_version=1, backend="round3", checkpoint_sha256=file_sha256(checkpoint),
+                                        env_spec=spec.as_dict(), round3_source_identity="identity.json")))
+    assert (root / "pixi.lock").exists()
+    with pytest.raises(ValueError, match="source changed after training: pixi.lock"):
+        Round3Policy(checkpoint, manifest, device="cpu")

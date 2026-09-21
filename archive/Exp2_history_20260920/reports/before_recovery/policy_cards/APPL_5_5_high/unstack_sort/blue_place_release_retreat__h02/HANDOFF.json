@@ -1,0 +1,24 @@
+{
+  "policy_id": "blue_place_release_retreat__h02",
+  "entry_conditions": "Enter during the expanded blue placement slice when the blue block is at or under the TCP and the gripper is closed or closing around it, typically after red is already on the red goal. The policy can also enter during the shared transport-to-place transition: causal cues are blue_pose near the blue goal in xy but still high in z, TCP close to the blue pose, and qpos finger width around the closed grasp aperture.",
+  "exit_conditions": "Exit after the fingers are open, the blue block remains at the blue goal table height in world coordinates, and the TCP has begun or completed its upward retreat without moving the blue block. Demonstrations end with finger width near 0.080 m total, blue z near 0.020 m, and TCP z around 0.28-0.30 m.",
+  "overlap_role": "The overlap with blue_acquire_transport provides examples of high closed carry states and low closed descent states before release. This policy learns the transition motion over the full expanded slice: carry closed over the goal, descend closed to the table, open at supported alignment, and retreat open.",
+  "successor_readiness": "This is normally a final skill. If another monitor or policy takes over, it should receive an open gripper, blue_pose close to blue_goal [-0.24, 0.25, 0.02] m, red_pose close to red_goal, and TCP clear enough that continued motion should not drag the blue block. Task success remains the contract predicate red_at_goal AND blue_at_goal.",
+  "failure_signatures": "Potential failures include gripper command opening while blue z is still far above 0.02 m, opening when blue xy is outside the goal pad, remaining closed after table support and dragging the block during retreat, asymmetric or non-opening fingers suggesting a wedged object, or blue moving away from the goal after release.",
+  "continuation_guidance": "Continue this policy while the observation shows closed-finger blue transport/descent toward the blue goal, while the release transition is underway, or while the TCP is retreating after release. The model uses two causal state observations: blue_pose and blue_goal indicate alignment and height, tcp_pose indicates whether it is carrying/descending/retreating, and qpos/qvel finger channels indicate closed versus open gripper state. A geometric blue_at_goal cue alone is not sufficient for termination if the fingers are still closed and the TCP has not retreated, because the demonstrations often pause closed at the table before opening.",
+  "limitations": "The handoff cues are based on observed state and action data, not measured contact force or a hard verification of grasp/support. The policy has no implemented recovery for a bounce, missed grasp, wedged block, or off-distribution object pose; such cases should be handled by an external monitor if available.",
+  "evidence": [
+    {
+      "trajectory_id": "demo10200",
+      "indices": [520, 590, 620, 640, 650, 660, 680, 700, 720]
+    },
+    {
+      "trajectory_id": "demo10207",
+      "indices": [520, 590, 620, 640, 650, 660, 680, 700, 730]
+    },
+    {
+      "trajectory_id": "demo10201",
+      "indices": [590, 640, 660]
+    }
+  ]
+}

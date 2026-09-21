@@ -1,0 +1,15 @@
+{
+  "extraction": "All function_call objects in the final recorded response, unchanged.",
+  "function_calls": [
+    {
+      "arguments": "{\"notebook\":\"Inv8 with h03 successfully acquired red: red lifted to z=0.056, TCP-red distance ~0.003, fingers closed (~0.0366 total), blue remained at goal. Continue the same h03 action stream through high carry, descent, release at red_goal. Watch for success or blue disturbance; if it releases low near the goal but red_at_goal remains false, reassess.\",\"policy_id\":\"red_buffer_to_goal_finish__h03\",\"reason\":\"Red is now in a plausible closed grasp and h03's waypoint-chain prior explicitly covers the subsequent carry to red_goal, lowering, release, and retreat. Continuing the same policy preserves phase/action continuity.\",\"steps\":240,\"stop_when\":[{\"conditions\":[{\"comparison\":\"eq\",\"metric\":\"success\",\"reference\":\"absolute\",\"value\":1}],\"label\":\"task success achieved\"},{\"conditions\":[{\"comparison\":\"eq\",\"metric\":\"blue_at_goal\",\"reference\":\"absolute\",\"value\":0}],\"label\":\"blue disturbed during final carry\"},{\"conditions\":[{\"comparison\":\"gt\",\"metric\":\"finger_width\",\"reference\":\"absolute\",\"value\":0.07},{\"comparison\":\"lt\",\"metric\":\"red_z\",\"reference\":\"absolute\",\"value\":0.04},{\"comparison\":\"eq\",\"metric\":\"red_at_goal\",\"reference\":\"absolute\",\"value\":0},{\"comparison\":\"gt\",\"metric\":\"red_y\",\"reference\":\"absolute\",\"value\":0.12}],\"label\":\"red released low near upper side but outside goal; reassess\"}]}",
+      "call_id": "call_38hIF6oq1NUeE3AhjItjW76J",
+      "id": "fc_0ea1e64f43b07c14016aaab6c1372487d0862c17f26835f010",
+      "name": "invoke_policy",
+      "status": "completed",
+      "type": "function_call"
+    }
+  ],
+  "source": "runs/exp2/M1_scaleup/buffer_swap/evaluation/APPL/OOD/30100/api/api/0018.response.json",
+  "source_sha256": "7259c2056dd6ae468bf774034c00bbedd44c501a9f327c37777983f667db1e49"
+}

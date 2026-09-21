@@ -1,0 +1,25 @@
+{
+  "policy_id": "blue_acquire_transport__h03",
+  "skill_id": "blue_acquire_transport",
+  "heuristic_index": 3,
+  "prior_summary": "Completed-object invariance prior for the blue acquisition and transport slice: after red has been placed, the diffusion denoiser is conditioned on red-goal, red-blue and red-TCP relations and is trained with an action-conditioned auxiliary predictor that discourages red displacement and low paths near the red pad while still learning the demonstrated blue pickup and carry actions.",
+  "applicable_conditions": "Use when observations show the red block already on or very near its red goal around [-0.24, -0.25, 0.02] m, the red pose is static across the causal history, and the remaining blue block is either at its source or already grasped during the blue approach/transport transition. The policy expects state observations only: tcp_pose, red_pose, blue_pose, red_goal, blue_goal, qpos and qvel in the world-frame schema.",
+  "termination_guidance": "Continue while the robot is approaching, grasping, lifting, or carrying blue and red remains at the red goal. Hand off to a blue placement/release policy when blue is in hand near or above the blue goal at approximately [-0.24, 0.25] m in XY with elevated Z and the red pose has not drifted from its goal.",
+  "limitations": "The demonstrations contain essentially no red disturbances after red placement, so the learned red-disturbance predictor is supervised mostly on invariant examples and is not a verified recovery controller if red is displaced. The implementation does not use inverse kinematics, images, hard collision constraints, or sampler-time trajectory rejection; all effects are learned through the denoiser architecture and differentiable losses.",
+  "config": {
+    "condition_dim": 256,
+    "observation_feature_dim": 149,
+    "auxiliary_channels_per_step": 10,
+    "relative_xyz_scale_m": [0.50, 0.50, 0.30],
+    "red_goal_tolerance_m": [0.06, 0.06, 0.011],
+    "auxiliary_supervision_weight": 0.08,
+    "red_goal_bce_supervision_weight": 0.02,
+    "predicted_red_static_weight": 0.05,
+    "predicted_red_goal_keep_weight": 0.01,
+    "predicted_tcp_red_clearance_weight": 0.02,
+    "predicted_blue_red_clearance_weight": 0.01,
+    "tcp_low_clearance_height_m": 0.10,
+    "tcp_red_xy_margin_m": 0.08,
+    "blue_red_xy_margin_m": 0.07
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "boundary_evidence_indices": [
+    1219,
+    1220,
+    1300,
+    1439,
+    1440
+  ],
+  "condition_evidence_indices": [
+    1220,
+    1300,
+    1439
+  ],
+  "deployment_condition_source": "HLA chooses an intermediate spatial placement for a currently tracked instance.",
+  "label_derivation": "G at 1439, goal box [408,312,571,430]. Select the central/right crossbar/I-like piece, not the upper-left H-like piece.",
+  "merge_check": "W and D neighbors are different instances. Later b_i_align has a new I endpoint after intervening moves.",
+  "objective": "Move the central crossbar piece leftward and reorient it to a local staging location.",
+  "rationale": "Wrist 1300 shows the tool at the crossbar piece; 1439-1440 shows it shifted left and the tool departing toward D.",
+  "segment_id": "b_i_stage",
+  "split_check": "One short target and local outcome; no unresolved eventual final-slot objective is imposed.",
+  "start": 1220,
+  "stop": 1440,
+  "supervised_start": 1220,
+  "supervised_stop": 1440,
+  "supervision_exclusions": [
+    {
+      "reason": "W-to-I handoff uncertainty.",
+      "start": 1220,
+      "stop": 1250
+    },
+    {
+      "reason": "I-to-D handoff uncertainty.",
+      "start": 1410,
+      "stop": 1440
+    }
+  ],
+  "training_condition": "Central crossbar/I-like instance; local placement G(1439).",
+  "trajectory_id": "episode_2026091922062101",
+  "uncertainty": "Staging intention is inferred from the observed move, not recorded. Do not call it verified obstacle clearance."
+}

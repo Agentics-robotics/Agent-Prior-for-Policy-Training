@@ -1,0 +1,43 @@
+{
+  "boundary_evidence_indices": [
+    1919,
+    1920,
+    2000,
+    3200,
+    3219,
+    3220,
+    3300
+  ],
+  "condition_evidence_indices": [
+    1920,
+    2000,
+    3200,
+    3219
+  ],
+  "deployment_condition_source": "HLA-selected instance and current spatial placement; object identity comes from automatic tracking.",
+  "label_derivation": "G at 3219, goal box [505,365,680,490]. Select the annular O-like piece initially near third-preview (190,250).",
+  "merge_check": "I-stage before and R-stage after have different target instances. Do not let those actions share O's goal.",
+  "objective": "Approach the annular piece from its left/lower side, push rightward and align it above the moved zigzag piece.",
+  "rationale": "Views 2000-2400 show approach and wrist-confirmed O-edge interaction; 3200-3219 shows the displaced annulus and tool departing.",
+  "segment_id": "a_o",
+  "split_check": "Re-contact and orientation correction around the same annular piece retain one endpoint; no separate letter or staging goal appears in inspected views.",
+  "start": 1920,
+  "stop": 3220,
+  "supervised_start": 1920,
+  "supervised_stop": 3220,
+  "supervision_exclusions": [
+    {
+      "reason": "Previous I release/next O approach uncertain.",
+      "start": 1920,
+      "stop": 1950
+    },
+    {
+      "reason": "O release/R approach uncertain.",
+      "start": 3190,
+      "stop": 3220
+    }
+  ],
+  "training_condition": "Annular/O-like instance; achieved placement G(3219).",
+  "trajectory_id": "episode_2026091922002701",
+  "uncertainty": "Annular symmetry makes exact yaw ambiguous. Preserve orientation ambiguity rather than fabricating a signed angle; do not infer contact force."
+}

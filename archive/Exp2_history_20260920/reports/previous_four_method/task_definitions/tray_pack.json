@@ -1,0 +1,111 @@
+{
+  "control_hz": 20,
+  "description": "Pick up both table blocks and place them in their separate marked regions inside the open tray.",
+  "fixtures": [
+    {
+      "half": [
+        0.13,
+        0.17,
+        0.008
+      ],
+      "position": [
+        -0.12,
+        0,
+        0.008
+      ]
+    },
+    {
+      "half": [
+        0.138,
+        0.008,
+        0.045
+      ],
+      "position": [
+        -0.12,
+        -0.178,
+        0.045
+      ]
+    },
+    {
+      "half": [
+        0.138,
+        0.008,
+        0.045
+      ],
+      "position": [
+        -0.12,
+        0.178,
+        0.045
+      ]
+    },
+    {
+      "half": [
+        0.008,
+        0.17,
+        0.045
+      ],
+      "position": [
+        -0.258,
+        0,
+        0.045
+      ]
+    },
+    {
+      "half": [
+        0.008,
+        0.17,
+        0.045
+      ],
+      "position": [
+        0.018,
+        0,
+        0.045
+      ]
+    }
+  ],
+  "goal_half_xy_m": [
+    0.06,
+    0.06
+  ],
+  "goal_z_tolerance_m": 0.011,
+  "goals": {
+    "blue": [
+      -0.14,
+      0.075,
+      0.036
+    ],
+    "red": [
+      -0.14,
+      -0.075,
+      0.036
+    ]
+  },
+  "id_half_width_m": 0.012,
+  "initial": {
+    "blue": [
+      -0.4,
+      0.26,
+      0.02
+    ],
+    "red": [
+      -0.4,
+      -0.26,
+      0.02
+    ]
+  },
+  "object_half_m": 0.02,
+  "ood_inner_m": 0.022,
+  "ood_outer_m": 0.04,
+  "program": [
+    [
+      "red",
+      "red"
+    ],
+    [
+      "blue",
+      "blue"
+    ]
+  ],
+  "shared_xy": false,
+  "task_id": "tray_pack"
+}

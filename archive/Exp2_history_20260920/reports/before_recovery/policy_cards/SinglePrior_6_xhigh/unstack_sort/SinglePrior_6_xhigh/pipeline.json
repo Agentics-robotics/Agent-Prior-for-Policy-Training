@@ -1,0 +1,33 @@
+{
+  "policy_id": "SinglePrior_6_xhigh",
+  "skill_id": "full_task",
+  "heuristic_index": 1,
+  "prior_summary": "Object-centric predictive relation conditioning: a shared two-object encoder and shared short-horizon relation forecaster expose object-to-TCP, object-to-goal, and inter-object structure to one learned action diffusion U-Net. Forecasts are supervised by demonstration futures during training and computed only from the two causal observations at deployment.",
+  "applicable_conditions": "The full unstack_sort task from the initial red-on-blue stack through red placement, transition to blue, blue placement, and demonstrated release and retreat. Inputs are the supplied world-frame state history, including robot joints, both object poses, and both goals. Both object representations are always present; there is no externally selected skill or time-based phase schedule.",
+  "termination_guidance": "The unchanged evaluator stops when red_at_goal AND blue_at_goal holds under its rotated-footprint and height tests, or at its physical step limit. This policy adds no release, clearance, velocity, or sustained-hold requirement. The forecast heads do not control termination, and the model can represent the demonstrated post-placement opening and retreat if queried.",
+  "limitations": "The twelve demonstrations have a narrow initial stack-location distribution, fixed goals, nearly upright cubes, and a common manipulation order. Weight sharing and explicit relations are inductive biases, not guarantees of generalization. Deterministic relation forecasts may average ambiguous dwell transitions and are neither action-conditioned physics nor an inverse-kinematics solver. Absolute joint targets are not made equivariant by relative features. Only two observations are available; no hidden clock, persistent memory, hard grasp rule, or recovery controller is supplied. No rollout performance has been measured for design or selection.",
+  "config": {
+    "design": "object_centric_predictive_relation_conditioning",
+    "condition_dimension": 384,
+    "robot_latent_dimension": 128,
+    "object_latent_dimension": 128,
+    "shared_object_input_dimension": 94,
+    "object_frame_feature_dimension": 41,
+    "forecast_steps": 16,
+    "relation_coordinates_per_object": 6,
+    "relative_position_scale_m": 0.25,
+    "world_position_scale_m": 0.5,
+    "position_increment_scale_m": 0.025,
+    "finger_position_scale_m": 0.04,
+    "finger_increment_scale_m": 0.005,
+    "forecast_relation_delta_scale_m": 0.1,
+    "forecast_aperture_delta_scale_m": 0.02,
+    "forecast_gain": 0.25,
+    "prior_weight": 0.1,
+    "aperture_weight": 0.25,
+    "auxiliary_smooth_l1_beta": 0.25,
+    "backbone": "public_DiffusionBackbone",
+    "auxiliary_targets": "masked_future_relation_and_mean_finger_position_changes",
+    "runtime_inputs": "raw_two_observation_history_noisy_action_and_diffusion_timestep"
+  }
+}

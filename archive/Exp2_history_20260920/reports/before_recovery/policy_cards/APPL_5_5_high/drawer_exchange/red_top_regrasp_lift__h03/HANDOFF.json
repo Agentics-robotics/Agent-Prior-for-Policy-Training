@@ -1,0 +1,16 @@
+{
+  "policy_id": "red_top_regrasp_lift__h03",
+  "entry_conditions": "Supported entry is the expanded slice used for training: after the drawer is open, with the robot either retreating and reorienting from the drawer-pull posture around indices 240-330 or already descending toward the red block for a top grasp. Causal observations should show the drawer position near 0.30 m, the red block still near the drawer-front/top area at about z=0.063 m, and the gripper open unless the handoff occurs in the shared close/lift overlap.",
+  "exit_conditions": "Exit when the observations indicate a likely carried red block: both finger qpos values are near the closed range around 0.018 m, the TCP is within about a centimetre of the red block with a stable offset over the two observation frames, and red z has risen with the TCP to roughly 0.30 m. The demonstrations reach this state near index 530 with the red pose around (-0.19, -0.21, 0.307) m.",
+  "overlap_role": "This policy deliberately covers both shared transitions. In the earlier overlap it learns the retreat/reorientation motion after opening the drawer and before the top grasp approach. In the later overlap it learns the ambiguous close-and-lift phase, while its learned attachment latent provides a causal cue for when a successor can start transport instead of relying on a fixed index.",
+  "successor_readiness": "The successor should receive a carried red block with closed fingers, red and TCP co-moving, and enough height clearance for lateral transport. If the red z remains near 0.063 m while the TCP moves, or if the finger apertures are still open or asymmetric, the successor should not assume attachment and this policy should continue or be retried.",
+  "failure_signatures": "Likely failure cues are an attachment/carry probability remaining low after the close command, the red pose staying at table height while TCP z increases, a growing TCP-red offset across the two observation frames, or gripper qpos values inconsistent with a symmetric pinch. These are inferred state cues rather than force-confirmed contact signals.",
+  "continuation_guidance": "From an early transition state, continue this policy through reorientation, approach above the red block, top descent, finger closure, and lift. From a mid-overlap state near index 455, it can take over because the current qpos, finger aperture, TCP pose, red pose, and their two-frame changes reveal whether the hand is still free, has just closed in contact, or is already carrying the block. Stop only after the lifted attachment state is visible; the task-level completion rule is not changed by this handoff guidance.",
+  "limitations": "The handoff guidance is based on observed state correlations in the assigned demonstrations and on the learned attachment classifier. It is not a hard safety monitor, does not use force or tactile sensing, and does not guarantee recovery from grasps outside the training distribution.",
+  "evidence": [
+    {"trajectory_id": "demo1003", "indices": [240, 330]},
+    {"trajectory_id": "demo1003", "indices": [455, 530]},
+    {"trajectory_id": "demo1005", "indices": [455, 530]},
+    {"trajectory_id": "demo1010", "indices": [455, 530]}
+  ]
+}

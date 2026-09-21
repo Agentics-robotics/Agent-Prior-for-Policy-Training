@@ -1,0 +1,26 @@
+{
+  "policy_id": "red_transport_place_pad__h01",
+  "skill_id": "red_transport_place_pad",
+  "heuristic_index": 1,
+  "prior_summary": "Learned action diffusion policy conditioned by pad-frame red placement features: red-to-pad error, TCP-to-red offset, drawer-open state, gripper state, and blue-transition cues. An auxiliary learned head predicts future red placement and release labels from the denoised action plan to bias the diffusion model toward placing red on the fixed outside pad.",
+  "applicable_conditions": "Use when the drawer is already open, the red block is top-grasped or being carried near the TCP, and the outside red pad goal is the fixed world point [-0.18, -0.30, 0.02]. The policy consumes only the two latest state observations: qpos, qvel, TCP pose, red pose, blue pose, drawer state, and the red and blue goal vectors.",
+  "termination_guidance": "The skill has reached its intended exit when the red block is settled on the outside pad with center near the red_goal xy region and z near 0.02 m, the gripper is open, and the TCP has retreated upward or is moving away toward the blue block. Task success itself is still governed only by the supplied completion contract.",
+  "limitations": "The pad location is constant in all training demonstrations and no image, IK, contact estimator, or hard geometric controller is implemented. The model is a learned joint-action diffusion policy and may not recover from lost grasps, large pad perturbations, or red positions far outside the observed handoff slice.",
+  "config": {
+    "condition_dim": 256,
+    "aux_hidden": 256,
+    "prior_weight": 0.05,
+    "relative_feature_scales": {
+      "position_m": 0.15,
+      "tcp_to_blue_m": 0.30,
+      "short_delta_m": 0.05,
+      "joint_delta_rad": 0.20,
+      "finger_width_m": 0.08
+    },
+    "auxiliary_targets": [
+      "future red center error relative to red_goal",
+      "future red_on_pad predicate from the task geometry",
+      "future gripper-open predicate from finger width"
+    ]
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "policy_id": "SinglePrior_6_xhigh",
+  "skill_id": "full_task",
+  "heuristic_index": 1,
+  "prior_summary": "A shared temporal tool-object-goal relation encoder conditions one action diffusion U-Net. A training-only, shared short-horizon relation-displacement forecast regularizes this representation without imposing an object order or a controller.",
+  "applicable_conditions": "The full tray-packing task, from reset through both placements and the demonstrated release and retreat transitions. Inputs are the two supplied causal state observations, including both named blocks, their own goals, robot configuration, velocities and gripper state.",
+  "termination_guidance": "Use only the unchanged evaluator's simultaneous red_at_goal AND blue_at_goal geometry or physical step limit. The policy has no stop gate. Demonstrated releases and retreats remain in training, but release, clearance, velocity and sustained hold are not added as success requirements.",
+  "limitations": "Twelve narrowly varied, red-first training trajectories do not establish recovery, reversed-order or out-of-distribution performance. Shared Cartesian relations do not make absolute joint actions equivariant. Two observations cannot disambiguate every stationary dwell. Relation forecasting is a learned, condition-only auxiliary prediction, not a physics model, grasp detector, inverse-kinematics solver or collision guarantee.",
+  "config": {
+    "design": "shared_temporal_transport_relations",
+    "prior_weight": 0.05,
+    "condition_dimension": 478,
+    "object_frame_dimension": 38,
+    "object_history_dimension": 87,
+    "object_embedding_dimension": 128,
+    "scene_embedding_dimension": 128,
+    "position_scale_m": 0.25,
+    "local_feature_scale_m": 0.04,
+    "velocity_scale_m_per_s": 0.5,
+    "finger_velocity_scale_m_per_s": 0.2,
+    "observation_interval_s": 0.05,
+    "forecast_scale_m": 0.1,
+    "forecast_huber_beta": 0.1,
+    "forecast_horizon": 16,
+    "future_labels_at_inference": false,
+    "external_phase_schedule": false
+  }
+}

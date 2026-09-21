@@ -1,0 +1,138 @@
+"""Explicit checkpoint adapters. Native loaders own all prior transformations."""
+from __future__ import annotations
+
+from abc import ABC, abstractmethod
+from dataclasses import dataclass
+import hashlib
+import json
+import os
+from pathlib import Path
+from typing import Any
+
+import numpy as np
+
+from .envs import EnvSpec, ROUND3_ACTION_SEMANTICS
+
+
+@dataclass(frozen=True)
+class ActionChunk:
+    actions: np.ndarray
+    execution_horizon: int
+    diagnostics: dict[str, Any]
+
+
+class Policy(ABC):
+    @property
+    @abstractmethod
+    def spec(self) -> EnvSpec:
+        pass
+
+    @abstractmethod
+    def reset(self, *, inference_seed: int, auxiliary_seed: int | None = None) -> None:
+        pass
+
+    @abstractmethod
+    def predict(self, raw_history: np.ndarray) -> ActionChunk:
+        pass
+
+
+def file_sha256(path: str | Path) -> str:
+    with Path(path).open("rb") as stream:
+        return hashlib.file_digest(stream, "sha256").hexdigest()
+
+
+def validate_device(device: str) -> None:
+    """CUDA indices are logical indices into the explicitly authorized visibility."""
+    import torch
+
+    selected = torch.device(device)
+    if selected.type == "cpu":
+        return
+    if selected.type != "cuda":
+        raise ValueError("Use an explicit CPU or CUDA device")
+    visible = os.environ["CUDA_VISIBLE_DEVICES"].split(",")
+    if any(not part.isdigit() for part in visible):
+        raise ValueError("CUDA visibility must name physical GPU indices")
+    physical = [int(part) for part in visible]
+    if len(set(physical)) != len(physical) or any(gpu not in (0, 1, 2, 3) for gpu in physical):
+        raise ValueError("Only physical GPUs 0, 1, 2, 3 are authorized")
+    index = 0 if selected.index is None else selected.index
+    if not 0 <= index < len(physical):
+        raise ValueError("CUDA logical index is outside the visible allocation")
+
+
+def _manifest(checkpoint_path: str | Path, manifest_path: str | Path, backend: str):
+    manifest = json.loads(Path(manifest_path).read_text())
+    if manifest["schema_version"] != 1:
+        raise ValueError("Unsupported deployment manifest version")
+    if manifest["backend"] != backend:
+        raise ValueError("Deployment manifest backend mismatch")
+    if file_sha256(checkpoint_path) != manifest["checkpoint_sha256"]:
+        raise ValueError("Deployment checkpoint SHA256 mismatch")
+    return manifest, EnvSpec.from_dict(manifest["env_spec"])
+
+
+class _LoadedAdapter(Policy):
+    @property
+    def spec(self) -> EnvSpec:
+        return EnvSpec.from_dict(self._spec.as_dict())
+
+    def reset(self, *, inference_seed: int, auxiliary_seed: int | None = None) -> None:
+        import torch
+
+        if type(inference_seed) is not int or inference_seed < 0:
+            raise ValueError("inference_seed must be a nonnegative integer")
+        if self._has_auxiliary != (auxiliary_seed is not None):
+            raise ValueError("Provide auxiliary_seed exactly when the policy has a separate auxiliary stream")
+        if auxiliary_seed is not None and (type(auxiliary_seed) is not int or auxiliary_seed < 0):
+            raise ValueError("auxiliary_seed must be a nonnegative integer")
+        self._generator = torch.Generator(device=self.loaded.device).manual_seed(inference_seed)
+        self._auxiliary_generator = None
+        if self._has_auxiliary:
+            self._auxiliary_generator = torch.Generator(device=self.loaded.device).manual_seed(auxiliary_seed)
+
+    def predict(self, raw_history: np.ndarray) -> ActionChunk:
+        if self._generator is None:
+            raise ValueError("Reset the policy before inference")
+        actions, diagnostics = self._actions(raw_history)
+        return ActionChunk(actions, diagnostics["execution_horizon"], diagnostics)
+
+
+class Round3Policy(_LoadedAdapter):
+    def __init__(self, checkpoint_path: str | Path, manifest_path: str | Path, *, device="cpu"):
+        validate_device(device)
+        manifest, self._spec = _manifest(checkpoint_path, manifest_path, "round3")
+        identity_path = Path(manifest_path).parent / manifest["round3_source_identity"]
+        identity = json.loads(identity_path.read_text())
+        root = Path(__file__).resolve().parents[2]
+        if not identity["source_hashes"]:
+            raise ValueError("Round 3 deployment requires its recorded source identity")
+        for source, expected in identity["source_hashes"].items():
+            if file_sha256(root / source) != expected:
+                raise ValueError(f"Round 3 inference source changed after training: {source}")
+
+        from round3.learning import Loaded, source_identity
+        from relative_dp.utils import object_hash
+
+        self.loaded = Loaded(checkpoint_path, device=device)
+        cfg, checkpoint = self.loaded.config, self.loaded.checkpoint
+        if source_identity(cfg["implementation"]) != identity["source_hashes"]:
+            raise ValueError("Round 3 source identity does not cover the loaded implementation")
+        if checkpoint["code_hash"] != object_hash(identity["source_hashes"]):
+            raise ValueError("Round 3 checkpoint/source identity mismatch")
+        if checkpoint["config_hash"] != object_hash(cfg):
+            raise ValueError("Round 3 checkpoint configuration identity mismatch")
+        if checkpoint["implementation_hash"] != object_hash(cfg["implementation"]):
+            raise ValueError("Round 3 implementation identity mismatch")
+        if cfg["observation_schema"] != self.spec.observation_schema or cfg["raw_dim"] != self.spec.observation_dim:
+            raise ValueError("Round 3 deployment observation schema mismatch")
+        if (self.spec.action_low != (-1.,) * 4 or self.spec.action_high != (1.,) * 4
+                or self.spec.action_semantics != ROUND3_ACTION_SEMANTICS):
+            raise ValueError("Round 3 deployment action schema mismatch")
+        self._has_auxiliary = False  # Historical Round 3 uses one joint sampling stream.
+        self._generator = None
+
+    def _actions(self, history):
+        return self.loaded.actions(history, self._generator)
+
+

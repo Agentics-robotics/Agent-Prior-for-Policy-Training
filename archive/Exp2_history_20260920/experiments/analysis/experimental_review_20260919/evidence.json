@@ -1,0 +1,2449 @@
+{
+  "counts": {
+    "APPL_5_5_high": {
+      "episodes": 300,
+      "invocations": 3248,
+      "noninitial_policy_switches": 1867,
+      "episodes_with_switch": 300
+    },
+    "APPL_6_xhigh": {
+      "episodes": 300,
+      "invocations": 2755,
+      "noninitial_policy_switches": 1385,
+      "episodes_with_switch": 300
+    }
+  },
+  "example_root": "runs/exp2/M1_astra_xhigh/drawer_exchange/evaluation/APPL/ID/6302",
+  "actual_pose_deltas_m": {
+    "tcp_pose": [
+      -0.0009464174509048462,
+      0.0009153597056865692,
+      0.008484527468681335
+    ],
+    "red_pose": [
+      -0.0009532272815704346,
+      0.0009472109377384186,
+      0.008486300706863403
+    ],
+    "blue_pose": [
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "review_date": "2026-09-19",
+  "new_runtime_API_requests": 0,
+  "new_optimizer_updates": 0,
+  "new_simulator_steps": 0,
+  "classification": "Read-only audit of observed implementation behavior; effect on task success unmeasured.",
+  "methodology": "Use selected outcome_diagnostics episodes; count each adjacent invocation whose policy ID changes and whose executed_steps is positive. Exclude initial episode entry. The frozen executor sends reset=True for each such switch; the worker clears history and repeats the current observation to fill the two-frame input. Actual object/TCP backward differences are therefore unavailable to that initial chunk.",
+  "sources": {
+    "experiments/exp2/paper/outcome_diagnostics.json": "e8909539c9ead06a08e16e0c44eb72f23aab5b756549666ee01240ffa2a0ccc9",
+    "src/appl/prior_policies/deploy.py": "dbdd8cbbababd243545c6631895f994cef2338649296b89fa7af2d136dd9bc96",
+    "src/appl/prior_policies/engine.py": "3c47730313630ef74e8b7436db5cb4122aac404f199646f5384e8e2baaf8b10f",
+    "src/appl/prior_policies/__main__.py": "61f1ad6988a101d02efbe16e6c8e417c3b469fed55ab97d327ebacfca4138270"
+  },
+  "all_three_worker_source_files_match_bundled_frozen_source": true,
+  "invocation_sources": [
+    {
+      "path": "runs/exp2/M1_scaleup/drawer_exchange/evaluation/APPL/ID/6300/invocations.json",
+      "sha256": "77c3d67db27a084da4f2982254c011efdbda6e1df571758f70dc5842d9815e3d"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/drawer_exchange/evaluation/APPL/ID/6301/invocations.json",
+      "sha256": "4a2ca8cfcdd94ef4568788bed701402fbd031f30244788cc04d028240087a3c7"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/drawer_exchange/evaluation/APPL/ID/6302/invocations.json",
+      "sha256": "00577b3f3a56b0814f9b24a0b45c173186bd5af7856d27514fe24c178d3ee377"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/drawer_exchange/evaluation/APPL/ID/6303/invocations.json",
+      "sha256": "f42c692dad109ca96ac5e724ee55b50b5fa31b876b1b50d173f407c8a043c488"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/drawer_exchange/evaluation/APPL/ID/6304/invocations.json",
+      "sha256": "6e95f1ed845fdb2cedf67fc8f6196a03a75766a291e8f5904e5c2cca7000b975"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/drawer_exchange/evaluation/APPL/ID/6305/invocations.json",
+      "sha256": "cf63514866a59bc9a7a69fd85d63ec206e3759aa6f66bab1aeee5f555aefd21f"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/drawer_exchange/evaluation/APPL/ID/6306/invocations.json",
+      "sha256": "bda6d4551795acc791d31502191501bcbedade8b2130ec89aa93aacd0b9744b1"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/drawer_exchange/evaluation/APPL/ID/6307/invocations.json",
+      "sha256": "4ba880ab3fd8df3af7ce1baa0fd941671dfd26e10b36aec3f18da6b31c9274e0"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/drawer_exchange/evaluation/APPL/ID/6308/invocations.json",
+      "sha256": "210b607ad6d6115e6e391bc3a1258ec53e9284746d815ab975cadfe249a7bcc3"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/drawer_exchange/evaluation/APPL/ID/6309/invocations.json",
+      "sha256": "84c7008cb79bfee67891cb19335c0701013023176dc7d8147a211f9dafe4459b"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/drawer_exchange/evaluation/APPL/ID/6310/invocations.json",
+      "sha256": "1bd9780eb41ab8d9518208f955b62d174b23cb9b3bef0773dc0871b7a09e8e07"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/drawer_exchange/evaluation/APPL/ID/6311/invocations.json",
+      "sha256": "c90fd6eab8a0b87c14108a2bd28fe3aa73146d6f13c88cc7b2dbfef0fc1de53d"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/drawer_exchange/evaluation/APPL/ID/6312/invocations.json",
+      "sha256": "ad2758a7e9e524bd23c7abb493611feee7c70e290c3a99217a27a9c63dce328e"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/drawer_exchange/evaluation/APPL/ID/6313/invocations.json",
+      "sha256": "00a9f899d4b7bba1b795d1e6d0dd82a365802dbd415f372978aef4e150f33d32"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/drawer_exchange/evaluation/APPL/ID/6314/invocations.json",
+      "sha256": "7d57a63ce40d5c9ffeb0ded387ae0914608fbe464420b18924928a0b6fb9be36"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/drawer_exchange/evaluation/APPL/ID/6315/invocations.json",
+      "sha256": "7aebecf56b66d4fbc78886e631995113f844a1c9772052a07f026ed423bbe691"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/drawer_exchange/evaluation/APPL/ID/6316/invocations.json",
+      "sha256": "b494ace894354b18f862f0c44b1aa5393099149e028f3e5e3a67568d8d1465c3"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/drawer_exchange/evaluation/APPL/ID/6317/invocations.json",
+      "sha256": "127a6a7683ef64addb2194f3989ad4fe27a4fabdd89c28a3bce2e06f871883ea"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/drawer_exchange/evaluation/APPL/ID/6318/invocations.json",
+      "sha256": "434d7c52fb965dde0c804a51bb59a0bdd14dd4caf7d8733637224e9821c1ae6e"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/drawer_exchange/evaluation/APPL/ID/6319/invocations.json",
+      "sha256": "bf505738d210bcfb71487c97fe3a7c3a798dda21f479a2f62b4432910146ea7a"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/drawer_exchange/evaluation/APPL/ID/6320/invocations.json",
+      "sha256": "720ab34a6b1bd19082cd87b55dbef232b5bf8487eadaa535010897e91aae599d"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/drawer_exchange/evaluation/APPL/ID/6321/invocations.json",
+      "sha256": "cba8481b19c9329853660f4c5ede04ef9126caf2f231be3f2617db5616503fed"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/drawer_exchange/evaluation/APPL/ID/6322/invocations.json",
+      "sha256": "8b5200de40ad44093f7b65078f16dbfef9b6c102562d90127d286c1b4cf8b9fd"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/drawer_exchange/evaluation/APPL/ID/6323/invocations.json",
+      "sha256": "b3eb42391dd987ce3ca165c4c626854ce12846f20a6240ff4c577973ab7af42a"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/drawer_exchange/evaluation/APPL/ID/6324/invocations.json",
+      "sha256": "00b8332488f2fc01a8ef25815e23c8d0810850f0349913dbe82874eb619bd218"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/drawer_exchange/evaluation/APPL/ID/6325/invocations.json",
+      "sha256": "7744ca98e459f7624827b60060ae640d9a478e3c8678d8e79bb731fa3e28efd7"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/drawer_exchange/evaluation/APPL/ID/6326/invocations.json",
+      "sha256": "dd572587b9c2e6c866711fee54091c53975791e36e6404c860586a97c92d68f1"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/drawer_exchange/evaluation/APPL/ID/6327/invocations.json",
+      "sha256": "7cbfd7e8d1e794196d7443476d48911a043718418ce6597e8862cdb166067912"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/drawer_exchange/evaluation/APPL/ID/6328/invocations.json",
+      "sha256": "1fc11cef34dfbc8fee82d1f82923d0ebeeba76f40931a467eed96db110000c4f"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/drawer_exchange/evaluation/APPL/ID/6329/invocations.json",
+      "sha256": "a8e583d14bb40e35b6ac6be3a6392f6ff2774c20572b35c53a1241461fb0674b"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/drawer_exchange/evaluation/APPL/ID/6300/invocations.json",
+      "sha256": "5f5c2e1ae255151a14bd1377a157f0fd807bef7ab3657f1ac534c0f425a1c493"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/drawer_exchange/evaluation/APPL/ID/6301/invocations.json",
+      "sha256": "5eaec4d0c90481ea759d63e4426dce67064415f2eff56038fecb8bbe88a192b6"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/drawer_exchange/evaluation/APPL/ID/6302/invocations.json",
+      "sha256": "a98555f9f06b2536de8e6a9813fe3e1ac59df9de460a7a94e3e51bd95e6fbd0d"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/drawer_exchange/evaluation/APPL/ID/6303/invocations.json",
+      "sha256": "9a5ec9337ba9c488e888dcc03010b26dd3cc7eb3226e4368bf87886b72c8ca5c"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/drawer_exchange/evaluation/APPL/ID/6304/invocations.json",
+      "sha256": "a7c0a529642129728b421b6033b1a7267b5309ea086657844488b56351692999"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/drawer_exchange/evaluation/APPL/ID/6305/invocations.json",
+      "sha256": "604120f0b3f20b6f0d98d138378d33cde370e67b51c00ee49109f45c6bc3f000"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/drawer_exchange/evaluation/APPL/ID/6306/invocations.json",
+      "sha256": "119fa6902c781d4fad7c739eeb9ca4b10555963826ca907d0ab92195044159fc"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/drawer_exchange/evaluation/APPL/ID/6307/invocations.json",
+      "sha256": "9c6466586ca2df4ad0f91d2d4e21f580fe4d4d3963781adbce170fed2f23e736"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/drawer_exchange/evaluation/APPL/ID/6308/invocations.json",
+      "sha256": "987700bb396d9c811fabdd91e0415770952e586002d6620e50a8a1faf435b353"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/drawer_exchange/evaluation/APPL/ID/6309/invocations.json",
+      "sha256": "7899dfe74abfaa055e01622537d079179b9cdb0bf02a9dd39f6be9324e1b0340"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/drawer_exchange/evaluation/APPL/ID/6310/invocations.json",
+      "sha256": "464cd1dd8781bbde6e9e2ab59c8750d6101014ead088f4bccbf785bdff1bf7b6"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/drawer_exchange/evaluation/APPL/ID/6311/invocations.json",
+      "sha256": "4275e4e3b8e9c0e520ff563de4164f88e9500787dd488ddde9a55c29733e10c9"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/drawer_exchange/evaluation/APPL/ID/6312/invocations.json",
+      "sha256": "496c707788433b9e8d95c37ccea2c1e3e35cc2d78d890a4168fd9dfe56f7e6ee"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/drawer_exchange/evaluation/APPL/ID/6313/invocations.json",
+      "sha256": "a3dedf302e1e91cedaf85db45dcd018d1aad37de3c40f2d417c62d146946a67e"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/drawer_exchange/evaluation/APPL/ID/6314/invocations.json",
+      "sha256": "36b9a67f34b04b25964b7f75b7944ec2c5b82a3a540961906d46226c0712fb92"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/drawer_exchange/evaluation/APPL/ID/6315/invocations.json",
+      "sha256": "fc8b475453801c9aeb000b31cbbc95ef25ff35756b5d0b499b9f1da4023fecd4"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/evaluation_recovery_20260918/drawer_exchange/evaluation/APPL/ID/6316/invocations.json",
+      "sha256": "1ec62a5a1af109900d1e2aa16e39cc1b32bc90ffec324e9c44ea2065d1e529c0"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/drawer_exchange/evaluation/APPL/ID/6317/invocations.json",
+      "sha256": "9c457561cec63963b5cea0f5c424db2743d9ce141ed2a45c7c35203a8bbeb8e4"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/drawer_exchange/evaluation/APPL/ID/6318/invocations.json",
+      "sha256": "da2745154e0f4701033cde511ed761e90bc16d8b7bca67666493158dbde7ef02"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/drawer_exchange/evaluation/APPL/ID/6319/invocations.json",
+      "sha256": "535e9a5f47eadc30654af05958f3e724e6198897681bcbd32ab6ca193dc55dfd"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/drawer_exchange/evaluation/APPL/ID/6320/invocations.json",
+      "sha256": "57047a26558074a2aeca0153e4be568faea5b184b6d8eb4baa55174bc106a16d"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/drawer_exchange/evaluation/APPL/ID/6321/invocations.json",
+      "sha256": "159e87ad29891b762ea7a4dc2f26ca4476f4acf67328d42a3bf521992727995a"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/evaluation_recovery_20260918/drawer_exchange/evaluation/APPL/ID/6322/invocations.json",
+      "sha256": "9657ae6155794f3dfcf390d74713cf6e7e72fa2c521bdc4204334915faddd173"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/evaluation_recovery_20260918/drawer_exchange/evaluation/APPL/ID/6323/invocations.json",
+      "sha256": "c7d504562c66ed183bad17e4900c5e7a8d0f72ee1b1de49ce217a7114b8e18c1"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/evaluation_recovery_20260918/drawer_exchange/evaluation/APPL/ID/6324/invocations.json",
+      "sha256": "2e1d4336d487ba12a114aeaa7780cc53b5159c50f857df9e6bbcde120499d2fd"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/evaluation_recovery_20260918/drawer_exchange/evaluation/APPL/ID/6325/invocations.json",
+      "sha256": "6ca80f620d5af2a37c44d0f9cc14b7aa367ac63a954a697c4d4e4a90894ec959"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/evaluation_recovery_20260918/drawer_exchange/evaluation/APPL/ID/6326/invocations.json",
+      "sha256": "846cc2dc1efef8ebe28550eb01863061001d639fa6d15155fa891d6241e1605c"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/evaluation_recovery_20260918/drawer_exchange/evaluation/APPL/ID/6327/invocations.json",
+      "sha256": "24daf6f2e35cbd59543813af315127867b39a0755dc57d3e59ea9fffa29d834a"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/evaluation_recovery_20260918/drawer_exchange/evaluation/APPL/ID/6328/invocations.json",
+      "sha256": "09294d49fa0dc80e9f8c44f8018a79839e72c6e7595a9830b1b5fb63b6b3b9af"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/evaluation_recovery_20260918/drawer_exchange/evaluation/APPL/ID/6329/invocations.json",
+      "sha256": "73fc81c5780dbface36a9913c8f22cd86d81dd05c7c9853b51ae77daf10a1101"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/drawer_exchange/evaluation/APPL/OOD/6400/invocations.json",
+      "sha256": "295601947d37353e68f10613005f1895968ffe5f09045bd77c611af9141c68c4"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/drawer_exchange/evaluation/APPL/OOD/6401/invocations.json",
+      "sha256": "4d4b380ed73146b2a8e8892de408e09265d6cae8abde4799bbbab4000cbbaafe"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/drawer_exchange/evaluation/APPL/OOD/6402/invocations.json",
+      "sha256": "80003e34b9ae7426f5ec1d2c07fc6f3cabbfd34b13737b1a2be7fe9c8183e5ac"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/drawer_exchange/evaluation/APPL/OOD/6403/invocations.json",
+      "sha256": "977840d0dccbf3bd548df9b7c93e16e25bcf841ef2a99fde4e960e8d713e21e7"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/drawer_exchange/evaluation/APPL/OOD/6404/invocations.json",
+      "sha256": "ac9a2e32749686b975e26f3fafa6984442ae25e9b594e3ca2e82050b3ab05d25"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/drawer_exchange/evaluation/APPL/OOD/6405/invocations.json",
+      "sha256": "5f52afd915b56c8b40ca1c415e920860356284d0d3fc5a17e32120e6f1323530"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/drawer_exchange/evaluation/APPL/OOD/6406/invocations.json",
+      "sha256": "9a4de9a2d9b124e9d03539d75ff7fed1e78adbcbb431750a5c0da2524bce72bf"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/drawer_exchange/evaluation/APPL/OOD/6407/invocations.json",
+      "sha256": "bfc0e36acc97c73735d8d075cbc6d75003720b671a60941db981bb258efffa32"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/drawer_exchange/evaluation/APPL/OOD/6408/invocations.json",
+      "sha256": "1fdfd73175a1bc953334364c8ddfaf6a0ce6270ec162e1ba0ff3bd6e9820bf3e"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/drawer_exchange/evaluation/APPL/OOD/6409/invocations.json",
+      "sha256": "a9449776d7d06d5bafef654022afbeb991817b64ba66ddd4da6af72e81458a33"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/drawer_exchange/evaluation/APPL/OOD/6410/invocations.json",
+      "sha256": "adb024fdb59bc03b2c6db9da866dfd55bcf5752aedb64c0970cb7e6b8865ddca"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/drawer_exchange/evaluation/APPL/OOD/6411/invocations.json",
+      "sha256": "bfbe3bc4901b8887521cd9096a28662439de218c9b12cdcac79c37eaf2150c22"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/drawer_exchange/evaluation/APPL/OOD/6412/invocations.json",
+      "sha256": "0e391c52374c57ac21b4ff0e569e1741e40bd01cce2e552a03ab665cb002ced3"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/drawer_exchange/evaluation/APPL/OOD/6413/invocations.json",
+      "sha256": "f0000b1a731a93c5caef4e4a8278c9c925f842c375954901d916b63ccaa8e4e7"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/drawer_exchange/evaluation/APPL/OOD/6414/invocations.json",
+      "sha256": "46ebe7d5dab4de2f5221cffea29da0e0846ce10ac2feed47818cb850332ccc86"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/drawer_exchange/evaluation/APPL/OOD/6415/invocations.json",
+      "sha256": "9731fa6d80efe5463145406a3be60909c4aa65a73ab83a8c90ec5b66ad796124"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/drawer_exchange/evaluation/APPL/OOD/6416/invocations.json",
+      "sha256": "b9610c24b3247f4875653126f91e513e7f54370aa86100635d8e84594dfdce8c"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/drawer_exchange/evaluation/APPL/OOD/6417/invocations.json",
+      "sha256": "b033983ebb49449dc366904bb7f7b2c4ad14b46f635823c28c2f22d5c5ebcb77"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/drawer_exchange/evaluation/APPL/OOD/6418/invocations.json",
+      "sha256": "c693c69700c4b14ecea7240a416a6ed116bc9b1cbb39f7cbcecc6ed306bbdb30"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/drawer_exchange/evaluation/APPL/OOD/6419/invocations.json",
+      "sha256": "e410434a578646d8c83c3f1baeb174393c973efac874a45f80412c9766d7d56a"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/drawer_exchange/evaluation/APPL/OOD/6420/invocations.json",
+      "sha256": "df9e54eb7d5d2fea55ebce14e7c5648fe9a949fa01a842e942159716e8bbc489"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/drawer_exchange/evaluation/APPL/OOD/6421/invocations.json",
+      "sha256": "4bc878ca71de12033030262fa84e3f26c419be847b3d82e8bf50eff462e46723"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/drawer_exchange/evaluation/APPL/OOD/6422/invocations.json",
+      "sha256": "8c1ed1e9da2e7e1e23f6bb88e1e0bb5589320d0ad021054c07775b9bfa131034"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/drawer_exchange/evaluation/APPL/OOD/6423/invocations.json",
+      "sha256": "fca3fb529b0786b2c45ae1da59d4cf682cd7fe6922734bb5ebb7a39290438a65"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/drawer_exchange/evaluation/APPL/OOD/6424/invocations.json",
+      "sha256": "3e0d484b43a6701ec27bcf2d045236a0add9884a856263f89ee0fd67957b1af8"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/drawer_exchange/evaluation/APPL/OOD/6425/invocations.json",
+      "sha256": "6caf64a7337dae77a1a31c497018c00d42e12e77372aebf2494c1a232c203d89"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/drawer_exchange/evaluation/APPL/OOD/6426/invocations.json",
+      "sha256": "4631cfdd46521d4a4268e15e989f5e036a02366fc4d106d1830e2d1c7e7fe139"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/drawer_exchange/evaluation/APPL/OOD/6427/invocations.json",
+      "sha256": "abd2ae845b4cc5ef6272c7aba10419ea97815cf2be0276015b2859998576d013"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/drawer_exchange/evaluation/APPL/OOD/6428/invocations.json",
+      "sha256": "3f3a6220b429207c3a203a0383c4f9a8a93f9b9d31213faa17d46d25e33af654"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/drawer_exchange/evaluation/APPL/OOD/6429/invocations.json",
+      "sha256": "0238693fd88a543bc16eae7b476dbe6303603f611cede2a1a7ed661e4d7365f5"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/drawer_exchange/evaluation/APPL/OOD/6400/invocations.json",
+      "sha256": "224dc9c0f4af0416fd47a0e795370d5625bb4efccd3ca5a4449678f38db52e46"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/drawer_exchange/evaluation/APPL/OOD/6401/invocations.json",
+      "sha256": "bb8221195a1308b72bcfc465c18a340a6ff55f81fb6c8238aeba2a6f08db5c62"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/drawer_exchange/evaluation/APPL/OOD/6402/invocations.json",
+      "sha256": "4c0436bb992686839e11fb6233955c88d11e46fdddc78f528735355226cf6904"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/drawer_exchange/evaluation/APPL/OOD/6403/invocations.json",
+      "sha256": "cb2e5b028dfa7f1bfb5b1df071e636b19c8d0a1a68edf5a24b80a79b2c0f7a7c"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/drawer_exchange/evaluation/APPL/OOD/6404/invocations.json",
+      "sha256": "4ea09f3222c37cfbe08e44beceac89a1cc5b4eb00b4a5b453bdb831fc7faaaf6"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/drawer_exchange/evaluation/APPL/OOD/6405/invocations.json",
+      "sha256": "83e04c0a6a1b23b22a0d8189c3dd0558d24a69376d50a600f7eb87188d97ea92"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/drawer_exchange/evaluation/APPL/OOD/6406/invocations.json",
+      "sha256": "3e6c40babf188722a89e7745ca32f34254bfb6d492e44ceb98dc6a6f20ba3de3"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/drawer_exchange/evaluation/APPL/OOD/6407/invocations.json",
+      "sha256": "a1ad937882e1cba004b18d8b412f1e5d18a62f7935e11a969cafdbb2a8cc58af"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/drawer_exchange/evaluation/APPL/OOD/6408/invocations.json",
+      "sha256": "b7c27e0380277320c5f81866ff865ddfd1788f5e42ffce1f780dc152eb443f3b"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/drawer_exchange/evaluation/APPL/OOD/6409/invocations.json",
+      "sha256": "7278f80a64d7000f7629c6a93a9a42cc98149aa28472cc5b35ca6923a4d0456e"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/drawer_exchange/evaluation/APPL/OOD/6410/invocations.json",
+      "sha256": "22a27f7ca85a917e7d05cbd975dcc375ed940cde5c36991cfe3b7adfcd4cf533"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/drawer_exchange/evaluation/APPL/OOD/6411/invocations.json",
+      "sha256": "dd604743ef474fb9261eb4eeacbaef8a81bad06da9ad4de6053eb8fa5d9aebf3"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/drawer_exchange/evaluation/APPL/OOD/6412/invocations.json",
+      "sha256": "5dda4ccb9920f5a1427f3395efe3d68b9be186fd1f54ecf686c2f8f15a1efabf"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/drawer_exchange/evaluation/APPL/OOD/6413/invocations.json",
+      "sha256": "bb9804aefd055ab7bf199eeac3b64d5b7d914304536c7142098c807597a9c61a"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/drawer_exchange/evaluation/APPL/OOD/6414/invocations.json",
+      "sha256": "c6b751e55079d46c46318affe879be19ffdcae1b549c17e901c18d0fa03620e3"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/drawer_exchange/evaluation/APPL/OOD/6415/invocations.json",
+      "sha256": "669b439ef93873ee47707fd3790743eab9c7c53532f9659877e127ff80b8751f"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/drawer_exchange/evaluation/APPL/OOD/6416/invocations.json",
+      "sha256": "0d7cd692217db71fd8b3b1a2c841bac6bb2254a2d421b3479c43d8ceab78f979"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/drawer_exchange/evaluation/APPL/OOD/6417/invocations.json",
+      "sha256": "94b946193b9316f5d22d8afebcce7db73a6c3e2c5a1083ab3a1c833eb50dcf2b"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/drawer_exchange/evaluation/APPL/OOD/6418/invocations.json",
+      "sha256": "5fdd0b9f269de5e4b440949283aeda2982da057bf2b4e960025adfcd5b6636b1"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/drawer_exchange/evaluation/APPL/OOD/6419/invocations.json",
+      "sha256": "0393bc82bb860e865f623f959375d37d3ac5fe0081ac372a094a6ddd81f124d6"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/drawer_exchange/evaluation/APPL/OOD/6420/invocations.json",
+      "sha256": "d97cb11a5429f8eddb172a3cecfd7bdf8a73565513c264ea1c47627f5502ebf2"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/drawer_exchange/evaluation/APPL/OOD/6421/invocations.json",
+      "sha256": "43a3ce7fccdbd978b31c858c979c6b79435a960752d87e3d63f9dcec8c0285d3"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/evaluation_recovery_20260918/drawer_exchange/evaluation/APPL/OOD/6422/invocations.json",
+      "sha256": "8b75d3b42e4d6c663af17ecd1b9e1f139c87f800fedfda2e9c90b4162e79c063"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/evaluation_recovery_20260918/drawer_exchange/evaluation/APPL/OOD/6423/invocations.json",
+      "sha256": "52aec3a63f114e473fb3789c057a9218afed09eeb4cb567d993c8879eeed3970"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/evaluation_recovery_20260918/drawer_exchange/evaluation/APPL/OOD/6424/invocations.json",
+      "sha256": "619320c4ccb593aa3cebcaa785d571b28b7ebc92a53166a3d3eebdac8872f238"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/evaluation_recovery_20260918/drawer_exchange/evaluation/APPL/OOD/6425/invocations.json",
+      "sha256": "f67ec23297e45c73869b3ded38fd8c756c8e9559534ea4c3507af8988792f962"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/evaluation_recovery_20260918/drawer_exchange/evaluation/APPL/OOD/6426/invocations.json",
+      "sha256": "0b4c752bfcedd5cbeaa515187609cda3f3b78a3a6c60b171579d49a0d4579b2b"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/evaluation_recovery_20260918/drawer_exchange/evaluation/APPL/OOD/6427/invocations.json",
+      "sha256": "ac628eaed89fdcb86ccb04fbcbafc1fa6d25df2880362a3a9633a8bff948f33b"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/evaluation_recovery_20260918/drawer_exchange/evaluation/APPL/OOD/6428/invocations.json",
+      "sha256": "560bf85a05fa1a4276e144868e292ca42d8dcc5f73719becd9bcd17d0438b4a7"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/evaluation_recovery_20260918/drawer_exchange/evaluation/APPL/OOD/6429/invocations.json",
+      "sha256": "2eecb9fa52c3be9b905a9a1f51c4e7d3615c166b472fbe37cd21c965ba0e3a03"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/two_block_sort/evaluation/APPL/ID/20000/invocations.json",
+      "sha256": "4f25f8db4b50ffebbbfe079bb0ea0d31684d235cbfaf13212d1f4dd02d254537"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/two_block_sort/evaluation/APPL/ID/20001/invocations.json",
+      "sha256": "cf14f4d0e1d2d4484b7fb7fd64679f9b263bb649a8d74ee21c54c94b20eb38c8"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/two_block_sort/evaluation/APPL/ID/20002/invocations.json",
+      "sha256": "01102137d6616e46d2fd39a3fafee4a295a5343a971fffa49983e6a649802994"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/two_block_sort/evaluation/APPL/ID/20003/invocations.json",
+      "sha256": "d2494b73fb6714873561d463bd11dc22cfa64709198c3c7c838472c30da25272"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/two_block_sort/evaluation/APPL/ID/20004/invocations.json",
+      "sha256": "9f07199546b96f946ea476d25b8a5505b7a309982646fbb031ab246b313beb83"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/two_block_sort/evaluation/APPL/ID/20005/invocations.json",
+      "sha256": "e5d993b45d27d2e4c98eaf74efdd86704c54ca01296460ead3a22b38fb91f377"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/two_block_sort/evaluation/APPL/ID/20006/invocations.json",
+      "sha256": "3aa2e5141d59a1e722b829effcde4df80975a2cace11582cd21a36823509b339"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/two_block_sort/evaluation/APPL/ID/20007/invocations.json",
+      "sha256": "f08d5d6d66e87e18f5d903b6ea19316cfeaf2c31ceb13e006957826bfd41a30a"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/two_block_sort/evaluation/APPL/ID/20008/invocations.json",
+      "sha256": "8c39935677f92d6965746286841eaddf7062f6d4a364b4c2be565bf0a3659aff"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/two_block_sort/evaluation/APPL/ID/20009/invocations.json",
+      "sha256": "b2de72d6bdf4a513e7fdd426df2c9893c80e835456c01a96686292bc6832c6ef"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/two_block_sort/evaluation/APPL/ID/20010/invocations.json",
+      "sha256": "86189ce9bfbd35214b0c601159763da8b7efc62b23c9d7e84d2c0558de5bcd53"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/two_block_sort/evaluation/APPL/ID/20011/invocations.json",
+      "sha256": "9215710eed15b980c3674f98464a2a244db56dc2c0ac9bd07a58a6004a7aa41c"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/two_block_sort/evaluation/APPL/ID/20012/invocations.json",
+      "sha256": "8395c80dcb4be441335c4a4af998ff2537c203933bb37e1ea1d8e8aa7479cb93"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/two_block_sort/evaluation/APPL/ID/20013/invocations.json",
+      "sha256": "743431b48cbc0d798ffda3704a8172cb0b7d7cafd5eed7469022dbe9b5a32963"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/two_block_sort/evaluation/APPL/ID/20014/invocations.json",
+      "sha256": "d2e846d64ee447bcd37fce078b471ad686a9808d1a9b03a7c5f17a26b79e5f27"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/two_block_sort/evaluation/APPL/ID/20015/invocations.json",
+      "sha256": "3979add2eee5b06a64063eac6ab2166c6cd5bad5f046eb0b503156747f4c9b11"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/two_block_sort/evaluation/APPL/ID/20016/invocations.json",
+      "sha256": "01fd94336a5d0c8e82618bfac6f518810784cddba11af61e2a71addb7698ba2b"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/two_block_sort/evaluation/APPL/ID/20017/invocations.json",
+      "sha256": "9952a1a32b1b8a4217c6fd0314a3aed32befb11775e510fee38576b363ed434f"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/two_block_sort/evaluation/APPL/ID/20018/invocations.json",
+      "sha256": "58b8bc4bcf981d965ef3b088b49d3f2223ad44d9b4ca53c5a71eb6bdaed845ed"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/two_block_sort/evaluation/APPL/ID/20019/invocations.json",
+      "sha256": "73ab9b41b012c0b48e1cf7cd86af56bc00aa17f8750e74116400d4ef18624879"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/two_block_sort/evaluation/APPL/ID/20020/invocations.json",
+      "sha256": "c03fe15d76cbcad2795073952b5f060a06489ecaf982d1583771acef1f031523"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/two_block_sort/evaluation/APPL/ID/20021/invocations.json",
+      "sha256": "2b5217c0ce64f1a16a3f76cab68f39dd6277ff328f65dec90718a44fa42e0271"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/two_block_sort/evaluation/APPL/ID/20022/invocations.json",
+      "sha256": "0cfa43d0bdc8cb34db87b22cc3eed1a4b03a78e6abb63285c69c873cf12aff1d"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/two_block_sort/evaluation/APPL/ID/20023/invocations.json",
+      "sha256": "2009622b6bbc92040879b16555897b2ba97961d376aabf023a6868b75b206b16"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/two_block_sort/evaluation/APPL/ID/20024/invocations.json",
+      "sha256": "6e9a2538207956f1a15968447e68da79d74e1019061983901acce7fda535b358"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/two_block_sort/evaluation/APPL/ID/20025/invocations.json",
+      "sha256": "db3ea2063bd2a81c562ee2f02af532def6429f9eb39ed5167483a2a75f2452e4"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/two_block_sort/evaluation/APPL/ID/20026/invocations.json",
+      "sha256": "7dabb66053365e1172cf3188fe44e9845c9dc6eede99c0a21bf6042c1f246bb9"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/two_block_sort/evaluation/APPL/ID/20027/invocations.json",
+      "sha256": "c31f0beff351749d3435d454dc33ebd8c9e78d7a43d519f1af28887b26349f82"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/two_block_sort/evaluation/APPL/ID/20028/invocations.json",
+      "sha256": "8f86e4c10d52bd56716f5debb9c7f3a5f5a38e59cc908b689355ab6282c59f68"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/two_block_sort/evaluation/APPL/ID/20029/invocations.json",
+      "sha256": "404efbfbbf0ca0b2a2ca5f745ed10765afd47a7961482d9aac9d972d504e8f6b"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/two_block_sort/evaluation/APPL/ID/20000/invocations.json",
+      "sha256": "4fee8fe3f3be5e3781649378ca8a7482563f14e072fbecb1e70a09d6978414d6"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/two_block_sort/evaluation/APPL/ID/20001/invocations.json",
+      "sha256": "74b352f385ac5161ee1fcacda752d35ee5d4068c82c3db49f9aac6142f703127"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/two_block_sort/evaluation/APPL/ID/20002/invocations.json",
+      "sha256": "558170cd951ae81b4cc2697f9b7e236f1f03d0a8a68fc417b75af18c53fe38f8"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/two_block_sort/evaluation/APPL/ID/20003/invocations.json",
+      "sha256": "964f8ed06d3ea2cd15eabcd1c33b4a2c7163f6bcd24afe5bad2cda03153153ab"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/two_block_sort/evaluation/APPL/ID/20004/invocations.json",
+      "sha256": "6296a5920037ee6640ace3e69b116377515bb0c424359dd835f1e49d059397dd"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/two_block_sort/evaluation/APPL/ID/20005/invocations.json",
+      "sha256": "3fa9697407d7bfe2377a616def6c56392c22886ca35f1b18fc79ef1198e7b302"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/two_block_sort/evaluation/APPL/ID/20006/invocations.json",
+      "sha256": "757a93609a48a21a1b4b58ff8ec6ce06fbaaa701c09ec6e03e96a5db79533155"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/two_block_sort/evaluation/APPL/ID/20007/invocations.json",
+      "sha256": "8d62b8e35d6dc0401fd1776f2d53764dacdebcfab65e7722e195b7545e6f7fad"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/two_block_sort/evaluation/APPL/ID/20008/invocations.json",
+      "sha256": "2a8f216773ebe806c6179eb4aaafaac49477686506e67fdd0461d331fb52788d"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/two_block_sort/evaluation/APPL/ID/20009/invocations.json",
+      "sha256": "8aad61ac54fd6211afd807bcfb88d749466ae71182bc2b4004c27e00a27b5840"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/two_block_sort/evaluation/APPL/ID/20010/invocations.json",
+      "sha256": "04c56594e35a4799b28c5c2ba71eefecdb3086d7355b12e2bb8eddabeac734ba"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/two_block_sort/evaluation/APPL/ID/20011/invocations.json",
+      "sha256": "d5e5711dde3611e267f17cb418f08eb7f487c6d93129167cc8f954daf8d513d8"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/two_block_sort/evaluation/APPL/ID/20012/invocations.json",
+      "sha256": "725bfff6e1e4dc6fc7f8cd4c4a3e4135f58d1dd4846c7ba5cffb66e2fedb94d5"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/two_block_sort/evaluation/APPL/ID/20013/invocations.json",
+      "sha256": "536abe2938891c42fc04d45a2f038131056d0b209c307cd86bffa83578dc855a"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/two_block_sort/evaluation/APPL/ID/20014/invocations.json",
+      "sha256": "17ac28b5bcfe3d4d26705e35745e8691c664a3738a31ec816ea17fb81516853b"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/two_block_sort/evaluation/APPL/ID/20015/invocations.json",
+      "sha256": "8f10f58dc8ebbf07a12df53060a7ee01234f01fa7c75d84e53ebb97777be51d1"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/two_block_sort/evaluation/APPL/ID/20016/invocations.json",
+      "sha256": "8cf9fc8e16a169b4fbda966f919659c9dda5c095bafd8f1efe86be97de277a36"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/two_block_sort/evaluation/APPL/ID/20017/invocations.json",
+      "sha256": "27e25a8d2067090ca778483eabbefa59c4ae69bec7bacfad018ea48c6681bca9"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/two_block_sort/evaluation/APPL/ID/20018/invocations.json",
+      "sha256": "1b6dcad84eb0707962765ea119ff4df721ca5bd494a3c1fb7ded19fa54354775"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/two_block_sort/evaluation/APPL/ID/20019/invocations.json",
+      "sha256": "70e5c32adf7acd888d7ea186bfe348bf8f08ca926a051ecee1d263e6c6f9adb1"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/two_block_sort/evaluation/APPL/ID/20020/invocations.json",
+      "sha256": "3404faa17b8833c643c8c4898f4740cf84e10ee7686a1f04382ce21e5c367818"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/two_block_sort/evaluation/APPL/ID/20021/invocations.json",
+      "sha256": "58ab606fcbf2dbba6bd7c72fc068ee70da0f3cae575f8ccd327143cf52a02e1e"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/evaluation_recovery_20260918/two_block_sort/evaluation/APPL/ID/20022/invocations.json",
+      "sha256": "acc55bdd3d8e5139a5d1a09f673767fda3727a8d14e7ebb73b2b6e683e9fa257"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/evaluation_recovery_20260918/two_block_sort/evaluation/APPL/ID/20023/invocations.json",
+      "sha256": "c1276699d331bd87917e58103200dda779f1288b34b788e2eb734e9869b1df46"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/evaluation_recovery_20260918/two_block_sort/evaluation/APPL/ID/20024/invocations.json",
+      "sha256": "e9e179ac7fa74c5f4d89f5ef976c00281e360e596b4bdf218bc4f1634b25f211"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/evaluation_recovery_20260918/two_block_sort/evaluation/APPL/ID/20025/invocations.json",
+      "sha256": "74b7984aa2e642fb124e0c8bfef2accc96db72239b3f481d8ee8ea8545d8cdd9"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/evaluation_recovery_20260918/two_block_sort/evaluation/APPL/ID/20026/invocations.json",
+      "sha256": "53af8efc16cc891dad898c4963b1f85adb7901c2ddf82d7ea252ff6085943100"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/evaluation_recovery_20260918/two_block_sort/evaluation/APPL/ID/20027/invocations.json",
+      "sha256": "8dd8b8a8a09f4071a61970ac13d5215b84166d0fc2af4e2c0919f355ad6d9ee1"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/evaluation_recovery_20260918/two_block_sort/evaluation/APPL/ID/20028/invocations.json",
+      "sha256": "ffce54a97383afa48f07c4c0b598cc59227e1147e0c7f6da8e4da8f09049d730"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/evaluation_recovery_20260918/two_block_sort/evaluation/APPL/ID/20029/invocations.json",
+      "sha256": "5dd7969211ac53bddabf39fc514d528b85acc29d537c160f58eebeabff0a5068"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/two_block_sort/evaluation/APPL/OOD/30000/invocations.json",
+      "sha256": "5a7c9e70ee9f6b2dd6f5d1a8ecd972b4ee54f700246b5e16e324f476dc94331a"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/two_block_sort/evaluation/APPL/OOD/30001/invocations.json",
+      "sha256": "0e534b46bc63a6d68c37e55ff8da8027f9c597b3f8e68285a06562cf931ebc7c"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/two_block_sort/evaluation/APPL/OOD/30002/invocations.json",
+      "sha256": "0b60033540fb35540054b68590d001fe03b38332f75ab826bc0824fbd29eaad2"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/two_block_sort/evaluation/APPL/OOD/30003/invocations.json",
+      "sha256": "fdfcbe7aeeee34a00389dd2a032703a50f129e2f9ed3abc6c5bda4d03baa703a"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/two_block_sort/evaluation/APPL/OOD/30004/invocations.json",
+      "sha256": "780453663885bd407283caffa1927030ee00cddff4c1f9c0b872907d950cb655"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/two_block_sort/evaluation/APPL/OOD/30005/invocations.json",
+      "sha256": "21395fc3e3d5370ffa2197641e25e4540d4e65c88d3c6489e520885252c56c98"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/two_block_sort/evaluation/APPL/OOD/30006/invocations.json",
+      "sha256": "8bff5defd092de577a7df890be5dd1f050bbca09035d626701a0d3b47b432e1e"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/two_block_sort/evaluation/APPL/OOD/30007/invocations.json",
+      "sha256": "1c10f47cb306e14395ae443d295d12dc10153a5f4f9abde7fa5d9dbede456170"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/two_block_sort/evaluation/APPL/OOD/30008/invocations.json",
+      "sha256": "e61db20087c8c851015fe91f63a0b61fa5870bf6ed7bb0bc01f7ac618d8d102f"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/two_block_sort/evaluation/APPL/OOD/30009/invocations.json",
+      "sha256": "f1e38299956c5a4306b7433758cf1a6e9029ad898c40c61688d4c4a9b52e153c"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/two_block_sort/evaluation/APPL/OOD/30010/invocations.json",
+      "sha256": "c703829159e7d1ca4e710ba5459dbbbe08283449b9474cbeac823c1d08f607c9"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/two_block_sort/evaluation/APPL/OOD/30011/invocations.json",
+      "sha256": "5cc9e2aa8cfe729eb761470d3d63cc6df4d99d1e918c97f09acf49bd69b9058c"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/two_block_sort/evaluation/APPL/OOD/30012/invocations.json",
+      "sha256": "1cfabef57980a4675a5558fa593bb4efff9f0e35658f347007484348570b932f"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/two_block_sort/evaluation/APPL/OOD/30013/invocations.json",
+      "sha256": "4288a79c6c69ee36dc61d911a8b675aa0b3c67320ec25935dd8cc0fc2c4221ee"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/two_block_sort/evaluation/APPL/OOD/30014/invocations.json",
+      "sha256": "7a910886098cc0c54728cac06024840e9f4cec994c26e7ccb0d0f002d8ddd67b"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/two_block_sort/evaluation/APPL/OOD/30015/invocations.json",
+      "sha256": "f89752ab7febe5da4e8934a065d90a911dca3abbf55a0f4ae21f9616049ffee6"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/two_block_sort/evaluation/APPL/OOD/30016/invocations.json",
+      "sha256": "bae87bd5e6c043b2e4e5df29921be795c808ebddaad9a6d14fe9732f20da97c3"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/two_block_sort/evaluation/APPL/OOD/30017/invocations.json",
+      "sha256": "7991a0be34f9edff397ece0aafc69ef992d1c5ee55465e1f06f9d08c5fb4fd02"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/two_block_sort/evaluation/APPL/OOD/30018/invocations.json",
+      "sha256": "9f43bb5b4ca9e7bef79b89bd14fa4e6b6d9ea5b4132d6b2aeca660b206512f1f"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/two_block_sort/evaluation/APPL/OOD/30019/invocations.json",
+      "sha256": "d34de72a576d6f692ba50bf918e14ccfcd0861210f21adc856855cb9898b18f5"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/two_block_sort/evaluation/APPL/OOD/30020/invocations.json",
+      "sha256": "95cf6b267c35ffd5499ce9252910807359fa16b3fd87e54790d71b0ac68635cc"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/two_block_sort/evaluation/APPL/OOD/30021/invocations.json",
+      "sha256": "d2a7ff1fe20f750249fecd324dd4f9632d9ecd9b85510371cce81ce3adc26bb9"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/two_block_sort/evaluation/APPL/OOD/30022/invocations.json",
+      "sha256": "5d3add9403a3d4acde01c16346798794dfc0f3c111ecff5e61e68f94030788c8"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/two_block_sort/evaluation/APPL/OOD/30023/invocations.json",
+      "sha256": "4f18f58d965c4ca8a2898662aac1a2e862192818a28f954fe961f01ba3620051"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/two_block_sort/evaluation/APPL/OOD/30024/invocations.json",
+      "sha256": "8698d5b8193905f7fcf0f9124ba6a0ae6de785cabc90f41ed20af2c4c664a23b"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/two_block_sort/evaluation/APPL/OOD/30025/invocations.json",
+      "sha256": "fc6df2beb4ef1fa04f3af9c0fd717dd50e0b6bf87d24af86e3cf64143e3fde9e"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/two_block_sort/evaluation/APPL/OOD/30026/invocations.json",
+      "sha256": "8f584b31062a5a43228071f418a03b68a7131be4c022e554188b05357be10c5e"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/two_block_sort/evaluation/APPL/OOD/30027/invocations.json",
+      "sha256": "533d23282a96821b54babd9e2fa251a62c01bb5c3c947f2fb3255b5805bbd927"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/two_block_sort/evaluation/APPL/OOD/30028/invocations.json",
+      "sha256": "ecdc2684dbcc94743e12e8aa8b050270d40a4b425865b558e6974d4ab75c5c24"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/two_block_sort/evaluation/APPL/OOD/30029/invocations.json",
+      "sha256": "7f582706474d8771f1c08c8ff995b6e935a2c2a37431fff7caa2541cc4af472b"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/two_block_sort/evaluation/APPL/OOD/30000/invocations.json",
+      "sha256": "c6bbb083ce312d61d6edf21ce6047f48b9edd523257f4d8c9f2835801d5202cd"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/two_block_sort/evaluation/APPL/OOD/30001/invocations.json",
+      "sha256": "eb25e5fe4d00aece13e357e7488956246ff5ff2e1bee47d45eefe0248a8bf400"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/two_block_sort/evaluation/APPL/OOD/30002/invocations.json",
+      "sha256": "15309fe214ad6bcd3c04776787b022db09c562c10ec2fff099b1f80be9083b2c"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/two_block_sort/evaluation/APPL/OOD/30003/invocations.json",
+      "sha256": "46a78d0f283c2450832797ef3075cbb2e4b193c42fa037177d12dd0f1c8009f0"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/two_block_sort/evaluation/APPL/OOD/30004/invocations.json",
+      "sha256": "119c082769d370d1a636e7a16a454465d93410b658a76c83d9d7383b3a3faad7"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/evaluation_recovery_20260918/two_block_sort/evaluation/APPL/OOD/30005/invocations.json",
+      "sha256": "21b211fc34f746be441bfaa8f71a18920f4c91f49d63ab6470ca75b729b6d5a2"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/two_block_sort/evaluation/APPL/OOD/30006/invocations.json",
+      "sha256": "4e3f1331bbd4a44ee316de60feeb1a3071a40284d2760513ea6f3d0f46f1d320"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/two_block_sort/evaluation/APPL/OOD/30007/invocations.json",
+      "sha256": "f15b0c602eb4086f31aa87f2fb9a15d2a786d3bb4cee375f117266fc2111176d"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/two_block_sort/evaluation/APPL/OOD/30008/invocations.json",
+      "sha256": "096fe5eed2c1fd2e3818d1e52101c796f47cef9b14faffaf8cf6f0feae5ba014"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/two_block_sort/evaluation/APPL/OOD/30009/invocations.json",
+      "sha256": "359f66cd2585ac7ce79fd05ea7bc3c8755fb9f1c52661efcc30de75ca2db8b91"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/two_block_sort/evaluation/APPL/OOD/30010/invocations.json",
+      "sha256": "032b2de76433d780ac5b3d8aba9ff95f1d26a3634711a3819dbdfb1fd7e4e285"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/two_block_sort/evaluation/APPL/OOD/30011/invocations.json",
+      "sha256": "a08dc82154fb6574a9fc24e585872fc2bc82d50f0d4b8c03ebf04af3cdcce3b7"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/two_block_sort/evaluation/APPL/OOD/30012/invocations.json",
+      "sha256": "4a95efab97a62fd237c9c245b916af031a0307f7863131c085a0421c83d1f161"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/two_block_sort/evaluation/APPL/OOD/30013/invocations.json",
+      "sha256": "d2a20fc017b30473ef904fbcb4623835cd6871381f066bfa919662dab116b98c"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/two_block_sort/evaluation/APPL/OOD/30014/invocations.json",
+      "sha256": "7c1269e918640b26c704d46836fcef175fae781ae81684cee0018c1327c20750"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/two_block_sort/evaluation/APPL/OOD/30015/invocations.json",
+      "sha256": "c5d5b305fc73d568382bbc3a7a6fb65deb28f91be267f1a2115040bcd57c5955"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/two_block_sort/evaluation/APPL/OOD/30016/invocations.json",
+      "sha256": "96f4d259387bd888d12a45ccdd8f2e02cd757a99a10f47569954cce29d93896a"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/two_block_sort/evaluation/APPL/OOD/30017/invocations.json",
+      "sha256": "77c5fb559186751f73130fe932855de5a70c09a65b740d51e8744d152a923b76"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/two_block_sort/evaluation/APPL/OOD/30018/invocations.json",
+      "sha256": "4c06507489238c1c97185ec68a8a2ab2ab29873c29382855bfd27d84cacdc16f"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/two_block_sort/evaluation/APPL/OOD/30019/invocations.json",
+      "sha256": "7ee2c08b1090c9f6e0b66bb3664550536cf2de6f89d46f233e9c4425785f7abf"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/evaluation_recovery_20260918/two_block_sort/evaluation/APPL/OOD/30020/invocations.json",
+      "sha256": "fbfe8c112973460f3716c7a493b3d539bbdaaa5a7dc45fcfca6cfbacd0ed77fa"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/evaluation_recovery_20260918/two_block_sort/evaluation/APPL/OOD/30021/invocations.json",
+      "sha256": "67aa5a5aae302f20c8eeff3b1a5915441f28ee2e097945924c490ab3c91a4a56"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/evaluation_recovery_20260918/two_block_sort/evaluation/APPL/OOD/30022/invocations.json",
+      "sha256": "f1a225d5e3079a1dc7ea68768bedd972747c9fde36d28c76f9d14c44adda61f3"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/evaluation_recovery_20260918/two_block_sort/evaluation/APPL/OOD/30023/invocations.json",
+      "sha256": "a71ae781d7404b9bc756a52601d2ef81b3b59176ea58f2653b3f400ccbf54e0e"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/evaluation_recovery_20260918/two_block_sort/evaluation/APPL/OOD/30024/invocations.json",
+      "sha256": "76477ccfd5e280e7681cbf3598c183e5e8780bfd0b1cc2186e8d5e9712855801"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/evaluation_recovery_20260918/two_block_sort/evaluation/APPL/OOD/30025/invocations.json",
+      "sha256": "bbbfeda5928b5eb7e9ed7e28695ee1ee8076f61a95e389fe3928be99a04f4b8a"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/evaluation_recovery_20260918/two_block_sort/evaluation/APPL/OOD/30026/invocations.json",
+      "sha256": "e908640d5fa2017224e18cb22c3fe957301569d057f1a3785471b51951dc6c9a"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/evaluation_followup_20260918/two_block_sort/evaluation/APPL/OOD/30027/invocations.json",
+      "sha256": "f4cd7e6a3368393580b48291dab3cde16c81d722e1e579807c21c892373c6181"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/evaluation_followup_20260918/two_block_sort/evaluation/APPL/OOD/30028/invocations.json",
+      "sha256": "3b15693c4908317beea4968a45c17d450124050f7fccac6248d3e57691c59e6f"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/evaluation_followup_20260918/two_block_sort/evaluation/APPL/OOD/30029/invocations.json",
+      "sha256": "78dc170d010536d1322b8321e7be4ce933f86bef965f7b6119d1f6e635fdef72"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/buffer_swap/evaluation/APPL/ID/20100/invocations.json",
+      "sha256": "72dd883b35bc1c841318d84f47b49261b3a1caee5624b3c9a9e9b90c0bc13e02"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/buffer_swap/evaluation/APPL/ID/20101/invocations.json",
+      "sha256": "2a07e7310a221550ba0a78d6f958c3557d99086853e7c76b81170ba2fedc547d"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/buffer_swap/evaluation/APPL/ID/20102/invocations.json",
+      "sha256": "a7bbc462b0d5b9b68426879851b7cd3ec78f0aead7637d6001b312d2a06fce35"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/buffer_swap/evaluation/APPL/ID/20103/invocations.json",
+      "sha256": "745fc949054f5e6a43793115ed70c30cee1b1bdee67ef895ee34bf3ad5825f66"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/buffer_swap/evaluation/APPL/ID/20104/invocations.json",
+      "sha256": "b32dfd59ebc3ca6657bbe337b64890f75b41447cb42ce2602f19b4886bde06f6"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/buffer_swap/evaluation/APPL/ID/20105/invocations.json",
+      "sha256": "791a80be4e92e0bf9856d4fb6101b4bbe8e351f235c491ba05773fbc266ed435"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/buffer_swap/evaluation/APPL/ID/20106/invocations.json",
+      "sha256": "32d56f2d2ec5bb4762b5c778a7f8452331710ae7f764258b3a4909e670600665"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/buffer_swap/evaluation/APPL/ID/20107/invocations.json",
+      "sha256": "1e1b3218e9db6a19a8a19e9ba399c35aab6814f44e4e6dbce4262dc01180fa9e"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/buffer_swap/evaluation/APPL/ID/20108/invocations.json",
+      "sha256": "d021d2f9d9fc68825427579ec649c30c7dcc0e137164b26aac1497e381a89538"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/buffer_swap/evaluation/APPL/ID/20109/invocations.json",
+      "sha256": "7b7516cdb9a5072bd66583ce690b3b5c2dc61794a408afa41914e14a659c80ee"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/buffer_swap/evaluation/APPL/ID/20110/invocations.json",
+      "sha256": "3a046f3d6a9dc78bf94b6ec75f5cbfa15f2159ea96b265aec4aad36b85edb39a"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/buffer_swap/evaluation/APPL/ID/20111/invocations.json",
+      "sha256": "39e172f48344820c9e39e87eb11626fd1cba4fe6e801c224ec8ce29b512c6a6f"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/buffer_swap/evaluation/APPL/ID/20112/invocations.json",
+      "sha256": "4f062eeff1407c935614278364d3ac6b3befdcebe211b5a321953843f317793f"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/buffer_swap/evaluation/APPL/ID/20113/invocations.json",
+      "sha256": "194beeda68994c194a176625e63a3cb63cab7f3f4e2f2dac87f8d85b45773afa"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/buffer_swap/evaluation/APPL/ID/20114/invocations.json",
+      "sha256": "3c1ea8747b267c645567114fd432d486c8d64fd061e416bf97115a4bda139d79"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/buffer_swap/evaluation/APPL/ID/20115/invocations.json",
+      "sha256": "dbbd32af29b76137e005690c63e3ba2d77d5a1fec18be9880649c152001fd3a0"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/evaluation_recovery_20260919/buffer_swap/evaluation/APPL/ID/20116/invocations.json",
+      "sha256": "e7c018c4d468615a708903baa070a2e5aa3e91ea14299255f797c6375ed58f56"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/buffer_swap/evaluation/APPL/ID/20117/invocations.json",
+      "sha256": "d7f90c5f0bf6da67dc1a2c2ae737fcca462ff6d65555074be8cfdfc27aa61acf"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/buffer_swap/evaluation/APPL/ID/20118/invocations.json",
+      "sha256": "7814d97e9b9fcecf7e959d33b64def0484b0cb5e3135fd4c33eb6f903c8b234b"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/buffer_swap/evaluation/APPL/ID/20119/invocations.json",
+      "sha256": "192d1280c7f88bac2b12c63a7be082dc4142a1380ef58333356b256835dc3f69"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/buffer_swap/evaluation/APPL/ID/20120/invocations.json",
+      "sha256": "cdf19443884a5fd39bf5970d4f4c4159c4690ca1679ba16e274e43507d0ec0ce"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/buffer_swap/evaluation/APPL/ID/20121/invocations.json",
+      "sha256": "95449146f5f5a19c2f096e9160381dfe448876bdae0031b35af4dafe30e7c467"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/buffer_swap/evaluation/APPL/ID/20122/invocations.json",
+      "sha256": "378314b6afdffeaa80d0e5957bb6699952220b3d9b6f93bde464ceecda9aec56"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/buffer_swap/evaluation/APPL/ID/20123/invocations.json",
+      "sha256": "40b49972eeb620085fcd24846e063ed6e004cfe09af91efbde75246a38cff215"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/buffer_swap/evaluation/APPL/ID/20124/invocations.json",
+      "sha256": "04957f048bbe2008c6deb91b675a741f2a740735247403b96f49dd352f592987"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/buffer_swap/evaluation/APPL/ID/20125/invocations.json",
+      "sha256": "de568c1a704c14902a0f3baea34fb3799de3c65ba982cbb10d409effe57ed875"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/buffer_swap/evaluation/APPL/ID/20126/invocations.json",
+      "sha256": "f6f9bd9d3728a70f0fbbfff3fd53300f9ee178fda696a3637a82f1c779740a0b"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/buffer_swap/evaluation/APPL/ID/20127/invocations.json",
+      "sha256": "e2276242dc21339862370447f11bc2e23f6b921927e409e8bac51dce2ac391ea"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/buffer_swap/evaluation/APPL/ID/20128/invocations.json",
+      "sha256": "92cb77e5b883004f332bcbb5e7fbc78c0162d97162cf8f3cdeb853cf32722bdd"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/buffer_swap/evaluation/APPL/ID/20129/invocations.json",
+      "sha256": "f686bdcf95de6d10cc26a7f42a138a9134513f396d57f03a5fbe46bf2e2823ea"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/buffer_swap/evaluation/APPL/ID/20100/invocations.json",
+      "sha256": "eb6a1da9fcdd87a0f7545b7a9f1ecd5a48ff5ff69313182d141d131c3923927e"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/buffer_swap/evaluation/APPL/ID/20101/invocations.json",
+      "sha256": "be968e82f4f248d8e72a02d59893727e051dd0725d898934f16dce9fec630bf3"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/buffer_swap/evaluation/APPL/ID/20102/invocations.json",
+      "sha256": "78e2063efa4b15343870dcabab2802eeeeaaf1dd86484084b8bdf7618bb7a6bd"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/buffer_swap/evaluation/APPL/ID/20103/invocations.json",
+      "sha256": "6a54de818763adaec519b3bc6f7d6e898fcbfbca43fb7214a85324bb6e343d5e"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/buffer_swap/evaluation/APPL/ID/20104/invocations.json",
+      "sha256": "0e9fdcc4e1b9d857ec389a37013ef0e77fc747e77faa81ccc94e68e1aed2c1a4"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/buffer_swap/evaluation/APPL/ID/20105/invocations.json",
+      "sha256": "6e8682d9e022c967552f5db6367b7bdcdf2389662235a3df2e8dccb35f97b531"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/buffer_swap/evaluation/APPL/ID/20106/invocations.json",
+      "sha256": "3eb84c8300f4ea4449f61131ff637885c862612e85f8645ebbbe2d5b5cf13186"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/buffer_swap/evaluation/APPL/ID/20107/invocations.json",
+      "sha256": "73a2ff82e471ca259a2822a119a282301d6f443765669c51e1a2b451a9f00ac1"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/buffer_swap/evaluation/APPL/ID/20108/invocations.json",
+      "sha256": "68ae0891c6f58306902cfae91a3a8e23c3c13d7e512b567e593f4df8b5fd6675"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/buffer_swap/evaluation/APPL/ID/20109/invocations.json",
+      "sha256": "07268660fc5011051b18a671a51f895060b9fc88aa68b037ba0566ac0ea9a010"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/buffer_swap/evaluation/APPL/ID/20110/invocations.json",
+      "sha256": "90ce6556d0f7ab7d46b1dc44b9b74bdb17119292cdf4849e9feabacc151a3801"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/buffer_swap/evaluation/APPL/ID/20111/invocations.json",
+      "sha256": "5ee484bfadeeb4ddf4ef33c1236a2955ffa17f246015bf0f1186d891b4946320"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/buffer_swap/evaluation/APPL/ID/20112/invocations.json",
+      "sha256": "d0365590d429ab715f81df071c9d8f162afebc8d3c1eb9d6ed567d6aec0403f8"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/buffer_swap/evaluation/APPL/ID/20113/invocations.json",
+      "sha256": "9de753801f2c600b074112f8079a80e84cb3bc2f9a4aa642b27aaa3b3f892d3c"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/buffer_swap/evaluation/APPL/ID/20114/invocations.json",
+      "sha256": "0ff424ad22c77d06fcd07c98fc5cd7b5363195dd92b5b5d27c5363c5861416a7"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/buffer_swap/evaluation/APPL/ID/20115/invocations.json",
+      "sha256": "fbb1bbba12c6ecd47ba96198e1dbda228ba7f5b524391f6ba38b96b728358685"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/buffer_swap/evaluation/APPL/ID/20116/invocations.json",
+      "sha256": "55927ff1bc0dc314f4e34a8024679938cad63855671dd571e1a7cf59252ad249"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/buffer_swap/evaluation/APPL/ID/20117/invocations.json",
+      "sha256": "b21057b6a0398508be766391f25bcf0217bef68738619464c7d204729d34cc39"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/buffer_swap/evaluation/APPL/ID/20118/invocations.json",
+      "sha256": "0d3275c1fe08d192c6246204dd9031ff6788caef7fcfa6e3ffc56d36b725f53a"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/buffer_swap/evaluation/APPL/ID/20119/invocations.json",
+      "sha256": "af1e4ddcfed19db13fffe3005f366e59fc0fb1580cac642b645337d7ff7fe07b"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/buffer_swap/evaluation/APPL/ID/20120/invocations.json",
+      "sha256": "7324639474bd8559686c20b3fbd17b28c970be42ddbfbc72fdff903edc077809"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/buffer_swap/evaluation/APPL/ID/20121/invocations.json",
+      "sha256": "1e7124abfdea11bcba4613e622faea936e50e339032d959ced0a06b9422db973"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/evaluation_recovery_20260918/buffer_swap/evaluation/APPL/ID/20122/invocations.json",
+      "sha256": "6a5b529a2474e6277bc3071207bd5410eb0466c7f3fdb09641d1c2d30f90e040"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/evaluation_recovery_20260918/buffer_swap/evaluation/APPL/ID/20123/invocations.json",
+      "sha256": "902a00536ba98f778a5cf782d82ad30f5120aa8fbede5705e3f42863175b232b"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/evaluation_recovery_20260918/buffer_swap/evaluation/APPL/ID/20124/invocations.json",
+      "sha256": "5a08014094d1fffe1dba4dc53fd65326b6fdba13d39933f66e3329549d8d6c2c"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/evaluation_recovery_20260918/buffer_swap/evaluation/APPL/ID/20125/invocations.json",
+      "sha256": "a24f8390bd728070140659ae600e47d2e08ebe926fd19c35987ea5284f15278f"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/evaluation_recovery_20260918/buffer_swap/evaluation/APPL/ID/20126/invocations.json",
+      "sha256": "037cac976611b1c0a2f47903bb94b5c857ecb297f81ea3047ef2db860222a711"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/evaluation_recovery_20260918/buffer_swap/evaluation/APPL/ID/20127/invocations.json",
+      "sha256": "f0ba215ce3e1f24dd4878f4d9dcb55a73c2f4d90d5606f1b02923fe33e7f6b03"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/evaluation_recovery_20260918/buffer_swap/evaluation/APPL/ID/20128/invocations.json",
+      "sha256": "f059fa48eca94ed615876ea9279b5b6d49a81648429002006354d15e79240d99"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/evaluation_recovery_20260918/buffer_swap/evaluation/APPL/ID/20129/invocations.json",
+      "sha256": "fc62a91f91c92d5d131458ad55b2ce69f1a9bccbb21b10056998f67a1f451314"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/buffer_swap/evaluation/APPL/OOD/30100/invocations.json",
+      "sha256": "0ff76d57f0be6d85844cdeef5ab08033433cb411b76cd8b880b6a2cd7feacb64"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/buffer_swap/evaluation/APPL/OOD/30101/invocations.json",
+      "sha256": "5757654c0ba94780d7ef09b4c3abd199eb2b29fd69614d1454a4b977a731fc92"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/buffer_swap/evaluation/APPL/OOD/30102/invocations.json",
+      "sha256": "d35c3bbfd14a7afd4b2cee6d8ee19fd127237b851ac5f504fae8b2aa4f14d753"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/buffer_swap/evaluation/APPL/OOD/30103/invocations.json",
+      "sha256": "656f218dc3f7cc8a553f5eb0015925483a52c57ace024f5de0675926226d8079"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/buffer_swap/evaluation/APPL/OOD/30104/invocations.json",
+      "sha256": "6ee203fc7ec2e55e61cf10bc02c401ebdf4209224a6b4cc27cc7deeda329aa81"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/buffer_swap/evaluation/APPL/OOD/30105/invocations.json",
+      "sha256": "9dcfc42c97b49c663d23f4b9497c00d4d56c8ba7db219951521660b2f19878ce"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/buffer_swap/evaluation/APPL/OOD/30106/invocations.json",
+      "sha256": "cbe6bc10ef93ec8227b460d1cc845c29fe0de5f993fdf21134ccb88df16097db"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/buffer_swap/evaluation/APPL/OOD/30107/invocations.json",
+      "sha256": "4cabc949ff684ee38e7bc719dddf9d32821a5fbfbe34ce65d90a95082460d0f6"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/buffer_swap/evaluation/APPL/OOD/30108/invocations.json",
+      "sha256": "3916a427c4ba389a1d2443e72654f5d9c8b906c99c8cabde6e54aed6c7d3a294"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/buffer_swap/evaluation/APPL/OOD/30109/invocations.json",
+      "sha256": "86d917650483273191c9536baa6b4f66c855dd47be5936d1b9cf02c0301f775d"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/buffer_swap/evaluation/APPL/OOD/30110/invocations.json",
+      "sha256": "463a4e9c657dda995d658691f9208a593454dbe73165f26d13e440798ae8bfbb"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/buffer_swap/evaluation/APPL/OOD/30111/invocations.json",
+      "sha256": "067685c8b9b1c1541f256c5fb9dbc25bd686a44db6420fd00fd7db38223fb4a3"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/buffer_swap/evaluation/APPL/OOD/30112/invocations.json",
+      "sha256": "3225f837c0bf45c3beaba62f510960864c2f452853490e531044f524c51851a3"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/buffer_swap/evaluation/APPL/OOD/30113/invocations.json",
+      "sha256": "df8b1d88c7b739b5f3cea20133a3acb97a6674d569ac4b6b081c6c04af1a795b"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/buffer_swap/evaluation/APPL/OOD/30114/invocations.json",
+      "sha256": "46841ae778dfea7d5de38f3605a35db951f3d693e459675c7791ab0d1ec3deef"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/buffer_swap/evaluation/APPL/OOD/30115/invocations.json",
+      "sha256": "f963d826a29d41350ec41ef4960297ef2a99684d407fa9b84cef7ae8061ac0a2"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/buffer_swap/evaluation/APPL/OOD/30116/invocations.json",
+      "sha256": "66077f355aa41167bac5030f0da9ce3fb7785a50bbe62c9092c75f70991d7765"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/buffer_swap/evaluation/APPL/OOD/30117/invocations.json",
+      "sha256": "e42cee2a743d6da2343f21cd757e018ddab597caedd3324f0a9b46e9bb38b723"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/buffer_swap/evaluation/APPL/OOD/30118/invocations.json",
+      "sha256": "d6f77fedc7abac415a180ba3de454ecb8f94b0a88853676db233572b1cce6993"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/buffer_swap/evaluation/APPL/OOD/30119/invocations.json",
+      "sha256": "a7075a9bce268f2b3223b3e41b06380b3be081b5a565d20dae87fd675b62a476"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/buffer_swap/evaluation/APPL/OOD/30120/invocations.json",
+      "sha256": "5c3a911bcce080d19323105af8bdce15ebef3f3ac844c4870e40dd780057fc7b"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/buffer_swap/evaluation/APPL/OOD/30121/invocations.json",
+      "sha256": "4b30f6146497f1b974f967409b4766601682c1b92076da42be4a47d08fafe1b8"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/buffer_swap/evaluation/APPL/OOD/30122/invocations.json",
+      "sha256": "8f2dbb319da559ccdcbe47c1cc8dd756ff4efb923c39e7693e2534f76c093ca4"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/buffer_swap/evaluation/APPL/OOD/30123/invocations.json",
+      "sha256": "ece130b467c5656099c521f20123a68432355aaa4feee27cbbb0400582ae381d"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/buffer_swap/evaluation/APPL/OOD/30124/invocations.json",
+      "sha256": "c41364b24b6598e8c439a22f5f480eec2e7fde3f2b97d721e41c45fa88832726"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/buffer_swap/evaluation/APPL/OOD/30125/invocations.json",
+      "sha256": "f6aedc6c80e30f8c1bee729c3d9958e4e48526364ce336a787859704bfefeaf1"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/buffer_swap/evaluation/APPL/OOD/30126/invocations.json",
+      "sha256": "455c8561f0ca1c6f3f2a8110f77314277ef61c7b1a978d056d4d22de5fc46f0e"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/buffer_swap/evaluation/APPL/OOD/30127/invocations.json",
+      "sha256": "e106f75053d9953a219a0f9e259f24e41e2b5dc63f0223f64401bd22dececc67"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/buffer_swap/evaluation/APPL/OOD/30128/invocations.json",
+      "sha256": "77ab071200f3336c92a8bb2acfdd5e52a1cc166c2b153d2eeafc52701e7cb9aa"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/buffer_swap/evaluation/APPL/OOD/30129/invocations.json",
+      "sha256": "6c2fca7e1d606cdfd17494a84ef98b78bd4b4fd56928550a23d77ce84efd1aa0"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/buffer_swap/evaluation/APPL/OOD/30100/invocations.json",
+      "sha256": "904682a7454821225710e3ccd80d0e4fa3a8e079a639f0898c6b1c7871548b4b"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/buffer_swap/evaluation/APPL/OOD/30101/invocations.json",
+      "sha256": "896650fb3bd2c9c8acdd2cae2024bcee1b08f34654e117c0b7b51e5d5ea6a99e"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/buffer_swap/evaluation/APPL/OOD/30102/invocations.json",
+      "sha256": "9a8f0def68f912b56298eba478bce895371d7e775523e6cf8f3874793d870d82"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/buffer_swap/evaluation/APPL/OOD/30103/invocations.json",
+      "sha256": "5b16e2893aa994a7fb4a6055390471ae891b9e679879360cc38d818871689dd3"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/buffer_swap/evaluation/APPL/OOD/30104/invocations.json",
+      "sha256": "396b2bb561c5a89e37e160aaa428a2f4b9e7af0db621a48392b1d6996983b9ae"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/buffer_swap/evaluation/APPL/OOD/30105/invocations.json",
+      "sha256": "db9e0c00e7c0d649eb042af593745cc46a6c07bd2562d19a5714e9d4d9db1638"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/buffer_swap/evaluation/APPL/OOD/30106/invocations.json",
+      "sha256": "447ca91d1d50dd4f48f29eb7524f8442ef25eb01201106bdd1a8866b5fd96c50"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/buffer_swap/evaluation/APPL/OOD/30107/invocations.json",
+      "sha256": "6a18f0ec2d8baf51a8c76b31acb1a954ca051c19f7597232159d4fb74820fa33"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/buffer_swap/evaluation/APPL/OOD/30108/invocations.json",
+      "sha256": "528d96f92fbcab7298a279510dfd7ba68b15cc7bdd2834212271969336ba9c44"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/buffer_swap/evaluation/APPL/OOD/30109/invocations.json",
+      "sha256": "45de338a9a1a28a89873cb4e7dc4e7136df49fe0788b8a215bb3651126c866c2"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/buffer_swap/evaluation/APPL/OOD/30110/invocations.json",
+      "sha256": "b84c32f1afd10b61bdbfcbbf48f77ed20aca7e31796498d8d6cb88ce7874880b"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/buffer_swap/evaluation/APPL/OOD/30111/invocations.json",
+      "sha256": "dd5779b6fc97de053af997987fc2619dcb48701b06843c8b4eedd182ddf1a4d8"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/buffer_swap/evaluation/APPL/OOD/30112/invocations.json",
+      "sha256": "7bc0bdf50706ac76f1cf799a567dd76ced78da74345bc389c88639af53312bc3"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/buffer_swap/evaluation/APPL/OOD/30113/invocations.json",
+      "sha256": "228aee786f3d5ffab0ef3f4cd16b59a74658e7c5091edea4ee0098813ac2d300"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/buffer_swap/evaluation/APPL/OOD/30114/invocations.json",
+      "sha256": "fb641b64ddab37d27703a2e0c2df624528e4e4af5b742f03d9e6473d6e8b2186"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/buffer_swap/evaluation/APPL/OOD/30115/invocations.json",
+      "sha256": "8529444b1f3334d53a95033a4222f6a639917f6282f083fd93fe191cd63daa69"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/buffer_swap/evaluation/APPL/OOD/30116/invocations.json",
+      "sha256": "c1d1b629bb3926164c846cca50aed491b60f04607e6e7500e346cc7edf1ef48d"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/buffer_swap/evaluation/APPL/OOD/30117/invocations.json",
+      "sha256": "3c3a4c2e3e66da0dd9fd6d51c14829ab1b245bfff9ff1d0883213564b6c39f82"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/buffer_swap/evaluation/APPL/OOD/30118/invocations.json",
+      "sha256": "1276f0a0f24fa28c22824813a067a6bf7973b2f6ab41bb9c0660c54d6b65ed33"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/buffer_swap/evaluation/APPL/OOD/30119/invocations.json",
+      "sha256": "596cd884fda11f535b235f264d9cbe9706703c443f3cbed7fa214daf1a1dcfab"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/buffer_swap/evaluation/APPL/OOD/30120/invocations.json",
+      "sha256": "9dac487c7838344be1d4f4305c3835cba1106ed3cc890d915a706b1c18ba0238"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/evaluation_recovery_20260918/buffer_swap/evaluation/APPL/OOD/30121/invocations.json",
+      "sha256": "3835f3881ee567616998ed769442c6a2f5f531aafc8a24122d433ea159ce43a7"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/evaluation_recovery_20260918/buffer_swap/evaluation/APPL/OOD/30122/invocations.json",
+      "sha256": "8283cc4f5b584204f32e8f6fd40f42a3d4e786e46dc3479c61442c05d3af4133"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/evaluation_recovery_20260918/buffer_swap/evaluation/APPL/OOD/30123/invocations.json",
+      "sha256": "fb796845a059125720fe22647d7f1a961a2bd40d47c43cb0c258311eaab3ea43"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/evaluation_recovery_20260918/buffer_swap/evaluation/APPL/OOD/30124/invocations.json",
+      "sha256": "80424790f7d883c74ea0a51652aa325a82be48365a434492fb2df7cb3475405e"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/evaluation_recovery_20260918/buffer_swap/evaluation/APPL/OOD/30125/invocations.json",
+      "sha256": "6b775484f34a31d22ea15468723707c8c65c46676a58e5ade0fa4f7485fa9461"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/evaluation_recovery_20260918/buffer_swap/evaluation/APPL/OOD/30126/invocations.json",
+      "sha256": "313e771a405e1f68ad3c2f25799579df7ce0ea60e8fdf4f89d4540294993015b"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/evaluation_recovery_20260918/buffer_swap/evaluation/APPL/OOD/30127/invocations.json",
+      "sha256": "2deeba2195acab570f5c36003df96414057f0ef962e14a535c6c401a54f9b2c0"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/evaluation_recovery_20260918/buffer_swap/evaluation/APPL/OOD/30128/invocations.json",
+      "sha256": "6860a3cbf962c0bf13b8d480a8b2616cb69fbd6ab577b11466f6a95eb2e67639"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/evaluation_recovery_20260918/buffer_swap/evaluation/APPL/OOD/30129/invocations.json",
+      "sha256": "7981566c1cb8ac3c54cca5aec82e9b54e03b1fac95052114a91ff8915f19ab12"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/unstack_sort/evaluation/APPL/ID/20200/invocations.json",
+      "sha256": "3c9e37d0f6618f44ae869396675b39300b20b4008483bb1e1932213a72a1283f"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/unstack_sort/evaluation/APPL/ID/20201/invocations.json",
+      "sha256": "21830df0c1cb95d5166a1a4066a2e5d5669d09d64cee654d73d752cebe370dc0"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/unstack_sort/evaluation/APPL/ID/20202/invocations.json",
+      "sha256": "7db3ec00e64cb4bf9cf991750d75418e8c13c3f5d1dd78fccb05bd469c0460f4"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/unstack_sort/evaluation/APPL/ID/20203/invocations.json",
+      "sha256": "92824c729545459cdcd93df331ebadcffa60064018d5d784fc042b5faa3e1809"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/unstack_sort/evaluation/APPL/ID/20204/invocations.json",
+      "sha256": "77569290c6379ba0e2c2deb46c5f33b4d60df3e9a02ae7d05f97c98c050a77e0"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/unstack_sort/evaluation/APPL/ID/20205/invocations.json",
+      "sha256": "de3f3b4e8da8085ff4302f7a9ceb301cd33d78d8d211980e0e074809db1e5a00"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/unstack_sort/evaluation/APPL/ID/20206/invocations.json",
+      "sha256": "c84454f89f69def99f48261e169299feb03776b0c2ec73be8002b2c442933c8e"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/unstack_sort/evaluation/APPL/ID/20207/invocations.json",
+      "sha256": "62ef30b5b5422ced787b41e08245b491247fbe0dacd22fe8f3b2223f7f5a1b0b"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/unstack_sort/evaluation/APPL/ID/20208/invocations.json",
+      "sha256": "83ebcba39753a1fce654049db42c65575b7b6744c9c8e65703c1c9e0c3506d3d"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/unstack_sort/evaluation/APPL/ID/20209/invocations.json",
+      "sha256": "fa4d4b7f4d34540f17bf315af81f76df42d47a72b939e2825604b47d04bf3565"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/unstack_sort/evaluation/APPL/ID/20210/invocations.json",
+      "sha256": "ba1322e5f2a82c18d792c805505f4dc18ca44330d551857358ff0e7013ad9c4d"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/unstack_sort/evaluation/APPL/ID/20211/invocations.json",
+      "sha256": "0bf279a6d2eea8541fa67354d0b8213b4443a415afaf30d976261527aa8048d4"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/unstack_sort/evaluation/APPL/ID/20212/invocations.json",
+      "sha256": "0b79770d51bcd19becb770d419806f162517dd5ef66bd8b54c01d8a0c589fa66"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/unstack_sort/evaluation/APPL/ID/20213/invocations.json",
+      "sha256": "b69119a17d8768b17e14380ca22907463d44e3e0f31f0f8ed40b04068ae0c32d"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/unstack_sort/evaluation/APPL/ID/20214/invocations.json",
+      "sha256": "631ec709cc69bb2709ef4426783b14b400067df4b526722db10e0acf8fc9bbd4"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/unstack_sort/evaluation/APPL/ID/20215/invocations.json",
+      "sha256": "a1b6e76cad04be9fd8dcde79ba597bfc6c0e465a4a4076c84e007e9f706f1215"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/unstack_sort/evaluation/APPL/ID/20216/invocations.json",
+      "sha256": "73057944b4ab1373fbf787a64e0a4f9c2c41ecf2b494eb1159ca433da808410a"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/unstack_sort/evaluation/APPL/ID/20217/invocations.json",
+      "sha256": "83f1c04ac2f7caf32765e0fc5d79aaa652b3292e9fe7c8bd2826f9a39cbfeb53"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/unstack_sort/evaluation/APPL/ID/20218/invocations.json",
+      "sha256": "d3e95f40193debffd9630250f162615adff5abc1eac22d79db9454c93aece109"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/unstack_sort/evaluation/APPL/ID/20219/invocations.json",
+      "sha256": "baae4c088c26233c5069d856dae19a62f86f7fb53935413b8a07dfe59b7e989d"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/unstack_sort/evaluation/APPL/ID/20220/invocations.json",
+      "sha256": "df8cc40324014b9df60cd979aa0cab0728f581600633c181e1be4b67e9a08660"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/unstack_sort/evaluation/APPL/ID/20221/invocations.json",
+      "sha256": "a8b42d719ffce4adb30ea37549e03b10dd18a8346b25d849e9fcfec4c2c233b8"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/unstack_sort/evaluation/APPL/ID/20222/invocations.json",
+      "sha256": "febeaa4f3484732d60509c346b757f3465f8f48019dd8d97e0d32ef4bf9e6b82"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/unstack_sort/evaluation/APPL/ID/20223/invocations.json",
+      "sha256": "17f21280505b31d252e47ca84bab02a10c2de3e5ab9f22d3735314e955d9e734"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/unstack_sort/evaluation/APPL/ID/20224/invocations.json",
+      "sha256": "5082c0ad1ee199543fa86c27c388abaa467b6931b95412bd10c6a855ad596d47"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/unstack_sort/evaluation/APPL/ID/20225/invocations.json",
+      "sha256": "fdfcb1cf3a81381126e76eb2aa808c65e48e9bddd095d7f0395dddf208a82fc9"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/unstack_sort/evaluation/APPL/ID/20226/invocations.json",
+      "sha256": "b5ee0315436d65138d8cbc0668113821ff7b406b718e4e9544ca7d6375fc52dc"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/unstack_sort/evaluation/APPL/ID/20227/invocations.json",
+      "sha256": "5c06ce882e395d8f221ea204d36f00f6e4313451798e99784c739c60c60c1130"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/unstack_sort/evaluation/APPL/ID/20228/invocations.json",
+      "sha256": "3da8fa863a224eec282d82137e17c6ab7afc7a40b5a83f00720005ba69431247"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/unstack_sort/evaluation/APPL/ID/20229/invocations.json",
+      "sha256": "e770a91f3b0b6beee156e0927e18329a973e57b5464a928aca31e2f471629077"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/unstack_sort/evaluation/APPL/ID/20200/invocations.json",
+      "sha256": "5e54754c49d535c6a9767d8253a6ac69d857960f029fb4e8e3767a50897f6528"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/unstack_sort/evaluation/APPL/ID/20201/invocations.json",
+      "sha256": "7e0e20972b542df4a42ebbc865489523f0f8d7b95a51d89ccbc6d8cf7c624d05"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/unstack_sort/evaluation/APPL/ID/20202/invocations.json",
+      "sha256": "2f2c6d3e5052d823481d8e8f1d4dce146f16aed47364858cb6ca9f4e06079cec"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/unstack_sort/evaluation/APPL/ID/20203/invocations.json",
+      "sha256": "d2ad40ac93561bbde4c272d71e0de084048da56331a341dc9cb0debeccfd44f2"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/unstack_sort/evaluation/APPL/ID/20204/invocations.json",
+      "sha256": "efe10f8881d640592ccf348305e7e712f6caa20d06dc8b4884a0bc1f9fb46022"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/unstack_sort/evaluation/APPL/ID/20205/invocations.json",
+      "sha256": "09d95315e6b2066ed223201eb63806d544047face277de3a1ea4141eadb34683"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/unstack_sort/evaluation/APPL/ID/20206/invocations.json",
+      "sha256": "15940d7e1c5f173f3ad2d7de93c6dd2ba42b857dfcae54026b6aeb84f60dd036"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/unstack_sort/evaluation/APPL/ID/20207/invocations.json",
+      "sha256": "7095d7cb200a56ebb2dee44a5bec8d51d94fbf9aff0a43c7696e70e805ea7e97"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/unstack_sort/evaluation/APPL/ID/20208/invocations.json",
+      "sha256": "f451a9d6cb537fda44e232df81f589c32a109d36b0424a24f74da7e4f9e3bcd4"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/unstack_sort/evaluation/APPL/ID/20209/invocations.json",
+      "sha256": "37d8f10b010350219c5c8d44caf063c821efee31d932416e6a62a23fdec1d921"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/unstack_sort/evaluation/APPL/ID/20210/invocations.json",
+      "sha256": "5482734ce7ba52b34b1f9692f810477266d82582dbb7d323da7c2ffb16789aaa"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/unstack_sort/evaluation/APPL/ID/20211/invocations.json",
+      "sha256": "042fcc5ca70304f53bd13c9ea078d86211f3b4c3d242cd029bf02075ba6e37c2"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/unstack_sort/evaluation/APPL/ID/20212/invocations.json",
+      "sha256": "2b60636458e4daf3b70ae0c2a16d6fd84b401c72a337b4d2cc455b518baf86bf"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/unstack_sort/evaluation/APPL/ID/20213/invocations.json",
+      "sha256": "d595abec53bf311a54bc2b1d8fe9592668737ed5c88ad9f69c01fee34b329fd8"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/unstack_sort/evaluation/APPL/ID/20214/invocations.json",
+      "sha256": "b35d0396613cac9e97b9ac0ca0ef71979536fc8683c9f36669f255b635f37db1"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/unstack_sort/evaluation/APPL/ID/20215/invocations.json",
+      "sha256": "10637e1b361a74e82ec3742b19e2ec4e17cbb318f786d44d33905ac0b71bb340"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/evaluation_followup_20260918/unstack_sort/evaluation/APPL/ID/20216/invocations.json",
+      "sha256": "39e1e148a3fbc9171c1814add00d7edd995f49c6704f07ea6f9a4d0d034178d5"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/unstack_sort/evaluation/APPL/ID/20217/invocations.json",
+      "sha256": "6b59c14a069971520188080947cca410397df8a7e16aa3e8104542c8989318fc"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/unstack_sort/evaluation/APPL/ID/20218/invocations.json",
+      "sha256": "b6d2313a3874b8a1bdf8cf2aa459c5409fa47caf70e3027dca0fac2aecb94e61"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/unstack_sort/evaluation/APPL/ID/20219/invocations.json",
+      "sha256": "8a733ea877477f5474d2b12e91ea07c8226201eebd8f6327c38d9594f66e37cc"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/unstack_sort/evaluation/APPL/ID/20220/invocations.json",
+      "sha256": "2fc7e1c49609e281f8bb85ac6660ea127b1606fab2af14d2bb5b62f853ff0a48"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/unstack_sort/evaluation/APPL/ID/20221/invocations.json",
+      "sha256": "fd6962281513aec0ccd6e0dee83e54c24930c92cc1e04247577a6958cc7a9d1b"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/evaluation_followup_20260918/unstack_sort/evaluation/APPL/ID/20222/invocations.json",
+      "sha256": "44f9e6d400ca23dd68ec724ac8928e1bcad4ec644b9cd9be1e6168cc4bf65855"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/evaluation_followup_20260918/unstack_sort/evaluation/APPL/ID/20223/invocations.json",
+      "sha256": "4d6fa61f459b8fac5b228a6ab03afe75e10a28d1d0123f5c1f82bb96ca94f43d"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/evaluation_followup_20260918/unstack_sort/evaluation/APPL/ID/20224/invocations.json",
+      "sha256": "0a55d3b750664ef0c07e01c17042c29578a4697bac81d53a50bbbf3233bc4298"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/evaluation_followup_20260918/unstack_sort/evaluation/APPL/ID/20225/invocations.json",
+      "sha256": "4cfbb997e74aea5cded6816c20c443812bc9f873cff2ba62bf64e95e4649f840"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/evaluation_followup_20260918/unstack_sort/evaluation/APPL/ID/20226/invocations.json",
+      "sha256": "cc5e614e85c02e2a96fab35bc5c878cd718a0c7fd3f5485bbceb88f013016dcc"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/evaluation_followup_20260918/unstack_sort/evaluation/APPL/ID/20227/invocations.json",
+      "sha256": "3ea5801d59e77350060364dfe272ba02bd9c1594707d98381c9337b901f766bd"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/evaluation_followup_20260918/unstack_sort/evaluation/APPL/ID/20228/invocations.json",
+      "sha256": "f67d1f7e45b4ebfa9555b4f9e646476f02ec68233be6945316f6c9dd96461bd7"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/evaluation_followup_20260918/unstack_sort/evaluation/APPL/ID/20229/invocations.json",
+      "sha256": "d0af5ebd804efed904d6d781f501b3cc7b8209967549f395e543a96f2519a293"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/unstack_sort/evaluation/APPL/OOD/30200/invocations.json",
+      "sha256": "33fec01d5704a1389435f6e5690b6be93eebe76b332191f47b9c48e35e382bbb"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/unstack_sort/evaluation/APPL/OOD/30201/invocations.json",
+      "sha256": "59e69a4e90cebae5e258fc271d010c259898ac1b52bd913f127a557c8fb21f6d"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/unstack_sort/evaluation/APPL/OOD/30202/invocations.json",
+      "sha256": "37ca9b50653e36610f9ebf7d9348e67a1f25060ebc685fed781a6f99c4a59795"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/unstack_sort/evaluation/APPL/OOD/30203/invocations.json",
+      "sha256": "148fc641e671b60356c24766081ca21e6ffa6d2e257550878a276a08e320572e"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/unstack_sort/evaluation/APPL/OOD/30204/invocations.json",
+      "sha256": "4dbb037ff07253d08f59d7cc3a4d3306496b4b79fe51b99cb3db611edca988b8"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/unstack_sort/evaluation/APPL/OOD/30205/invocations.json",
+      "sha256": "59ef795409ab577be8bd817ad49c040e6c8647203b9de2c9d60886961d0e41cd"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/unstack_sort/evaluation/APPL/OOD/30206/invocations.json",
+      "sha256": "bc9fac91cb74af85a58de76aa7504b481a7bf6b1bb58b12ed414aeab5fb29cb3"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/unstack_sort/evaluation/APPL/OOD/30207/invocations.json",
+      "sha256": "d463d914990b82bc28359a113ec3b5d3643999e66a740a3cef13eea5214aa29c"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/unstack_sort/evaluation/APPL/OOD/30208/invocations.json",
+      "sha256": "7cb1f88e4c74450060efa9dfba4f63700a4ffba60b9107cb674ea44eb3437911"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/unstack_sort/evaluation/APPL/OOD/30209/invocations.json",
+      "sha256": "822d26f19d0198329a0a811ad90de6af02388870bc16e816282932100024800a"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/unstack_sort/evaluation/APPL/OOD/30210/invocations.json",
+      "sha256": "28cac92c54896a577e379357a36028061372bc89c0e6580dddc43984d9285c15"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/unstack_sort/evaluation/APPL/OOD/30211/invocations.json",
+      "sha256": "2904274e5279c4a7da614981cf9a854722b32c316aaeb757c21aad78092b84fd"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/unstack_sort/evaluation/APPL/OOD/30212/invocations.json",
+      "sha256": "eb08719f62f7425d1953fd3e3603d680cd474f45b4e78f986dbeb0a7b2a6a946"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/unstack_sort/evaluation/APPL/OOD/30213/invocations.json",
+      "sha256": "983034b45035d5778c2942ad086dd1b65075f12dbed55defd9ce51d5ba6ea1e6"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/unstack_sort/evaluation/APPL/OOD/30214/invocations.json",
+      "sha256": "bce1ba822e7c7eac5627edc413ec7ed5e2e45198e8a4e69966d1142ef77b664e"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/unstack_sort/evaluation/APPL/OOD/30215/invocations.json",
+      "sha256": "7d4ee9958ad6a00fb10542fc76b0db98464206f41bd853054fe51e129ca3a352"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/unstack_sort/evaluation/APPL/OOD/30216/invocations.json",
+      "sha256": "80b739888939e2093894c8dc6345cd2667d0ea7062e5917c5a55b8fd70fa0bea"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/unstack_sort/evaluation/APPL/OOD/30217/invocations.json",
+      "sha256": "142ca225323de29e25aa62d823378280c61444579267fe31f1c9eba18eb1515a"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/unstack_sort/evaluation/APPL/OOD/30218/invocations.json",
+      "sha256": "62e8f75406183056db04eb2c88db13f8e5c4b2e2ef0ab471c8e17d90fbbb6424"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/unstack_sort/evaluation/APPL/OOD/30219/invocations.json",
+      "sha256": "a775426c13e6275cb18a89e5d2536eea02b3dedd11db83e5223b8487161df2ba"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/unstack_sort/evaluation/APPL/OOD/30220/invocations.json",
+      "sha256": "93649681b241580e461a1d7acb52144eaebcdf85299ab6f61bd26d4b4fa22ba6"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/unstack_sort/evaluation/APPL/OOD/30221/invocations.json",
+      "sha256": "43e5cccd30ed0641391a4d7050f136bdbd47e7aa4d5a79109688946e0e3a014b"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/unstack_sort/evaluation/APPL/OOD/30222/invocations.json",
+      "sha256": "59d39ca4af4719ba553605f29e5e21f032943f1da80836a729495f8866287477"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/unstack_sort/evaluation/APPL/OOD/30223/invocations.json",
+      "sha256": "90a1471d566220c14b788ab49ac5bdcc59a2a389dc5a8ff805d1d30fd6ed4632"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/unstack_sort/evaluation/APPL/OOD/30224/invocations.json",
+      "sha256": "a16eebbee0e1c367a236cec16ae78ee69e349fcec214506a6882fc96b2f5750f"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/unstack_sort/evaluation/APPL/OOD/30225/invocations.json",
+      "sha256": "447fb607a75247a66f242895c44271407b11b9d3b174a20dd4f336236307152b"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/unstack_sort/evaluation/APPL/OOD/30226/invocations.json",
+      "sha256": "8c1881eeb64b6241388e6317c6412eba4326b470fe6e60849e368066e3e398ea"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/unstack_sort/evaluation/APPL/OOD/30227/invocations.json",
+      "sha256": "96dbd05e81af2f03012395eb1d65ec7d96ac31b5208782a9869b162cff7a6343"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/unstack_sort/evaluation/APPL/OOD/30228/invocations.json",
+      "sha256": "4001e0e57fa750447b6d786ece281d686ef82030bfaf0f63518d63ad452119c1"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/unstack_sort/evaluation/APPL/OOD/30229/invocations.json",
+      "sha256": "e4a2b8e0db5e86c737c3f9d6333b46dc3f876cd7ad86a09723a20f36caf41601"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/unstack_sort/evaluation/APPL/OOD/30200/invocations.json",
+      "sha256": "f46aeeaeb901ad295ef714037c7f21cd3519fdc8c3a095efddae449bec336cb9"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/unstack_sort/evaluation/APPL/OOD/30201/invocations.json",
+      "sha256": "43c841143ae3f8fb220a9ff6c12135512b241520e9bb24fe25f37560d235bec9"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/unstack_sort/evaluation/APPL/OOD/30202/invocations.json",
+      "sha256": "df7a408491985e93aa667a1a20b75d0f7308358c4e5a0580d9760aae41c83871"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/unstack_sort/evaluation/APPL/OOD/30203/invocations.json",
+      "sha256": "e9f585a52037166d5773ab3f3f523fac2f469aa771b437956d7bffa31ea7e66c"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/unstack_sort/evaluation/APPL/OOD/30204/invocations.json",
+      "sha256": "90ac62daab979a24f6db9641b23fd4e613707648d81b6fd3fed0636bfeeb33cd"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/unstack_sort/evaluation/APPL/OOD/30205/invocations.json",
+      "sha256": "7d6505d6daf5ac7adaab9b03f616f6848656f164d55f4317feb28b57243cbfa7"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/unstack_sort/evaluation/APPL/OOD/30206/invocations.json",
+      "sha256": "cd8b7ea86a4c348f49f7190b0d0d14ce459179485ced811eef4e0bd608e4806d"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/unstack_sort/evaluation/APPL/OOD/30207/invocations.json",
+      "sha256": "5dd7691a0371134d521f0c4f201a8587c42e28e9216f443b4ab0e08be3c6e97a"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/unstack_sort/evaluation/APPL/OOD/30208/invocations.json",
+      "sha256": "a3d8ec533dbb2819ac2fb9b5ed6c7495d3df41c8ad6717ff41551b0b549a8741"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/unstack_sort/evaluation/APPL/OOD/30209/invocations.json",
+      "sha256": "1b33e4374e37bea012637eb103a8db0251c10fb32abff8a5ca7d224891d07ad1"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/unstack_sort/evaluation/APPL/OOD/30210/invocations.json",
+      "sha256": "6d67909ed16f1abaf50381e4e847954ddb2e10602edbe4b1c0d6eac7edd9aefa"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/unstack_sort/evaluation/APPL/OOD/30211/invocations.json",
+      "sha256": "211c1d3728ad2abce6d94882c8e64c1ca8f587320cc77142b34fe60b63fb111e"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/unstack_sort/evaluation/APPL/OOD/30212/invocations.json",
+      "sha256": "4e62c3572a2372b96684bd9502f0aba5b24727d6a73ee5cc717ba73cf703011e"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/unstack_sort/evaluation/APPL/OOD/30213/invocations.json",
+      "sha256": "83c4d87249ed7ee921c223fa4ea3315fb5fab220d1c0351bb85618eb94d95500"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/unstack_sort/evaluation/APPL/OOD/30214/invocations.json",
+      "sha256": "bc151748a847cbc85037d0d44ae0d6b93d01b434d4c3806abafc1f8d7df0f906"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/unstack_sort/evaluation/APPL/OOD/30215/invocations.json",
+      "sha256": "f34c989a481bee9eab52f74915b77682f2440e2782fd401859361b45b98a5905"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/unstack_sort/evaluation/APPL/OOD/30216/invocations.json",
+      "sha256": "2bc67f46664c908194a50896a932115cf655c1c917306fcd1601425b86be33bf"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/unstack_sort/evaluation/APPL/OOD/30217/invocations.json",
+      "sha256": "858ffbf6d45c9b58cf544934479fdb18e8fcdcb954c9849c901d00e3b23ec129"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/unstack_sort/evaluation/APPL/OOD/30218/invocations.json",
+      "sha256": "afdc6da07febd7fe033cd3bbea7db9efd6079f00b1978b57bcbca947fbc60b0b"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/unstack_sort/evaluation/APPL/OOD/30219/invocations.json",
+      "sha256": "7d56f1291bc5b01b4571b6443a41717f56ed6cd970610873ce4cb89437b82ed1"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/unstack_sort/evaluation/APPL/OOD/30220/invocations.json",
+      "sha256": "2a2d5ef0c39ca3b07b87d35644edc6fad0500f15205a34c5aed37c2230268bf4"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/evaluation_followup_20260918/unstack_sort/evaluation/APPL/OOD/30221/invocations.json",
+      "sha256": "689f7fa5a224d57550d6d7b938775d27674919749a86e75a3ef6a1846387fd02"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/evaluation_followup_20260918/unstack_sort/evaluation/APPL/OOD/30222/invocations.json",
+      "sha256": "1b7d4c3ccc5eb0b5a8a6271937235d20daf24260b3962e3097749ff0f4cb6b95"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/evaluation_followup_20260918/unstack_sort/evaluation/APPL/OOD/30223/invocations.json",
+      "sha256": "b72369dc97dfd94432fce7d026f535dba7f505ba5e12153b84b822517cc52392"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/evaluation_followup_20260918/unstack_sort/evaluation/APPL/OOD/30224/invocations.json",
+      "sha256": "4ef5718ac3da7f685a8b4a7c2ceb76c691e3046de39e0ae2de3cfcb16b4eeff3"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/evaluation_followup_20260918/unstack_sort/evaluation/APPL/OOD/30225/invocations.json",
+      "sha256": "88a23129f36538fd9aa27fdedbf136d7cb52b5f6e8d61a5ec45677ac215628ab"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/evaluation_followup_20260918/unstack_sort/evaluation/APPL/OOD/30226/invocations.json",
+      "sha256": "7f0df16a5d66596ca1d15791ba76948e96294d4347c9dddefda1a6e205453005"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/evaluation_followup_20260918/unstack_sort/evaluation/APPL/OOD/30227/invocations.json",
+      "sha256": "5e528fbad3e1eacc733a2bd1f09686428b74839be9df002c2282eac3c0185fda"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/evaluation_followup_20260918/unstack_sort/evaluation/APPL/OOD/30228/invocations.json",
+      "sha256": "a97a5fc534ade60407320a8c01defdf3d2e12501ed4dd5497bd3fa5ebd90fd48"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/evaluation_followup_20260918/unstack_sort/evaluation/APPL/OOD/30229/invocations.json",
+      "sha256": "03761a4ce5b6b277b695b94617fd2306c9063d46bc0754cdbc63c1c9d11d401f"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/tray_pack/evaluation/APPL/ID/20300/invocations.json",
+      "sha256": "89f020d39cdb50c260669e850de1088ad2035121fd930a62ab53df53c08a7ebd"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/tray_pack/evaluation/APPL/ID/20301/invocations.json",
+      "sha256": "614fda931852450415a6764cef243f65e84333c6703c8f5cb26b4f23985fa4a0"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/tray_pack/evaluation/APPL/ID/20302/invocations.json",
+      "sha256": "c04b63e9c3dd9295de852256129aa7292dcdbc39b7764703a6d31e6e0cc6f738"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/tray_pack/evaluation/APPL/ID/20303/invocations.json",
+      "sha256": "9c5989a77df63bc20485d7bef3580ccd49b0d3177713de6b39419a3a548343d5"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/tray_pack/evaluation/APPL/ID/20304/invocations.json",
+      "sha256": "71c652cb83e036e779112a8dff5a5bd7a3bacb3ca75ad24f5c69acb5799791bd"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/tray_pack/evaluation/APPL/ID/20305/invocations.json",
+      "sha256": "64bc1b4682098a254d614723fa3805434365e0c0786b2f5cd408ccaa0a07ed90"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/tray_pack/evaluation/APPL/ID/20306/invocations.json",
+      "sha256": "7f3af5792592d17de2892520ac4ca8796d6fdb916294dd463902fb03166378f5"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/tray_pack/evaluation/APPL/ID/20307/invocations.json",
+      "sha256": "ba56d68d272cc8f3eab698260cd7ee68d24072b2a4ac0127583ae2c061005181"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/tray_pack/evaluation/APPL/ID/20308/invocations.json",
+      "sha256": "18824594180b78e106d84955ec9801c6ee94b3a817e1eeb9b584065ef17434db"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/tray_pack/evaluation/APPL/ID/20309/invocations.json",
+      "sha256": "0c79d80e6acfa9dc146c8ba18ea00c70b8ed156f80b952fe82b1c8e60788a55c"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/tray_pack/evaluation/APPL/ID/20310/invocations.json",
+      "sha256": "1742ebeb840253bbdad015c9832ec050e7636796fa9adc09ebc2da9e5a0090ea"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/tray_pack/evaluation/APPL/ID/20311/invocations.json",
+      "sha256": "c5fb3d536dda2e72e116bdb6e8d616dbada8b65f96dd590501eda2a64539929a"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/tray_pack/evaluation/APPL/ID/20312/invocations.json",
+      "sha256": "bf68f9a7d7f7d8d0a17a7075e2fed7e5a3fedcf77ccce0537f19bbf14d5927ec"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/tray_pack/evaluation/APPL/ID/20313/invocations.json",
+      "sha256": "8f926c1377346e21178d61755e181e5984c09db1251045a4e862c5310ebb20e5"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/tray_pack/evaluation/APPL/ID/20314/invocations.json",
+      "sha256": "144a2f7d42ce29b81264b4ac28e2f0b5b95d680127f46276b62c356ee4b4eb70"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/tray_pack/evaluation/APPL/ID/20315/invocations.json",
+      "sha256": "467a8aaf448307295b3287ed6c122f841701969ea2f0bc97413c943109a01bc5"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/tray_pack/evaluation/APPL/ID/20316/invocations.json",
+      "sha256": "c4743e4d8e07779cdb37c51e6db2a77bd12b96067035497a1627630d39140278"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/tray_pack/evaluation/APPL/ID/20317/invocations.json",
+      "sha256": "9c24c8286fd4b2293bc70fe738067797c0132039978dedcb73ab5537059b0834"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/tray_pack/evaluation/APPL/ID/20318/invocations.json",
+      "sha256": "7c3dd729ad6c11eff5852e202b7cfc4daaa856a753a4c3ea298dafbf1d93b970"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/tray_pack/evaluation/APPL/ID/20319/invocations.json",
+      "sha256": "3c13c873b14f445a2eaebb0c756aaecec8a8353d2931d7e9f83e4bfff2ae7021"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/tray_pack/evaluation/APPL/ID/20320/invocations.json",
+      "sha256": "892e84a98f3ac0d42e2d61d5207f1c2640f916e64fe3c4a6a7cde5caf7120926"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/tray_pack/evaluation/APPL/ID/20321/invocations.json",
+      "sha256": "0264b38379aef738d06967eb3fc5c229cc55ddd994ac8cf9ee98996797b938e6"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/tray_pack/evaluation/APPL/ID/20322/invocations.json",
+      "sha256": "a3221001d694817656b93e5d05d191c3e84a23c2b258894fad5f2da3383335c8"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/tray_pack/evaluation/APPL/ID/20323/invocations.json",
+      "sha256": "1370bf1472bf2a3165c722df25d9526e886ec5a9dcc520a10f199c5b620fb435"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/tray_pack/evaluation/APPL/ID/20324/invocations.json",
+      "sha256": "5df7b2b1f0bd8678617719447464ec31361d2ce4b700bf0def92b7757ad5db73"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/tray_pack/evaluation/APPL/ID/20325/invocations.json",
+      "sha256": "c15844aed708ac625cd2a284091a8172b83138c0bb776935182a78bf276fceb4"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/tray_pack/evaluation/APPL/ID/20326/invocations.json",
+      "sha256": "9311249b155f02f46f3c57232b065ee1385bab4e8f2af422db35bcaf41287eb5"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/tray_pack/evaluation/APPL/ID/20327/invocations.json",
+      "sha256": "22f7ed4e06174a17118a659e0a3462d99f55ea74e38eb038c2daa4ff752e74b8"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/tray_pack/evaluation/APPL/ID/20328/invocations.json",
+      "sha256": "432c5d0b2ad63887f5d2538ed649b505a5db230e3d5a6d811c3c4d8626a748f6"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/tray_pack/evaluation/APPL/ID/20329/invocations.json",
+      "sha256": "45b20fd5e0434db105cfcd284434c30de0aeb0e6184a0ccd4a8c2314117994e1"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/tray_pack/evaluation/APPL/ID/20300/invocations.json",
+      "sha256": "598b46c0f996a142c148512ea0c5de2993386caec07540aa74bc7e46ed95c5bb"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/tray_pack/evaluation/APPL/ID/20301/invocations.json",
+      "sha256": "01dd6cf7ef4a855b9eb58bc497c51f18a01cea44f656e18c2c8524c083ab6f8e"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/tray_pack/evaluation/APPL/ID/20302/invocations.json",
+      "sha256": "dc5967d02981eff41d73461eaebdc280d13cced2c86487e0153f01e141482faf"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/tray_pack/evaluation/APPL/ID/20303/invocations.json",
+      "sha256": "d150a3e02749b9765533e31810773e80af247c7a8da77026c79e73e2435b5e38"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/tray_pack/evaluation/APPL/ID/20304/invocations.json",
+      "sha256": "e546cd32d37e9cae012f67577e8d018ccdfad32798be57f931c9bfb7a03badf0"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/tray_pack/evaluation/APPL/ID/20305/invocations.json",
+      "sha256": "8dfcf157be6be9834dd1a18234bd78d2ff9f6ce673f310548b0d5f0086342b37"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/tray_pack/evaluation/APPL/ID/20306/invocations.json",
+      "sha256": "8a582137801175915a5cf6dd586d4b12407834e508939dcbb355da2ab7e80416"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/tray_pack/evaluation/APPL/ID/20307/invocations.json",
+      "sha256": "b3970b313ab29d7a440f41292f46bc76991f1871bd4d2ac2d1c5a678dab15e94"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/tray_pack/evaluation/APPL/ID/20308/invocations.json",
+      "sha256": "24783e4ba5272630dc453d6e03ca4b32270bc1cd0f7a4ad2b65b7456ad4fee64"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/tray_pack/evaluation/APPL/ID/20309/invocations.json",
+      "sha256": "2d1ec39b6027c3d9b08fe3dfbc30752cb5c5fa015f4e312619c045cd40e1eb44"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/tray_pack/evaluation/APPL/ID/20310/invocations.json",
+      "sha256": "5de4800c1d8be5eb48fa978b67048cfda83e278bd5cc3b6af152bfb6c69a8b3f"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/tray_pack/evaluation/APPL/ID/20311/invocations.json",
+      "sha256": "0ca6c46121ce8e0b5fb4338a327970a3c0ac71dd8d6475ae84c16a6e394d47ab"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/tray_pack/evaluation/APPL/ID/20312/invocations.json",
+      "sha256": "1d7f9d47906274f094e487b0ff2f5466f4fda2c4c1d2c50f717e85cdcbc01fb2"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/tray_pack/evaluation/APPL/ID/20313/invocations.json",
+      "sha256": "411f758f00f75555262fdd1d5cef34cf7ecaa79a56820396f9ab68a289cbbf20"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/tray_pack/evaluation/APPL/ID/20314/invocations.json",
+      "sha256": "916748ffb1eec9dd635931fb2fd573cc4290142e3a8b2017cf74050f47d0ee69"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/tray_pack/evaluation/APPL/ID/20315/invocations.json",
+      "sha256": "1408039b89f51d8cbdb0bc61fdce60c53afdc0c12139923beb4898177811d760"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/tray_pack/evaluation/APPL/ID/20316/invocations.json",
+      "sha256": "465d0af8719d88dbbdbd00c6ff55fcef39ccafcd017f3419dc97be5f13b1379d"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/tray_pack/evaluation/APPL/ID/20317/invocations.json",
+      "sha256": "933118e6777de0e027821b0beee13b45f28fd79ca1588ce857c4d059b54284a1"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/tray_pack/evaluation/APPL/ID/20318/invocations.json",
+      "sha256": "cd04ce0ae3010b02dc416a14728291688e5722988f3d5c085b954a293226c9fc"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/tray_pack/evaluation/APPL/ID/20319/invocations.json",
+      "sha256": "9c2e3c286809435633230043ea41d72e656d4660c2dca81832e8016b84994ad4"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/tray_pack/evaluation/APPL/ID/20320/invocations.json",
+      "sha256": "bbc1fdf34e453758dad89a5e2cc249c692fba52f9fe0960732b84fbbfecf45f5"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/tray_pack/evaluation/APPL/ID/20321/invocations.json",
+      "sha256": "65797c15bf200a5d99b7f9d169bc246443c1a0676d96a6392347456dce501a93"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/evaluation_recovery_20260918/tray_pack/evaluation/APPL/ID/20322/invocations.json",
+      "sha256": "3701008c4ff13c40c0ba294644d28cca052f4ff12e5ed0d894657bd26e0b3d79"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/evaluation_recovery_20260918/tray_pack/evaluation/APPL/ID/20323/invocations.json",
+      "sha256": "1da927604fe1a61b0bf8c8979b3787543286d85a4083053fcabb153e7856f438"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/evaluation_recovery_20260918/tray_pack/evaluation/APPL/ID/20324/invocations.json",
+      "sha256": "bda5457bd1d3e06fcc228580dfb50c12c3cfa7eb5e7eeba3c3f5345d98b64681"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/evaluation_recovery_20260918/tray_pack/evaluation/APPL/ID/20325/invocations.json",
+      "sha256": "54623eb45ea9d7edcb689989950df9cf4b0cda18c7725ec07b599319c850d7b4"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/evaluation_recovery_20260918/tray_pack/evaluation/APPL/ID/20326/invocations.json",
+      "sha256": "b16f62b431a4890c691d367de1a31dd9b42a457273b490f16d966b507294ee9d"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/evaluation_recovery_20260918/tray_pack/evaluation/APPL/ID/20327/invocations.json",
+      "sha256": "389560b07f159c37566b90fb07ebd9edbe0f40bd30f9793baa53508cc82f18c2"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/evaluation_recovery_20260918/tray_pack/evaluation/APPL/ID/20328/invocations.json",
+      "sha256": "5bdb1d01fa5f5b23f827366644e50c9ed2846236156f7248cab8bee1bc369666"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/evaluation_recovery_20260918/tray_pack/evaluation/APPL/ID/20329/invocations.json",
+      "sha256": "b555c1a493b9ee81d10b6f873e0c1377c3c8a71c26abfe38665161319b65d030"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/tray_pack/evaluation/APPL/OOD/30300/invocations.json",
+      "sha256": "0bddd177c46de525ac0201a599c58de13ac5dcf3bf07f8536b03dbd89d3971e4"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/tray_pack/evaluation/APPL/OOD/30301/invocations.json",
+      "sha256": "9ff2d4283b00ba05c8286e8fd55b9c374cb6d2cb12ebd283fa7bf76df783ca8f"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/tray_pack/evaluation/APPL/OOD/30302/invocations.json",
+      "sha256": "e7b1938aa2918b5f21b6318b2f9887b13a61b4efcc7a89a2a23d874220eed1b4"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/tray_pack/evaluation/APPL/OOD/30303/invocations.json",
+      "sha256": "a394bfc1fbf7db99077e51dcea3d28ff9a1bcb20863f3477b8a39a82c9ed2ecd"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/tray_pack/evaluation/APPL/OOD/30304/invocations.json",
+      "sha256": "568cc95ca1b26c7109e19075ea85de14f43f2963b519093313f96349e2f9d5f0"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/tray_pack/evaluation/APPL/OOD/30305/invocations.json",
+      "sha256": "3304cd3cd00b18300b7d11afc9fdc196ba582e7164b513500c20de9f2c832e89"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/tray_pack/evaluation/APPL/OOD/30306/invocations.json",
+      "sha256": "14a93670c27f21ca7b1c4be708922a78fd203f55fc35e83d85d6cf63a3de3032"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/tray_pack/evaluation/APPL/OOD/30307/invocations.json",
+      "sha256": "2e373bf2e0db86f16a563cd161ab064b378542ee16e95754c612986d91e904dd"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/tray_pack/evaluation/APPL/OOD/30308/invocations.json",
+      "sha256": "eefa73533a6edda2a718ded003758b858b2075293efb4ac597edea3bb3367150"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/tray_pack/evaluation/APPL/OOD/30309/invocations.json",
+      "sha256": "d0e14cb1d989728952d467776c49d2582b3d7a5789a5ba417213cf884b0e7bde"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/tray_pack/evaluation/APPL/OOD/30310/invocations.json",
+      "sha256": "c71caf735a20ea01cd582fcc46dd89af60ea62ed49207f62376e1444b4694921"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/tray_pack/evaluation/APPL/OOD/30311/invocations.json",
+      "sha256": "777bd6cc22abd23fec99e847824beb0c4a8d86754e03bc5ea5dc60c61c8f2597"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/tray_pack/evaluation/APPL/OOD/30312/invocations.json",
+      "sha256": "34edc5c8eb00c70ab4cd2f4f018c2055f4de62bd0100c0b5be94453c2c9cd47f"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/tray_pack/evaluation/APPL/OOD/30313/invocations.json",
+      "sha256": "65df42595ba06d386ef48a5de6be3cad3144fd0f66bbd9047966569181a0028d"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/tray_pack/evaluation/APPL/OOD/30314/invocations.json",
+      "sha256": "4695bcec104b0f1e04e5aa4af14c024625a72a4a18bdea96f733d1275291de3b"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/tray_pack/evaluation/APPL/OOD/30315/invocations.json",
+      "sha256": "d835dca76c053d202eed372e14e67134546f51497b99c46c5032c4dde2c7dbc4"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/tray_pack/evaluation/APPL/OOD/30316/invocations.json",
+      "sha256": "e167b87238077207ae3755c70ab3198a1e505a14ee727c11e640fcb4d538ce21"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/tray_pack/evaluation/APPL/OOD/30317/invocations.json",
+      "sha256": "439c9a5a93ce28813ba943a633dd43d5f90583a4ee2734645a59aeb248f1549e"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/tray_pack/evaluation/APPL/OOD/30318/invocations.json",
+      "sha256": "a6ad98aac14ca287ebc76f5e4803ca7464b26faac4b147b28aa7ae744a35e184"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/tray_pack/evaluation/APPL/OOD/30319/invocations.json",
+      "sha256": "b56df8b303f084715cdca0b6b18c9b99d4667cba86fc0e674183bd1757847832"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/tray_pack/evaluation/APPL/OOD/30320/invocations.json",
+      "sha256": "0738925e2a5c3a6b956a7dac6a395c0da3bf0c302485966920464ef2cf0260b1"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/tray_pack/evaluation/APPL/OOD/30321/invocations.json",
+      "sha256": "b70982fb49ae42a76dd1060d88f29147a51361f89f26b7fef6bfec726e7a2234"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/tray_pack/evaluation/APPL/OOD/30322/invocations.json",
+      "sha256": "e56b096d18aca28ab90227fbebd44d4e3427597364206aeb618d3c03b5629113"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/tray_pack/evaluation/APPL/OOD/30323/invocations.json",
+      "sha256": "7cb34efc83de746b3b9e2c468e19f869240f22fc95fa0b1c9b446086569cef22"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/tray_pack/evaluation/APPL/OOD/30324/invocations.json",
+      "sha256": "429b4847e17ab8f68da1de15887faa118f30b8f2cbc667a9756b20f6ff40a8b2"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/tray_pack/evaluation/APPL/OOD/30325/invocations.json",
+      "sha256": "5454d9a6d84302984cdbcd2b6c163b0e679e08608b27d12b27794680b374c97a"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/tray_pack/evaluation/APPL/OOD/30326/invocations.json",
+      "sha256": "205f99a78b00c28cda6336d271f345296e502cce2ee82e509be58c73bc200def"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/tray_pack/evaluation/APPL/OOD/30327/invocations.json",
+      "sha256": "0a09f3a03094c7876a964022c63fcc160a544127c1cda3506c4efd4395c9ecc1"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/tray_pack/evaluation/APPL/OOD/30328/invocations.json",
+      "sha256": "10fb0e76a8048356eddf6fc5eab04a3058ac5f01b28c736bf76a960dfa86dfa9"
+    },
+    {
+      "path": "runs/exp2/M1_scaleup/tray_pack/evaluation/APPL/OOD/30329/invocations.json",
+      "sha256": "9881a6b939ad6e470ff047f42d9b1249e138067defc3218e4cb4052a31e06303"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/tray_pack/evaluation/APPL/OOD/30300/invocations.json",
+      "sha256": "f920455ae935ce389656ee644e4359d631dbf6fb371cb18f1aefc318afdec789"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/tray_pack/evaluation/APPL/OOD/30301/invocations.json",
+      "sha256": "438428da6834967e0300a54cc450ade32c1aceb20e3b6eb1f449b7b38d12a721"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/tray_pack/evaluation/APPL/OOD/30302/invocations.json",
+      "sha256": "caad9dd9d2d1042ef26441fef9b8d769d0a3ad6cae9b04b92d5ab0d8309b3a56"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/evaluation_recovery_20260918/tray_pack/evaluation/APPL/OOD/30303/invocations.json",
+      "sha256": "c18bc44d4bcf4fc190cb132a59551e91d1356ad586e8def49dc3fe3e9b1dd923"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/tray_pack/evaluation/APPL/OOD/30304/invocations.json",
+      "sha256": "1afb7480513c862f74bfe6c748b8bb787faf264b4fb2ee4308961137d6043bfb"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/tray_pack/evaluation/APPL/OOD/30305/invocations.json",
+      "sha256": "976837ea61d8f18f629a80d82a3969cc782c63d4ddbad6ceb75a0a40fc6d864d"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/tray_pack/evaluation/APPL/OOD/30306/invocations.json",
+      "sha256": "bdb87933018137fd900427543bba7ffa11411ea1309a9c36c39fafd02ef86d5d"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/tray_pack/evaluation/APPL/OOD/30307/invocations.json",
+      "sha256": "4b477240328554b51cd57fb235f06c82f449625d516bebedc07737a465dcde17"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/tray_pack/evaluation/APPL/OOD/30308/invocations.json",
+      "sha256": "0ec4e093f6f41c90b957f3a461bd2ef7c1954c7f8391fe3a35bf03de9f1f3cb3"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/tray_pack/evaluation/APPL/OOD/30309/invocations.json",
+      "sha256": "1f2addcc0e577a7c6e339febe4f0a3907981d3891fda7f592921d70a98161dda"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/tray_pack/evaluation/APPL/OOD/30310/invocations.json",
+      "sha256": "15d4ffd5a9f6427160bd2947080f3cc3f5eb3b9acd4a58f55518b8c647b0145a"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/tray_pack/evaluation/APPL/OOD/30311/invocations.json",
+      "sha256": "f51819fd53e98310088e1c731508ea9cb1115c83562ebea631493aeb9d6f1118"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/tray_pack/evaluation/APPL/OOD/30312/invocations.json",
+      "sha256": "ce22d54fe6a216c03e175a1d6cce2475d57b043044cb12c63956c3a76c515535"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/tray_pack/evaluation/APPL/OOD/30313/invocations.json",
+      "sha256": "f60f7cd03e7f242e35125c691bd71b7e00d622814be302080794b8b84e3027b5"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/tray_pack/evaluation/APPL/OOD/30314/invocations.json",
+      "sha256": "c200719b2a7bc52879e252f6e6be236baed3f3bcf13a5262f78305f4aef7c17d"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/tray_pack/evaluation/APPL/OOD/30315/invocations.json",
+      "sha256": "063c0b56f2eca1668bcd16e8102f39429d800f3120a17b79f5ec6da18f92788e"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/tray_pack/evaluation/APPL/OOD/30316/invocations.json",
+      "sha256": "2a0350de591020a57feb56b012142a1a45e38b94e19826dd12ebf6d92006ae0f"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/tray_pack/evaluation/APPL/OOD/30317/invocations.json",
+      "sha256": "7fee535a8909274a8e6305599fa4732910127aec65425f4f828f7361a282d964"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/tray_pack/evaluation/APPL/OOD/30318/invocations.json",
+      "sha256": "d3205489aa2b1f659f5dcad9f266651a71de7077b2fa8ceeaafc38bbc218e8fc"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/tray_pack/evaluation/APPL/OOD/30319/invocations.json",
+      "sha256": "ad65c0b62995de919193dece052d4d37c38647d586a644b59b325a38668ec985"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/tray_pack/evaluation/APPL/OOD/30320/invocations.json",
+      "sha256": "69dd42753223dede9feb350315d6c10a09f5846667e0657ce99517731df2cfce"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/evaluation_recovery_20260918/tray_pack/evaluation/APPL/OOD/30321/invocations.json",
+      "sha256": "4f87cc8aaab2f5ce4bd610079e46c7288952ef47682132b1f83bff3c1730de51"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/evaluation_recovery_20260918/tray_pack/evaluation/APPL/OOD/30322/invocations.json",
+      "sha256": "c765fd955f4e577f3f227e6a0e04ad5fbd6001f442cd1a85e63229e4dea0b5a3"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/evaluation_recovery_20260918/tray_pack/evaluation/APPL/OOD/30323/invocations.json",
+      "sha256": "fdb5889dcfbf0fea0ec42f6020d6ca2740ad0df6d7afd982ccdd756aa204dd94"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/evaluation_recovery_20260918/tray_pack/evaluation/APPL/OOD/30324/invocations.json",
+      "sha256": "a58c9bda632b072efd3e36ac46935f878ba620459df205702a0c48ee2daf7b20"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/evaluation_recovery_20260918/tray_pack/evaluation/APPL/OOD/30325/invocations.json",
+      "sha256": "e0d523a4ee5047628682ca35d9aa16c0aa2720df4ee113fa3167cac1dbf641c6"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/evaluation_recovery_20260918/tray_pack/evaluation/APPL/OOD/30326/invocations.json",
+      "sha256": "dc2a03d657baca61abf5e35126767ac597767b6d530d9e2c23955fb49531a054"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/evaluation_recovery_20260918/tray_pack/evaluation/APPL/OOD/30327/invocations.json",
+      "sha256": "2d323da471be11859f85a73183e96f7c363febad404bf6f0e7fda8d9147e815a"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/evaluation_recovery_20260918/tray_pack/evaluation/APPL/OOD/30328/invocations.json",
+      "sha256": "956efc0071a2a586a1f2cf56b71e2839e2a0d8dfd5ec0ba6379f3b90345f3de5"
+    },
+    {
+      "path": "runs/exp2/M1_astra_xhigh/evaluation_recovery_20260918/tray_pack/evaluation/APPL/OOD/30329/invocations.json",
+      "sha256": "670f73cb091f1eccbc968a61c91aa951fc30dfe3a1bd27e8e9964922be741411"
+    }
+  ]
+}

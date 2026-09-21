@@ -1,0 +1,19 @@
+{
+  "policy_id": "red_unstack_lift__h03",
+  "skill_id": "red_unstack_lift",
+  "heuristic_index": 3,
+  "prior_summary": "Support-preservation learned diffusion policy: condition the action denoiser on causal red, blue, TCP, gripper and goal relations, and train an auxiliary action-to-future decoder that penalizes predicted blue xy disturbance and lateral red motion before sufficient red-blue clearance.",
+  "applicable_conditions": "Use when the red cube is initially above the blue cube in a vertical stack, the blue cube is table-level and should remain at the source, and the needed behavior is to approach, grasp the top red cube, lift it clear, and start transporting it toward the red goal.",
+  "termination_guidance": "Transfer after observations show the red cube grasped/held above the blue with large vertical separation, the gripper closed near the red cube, blue_pose still table-level and nearly unchanged in xy, and red/TCP beginning the lateral move toward the red goal.",
+  "limitations": "The prior is learned from state vectors and future labels, not force/contact measurements. It does not implement IK, hard constraints, rejection sampling, image perception, or recovery if the blue cube is already displaced or the red grasp has failed.",
+  "config": {
+    "condition_dim": 256,
+    "relative_position_scale_m": 0.5,
+    "auxiliary_weight": 0.04,
+    "denoised_auxiliary_weight": 0.02,
+    "blue_preservation_weight": 0.02,
+    "clearance_gate_weight": 0.01,
+    "clearance_gate_min_m": 0.10,
+    "blue_preservation_xy_scale_m": 0.02
+  }
+}
