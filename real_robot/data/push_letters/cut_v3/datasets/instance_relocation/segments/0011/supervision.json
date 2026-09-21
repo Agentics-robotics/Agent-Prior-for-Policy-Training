@@ -1,0 +1,32 @@
+{
+  "boundary_evidence_indices": [
+    8499,
+    8500,
+    9014
+  ],
+  "condition_evidence_indices": [
+    8500,
+    9014
+  ],
+  "deployment_condition_source": "HLA requests selected-piece correction and checks its own word/layout afterward.",
+  "label_derivation": "G at 9014, goal box [290,333,470,452]. Select the upper-crossbar/H-like track now in the lower-left staging location.",
+  "merge_check": "Do not merge with preceding I; no successor record or next objective is invented at the episode end.",
+  "objective": "Re-approach the staged H-like piece from below, push it upward and align near the I-like piece, then stop/withdraw.",
+  "rationale": "8500-8700 shows approach to the lower-left piece; final third/wrist 9014 shows the moved piece and stationary command, not an annotated task success.",
+  "segment_id": "a_h_align",
+  "split_check": "One instance and fixed endpoint through the final correction. No automatic final-word success or terminal action is added.",
+  "start": 8500,
+  "stop": 9015,
+  "supervised_start": 8500,
+  "supervised_stop": 9015,
+  "supervision_exclusions": [
+    {
+      "reason": "Previous I withdrawal versus H approach ambiguity.",
+      "start": 8500,
+      "stop": 8530
+    }
+  ],
+  "training_condition": "Upper crossbar/H-like instance; final recorded local placement G(9014), without success label.",
+  "trajectory_id": "episode_2026091922002701",
+  "uncertainty": "Recording ends without a verified success or long stability observation. Last command is retained; no row 9015 is fabricated."
+}

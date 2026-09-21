@@ -1,0 +1,40 @@
+{
+  "boundary_evidence_indices": [
+    4839,
+    4840,
+    5850,
+    6079,
+    6080
+  ],
+  "condition_evidence_indices": [
+    4840,
+    5850,
+    6079
+  ],
+  "deployment_condition_source": "HLA requests a selected piece's explicit placement, with re-contact internally chosen.",
+  "label_derivation": "G at 6079, goal box [580,186,726,278]. Select L-shaped piece near third-preview (262,72) at entry.",
+  "merge_check": "D before and H after change instance; do not infer one task-wide policy condition.",
+  "objective": "Re-contact and transport L into the gap between R and D, with final position/orientation corrections.",
+  "rationale": "4840 follows D release, 5200-5850 shows L motion and wrist contact, and 6079 shows local achieved placement and withdrawal.",
+  "segment_id": "b_l",
+  "split_check": "Same L/goal through repeated approaches; changing contact side is not a semantic goal change.",
+  "start": 4840,
+  "stop": 6080,
+  "supervised_start": 4840,
+  "supervised_stop": 6080,
+  "supervision_exclusions": [
+    {
+      "reason": "D release/L approach uncertainty.",
+      "start": 4840,
+      "stop": 4870
+    },
+    {
+      "reason": "L release/H approach uncertainty.",
+      "start": 6050,
+      "stop": 6080
+    }
+  ],
+  "training_condition": "L-shaped instance; achieved placement G(6079).",
+  "trajectory_id": "episode_2026091922062101",
+  "uncertainty": "Image-plane goal accuracy is limited by calibration, perspective and segmentation. No metric placement precision is claimed."
+}

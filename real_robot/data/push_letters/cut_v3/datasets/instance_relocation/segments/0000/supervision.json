@@ -1,0 +1,35 @@
+{
+  "boundary_evidence_indices": [
+    0,
+    1700,
+    1719,
+    1720,
+    1850
+  ],
+  "condition_evidence_indices": [
+    0,
+    1700,
+    1719
+  ],
+  "deployment_condition_source": "HLA selects a currently tracked instance and image placement through the common interface; it does not request the demonstration's W or order.",
+  "label_derivation": "G with goal anchor 1719, original goal box [500,490,695,640]. Select the zigzag piece initially near third-preview (190,105), visually W/M-like. Supervise finite recorded command dq only, with the listed edge exclusion and common validity rules.",
+  "merge_check": "Do not merge with the following I-stage block: the contacted/selected physical instance and its achieved placement change.",
+  "objective": "Approach, reorient and transport the initially upper-middle zigzag piece to the lower-right staging/word-row position.",
+  "rationale": "Initial inventory at 0, local tool/W evidence at 1700 and completed visible displacement at 1719 support this fixed hindsight goal before motion toward the central crossbar piece.",
+  "segment_id": "a_w",
+  "split_check": "Initial descent, perimeter travel, repeated W contacts and withdrawal share the selected piece and endpoint. No inspected evidence requires a different internal instance or goal assignment.",
+  "start": 0,
+  "stop": 1720,
+  "supervised_start": 0,
+  "supervised_stop": 1720,
+  "supervision_exclusions": [
+    {
+      "reason": "Uncertain release versus next-instance approach ownership at the W-to-I handoff; retained goal/context only.",
+      "start": 1690,
+      "stop": 1720
+    }
+  ],
+  "training_condition": "Selected episode-local zigzag/W-like instance; fixed achieved placement G(1719). No word/class token is a policy input.",
+  "trajectory_id": "episode_2026091922002701",
+  "uncertainty": "W versus M depends on orientation; use physical referent. Initial missing dq commands carry no action loss. Goal is hindsight, not verified original intent or word success."
+}

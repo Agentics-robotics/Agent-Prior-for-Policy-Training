@@ -12,6 +12,7 @@
 | --- | --- | --- | --- | --- |
 | Exp1 | [experiment1](src/experiment1/)，复用 [relative_dp](src/relative_dp/) 和 [公共接口](src/experiment_interfaces/) | [执行规范](EXPERIMENT1_CODEX_EXECUTION_HANDOFF.md)、[冻结协议](experiments/experiment1/protocol.lock.json) | [manifest](experiments/experiment1/manifests/) 指向 [Round 3 原始支持示范](archive/legacy_rounds/round3/repository/round3/data/) | [实验档案](experiments/experiment1/)、[完整报告](experiments/experiment1/EXPERIMENT1_REPORT.md) |
 | Exp2_new | [冻结框架](src/appl/)、[方法编排](experiments/exp2/) | [唯一入口与目录图](experiments/exp2/README.md) | [原始示范与 API 切分](data/exp2/) | [225 回合、46 个模型](runs/exp2/current/)、[完整报告](experiments/exp2/reports/REPORT.md)、[视频](experiments/exp2/reports/VIDEOS.html) |
+| Real robot / Push | [独立真机接口](real_robot/)、[训练执行器](real_robot/policy_training/) | [训练结果与覆盖限制](real_robot/reports/PUSH_TRAIN.md)、[通用 prompt](real_robot/prompts/general_cut_and_prior.md)、[Task Specification](real_robot/task_specifications/push_letters.md) | 外部原始 push_letters 配对记录，只读引用；cut_v3 已冻结 | train_v1 完成：API 编写两个 prior policy 及转换器，各训练 20,000 步；8,606 样本覆盖 18/22 段，来源、费用、checkpoint 与调用接口均保留 |
 
 历史 Exp2 见 [归档索引](archive/Exp2_history_20260920/README.md)。旧路径保留兼容链接以核查冻结配置和日志；不会混入当前结果。Exp1 未改动。
 

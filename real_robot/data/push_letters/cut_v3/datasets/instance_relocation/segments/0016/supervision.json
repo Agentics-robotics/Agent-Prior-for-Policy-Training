@@ -1,0 +1,44 @@
+{
+  "boundary_evidence_indices": [
+    2819,
+    2820,
+    3900,
+    4050,
+    4200,
+    4559,
+    4560
+  ],
+  "condition_evidence_indices": [
+    2820,
+    3900,
+    4050,
+    4200,
+    4559
+  ],
+  "deployment_condition_source": "Selected current instance and spatial placement; causal progress informs internal re-contact, not a hindsight recovery command.",
+  "label_derivation": "G at 4559, goal box [580,258,740,370]. Select the R-like piece initially at left-middle third-preview (142,187).",
+  "merge_check": "O before and D after are different targets. The unusual motion around 4050-4200 does not change the selected R or its goal.",
+  "objective": "Transport and rotate R toward the row above O, including tool withdrawal, posture adjustment and re-contact corrections.",
+  "rationale": "3900 and 4050 show R at changing orientations; 4200 wrist/third still shows R as the local target despite elevated tool/posture motion; 4559 pins aligned local outcome.",
+  "segment_id": "b_r",
+  "split_check": "Retain the correction rather than silently discarding it or inventing an unobserved failure task. Current/past observations plus fixed R goal suffice for all labels; no internal target switch is unresolved.",
+  "start": 2820,
+  "stop": 4560,
+  "supervised_start": 2820,
+  "supervised_stop": 4560,
+  "supervision_exclusions": [
+    {
+      "reason": "O release/R approach uncertainty.",
+      "start": 2820,
+      "stop": 2850
+    },
+    {
+      "reason": "R release/D approach uncertainty.",
+      "start": 4530,
+      "stop": 4560
+    }
+  ],
+  "training_condition": "R-like instance; achieved placement G(4559), constant through its correction/re-contact.",
+  "trajectory_id": "episode_2026091922062101",
+  "uncertainty": "Relatively large measured/commanded joint motion around 4200 is observed; singularity, slip or operator intention is not diagnosed. Backend safety validation must cover it."
+}

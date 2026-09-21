@@ -1,0 +1,40 @@
+{
+  "boundary_evidence_indices": [
+    4229,
+    4230,
+    4400,
+    4619,
+    4620
+  ],
+  "condition_evidence_indices": [
+    4230,
+    4400,
+    4619
+  ],
+  "deployment_condition_source": "HLA can request a temporary relocation before assigning a later final word slot.",
+  "label_derivation": "G at 4619, goal box [250,462,448,605]. Select the upper crossbar/H-like piece initially near third-preview (245,142).",
+  "merge_check": "I before and D after change target; a_h later revisits H with a different endpoint, so this is not final alignment supervision.",
+  "objective": "Push the upper crossbar piece down to the lower-left area and reorient it.",
+  "rationale": "At 4230 the upper piece remains in its initial neighborhood; 4400 and 4500-4600 show transport and reorientation, with the local result visible at 4619.",
+  "segment_id": "a_h_stage",
+  "split_check": "Transport and rotation are continuous execution for the same temporary placement; no further conditioning switch is left for annotation.",
+  "start": 4230,
+  "stop": 4620,
+  "supervised_start": 4230,
+  "supervised_stop": 4620,
+  "supervision_exclusions": [
+    {
+      "reason": "I-to-H handoff ambiguity.",
+      "start": 4230,
+      "stop": 4260
+    },
+    {
+      "reason": "H-to-D handoff ambiguity.",
+      "start": 4590,
+      "stop": 4620
+    }
+  ],
+  "training_condition": "Upper crossbar/H-like instance; temporary lower-left placement G(4619).",
+  "trajectory_id": "episode_2026091922002701",
+  "uncertainty": "H/I naming is only a shape mnemonic; use the physical track. Endpoint is not its final requested position."
+}

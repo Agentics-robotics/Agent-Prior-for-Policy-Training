@@ -1,0 +1,21 @@
+{
+  "schema": "real_robot.cut_config.v1",
+  "task": "push_letters",
+  "source_root": "/home/storage/tianrunhu/real_robot_data/push_letters",
+  "trajectory_ids": ["episode_2026091922002701", "episode_2026091922062101"],
+  "output": "real_robot/data/push_letters/cut_v1",
+  "run": "real_robot/runs/push_letters/cut_v1",
+  "prompt": "real_robot/prompts/push_cut.md",
+  "model": "gpt-6-astra",
+  "reasoning_effort": "xhigh",
+  "service_tier": "default",
+  "preview_width": 640,
+  "preview_height": 360,
+  "max_api_calls": 96,
+  "max_tool_calls": 320,
+  "max_plan_versions": 20,
+  "max_output_tokens": 20000,
+  "execution_guard_usd": 100,
+  "scope": "Push cut, dataset grouping and heuristic documents only; no policy source or training",
+  "authorization": "User requested starting Push and completing cut and heuristics, stopping before policy code; heuristic count per group is API-decided."
+}

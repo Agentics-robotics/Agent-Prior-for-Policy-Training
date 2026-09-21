@@ -1,0 +1,40 @@
+{
+  "boundary_evidence_indices": [
+    1899,
+    1900,
+    2600,
+    2819,
+    2820
+  ],
+  "condition_evidence_indices": [
+    1900,
+    2600,
+    2819
+  ],
+  "deployment_condition_source": "HLA-selected annular or other instance and explicit current placement goal.",
+  "label_derivation": "G at 2819, goal box [592,363,762,490]. Select the O-like annular piece near third-preview (289,126) at entry.",
+  "merge_check": "Adjacent D and R calls target other pieces, despite common word-like arrangement.",
+  "objective": "Rotate and move the annular piece downward to a placement above the zigzag piece.",
+  "rationale": "1900 initial O location, 2600 interaction and 2819 achieved O placement support this objective.",
+  "segment_id": "b_o",
+  "split_check": "Reorientation and downward transport share one endpoint and instance; no additional semantic cuts are required.",
+  "start": 1900,
+  "stop": 2820,
+  "supervised_start": 1900,
+  "supervised_stop": 2820,
+  "supervision_exclusions": [
+    {
+      "reason": "D-to-O handoff uncertainty.",
+      "start": 1900,
+      "stop": 1930
+    },
+    {
+      "reason": "O-to-R handoff uncertainty.",
+      "start": 2790,
+      "stop": 2820
+    }
+  ],
+  "training_condition": "Annular/O-like instance; achieved placement G(2819).",
+  "trajectory_id": "episode_2026091922062101",
+  "uncertainty": "Symmetry may make signed orientation unobservable; retain the ambiguity set and use full foreground agreement."
+}

@@ -1,0 +1,40 @@
+{
+  "boundary_evidence_indices": [
+    8049,
+    8050,
+    8400,
+    8499,
+    8500
+  ],
+  "condition_evidence_indices": [
+    8050,
+    8400,
+    8499
+  ],
+  "deployment_condition_source": "Caller selects the earlier staged lower crossbar instance and a new spatial goal.",
+  "label_derivation": "G at 8499, goal box [315,238,477,343]. Select the lower crossbar/I-like track, left of R at 8050.",
+  "merge_check": "L before and H after are different pieces; earlier I staging goals differ and have intervening manipulations.",
+  "objective": "Move and align the staged I-like piece to the left of the R/L area.",
+  "rationale": "8150 approach, 8400 aligned I and 8499 withdrawal before H approach distinguish this revisit from earlier I staging.",
+  "segment_id": "a_i_align",
+  "split_check": "One fixed I placement; contact-side changes do not require another high-level objective.",
+  "start": 8050,
+  "stop": 8500,
+  "supervised_start": 8050,
+  "supervised_stop": 8500,
+  "supervision_exclusions": [
+    {
+      "reason": "L release/I approach uncertainty.",
+      "start": 8050,
+      "stop": 8080
+    },
+    {
+      "reason": "I release/H approach uncertainty, checked at 8470-8550.",
+      "start": 8470,
+      "stop": 8500
+    }
+  ],
+  "training_condition": "Lower crossbar/I-like instance; later placement G(8499).",
+  "trajectory_id": "episode_2026091922002701",
+  "uncertainty": "Final glyph identity/readability is not a verified label. Apparent alignment is a hindsight outcome."
+}

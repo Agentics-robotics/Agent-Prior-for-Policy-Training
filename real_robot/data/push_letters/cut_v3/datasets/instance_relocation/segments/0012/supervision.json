@@ -1,0 +1,35 @@
+{
+  "boundary_evidence_indices": [
+    0,
+    650,
+    1219,
+    1220,
+    1300
+  ],
+  "condition_evidence_indices": [
+    0,
+    650,
+    1219
+  ],
+  "deployment_condition_source": "Same autonomous scene-instance and explicit spatial-goal call; no recorded alphabet or order is required.",
+  "label_derivation": "G at 1219, goal box [598,492,805,651]. Select the zigzag/W-like piece initially at the bottom of the third view.",
+  "merge_check": "Next block selects the nearby crossbar/I-like instance; merging would hide that switch.",
+  "objective": "Descend, re-contact, rotate and shift the zigzag piece to the lower-right arrangement position.",
+  "rationale": "0 inventory, wrist/third 650 W interaction and 1219 W displacement/tool departure establish the block.",
+  "segment_id": "b_w",
+  "split_check": "Multiple W contacts and initial approach share one achieved placement; no internal task-word label is needed.",
+  "start": 0,
+  "stop": 1220,
+  "supervised_start": 0,
+  "supervised_stop": 1220,
+  "supervision_exclusions": [
+    {
+      "reason": "W release/I approach handoff uncertainty.",
+      "start": 1190,
+      "stop": 1220
+    }
+  ],
+  "training_condition": "B episode zigzag/W-like instance; achieved placement G(1219).",
+  "trajectory_id": "episode_2026091922062101",
+  "uncertainty": "Null initial command dq is missing supervision, not zero. W/M semantic reading is not an input."
+}

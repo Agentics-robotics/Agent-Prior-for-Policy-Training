@@ -1,0 +1,40 @@
+{
+  "boundary_evidence_indices": [
+    5769,
+    5770,
+    6100,
+    6139,
+    6140
+  ],
+  "condition_evidence_indices": [
+    5770,
+    6100,
+    6139
+  ],
+  "deployment_condition_source": "A new goal invocation for a previously moved instance; goal is spatial, not an instruction to replay a correction.",
+  "label_derivation": "G at 6139, goal box [500,135,635,217]. Select the upper D-like piece and its new more aligned orientation/position.",
+  "merge_check": "R and L neighbors are different selected objects, and a_d_stage had a different local D endpoint.",
+  "objective": "Correct staged D's orientation and position at the upper end of the developing arrangement.",
+  "rationale": "5770 begins near D after R; 6100 and 6139 show changed D orientation and tool withdrawal/transit.",
+  "segment_id": "a_d_align",
+  "split_check": "One local pose correction plus withdrawal; no internal objective change is required.",
+  "start": 5770,
+  "stop": 6140,
+  "supervised_start": 5770,
+  "supervised_stop": 6140,
+  "supervision_exclusions": [
+    {
+      "reason": "R-to-D handoff uncertainty.",
+      "start": 5770,
+      "stop": 5800
+    },
+    {
+      "reason": "D-to-L withdrawal/transit uncertainty.",
+      "start": 6110,
+      "stop": 6140
+    }
+  ],
+  "training_condition": "D-like instance; alignment placement G(6139).",
+  "trajectory_id": "episode_2026091922002701",
+  "uncertainty": "Tolerance and success are not annotated. Base z and tool proximity do not establish contact."
+}

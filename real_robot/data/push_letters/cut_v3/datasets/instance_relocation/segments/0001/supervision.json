@@ -1,0 +1,41 @@
+{
+  "boundary_evidence_indices": [
+    1719,
+    1720,
+    1850,
+    1919,
+    1920,
+    2000
+  ],
+  "condition_evidence_indices": [
+    1720,
+    1850,
+    1919
+  ],
+  "deployment_condition_source": "HLA may choose a temporary free-space placement for a selected blocking instance, using the same spatial-goal call.",
+  "label_derivation": "G at 1919, goal box [275,310,465,432]. Select the lower of the two crossbar-shaped pieces, adjacent to O, as visible at 1850; mnemonic I-like. This is its local attained pose, NOT its final episode pose.",
+  "merge_check": "Both adjacent blocks use different selected instances (zigzag then annular O); a merge would hide a target switch and temporary objective.",
+  "objective": "Briefly displace/reorient the lower crossbar piece away from its initial position before approaching O.",
+  "rationale": "At 1720 the tool leaves the zigzag piece; by 1850 it is at the lower crossbar piece, whose pose differs from the initial scene; 1919-2000 shows departure toward O.",
+  "segment_id": "a_i_stage1",
+  "split_check": "One short selected-instance displacement; the goal is explicitly the local 1919 pose, so no unresolved eventual-word objective is used.",
+  "start": 1720,
+  "stop": 1920,
+  "supervised_start": 1720,
+  "supervised_stop": 1920,
+  "supervision_exclusions": [
+    {
+      "reason": "W release versus I approach ambiguity.",
+      "start": 1720,
+      "stop": 1750
+    },
+    {
+      "reason": "I release versus O approach ambiguity.",
+      "start": 1890,
+      "stop": 1920
+    }
+  ],
+  "training_condition": "Lower crossbar/I-like instance, local staging placement G(1919).",
+  "trajectory_id": "episode_2026091922002701",
+  "uncertainty": "The short adjustment's original purpose is unrecorded; intentional staging versus incidental correction is not certified. Label only its observed selected-piece/local outcome, not a successful clearance strategy."
+}

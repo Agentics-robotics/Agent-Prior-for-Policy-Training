@@ -1,0 +1,38 @@
+{
+  "boundary_evidence_indices": [
+    4559,
+    4560,
+    4839,
+    4840
+  ],
+  "condition_evidence_indices": [
+    4560,
+    4839
+  ],
+  "deployment_condition_source": "A new goal for the previously staged D instance, expressed through the same caller contract.",
+  "label_derivation": "G at 4839, goal box [587,123,716,206]. Select the upper-right D-like piece, now aligned horizontally in the third view.",
+  "merge_check": "R and L neighbors select different pieces; earlier D-stage has a different local placement.",
+  "objective": "Correct D's orientation and small position at the upper end of the arrangement.",
+  "rationale": "4560 tool approaches D from R, 4800-4839 shows the corrected D; by 4889 tool is at L, motivating the earlier handoff cut.",
+  "segment_id": "b_d_align",
+  "split_check": "One local D alignment/withdrawal objective; no later L actions are assigned its condition.",
+  "start": 4560,
+  "stop": 4840,
+  "supervised_start": 4560,
+  "supervised_stop": 4840,
+  "supervision_exclusions": [
+    {
+      "reason": "R-to-D handoff uncertainty.",
+      "start": 4560,
+      "stop": 4590
+    },
+    {
+      "reason": "D release/L approach uncertainty.",
+      "start": 4810,
+      "stop": 4840
+    }
+  ],
+  "training_condition": "D-like instance; alignment placement G(4839).",
+  "trajectory_id": "episode_2026091922062101",
+  "uncertainty": "Tool partly occludes the goal contour; G must remove it and flag unresolved contour/orientation uncertainty instead of hallucinating a mask."
+}

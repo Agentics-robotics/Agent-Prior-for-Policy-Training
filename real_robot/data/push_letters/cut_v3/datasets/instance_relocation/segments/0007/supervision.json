@@ -1,0 +1,40 @@
+{
+  "boundary_evidence_indices": [
+    4949,
+    4950,
+    5600,
+    5769,
+    5770
+  ],
+  "condition_evidence_indices": [
+    4950,
+    5600,
+    5769
+  ],
+  "deployment_condition_source": "HLA selects the previously staged instance and supplies its new desired image placement.",
+  "label_derivation": "G at 5769, goal box [490,263,642,370]. Select the R-like instance in the upper temporary location at 4950; goal is its new placement above O.",
+  "merge_check": "Do not merge with either D block or with earlier a_r_stage: instance or spatial objective changes.",
+  "objective": "Re-contact staged R, rotate and transport it into the column/row above O, retaining contact-side corrections.",
+  "rationale": "4950-5350 approach and displacement from R's staged location, wrist/third 5600 contact and 5769 local result support the new R condition.",
+  "segment_id": "a_r",
+  "split_check": "Rotation, approach around the concavity and final correction all concern the same R and local endpoint.",
+  "start": 4950,
+  "stop": 5770,
+  "supervised_start": 4950,
+  "supervised_stop": 5770,
+  "supervision_exclusions": [
+    {
+      "reason": "D-to-R approach boundary ambiguity.",
+      "start": 4950,
+      "stop": 4980
+    },
+    {
+      "reason": "R release/D alignment approach boundary ambiguity.",
+      "start": 5740,
+      "stop": 5770
+    }
+  ],
+  "training_condition": "R-like instance; later achieved placement G(5769), distinct from G(3599).",
+  "trajectory_id": "episode_2026091922002701",
+  "uncertainty": "Nearby D may shift during R work; other-object motion is monitored, not silently labeled as successful intentional coordination."
+}
