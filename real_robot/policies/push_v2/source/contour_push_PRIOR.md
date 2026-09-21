@@ -1,0 +1,41 @@
+# contour_push prior — boundary_graph
+
+## Responsibility and independently selected family
+
+Relocate ONE caller-selected physical instance to ONE fixed image-space placement, covering observed approach, perimeter travel, re-contact, pushing, alignment, staging and withdrawal. It never picks the next character, contact point, word, episode phase or staging destination. Frozen heuristic identity: **boundary_graph**.
+
+This is an independently trained **five-component diagonal Gaussian mixture neural policy**, not Diffusion Policy. A single seven-dimensional recorded command and short causal observations are the actual contract. Local boundary message passing can condition a compact multimodal likelihood without predicting future command chunks or choosing an iterative denoising horizon. The mixture supports alternative demonstrated motions and yields a native candidate with component uncertainty. This choice is not evidence of superiority over diffusion or over visual_push. All motor weights are independently initialized/trained, never shared with visual_push.
+
+## Implemented inductive bias
+
+`geometry.graph` samples variable outer/inner contour rings at uniform arclength: up to 64 current selected nodes, 64 goal nodes, approximately 96 other-piece nodes, 16 image-workspace boundary nodes and a projected-TCP node, padded to 256 with masks. Small/degenerated contours are omitted. Current holes/concavities are observed, not completed using hindsight. Two cyclic adjacency links per ring are preserved. Features include normalized absolute and object-centered coordinates, observed outward-to-background normals, tangents, local curvature, selected/goal/neighbor/workspace/tool roles, hole flag, confidence, tool-relative displacement, goal signed distance and projection validity.
+
+Three learned adjacency message-passing layers (width 192) share local functions across arbitrary node counts/shapes. A learned soft contour readout and five identity-role pools feed a global readout. This is boundary-biased learned attention, **not supervised contact affinity or reachability truth**. A separate 142-channel measured-state/missingness path preserves absolute joint/calibration information. Two masked GRUCell layers (width 384) encode eight causal observations at three-original-row spacing. Missing prefix/context is gated out, never supplied from a prior cut. A learned mixture head emits one current native-command distribution; selecting its maximum-probability component mean avoids averaging dissimilar motions.
+
+The graph remains sensitive to geometry and goal while the global robot pathway can represent elevated approach/posture/withdrawal. There is no scripted point-pushing rule, metric inverse projection, Jacobian inversion, alphabet embedding or demonstration replay.
+
+## Observation and goal conversion
+
+Shared executable `perception.current`, `features`, and `geometry.graph` are used in training and act. Original paired third and wrist RGB are undistorted with recorded calibrated camera blocks. A deterministic brown-material foreground/bright-support detector and causal association produce arbitrary physical-instance proposals. The graph motor encoder uses third-camera boundaries and measured state, **not a second RGB motor encoder**; wrist acquisition/calibration is shared, and computed wrist camera pose enters state. Both RGB inputs remain mandatory under the common calling contract.
+
+Training uses the specified segment endpoint box only to derive goal foreground/masked appearance and retrospectively label the selected causal track identity. Current masks are independently detected from current frames, with no backward pose smoothing or endpoint-conditioned current segmentation. Training example provenance is not fed to the model. Deployment uses automatic current inventory, a fixed invocation template and a rendered caller placement. Original undistorted pixel coordinates are exposed; internal masks are half-resolution. No semantic yaw, metric tabletop pose or verified contact is invented.
+
+Missing/ambiguous selected masks below confidence .3 are excluded in the common training cache and counted. Online contour candidates require confidence >=.65; this stricter uncalibrated association/relative-area proxy is a selection/refusal hypothesis, not proven contour completeness. TCP image projection is numerically computed from `T_base_ee`; no rod silhouette or clearance exists. Its in-image flag is explicit, allowing the learned global path to represent observed elevated approach without a fictional contact point.
+
+## Losses, training and augmentation
+
+Finite recorded **command** `action_json.dq[7]` is the sole action target, cached exactly in float64; measured `dq` stays an input. Native actions are standardized with saved buffers. Loss = mixture negative log likelihood + .15 * masked smooth-L1 next-observed selected-center displacement, three rows later, in normalized chart coordinates times 100. The auxiliary has a real gradient path through the representation. Both endpoints must be eligible within the same original segment; no excluded transition or cross-cut future is labeled. There is no force/contact target.
+
+Temporal dropout removes only nonlatest history frames (probability .08). No arbitrary image rotations or coordinate changes retain incompatible joint labels; no synthetic shape changes are called valid new-shape demonstrations. Shared local functions and adjacency/role pooling give node-order invariance. Shared sampling uses elapsed time, .5-second capped repeated-command runs and equal eligible-segment mass. Batch 32, AdamW lr .00025, weight decay .0001, clip 1.0; fixed outer 20,000-update seed-0 schedule/EMA, no architecture search or performance selection.
+
+## Evidence, assumptions and explicit adaptations
+
+All 22 source segments are assigned to this policy and visual_push. W blocks support initial elevated approach. A/B W,O,L support transport and re-contact; A-L, A-D-align, A-I-align, B-R and B-D-align support correction. A-D-stage and B-D-stage include visually supported inner-hole interactions (A4800, B1800). Staging/revisits retain their own hindsight endpoints. B-R's 4050–4200 posture/re-contact motion is retained, not relabeled as a proven recovery. Per-segment cache coverage reports any automatic perception/command filtering; assigned support is not a guarantee every row is trainable.
+
+The source plan's unavailable generic learned segmenter/flow model is explicitly replaced by a **material-specific deterministic** detector/tracker; no downloaded weights or known-shape library exist. This narrows perception generality while preserving the substantive boundary-graph motor prior. Boundary rasters have two-original-pixel precision, not verified masks. Caller workspace is enforced by image checks; graph workspace nodes represent only the image border, since no trustworthy demonstrated table boundary is available. Similarity-only rendering is acknowledged and bounded; unsupported metric/projective requests refuse. Candidate computation is not gated on nonexistent hardware verification, but decoding is. Clearance-qualified success is not claimed: goal_observed is a geometric stop advisory with successor_ready=false.
+
+## Limitations and falsifiable expectations
+
+The expected benefit is geometry sharing on **unseen physical shapes with reliable visible boundaries**, not a proven capability. Two familiar-inventory episodes do not test this. Thin/occluded/touching pieces, unseen colors/materials, symmetry, sticker gaps, segmentation merges and perspective variation can break the converter. Geometry cannot infer friction, mass distribution, reliable contact, safe approach or hole-jamming risk. The graph bottleneck discards appearance cues that the alternative retains. No empirical ranking is known; both share perception/calibration/controller blind spots. No recovery from stacks/falls/flips, arbitrary homing, general free-space planner, character recognition or word success is supplied.
+
+See [PRIOR.md](PRIOR.md) for the complete shared scientific record, [contour_push_USAGE.md](contour_push_USAGE.md) for exact deployment calls, and `HANDOFF.json.policies.contour_push` for HLA decisions and evidence boundaries.

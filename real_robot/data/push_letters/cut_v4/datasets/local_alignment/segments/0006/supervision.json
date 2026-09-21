@@ -1,0 +1,28 @@
+{
+  "boundary_evidence_indices": [
+    7785,
+    7800,
+    8129,
+    8130,
+    8144
+  ],
+  "condition_evidence_indices": [
+    7800,
+    8129
+  ],
+  "deployment_condition_source": "Agent can invoke alignment after coarse placement of a corner-shaped piece.",
+  "label_derivation": "G seed7800 diagonal L-like piece near intended gap; goal8129 same goal as parent a_corner_move. E8129; D labels; no alternate success claim.",
+  "merge_check": "Near-slot same-piece correction/recontact fits alignment objective; intentional cross-group reuse.",
+  "objective": "Correct final corner-piece orientation/spacing after gross motion.",
+  "rationale": "7800 still angled near column;8129 now in gap. Parent supplies full earlier approach, this cut supplies an independently invocable late entry.",
+  "segment_id": "a_corner_late_align",
+  "split_check": "Do not include early large L turns in local-only objective; no new target is introduced.",
+  "start": 7785,
+  "stop": 8145,
+  "supervised_start": 7800,
+  "supervised_stop": 8130,
+  "supervision_exclusions": [],
+  "training_condition": "instance=corner_at7800; footprint8129; E8129; protect neighboring column pieces.",
+  "trajectory_id": "episode_2026091922002701",
+  "uncertainty": "Locality is geometric, not guaranteed low speed; keep recontact motion."
+}

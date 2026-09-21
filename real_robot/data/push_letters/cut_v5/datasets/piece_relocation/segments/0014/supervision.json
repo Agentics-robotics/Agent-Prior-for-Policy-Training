@@ -1,0 +1,30 @@
+{
+  "boundary_evidence_indices": [
+    1480,
+    1499,
+    1500,
+    1949,
+    1950,
+    1969
+  ],
+  "condition_evidence_indices": [
+    1500,
+    1720,
+    1949
+  ],
+  "deployment_condition_source": "HLA selects D-like instance for a staging or layout pose chosen from current occupancy.",
+  "label_derivation": "RULE P for foreground-left D-like, endpoint1949 and exit1949.",
+  "merge_check": "Same inner-hole transport structure as A D stage despite different execution order.",
+  "objective": "Push D-like through the cleared region to upper-right.",
+  "rationale": "1720 wrist clearly shows rod in D opening;1900/1949 show upper-right D and departing tool. This happens before O/R in B.",
+  "segment_id": "b_d_stage",
+  "split_check": "End before O-like movement; do not impose A's manipulation order or final D yaw.",
+  "start": 1480,
+  "stop": 1970,
+  "supervised_start": 1500,
+  "supervised_stop": 1950,
+  "supervision_exclusions": [],
+  "training_condition": "D-shaped piece initially foreground-left; achieved staging pose1949 and tool exit1949.",
+  "trajectory_id": "episode_2026091922062101",
+  "uncertainty": "Large tool occlusion is partly resolved by wrist; endpoint is an achieved local pose, not verified intent."
+}

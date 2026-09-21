@@ -1,0 +1,295 @@
+# Tool positioning and noncontact contact reset
+
+Reach a specified safe tool waypoint or contact-reset pose without intentionally moving any letter.
+
+## Dataset rationale
+
+Four independent sequences: two initial approaches and two reusable noncontact portions inside object invocations. Endpoint twist is retained in the goal so a moving handoff is not mislabeled as a stop. These are not uniformly sampled motion bins.
+
+### a_initial_tool
+
+Source: `episode_2026091922002701` [0, 620). Supervised interval: [0, 600).
+
+**Boundary evidence indices**
+
+[0, 580, 599, 600, 619]
+
+**Condition evidence indices**
+
+[0, 599]
+
+**Deployment condition source**
+
+HLA chooses a currently feasible precontact TCP waypoint near the selected object; no source endpoint is available online.
+
+**Label derivation**
+
+RULE T with T_base_ee and terminal action at 599. Retain null action dq as missing; finite zero/nonzero v,w remain usable.
+
+**Merge check**
+
+Same waypoint problem as the other three tool intervals despite different height/travel distance.
+
+**Objective**
+
+Wait/initialize and descend from home toward the wedge-piece neighborhood without moving a piece.
+
+**Rationale**
+
+A0 shows untouched scene and high TCP; 599/600 show rod above the R/W neighborhood before the wedge relocation. [600,620) is continuation context only.
+
+**Split check**
+
+Keep long initial wait but downweight it; split before the object-goal invocation at 600 rather than merging 3D home descent into planar pushing.
+
+**Supervision exclusions**
+
+[]
+
+**Training condition**
+
+tool waypoint at A599; pass-through arrival with recorded terminal twist; all pieces protected.
+
+**Uncertainty**
+
+Physical rod-tip offset and tabletop plane need verification; endpoint is not a contact or success annotation.
+
+### b_initial_tool
+
+Source: `episode_2026091922062101` [0, 400). Supervised interval: [0, 380).
+
+**Boundary evidence indices**
+
+[0, 360, 379, 380, 399]
+
+**Condition evidence indices**
+
+[0, 379]
+
+**Deployment condition source**
+
+HLA geometry planner supplies a precontact waypoint for the current inventory arrangement.
+
+**Label derivation**
+
+RULE T at 379; q/dq are measured state, not generated labels.
+
+**Merge check**
+
+Adds a different lateral approach direction and scene arrangement to the same tool objective.
+
+**Objective**
+
+Initialize and descend toward the foreground wedge-shaped piece.
+
+**Rationale**
+
+B379/380 rod is near the wedge but TCP remains about 0.097/0.095 m, before the later low pushing phase. [380,400) is context-only descent continuation.
+
+**Split check**
+
+Cut at precontact approach, not episode time fraction; next policy performs remaining descent and object motion.
+
+**Supervision exclusions**
+
+[]
+
+**Training condition**
+
+tool waypoint at B379; pass-through terminal twist; protect every piece.
+
+**Uncertainty**
+
+Third-view occlusion resolved in part by wrist380; exact contact time is not labeled.
+
+### a_l_approach_tool
+
+Source: `episode_2026091922002701` [6100, 6271). Supervised interval: [6120, 6251).
+
+**Boundary evidence indices**
+
+[6100, 6119, 6120, 6250, 6270]
+
+**Condition evidence indices**
+
+[6120, 6250]
+
+**Deployment condition source**
+
+A causal planner selects a collision-free approach waypoint beside the next target or an inspection point.
+
+**Label derivation**
+
+RULE T at6250; target letters remain obstacles, no L identity feature. Supervision also appears in a_l_move under an object goal.
+
+**Merge check**
+
+Same noncontact waypoint problem, now a lateral between-object transit rather than home descent.
+
+**Objective**
+
+Traverse from the D/R neighborhood toward a precontact point near L-like.
+
+**Rationale**
+
+Images6100/6120/6250 show stable D/R/L arrangements while the rod travels. 20-row prefix and suffix are context-only.
+
+**Split check**
+
+Stop before L manipulation; later contact/repeated rotations stay only in the object-goal action range.
+
+**Supervision exclusions**
+
+[]
+
+**Training condition**
+
+goal TCP and terminal twist at6250, pass-through; all pieces protected.
+
+**Uncertainty**
+
+Boundary is an approach waypoint, not a naturally stopped state; waypoint tolerance must include calibration uncertainty.
+
+### b_r_reset_tool
+
+Source: `episode_2026091922062101` [3980, 4271). Supervised interval: [4000, 4251).
+
+**Boundary evidence indices**
+
+[3980, 4000, 4120, 4160, 4200, 4250, 4270]
+
+**Condition evidence indices**
+
+[4000, 4120, 4160, 4250]
+
+**Deployment condition source**
+
+HLA or the active piece controller requests a visible free recontact/inspection waypoint and verified clearance.
+
+**Label derivation**
+
+RULE T at4250. Retain original commanded dq for follower audit, including high redundant joint motion. Object stability and free-space phase are weak visual labels.
+
+**Merge check**
+
+Adds a lift/reposition/reapproach waypoint sequence; not a new object-moving subtask.
+
+**Objective**
+
+Reset tool position around R-like, including lift and arm reconfiguration, without deliberately changing its pose.
+
+**Rationale**
+
+4000/4120/4160/4200/4250 show R-like staying near its slot while the rod changes side/height; TCP z rises to about0.134 m in the dense motion survey. Prefix/suffix20 rows context-only.
+
+**Split check**
+
+Retain the complete reset instead of discarding the large joint-speed region. Following low recontact around4300 belongs to the R object policy.
+
+**Supervision exclusions**
+
+[]
+
+**Training condition**
+
+tool pose/twist at4250; pass-through, protected R-like and neighbors; conservative clearance.
+
+**Uncertainty**
+
+No contact ground truth; near-contact portions require audited geometry eligibility. Joint reconfiguration is observed, not a verified singularity diagnosis.
+
+
+## Heuristic 1
+
+Learn a compact clearance-aware waypoint residual policy around deterministic collision-checked tool motion.
+
+### Action decoding
+
+COMMON DECODER D for all policies: action targets are recorded action_json.v and w with their validity masks, plus action_json.dq only for a verified follower auxiliary/check; measured state dq is never a command target. The intended endpoint is joint_velocity. Later implementation must retrieve the actual recording controller and verify v units, twist origin, w encoding (metadata says rotation_frame=ee, but the serialized w may already be transformed), command holding, filtering, watchdog and the 20 Hz teleop/30 Hz recording relationship before enabling output. Once verified, rotate workspace translational proposals to base; convert physical angular proposals to the verified serialized w frame using T_base_ee where required, accounting for any TCP-tip offset, then run the matching constrained Jacobian/QP follower with recorded damping/posture settings, robot limits and current q to produce command dq in rad/s. Validate reconstructed dq against nonnull recorded command dq and one-step physical responses with no temporal re-pairing. Preserve v/w, spacemouse, target_pose and dq separately; spacemouse and future target_pose are not online inputs. Runtime samples current observations and commands at the verified 20 Hz interface, holds only according to verified controller semantics, and uses watchdog stop on stale observations. Do not send track_twist JSON to a joint-velocity interface without this adapter. Speed/acceleration, joint, table, neighbor, rod-sweep and torque guards may reduce outputs; the metadata maxima 0.15 m/s and 0.6 rad/s are ceilings, not proven safe contact settings. tau_ext is a joint residual signal, not a calibrated contact force. Proposals include approach/retract z and bounded orientation corrections; decode those too. The first/last row can train a valid instantaneous twist but not a fabricated next-state loss.
+
+### Applicability
+
+Noncontact tool approach from home or between strokes, and guarded extraction/reposition when an escape direction is visibly free. Applicable only with verified controller/robot/tool calibration and a collision-feasible waypoint. Not a pushing policy and not a guarantee of extraction from a jammed hole.
+
+### Augmentation
+
+Translate/rotate workspace geometry, obstacle map, tool pose, waypoint and translational/angular labels together in a virtual task frame while leaving raw q/T/media unchanged; only retain physically reachable transformed examples after robot-model checks. Do not geometrically rotate raw camera images without updating projection mappings. Photometric and small calibrated projection-noise augmentation change no command labels. No unverified w-frame augmentation, synthetic null-to-zero replacement or independent target shuffling.
+
+### Evidence
+
+- `episode_2026091922002701`: [0, 580, 599, 600, 6100, 6120, 6250, 6270]
+- `episode_2026091922062101`: [0, 360, 379, 380, 3980, 4000, 4120, 4160, 4200, 4250, 4270]
+### Goal conditioning
+
+RULE T: base-frame TCP waypoint pose, arrival mode pass_through or stop, desired terminal twist if pass-through, clearance floor and protected-instance set. HLA derives approach points from current feasible boundaries, not the training endpoint index. For a stop call use zero terminal velocity; recordings that end with nonzero commands supervise pass-through, not false stopping.
+
+### Handoff
+
+**entry_conditions**
+
+Current tool/robot pose valid; target waypoint reachable; free corridor or conservative lift corridor checked; no unresolved contact/jam. Missing gripper feedback is expected, not an error indicating an open gripper.
+
+**exit_conditions**
+
+Waypoint crossed within caller tolerance and correct clearance/arrival mode, with valid current tool pose and a verified next command handoff. For stop, additionally small measured motion and actual stop command; do not infer this at a moving segment boundary.
+
+**failure_signatures**
+
+Unexpected piece motion during noncontact travel, tool/obstacle overlap, table approach outside height uncertainty, joint-limit/singularity alarm, tau_ext excursion, stale camera tracking or infeasible waypoint.
+
+**overlap_role**
+
+A6120-6250 and B4000-4250 explicitly teach the same free reposition actions also embedded in a piece call. Context-only suffix may show the following contact but does not authorize pushing loss.
+
+**successor_readiness**
+
+Return achieved tool pose, velocity, visible candidate contacts and confidence. A piece policy can start from a precontact waypoint; an HLA inspection can follow a safe hold.
+
+### Heuristic id
+
+waypoint_clearance_residual
+
+### Input preprocessing
+
+Use pipeline C. Inputs: current q, measured dq, T_base_ee/flange, valid tau_ext, last executed command, W-frame tool-tip/rod geometry, obstacle occupancy/height uncertainty and waypoint error; no semantic letter label. Use up to 12 causal paired rows and frame repetition/staleness flags. For learning use a 256x256 workspace occupancy/height map plus low-dimensional relative waypoint/robot state; output scale is physical meters/seconds, not pixels. Startup has masked absent history. Infer contact-free eligibility from dual-view rod/contour separation and object stability, not q-speed alone. Required geometry/perception/controller assets are listed in C/D; unvalidated height/depth blocks near-table motion.
+
+### Limitations
+
+Four waypoint sequences only, two are reused subranges. Does not establish arbitrary crowded-scene navigation or autonomous escape from wedging. Calibration and controller mismatch can dominate the residual model. Near-contact moves must slow/stop when height or tool-radius uncertainty exceeds clearance.
+
+### Pipeline implications
+
+Deterministic collision-aware lift/traverse/descend path generator and a small learned phase/speed/lateral-residual model. Fit behavior cloning to valid v/w with a small residual penalty; train phase targets from geometry/height and motion audits, not timestamps in the episode. Monitor pieces for no unintended movement. Planner implementations, collision model and decoder verification must be delivered before robot execution.
+
+### Policy contract
+
+**caller_arguments**
+
+policy_id=tool_waypoint_v1; goal_tcp_base pose, arrival_mode, optional terminal_twist, clearance_m, protected_instance_ids, tolerance_m/rad, speed_cap, timeout_s. Dataset responsibility: tool_position.
+
+**input_output_contract**
+
+Causal observations processed by C plus caller arguments -> one verified-interface command via D and a status object. Internally chooses feasible clearance path and speed residual; caller does not supply each low-level move.
+
+**memory_and_handoff**
+
+Reset on new call; initialize last-command memory from actual controller state and up to 12 live frames. Interrupted call returns current pose/velocity; do not carry unvalidated recurrent state into a piece call.
+
+**selection_cues**
+
+Choose for initial descent, contact-side change or retract-to-inspect without intentionally moving a piece. Choose a piece policy instead if the goal requires object motion.
+
+**status_and_progress**
+
+Report waypoint distance, clearance minimum/uncertainty, phase lift/traverse/descend/hold, controller validity, object-motion alarm and READY/BLOCKED states using the global status vocabulary.
+
+### Policy id
+
+tool_waypoint_v1
+
+### Rationale
+
+A0/599 and B0/379 show large vertical approach to different locations; A6120/6250 shows lateral transit, and B4000/4250 shows lift/recontact with substantial arm redundancy. The invariant is reaching a collision-feasible tool waypoint while not moving letters. Let deterministic geometry and a verified follower handle path and arm redundancy; learn only demonstrated phase/speed and small path corrections. This should transfer across letter identities because obstacles are geometry, but remains an unevaluated hypothesis.
+
+
+All scientific text above is unchanged Runtime API output. Rendering and slicing are developer-owned. No policy code or training exists in this stage.

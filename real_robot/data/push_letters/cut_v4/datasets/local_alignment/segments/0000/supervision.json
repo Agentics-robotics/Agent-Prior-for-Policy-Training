@@ -1,0 +1,30 @@
+{
+  "boundary_evidence_indices": [
+    5715,
+    5729,
+    5730,
+    6199,
+    6200,
+    6214
+  ],
+  "condition_evidence_indices": [
+    5730,
+    5850,
+    6199
+  ],
+  "deployment_condition_source": "Agent requests D-like staged piece's corrected local pose.",
+  "label_derivation": "G seed5730 D-like piece at rear-right, goal6199 reoriented/shifted there; E6199; original D labels.",
+  "merge_check": "Same near-goal correction responsibility as B D-like revisit.",
+  "objective": "Correct staged D-like pose after branched-piece placement.",
+  "rationale": "5850 wrist shows edge/corner contact;6199 piece aligned and tool traversing away. Buffer includes prior R release and next L approach only as context.",
+  "segment_id": "a_dlike_align",
+  "split_check": "Separate later correction from earlier D staging and intervening R relocation.",
+  "start": 5715,
+  "stop": 6215,
+  "supervised_start": 5730,
+  "supervised_stop": 6200,
+  "supervision_exclusions": [],
+  "training_condition": "instance=dlike_at5730; footprint6199; E6199; protect right-column neighbors.",
+  "trajectory_id": "episode_2026091922002701",
+  "uncertainty": "Alignment endpoint is inferred achieved pose, not verified word success."
+}

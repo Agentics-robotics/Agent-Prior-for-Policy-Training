@@ -1,0 +1,37 @@
+{
+  "boundary_evidence_indices": [
+    2830,
+    2849,
+    2850,
+    4680,
+    4699,
+    4700,
+    4719
+  ],
+  "condition_evidence_indices": [
+    2850,
+    3000,
+    3900,
+    4000,
+    4120,
+    4160,
+    4250,
+    4300,
+    4699
+  ],
+  "deployment_condition_source": "HLA selects the R-like instance or a novel irregular shape and supplies a local slot goal; internal reset decisions are autonomous.",
+  "label_derivation": "RULE P for left R-like, achieved footprint4699 and exit4699. Recontact/posture modes inferred with uncertainty from tool/object motion, not force labels.",
+  "merge_check": "Combines with both A R invocations via explicit current/goal geometry; no splitting into disconnected retries or false successes.",
+  "objective": "Relocate and align R-like above O-like with repeated contact acquisition and a lift/reconfiguration reset.",
+  "rationale": "3000 shows hole-neighborhood approach,3900 transport,4000-4250 reset,4300 new approach;4650-4669 still contain final R adjustments, so boundary was refined to4700 after4680/4699 inspection. Reuse reset4000-4250 for tool_position.",
+  "segment_id": "b_r_move",
+  "split_check": "Keep reset and resumed correction under the same target/goal; stop only when tool departs toward D, not at the coarse motion-bin boundary or the earlier4650 candidate.",
+  "start": 2830,
+  "stop": 4720,
+  "supervised_start": 2850,
+  "supervised_stop": 4700,
+  "supervision_exclusions": [],
+  "training_condition": "R-like piece initially on left of central barred; fixed achieved goal4699 with exit4699 and protected neighbors.",
+  "trajectory_id": "episode_2026091922062101",
+  "uncertainty": "Contact and friction are unobserved; high joint reconfiguration is real but not diagnosed as controller failure. All retained subject to decoder/safety audit."
+}

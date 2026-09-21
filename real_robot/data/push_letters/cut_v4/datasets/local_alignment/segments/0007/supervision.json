@@ -1,0 +1,30 @@
+{
+  "boundary_evidence_indices": [
+    4035,
+    4050,
+    4709,
+    4710,
+    4724
+  ],
+  "condition_evidence_indices": [
+    4050,
+    4200,
+    4650,
+    4709
+  ],
+  "deployment_condition_source": "Agent invokes local correction after R-like piece reaches the column but retains pose error/contact difficulty.",
+  "label_derivation": "G seed4050 branched piece already above ring; goal4709 identical to parent b_branched_move_retry; E4709; D labels. Future response labels only within this sequence.",
+  "merge_check": "Repeated local correction plus lift/recontact shares alignment problem, not a separate robot-posture task.",
+  "objective": "Retain late R-like correction attempts, tool lift/posture adjustment and release.",
+  "rationale": "4050/4200 show large tool reposition over near-slot piece,4650 correction,4709 release. Both command/state and wrist images were inspected; high joint speed is not equated to unusable motion.",
+  "segment_id": "b_branched_late_align",
+  "split_check": "Late entry gives agent a recovery/retry option without replaying earlier gross relocation; no claim to recover arbitrary jams.",
+  "start": 4035,
+  "stop": 4725,
+  "supervised_start": 4050,
+  "supervised_stop": 4710,
+  "supervision_exclusions": [],
+  "training_condition": "instance=branched_at4050; footprint4709; E4709; protect ring and other column pieces.",
+  "trajectory_id": "episode_2026091922062101",
+  "uncertainty": "Cause of posture change unresolved; do not label it force-contact recovery or proven optimal action."
+}

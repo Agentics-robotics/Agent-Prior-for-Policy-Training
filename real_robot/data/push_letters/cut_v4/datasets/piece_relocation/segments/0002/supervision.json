@@ -1,0 +1,31 @@
+{
+  "boundary_evidence_indices": [
+    1915,
+    1929,
+    1930,
+    3199,
+    3200,
+    3214
+  ],
+  "condition_evidence_indices": [
+    1930,
+    2250,
+    3000,
+    3199
+  ],
+  "deployment_condition_source": "Caller supplies selected ring-like instance and arbitrary feasible footprint.",
+  "label_derivation": "G seed1930 lower oval ring; goal3199 right-side ring above zigzag. E3199; D labels. Ring symmetries retain multiple angle hypotheses.",
+  "merge_check": "Same geometry-conditioned pushing with different outer/inner boundaries and starting orientation.",
+  "objective": "Translate/turn ring-like piece into right-side placement with recontact.",
+  "rationale": "2250 wrist supports outer-boundary push;3000 and3199 show aligned ring and rod release.15-row buffers cover entry/next transition.",
+  "segment_id": "a_ring_move",
+  "split_check": "Do not split approach, contact-side changes and final correction into separate object IDs.",
+  "start": 1915,
+  "stop": 3215,
+  "supervised_start": 1930,
+  "supervised_stop": 3200,
+  "supervision_exclusions": [],
+  "training_condition": "instance=ring_at1930; footprint3199; E3199; protect zigzag and other pieces.",
+  "trajectory_id": "episode_2026091922002701",
+  "uncertainty": "Oval symmetry means geometric orientation does not uniquely identify semantic upright."
+}

@@ -1,0 +1,31 @@
+{
+  "boundary_evidence_indices": [
+    4280,
+    4299,
+    4300,
+    4639,
+    4640,
+    4659
+  ],
+  "condition_evidence_indices": [
+    4300,
+    4350,
+    4550,
+    4639
+  ],
+  "deployment_condition_source": "HLA selects the other barred-piece instance and its planned footprint.",
+  "label_derivation": "RULE P for upper barred piece at4300, endpoint4639; tool exit may be above D-like but may not push D-like.",
+  "merge_check": "Same relocation objective with a recess contact, not a separate letter class policy.",
+  "objective": "Move the upper barred piece down toward foreground-left.",
+  "rationale": "4350 begins contact on upper barred piece;4550 wrist shows rod in its recess;4639 piece has moved foreground-left and tool has lifted/traveled toward D-like.",
+  "segment_id": "a_upper_bar_move",
+  "split_check": "Stop before D-like pushing; materialized successor rows only audit its precontact state.",
+  "start": 4280,
+  "stop": 4660,
+  "supervised_start": 4300,
+  "supervised_stop": 4640,
+  "supervision_exclusions": [],
+  "training_condition": "Upper barred instance near staged R at4300, not the already left-staged barred piece; goal4639, exit4639.",
+  "trajectory_id": "episode_2026091922002701",
+  "uncertainty": "Tool contact within the recess is visually supported, not force-labeled; safe recess width must be measured online."
+}

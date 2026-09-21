@@ -1,0 +1,1086 @@
+{
+  "calling_contract": "Catalog version 1: access_clearance_v1 (tool_access), push_boundary_v1 and push_visual_v1 (piece_relocation), align_local_v1 (local_alignment). These are four independently trained callable policies, not four sequential stages. The High-level Agent owns request interpretation, physical-instance assignment, explicit layout generation, choice of staging versus final goals, call order, retries and whole-word verification. Common call: policy_id, call_id, scene_track_version, instance_id where relevant, goal, protected_instance_ids, optional exit_tool_pose, tolerances, time_budget, safety_profile. An instance_id is a tracked physical component, not a character class. A goal is a fixed desired footprint with holes and an orientation cue in third_undistorted_uv (original image coordinates normalized by 1280,720), optionally accompanied by a verified table-frame SE(2) pose in metres/radians. A tool goal is T_base_ee in metres and rotation matrix; it refers to the recorded EE/TCP convention, not a newly assumed tip. Policies consume causal paired RGB/state history and output proposed seven-joint velocity commands plus diagnostics, through the common verified decoder described in model_inventory. Report RUNNING, LOCAL_GOAL_REACHED, NEED_REPOSITION, BLOCKED, LOST_TRACK, UNCERTAIN or SAFETY_STOP, with translation/contour/orientation residuals, protected-object displacement, track covariance, contact-mode probabilities, elapsed time and decoder clipping. LOCAL_GOAL_REACHED is not word success. Entry checks reject stale IDs, impossible geometry or unsafe goals. Completion requires current observed geometric agreement sustained across at least five valid observations and appropriate tool clearance; tolerances are caller supplied but must exceed perception/calibration uncertainty. Endpoints here are relabelled achieved local goals, never verified task successes. Representative A sequence: access zigzag piece, relocate it, stage central flanged piece, relocate ring, stage R-like piece, restage flanged piece, relocate upper H-like piece, stage D-like piece, return R-like piece to right column, align D-like piece, relocate/recontact L-like piece, align the two flanged pieces. Representative B differs: zigzag, flanged staging, D-like staging, ring, R-like repeated attempts, D-like correction, L-like relocation, H-like relocation, flanged correction, H-like revisit. Calls use the actual tracked instances and observed slot goals; these are examples, not a hardcoded spelling/order. A new request may require repeated access/relocate/align calls in any feasible order. On failure, first stop, reassess geometry and inventory, then choose another policy, a reachable intermediate goal, or request semantic clarification; do not silently enlist a human to choose each push.",
+  "capability_coverage": "Evidence map (A=episode_2026091922002701, B=episode_2026091922062101; all numbers original indices): high start, waiting and descent A0,599,600 and B0,419,420 -> tool_access initial sequences -> access_clearance_v1. Low-height travel, release and approach A6150,6339 and B2750,2939 -> reused tool_access transfers, also action-supervised handoffs in their parent object sequences. Gross zigzag relocation/rotation A600,750,1749 and B420,600,1229; central flanged-piece clearance A1750,1929 and B1230,1499; ring pushing/recontact A1930,2250,3000,3199 and B1910,2400,2819; staging and return of R-like piece A3200,3500,3779 / A5050,5250,5729 and B2820,3600,3900,4200,4709; further flanged staging A3780,4279; upper H-like transport A4280,4350,4669 / B6140,6600,6929; D-like staging A4670,5049 / B1500,1800,1909; difficult L-like turning and recontact A6200,6400,7500,7800,8129 / B4910,5400,6000,6139 -> piece_relocation -> push_boundary_v1 or push_visual_v1. Later D-like placement A5730,5850,6199 and B4710,4909; already-staged flanged adjustment A8130,8479 and B6930,7329; H-like final revisit A8480,9014 and B7330,7550,7729; L-like final correction A7800,8129 and R-like late retries B4050,4200,4650,4709 -> local_alignment -> align_local_v1. All pieces are flat brown cutouts; character names in this map are visual mnemonics, not supplied semantic labels. Wrist views A750,1500,2250,4350,5850,7500 and B419,3900,4050 show a long rigid rod/pusher rather than usable gripper feedback, contact on outer edges, concavities and sometimes hole boundaries. Pauses, release, lifting, small tool attitude changes and approach corrections are retained inside the object sequences, not discarded as dead time. Every one of 16745 source rows is materialized at least once; the base supervised partition also covers the entire source timeline, with component-wise missing-command masks. Initial null joint commands support scene/history and finite twist/hold labels only, not invented joint supervision. Additional language/inventory/layout competence and robust new-shape pushing are required for deployment and designed below, but are not established by these two recordings.",
+  "exclusions": [],
+  "generalization_design": "Separate four axes. (1) Semantic transfer: a proposed open-vocabulary visual-language recognizer returns character hypotheses and upright-direction distributions for each class-agnostic track. It must not use a fixed seven-piece classifier or sticker/barcode lookup. Confidence-calibrated inventory matching allocates distinct physical IDs to repeated requested characters; report unavailable multiplicities, unreadable pieces and infeasible layouts separately from manipulation failure. No such recognizer/weights/labels are supplied; acquire licensed pretrained assets and an independent open-set evaluation/annotation set. Human clarification may resolve semantic ambiguity, but it reduces autonomy and is never an assumed per-move controller. (2) Physical shape transfer: push_boundary_v1 shares local contour/normal/contact-response parameters over arbitrary outer and inner boundaries, with current geometry and online observed response rather than identity embeddings. push_visual_v1 provides an independent dual-view appearance/goal-mask temporal prior when clean contour/pose estimates are difficult. align_local_v1 uses locally updated response estimates and conservative short strokes. These are testable hypotheses, not proof that goal acceptance implies novel-shape competence. Acquire additional rigid pieces including entirely unseen characters, fonts, concavities, thin branches, holes, sizes, mass/friction combinations and clutter; some shapes may be unpushable with this rod and require a detected BLOCKED result rather than fabricated success. (3) Word/layout transfer: agent translates the word and explicit baseline, direction, orientation and spacing request into per-instance footprints using the actual inventory widths, collision margins and reachable workspace; staged moves are permitted and previously placed pieces are protected. It does not condition motor policies on episode identity, inferred recorded word or fixed object order. (4) Arrangement/control transfer: balanced staging/final goals, relative representations, short-horizon feedback, obstacle-aware access and mode memory address different starts and ordering. Evaluate leave-one-episode-out only as a limited same-inventory check; never call it unseen-shape evaluation. New held-out physical-instance/shape splits must exclude the same shape across all fonts/views/tracks as appropriate. Independently test unseen identity with recognizer, unseen physical shapes with oracle semantic IDs, unseen words on feasible known geometry, new layouts/arrangements, and a joint unseen-shape plus unseen-word plus new-arrangement suite. Include duplicate-character allocation, impossible inventory, identity ambiguity, occlusion, camera drift, protected-object disturbance, failed contact, near-edge cases and changing friction. Measure local pose/contour error, orientation ambiguity, completion calibration, contact/retry count, collisions, time, whole-word correctness and coverage after preprocessing. Compare four-policy composition, alternative selection, and ablations of geometry, wrist history, response adaptation and staging. No new-shape or word success is claimed.",
+  "goal_conditioning": "Shared label protocol G: for each object segment, identify the unique described physical component at its listed in-segment seed row, track it through that materialized sequence, and obtain its achieved footprint at the explicit goal row stated in label_derivation (normally supervised_stop-1). Annotate/audit segmentation masks with holes at these anchors, propagate with forward/backward optical flow for TRAINING LABELS, and record confidence and provenance per row. These annotations do not presently exist. Do not infer the requested word. Use a rigid planar contour registration between the entry reference mask and goal-row mask; retain multiple orientation hypotheses for symmetries, not a PCA sign chosen as semantic upright. In image coordinates store original and undistorted polygons, mask transform, reference frame/camera and uncertainty. If a verified support/top-plane calibration is acquired, project the same polygons into table metres to fit SE(2); otherwise geometry-metric losses are ineligible and the visual alternative uses normalized image masks. Achieved-goal hindsight labels are training-only caller-argument surrogates, not future observation inputs. A goal is fixed for a call; at time t only the current causal track, pose covariance and tool state update the relative error and obstacle map. Never replace a fixed goal with the current object location. Tool handoff protocol E: optional exit_tool_pose is the actual T_base_ee at the segment's final supervised row; this makes demonstrated post-push lateral departure/approach a conditioned action rather than an unexplained next-object motion. It is a tool waypoint, not a claim of zero velocity or stable contact. End-of-object sequences may terminate above or near the next piece, so clearance validity must be checked, not assumed. Online the agent supplies E from a collision-checked next-access plan; if omitted, a verified clearance retract is used and the demonstrated in-contact portion remains the main objective. Access goals similarly use the specified endpoint T_base_ee. The agent can specify layout in calibrated table coordinates only after commissioning, or directly as third-view goal footprints/orientation vectors. For metric layouts it chooses a support-plane origin/basis with upward normal and projects footprints with camera intrinsics/extrinsics. User word alone is insufficient: ask for or propose an explicit baseline origin, reading direction, upright direction, spacing/margins, and layout bounds; test inventory feasibility before movement. Geometry comes from the current pieces, not a memorized font template.",
+  "model_inventory": "Existing assets: original RGB/depth files, exact numeric arrays/action_json, sample/media hashes and mappings, per-episode camera intrinsics/extrinsics and TCP/teleop metadata. Calibration reports third/wrist 1280x720 RGB, K/distortion, T_base_cam and T_flange_cam, board pose, ~3.23 mm pose consistency and ~4.42 px reprojection RMS. These are not verified object/table-plane truth. Both camera-PC factory wrist intrinsics and a different calibrated wrist K exist: use the K/distortion paired with the selected extrinsics and validate overlay reprojection; never mix them silently. RAW preprocessing P: retain all clocks and original paired indices; decode action_json without altering nulls, validate transform rotations, normalize finite q/dq/tau features with validity masks and training-fold statistics; distinguish measured dq from commanded action.dq. Exclude gripper_position=-1 and NaN width as measurements; no grasp/open-close objective. RGB undistortion and 640x360 full-view tensors plus optional 256x256 original-coordinate target/tool crops are deterministic derived inputs, independent of inspection previews. Wrist extrinsic at row i is T_base_flange(i)*T_flange_cam. Recorded EE already includes TCP xyz[0,0,0.2], rpy[0,0,-90deg]; do not apply twice. Tool CAD/tip radius and true offset, table bounds/height, contact-height limits and robot collision geometry/URDF must be acquired or verified in commissioning. Depth is preserved but unused as a required input until scale, registration, invalid values and accuracy are validated. Perception S: class-agnostic instance segmentation and rod/occlusion segmentation (proposed pretrained segmentation backbone plus task fine-tuning); causal multi-view optical-flow/association tracker; calibrated rigid contour registration with covariance and explicit symmetry hypotheses. Obtain training-only anchor masks/track audits, frozen licensed weights, annotation manifests and quality metrics; these are obligations, not existing labels. Optional table reconstruction uses ray-plane intersection after support plane/letter height calibration, with sensitivity bounds, never filename-derived depth units or board=table assumption. Maintain third-UV representation when metric pose is unavailable. Four learned policies: access phase/residual network; boundary-equivariant proposal network plus contact-response ensemble; independent masked-goal dual-view temporal action model; local contact-mode/response-residual alignment model. They share converters/perception and safety interfaces, not policy weights. Semantic recognizer is a separate pretrained/open-set model needing independent testing; layout/inventory assignment, collision checking and call monitor are deterministic algorithms with learned uncertainty inputs. Action decoder D: train primarily against finite ORIGINAL action.dq seven-joint velocity commands, not observed dq; retain action.v in base and action.w in EE as additional recorded supervision and diagnostic heads. In access/geometry models a task-space proposal plus q-conditioned kinematic/residual decoder learns the command mapping; visual policy predicts joint commands directly. Do not equate J(q)*dq_measured or even J(q)*dq_command to recorded v,w: lead, follower, damping/posture and timing can differ. The proposed differentiable kinematic layer is a soft geometric prior, with an independently audited residual, not an asserted exact inverse of these recordings. Null dq means no joint/action-decoder loss, even when finite v/w can supervise auxiliary intent; null entire commands mean no action loss. Execution emits verified joint_velocity commands in the controller's checked joint order and units (candidate rad/s) at verified 20 Hz hold/timing, with watchdog, velocity/acceleration/jerk, joint-limit, collision and torque-envelope checks. It does not send arbitrary track_twist JSON or target_pose-null as a pose. Frame/timing/units and reproduction of recorded dq from candidate decoder must be tested against recording-controller implementation before robot deployment; translation units candidate m/s, rotation candidate rad/s from metadata require confirmation. Recorded w often zero while tool attitude changes, so force neither perfect fixed orientation nor an unverified exact twist decoder. Decoder clipping triggers diagnostics/replan rather than silently retraining altered labels. Later implementation must ship executable P/S/G/E/D converters, trained/pretrained assets, URDF/tool/plane calibrations, safety monitor, invocation examples and per-behavior eligibility counts alongside all policy implementations.",
+  "motion_coverage": "Base action-support intervals form a full partition: A access[0,600), relocation[600,1750),[1750,1930),[1930,3200),[3200,3780),[3780,4280),[4280,4670),[4670,5050),[5050,5730), alignment[5730,6200), relocation[6200,8130), alignment[8130,8480),[8480,9015). B access[0,420), relocation[420,1230),[1230,1500),[1500,1910),[1910,2820),[2820,4710), alignment[4710,4910), relocation[4910,6140),[6140,6930), alignment[6930,7330),[7330,7730). Extra supervised uses are A[6150,6340), B[2750,2940) for access and A[7800,8130), B[4050,4710) for alignment. API numerical bins were survey aids only: initial TCP heights ~0.365 m descend toward recorded ~0.05-0.1 m near pieces, with lateral sweeps and lifts; these values are base-frame EE measurements, not measured contact heights above the table. A750 has substantial external joint torque compared with nearby free motion, but tau_ext is neither verified force nor contact ground truth. B3865-4251 numerical bin has larger joint speeds (up to ~0.662 rad/s measured on one joint) and images3900,4050,4200 show R-like correction plus tool lift/posture change; retain as useful repeated-attempt/reposition behavior, not assume a collision or discard it as an outlier. Recorded terminal rows A9014/B7729 contain finite zero commands and measured states, so they remain real supervised settling records; no successor is fabricated. Missing joint commands at startup A0,100,250/B0 are explicitly masked for joint loss, with finite twist zero labels and scene context retained. No row is declared unusable wholesale on current evidence. Later invalid perception or command fields must be reported with per-behavior retained/excluded counts and cannot quietly eliminate difficult contact/retry examples.",
+  "overlap_rationale": "Each main segment includes 15 original rows (~0.5 s) of preceding/following context where available; initial sequences start at 0 and terminal sequences end at N. This provides pre-entry tracking, causal short history, and observed handoff evidence, not extra action supervision under the wrong object's goal. Supervised ranges include their own approach, recontact, push, release and conditioned E departure. Context from a preceding object never receives a loss for the current object. Following context can provide training-only stopping/label audit but cannot enter an earlier observation window. Deliberate cross-group action overlap: A[6150,6340) and B[2750,2940) teach tool-only navigation with endpoint tool goals; in parent object groups their release/access motions are conditioned on that group's object goal plus E. A[7800,8130) and B[4050,4710) teach both full-goal continuation and a separate near-goal/recontact alignment call with identical achieved geometric goal provenance. Overlap is not an independent episode or proof of more shape diversity. If an access interval is found to move an object on dense annotation, its contact portion must be reassigned to the appropriate object group rather than labelled collision-free. Boundary samples are chosen within release/approach corridors, not as force-verified contact events.",
+  "portfolio_rationale": "Three reusable subtasks, four independent policies. tool_access exposes high/low approach, clearance and repositioning so the agent need not ask a shape policy to improvise every entry. piece_relocation moves one selected physical piece to a staging or final geometric goal; keeping full recontact cycles avoids turning each teleoperator adjustment into a new letter-specific skill. local_alignment refines a previously staged or nearly placed piece while preserving nearby placements, including repeated micro-corrections and short lifts. Its dataset also reuses late portions of difficult relocations. A boundary-equivariant/response-model prior and a dual-view goal-mask temporal prior are meaningfully different alternatives for relocation: one explicitly shares local geometric dynamics, the other retains appearance and history through partial occlusion. The alignment prior is intentionally local and feedback-heavy, distinct from long open-loop moves. Access has one obstacle/kinematic prior because two episodes do not justify multiple cosmetic navigation models. No one-policy-per-letter, one-policy-per-word, fixed sequence, or single monolithic trajectory-replay model is proposed.",
+  "sharing_and_diversity_audit": "There are 28 materialized sequences: 4 access, 16 relocation, 8 alignment; two relocation policies share the same 16-sequence dataset but are trained independently. Identity aliases W/O/R/D/L/H/I describe inspected shape/position only; seven apparent physical pieces per scene is a visual inference and cross-episode physical identity is not certified. Perception, coordinate conversion, semantic matching, layout and safety components are shared for interface consistency. Policy parameters and response heads are separate; alternative gains must be evaluated with the same splits and caller goals. Windows are constructed within one materialized source segment only. At a supervised row use up to the preceding 15 rows and current row, actual t deltas and validity masks, never rows before segment start; left-pad missing history with a mask, not invented observations. Short action chunks have at most 0.2 s horizon and losses only on rows in the supervised interval with the relevant command present; time-query models are trained on original irregular timestamps and queried online at verified control cadence, without re-pairing devices. Reset policy hidden state on a new instance/goal/call; initialize from current causal history, transferring tracker IDs/covariance but not hidden future-goal state. Repeated constant commands are weighted by source robot elapsed duration rather than treated as independent 30 Hz control decisions; preserve 20 Hz teleop versus 30 Hz recording distinction. Balance sequences and behavior modes; cap contribution of long idle holds without deleting them. Weight duplicated (trajectory,index,component-loss) uses inversely by multiplicity within shared-component training; for independent policies count reuse explicitly instead of pretending extra independent data. Group every cut/overlap/anchor from an episode together in train/evaluation; no random-frame split. Hindsight goal sampling is restricted to inspected/reliably annotated achieved subgoals within the same physical-instance sequence, with its horizon/provenance recorded. Whole-episode held-out checks remain small-data diagnostics, not novel-letter validation. Eligibility gate: every behavior above must retain action supervision in at least one applicable policy after preprocessing, or acquire missing annotations/data and report the gap before training is accepted.",
+  "skills": [
+    {
+      "heuristics": [
+        {
+          "action_decoding": "Use shared D. Predict a seven-joint residual around a collision-checked, q-conditioned waypoint velocity proposal; supervise ORIGINAL finite action.dq and auxiliary recorded v/w separately. Output only the resulting bounded joint-velocity proposal to the verified controller adapter. Nominal path planning is a prior, not a replacement label. Missing dq rows cannot train the residual as zero. Treat all translation/rotation/controller units as commissioning gates.",
+          "applicability": "Tool free or safely disengageable, reachable caller T_base_ee waypoint, reliable obstacle/tool tracking and commissioned robot collision geometry. Includes approaching a boundary/concavity from above, not deliberately displacing a piece. With no clear corridor return BLOCKED rather than sweeping through letters.",
+          "augmentation": "Photometric illumination/texture and rod/scene occlusion augmentations with visibility masks; passive re-expression of all geometric positions, goal, tool pose and vector labels in a common planar frame. Do not move raw q or rotate joint command vectors as if Cartesian. Real spatial transformations require checked IK/collision recomputation and are not assumed available. Do not add an obstacle to an existing action trajectory without checking its swept path.",
+          "evidence": [
+            {
+              "indices": [
+                0,
+                599,
+                600,
+                6150,
+                6339
+              ],
+              "trajectory_id": "episode_2026091922002701"
+            },
+            {
+              "indices": [
+                0,
+                419,
+                420,
+                2750,
+                2939
+              ],
+              "trajectory_id": "episode_2026091922062101"
+            }
+          ],
+          "goal_conditioning": "Tool goal T_base_ee, clearance/contact-access mode, optional selected instance and intended boundary region, protected-instance set and safety limits. Training endpoint poses are explicit G/E-style hindsight arguments, not online inputs from future robot states.",
+          "handoff": {
+            "entry_conditions": "Valid calibration/controller, free or known disengageable tip, finite robot state, valid tool waypoint and current obstacle tracks.",
+            "exit_conditions": "Waypoint position/orientation within uncertainty-aware tolerance with a safe approach corridor and low velocity, or report reached-waypoint-but-not-settled if the training boundary was in motion. Policy does not declare object placement.",
+            "failure_signatures": "Unexpected component motion, rising torque residual, tip inside an unapproved occupied region, no safe path, stale tracking or repeated command clipping.",
+            "overlap_role": "Initial context and 15-row buffers initialize scene and short history. Two transfers overlap object-policy release/access supervision under explicit tool goals, not object-motion goals.",
+            "successor_readiness": "Return tip pose, target boundary accessibility, obstacle covariance and any remaining contact; relocate or align may start only after verifying entry. Otherwise agent selects another waypoint or safe stop."
+          },
+          "heuristic_id": "clearance_phase_prior",
+          "input_preprocessing": "P/S plus current signed-distance obstacle raster from visible instance masks, rod projection and commissioned tool swept volume. Fuse q/T_base_ee with endpoint-relative pose, height relative to verified plane where available, current image-space obstacle distance and last 0.5 s of commands/state. Class labels are not inputs. Train a small recurrent phase network (depart, traverse, descend, settle) with q-conditioned command residual; latent phases may use weak height/motion cues, not purported contact truth. If metric obstacle conversion is unavailable, image clearance remains a cue but robot execution is blocked until a conservative collision envelope is verified.",
+          "limitations": "Sparse examples, no independent active search or collision recovery demonstrations. A low tip projected onto a piece does not establish contact. Planning success cannot certify cable/arm clearance without acquired tool/robot geometry.",
+          "pipeline_implications": "Implement and validate swept-volume checker, waypoint proposer, residual target derivation and hysteretic entry/exit monitor. Count contact-contaminated access rows after dense tracking; keep their parent object supervision. No autonomous robot movement is authorized by this plan.",
+          "policy_contract": {
+            "caller_arguments": "policy_id=access_clearance_v1; goal_tool_pose T_base_ee, mode=approach|depart|transfer, protected_instance_ids, optional target instance/boundary region, tolerance/time budget/safety profile.",
+            "input_output_contract": "Group tool_access. Causal RGB/state/history through P/S; propose finite seven-joint velocity through D. Own obstacle avoidance, approach phase and stopping, not character assignment or letter displacement.",
+            "memory_and_handoff": "Reset phase state on new call; initialize with up to 0.5 s available history and validity masks; preserve tracker IDs across calls. Return actual pose/clearance, never assume next object is contacted.",
+            "selection_cues": "Choose before another policy when tip is high, on wrong side, obstructed, or a previous push finished in contact. Prefer this over arbitrary long motion from an alignment policy.",
+            "status_and_progress": "Report RUNNING phase, waypoint error, clearance margin, uncertainty; READY only after stable safe entry. BLOCKED/LOST_TRACK/SAFETY_STOP include responsible obstacle/measurement."
+          },
+          "policy_id": "access_clearance_v1",
+          "rationale": "Both episodes approach from a similar high robot start and later traverse at low height between pieces. Tool-goal relative geometry plus clearance costs should transfer these motions without memorizing a particular next letter. This remains a hypothesis pending held-out starts and obstacle layouts.",
+          "statement": "Learn a goal-relative, obstacle-aware tool-access policy with a phase/hysteresis prior and a kinematic command residual."
+        }
+      ],
+      "name": "Tool access, disengagement and clearance positioning",
+      "segmentation_rationale": "Two long initial approaches and two irregular later transfers provide a common tool-waypoint learning problem. Buffers include the first object interaction only as context; parent object groups supervise contact and recontact. The tool-only calls deliberately do not need character identity.",
+      "segments": [
+        {
+          "boundary_evidence_indices": [
+            0,
+            599,
+            600,
+            614
+          ],
+          "condition_evidence_indices": [
+            0,
+            599
+          ],
+          "deployment_condition_source": "Caller supplies a reachable tool waypoint from the current selected piece's observed boundary and collision-checked approach plan.",
+          "label_derivation": "Tool goal is recorded T_base_ee at599; auxiliary access-region referent is zigzag cutout below the rod in third599. D uses finite action.dq only; startup null dq is masked, finite v/w and scene history remain.",
+          "merge_check": "Same tool endpoint/clearance objective as B initial and later transfers, despite longer startup waiting.",
+          "objective": "Approach the first zigzag piece from high initial pose without assigning a word.",
+          "rationale": "0 shows all pieces and high TCP;599/600 show rod poised over the zigzag, with base EE z about0.085m, preceding the push contact. Following15 rows are context only.",
+          "segment_id": "a_initial_access",
+          "split_check": "End before the object-moving cycle; retain startup pauses and approach under tool goal. Do not split the descent into fixed numerical bins.",
+          "start": 0,
+          "stop": 615,
+          "supervised_start": 0,
+          "supervised_stop": 600,
+          "supervision_exclusions": [],
+          "training_condition": "mode=approach; tool_goal=pose599; no semantic letter input; protect all physical pieces.",
+          "trajectory_id": "episode_2026091922002701",
+          "uncertainty": "Actual contact onset and true tip offset not measured; initial null joint commands are not zeros."
+        },
+        {
+          "boundary_evidence_indices": [
+            0,
+            419,
+            420,
+            434
+          ],
+          "condition_evidence_indices": [
+            0,
+            419
+          ],
+          "deployment_condition_source": "Current target boundary and caller tool waypoint, not recorded scene/word.",
+          "label_derivation": "Tool goal T_base_ee419; zigzag piece is front-right in third0 and beneath rod in wrist419. Null joint command components are masked under D.",
+          "merge_check": "Same high-to-low access objective, different initial arrangement and approach path.",
+          "objective": "Bring tool from home-like start to access the front zigzag piece.",
+          "rationale": "Third419/420 is arm-occluded but paired wrist419/420 shows the piece and rod; state419 is downward command.434 follows contact-like torque increase and is context only.",
+          "segment_id": "b_initial_access",
+          "split_check": "Cut at access-to-object handoff; following context is not tool-only action supervision.",
+          "start": 0,
+          "stop": 435,
+          "supervised_start": 0,
+          "supervised_stop": 420,
+          "supervision_exclusions": [],
+          "training_condition": "mode=approach; tool_goal=pose419; current scene obstacle masks.",
+          "trajectory_id": "episode_2026091922062101",
+          "uncertainty": "Projected overlap is not verified force contact; wrist resolves target identity geometrically."
+        },
+        {
+          "boundary_evidence_indices": [
+            6135,
+            6150,
+            6199,
+            6200,
+            6339,
+            6354
+          ],
+          "condition_evidence_indices": [
+            6150,
+            6339
+          ],
+          "deployment_condition_source": "Agent chooses next access waypoint using current L-like boundary/obstacles.",
+          "label_derivation": "Tool waypoint T_base_ee6339; no object goal; D original command labels. Protect the stationary D-like and R-like pieces along the route.",
+          "merge_check": "Common transfer objective rather than D/L spelling-specific behavior.",
+          "objective": "Transfer away from D-like alignment toward the L-like piece, ending above its boundary.",
+          "rationale": "6150 shows departure near the right column;6339 shows rod above L-like piece without an observed relocation.15-row buffers bracket the corridor.",
+          "segment_id": "a_transfer_to_l",
+          "split_check": "Reused subset spanning parent D-alignment/L-relocation handoff; not extend into L push at6400.",
+          "start": 6135,
+          "stop": 6355,
+          "supervised_start": 6150,
+          "supervised_stop": 6340,
+          "supervision_exclusions": [],
+          "training_condition": "mode=transfer; tool_goal=pose6339; protect all pieces; no intended object motion.",
+          "trajectory_id": "episode_2026091922002701",
+          "uncertainty": "Dense tracking must verify object stationarity; access loss is ineligible where actual displacement occurs, while parent object support remains."
+        },
+        {
+          "boundary_evidence_indices": [
+            2735,
+            2750,
+            2819,
+            2820,
+            2939,
+            2954
+          ],
+          "condition_evidence_indices": [
+            2750,
+            2939
+          ],
+          "deployment_condition_source": "Current scene and agent-selected next approach waypoint.",
+          "label_derivation": "Tool waypoint T_base_ee2939; all pieces treated as stationary obstacles for this access example; original finite commands under D.",
+          "merge_check": "Same depart/traverse/approach responsibility as A transfer, different direction and clutter.",
+          "objective": "Depart ring placement and approach R-like piece without moving either.",
+          "rationale": "2750 tip is released above ring;2939 is above R-like piece before contact at later3000. Parent goals explicitly condition their exit/access motions.",
+          "segment_id": "b_transfer_to_r",
+          "split_check": "Use only visually supported free-transfer corridor, not entire R relocation.",
+          "start": 2735,
+          "stop": 2955,
+          "supervised_start": 2750,
+          "supervised_stop": 2940,
+          "supervision_exclusions": [],
+          "training_condition": "mode=transfer; tool_goal=pose2939; protect all pieces.",
+          "trajectory_id": "episode_2026091922062101",
+          "uncertainty": "No measured contact label; audit stationarity before using collision-free auxiliary targets."
+        }
+      ],
+      "skill_id": "tool_access",
+      "subgoal": "Reach a caller-specified safe tool access/clearance pose without intentional piece displacement."
+    },
+    {
+      "heuristics": [
+        {
+          "action_decoding": "Use D with a geometric contact-motion proposal and q-conditioned kinematic/residual joint decoder trained on finite action.dq. Auxiliary v/w targets retain their original base/EE frames. The learned forward response predicts object displacement, not measured robot dq as action. Execute only the first safe proposal, reobserve and replan at verified cadence; do not apply open-loop recorded joint trajectories.",
+          "applicability": "One selected rigid planar instance, reliable current contour/track, feasible local footprint goal and commissioned geometry. Supports outer boundaries, holes and concavities where rod fit/access is verified; can choose recontact and intermediate pushes internally but not switch physical target without a new agent call.",
+          "augmentation": "Use passive SE(2) coordinate re-expression of contour points, normals, tool state, fixed goal and task-space labels together; q and physical joint command labels remain unchanged and the decoder receives the frame transform. Metric physical translation/rotation augmentations require validated IK and scene/collision regeneration, not naive dq rotation. Photometric changes only affect perception inputs. Do not distort shapes and retain old action/object-response labels: novel-shape dynamics require new evidence or a separately validated simulator, not fake demonstration relabels.",
+          "evidence": [
+            {
+              "indices": [
+                750,
+                2250,
+                3500,
+                4350,
+                5250,
+                6400,
+                7500,
+                7800
+              ],
+              "trajectory_id": "episode_2026091922002701"
+            },
+            {
+              "indices": [
+                600,
+                2400,
+                3600,
+                3900,
+                4200,
+                5400,
+                6600
+              ],
+              "trajectory_id": "episode_2026091922062101"
+            }
+          ],
+          "goal_conditioning": "G instance track, fixed achieved or requested footprint/SE(2), semantic upright cue only if supplied by agent, protected masks, optional E waypoint. Mode proposals use current goal-relative contour error, not a learned W/O/R class embedding.",
+          "handoff": {
+            "entry_conditions": "Selected instance geometrically distinguishable, stable support, safe tip approach available or supplied by access policy, reachable goal and protected-neighbor map.",
+            "exit_conditions": "Observed object footprint/orientation within uncertainty-aware tolerance for five valid observations; optionally E reached safely. Otherwise intermediate progress or NEED_REPOSITION is reported rather than terminal success.",
+            "failure_signatures": "Wrong-piece motion, slip/stall, unexpected rotation, rod trapped in hole/concavity, large model disagreement, lost identity, edge risk or protected-piece displacement.",
+            "overlap_role": "Full same-instance cycles retain approach/recontact/withdrawal supervision.15-row external buffers are history/handoff only. Late L/R portions overlap local_alignment with identical goal provenance.",
+            "successor_readiness": "Return current object footprint, uncertainty and tip/contact state. Agent may call alignment, access, or another staging relocation; completed local placement does not authorize unchecked next motion."
+          },
+          "heuristic_id": "boundary_response_prior",
+          "input_preprocessing": "P/S/G. Sample outer and inner contour points with normals/visibility and instance membership; build a permutation-invariant local graph containing rod boundary, goal contour and nearby obstacles in a common goal-relative table frame when verified, otherwise third-UV with projective uncertainty. An equivariant graph proposal network scores boundary contacts and depart/approach/push modes. A small learned response ensemble predicts observed rigid object delta over short horizons from local geometry, current tool state and ORIGINAL commands. Train response targets only from valid tracked poses at later rows within this segment; they are auxiliary labels, never online inputs. Online update response uncertainty from past executed actions/current visual motion without privileged friction or force labels.",
+          "limitations": "Quasi-static/local response is approximate, not guaranteed for arbitrary fonts, mass, friction, thin branches or multi-object jams. Two recordings provide little dynamics diversity. Calibration/shape visibility can make this policy unavailable; choose visual alternative or stop, not invented contours.",
+          "pipeline_implications": "Implement boundary sampling, topology-preserving holes, equivariant network, contact candidate accessibility, ensemble dynamics, collision-aware short-horizon optimizer and command decoder. Acquire mask/track annotations and tool/plane assets; quantify which staging/retry/contact modes survive preprocessing. Do not replace difficult missing-pose examples with claimed geometric supervision.",
+          "policy_contract": {
+            "caller_arguments": "policy_id=push_boundary_v1; instance_id, fixed goal footprint and optional verified SE(2), orientation ambiguity set, protected IDs, E, tolerances/time/safety.",
+            "input_output_contract": "Group piece_relocation. Current causal RGB/geometry/proprioception/history -> proposed seven-joint velocities through D plus predicted object response/mode confidence. Own local contact choice, same-piece recontact and departure.",
+            "memory_and_handoff": "Reset goal-specific state on call; carry causal tracker state and past-response uncertainty only. Keep model adaptation local to current tool/material context; reset on shape/material change or track loss.",
+            "selection_cues": "Prefer when contours and table geometry are reliable, especially unseen shape with clear boundary, large translation/turn or deliberate staging. Switch to visual alternative for geometric ambiguity only if semantic identity and safety remain reliable.",
+            "status_and_progress": "Expose contour/SE(2) residual, predicted/observed displacement, ensemble disagreement, active boundary region and stall count. Report LOCAL_GOAL_REACHED, NEED_REPOSITION or BLOCKED with evidence."
+          },
+          "policy_id": "push_boundary_v1",
+          "rationale": "The rod pushes different geometries and deliberately changes contact sides; A L-like cycle and B R-like retries show that translation-only centroid control is insufficient. Shared local boundary response and feedback should generalize physical interactions more plausibly than per-character action lookup, but require independent novel-shape testing.",
+          "statement": "Learn geometry-shared contact proposals and a short-horizon object-response ensemble for closed-loop single-piece relocation."
+        },
+        {
+          "action_decoding": "Predict continuous-time short-horizon seven-joint command chunks, trained on finite ORIGINAL action.dq at original source t queries; auxiliary heads predict recorded v/w and near-term visual displacement. At deployment query the first control-time command and use D safety checks. Never substitute measured dq, fabricate missing commands, or blindly replay an entire chunk.",
+          "applicability": "Same selected-instance/goal responsibility as push_boundary_v1, useful when partial occlusion or appearance makes hard contour registration unstable but dual-view track identity and safety bounds remain trustworthy. Not a fallback for absent target identity or uncalibrated robot execution.",
+          "augmentation": "Synchronized color/lighting changes, sticker-text masking, background randomization and explicit camera/patch dropout across a history; apply target/goal mask coordinate warps consistently with image crops and projected tool features. Valid passive view-coordinate changes leave physical q/dq labels intact. No horizontal reflection that changes letter semantics without updating orientation cue; no artificial shape replacement with unchanged action labels.",
+          "evidence": [
+            {
+              "indices": [
+                600,
+                750,
+                1749,
+                2250,
+                4350,
+                7500
+              ],
+              "trajectory_id": "episode_2026091922002701"
+            },
+            {
+              "indices": [
+                419,
+                420,
+                3900,
+                4050,
+                4200,
+                4709
+              ],
+              "trajectory_id": "episode_2026091922062101"
+            }
+          ],
+          "goal_conditioning": "Same G/E public interface. Rasterize desired footprint and orientation cue on current third-view input, with selected-instance mask and track token. Future goal RGB is never an input: training uses only derived goal silhouette/pose, and online render uses caller geometry plus current observed entry shape.",
+          "handoff": {
+            "entry_conditions": "Trustworthy selected instance, at least one usable camera view, calibrated safety envelope and feasible goal; history masking handles unavailable second view.",
+            "exit_conditions": "External current-observation goal/clearance monitor, not chunk length or recorded duration, declares completion.",
+            "failure_signatures": "Cross-view identity mismatch, attention on wrong piece, repeated action chunk disagreement/clipping, no visible progress, drift under prolonged occlusion or collision risk.",
+            "overlap_role": "Full relocation cycles teach visual continuation through occlusion/recontact, with external15-row buffers available only causally. Same late overlaps as boundary policy; not extra independent data.",
+            "successor_readiness": "Return goal residual/track confidence and actual tip state; caller decides alignment or access. No hidden spelling progress state is passed."
+          },
+          "heuristic_id": "dual_view_mask_goal_prior",
+          "input_preprocessing": "P RGB full views plus original-coordinate target/tool crops, per-view validity, q/measured dq/tau/T_base_ee, previous executed commands and time deltas over0.5s. A pretrained visual encoder with a small independently trained temporal goal-cross-attention/action-chunk model uses selected-object and desired-footprint channels. Training-only mask/flow annotations may supervise attention, pose-progress and cross-view consistency; online masks come from causal S. Use camera-dropout training so partial arm occlusion (B419) is not mistaken for target absence. This policy does not require metric object pose as an input, though the common execution safety envelope must still be commissioned.",
+          "limitations": "Visual representations may memorize brown material/background and do not establish new-shape manipulation. Different letters can have unseen dynamics even if the encoder recognizes them. Encoder assets and sufficient geometry-diverse data are missing; no claim of end-to-end open-world competence.",
+          "pipeline_implications": "Acquire compatible visual weights and licenses; implement goal raster/crop mapping, temporal masks and continuous-time chunk labels without re-pairing. Audit goal-channel leakage, sticker dependence and view availability per behavior; train and evaluate independently of boundary policy.",
+          "policy_contract": {
+            "caller_arguments": "policy_id=push_visual_v1; same instance_id/goal/protected_ids/E/tolerance/time/safety interface as boundary alternative; caller need not choose a contact point.",
+            "input_output_contract": "Group piece_relocation. Causal dual RGB/proprio/history plus current masks and fixed goal raster -> short command proposals through D and diagnostic confidence. Own same-piece pushing/recontact, not word semantics.",
+            "memory_and_handoff": "Initialize from bounded current history; reset action chunk on new goal, track uncertainty or stop; no hidden state copied from boundary policy. Transfer only shared explicit observations/track state.",
+            "selection_cues": "Choose for robust dual-view observations with unreliable hard contour pose, or as an independently validated alternative after a geometric proposal stalls. Do not select solely because a character is unseen.",
+            "status_and_progress": "External geometric/image residual and internal ensemble/chunk uncertainty, camera availability and track confidence. Explicit BLOCKED/LOST_TRACK rather than action completion by elapsed time."
+          },
+          "policy_id": "push_visual_v1",
+          "rationale": "Third views are repeatedly obscured by the arm while wrist views show the actual contact boundary. Preserving dual-view temporal evidence offers a substantive alternative to committing to a single accurate contour/pose estimate; generalization to appearance and unseen geometry remains an evaluation hypothesis.",
+          "statement": "Learn a selected-instance, fixed-goal-mask dual-view temporal command policy with short receding-horizon chunks."
+        }
+      ],
+      "name": "Single-piece relocation, staging and same-piece recontact",
+      "segmentation_rationale": "Sixteen irregular same-instance objectives from both trajectories. Staging and final placement share a local geometry-to-goal problem; the agent supplies different goals and protected neighbors. Sequences retain nonmonotone attempts, lifts and side changes until target switch. Different targets are separate sequences; no concatenated continuity. Broad boundaries are within release/approach corridors and include E-conditioned tool departure, not force-certified contact splits.",
+      "segments": [
+        {
+          "boundary_evidence_indices": [
+            585,
+            599,
+            600,
+            1749,
+            1750,
+            1764
+          ],
+          "condition_evidence_indices": [
+            600,
+            750,
+            1749
+          ],
+          "deployment_condition_source": "G caller-selected physical zigzag or any other tracked geometry with an explicit local slot.",
+          "label_derivation": "G seed600: zigzag cutout below rod near upper-left cluster; goal1749: same piece at front/right. E=T_base_ee1749. Original D labels.",
+          "merge_check": "Same one-instance relocation objective as B zigzag and other shapes; no character embedding.",
+          "objective": "Relocate and turn zigzag piece out of initial cluster.",
+          "rationale": "750 wrist shows edge contact;1749 shows placed piece and rod departing. Context585-599 is approach history,1750-1764 next-target transition only.",
+          "segment_id": "a_zigzag_move",
+          "split_check": "Keep all turning/translation/recontact in one goal cycle; switch target only after1749.",
+          "start": 585,
+          "stop": 1765,
+          "supervised_start": 600,
+          "supervised_stop": 1750,
+          "supervision_exclusions": [],
+          "training_condition": "instance=zigzag_at600; achieved footprint1749; E1749; other pieces protected.",
+          "trajectory_id": "episode_2026091922002701",
+          "uncertainty": "W/M-like interpretation and desired spelling unverified; goal is achieved placement only."
+        },
+        {
+          "boundary_evidence_indices": [
+            1735,
+            1749,
+            1750,
+            1929,
+            1930,
+            1944
+          ],
+          "condition_evidence_indices": [
+            1750,
+            1929
+          ],
+          "deployment_condition_source": "Agent may request a temporary staging footprint to open space.",
+          "label_derivation": "G seed1750 central flanged bar immediately above ring, not upper H-like piece; goal1929 after leftward adjustment. E1929; D labels.",
+          "merge_check": "Small staging displacement is still relocation to a supplied local goal, not word completion.",
+          "objective": "Shift central flanged piece to clear access around ring.",
+          "rationale": "1750 rod departs zigzag;1929 central flanged piece is shifted/turned.15-row external context disambiguates target switch.",
+          "segment_id": "a_flanged_stage_one",
+          "split_check": "Separate from zigzag and ring goals; do not label preceding zigzag action for this instance.",
+          "start": 1735,
+          "stop": 1945,
+          "supervised_start": 1750,
+          "supervised_stop": 1930,
+          "supervision_exclusions": [],
+          "training_condition": "instance=central_flanged_at1750; staging footprint1929; E1929.",
+          "trajectory_id": "episode_2026091922002701",
+          "uncertainty": "Clearance purpose is evidence-based interpretation, not annotated intent."
+        },
+        {
+          "boundary_evidence_indices": [
+            1915,
+            1929,
+            1930,
+            3199,
+            3200,
+            3214
+          ],
+          "condition_evidence_indices": [
+            1930,
+            2250,
+            3000,
+            3199
+          ],
+          "deployment_condition_source": "Caller supplies selected ring-like instance and arbitrary feasible footprint.",
+          "label_derivation": "G seed1930 lower oval ring; goal3199 right-side ring above zigzag. E3199; D labels. Ring symmetries retain multiple angle hypotheses.",
+          "merge_check": "Same geometry-conditioned pushing with different outer/inner boundaries and starting orientation.",
+          "objective": "Translate/turn ring-like piece into right-side placement with recontact.",
+          "rationale": "2250 wrist supports outer-boundary push;3000 and3199 show aligned ring and rod release.15-row buffers cover entry/next transition.",
+          "segment_id": "a_ring_move",
+          "split_check": "Do not split approach, contact-side changes and final correction into separate object IDs.",
+          "start": 1915,
+          "stop": 3215,
+          "supervised_start": 1930,
+          "supervised_stop": 3200,
+          "supervision_exclusions": [],
+          "training_condition": "instance=ring_at1930; footprint3199; E3199; protect zigzag and other pieces.",
+          "trajectory_id": "episode_2026091922002701",
+          "uncertainty": "Oval symmetry means geometric orientation does not uniquely identify semantic upright."
+        },
+        {
+          "boundary_evidence_indices": [
+            3185,
+            3199,
+            3200,
+            3779,
+            3780,
+            3794
+          ],
+          "condition_evidence_indices": [
+            3200,
+            3500,
+            3779
+          ],
+          "deployment_condition_source": "Agent supplies a staging goal from current free-space reasoning.",
+          "label_derivation": "G seed3200 left R-like branched piece above central flanged bar; goal3779 same piece near rear beside L-like piece. E3779; D labels.",
+          "merge_check": "Staging and later return are distinct invocations of the same reusable local-goal problem.",
+          "objective": "Move R-like piece rearward, including rotation, to a temporary location.",
+          "rationale": "3500 shows turned piece under rod;3779 shows rear placement and tool traversing away. Intermediate proximity to flanged piece is not a target switch.",
+          "segment_id": "a_branched_stage",
+          "split_check": "Later R return5050 is noncontiguous and separately indexed; do not concatenate.",
+          "start": 3185,
+          "stop": 3795,
+          "supervised_start": 3200,
+          "supervised_stop": 3780,
+          "supervision_exclusions": [],
+          "training_condition": "instance=branched_at3200; staging footprint3779; E3779.",
+          "trajectory_id": "episode_2026091922002701",
+          "uncertainty": "R label is visual mnemonic; exact contact onset unverified."
+        },
+        {
+          "boundary_evidence_indices": [
+            3765,
+            3779,
+            3780,
+            4279,
+            4280,
+            4294
+          ],
+          "condition_evidence_indices": [
+            3780,
+            4279
+          ],
+          "deployment_condition_source": "Current flanged track and temporary agent layout/clearance goal.",
+          "label_derivation": "G seed3780 central flanged bar left of ring; goal4279 moved up-left. E4279; D labels.",
+          "merge_check": "Revisit of earlier staged piece is a new local-goal call, not new character-specific model.",
+          "objective": "Restage central flanged piece up-left.",
+          "rationale": "Start includes approach; end shows moved piece while tip heads toward the upper H-like piece. E explains departure.",
+          "segment_id": "a_flanged_stage_two",
+          "split_check": "Keep same-piece contact corrections; end before upper H-like transport.",
+          "start": 3765,
+          "stop": 4295,
+          "supervised_start": 3780,
+          "supervised_stop": 4280,
+          "supervision_exclusions": [],
+          "training_condition": "instance=central_flanged_at3780; footprint4279; E4279.",
+          "trajectory_id": "episode_2026091922002701",
+          "uncertainty": "Geometric identity must be tracked separately from visually similar H-like piece."
+        },
+        {
+          "boundary_evidence_indices": [
+            4265,
+            4279,
+            4280,
+            4669,
+            4670,
+            4684
+          ],
+          "condition_evidence_indices": [
+            4280,
+            4350,
+            4669
+          ],
+          "deployment_condition_source": "Caller chooses upper H-like physical instance, not the other flanged piece.",
+          "label_derivation": "G seed4280 upper H-like cutout under rod; goal4669 same piece at front-left beside zigzag/ring. E4669 above D-like access region; verify clear height. D labels.",
+          "merge_check": "Relocation to temporary/front slot, sharing contact geometry mechanisms with B H-like transport.",
+          "objective": "Transport H-like piece from rear-central cluster to front-left staging.",
+          "rationale": "4350 wrist shows concave boundary contact;4669 H-like piece is front-left and tool over next D-like piece without its intended movement yet.",
+          "segment_id": "a_hlike_stage",
+          "split_check": "E-conditioned departure retained, but subsequent D-like movement belongs to next sequence.",
+          "start": 4265,
+          "stop": 4685,
+          "supervised_start": 4280,
+          "supervised_stop": 4670,
+          "supervision_exclusions": [],
+          "training_condition": "instance=upper_hlike_at4280; footprint4669; E4669; protect other flanged instance.",
+          "trajectory_id": "episode_2026091922002701",
+          "uncertainty": "End image projects rod into D hole, but EE is elevated; clearance requires calibration, not image overlap alone."
+        },
+        {
+          "boundary_evidence_indices": [
+            4655,
+            4669,
+            4670,
+            5049,
+            5050,
+            5064
+          ],
+          "condition_evidence_indices": [
+            4670,
+            5049
+          ],
+          "deployment_condition_source": "Agent requests reachable temporary location for chosen enclosed D-like geometry.",
+          "label_derivation": "G seed4670 left D-like piece with one large hole; goal5049 at rear-right of branched piece. E5049; D labels.",
+          "merge_check": "Long staging move, same one-piece achieved-goal supervision as B D staging.",
+          "objective": "Move D-like piece from left/front to rear/right staging.",
+          "rationale": "4670 rod descending over D-like region;5049 piece displaced rearward and rod returning toward branched target.",
+          "segment_id": "a_dlike_stage",
+          "split_check": "Do not merge later D correction5730; intervening R-like move is another call.",
+          "start": 4655,
+          "stop": 5065,
+          "supervised_start": 4670,
+          "supervised_stop": 5050,
+          "supervision_exclusions": [],
+          "training_condition": "instance=dlike_at4670; footprint5049; E5049.",
+          "trajectory_id": "episode_2026091922002701",
+          "uncertainty": "Hole contact possible but no ground-truth contact labels."
+        },
+        {
+          "boundary_evidence_indices": [
+            5035,
+            5049,
+            5050,
+            5729,
+            5730,
+            5744
+          ],
+          "condition_evidence_indices": [
+            5050,
+            5250,
+            5729
+          ],
+          "deployment_condition_source": "Agent chooses staged branched track and new right-column footprint.",
+          "label_derivation": "G seed5050 rear branched piece left of D-like; goal5729 placed above ring; E5729; D labels.",
+          "merge_check": "Same instance as earlier staging but different goal and surrounding layout; separate temporal sequence.",
+          "objective": "Return/relocate branched piece into column above ring.",
+          "rationale": "5250 shows approach/contact after staging;5729 shows relocated piece and rod moving toward D-like correction.",
+          "segment_id": "a_branched_return",
+          "split_check": "Retain access and recontacts, stop target responsibility before D-like correction.",
+          "start": 5035,
+          "stop": 5745,
+          "supervised_start": 5050,
+          "supervised_stop": 5730,
+          "supervision_exclusions": [],
+          "training_condition": "instance=branched_at5050; footprint5729; E5729; protect ring/zigzag.",
+          "trajectory_id": "episode_2026091922002701",
+          "uncertainty": "Achieved column arrangement is not a verified requested word."
+        },
+        {
+          "boundary_evidence_indices": [
+            6185,
+            6199,
+            6200,
+            8129,
+            8130,
+            8144
+          ],
+          "condition_evidence_indices": [
+            6200,
+            6400,
+            7500,
+            7800,
+            8129
+          ],
+          "deployment_condition_source": "Caller specifies L-like or any selected shape and desired slot/orientation; policy chooses contacts.",
+          "label_derivation": "G seed6200 left-rear L-shaped piece; goal8129 between D-like and branched pieces in right column. E8129; D labels; track through repeated turns rather than identity re-detection.",
+          "merge_check": "Same local pose objective but harder nonconvex turning/recontact; retain variability rather than average it into straight push.",
+          "objective": "Rotate, reposition and translate L-like piece through several attempts into its column slot.",
+          "rationale": "6400 starts contact;7500 wrist shows inside-corner contact;7800 still correcting angle;8129 shows final local placement/release.",
+          "segment_id": "a_corner_move",
+          "split_check": "Long duration is warranted by one physical target/goal and repeated attempts. Late7800-8130 is separately reusable for alignment, not a gap.",
+          "start": 6185,
+          "stop": 8145,
+          "supervised_start": 6200,
+          "supervised_stop": 8130,
+          "supervision_exclusions": [],
+          "training_condition": "instance=corner_at6200; footprint8129; E8129; protect right-column pieces.",
+          "trajectory_id": "episode_2026091922002701",
+          "uncertainty": "Goal inference is achieved pose; no claim every intermediate attempt improved error."
+        },
+        {
+          "boundary_evidence_indices": [
+            405,
+            419,
+            420,
+            1229,
+            1230,
+            1244
+          ],
+          "condition_evidence_indices": [
+            420,
+            600,
+            1229
+          ],
+          "deployment_condition_source": "Current zigzag track with explicitly supplied staging/final footprint.",
+          "label_derivation": "G seed420 front zigzag via wrist420; goal1229 farther right and reoriented. E1229; D labels.",
+          "merge_check": "Alternative initial arrangement/rotation of A zigzag objective, not a new skill.",
+          "objective": "Turn and relocate front zigzag piece.",
+          "rationale": "Wrist420 resolves arm occlusion;600 shows turned piece;1229 shows local placement and departure toward flanged piece.",
+          "segment_id": "b_zigzag_move",
+          "split_check": "Begin after access; keep repeated turning contacts, end before flanged displacement.",
+          "start": 405,
+          "stop": 1245,
+          "supervised_start": 420,
+          "supervised_stop": 1230,
+          "supervision_exclusions": [],
+          "training_condition": "instance=zigzag_at420; footprint1229; E1229.",
+          "trajectory_id": "episode_2026091922062101",
+          "uncertainty": "W/M appearance orientation is not semantic ground truth."
+        },
+        {
+          "boundary_evidence_indices": [
+            1215,
+            1229,
+            1230,
+            1499,
+            1500,
+            1514
+          ],
+          "condition_evidence_indices": [
+            1230,
+            1499
+          ],
+          "deployment_condition_source": "Agent requests clearance/staging goal for the central flanged physical track.",
+          "label_derivation": "G seed1230 central-right flanged bar, not rear-left H-like piece; goal1499 centrally staged to left of original position. E1499; D labels.",
+          "merge_check": "Matches A clearance/revisit behavior under local geometry goals.",
+          "objective": "Shift central flanged piece out of the planned right column.",
+          "rationale": "1230 tip approaches its right boundary;1499 piece shifted left and rod departing.",
+          "segment_id": "b_flanged_stage",
+          "split_check": "Separate from front zigzag and subsequent D-like staging; retain entry and departure.",
+          "start": 1215,
+          "stop": 1515,
+          "supervised_start": 1230,
+          "supervised_stop": 1500,
+          "supervision_exclusions": [],
+          "training_condition": "instance=central_flanged_at1230; footprint1499; E1499.",
+          "trajectory_id": "episode_2026091922062101",
+          "uncertainty": "Clearance intent inferred; local achieved goal is unambiguous geometrically."
+        },
+        {
+          "boundary_evidence_indices": [
+            1485,
+            1499,
+            1500,
+            1909,
+            1910,
+            1924
+          ],
+          "condition_evidence_indices": [
+            1500,
+            1800,
+            1909
+          ],
+          "deployment_condition_source": "Agent specifies reachable rear staging footprint for D-like instance.",
+          "label_derivation": "G seed1500 large front-left D-like piece; goal1909 rear-right beside ring; E1909; D labels.",
+          "merge_check": "Same long D-like staging as A, occurs earlier in this episode's order.",
+          "objective": "Move D-like piece rearward before ring relocation.",
+          "rationale": "1800 shows tool within/above displaced piece;1909 shows release and next-target access.",
+          "segment_id": "b_dlike_stage",
+          "split_check": "Do not use later D alignment goal as this segment's goal; staged endpoint is distinct.",
+          "start": 1485,
+          "stop": 1925,
+          "supervised_start": 1500,
+          "supervised_stop": 1910,
+          "supervision_exclusions": [],
+          "training_condition": "instance=dlike_at1500; footprint1909; E1909.",
+          "trajectory_id": "episode_2026091922062101",
+          "uncertainty": "D-like identity mnemonic and hole contact inferred, not provided labels."
+        },
+        {
+          "boundary_evidence_indices": [
+            1895,
+            1909,
+            1910,
+            2819,
+            2820,
+            2834
+          ],
+          "condition_evidence_indices": [
+            1910,
+            2400,
+            2750,
+            2819
+          ],
+          "deployment_condition_source": "Selected ring-like track and explicit slot goal.",
+          "label_derivation": "G seed1910 oval ring near rear-center; goal2819 above zigzag in right column. E2819; D labels; preserve symmetry alternatives.",
+          "merge_check": "Same ring relocation across a different initial arrangement and preceding order.",
+          "objective": "Move ring downward/right and turn into column.",
+          "rationale": "2400 shows contact;2750 release;2819 transfer begins toward next target, captured by E.",
+          "segment_id": "b_ring_move",
+          "split_check": "Contact/side changes remain in one sequence; tool-only2750-2940 reuse has different explicit goal.",
+          "start": 1895,
+          "stop": 2835,
+          "supervised_start": 1910,
+          "supervised_stop": 2820,
+          "supervision_exclusions": [],
+          "training_condition": "instance=ring_at1910; footprint2819; E2819.",
+          "trajectory_id": "episode_2026091922062101",
+          "uncertainty": "Symmetry/upright orientation cannot be inferred uniquely from ring geometry."
+        },
+        {
+          "boundary_evidence_indices": [
+            2805,
+            2819,
+            2820,
+            4709,
+            4710,
+            4724
+          ],
+          "condition_evidence_indices": [
+            2820,
+            3600,
+            3900,
+            4050,
+            4200,
+            4650,
+            4709
+          ],
+          "deployment_condition_source": "Caller requests branched physical instance and slot above ring.",
+          "label_derivation": "G seed2820 R-like piece on left; goal4709 above ring. E4709; D labels. Later pose/flow targets for response losses restricted to this sequence and confidence audited.",
+          "merge_check": "Same geometry-to-goal responsibility with nonmonotone retries and tool posture change, not a new semantic stage.",
+          "objective": "Relocate R-like piece and repeatedly correct its pose/contact.",
+          "rationale": "3600 rearward staging within attempt,3900 column entry,4050/4200 lift/posture adjustment,4650 correction,4709 release. Larger measured joint velocities are retained, not called failure without evidence.",
+          "segment_id": "b_branched_move_retry",
+          "split_check": "One target with multiple attempts: preserve history rather than cut at every pause.4050-4710 also trains local alignment under same achieved goal.",
+          "start": 2805,
+          "stop": 4725,
+          "supervised_start": 2820,
+          "supervised_stop": 4710,
+          "supervision_exclusions": [],
+          "training_condition": "instance=branched_at2820; footprint4709; E4709; protect ring/zigzag/D-like neighbors.",
+          "trajectory_id": "episode_2026091922062101",
+          "uncertainty": "No contact-force or operator intent labels; large robot posture change is observed, its cause unresolved."
+        },
+        {
+          "boundary_evidence_indices": [
+            4895,
+            4909,
+            4910,
+            6139,
+            6140,
+            6154
+          ],
+          "condition_evidence_indices": [
+            4910,
+            5400,
+            6000,
+            6139
+          ],
+          "deployment_condition_source": "Agent gives target slot and orientation for selected corner-shaped piece.",
+          "label_derivation": "G seed4910 rear-left L-shaped piece; goal6139 between D-like and branched pieces. E6139; D labels.",
+          "merge_check": "Second nonconvex corner manipulation with a different start/order, shares full relocation objective with A.",
+          "objective": "Translate and rotate corner-shaped piece into column with recontact.",
+          "rationale": "5400 still diagonal under tool,6000 near slot,6139 release toward left H-like piece. Buffers retain approach/handoff context.",
+          "segment_id": "b_corner_move",
+          "split_check": "Keep successive recontacts as one same-piece goal cycle; do not include next H-like displacement.",
+          "start": 4895,
+          "stop": 6155,
+          "supervised_start": 4910,
+          "supervised_stop": 6140,
+          "supervision_exclusions": [],
+          "training_condition": "instance=corner_at4910; footprint6139; E6139; protect neighboring column pieces.",
+          "trajectory_id": "episode_2026091922062101",
+          "uncertainty": "Goal comes from achieved pose, not inferred spelling."
+        },
+        {
+          "boundary_evidence_indices": [
+            6125,
+            6139,
+            6140,
+            6929,
+            6930,
+            6944
+          ],
+          "condition_evidence_indices": [
+            6140,
+            6600,
+            6929
+          ],
+          "deployment_condition_source": "Agent identifies rear-left H-like physical instance and supplied temporary/front goal.",
+          "label_derivation": "G seed6140 rear-left H-like cutout; goal6929 moved to front-left below central flanged piece. E6929; D labels.",
+          "merge_check": "Relocation/staging responsibility as A upper H-like move, with a later revisit in both episodes.",
+          "objective": "Bring rear H-like piece to front-left staging.",
+          "rationale": "6600 shows contact after access;6929 H-like piece is front-left and rod approaches other flanged instance.",
+          "segment_id": "b_hlike_stage",
+          "split_check": "Later7330 H-like adjustment is a separate call after another piece moved; no concatenation.",
+          "start": 6125,
+          "stop": 6945,
+          "supervised_start": 6140,
+          "supervised_stop": 6930,
+          "supervision_exclusions": [],
+          "training_condition": "instance=rear_hlike_at6140; footprint6929; E6929.",
+          "trajectory_id": "episode_2026091922062101",
+          "uncertainty": "Track must not swap the two similar flanged shapes."
+        }
+      ],
+      "skill_id": "piece_relocation",
+      "subgoal": "Move one caller-selected physical piece to a feasible staging or placement footprint, including same-piece recontact and conditioned tool handoff."
+    },
+    {
+      "heuristics": [
+        {
+          "action_decoding": "Use D with separate free-access and contact-stroke command heads. Predict finite original command.dq, with a q-conditioned local response/kinematic prior; fast free reposition examples remain supervised, not globally clipped in training as if all rows were slow contact. During verified contact use a conservative short-horizon trust region and reobserve; runtime clipping is reported. Learned local object response uses executed command history, not measured dq as its action label.",
+          "applicability": "Selected piece already staged or near its desired footprint, neighbors should stay fixed, current track/goal residual measurable. Supports recontact and small rotations/translations, not large multi-piece rearrangement or rod entrapment recovery.",
+          "augmentation": "Photometric changes and passive common-frame transforms as for boundary policy. Relabel goal only to confidently observed achieved poses within the same correction sequence; never generate attractive but unachieved small-error goals and claim demonstrated action validity. Add uncertainty/dropout to observation estimates with explicit masks while retaining true label provenance. No shape deformation with unchanged response targets.",
+          "evidence": [
+            {
+              "indices": [
+                5730,
+                5850,
+                6199,
+                7800,
+                8129,
+                8130,
+                8479,
+                8480,
+                9014
+              ],
+              "trajectory_id": "episode_2026091922002701"
+            },
+            {
+              "indices": [
+                4050,
+                4200,
+                4650,
+                4709,
+                4710,
+                4909,
+                6930,
+                7329,
+                7330,
+                7550,
+                7729
+              ],
+              "trajectory_id": "episode_2026091922062101"
+            }
+          ],
+          "goal_conditioning": "G selected physical instance, fixed target footprint/orientation ambiguity set, tighter caller tolerances bounded by uncertainty, protected instance IDs, E and retry/time budgets. Local error and response estimates update causally; goal never drifts toward current pose.",
+          "handoff": {
+            "entry_conditions": "Reliable near-goal/staged instance and protected-neighbor tracks, safe accessible boundary, verified controller/tool limits. If residual is outside locally trained envelope, recommend relocation.",
+            "exit_conditions": "Current footprint/orientation match and protected pieces unchanged within tolerances for five valid observations; release/clearance or E condition satisfied. A recording endpoint alone is not success.",
+            "failure_signatures": "Oscillation, sign-inconsistent object response, repeated no-progress contact, neighboring piece disturbance, torque anomaly, symmetry ambiguity, lost view or error leaving local envelope.",
+            "overlap_role": "Six independent late revisits plus A late L/B late R overlapping full relocation sequences. Overlap trains agent-invocable local correction instead of forcing entire relocation to repeat; outside buffers are context only.",
+            "successor_readiness": "Return stable local residual/uncertainty, neighbor changes and tool-contact status. Agent may verify layout, move another piece via access, or restage a blocked target."
+          },
+          "heuristic_id": "local_response_trust_prior",
+          "input_preprocessing": "P/S/G with high-resolution target/wrist crops and local neighbor geometry, recent finite commands and proprioception. Learn a contact-mode recurrent network and a local object-response residual conditioned on boundary geometry; use causal secant/ensemble response updates from observed object displacement after executed commands. Contact probability is a weak inference from tip proximity, motion coupling and tau trends, never force ground truth. Select short translation/rotation strokes to reduce weighted contour and orientation error under a trust region and protected-neighbor penalties; allow distinct lift/reposition mode when the local contact response is poor. Train future object-delta/termination auxiliary labels only from valid rows inside materialized sequence; no future labels are online features.",
+          "limitations": "Local feedback can still fail on novel shape/friction or ambiguous orientation. No calibrated wrench or slip labels. Demos contain moderate corrections and fast approach portions; not evidence of millimetre precision. Tolerances must respect calibration/perception uncertainty.",
+          "pipeline_implications": "Implement per-mode residual fitting, online response confidence, local contact candidate accessibility and stall/oscillation monitor. Validate fine-goal labels on all six revisit sequences and both overlaps; record support loss if mask/pose uncertainty prevents geometric training. Acquire new-shape correction and protected-neighbor data rather than asserting success.",
+          "policy_contract": {
+            "caller_arguments": "policy_id=align_local_v1; selected instance_id, fixed goal footprint/optional verified SE(2), orientation alternatives, protected IDs, E, tolerances, maximum corrections/time and safety.",
+            "input_output_contract": "Group local_alignment. Causal local geometry/dual RGB/proprio/history -> short joint velocity proposals through D plus local response/uncertainty diagnostics. Own correction/contact reset/release, not object reassignment.",
+            "memory_and_handoff": "Initialize from current0.5s history; reset adaptation on instance/goal change or track loss; preserve only causal explicit response summaries when resuming same call. End status includes whether tip is still near contact.",
+            "selection_cues": "Choose for late slot/orientation error, revisit after neighbors move, or a coarse policy reaches near-goal but not desired tolerance. Choose relocation for a large move, access for wrong-side tool placement, stop for unreliable identity.",
+            "status_and_progress": "Report local contour/angle error, predicted versus observed stroke response, protected displacement, contact mode, retry count and uncertainty. Terminal status based on current verification, not low imitation loss."
+          },
+          "policy_id": "align_local_v1",
+          "rationale": "Both episodes revisit D-like and flanged pieces, and the long L/R attempts end with local pose corrections. A short-stroke response prior should avoid overshoot and shape-class memorization while allowing recontact; this needs tests on truly novel geometry and friction.",
+          "statement": "Learn local goal-error correction with contact-mode memory, online observed-response adaptation and a conservative trust region."
+        }
+      ],
+      "name": "Local alignment, final correction and revisits",
+      "segmentation_rationale": "Six later distinct invocations after staging plus two late subintervals reused from difficult relocations. These share correction of a selected piece relative to a fixed local footprint with nearby pieces protected. They are not defined merely by low speed: free reposition/lift phases remain represented.15-row buffers preserve target entry and handoff context.",
+      "segments": [
+        {
+          "boundary_evidence_indices": [
+            5715,
+            5729,
+            5730,
+            6199,
+            6200,
+            6214
+          ],
+          "condition_evidence_indices": [
+            5730,
+            5850,
+            6199
+          ],
+          "deployment_condition_source": "Agent requests D-like staged piece's corrected local pose.",
+          "label_derivation": "G seed5730 D-like piece at rear-right, goal6199 reoriented/shifted there; E6199; original D labels.",
+          "merge_check": "Same near-goal correction responsibility as B D-like revisit.",
+          "objective": "Correct staged D-like pose after branched-piece placement.",
+          "rationale": "5850 wrist shows edge/corner contact;6199 piece aligned and tool traversing away. Buffer includes prior R release and next L approach only as context.",
+          "segment_id": "a_dlike_align",
+          "split_check": "Separate later correction from earlier D staging and intervening R relocation.",
+          "start": 5715,
+          "stop": 6215,
+          "supervised_start": 5730,
+          "supervised_stop": 6200,
+          "supervision_exclusions": [],
+          "training_condition": "instance=dlike_at5730; footprint6199; E6199; protect right-column neighbors.",
+          "trajectory_id": "episode_2026091922002701",
+          "uncertainty": "Alignment endpoint is inferred achieved pose, not verified word success."
+        },
+        {
+          "boundary_evidence_indices": [
+            8115,
+            8129,
+            8130,
+            8479,
+            8480,
+            8494
+          ],
+          "condition_evidence_indices": [
+            8130,
+            8479
+          ],
+          "deployment_condition_source": "Agent supplies corrected footprint for the already staged central flanged track.",
+          "label_derivation": "G seed8130 left-middle flanged bar; goal8479 turned/shifted into its later pose. E8479; D labels.",
+          "merge_check": "Revisit after earlier staging is common local alignment behavior, independent of object spelling.",
+          "objective": "Adjust position/orientation of staged central flanged piece.",
+          "rationale": "8130 shows staged oblique piece;8479 shows straighter left-row pose and release/lift. Context ties entry to L completion but no future online input.",
+          "segment_id": "a_flanged_align",
+          "split_check": "Keep whole local correction including approach; stop before H-like revisit.",
+          "start": 8115,
+          "stop": 8495,
+          "supervised_start": 8130,
+          "supervised_stop": 8480,
+          "supervision_exclusions": [],
+          "training_condition": "instance=left_middle_flanged_at8130; footprint8479; E8479.",
+          "trajectory_id": "episode_2026091922002701",
+          "uncertainty": "Two flanged instances require stable tracking; semantic I/H not used as the ID."
+        },
+        {
+          "boundary_evidence_indices": [
+            8465,
+            8479,
+            8480,
+            9014
+          ],
+          "condition_evidence_indices": [
+            8480,
+            9014
+          ],
+          "deployment_condition_source": "Caller selects front-left H-like instance and explicit local correction goal.",
+          "label_derivation": "G seed8480 front-left H-like cutout; achieved footprint9014 inferred with audited occlusion-aware tracking; E9014; D labels include actual terminal zero command.",
+          "merge_check": "Same correction/revisit objective as B final H-like move, not episode-success classification.",
+          "objective": "Reposition front-left H-like piece and release/settle.",
+          "rationale": "8480 rod leaves previous flanged target;9014 H-like piece has shifted back/up and tool is lifted, with finite zero command. No synthetic row9015.",
+          "segment_id": "a_hlike_align_terminal",
+          "split_check": "Terminal range ends at real N=9015; no after-buffer or N+1 observation invented.",
+          "start": 8465,
+          "stop": 9015,
+          "supervised_start": 8480,
+          "supervised_stop": 9015,
+          "supervision_exclusions": [],
+          "training_condition": "instance=front_hlike_at8480; footprint9014; E9014; protect all other placements.",
+          "trajectory_id": "episode_2026091922002701",
+          "uncertainty": "Arm occludes some neighbors; terminal scene not annotated successful. Goal mask requires audited tracking rather than perfect visibility assumption."
+        },
+        {
+          "boundary_evidence_indices": [
+            4695,
+            4709,
+            4710,
+            4909,
+            4910,
+            4924
+          ],
+          "condition_evidence_indices": [
+            4710,
+            4909
+          ],
+          "deployment_condition_source": "Agent requests a correction to the already staged D-like piece.",
+          "label_derivation": "G seed4710 rear-right D-like piece; goal4909 reoriented above column; E4909; D labels.",
+          "merge_check": "Same staged-object fine alignment as A, shorter and different preceding actions.",
+          "objective": "Correct D-like orientation/position after R-like placement.",
+          "rationale": "4710 tool approaches;4909 D-like piece straightened and tip departs toward L-like piece.",
+          "segment_id": "b_dlike_align",
+          "split_check": "Keep separate from D staging1500-1910; interleaving is explicit.",
+          "start": 4695,
+          "stop": 4925,
+          "supervised_start": 4710,
+          "supervised_stop": 4910,
+          "supervision_exclusions": [],
+          "training_condition": "instance=dlike_at4710; footprint4909; E4909; protect column.",
+          "trajectory_id": "episode_2026091922062101",
+          "uncertainty": "No metric precision/success annotation supplied."
+        },
+        {
+          "boundary_evidence_indices": [
+            6915,
+            6929,
+            6930,
+            7329,
+            7330,
+            7344
+          ],
+          "condition_evidence_indices": [
+            6930,
+            7329
+          ],
+          "deployment_condition_source": "Caller requests local adjustment for middle flanged physical track.",
+          "label_derivation": "G seed6930 center flanged bar above front H-like piece; goal7329 moved up/turned; E7329; D labels.",
+          "merge_check": "Same local revisit after staging as A flanged alignment.",
+          "objective": "Align central flanged piece while preserving right column.",
+          "rationale": "6930 begins access from prior H-like relocation;7329 shows moved piece and tool departure.",
+          "segment_id": "b_flanged_align",
+          "split_check": "Do not merge adjacent H-like target, even though geometry is similar.",
+          "start": 6915,
+          "stop": 7345,
+          "supervised_start": 6930,
+          "supervised_stop": 7330,
+          "supervision_exclusions": [],
+          "training_condition": "instance=middle_flanged_at6930; footprint7329; E7329; protect front H-like and right column.",
+          "trajectory_id": "episode_2026091922062101",
+          "uncertainty": "Geometric similarity can cause tracker swaps; reject ambiguous training identities."
+        },
+        {
+          "boundary_evidence_indices": [
+            7315,
+            7329,
+            7330,
+            7729
+          ],
+          "condition_evidence_indices": [
+            7330,
+            7550,
+            7729
+          ],
+          "deployment_condition_source": "Agent selects front-left H-like track for its explicit final local footprint.",
+          "label_derivation": "G seed7330 front-left H-like piece; goal7729 shifted right/up; E7729; D labels, including real terminal zero command.",
+          "merge_check": "Same local correction/release as A final revisit; episode end is not success label.",
+          "objective": "Finish a local H-like correction and settle tool.",
+          "rationale": "7550 shows contact correction;7729 shows final observed arrangement and lifted tip. No source row7730 exists.",
+          "segment_id": "b_hlike_align_terminal",
+          "split_check": "Terminal segment has no following buffer; retain real final observation/action.",
+          "start": 7315,
+          "stop": 7730,
+          "supervised_start": 7330,
+          "supervised_stop": 7730,
+          "supervision_exclusions": [],
+          "training_condition": "instance=front_hlike_at7330; footprint7729; E7729; preserve others.",
+          "trajectory_id": "episode_2026091922062101",
+          "uncertainty": "No verified task-success label; monitor must independently validate scene."
+        },
+        {
+          "boundary_evidence_indices": [
+            7785,
+            7800,
+            8129,
+            8130,
+            8144
+          ],
+          "condition_evidence_indices": [
+            7800,
+            8129
+          ],
+          "deployment_condition_source": "Agent can invoke alignment after coarse placement of a corner-shaped piece.",
+          "label_derivation": "G seed7800 diagonal L-like piece near intended gap; goal8129 same goal as parent a_corner_move. E8129; D labels; no alternate success claim.",
+          "merge_check": "Near-slot same-piece correction/recontact fits alignment objective; intentional cross-group reuse.",
+          "objective": "Correct final corner-piece orientation/spacing after gross motion.",
+          "rationale": "7800 still angled near column;8129 now in gap. Parent supplies full earlier approach, this cut supplies an independently invocable late entry.",
+          "segment_id": "a_corner_late_align",
+          "split_check": "Do not include early large L turns in local-only objective; no new target is introduced.",
+          "start": 7785,
+          "stop": 8145,
+          "supervised_start": 7800,
+          "supervised_stop": 8130,
+          "supervision_exclusions": [],
+          "training_condition": "instance=corner_at7800; footprint8129; E8129; protect neighboring column pieces.",
+          "trajectory_id": "episode_2026091922002701",
+          "uncertainty": "Locality is geometric, not guaranteed low speed; keep recontact motion."
+        },
+        {
+          "boundary_evidence_indices": [
+            4035,
+            4050,
+            4709,
+            4710,
+            4724
+          ],
+          "condition_evidence_indices": [
+            4050,
+            4200,
+            4650,
+            4709
+          ],
+          "deployment_condition_source": "Agent invokes local correction after R-like piece reaches the column but retains pose error/contact difficulty.",
+          "label_derivation": "G seed4050 branched piece already above ring; goal4709 identical to parent b_branched_move_retry; E4709; D labels. Future response labels only within this sequence.",
+          "merge_check": "Repeated local correction plus lift/recontact shares alignment problem, not a separate robot-posture task.",
+          "objective": "Retain late R-like correction attempts, tool lift/posture adjustment and release.",
+          "rationale": "4050/4200 show large tool reposition over near-slot piece,4650 correction,4709 release. Both command/state and wrist images were inspected; high joint speed is not equated to unusable motion.",
+          "segment_id": "b_branched_late_align",
+          "split_check": "Late entry gives agent a recovery/retry option without replaying earlier gross relocation; no claim to recover arbitrary jams.",
+          "start": 4035,
+          "stop": 4725,
+          "supervised_start": 4050,
+          "supervised_stop": 4710,
+          "supervision_exclusions": [],
+          "training_condition": "instance=branched_at4050; footprint4709; E4709; protect ring and other column pieces.",
+          "trajectory_id": "episode_2026091922062101",
+          "uncertainty": "Cause of posture change unresolved; do not label it force-contact recovery or proven optimal action."
+        }
+      ],
+      "skill_id": "local_alignment",
+      "subgoal": "Correct a staged or near-goal piece's footprint/orientation with short feedback-driven pushes, recontact and release while preserving neighboring placements."
+    }
+  ],
+  "task_interpretation": "The intended autonomous task is to arrange available physical letters into a user-requested word with an explicit spatial layout, including entirely unseen letter identities and shapes. Authorized evidence comprises only the two supplied Push recordings, 9015 and7730 paired records. Inspected scenes appear to use seven brown flat letter-like cutouts and a long rod mounted on the robot; third and wrist views plus state/actions support planar nonprehensile pushing, turning, clearance moves, repeated contacts and later corrections. An apparent right column resembling WORLD and two other flanged shapes are visual interpretations, not verified targets or endpoint success. Neither episode supplies ground-truth inventory, poses, masks, word, contact or success. The library is therefore defined by geometry-goal responsibilities and physical track IDs. This stage publishes exact indexed cuts and implementable design/label contracts only, not annotations already performed, policy code, training, execution or evidence from other datasets.",
+  "unobserved_cases": "The task requires new semantic letters, entirely unseen physical shapes, new words and layouts; these remain core evaluation/acquisition obligations, not silently excluded deployment requirements. No success on these dimensions is established by two same-looking inventories. Missing assets include open-set semantic recognition and uncertainty calibration, audited instance masks/tracks and achieved-goal labels, accurate support/top-plane/tool geometry, verified depth conversion if used, robot controller unit/timing/decoding contract, and diverse new-shape interaction data. Unobserved or weakly supported capabilities: impossible/ambiguous request handling, repeated identical-character inventory, automatic layout feasibility and semantic upright resolution, very crowded/stacked pieces, deformable or tiny letters, boundary/edge recovery, rod entrapment, major accidental neighbor displacement, tactile force control, tool changes, camera calibration drift, arbitrary occlusion/search and recovery after a fall. Proposed policies must detect and report unsupported/unsafe conditions while maintaining the intended generalization workstream; do not relabel unsupported cases as demonstrated success. All original source media/calibration/hashes/missingness remain preserved, no cross-clock sample shifting or fabricated terminal record is allowed, and later authorized implementation must audit actual per-behavior training eligibility before claiming full coverage."
+}

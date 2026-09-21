@@ -1,0 +1,29 @@
+{
+  "boundary_evidence_indices": [
+    360,
+    379,
+    380,
+    1239,
+    1240,
+    1259
+  ],
+  "condition_evidence_indices": [
+    380,
+    1239
+  ],
+  "deployment_condition_source": "HLA chooses the foreground wedge instance and its explicit slot footprint.",
+  "label_derivation": "RULE P for foreground wedge, endpoint1239 and exit1239; no W/M class supplied to policy.",
+  "merge_check": "Adds a new initial arrangement for the same geometry-goal behavior as A wedge; not a new shape-generalization claim.",
+  "objective": "Reorient and place foreground wedge-shaped piece, with approach and side changes.",
+  "rationale": "380 wrist resolves rod/wedge geometry;860/1050 survey shows changing approach and orientation;1239 shows placement and tool traveling toward central barred piece.",
+  "segment_id": "b_wedge_move",
+  "split_check": "Stop before central barred displacement; preserve remaining descent after tool startup.",
+  "start": 360,
+  "stop": 1260,
+  "supervised_start": 380,
+  "supervised_stop": 1240,
+  "supervision_exclusions": [],
+  "training_condition": "W/M-looking foreground wedge at380; achieved footprint1239 and tool exit1239.",
+  "trajectory_id": "episode_2026091922062101",
+  "uncertainty": "Third-view arm occlusion is significant; dual-view tracking/audit needed, not wholesale exclusion."
+}

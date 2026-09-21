@@ -1,5 +1,82 @@
 # Real robot demonstrations
 
+**training_v3 portable package is ready (2026-09-21).** The
+[download and installation guide](deployment_v3/README.md) covers Linux/NVIDIA
+inference on another computer. All three exact final EMA checkpoints and API
+prior/usage/handoff documents are in the approximately 22 MiB complete archive.
+The actual archive passed a relocated check in the locked inference environment,
+with zero candidate-action difference from the original workers. See
+[deployment evidence](reports/PUSH_V3_DEPLOYMENT.md). New v3 code is still local,
+not committed/pushed; the complete archive works independently of Git publication.
+
+**training_v3 is complete (2026-09-21):** all three cut_v5 priors completed
+20,000 independent updates, with zero final EMA reload error. Actual local
+calls returned finite six-dimensional candidates and passed stale-input,
+invalid-goal and interruption checks. The API chose waypoint residual,
+contact-graph and goal-field servo models, with explicit reasons for each
+alternative to Diffusion Policy: 15 submitted files, 34 Astra/xhigh calls,
+estimated USD 8.6769445. All 26 segments retain action supervision; sample
+counts are 1,362 / 15,765 / 15,765. One 600-row relocation segment lacks a
+trusted inferred object goal, and all derived perception labels remain unreviewed.
+The decoder is disabled; no robot or generalization evaluation occurred.
+See the [training report](reports/PUSH_TRAINING_V3.md),
+[API calling catalog](runs/push_letters/training_v3/package_00/source/POLICY_CATALOG.md),
+[checkpoint library](runs/push_letters/training_v3/library.json),
+[completion receipt](runs/push_letters/training_v3/completion_receipt.json),
+[configuration](configs/push_training_v3.json) and
+[versioned interface](policy_training_v3/INTERFACE.md).
+Previous designs, training versions and checkpoints remain preserved.
+
+**cut_v5 is complete (2026-09-21): 2 datasets, 3 policy/prior designs,
+26 segments.** The small-demonstration prompt produced more explicit
+object/interaction-relative motion residuals and task-space action targets,
+while merging alignment into relocation and retaining internal motion modes.
+It did not create a standalone planar-push dataset. Read the
+[Chinese result and comparison](reports/PUSH_CUT_V5_REVIEW.md),
+[API policy catalog](data/push_letters/cut_v5/POLICY_CATALOG.md) and
+[execution record](reports/PUSH_CUT_V5_STATUS.md). All 29 Astra/xhigh calls and
+85 published files passed verification; estimated USD 5.48676. Its subsequent
+policy implementation and training are recorded separately as training_v3 above.
+Earlier versions remain preserved. Ongoing
+data-processing permission is retained in the
+[authorization record](authorizations/openai_data_processing_20260921.json).
+
+**cut_v4 is complete (2026-09-21): 3 subtask datasets, 4 policy/prior designs,
+28 segments.** The API separated tool access/clearance, piece relocation and
+local alignment, with two alternative relocation priors. All 16,745 source
+records are retained; 16,417 have finite native joint commands before input
+preprocessing. All 27 Astra/xhigh calls and 93 published files passed verification;
+estimated API cost USD 5.3269. No cut_v4 policy implementation or training yet.
+Start with the [Chinese review and timeline](reports/PUSH_CUT_V4_REVIEW.md),
+[API policy catalog](data/push_letters/cut_v4/POLICY_CATALOG.md), and
+[full API report](reports/PUSH_CUT_V4.md). Execution provenance is in the
+[status record](reports/PUSH_CUT_V4_STATUS.md).
+
+The [subtask and agent-interface audit](reports/PUSH_CUT_V4_INTERFACE_AUDIT.md)
+reviews each policy, measured access support, goal generation and handoff gaps,
+and the changes needed for the existing two-policy training interface to support
+the new groups. This is a review of the preserved design, without new API calls
+or training; all 93 published files retain their hashes.
+
+**Prompt used in cut_v4 (2026-09-21).** The
+[new general prompt](prompts/general_cut_and_prior_v2.md) first identifies
+subtasks covering the demonstrated behaviors, assembles a training dataset for
+each through flexible cuts/reuse and compatible buffers, then designs independent
+generalization priors and agent calling contracts. Real-robot preprocessing and
+privileged-input requirements remain explicit. See the
+[revision record](reports/CUT_PROMPT_V2.md). The executed cut_v3 prompt and
+configuration remain unchanged.
+
+**Additional training_v2 is complete (2026-09-21).** Both models completed
+20,000 updates and exact EMA reload checks. Diffusion was explicitly permitted;
+the API independently chose Gaussian-mixture models again. The new package has
+separate policy prior/usage documents, structured handoffs and a v2 host interface.
+Actual supervision is 6,314 examples from 12/22 cuts; no robot-performance claim.
+See [training and coverage](reports/PUSH_TRAINING_V2.md),
+[download/calling guide](deployment_v2/README.md) and
+[Agent policy catalog](policies/push_v2/source/POLICY_CATALOG.md).
+cut_v3, train_v1 and its push_v1 deployment remain preserved.
+
 **Portable deployment is ready (2026-09-21).** Use the
 [download/install guide](deployment/README.md). Exact API source is now also
 available in [policies/push_v1/source](policies/push_v1/source/), while the two
@@ -8,7 +85,7 @@ and weights-only archive are under `exports/push_v1/`; neither includes training
 data, caches or API credentials. See the [deployment receipt](reports/PUSH_DEPLOYMENT.md).
 The robot-side adapter remains the user's responsibility. Original runs stay intact.
 
-Current stage: **train_v1 complete**, reviewed on 2026-09-21 (Asia/Singapore).
+Retained previous round: **train_v1 complete**, reviewed on 2026-09-21 (Asia/Singapore).
 The Runtime API has submitted both `contour_push` and `visual_push`,
 including their observation/goal conversions and action decoder, in a ten-file
 [source package](runs/push_letters/train_v1/package_00/source/). The twenty

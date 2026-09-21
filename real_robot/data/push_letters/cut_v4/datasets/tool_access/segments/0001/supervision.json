@@ -1,0 +1,27 @@
+{
+  "boundary_evidence_indices": [
+    0,
+    419,
+    420,
+    434
+  ],
+  "condition_evidence_indices": [
+    0,
+    419
+  ],
+  "deployment_condition_source": "Current target boundary and caller tool waypoint, not recorded scene/word.",
+  "label_derivation": "Tool goal T_base_ee419; zigzag piece is front-right in third0 and beneath rod in wrist419. Null joint command components are masked under D.",
+  "merge_check": "Same high-to-low access objective, different initial arrangement and approach path.",
+  "objective": "Bring tool from home-like start to access the front zigzag piece.",
+  "rationale": "Third419/420 is arm-occluded but paired wrist419/420 shows the piece and rod; state419 is downward command.434 follows contact-like torque increase and is context only.",
+  "segment_id": "b_initial_access",
+  "split_check": "Cut at access-to-object handoff; following context is not tool-only action supervision.",
+  "start": 0,
+  "stop": 435,
+  "supervised_start": 0,
+  "supervised_stop": 420,
+  "supervision_exclusions": [],
+  "training_condition": "mode=approach; tool_goal=pose419; current scene obstacle masks.",
+  "trajectory_id": "episode_2026091922062101",
+  "uncertainty": "Projected overlap is not verified force contact; wrist resolves target identity geometrically."
+}

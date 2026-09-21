@@ -1,0 +1,30 @@
+{
+  "boundary_evidence_indices": [
+    3185,
+    3199,
+    3200,
+    3779,
+    3780,
+    3794
+  ],
+  "condition_evidence_indices": [
+    3200,
+    3500,
+    3779
+  ],
+  "deployment_condition_source": "Agent supplies a staging goal from current free-space reasoning.",
+  "label_derivation": "G seed3200 left R-like branched piece above central flanged bar; goal3779 same piece near rear beside L-like piece. E3779; D labels.",
+  "merge_check": "Staging and later return are distinct invocations of the same reusable local-goal problem.",
+  "objective": "Move R-like piece rearward, including rotation, to a temporary location.",
+  "rationale": "3500 shows turned piece under rod;3779 shows rear placement and tool traversing away. Intermediate proximity to flanged piece is not a target switch.",
+  "segment_id": "a_branched_stage",
+  "split_check": "Later R return5050 is noncontiguous and separately indexed; do not concatenate.",
+  "start": 3185,
+  "stop": 3795,
+  "supervised_start": 3200,
+  "supervised_stop": 3780,
+  "supervision_exclusions": [],
+  "training_condition": "instance=branched_at3200; staging footprint3779; E3779.",
+  "trajectory_id": "episode_2026091922002701",
+  "uncertainty": "R label is visual mnemonic; exact contact onset unverified."
+}

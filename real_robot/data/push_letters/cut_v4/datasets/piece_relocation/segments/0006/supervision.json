@@ -1,0 +1,29 @@
+{
+  "boundary_evidence_indices": [
+    4655,
+    4669,
+    4670,
+    5049,
+    5050,
+    5064
+  ],
+  "condition_evidence_indices": [
+    4670,
+    5049
+  ],
+  "deployment_condition_source": "Agent requests reachable temporary location for chosen enclosed D-like geometry.",
+  "label_derivation": "G seed4670 left D-like piece with one large hole; goal5049 at rear-right of branched piece. E5049; D labels.",
+  "merge_check": "Long staging move, same one-piece achieved-goal supervision as B D staging.",
+  "objective": "Move D-like piece from left/front to rear/right staging.",
+  "rationale": "4670 rod descending over D-like region;5049 piece displaced rearward and rod returning toward branched target.",
+  "segment_id": "a_dlike_stage",
+  "split_check": "Do not merge later D correction5730; intervening R-like move is another call.",
+  "start": 4655,
+  "stop": 5065,
+  "supervised_start": 4670,
+  "supervised_stop": 5050,
+  "supervision_exclusions": [],
+  "training_condition": "instance=dlike_at4670; footprint5049; E5049.",
+  "trajectory_id": "episode_2026091922002701",
+  "uncertainty": "Hole contact possible but no ground-truth contact labels."
+}

@@ -1,0 +1,30 @@
+{
+  "boundary_evidence_indices": [
+    3200,
+    3219,
+    3220,
+    3699,
+    3700,
+    3719
+  ],
+  "condition_evidence_indices": [
+    3220,
+    3400,
+    3699
+  ],
+  "deployment_condition_source": "HLA chooses a temporary reachable staging footprint, based on current occupancy rather than final word order.",
+  "label_derivation": "RULE P for R-like piece initially left of upper barred piece, goal/exit3699.",
+  "merge_check": "Same piece appears again in a_r_layout with a different goal; preserve separate calls rather than contradictory labels in one sequence.",
+  "objective": "Move R-like out of the initial cluster to an upper staging pose.",
+  "rationale": "3400 shows rod at R-like;3699 shows R-like moved upward with tool clear. Include entry from ring and departure context.",
+  "segment_id": "a_r_stage",
+  "split_check": "A distinct temporary-goal invocation ends before middle barred-piece work; later R placement is noncontiguous.",
+  "start": 3200,
+  "stop": 3720,
+  "supervised_start": 3220,
+  "supervised_stop": 3700,
+  "supervision_exclusions": [],
+  "training_condition": "Target R-shaped physical piece near left cluster; achieved staging pose3699; not its final episode pose.",
+  "trajectory_id": "episode_2026091922002701",
+  "uncertainty": "R is a descriptive shape alias; temporary-goal interpretation is inferred, not task annotation."
+}

@@ -1,0 +1,28 @@
+{
+  "boundary_evidence_indices": [
+    6100,
+    6119,
+    6120,
+    6250,
+    6270
+  ],
+  "condition_evidence_indices": [
+    6120,
+    6250
+  ],
+  "deployment_condition_source": "A causal planner selects a collision-free approach waypoint beside the next target or an inspection point.",
+  "label_derivation": "RULE T at6250; target letters remain obstacles, no L identity feature. Supervision also appears in a_l_move under an object goal.",
+  "merge_check": "Same noncontact waypoint problem, now a lateral between-object transit rather than home descent.",
+  "objective": "Traverse from the D/R neighborhood toward a precontact point near L-like.",
+  "rationale": "Images6100/6120/6250 show stable D/R/L arrangements while the rod travels. 20-row prefix and suffix are context-only.",
+  "segment_id": "a_l_approach_tool",
+  "split_check": "Stop before L manipulation; later contact/repeated rotations stay only in the object-goal action range.",
+  "start": 6100,
+  "stop": 6271,
+  "supervised_start": 6120,
+  "supervised_stop": 6251,
+  "supervision_exclusions": [],
+  "training_condition": "goal TCP and terminal twist at6250, pass-through; all pieces protected.",
+  "trajectory_id": "episode_2026091922002701",
+  "uncertainty": "Boundary is an approach waypoint, not a naturally stopped state; waypoint tolerance must include calibration uncertainty."
+}

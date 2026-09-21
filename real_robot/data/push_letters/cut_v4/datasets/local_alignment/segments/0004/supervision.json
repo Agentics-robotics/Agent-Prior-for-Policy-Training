@@ -1,0 +1,29 @@
+{
+  "boundary_evidence_indices": [
+    6915,
+    6929,
+    6930,
+    7329,
+    7330,
+    7344
+  ],
+  "condition_evidence_indices": [
+    6930,
+    7329
+  ],
+  "deployment_condition_source": "Caller requests local adjustment for middle flanged physical track.",
+  "label_derivation": "G seed6930 center flanged bar above front H-like piece; goal7329 moved up/turned; E7329; D labels.",
+  "merge_check": "Same local revisit after staging as A flanged alignment.",
+  "objective": "Align central flanged piece while preserving right column.",
+  "rationale": "6930 begins access from prior H-like relocation;7329 shows moved piece and tool departure.",
+  "segment_id": "b_flanged_align",
+  "split_check": "Do not merge adjacent H-like target, even though geometry is similar.",
+  "start": 6915,
+  "stop": 7345,
+  "supervised_start": 6930,
+  "supervised_stop": 7330,
+  "supervision_exclusions": [],
+  "training_condition": "instance=middle_flanged_at6930; footprint7329; E7329; protect front H-like and right column.",
+  "trajectory_id": "episode_2026091922062101",
+  "uncertainty": "Geometric similarity can cause tracker swaps; reject ambiguous training identities."
+}

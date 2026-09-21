@@ -1,0 +1,29 @@
+{
+  "boundary_evidence_indices": [
+    8115,
+    8129,
+    8130,
+    8479,
+    8480,
+    8494
+  ],
+  "condition_evidence_indices": [
+    8130,
+    8479
+  ],
+  "deployment_condition_source": "Agent supplies corrected footprint for the already staged central flanged track.",
+  "label_derivation": "G seed8130 left-middle flanged bar; goal8479 turned/shifted into its later pose. E8479; D labels.",
+  "merge_check": "Revisit after earlier staging is common local alignment behavior, independent of object spelling.",
+  "objective": "Adjust position/orientation of staged central flanged piece.",
+  "rationale": "8130 shows staged oblique piece;8479 shows straighter left-row pose and release/lift. Context ties entry to L completion but no future online input.",
+  "segment_id": "a_flanged_align",
+  "split_check": "Keep whole local correction including approach; stop before H-like revisit.",
+  "start": 8115,
+  "stop": 8495,
+  "supervised_start": 8130,
+  "supervised_stop": 8480,
+  "supervision_exclusions": [],
+  "training_condition": "instance=left_middle_flanged_at8130; footprint8479; E8479.",
+  "trajectory_id": "episode_2026091922002701",
+  "uncertainty": "Two flanged instances require stable tracking; semantic I/H not used as the ID."
+}

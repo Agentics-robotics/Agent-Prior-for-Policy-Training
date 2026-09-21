@@ -1,0 +1,30 @@
+{
+  "boundary_evidence_indices": [
+    6130,
+    6149,
+    6150,
+    6909,
+    6910,
+    6929
+  ],
+  "condition_evidence_indices": [
+    6150,
+    6500,
+    6909
+  ],
+  "deployment_condition_source": "HLA selects upper-left barred instance and an intermediate/slot footprint with neighbor protection.",
+  "label_derivation": "RULE P for upper-left barred piece, endpoint6909 and exit6909.",
+  "merge_check": "Adds late-order barred transport to the same group as A upper-bar transport, with different surrounding occupancy.",
+  "objective": "Rotate and translate upper-left barred piece downward toward foreground-left.",
+  "rationale": "6150 starts free approach,6500 shows changed orientation and lifted tool,6750 survey shows downward movement,6909 shows foreground placement and departure.",
+  "segment_id": "b_upper_bar_move",
+  "split_check": "Separate next central barred correction; later revisit to this foreground piece is another local-goal call.",
+  "start": 6130,
+  "stop": 6930,
+  "supervised_start": 6150,
+  "supervised_stop": 6910,
+  "supervision_exclusions": [],
+  "training_condition": "Target originally upper-left barred piece, not central barred; achieved staging footprint6909 and exit6909.",
+  "trajectory_id": "episode_2026091922062101",
+  "uncertainty": "Similar silhouettes require instance persistence across orientation changes; no letter label is assumed."
+}

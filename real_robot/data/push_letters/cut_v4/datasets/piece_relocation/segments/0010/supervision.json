@@ -1,0 +1,29 @@
+{
+  "boundary_evidence_indices": [
+    1215,
+    1229,
+    1230,
+    1499,
+    1500,
+    1514
+  ],
+  "condition_evidence_indices": [
+    1230,
+    1499
+  ],
+  "deployment_condition_source": "Agent requests clearance/staging goal for the central flanged physical track.",
+  "label_derivation": "G seed1230 central-right flanged bar, not rear-left H-like piece; goal1499 centrally staged to left of original position. E1499; D labels.",
+  "merge_check": "Matches A clearance/revisit behavior under local geometry goals.",
+  "objective": "Shift central flanged piece out of the planned right column.",
+  "rationale": "1230 tip approaches its right boundary;1499 piece shifted left and rod departing.",
+  "segment_id": "b_flanged_stage",
+  "split_check": "Separate from front zigzag and subsequent D-like staging; retain entry and departure.",
+  "start": 1215,
+  "stop": 1515,
+  "supervised_start": 1230,
+  "supervised_stop": 1500,
+  "supervision_exclusions": [],
+  "training_condition": "instance=central_flanged_at1230; footprint1499; E1499.",
+  "trajectory_id": "episode_2026091922062101",
+  "uncertainty": "Clearance intent inferred; local achieved goal is unambiguous geometrically."
+}

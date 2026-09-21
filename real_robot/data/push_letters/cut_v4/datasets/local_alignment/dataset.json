@@ -1,0 +1,335 @@
+{
+  "heuristics": [
+    {
+      "action_decoding": "Use D with separate free-access and contact-stroke command heads. Predict finite original command.dq, with a q-conditioned local response/kinematic prior; fast free reposition examples remain supervised, not globally clipped in training as if all rows were slow contact. During verified contact use a conservative short-horizon trust region and reobserve; runtime clipping is reported. Learned local object response uses executed command history, not measured dq as its action label.",
+      "applicability": "Selected piece already staged or near its desired footprint, neighbors should stay fixed, current track/goal residual measurable. Supports recontact and small rotations/translations, not large multi-piece rearrangement or rod entrapment recovery.",
+      "augmentation": "Photometric changes and passive common-frame transforms as for boundary policy. Relabel goal only to confidently observed achieved poses within the same correction sequence; never generate attractive but unachieved small-error goals and claim demonstrated action validity. Add uncertainty/dropout to observation estimates with explicit masks while retaining true label provenance. No shape deformation with unchanged response targets.",
+      "evidence": [
+        {
+          "indices": [
+            5730,
+            5850,
+            6199,
+            7800,
+            8129,
+            8130,
+            8479,
+            8480,
+            9014
+          ],
+          "trajectory_id": "episode_2026091922002701"
+        },
+        {
+          "indices": [
+            4050,
+            4200,
+            4650,
+            4709,
+            4710,
+            4909,
+            6930,
+            7329,
+            7330,
+            7550,
+            7729
+          ],
+          "trajectory_id": "episode_2026091922062101"
+        }
+      ],
+      "goal_conditioning": "G selected physical instance, fixed target footprint/orientation ambiguity set, tighter caller tolerances bounded by uncertainty, protected instance IDs, E and retry/time budgets. Local error and response estimates update causally; goal never drifts toward current pose.",
+      "handoff": {
+        "entry_conditions": "Reliable near-goal/staged instance and protected-neighbor tracks, safe accessible boundary, verified controller/tool limits. If residual is outside locally trained envelope, recommend relocation.",
+        "exit_conditions": "Current footprint/orientation match and protected pieces unchanged within tolerances for five valid observations; release/clearance or E condition satisfied. A recording endpoint alone is not success.",
+        "failure_signatures": "Oscillation, sign-inconsistent object response, repeated no-progress contact, neighboring piece disturbance, torque anomaly, symmetry ambiguity, lost view or error leaving local envelope.",
+        "overlap_role": "Six independent late revisits plus A late L/B late R overlapping full relocation sequences. Overlap trains agent-invocable local correction instead of forcing entire relocation to repeat; outside buffers are context only.",
+        "successor_readiness": "Return stable local residual/uncertainty, neighbor changes and tool-contact status. Agent may verify layout, move another piece via access, or restage a blocked target."
+      },
+      "heuristic_id": "local_response_trust_prior",
+      "input_preprocessing": "P/S/G with high-resolution target/wrist crops and local neighbor geometry, recent finite commands and proprioception. Learn a contact-mode recurrent network and a local object-response residual conditioned on boundary geometry; use causal secant/ensemble response updates from observed object displacement after executed commands. Contact probability is a weak inference from tip proximity, motion coupling and tau trends, never force ground truth. Select short translation/rotation strokes to reduce weighted contour and orientation error under a trust region and protected-neighbor penalties; allow distinct lift/reposition mode when the local contact response is poor. Train future object-delta/termination auxiliary labels only from valid rows inside materialized sequence; no future labels are online features.",
+      "limitations": "Local feedback can still fail on novel shape/friction or ambiguous orientation. No calibrated wrench or slip labels. Demos contain moderate corrections and fast approach portions; not evidence of millimetre precision. Tolerances must respect calibration/perception uncertainty.",
+      "pipeline_implications": "Implement per-mode residual fitting, online response confidence, local contact candidate accessibility and stall/oscillation monitor. Validate fine-goal labels on all six revisit sequences and both overlaps; record support loss if mask/pose uncertainty prevents geometric training. Acquire new-shape correction and protected-neighbor data rather than asserting success.",
+      "policy_contract": {
+        "caller_arguments": "policy_id=align_local_v1; selected instance_id, fixed goal footprint/optional verified SE(2), orientation alternatives, protected IDs, E, tolerances, maximum corrections/time and safety.",
+        "input_output_contract": "Group local_alignment. Causal local geometry/dual RGB/proprio/history -> short joint velocity proposals through D plus local response/uncertainty diagnostics. Own correction/contact reset/release, not object reassignment.",
+        "memory_and_handoff": "Initialize from current0.5s history; reset adaptation on instance/goal change or track loss; preserve only causal explicit response summaries when resuming same call. End status includes whether tip is still near contact.",
+        "selection_cues": "Choose for late slot/orientation error, revisit after neighbors move, or a coarse policy reaches near-goal but not desired tolerance. Choose relocation for a large move, access for wrong-side tool placement, stop for unreliable identity.",
+        "status_and_progress": "Report local contour/angle error, predicted versus observed stroke response, protected displacement, contact mode, retry count and uncertainty. Terminal status based on current verification, not low imitation loss."
+      },
+      "policy_id": "align_local_v1",
+      "rationale": "Both episodes revisit D-like and flanged pieces, and the long L/R attempts end with local pose corrections. A short-stroke response prior should avoid overshoot and shape-class memorization while allowing recontact; this needs tests on truly novel geometry and friction.",
+      "statement": "Learn local goal-error correction with contact-mode memory, online observed-response adaptation and a conservative trust region."
+    }
+  ],
+  "name": "Local alignment, final correction and revisits",
+  "plan_hash": "acfa27afe6425ced9da3e05c1cc41ac55d20ec36ea5ca7cc107523446255bc93",
+  "schema": "real_robot.cut_dataset.v2",
+  "segments": [
+    {
+      "boundary_evidence_indices": [
+        5715,
+        5729,
+        5730,
+        6199,
+        6200,
+        6214
+      ],
+      "condition_evidence_indices": [
+        5730,
+        5850,
+        6199
+      ],
+      "deployment_condition_source": "Agent requests D-like staged piece's corrected local pose.",
+      "directory": "real_robot/data/push_letters/cut_v4/datasets/local_alignment/segments/0000",
+      "label_derivation": "G seed5730 D-like piece at rear-right, goal6199 reoriented/shifted there; E6199; original D labels.",
+      "merge_check": "Same near-goal correction responsibility as B D-like revisit.",
+      "objective": "Correct staged D-like pose after branched-piece placement.",
+      "rationale": "5850 wrist shows edge/corner contact;6199 piece aligned and tool traversing away. Buffer includes prior R release and next L approach only as context.",
+      "records": 500,
+      "records_sha256": "fde6852eae5280c6c4255e88aee3e6e4430f7e87642c89489e82441862bf3d28",
+      "samples_sha256": "7da075ce4d9829c14129d50abb06c615a17b46b92142eab3e11d092a251fb444",
+      "segment_id": "a_dlike_align",
+      "split_check": "Separate later correction from earlier D staging and intervening R relocation.",
+      "start": 5715,
+      "stop": 6215,
+      "supervised_start": 5730,
+      "supervised_stop": 6200,
+      "supervision_exclusions": [],
+      "training_condition": "instance=dlike_at5730; footprint6199; E6199; protect right-column neighbors.",
+      "trajectory_id": "episode_2026091922002701",
+      "uncertainty": "Alignment endpoint is inferred achieved pose, not verified word success."
+    },
+    {
+      "boundary_evidence_indices": [
+        8115,
+        8129,
+        8130,
+        8479,
+        8480,
+        8494
+      ],
+      "condition_evidence_indices": [
+        8130,
+        8479
+      ],
+      "deployment_condition_source": "Agent supplies corrected footprint for the already staged central flanged track.",
+      "directory": "real_robot/data/push_letters/cut_v4/datasets/local_alignment/segments/0001",
+      "label_derivation": "G seed8130 left-middle flanged bar; goal8479 turned/shifted into its later pose. E8479; D labels.",
+      "merge_check": "Revisit after earlier staging is common local alignment behavior, independent of object spelling.",
+      "objective": "Adjust position/orientation of staged central flanged piece.",
+      "rationale": "8130 shows staged oblique piece;8479 shows straighter left-row pose and release/lift. Context ties entry to L completion but no future online input.",
+      "records": 380,
+      "records_sha256": "304c00a2724809bbe252db2cece0d26491716d9ae182ce84fae0d80fa84a1b84",
+      "samples_sha256": "1d01e544db63f50f075204aefae6718cda6ea22a5bf3b0b1ed1ae5910fdab6f9",
+      "segment_id": "a_flanged_align",
+      "split_check": "Keep whole local correction including approach; stop before H-like revisit.",
+      "start": 8115,
+      "stop": 8495,
+      "supervised_start": 8130,
+      "supervised_stop": 8480,
+      "supervision_exclusions": [],
+      "training_condition": "instance=left_middle_flanged_at8130; footprint8479; E8479.",
+      "trajectory_id": "episode_2026091922002701",
+      "uncertainty": "Two flanged instances require stable tracking; semantic I/H not used as the ID."
+    },
+    {
+      "boundary_evidence_indices": [
+        8465,
+        8479,
+        8480,
+        9014
+      ],
+      "condition_evidence_indices": [
+        8480,
+        9014
+      ],
+      "deployment_condition_source": "Caller selects front-left H-like instance and explicit local correction goal.",
+      "directory": "real_robot/data/push_letters/cut_v4/datasets/local_alignment/segments/0002",
+      "label_derivation": "G seed8480 front-left H-like cutout; achieved footprint9014 inferred with audited occlusion-aware tracking; E9014; D labels include actual terminal zero command.",
+      "merge_check": "Same correction/revisit objective as B final H-like move, not episode-success classification.",
+      "objective": "Reposition front-left H-like piece and release/settle.",
+      "rationale": "8480 rod leaves previous flanged target;9014 H-like piece has shifted back/up and tool is lifted, with finite zero command. No synthetic row9015.",
+      "records": 550,
+      "records_sha256": "3ab53076917cc7779f04db41bc647a3af9800b6283e85fafa426f8c3cdfb34de",
+      "samples_sha256": "517a3828e6c1bc2097e4cde8481d3d19dff38a0ce559449fc2b4288d68df3422",
+      "segment_id": "a_hlike_align_terminal",
+      "split_check": "Terminal range ends at real N=9015; no after-buffer or N+1 observation invented.",
+      "start": 8465,
+      "stop": 9015,
+      "supervised_start": 8480,
+      "supervised_stop": 9015,
+      "supervision_exclusions": [],
+      "training_condition": "instance=front_hlike_at8480; footprint9014; E9014; protect all other placements.",
+      "trajectory_id": "episode_2026091922002701",
+      "uncertainty": "Arm occludes some neighbors; terminal scene not annotated successful. Goal mask requires audited tracking rather than perfect visibility assumption."
+    },
+    {
+      "boundary_evidence_indices": [
+        4695,
+        4709,
+        4710,
+        4909,
+        4910,
+        4924
+      ],
+      "condition_evidence_indices": [
+        4710,
+        4909
+      ],
+      "deployment_condition_source": "Agent requests a correction to the already staged D-like piece.",
+      "directory": "real_robot/data/push_letters/cut_v4/datasets/local_alignment/segments/0003",
+      "label_derivation": "G seed4710 rear-right D-like piece; goal4909 reoriented above column; E4909; D labels.",
+      "merge_check": "Same staged-object fine alignment as A, shorter and different preceding actions.",
+      "objective": "Correct D-like orientation/position after R-like placement.",
+      "rationale": "4710 tool approaches;4909 D-like piece straightened and tip departs toward L-like piece.",
+      "records": 230,
+      "records_sha256": "e2e434b6dc9c22a58ba6bfd554f5eabce155f3755c6b0d85e43a312dc61eb463",
+      "samples_sha256": "59ffba40151029cd1e217709823b41425ee13fc2118525d4e863bbf6a36e6eeb",
+      "segment_id": "b_dlike_align",
+      "split_check": "Keep separate from D staging1500-1910; interleaving is explicit.",
+      "start": 4695,
+      "stop": 4925,
+      "supervised_start": 4710,
+      "supervised_stop": 4910,
+      "supervision_exclusions": [],
+      "training_condition": "instance=dlike_at4710; footprint4909; E4909; protect column.",
+      "trajectory_id": "episode_2026091922062101",
+      "uncertainty": "No metric precision/success annotation supplied."
+    },
+    {
+      "boundary_evidence_indices": [
+        6915,
+        6929,
+        6930,
+        7329,
+        7330,
+        7344
+      ],
+      "condition_evidence_indices": [
+        6930,
+        7329
+      ],
+      "deployment_condition_source": "Caller requests local adjustment for middle flanged physical track.",
+      "directory": "real_robot/data/push_letters/cut_v4/datasets/local_alignment/segments/0004",
+      "label_derivation": "G seed6930 center flanged bar above front H-like piece; goal7329 moved up/turned; E7329; D labels.",
+      "merge_check": "Same local revisit after staging as A flanged alignment.",
+      "objective": "Align central flanged piece while preserving right column.",
+      "rationale": "6930 begins access from prior H-like relocation;7329 shows moved piece and tool departure.",
+      "records": 430,
+      "records_sha256": "3193ea31e95a8a1abfe79b9bad3cc8f98263cbfb5797098d08b3f98e74bcd0a3",
+      "samples_sha256": "29d0ae386a8f6ef389c82473e9a007e704ffd4f24badeb4b05c3fe667f04bc0c",
+      "segment_id": "b_flanged_align",
+      "split_check": "Do not merge adjacent H-like target, even though geometry is similar.",
+      "start": 6915,
+      "stop": 7345,
+      "supervised_start": 6930,
+      "supervised_stop": 7330,
+      "supervision_exclusions": [],
+      "training_condition": "instance=middle_flanged_at6930; footprint7329; E7329; protect front H-like and right column.",
+      "trajectory_id": "episode_2026091922062101",
+      "uncertainty": "Geometric similarity can cause tracker swaps; reject ambiguous training identities."
+    },
+    {
+      "boundary_evidence_indices": [
+        7315,
+        7329,
+        7330,
+        7729
+      ],
+      "condition_evidence_indices": [
+        7330,
+        7550,
+        7729
+      ],
+      "deployment_condition_source": "Agent selects front-left H-like track for its explicit final local footprint.",
+      "directory": "real_robot/data/push_letters/cut_v4/datasets/local_alignment/segments/0005",
+      "label_derivation": "G seed7330 front-left H-like piece; goal7729 shifted right/up; E7729; D labels, including real terminal zero command.",
+      "merge_check": "Same local correction/release as A final revisit; episode end is not success label.",
+      "objective": "Finish a local H-like correction and settle tool.",
+      "rationale": "7550 shows contact correction;7729 shows final observed arrangement and lifted tip. No source row7730 exists.",
+      "records": 415,
+      "records_sha256": "54083660cfc3fa941034d5dc4bc357222281ac1cebaff38a102790d43d5952e7",
+      "samples_sha256": "615f0887ac795cb8fe9e32c98ead51296754c5be0b4b0784b85668ceab7de6ee",
+      "segment_id": "b_hlike_align_terminal",
+      "split_check": "Terminal segment has no following buffer; retain real final observation/action.",
+      "start": 7315,
+      "stop": 7730,
+      "supervised_start": 7330,
+      "supervised_stop": 7730,
+      "supervision_exclusions": [],
+      "training_condition": "instance=front_hlike_at7330; footprint7729; E7729; preserve others.",
+      "trajectory_id": "episode_2026091922062101",
+      "uncertainty": "No verified task-success label; monitor must independently validate scene."
+    },
+    {
+      "boundary_evidence_indices": [
+        7785,
+        7800,
+        8129,
+        8130,
+        8144
+      ],
+      "condition_evidence_indices": [
+        7800,
+        8129
+      ],
+      "deployment_condition_source": "Agent can invoke alignment after coarse placement of a corner-shaped piece.",
+      "directory": "real_robot/data/push_letters/cut_v4/datasets/local_alignment/segments/0006",
+      "label_derivation": "G seed7800 diagonal L-like piece near intended gap; goal8129 same goal as parent a_corner_move. E8129; D labels; no alternate success claim.",
+      "merge_check": "Near-slot same-piece correction/recontact fits alignment objective; intentional cross-group reuse.",
+      "objective": "Correct final corner-piece orientation/spacing after gross motion.",
+      "rationale": "7800 still angled near column;8129 now in gap. Parent supplies full earlier approach, this cut supplies an independently invocable late entry.",
+      "records": 360,
+      "records_sha256": "f0c04587bd6ad3be23e223f87753d5ed2a56b79913a5bd0f207e1e5a2b310111",
+      "samples_sha256": "a66ca00d01bccfebe412152748d3a626544178f2cb9945138c7f71e02cc3a7f4",
+      "segment_id": "a_corner_late_align",
+      "split_check": "Do not include early large L turns in local-only objective; no new target is introduced.",
+      "start": 7785,
+      "stop": 8145,
+      "supervised_start": 7800,
+      "supervised_stop": 8130,
+      "supervision_exclusions": [],
+      "training_condition": "instance=corner_at7800; footprint8129; E8129; protect neighboring column pieces.",
+      "trajectory_id": "episode_2026091922002701",
+      "uncertainty": "Locality is geometric, not guaranteed low speed; keep recontact motion."
+    },
+    {
+      "boundary_evidence_indices": [
+        4035,
+        4050,
+        4709,
+        4710,
+        4724
+      ],
+      "condition_evidence_indices": [
+        4050,
+        4200,
+        4650,
+        4709
+      ],
+      "deployment_condition_source": "Agent invokes local correction after R-like piece reaches the column but retains pose error/contact difficulty.",
+      "directory": "real_robot/data/push_letters/cut_v4/datasets/local_alignment/segments/0007",
+      "label_derivation": "G seed4050 branched piece already above ring; goal4709 identical to parent b_branched_move_retry; E4709; D labels. Future response labels only within this sequence.",
+      "merge_check": "Repeated local correction plus lift/recontact shares alignment problem, not a separate robot-posture task.",
+      "objective": "Retain late R-like correction attempts, tool lift/posture adjustment and release.",
+      "rationale": "4050/4200 show large tool reposition over near-slot piece,4650 correction,4709 release. Both command/state and wrist images were inspected; high joint speed is not equated to unusable motion.",
+      "records": 690,
+      "records_sha256": "16ae04e5f7b572385038e8fc9b4e0db25e6e0f78ec905087d02e1acd30986900",
+      "samples_sha256": "392118d0dddb4038cf347701a9cac80fc58f7bda4e2d09a235bc17fb5192dca0",
+      "segment_id": "b_branched_late_align",
+      "split_check": "Late entry gives agent a recovery/retry option without replaying earlier gross relocation; no claim to recover arbitrary jams.",
+      "start": 4035,
+      "stop": 4725,
+      "supervised_start": 4050,
+      "supervised_stop": 4710,
+      "supervision_exclusions": [],
+      "training_condition": "instance=branched_at4050; footprint4709; E4709; protect ring and other column pieces.",
+      "trajectory_id": "episode_2026091922062101",
+      "uncertainty": "Cause of posture change unresolved; do not label it force-contact recovery or proven optimal action."
+    }
+  ],
+  "sequence_semantics": "Bag of independent original sequences; overlapping reuse allowed; never concatenate across cuts.",
+  "skill_id": "local_alignment",
+  "source_manifest": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/real_robot/runs/push_letters/cut_v4/source_manifest.json",
+  "source_manifest_sha256": "e2c03c99f07c63f65c105929e994d34e1215974fc4b4f244f1dffb35b80ef7d1",
+  "subgoal": "Correct a staged or near-goal piece's footprint/orientation with short feedback-driven pushes, recontact and release while preserving neighboring placements."
+}

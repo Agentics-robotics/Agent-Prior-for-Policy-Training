@@ -1,0 +1,30 @@
+{
+  "boundary_evidence_indices": [
+    1930,
+    1949,
+    1950,
+    2849,
+    2850,
+    2869
+  ],
+  "condition_evidence_indices": [
+    1950,
+    2400,
+    2849
+  ],
+  "deployment_condition_source": "HLA selects ring instance and supplies its spatial goal independently of character order.",
+  "label_derivation": "RULE P for ring above central barred at1950, endpoint2849/exit2849.",
+  "merge_check": "Same ring/other-piece relocation objective; symmetry-aware contour goals make it trainable with A ring examples.",
+  "objective": "Turn/translate ring down into a slot above the foreground wedge and refine it.",
+  "rationale": "2150/2400 survey show progressive ring movement;2700 and2849 show achieved pose and tool exit. Keep fine adjustments.",
+  "segment_id": "b_ring_move",
+  "split_check": "Separate from long R manipulation; internal ring reapproaches stay in this sequence.",
+  "start": 1930,
+  "stop": 2870,
+  "supervised_start": 1950,
+  "supervised_stop": 2850,
+  "supervision_exclusions": [],
+  "training_condition": "Selected oval ring near D at1950; achieved footprint2849, no forced canonical angle if symmetric.",
+  "trajectory_id": "episode_2026091922062101",
+  "uncertainty": "Shape symmetry and top-surface parallax limit exact angular labels; no verified O class is supplied."
+}

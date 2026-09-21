@@ -1,0 +1,40 @@
+{
+  "schema": "real_robot.policy_package.v1",
+  "policies": {
+    "contour_push": {
+      "heuristic_id": "boundary_graph",
+      "batch_size": 32,
+      "learning_rate": 0.00025,
+      "weight_decay": 0.0001,
+      "max_grad_norm": 1.0,
+      "config": {"family": "five_component_diagonal_gaussian_mixture", "graph_nodes_max": 256, "message_layers": 3, "node_width": 192, "history_length": 8, "history_stride_original_rows": 3, "memory_width": 384, "memory_layers": 2, "auxiliary": "masked_same_segment_three_row_foreground_displacement"},
+      "description": "Independent learned boundary-adjacency encoder, role and learned contour attention pooling, causal gated memory and current native-command mixture. Geometry-conditioned instance relocation; no alphabet or demonstration-order input."
+    },
+    "visual_push": {
+      "heuristic_id": "dual_view_memory",
+      "batch_size": 12,
+      "learning_rate": 0.0002,
+      "weight_decay": 0.0001,
+      "max_grad_norm": 1.0,
+      "config": {"family": "five_component_diagonal_gaussian_mixture", "global_size": [320,180], "wrist_size": [256,144], "detail_size": [160,160], "goal_size": [160,90], "history_length": 8, "history_stride_original_rows": 3, "memory_width": 384, "memory_layers": 2, "auxiliary": "masked_same_segment_three_row_foreground_displacement"},
+      "description": "Independent learned target-marked global RGB, target/tool detail, calibrated wrist RGB and foreground/RGB goal streams with causal gated memory and native-command mixture."
+    }
+  },
+  "preprocessing": {
+    "cuts": "frozen cut_v3: all 22 original segments, unchanged ranges and exclusions",
+    "shared_cache": true,
+    "perception_chart_size": [640,360],
+    "chart": "third undistorted original 1280x720 pixel coordinates; 2-pixel internal raster",
+    "perception": "automatic brown-material connected components; white-support hull; forward-only assignment with uncertainty",
+    "tracking": "90-row lost-track lifetime; never use a lost mask as current foreground",
+    "action_source": "finite action_json.dq only, cached in float64",
+    "time_weight": "elapsed time; 0.5-second mass cap on contiguous identical-command runs; equal segment mass",
+    "goal_labels": "last included paired row and frozen original raw goal boxes; masks are inferred, not verified",
+    "future_target": "three-row displacement only if both endpoints are eligible within same segment",
+    "augmentation": "bounded photometry and nonlatest causal-history dropout; no scene/action rotations",
+    "assets": []
+  },
+  "dependencies": "Only supplied paired RGB, recording metadata, numpy, OpenCV, scipy, torch and framework read-only public access. No downloaded weights, torchvision, alphabet templates, raw depth, semantic labels or generic pretrained recognizer are assumed. Packages use the interface-provided versions.",
+  "adaptations": "API-owned executable material-specific deterministic foreground/causal tracker replaces the assumed unavailable generic learned perception. This accepts previously unseen brown planar silhouettes but is not generic-object segmentation. Both motor policies are trained from scratch independently; single-command Gaussian mixtures are chosen independently instead of diffusion. RGB resolutions and history are reduced for bounded cache and 24-GiB execution; original pairing/chart mapping is retained. No verified table homography or tool silhouette exists: only bounded, acknowledged 2D rigid similarity goals are supported; projected TCP is an unverified point, never clearance/contact truth. Goal_observed is explicitly geometric agreement only and never successor readiness.",
+  "limitations": "Two episodes cannot establish unseen-shape/material/friction or semantic word generalization. Brown-on-light-support segmentation can fragment, merge or confuse instances; confidence and orientation ties are heuristic, not calibrated. No recognizer, word planner, collision-free planner, contact detector, tool-clearance measurement, full perspective renderer or robot actuation is supplied. Registration failures and missing observations/commands are counted, not imputed. Native candidate units/order/timing require independently verified recording-controller interpretation before decode can format a command. All safety and layout/readability checks remain external commissioning/HLA responsibilities; no performance ranking or success claim follows from training."
+}

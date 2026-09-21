@@ -1,0 +1,28 @@
+{
+  "boundary_evidence_indices": [
+    7315,
+    7329,
+    7330,
+    7729
+  ],
+  "condition_evidence_indices": [
+    7330,
+    7550,
+    7729
+  ],
+  "deployment_condition_source": "Agent selects front-left H-like track for its explicit final local footprint.",
+  "label_derivation": "G seed7330 front-left H-like piece; goal7729 shifted right/up; E7729; D labels, including real terminal zero command.",
+  "merge_check": "Same local correction/release as A final revisit; episode end is not success label.",
+  "objective": "Finish a local H-like correction and settle tool.",
+  "rationale": "7550 shows contact correction;7729 shows final observed arrangement and lifted tip. No source row7730 exists.",
+  "segment_id": "b_hlike_align_terminal",
+  "split_check": "Terminal segment has no following buffer; retain real final observation/action.",
+  "start": 7315,
+  "stop": 7730,
+  "supervised_start": 7330,
+  "supervised_stop": 7730,
+  "supervision_exclusions": [],
+  "training_condition": "instance=front_hlike_at7330; footprint7729; E7729; preserve others.",
+  "trajectory_id": "episode_2026091922062101",
+  "uncertainty": "No verified task-success label; monitor must independently validate scene."
+}

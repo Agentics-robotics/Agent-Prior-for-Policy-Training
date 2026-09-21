@@ -1,0 +1,30 @@
+{
+  "boundary_evidence_indices": [
+    1485,
+    1499,
+    1500,
+    1909,
+    1910,
+    1924
+  ],
+  "condition_evidence_indices": [
+    1500,
+    1800,
+    1909
+  ],
+  "deployment_condition_source": "Agent specifies reachable rear staging footprint for D-like instance.",
+  "label_derivation": "G seed1500 large front-left D-like piece; goal1909 rear-right beside ring; E1909; D labels.",
+  "merge_check": "Same long D-like staging as A, occurs earlier in this episode's order.",
+  "objective": "Move D-like piece rearward before ring relocation.",
+  "rationale": "1800 shows tool within/above displaced piece;1909 shows release and next-target access.",
+  "segment_id": "b_dlike_stage",
+  "split_check": "Do not use later D alignment goal as this segment's goal; staged endpoint is distinct.",
+  "start": 1485,
+  "stop": 1925,
+  "supervised_start": 1500,
+  "supervised_stop": 1910,
+  "supervision_exclusions": [],
+  "training_condition": "instance=dlike_at1500; footprint1909; E1909.",
+  "trajectory_id": "episode_2026091922062101",
+  "uncertainty": "D-like identity mnemonic and hole contact inferred, not provided labels."
+}

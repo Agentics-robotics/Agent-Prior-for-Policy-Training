@@ -1,0 +1,28 @@
+{
+  "schema": "real_robot.cut_config.v1",
+  "config_path": "real_robot/configs/push_cut_v4.json",
+  "task": "push_letters",
+  "source_root": "/home/storage/tianrunhu/real_robot_data/push_letters",
+  "trajectory_ids": [
+    "episode_2026091922002701",
+    "episode_2026091922062101"
+  ],
+  "output": "real_robot/data/push_letters/cut_v4",
+  "run": "real_robot/runs/push_letters/cut_v4",
+  "prompt": "real_robot/prompts/general_cut_and_prior_v2.md",
+  "task_specification": "real_robot/task_specifications/push_letters.md",
+  "data_contract": "real_robot/DATA_CONTRACT.md",
+  "model": "gpt-6-astra",
+  "reasoning_effort": "xhigh",
+  "service_tier": "default",
+  "preview_width": 640,
+  "preview_height": 360,
+  "max_api_calls": 128,
+  "max_tool_calls": 480,
+  "max_plan_versions": 20,
+  "max_output_tokens": 32000,
+  "request_timeout_seconds": 1200,
+  "execution_guard_usd": 100,
+  "scope": "Subtask-first behavior coverage, freely cut/reused subtask datasets with compatible buffers, independent heuristic designs, real-robot preprocessing obligations and High-level Agent calling contracts; stop before implementation, training or robot execution",
+  "authorization": "On 2026-09-21, after reviewing the new subtask-first prompt and explanation, the user explicitly instructed: 现在开始吧，我看看成品. Execute this independent Push cut/prior run with the reviewed prompt and original demonstrations. Preserve all prior cuts, training and deployment results."
+}

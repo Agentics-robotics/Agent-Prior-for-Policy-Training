@@ -1,0 +1,29 @@
+{
+  "boundary_evidence_indices": [
+    1220,
+    1239,
+    1240,
+    1499,
+    1500,
+    1519
+  ],
+  "condition_evidence_indices": [
+    1240,
+    1499
+  ],
+  "deployment_condition_source": "HLA can request temporary blocker clearance on a selected instance before placing another.",
+  "label_derivation": "RULE P for central barred piece at1240, endpoint1499/exit1499.",
+  "merge_check": "Same supporting clearance objective as A barred clearing, using the identical physical-goal interface.",
+  "objective": "Move central barred piece leftward to open the center corridor.",
+  "rationale": "1240 wrist shows tool near its edge;1450 survey and1499 show it left of its initial position with D still foreground-left.",
+  "segment_id": "b_bar_clear",
+  "split_check": "Do not merge with D transfer; temporary clearing pose is not the piece's later final pose.",
+  "start": 1220,
+  "stop": 1520,
+  "supervised_start": 1240,
+  "supervised_stop": 1500,
+  "supervision_exclusions": [],
+  "training_condition": "Target central/right barred piece, not upper-left barred; achieved pose1499 and exit1499.",
+  "trajectory_id": "episode_2026091922062101",
+  "uncertainty": "Clearance intention is inferred; track identity must distinguish the two barred pieces."
+}

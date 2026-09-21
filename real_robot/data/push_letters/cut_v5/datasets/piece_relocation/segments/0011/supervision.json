@@ -1,0 +1,29 @@
+{
+  "boundary_evidence_indices": [
+    8490,
+    8509,
+    8510,
+    8950,
+    9014
+  ],
+  "condition_evidence_indices": [
+    8510,
+    8950,
+    9014
+  ],
+  "deployment_condition_source": "HLA selects the remaining foreground barred instance and requests its slot plus a safe stopped tool pose.",
+  "label_derivation": "RULE P at9014; A8950 and9014 actual zero twist supervise holding. No fabricated terminal successor or word-success label.",
+  "merge_check": "Same target class of problem as B final barred refinement, with a different starting arrangement.",
+  "objective": "Bring foreground barred piece upward into a side arrangement, retract and hold.",
+  "rationale": "8510 enters from previous placement;8750 shows foreground contact in survey;8950/9014 show changed piece placement and stable terminal tool. Only20-row prefix because source ends.",
+  "segment_id": "a_upper_bar_align",
+  "split_check": "Keep terminal withdrawal/hold as supporting behavior; episode endpoint does not define task success.",
+  "start": 8490,
+  "stop": 9015,
+  "supervised_start": 8510,
+  "supervised_stop": 9015,
+  "supervision_exclusions": [],
+  "training_condition": "Target foreground-left barred piece moved by a_upper_bar_move; achieved footprint9014 and stopped tool endpoint.",
+  "trajectory_id": "episode_2026091922002701",
+  "uncertainty": "Final visual arrangement resembles lettering but no requested word or success annotation is supplied; tool occludes part of scene."
+}

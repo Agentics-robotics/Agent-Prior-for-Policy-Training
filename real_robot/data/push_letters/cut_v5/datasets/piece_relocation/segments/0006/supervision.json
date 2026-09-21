@@ -1,0 +1,30 @@
+{
+  "boundary_evidence_indices": [
+    4620,
+    4639,
+    4640,
+    5199,
+    5200,
+    5219
+  ],
+  "condition_evidence_indices": [
+    4640,
+    4750,
+    5199
+  ],
+  "deployment_condition_source": "HLA selects D-like instance and a temporary or final slot footprint with an accessible hole/contact side.",
+  "label_derivation": "RULE P for D-like from foreground-left to endpoint5199; track nearby R-like as a protected object and audit incidental motion.",
+  "merge_check": "Pairs with B D relocation and both later D refinements; same goal-conditioned planar transformation.",
+  "objective": "Move D-like from foreground-left to upper-right using its internal opening.",
+  "rationale": "4750 wrist/third show the rod inside D-like;4950/5199 show it at upper-right. Retain approach, long displacement, lift and exit.",
+  "segment_id": "a_d_stage",
+  "split_check": "Separate later R manipulation and later D orientation correction instead of assigning final D pose to every earlier move.",
+  "start": 4620,
+  "stop": 5220,
+  "supervised_start": 4640,
+  "supervised_stop": 5200,
+  "supervision_exclusions": [],
+  "training_condition": "D-shaped ring piece initially left/foreground; achieved pose5199, exit5199.",
+  "trajectory_id": "episode_2026091922002701",
+  "uncertainty": "Inner-wall versus top-edge contact must be audited at implementation; later movement means this is not declared final success."
+}

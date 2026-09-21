@@ -1,0 +1,1016 @@
+{
+  "calling_contract": "The High-level Agent (HLA), not a recorded spelling sequence, owns request interpretation, inventory feasibility, physical-instance assignment, layout generation, obstacle clearing and policy selection. Proposed calls are tool_waypoint_v1 (tool_position dataset), piece_contact_graph_v1 and piece_goal_field_v1 (piece_relocation dataset). A call contains a persistent scene-instance ID where applicable, a workspace-frame goal, tolerances, protected-instance IDs, speed/clearance limits, timeout and an optional exit-tool waypoint. Return RUNNING, REACHED_LOCAL_GOAL, NEEDS_REPOSITION, BLOCKED, PERCEPTION_UNCERTAIN, CONTROLLER_UNVERIFIED or ABORTED, with geometric error, uncertainty, changed-neighbor list and successor readiness. These are proposed interfaces, not executable policies. Representative evidence-grounded compositions: episode A approaches the wedge-shaped piece, relocates it, shifts the middle barred piece to clear space, moves O-like, stages R-like, moves the middle and upper barred pieces separately, moves D-like, revisits R-like and D-like, repeatedly recontacts L-like, then revisits both barred pieces. Episode B instead moves D-like before O-like and R-like, and moves the upper-left barred piece late. Every stage is another call on current geometry, with temporary clearing/staging poses as legitimate local goals. A caller may interrupt between strokes and change the goal; never change an instance ID silently. If a local goal is reached but the word is not, HLA calls another policy. Final word acceptance requires independent identity, orientation, spacing and distinct-instance checks, never episode-end detection.",
+  "capability_coverage": "A means episode_2026091922002701; B means episode_2026091922062101, only within this document. Coverage map: initial waiting, descent and approach A0-599/B0-379 -> tool_position/tool_waypoint_v1. Wedge-piece translation and rotation A600-1739 (images 650,1300,1550), B380-1239 (430,860,1050) -> piece_relocation/both piece policies. Clearance of a barred piece A1740-1989 and B1240-1499 -> the same geometry-goal skill with temporary goals, not a spelling-specific exception. Ring translation and repeated small corrections A1990-3219 (2600,3100), B1950-2849 (2400,2700) -> both piece policies. Staging and later retrieval of R-like A3220-3699 and A5200-5669; B2850-4699 contains repeated approach, push, retreat and correction (3000,3900,4000,4120,4160,4250,4300). Barred-piece separation and relocation A3700-4299/A4300-4639, B6150-6909, then final repositioning A8150-8509/A8510-9014 and B6910-7369/B7370-7729 -> both piece policies. D-like inside-hole pushing A4640-5199 and B1500-1949; later D-like orientation correction A5670-6119 and B4700-4949 -> both piece policies. L-like off-center pushing, reversals, recontact and final alignment A6120-8149 (6500,6800,7100,7400,7800,8050), B4950-6149 (5200,5500,5750) -> both piece policies. Independent noncontact reposition support A6120-6250 and B4000-4250 is reused by tool_waypoint_v1. Final retract/hold is retained in the final piece calls; A8950/9014 and B7729 have actual zero twist commands. All 16,745 original records are materialized and fall in at least one proposed action-supervised range. No verified semantic inventory, success, contact or goal annotations are claimed. Autonomous recognition, impossible-request rejection and novel-shape performance require the components and evaluations described below; they are integral deployment requirements, not demonstrated learned capabilities.",
+  "exclusions": [],
+  "generalization_design": "Hypotheses, not established transfer: separate semantic identity from manipulation geometry. An open-vocabulary recognizer supplies character hypotheses and semantic upright orientation, a persistent instance tracker supplies geometry, and HLA matches word positions to distinct physical instances. Manipulation never consumes a character-class embedding or the demonstrated word. For entirely unseen shapes, use measured outer AND inner contours, local boundary normals, tool-radius clearance and current-goal correspondence rather than an alphabet-specific template library or convex hull alone. piece_contact_graph_v1 learns only contact-response residuals and mode selection over deterministic feasible contact candidates; piece_goal_field_v1 learns a causal goal-field servo without needing a unique canonical object angle. New words and layouts are explicit target rigid transforms/goal silhouettes on the measured workspace, with footprint-dependent spacing and collision constraints. New arrangements are expressed by current obstacle masks, relative geometry and HLA staging calls. Evaluate independently: (1) new words/layouts using familiar pieces; (2) entirely held-out physical letter shapes/fonts/concavities, including unseen identities, with single-piece translation/rotation/contact-switch goals; (3) both novel physical letters and novel feasible words together, with new clutter and manipulation orders; (4) repeated-character inventory and impossible/ambiguous requests; (5) perception-only recognition versus manipulation with supplied ground-truth goals to separate failures; (6) calibration, friction, thickness, occlusion and controller stress tests. Use leave-one-episode-out development and leave-shape-family-out tests, keeping every overlapping source interval in one split. Two episodes cannot establish a statistical new-shape claim; additional authorized held-out physical trials and broad perception assets are necessary. Compare the two piece policies under identical goals, source support and perception; ablate geometry normalization, holes, mode memory and future-goal relabeling. Measure pose/silhouette error, neighbor displacement, contact switches, intervention rate, uncertainty calibration and word-level correctness, not just final pixel similarity.",
+  "goal_conditioning": "Common conventions and label rules apply to all segments. Establish workspace W with origin the projection of the calibrated board origin onto a separately verified tabletop plane, z the plane normal pointing toward base +z, x the board x axis projected onto that plane, and y=z cross x. Positions are meters and angles radians; retain base transforms as recorded. The supplied board transform is an initialization, not proof of the tabletop or letter-top height. Goal G is an SE(2) rigid displacement of a selected physical instance's observed footprint, equivalently an explicit goal silhouette in W, plus a desired semantic orientation when distinguishable, position/angular or silhouette tolerances, protected-instance masks and optional exit_tool=(pose in base, terminal-twist/arrival-mode). HLA obtains layout origin, reading direction, baseline, orientation and spacing from the user or proposes them explicitly using observed piece extents and table/reachability limits. A word string alone is insufficient. For each relocation segment, its stated morphology/location identifies the target at the first supervised frame; track that physical instance through the interval. RULE P: derive a target footprint from the last supervised frame, using both cameras and audited within-segment views if occluded; fit a rigid correspondence to the entry footprint, preserving holes. Freeze this achieved local pose as the hindsight goal, not as the demonstrator's verified intent or word success. Use endpoint T_base_ee and recorded endpoint twist as a separate optional exit-tool label to explain clearance/transition motion after piece motion has ceased. In particular some cuts end during free travel toward a successor rather than at zero velocity. If the endpoint pose is ambiguous, an offline annotator must resolve it from this retained sequence or mark the corresponding goal/pose loss ineligible; never invent an angle for a symmetric piece. RULE T: tool-position goal is the last supervised T_base_ee and terminal recorded twist; trajectory supervision is original action_json, not differentiated q. These future-derived goals are caller-argument training labels only. Online goals come from HLA planning/current geometry, never a future frame or source index. At each time, instance geometry, obstacle masks, contact candidates, phase and progress update causally from the current paired observations and permitted history. Goal shape is transformed with the same causal registration as the tracked instance but its desired world placement stays fixed until an explicit new call. A pose-symmetry set can be physical for manipulation, but semantic upright orientation is separately enforced; an ambiguous glyph cannot be declared correctly spelled.",
+  "model_inventory": "Proposed independent learned policies: one compact waypoint residual/mode model (tool_waypoint_v1), one contour-graph contact-response/mode model with constrained short-horizon planning (piece_contact_graph_v1), and one goal-field recurrent visual servo (piece_goal_field_v1). Shared non-policy components: pretrained open-world instance segmentation and open-vocabulary character/orientation recognition, causal multi-object tracking with covariance, robot/tool masking, and a shared scene representation. These pretrained weights are NOT supplied and must be selected, licensed/acquired and evaluated on unseen physical letters; no known-font restriction is acceptable. Train-only mask/track/rigid-transform and phase/contact-proximity labels require annotation/audit; contact remains weakly inferred, not force ground truth. Deterministic components to implement: JSON parser/missingness masks, lens undistortion, camera transforms, workspace/goal conversion, contour/SDF construction, candidate collision checks, reachability checks, word-to-distinct-instance assignment and footprint layout planner, action conversion, joint-velocity follower and safety/status monitors. Assets present: exact NPZ/source RGB/depth references, SHA-256 manifest, per-episode K/distortion and third T_base_cam, wrist T_flange_cam, board calibration, TCP xyz=[0,0,0.2], rpy=[0,0,-90] degrees set as robot ee, and teleop configuration. Assets still needed: actual controller implementation/version and execution semantics; robot kinematic/collision model and limits; verified TCP-to-installed-rod-tip/radius geometry; tabletop/letter-top height calibration and its uncertainty; validated camera/depth scale/registration if depth is used; perception weights and audited labels. COMMON PIPELINE C: parse q,dq,tau_ext,T_base_flange,T_base_ee, action_json and original timing without shifting pairings. Set explicit missing masks for gripper_position=-1, gripper_width_m=NaN, null command dq/target_pose/gripper. Never use these as valid grasp signals. Use calibrated wrist K rather than mixing factory wrist K with its extrinsics; test alternative calibration only as a separately validated asset. T_base_wrist=T_base_flange*T_flange_cam. Undistort original 1280x720 RGB before cropping/warping; retain exact crop/resize mapping. Robot/tool masks come from projected verified geometry plus image checking. Derive letter geometry by ray intersection with verified letter-top planes, accounting for thickness/parallax; until depth scale and RGB registration are verified, raw depth is archived but not a metric feature. Plane uncertainty must propagate into masks/poses/clearances. Existing calibration reports 4.42 px RMS and 3.23 mm pose consistency, not perfect contact localization. Use the same causal estimator at training and deployment; offline smoothed/audited shapes only supervise auxiliary targets and endpoint goal labels. Keep all original frames and metadata; preview resolution is inspection only. Eligibility is per loss: finite valid command fields for action loss, confident track/geometry for normalized-action or response loss, and an actual in-segment successor for dynamics loss. Null dq at initial rows does not invalidate finite v/w supervision. Later implementation must publish retained/ineligible counts per behavior, phase and instance and seek annotation/estimator repair rather than silently dropping difficult L/R/hole interactions. The cut stage neither constructs labels nor implements these converters.",
+  "motion_coverage": "Numerical surveys used A[0,9015) with 20 bins and B[0,7730) with 18 bins, then B[3800,4300) with 10 bins. Bins were not semantic cuts. Startup descends from recorded TCP z about 0.365 m; most manipulation is near z 0.047-0.083 m, with lifts/recontacts up to roughly 0.134 m. TCP z is not assumed equal to physical rod-tip height. Planar translation dominates, but nonzero recorded angular commands and changing tool tilt are real supervision: A3900,4319,5219,7400. Do not clamp every w to zero or assume a permanently vertical tool. Object yaw is primarily changed through contact location/direction; wrist yaw and object yaw are distinct. B4120-4200 has large joint reconfiguration (measured dq up to about 0.66 rad/s in the survey) while the tool retracts/reapproaches R-like; it is retained, not classified as corrupt merely for high joint speed, and the joint-limit/singularity monitor must flag it. Translation, yaw adjustment, low/high clearance, free travel, inner-hole/concavity contacts, short corrections, repeated attempts and terminal holding all have action support. Base primary supervision is a contiguous accounting partition: tool startup A[0,600), B[0,380); relocation A[600,9015), B[380,7730). Additional tool supervision reuses A[6120,6251) and B[4000,4251), 382 original rows. Thus proposed supervised uses total 17,127 before per-field eligibility, not 17,127 independent observations. The 26 materialized cuts total 18,087 rows, including 960 context-only uses, while the unique source remains 16,745 records. No N+1 terminal observation is fabricated and no action is inferred after either final record.",
+  "overlap_rationale": "Twenty paired rows (about 0.67 s) before and after ordinary object cuts are context-only, long enough for a proposed 12-row causal history but short enough not to merge different-object objectives. End-of-episode cuts have no fabricated suffix. Context before an invocation may show the previous target; its actions are never trained under the new target. Future suffix observations can audit endpoint/handoff labels but cannot enter an earlier policy input. Approach, recontact, final clearance and holds INSIDE each supervised range remain action supervision under the target object and the optional explicit exit-tool goal. This prevents losing transition behavior while avoiding labeling another object's push with the wrong ID. Reuse A6120-6250 for both L-like approach under an object goal and independent tool-waypoint motion; reuse B4000-4250 for R-like contact reset under its persistent goal and an independent tool reposition call. Different conditioning explains the same actions; neither reuse is a new demonstration. For new calls HLA can invoke tool positioning independently or let the piece policy execute its internal approach/reset phase. Within each segment form causal windows of at most 12 paired records, mask absent history, and never concatenate separate cuts. Supervised short unrolls must mask losses outside the declared range. Reset policy hidden state on a new instance/goal, optionally warm it using valid retained/live history and last verified tool command. Deduplicate source identities in perception training and weight shared rows by inverse reuse count when aggregating metrics; each independent policy gets its own normalized training sampler. Balance episodes, instances and contact/approach/reset phases, cap long idle holds at 5% of minibatches while preserving actual zero labels, and normalize long L/R sequences so duration alone does not dominate. Split at original episode and physical-instance lineage before any overlapping cuts or augmentation.",
+  "portfolio_rationale": "Two subtask dataset groups and three independent callable policies are deliberate. tool_position learns noncontact approach/reposition with an explicit waypoint, not letter semantics. piece_relocation learns one physical instance's local planar transformation, including contact acquisition, internal stroke switching, fine adjustment and bounded clearance to an exit waypoint. A per-letter policy, per-word policy or separate model for every corrective stroke would fragment already tiny support and fail unseen identities. Conversely a single word-to-joint trajectory model would entangle inventory, layout, contact and arm redundancy. Translation, off-center rotation and short correction share one geometry-goal problem; a mode-aware representation makes this coherent without cutting away the L-like repeated attempts. Distinct object invocations and revisits are separate sequences. The two piece alternatives have substantive differences: local boundary mechanics with a learned response residual versus dense goal-field correspondence servo that avoids canonical-angle estimation. Both are independently trained on the same 22 invocation examples, not two names for a shared policy checkpoint. A second waypoint policy is not justified by the four supported waypoint examples; use deterministic geometry for predictable variation instead.",
+  "sharing_and_diversity_audit": "All policies may share frozen/audited perception, calibration, geometry conversion, safety and controller assets but not trained policy weights or recurrent state. Character recognition and word planning are upstream, not hidden learned labels for manipulation. The same two episodes supply a narrow material/tool/friction regime and largely the same seven-looking-piece inventory; repeated cuts are not alphabet diversity. Contact graph versus goal field is a model/representation/action-generation diversity test, not an evidence expansion. One policy favors confident local boundaries and contact predictions; the other favors reliable dense masks but uncertain canonical orientation or imperfect local mechanics. HLA selection uses these observable confidence measures and geometry, not test success labels. Preserve source hashes, original sample indices, timestamps, missingness, raw commands and original media mappings in every cut. Use exact original paths through source_root and keep goal-label provenance separate. Shared calibration uncertainties and perception failures can correlate alternatives; report that rather than claiming independent safety redundancy.",
+  "skills": [
+    {
+      "heuristics": [
+        {
+          "action_decoding": "COMMON DECODER D for all policies: action targets are recorded action_json.v and w with their validity masks, plus action_json.dq only for a verified follower auxiliary/check; measured state dq is never a command target. The intended endpoint is joint_velocity. Later implementation must retrieve the actual recording controller and verify v units, twist origin, w encoding (metadata says rotation_frame=ee, but the serialized w may already be transformed), command holding, filtering, watchdog and the 20 Hz teleop/30 Hz recording relationship before enabling output. Once verified, rotate workspace translational proposals to base; convert physical angular proposals to the verified serialized w frame using T_base_ee where required, accounting for any TCP-tip offset, then run the matching constrained Jacobian/QP follower with recorded damping/posture settings, robot limits and current q to produce command dq in rad/s. Validate reconstructed dq against nonnull recorded command dq and one-step physical responses with no temporal re-pairing. Preserve v/w, spacemouse, target_pose and dq separately; spacemouse and future target_pose are not online inputs. Runtime samples current observations and commands at the verified 20 Hz interface, holds only according to verified controller semantics, and uses watchdog stop on stale observations. Do not send track_twist JSON to a joint-velocity interface without this adapter. Speed/acceleration, joint, table, neighbor, rod-sweep and torque guards may reduce outputs; the metadata maxima 0.15 m/s and 0.6 rad/s are ceilings, not proven safe contact settings. tau_ext is a joint residual signal, not a calibrated contact force. Proposals include approach/retract z and bounded orientation corrections; decode those too. The first/last row can train a valid instantaneous twist but not a fabricated next-state loss.",
+          "applicability": "Noncontact tool approach from home or between strokes, and guarded extraction/reposition when an escape direction is visibly free. Applicable only with verified controller/robot/tool calibration and a collision-feasible waypoint. Not a pushing policy and not a guarantee of extraction from a jammed hole.",
+          "augmentation": "Translate/rotate workspace geometry, obstacle map, tool pose, waypoint and translational/angular labels together in a virtual task frame while leaving raw q/T/media unchanged; only retain physically reachable transformed examples after robot-model checks. Do not geometrically rotate raw camera images without updating projection mappings. Photometric and small calibrated projection-noise augmentation change no command labels. No unverified w-frame augmentation, synthetic null-to-zero replacement or independent target shuffling.",
+          "evidence": [
+            {
+              "indices": [
+                0,
+                580,
+                599,
+                600,
+                6100,
+                6120,
+                6250,
+                6270
+              ],
+              "trajectory_id": "episode_2026091922002701"
+            },
+            {
+              "indices": [
+                0,
+                360,
+                379,
+                380,
+                3980,
+                4000,
+                4120,
+                4160,
+                4200,
+                4250,
+                4270
+              ],
+              "trajectory_id": "episode_2026091922062101"
+            }
+          ],
+          "goal_conditioning": "RULE T: base-frame TCP waypoint pose, arrival mode pass_through or stop, desired terminal twist if pass-through, clearance floor and protected-instance set. HLA derives approach points from current feasible boundaries, not the training endpoint index. For a stop call use zero terminal velocity; recordings that end with nonzero commands supervise pass-through, not false stopping.",
+          "handoff": {
+            "entry_conditions": "Current tool/robot pose valid; target waypoint reachable; free corridor or conservative lift corridor checked; no unresolved contact/jam. Missing gripper feedback is expected, not an error indicating an open gripper.",
+            "exit_conditions": "Waypoint crossed within caller tolerance and correct clearance/arrival mode, with valid current tool pose and a verified next command handoff. For stop, additionally small measured motion and actual stop command; do not infer this at a moving segment boundary.",
+            "failure_signatures": "Unexpected piece motion during noncontact travel, tool/obstacle overlap, table approach outside height uncertainty, joint-limit/singularity alarm, tau_ext excursion, stale camera tracking or infeasible waypoint.",
+            "overlap_role": "A6120-6250 and B4000-4250 explicitly teach the same free reposition actions also embedded in a piece call. Context-only suffix may show the following contact but does not authorize pushing loss.",
+            "successor_readiness": "Return achieved tool pose, velocity, visible candidate contacts and confidence. A piece policy can start from a precontact waypoint; an HLA inspection can follow a safe hold."
+          },
+          "heuristic_id": "waypoint_clearance_residual",
+          "input_preprocessing": "Use pipeline C. Inputs: current q, measured dq, T_base_ee/flange, valid tau_ext, last executed command, W-frame tool-tip/rod geometry, obstacle occupancy/height uncertainty and waypoint error; no semantic letter label. Use up to 12 causal paired rows and frame repetition/staleness flags. For learning use a 256x256 workspace occupancy/height map plus low-dimensional relative waypoint/robot state; output scale is physical meters/seconds, not pixels. Startup has masked absent history. Infer contact-free eligibility from dual-view rod/contour separation and object stability, not q-speed alone. Required geometry/perception/controller assets are listed in C/D; unvalidated height/depth blocks near-table motion.",
+          "limitations": "Four waypoint sequences only, two are reused subranges. Does not establish arbitrary crowded-scene navigation or autonomous escape from wedging. Calibration and controller mismatch can dominate the residual model. Near-contact moves must slow/stop when height or tool-radius uncertainty exceeds clearance.",
+          "pipeline_implications": "Deterministic collision-aware lift/traverse/descend path generator and a small learned phase/speed/lateral-residual model. Fit behavior cloning to valid v/w with a small residual penalty; train phase targets from geometry/height and motion audits, not timestamps in the episode. Monitor pieces for no unintended movement. Planner implementations, collision model and decoder verification must be delivered before robot execution.",
+          "policy_contract": {
+            "caller_arguments": "policy_id=tool_waypoint_v1; goal_tcp_base pose, arrival_mode, optional terminal_twist, clearance_m, protected_instance_ids, tolerance_m/rad, speed_cap, timeout_s. Dataset responsibility: tool_position.",
+            "input_output_contract": "Causal observations processed by C plus caller arguments -> one verified-interface command via D and a status object. Internally chooses feasible clearance path and speed residual; caller does not supply each low-level move.",
+            "memory_and_handoff": "Reset on new call; initialize last-command memory from actual controller state and up to 12 live frames. Interrupted call returns current pose/velocity; do not carry unvalidated recurrent state into a piece call.",
+            "selection_cues": "Choose for initial descent, contact-side change or retract-to-inspect without intentionally moving a piece. Choose a piece policy instead if the goal requires object motion.",
+            "status_and_progress": "Report waypoint distance, clearance minimum/uncertainty, phase lift/traverse/descend/hold, controller validity, object-motion alarm and READY/BLOCKED states using the global status vocabulary."
+          },
+          "policy_id": "tool_waypoint_v1",
+          "rationale": "A0/599 and B0/379 show large vertical approach to different locations; A6120/6250 shows lateral transit, and B4000/4250 shows lift/recontact with substantial arm redundancy. The invariant is reaching a collision-feasible tool waypoint while not moving letters. Let deterministic geometry and a verified follower handle path and arm redundancy; learn only demonstrated phase/speed and small path corrections. This should transfer across letter identities because obstacles are geometry, but remains an unevaluated hypothesis.",
+          "statement": "Learn a compact clearance-aware waypoint residual policy around deterministic collision-checked tool motion."
+        }
+      ],
+      "name": "Tool positioning and noncontact contact reset",
+      "segmentation_rationale": "Four independent sequences: two initial approaches and two reusable noncontact portions inside object invocations. Endpoint twist is retained in the goal so a moving handoff is not mislabeled as a stop. These are not uniformly sampled motion bins.",
+      "segments": [
+        {
+          "boundary_evidence_indices": [
+            0,
+            580,
+            599,
+            600,
+            619
+          ],
+          "condition_evidence_indices": [
+            0,
+            599
+          ],
+          "deployment_condition_source": "HLA chooses a currently feasible precontact TCP waypoint near the selected object; no source endpoint is available online.",
+          "label_derivation": "RULE T with T_base_ee and terminal action at 599. Retain null action dq as missing; finite zero/nonzero v,w remain usable.",
+          "merge_check": "Same waypoint problem as the other three tool intervals despite different height/travel distance.",
+          "objective": "Wait/initialize and descend from home toward the wedge-piece neighborhood without moving a piece.",
+          "rationale": "A0 shows untouched scene and high TCP; 599/600 show rod above the R/W neighborhood before the wedge relocation. [600,620) is continuation context only.",
+          "segment_id": "a_initial_tool",
+          "split_check": "Keep long initial wait but downweight it; split before the object-goal invocation at 600 rather than merging 3D home descent into planar pushing.",
+          "start": 0,
+          "stop": 620,
+          "supervised_start": 0,
+          "supervised_stop": 600,
+          "supervision_exclusions": [],
+          "training_condition": "tool waypoint at A599; pass-through arrival with recorded terminal twist; all pieces protected.",
+          "trajectory_id": "episode_2026091922002701",
+          "uncertainty": "Physical rod-tip offset and tabletop plane need verification; endpoint is not a contact or success annotation."
+        },
+        {
+          "boundary_evidence_indices": [
+            0,
+            360,
+            379,
+            380,
+            399
+          ],
+          "condition_evidence_indices": [
+            0,
+            379
+          ],
+          "deployment_condition_source": "HLA geometry planner supplies a precontact waypoint for the current inventory arrangement.",
+          "label_derivation": "RULE T at 379; q/dq are measured state, not generated labels.",
+          "merge_check": "Adds a different lateral approach direction and scene arrangement to the same tool objective.",
+          "objective": "Initialize and descend toward the foreground wedge-shaped piece.",
+          "rationale": "B379/380 rod is near the wedge but TCP remains about 0.097/0.095 m, before the later low pushing phase. [380,400) is context-only descent continuation.",
+          "segment_id": "b_initial_tool",
+          "split_check": "Cut at precontact approach, not episode time fraction; next policy performs remaining descent and object motion.",
+          "start": 0,
+          "stop": 400,
+          "supervised_start": 0,
+          "supervised_stop": 380,
+          "supervision_exclusions": [],
+          "training_condition": "tool waypoint at B379; pass-through terminal twist; protect every piece.",
+          "trajectory_id": "episode_2026091922062101",
+          "uncertainty": "Third-view occlusion resolved in part by wrist380; exact contact time is not labeled."
+        },
+        {
+          "boundary_evidence_indices": [
+            6100,
+            6119,
+            6120,
+            6250,
+            6270
+          ],
+          "condition_evidence_indices": [
+            6120,
+            6250
+          ],
+          "deployment_condition_source": "A causal planner selects a collision-free approach waypoint beside the next target or an inspection point.",
+          "label_derivation": "RULE T at6250; target letters remain obstacles, no L identity feature. Supervision also appears in a_l_move under an object goal.",
+          "merge_check": "Same noncontact waypoint problem, now a lateral between-object transit rather than home descent.",
+          "objective": "Traverse from the D/R neighborhood toward a precontact point near L-like.",
+          "rationale": "Images6100/6120/6250 show stable D/R/L arrangements while the rod travels. 20-row prefix and suffix are context-only.",
+          "segment_id": "a_l_approach_tool",
+          "split_check": "Stop before L manipulation; later contact/repeated rotations stay only in the object-goal action range.",
+          "start": 6100,
+          "stop": 6271,
+          "supervised_start": 6120,
+          "supervised_stop": 6251,
+          "supervision_exclusions": [],
+          "training_condition": "goal TCP and terminal twist at6250, pass-through; all pieces protected.",
+          "trajectory_id": "episode_2026091922002701",
+          "uncertainty": "Boundary is an approach waypoint, not a naturally stopped state; waypoint tolerance must include calibration uncertainty."
+        },
+        {
+          "boundary_evidence_indices": [
+            3980,
+            4000,
+            4120,
+            4160,
+            4200,
+            4250,
+            4270
+          ],
+          "condition_evidence_indices": [
+            4000,
+            4120,
+            4160,
+            4250
+          ],
+          "deployment_condition_source": "HLA or the active piece controller requests a visible free recontact/inspection waypoint and verified clearance.",
+          "label_derivation": "RULE T at4250. Retain original commanded dq for follower audit, including high redundant joint motion. Object stability and free-space phase are weak visual labels.",
+          "merge_check": "Adds a lift/reposition/reapproach waypoint sequence; not a new object-moving subtask.",
+          "objective": "Reset tool position around R-like, including lift and arm reconfiguration, without deliberately changing its pose.",
+          "rationale": "4000/4120/4160/4200/4250 show R-like staying near its slot while the rod changes side/height; TCP z rises to about0.134 m in the dense motion survey. Prefix/suffix20 rows context-only.",
+          "segment_id": "b_r_reset_tool",
+          "split_check": "Retain the complete reset instead of discarding the large joint-speed region. Following low recontact around4300 belongs to the R object policy.",
+          "start": 3980,
+          "stop": 4271,
+          "supervised_start": 4000,
+          "supervised_stop": 4251,
+          "supervision_exclusions": [],
+          "training_condition": "tool pose/twist at4250; pass-through, protected R-like and neighbors; conservative clearance.",
+          "trajectory_id": "episode_2026091922062101",
+          "uncertainty": "No contact ground truth; near-contact portions require audited geometry eligibility. Joint reconfiguration is observed, not a verified singularity diagnosis."
+        }
+      ],
+      "skill_id": "tool_position",
+      "subgoal": "Reach a specified safe tool waypoint or contact-reset pose without intentionally moving any letter."
+    },
+    {
+      "heuristics": [
+        {
+          "action_decoding": "Use COMMON DECODER D specified in tool_position. For active contact, output a local contact-normal/tangent velocity and bounded height/orientation residual. Rotate local linear velocity into W then base; only after w-frame verification convert angular residuals to the serialized convention. In approach/reset/exit modes allow full 3D translational residuals and bounded angular corrections; retain A3900/4319/5219/7400 supervision rather than silently setting w=0. A verified follower resolves robot redundancy, not a learned q-trajectory replay. Compare against original command dq when nonnull, never measured dq.",
+          "applicability": "Flat, trackable, rigid pieces with an accessible boundary, including holes/concavities large enough for the verified rod and uncertainty margin. Works on geometry regardless of character identity; intended for novel shapes but no novel-shape success is demonstrated. Reject stacked/tipped pieces, unreachable targets, ambiguous protected contacts or contact candidates with excessive uncertainty.",
+          "augmentation": "SE(2) transform current/goal contours, normals, obstacles, rod pose, exit waypoint, contact candidate and velocity labels together. Keep physical scale as a feature; do not claim arbitrary shape warps preserve pushing dynamics. Use contact-frame normalization without confusing it with physically moving the raw robot. Reject unreachable/collision-inconsistent synthetic placements. Add correlated mask/calibration noise with confidence masks; photometric changes only affect the perception branch. No character-ID substitution can stand in for shape augmentation. Friction variations are evaluation/robustness hypotheses, not invented supervised transitions.",
+          "evidence": [
+            {
+              "indices": [
+                1300,
+                1950,
+                2600,
+                3400,
+                3900,
+                4100,
+                4350,
+                4550,
+                4750,
+                5450,
+                5900,
+                6500,
+                6800,
+                7100,
+                7400,
+                7800,
+                8050,
+                8950
+              ],
+              "trajectory_id": "episode_2026091922002701"
+            },
+            {
+              "indices": [
+                380,
+                1240,
+                1720,
+                2400,
+                3000,
+                3900,
+                4000,
+                4120,
+                4160,
+                4250,
+                4300,
+                5200,
+                5500,
+                5750,
+                6500,
+                7729
+              ],
+              "trajectory_id": "episode_2026091922062101"
+            }
+          ],
+          "goal_conditioning": "RULE P: persistent selected instance, desired rigid footprint transform/goal contour in W, optional semantic orientation constraint, protected instances, tolerances and optional exit-tool pose/twist. Geometric planner may choose multiple contacts but cannot change the target piece or the desired world goal. Episode endpoints and inferred words are not inputs.",
+          "handoff": {
+            "entry_conditions": "Valid selected-instance track and current contour/height uncertainty; tool in reachable free space or at a plausible boundary; collision-free candidate contact or a feasible reset path. If tool starts high, internal approach or an explicit tool call is required.",
+            "exit_conditions": "Current target geometry satisfies caller tolerance for several fresh observations, protected pieces checked, and requested exit waypoint attained. Return local-goal reached separately from word success. If object goal is reached but exit clearance is unsafe, report NEEDS_REPOSITION instead of pushing another object.",
+            "failure_signatures": "Object fails to move under repeated contact, unexpected rotation, contact candidate changes identity, rod enters an inadequately sized hole, neighbor displacement, uncertain pose, rising tau_ext, joint-limit alarm, or persistent lack of goal-error reduction. B4120-4200-like high redundant joint motion triggers a guarded reset/replan, not imitation of unsafe joint magnitudes.",
+            "overlap_role": "Each invocation contains approach, repeated strokes and clearance supervision; neighboring-object buffers only initialize/audit. Explicit tool overlaps permit an external reposition call without losing the object goal.",
+            "successor_readiness": "Return achieved footprint and covariance, changed neighbors, tool pose/velocity and proposed safe next contact/exit status. HLA decides whether to refine this piece, clear another, or advance to the next slot."
+          },
+          "heuristic_id": "boundary_mechanics_residual",
+          "input_preprocessing": "Use C; construct a multiresolution contour graph containing sampled outer and inner boundary points in meters, local normals, curvature, clearance, target correspondence and neighboring footprints. Do NOT substitute convex hull for actual contact geometry. Use object-relative coordinates with world/metric scale retained, rod radius/tilt, current tool offset and goal SE(2) error; a confidence-weighted set of orientations handles symmetry. Camera RGB crops (proposed256x256 from original mapped pixels) assist tracking, not alphabet classification. Up to12 causal frames supply measured tool/object motion and last commands. Contact/mode labels are inferred offline from rod-boundary proximity and subsequent object motion with uncertainty masks; they are training targets only. Online mode inference uses current/past motion and geometry, not future displacement. Use the same causal track estimator for policy inputs; smoothed tracks only supervise response/goal labels.",
+          "limitations": "A quasi-static local response is only approximate for nonconvex pieces, sliding, corner pivots and uncertain friction. Existing data have few materials/shapes and no calibrated forces; tau_ext cannot identify friction or exact contact alone. Tool tilt, inner-hole contacts and occlusion require uncertainty-aware candidates. This design must not assume all unseen letters have the same mass distribution or font.",
+          "pipeline_implications": "Implement deterministic collision-feasible boundary candidate generation and short-horizon SE(2) goal planning, with a small graph model predicting response residual/uncertainty and a phase/contact score. Learn low-dimensional speed, tangent/normal ratio and bounded posture residual, rather than seven independent joint velocities. Use masked action cloning plus auxiliary one-step piece-displacement loss where an actual next frame is available and track confidence permits; audit contact-mode weak labels. Learn approach/contact/reset/exit/hold gating from geometry and command evidence. Replan after each short stroke; no open-loop whole-letter trajectory. Export component-specific coverage counts so holes, clearance moves and L retries are not filtered away.",
+          "policy_contract": {
+            "caller_arguments": "policy_id=piece_contact_graph_v1; instance_id; goal_SE2_W or goal_footprint_W; semantic_orientation_constraint if required; protected_instance_ids; tolerances; optional exit_tool_base pose/arrival twist; clearance/speed limits; timeout/retry budget. Dataset responsibility: piece_relocation.",
+            "input_output_contract": "Current causal dual-view/robot scene representation and caller goal -> bounded command via D, progress/error, uncertainty and phase/contact candidate. Policy selects approach side and strokes internally; HLA supplies the physical objective, not human-selected pushes.",
+            "memory_and_handoff": "New instance/goal resets mode and response memory; warm-start with12 valid observations and actual last command. Preserve only validated tracker identity/geometry across calls. A tool reset pauses the object policy and resumes with new observations, recomputed candidates and the same goal.",
+            "selection_cues": "Prefer when metric local contours and rod geometry are confident and contact-model uncertainty is low. For symmetric objects or unreliable canonical pose but good dense masks, consider piece_goal_field_v1. Neither alternative bypasses shared perception or controller safety gates.",
+            "status_and_progress": "Report positional/angular or contour error with symmetry flag, active boundary ID, contact confidence, approach/contact/reset/exit phase, predicted versus observed progress, retry count, protected-piece motion and readiness. Never report a verified character/word solely from manipulation completion."
+          },
+          "policy_id": "piece_contact_graph_v1",
+          "rationale": "A4750 and B1720 show inside-hole D-like pushing; A4550 shows a barred-piece recess; A6500/6800/7100/7400/7800 and B5500/5750 show L-like contact switching rather than one straight stroke. The reusable structure is a rigid piece on a plane driven by a rod at a boundary, with tightly constrained height and only contact choice, in-plane velocity and small posture residuals varying. A generic contour-contact prior plus learned response residual concentrates limited data on interaction mechanics and is a plausible unseen-shape transfer mechanism. It does not establish transfer merely by accepting a new letter label.",
+          "statement": "Learn boundary-relative contact decisions and local response residuals inside a deterministic, receding-horizon piece-to-pose controller."
+        },
+        {
+          "action_decoding": "Use D. The goal-field servo proposes W-frame vx,vy plus a discrete approach/contact/reset/exit/hold phase, height-rate and bounded physical angular residual. A deterministic geometric safety projection prevents penetration of protected footprints and unsafe rod sweep, then verified frame/origin conversion and the joint-velocity follower generate the actual command. Retain original recorded v,w as behavior targets and action dq as an auxiliary audit only. Do not treat goal-mask pixel displacement as metric controller velocity without the calibrated warp.",
+          "applicability": "Same flat-piece deployment domain as the contact-graph alternative, particularly when a dense target/obstacle mask is reliable but a unique canonical angle or local contact-mechanics fit is uncertain. Goal raster must represent the actual currently observed unseen shape, not a learned glyph template. Cannot operate through complete occlusion or unverified plane/rod geometry.",
+          "augmentation": "Jointly rigid-transform current/goal SDFs, tool heatmap, obstacle channels, exit waypoint and action vectors in W; preserve metric extent and robot reachability. Photometric augmentation and partial-occlusion masks train the perception/confidence path without changing actions. Add small registration perturbations coherently to current tool/object/goal channels and supervision conversion. Do not independently rotate the goal while retaining an incompatible action, apply arbitrary nonrigid glyph morphs, or use mirrored spelling as a valid semantic label.",
+          "evidence": [
+            {
+              "indices": [
+                1300,
+                2600,
+                3219,
+                4100,
+                4550,
+                5450,
+                6500,
+                7100,
+                7800,
+                8050,
+                8509,
+                9014
+              ],
+              "trajectory_id": "episode_2026091922002701"
+            },
+            {
+              "indices": [
+                380,
+                1240,
+                2400,
+                2849,
+                3900,
+                4000,
+                4250,
+                4300,
+                5500,
+                5750,
+                6149,
+                6909,
+                7369,
+                7729
+              ],
+              "trajectory_id": "episode_2026091922062101"
+            }
+          ],
+          "goal_conditioning": "Same RULE P caller interface as the contact-graph policy. Render the current selected shape transformed to the requested location/orientation into a goal SDF, plus a directed semantic orientation marker when necessary. Keep desired goal fixed in W and recompute current-to-goal fields causally. A symmetric mask without a semantic orientation marker is insufficient to assert correct spelling for an ambiguous letter.",
+          "handoff": {
+            "entry_conditions": "Valid persistent target mask, current-goal correspondence, calibrated W warp and rod/obstacle channels. Geometric safety projection must find an admissible action; start high via approach mode or tool_waypoint_v1.",
+            "exit_conditions": "Confidence-weighted contour-distance/overlap and position/orientation constraints meet caller tolerance over fresh observations; protected-instance motion checked and requested tool exit satisfied. Reached mask goal is a local physical result, not a recognition result.",
+            "failure_signatures": "Mask swaps, unstable correspondence, error reduction stalls or reverses repeatedly, target disappears, predicted action crosses unsafe concavity/neighbor, tool moves but object does not, or controller/torque watchdog alarms.",
+            "overlap_role": "All approach, correction and recontact actions remain supervised with mode/history; prefix/suffix observations supply initialization and label audit only. The two tool overlaps can be executed by a separate call while keeping the same goal field.",
+            "successor_readiness": "Return current footprint/uncertainty, contour-error map, last phase/command and safe-to-handoff flag; HLA may retry, choose the mechanics alternative, reposition the tool or move a blocker."
+          },
+          "heuristic_id": "causal_goal_field_servo",
+          "input_preprocessing": "Use C. Rasterize a proposed256x256 W-aligned metric local map with channels for selected-instance signed distance including holes, desired-instance signed distance, other-piece occupancy, table edge/reachability, tool footprint/height/tilt and validity. Include vector current-to-goal correspondence obtained by rigid registration or confidence-weighted contour matching, not alphabet templates or PCA alone. Keep metric scale and a coarse whole-scene map so crop normalization does not erase obstacle distance. Feed12 causal map/state/command frames to a small recurrent convolutional model; mask absent/stale views. Learn auxiliary selected-piece motion from within-cut actual successor frames, using offline audited motion as a target, never as an input. Deployment uses the same causal mask/tracker and HLA goal transform; no endpoint image required.",
+          "limitations": "Dense image-space/plane-space servo is less explicitly grounded in friction than the mechanics prior and can propose ineffective contacts on unfamiliar concavities. Geometry safety projection does not prove task progress. Incorrect masks or plane thickness can corrupt both alternatives. New letters and combined novel-word/novel-shape tests remain required.",
+          "pipeline_implications": "Independent weights from the graph policy. Implement SDF/correspondence conversion, compact recurrent inverse servo, phase head and geometric action projection. Train masked behavior cloning plus goal-error/progress and one-step motion auxiliary targets; phase separates nonmonotonic reset actions from contact-progress actions, so do not impose monotonic error reduction on the entire demonstration. Audit phase-specific retention and compare on exactly the same held-out calls. Unlike the first prior, inference need not fit a friction/contact-response model or choose a unique canonical object frame.",
+          "policy_contract": {
+            "caller_arguments": "policy_id=piece_goal_field_v1; same physical instance/goal/protection/exit/tolerance/budget arguments as piece_contact_graph_v1. Dataset responsibility: piece_relocation. A goal mask may be supplied directly only with its calibrated W mapping and instance identity.",
+            "input_output_contract": "Causal robot observations and current/goal metric maps -> one bounded command via D and status/progress maps. Internal responsibilities include mode inference, corrective servo and contact-reset proposal; HLA retains target choice and overall sequencing.",
+            "memory_and_handoff": "Reset recurrent servo on new goal/instance; use up to12 prior live frames with validity masks. After a tool-policy call rebuild maps and initialize history from actual commands, never carry a memorized segment index.",
+            "selection_cues": "Prefer for a well-segmented shape with ambiguous orientation or lower confidence in the mechanics model, and for small contour alignment after gross placement. If masks/correspondence are unreliable, stop rather than choosing it as an ungrounded fallback.",
+            "status_and_progress": "Return contour error, semantic-orientation validity, predicted local progress/uncertainty, phase, contact-proximity confidence, collision-projection magnitude, changed neighbors and termination/failure vocabulary from the global contract."
+          },
+          "policy_id": "piece_goal_field_v1",
+          "rationale": "O-like moves in A2600/3219 and B2400/2849 can be expressed without a unique glyph coordinate frame, while L-like changes pose repeatedly at A6500/7100/7800/8050 and B5500/5750. Current and desired geometry, not a letter class, define both problems. A dense metric goal field and causal mode memory let a small model learn local corrective velocities while deterministic registration absorbs translation/rotation variation. This is a substantive alternative to learned local mechanics, with different failure modes and an explicit independent evaluation obligation.",
+          "statement": "Learn a causal, geometry-only goal-field servo with mode-aware resets and deterministic collision projection, avoiding alphabet-specific poses."
+        }
+      ],
+      "name": "Relocate or align one planar physical piece",
+      "segmentation_rationale": "Twenty-two one-instance invocations are separated where the active piece changes or a previously staged piece is revisited. Both large relocations and small pose refinements share a geometry-to-goal objective; do not split L-like contact retries into disconnected successes. Twenty-row context buffers cover causal initialization and handoff auditing, while supervised approaches and exit-tool goals account for useful transit. Every inference of piece identity is morphological/track-based, not a supplied character label.",
+      "segments": [
+        {
+          "boundary_evidence_indices": [
+            580,
+            599,
+            600,
+            1739,
+            1740,
+            1759
+          ],
+          "condition_evidence_indices": [
+            600,
+            1300,
+            1739
+          ],
+          "deployment_condition_source": "HLA selects a current wedge-shaped physical instance by tracker ID and supplies its requested slot footprint/exit waypoint.",
+          "label_derivation": "RULE P from selected wedge piece at600 to its footprint at1739; exit TCP/twist at1739. 1300 wrist/third views verify the target is the wedge, not adjacent R-like.",
+          "merge_check": "Same rigid planar instance-to-goal problem as B wedge and all other pieces; geometry, not character identity, expresses variation.",
+          "objective": "Extract and rotate/translate the wedge-shaped piece from the upper cluster to the foreground-right area.",
+          "rationale": "650 precedes large motion,1300 shows side contact,1550 and1739 show foreground arrival; keep approach and clearance supervision with20-row context on each end.",
+          "segment_id": "a_wedge_move",
+          "split_check": "End before middle barred-piece manipulation; do not train its later displacement under the wedge ID.",
+          "start": 580,
+          "stop": 1760,
+          "supervised_start": 600,
+          "supervised_stop": 1740,
+          "supervision_exclusions": [],
+          "training_condition": "Selected wedge-shaped W/M-looking piece initially above R-like; achieved footprint at1739 is a local hindsight goal, other instances protected subject to observed incidental-motion audit.",
+          "trajectory_id": "episode_2026091922002701",
+          "uncertainty": "W versus M is a visual orientation interpretation, not a verified semantic label; exact contact onset is weakly inferred."
+        },
+        {
+          "boundary_evidence_indices": [
+            1720,
+            1739,
+            1740,
+            1989,
+            1990,
+            2009
+          ],
+          "condition_evidence_indices": [
+            1740,
+            1950,
+            1989
+          ],
+          "deployment_condition_source": "HLA supplies a temporary clearing pose for the currently obstructing barred-piece instance.",
+          "label_derivation": "RULE P for the barred piece initially between upper barred and O-like, with goal/exit at1989.",
+          "merge_check": "Clearing a blocker and spelling placement differ only in local geometric goal, so share the same policy.",
+          "objective": "Shift the middle barred piece leftward to open the O-like approach corridor.",
+          "rationale": "1740 enters from wedge clearance;1950/1989 show the middle barred piece shifted while O-like remains. Pre/post20 rows are context only.",
+          "segment_id": "a_bar_clear",
+          "split_check": "Separate this supporting displacement from both wedge and O-like movement rather than hiding it as an approach accident.",
+          "start": 1720,
+          "stop": 2010,
+          "supervised_start": 1740,
+          "supervised_stop": 1990,
+          "supervision_exclusions": [],
+          "training_condition": "Target middle barred piece visible near R/D/O, not the upper barred piece; achieved pose1989; explicit temporary-clearance goal.",
+          "trajectory_id": "episode_2026091922002701",
+          "uncertainty": "Interpretation as deliberate clearance is inferred from sequence; no intention annotation or canonical I/H label exists."
+        },
+        {
+          "boundary_evidence_indices": [
+            1970,
+            1989,
+            1990,
+            3219,
+            3220,
+            3239
+          ],
+          "condition_evidence_indices": [
+            1990,
+            2600,
+            3219
+          ],
+          "deployment_condition_source": "HLA assigns the ring-like instance a metric footprint goal and chosen safe tool exit.",
+          "label_derivation": "RULE P on O-like ring, endpoint3219; symmetry handled by contour plus semantic orientation uncertainty.",
+          "merge_check": "Combines with B ring transport and other shape-normalized motion without a ring-specific policy.",
+          "objective": "Translate/rotate O-like toward the placed wedge and refine its alignment.",
+          "rationale": "1990 shows precontact approach,2600 shows displaced ring,3100/3219 capture final adjustment/clearance. All repeated short strokes retained.",
+          "segment_id": "a_ring_move",
+          "split_check": "Do not merge the next R staging with ring alignment; retain internal reapproaches because the instance/goal stays fixed.",
+          "start": 1970,
+          "stop": 3240,
+          "supervised_start": 1990,
+          "supervised_stop": 3220,
+          "supervision_exclusions": [],
+          "training_condition": "Selected oval ring originally foreground-left; goal footprint3219; exit TCP/twist3219.",
+          "trajectory_id": "episode_2026091922002701",
+          "uncertainty": "No exact ring yaw is claimed when contour symmetry makes it unobservable; small unintended neighbor motion requires monitoring."
+        },
+        {
+          "boundary_evidence_indices": [
+            3200,
+            3219,
+            3220,
+            3699,
+            3700,
+            3719
+          ],
+          "condition_evidence_indices": [
+            3220,
+            3400,
+            3699
+          ],
+          "deployment_condition_source": "HLA chooses a temporary reachable staging footprint, based on current occupancy rather than final word order.",
+          "label_derivation": "RULE P for R-like piece initially left of upper barred piece, goal/exit3699.",
+          "merge_check": "Same piece appears again in a_r_layout with a different goal; preserve separate calls rather than contradictory labels in one sequence.",
+          "objective": "Move R-like out of the initial cluster to an upper staging pose.",
+          "rationale": "3400 shows rod at R-like;3699 shows R-like moved upward with tool clear. Include entry from ring and departure context.",
+          "segment_id": "a_r_stage",
+          "split_check": "A distinct temporary-goal invocation ends before middle barred-piece work; later R placement is noncontiguous.",
+          "start": 3200,
+          "stop": 3720,
+          "supervised_start": 3220,
+          "supervised_stop": 3700,
+          "supervision_exclusions": [],
+          "training_condition": "Target R-shaped physical piece near left cluster; achieved staging pose3699; not its final episode pose.",
+          "trajectory_id": "episode_2026091922002701",
+          "uncertainty": "R is a descriptive shape alias; temporary-goal interpretation is inferred, not task annotation."
+        },
+        {
+          "boundary_evidence_indices": [
+            3680,
+            3699,
+            3700,
+            4299,
+            4300,
+            4319
+          ],
+          "condition_evidence_indices": [
+            3700,
+            3900,
+            4100,
+            4299
+          ],
+          "deployment_condition_source": "HLA picks the current middle barred-piece track and a clearing/staging footprint.",
+          "label_derivation": "RULE P for the previously shifted middle barred instance; goal and exit4299.",
+          "merge_check": "Repeated invocation of the same physical piece with a new local goal; shares contact mechanics with B central barred moves.",
+          "objective": "Reorient and move the middle barred piece toward the left staging area.",
+          "rationale": "3900 wrist shows near-boundary tool adjustment,4100 a new contact side,4299 shows this piece staged left while rod approaches the upper barred piece. Keep all posture adjustments.",
+          "segment_id": "a_bar_stage",
+          "split_check": "Separate at upper-bar target change; optional exit-tool goal explains final travel without labeling upper-bar displacement here.",
+          "start": 3680,
+          "stop": 4320,
+          "supervised_start": 3700,
+          "supervised_stop": 4300,
+          "supervision_exclusions": [],
+          "training_condition": "Selected barred piece now left/below upper barred, same track as a_bar_clear; endpoint4299 footprint and tool waypoint.",
+          "trajectory_id": "episode_2026091922002701",
+          "uncertainty": "Visually similar barred pieces require persistent track audit; semantic I/H assignment is not supplied."
+        },
+        {
+          "boundary_evidence_indices": [
+            4280,
+            4299,
+            4300,
+            4639,
+            4640,
+            4659
+          ],
+          "condition_evidence_indices": [
+            4300,
+            4350,
+            4550,
+            4639
+          ],
+          "deployment_condition_source": "HLA selects the other barred-piece instance and its planned footprint.",
+          "label_derivation": "RULE P for upper barred piece at4300, endpoint4639; tool exit may be above D-like but may not push D-like.",
+          "merge_check": "Same relocation objective with a recess contact, not a separate letter class policy.",
+          "objective": "Move the upper barred piece down toward foreground-left.",
+          "rationale": "4350 begins contact on upper barred piece;4550 wrist shows rod in its recess;4639 piece has moved foreground-left and tool has lifted/traveled toward D-like.",
+          "segment_id": "a_upper_bar_move",
+          "split_check": "Stop before D-like pushing; materialized successor rows only audit its precontact state.",
+          "start": 4280,
+          "stop": 4660,
+          "supervised_start": 4300,
+          "supervised_stop": 4640,
+          "supervision_exclusions": [],
+          "training_condition": "Upper barred instance near staged R at4300, not the already left-staged barred piece; goal4639, exit4639.",
+          "trajectory_id": "episode_2026091922002701",
+          "uncertainty": "Tool contact within the recess is visually supported, not force-labeled; safe recess width must be measured online."
+        },
+        {
+          "boundary_evidence_indices": [
+            4620,
+            4639,
+            4640,
+            5199,
+            5200,
+            5219
+          ],
+          "condition_evidence_indices": [
+            4640,
+            4750,
+            5199
+          ],
+          "deployment_condition_source": "HLA selects D-like instance and a temporary or final slot footprint with an accessible hole/contact side.",
+          "label_derivation": "RULE P for D-like from foreground-left to endpoint5199; track nearby R-like as a protected object and audit incidental motion.",
+          "merge_check": "Pairs with B D relocation and both later D refinements; same goal-conditioned planar transformation.",
+          "objective": "Move D-like from foreground-left to upper-right using its internal opening.",
+          "rationale": "4750 wrist/third show the rod inside D-like;4950/5199 show it at upper-right. Retain approach, long displacement, lift and exit.",
+          "segment_id": "a_d_stage",
+          "split_check": "Separate later R manipulation and later D orientation correction instead of assigning final D pose to every earlier move.",
+          "start": 4620,
+          "stop": 5220,
+          "supervised_start": 4640,
+          "supervised_stop": 5200,
+          "supervision_exclusions": [],
+          "training_condition": "D-shaped ring piece initially left/foreground; achieved pose5199, exit5199.",
+          "trajectory_id": "episode_2026091922002701",
+          "uncertainty": "Inner-wall versus top-edge contact must be audited at implementation; later movement means this is not declared final success."
+        },
+        {
+          "boundary_evidence_indices": [
+            5180,
+            5199,
+            5200,
+            5669,
+            5670,
+            5689
+          ],
+          "condition_evidence_indices": [
+            5200,
+            5450,
+            5669
+          ],
+          "deployment_condition_source": "HLA revisits a staged instance and supplies a new local footprint goal from the current layout.",
+          "label_derivation": "RULE P for upper R-like piece, endpoint5669; D-like is tracked separately even where nearby.",
+          "merge_check": "Same instance as a_r_stage, different invocation/goal; combine in training via current geometry and goal, never by temporal concatenation.",
+          "objective": "Rotate/translate staged R-like into the column above O-like.",
+          "rationale": "5200 begins near staged R,5450 shows off-center turning close to D,5669 shows R near its achieved column pose.",
+          "segment_id": "a_r_layout",
+          "split_check": "End before D orientation work; retain local corrections and close-neighbor evidence.",
+          "start": 5180,
+          "stop": 5690,
+          "supervised_start": 5200,
+          "supervised_stop": 5670,
+          "supervision_exclusions": [],
+          "training_condition": "Target R-like adjacent to D at5200; achieved footprint5669 and tool exit5669; not inferred word conditioning.",
+          "trajectory_id": "episode_2026091922002701",
+          "uncertainty": "Close R/D proximity can cause coupled motion; neighbor displacement is a monitored outcome, not an authorized second target."
+        },
+        {
+          "boundary_evidence_indices": [
+            5650,
+            5669,
+            5670,
+            6119,
+            6120,
+            6139
+          ],
+          "condition_evidence_indices": [
+            5670,
+            5900,
+            6119
+          ],
+          "deployment_condition_source": "HLA requests a pose refinement on the current D-like track.",
+          "label_derivation": "RULE P for upper D-like, goal/exit6119.",
+          "merge_check": "Fine yaw/translation correction shares the same learned contact variables as gross D transport; tolerance/goal error expresses scale.",
+          "objective": "Rotate and refine D-like at the top of the emerging column.",
+          "rationale": "5670 D remains oblique;5900 shows contact after rotation;6119 shows aligned D and departing tool.",
+          "segment_id": "a_d_align",
+          "split_check": "End before L work; final tool transit is retained under explicit exit waypoint, with20-row context.",
+          "start": 5650,
+          "stop": 6140,
+          "supervised_start": 5670,
+          "supervised_stop": 6120,
+          "supervision_exclusions": [],
+          "training_condition": "Target D-like above R-like; local achieved pose6119, not the full episode arrangement.",
+          "trajectory_id": "episode_2026091922002701",
+          "uncertainty": "No externally specified orientation or placement tolerance is recorded; endpoint relabeling is hindsight supervision only."
+        },
+        {
+          "boundary_evidence_indices": [
+            6100,
+            6119,
+            6120,
+            8149,
+            8150,
+            8169
+          ],
+          "condition_evidence_indices": [
+            6120,
+            6500,
+            6800,
+            7100,
+            7400,
+            7800,
+            8050,
+            8149
+          ],
+          "deployment_condition_source": "HLA selects L-like or a novel concave instance and supplies a footprint goal; policy chooses multiple contacts causally.",
+          "label_derivation": "RULE P for upper-left L-like, achieved footprint8149 and exit8149; preserve all intermediate reversals rather than label them failures or independent completed goals.",
+          "merge_check": "Combines with B L movement as long multi-stroke examples of the same one-piece goal problem; no L-specific policy.",
+          "objective": "Repeatedly recontact, turn and transport L-like into the gap between R-like and D-like.",
+          "rationale": "6500,6800,7100,7400 show different L poses/contact sides;7800/8050 show transport/final refinement;8149 shows completed local placement and exit toward barred piece. Early6120-6250 also supports tool_position.",
+          "segment_id": "a_l_move",
+          "split_check": "Do not split at every pause or unsuccessful rotation: selected instance and final local purpose remain constant. Split when another barred piece becomes active.",
+          "start": 6100,
+          "stop": 8170,
+          "supervised_start": 6120,
+          "supervised_stop": 8150,
+          "supervision_exclusions": [],
+          "training_condition": "Selected two-arm L-like piece initially upper-left; fixed hindsight footprint8149, explicit exit waypoint8149; mode/history distinguish resets from pushes.",
+          "trajectory_id": "episode_2026091922002701",
+          "uncertainty": "Long nonmonotonic progress is observed; whether individual turns were failed attempts or intentional intermediate contacts is unresolved. All remain useful action evidence."
+        },
+        {
+          "boundary_evidence_indices": [
+            8130,
+            8149,
+            8150,
+            8509,
+            8510,
+            8529
+          ],
+          "condition_evidence_indices": [
+            8150,
+            8500,
+            8509
+          ],
+          "deployment_condition_source": "HLA revisits the left-staged barred instance and specifies a final local layout slot.",
+          "label_derivation": "RULE P for left-staged barred piece, endpoint8509 and tool exit8509.",
+          "merge_check": "Repeated same-instance refinement combines with its earlier clearance/staging under different goals.",
+          "objective": "Rotate/translate left-staged barred piece beside the column.",
+          "rationale": "8150 rod approaches the left-staged piece;8300 rotation visible in survey;8500/8509 show its achieved side placement and departure.",
+          "segment_id": "a_bar_align",
+          "split_check": "Separate from both L and foreground barred-piece work; end while tool is clear of this instance.",
+          "start": 8130,
+          "stop": 8530,
+          "supervised_start": 8150,
+          "supervised_stop": 8510,
+          "supervision_exclusions": [],
+          "training_condition": "Target left-staged barred piece from a_bar_stage, not foreground barred; goal8509 and exit8509.",
+          "trajectory_id": "episode_2026091922002701",
+          "uncertainty": "Similar barred shapes must be tracked, not relabeled by apparent character after rotation."
+        },
+        {
+          "boundary_evidence_indices": [
+            8490,
+            8509,
+            8510,
+            8950,
+            9014
+          ],
+          "condition_evidence_indices": [
+            8510,
+            8950,
+            9014
+          ],
+          "deployment_condition_source": "HLA selects the remaining foreground barred instance and requests its slot plus a safe stopped tool pose.",
+          "label_derivation": "RULE P at9014; A8950 and9014 actual zero twist supervise holding. No fabricated terminal successor or word-success label.",
+          "merge_check": "Same target class of problem as B final barred refinement, with a different starting arrangement.",
+          "objective": "Bring foreground barred piece upward into a side arrangement, retract and hold.",
+          "rationale": "8510 enters from previous placement;8750 shows foreground contact in survey;8950/9014 show changed piece placement and stable terminal tool. Only20-row prefix because source ends.",
+          "segment_id": "a_upper_bar_align",
+          "split_check": "Keep terminal withdrawal/hold as supporting behavior; episode endpoint does not define task success.",
+          "start": 8490,
+          "stop": 9015,
+          "supervised_start": 8510,
+          "supervised_stop": 9015,
+          "supervision_exclusions": [],
+          "training_condition": "Target foreground-left barred piece moved by a_upper_bar_move; achieved footprint9014 and stopped tool endpoint.",
+          "trajectory_id": "episode_2026091922002701",
+          "uncertainty": "Final visual arrangement resembles lettering but no requested word or success annotation is supplied; tool occludes part of scene."
+        },
+        {
+          "boundary_evidence_indices": [
+            360,
+            379,
+            380,
+            1239,
+            1240,
+            1259
+          ],
+          "condition_evidence_indices": [
+            380,
+            1239
+          ],
+          "deployment_condition_source": "HLA chooses the foreground wedge instance and its explicit slot footprint.",
+          "label_derivation": "RULE P for foreground wedge, endpoint1239 and exit1239; no W/M class supplied to policy.",
+          "merge_check": "Adds a new initial arrangement for the same geometry-goal behavior as A wedge; not a new shape-generalization claim.",
+          "objective": "Reorient and place foreground wedge-shaped piece, with approach and side changes.",
+          "rationale": "380 wrist resolves rod/wedge geometry;860/1050 survey shows changing approach and orientation;1239 shows placement and tool traveling toward central barred piece.",
+          "segment_id": "b_wedge_move",
+          "split_check": "Stop before central barred displacement; preserve remaining descent after tool startup.",
+          "start": 360,
+          "stop": 1260,
+          "supervised_start": 380,
+          "supervised_stop": 1240,
+          "supervision_exclusions": [],
+          "training_condition": "W/M-looking foreground wedge at380; achieved footprint1239 and tool exit1239.",
+          "trajectory_id": "episode_2026091922062101",
+          "uncertainty": "Third-view arm occlusion is significant; dual-view tracking/audit needed, not wholesale exclusion."
+        },
+        {
+          "boundary_evidence_indices": [
+            1220,
+            1239,
+            1240,
+            1499,
+            1500,
+            1519
+          ],
+          "condition_evidence_indices": [
+            1240,
+            1499
+          ],
+          "deployment_condition_source": "HLA can request temporary blocker clearance on a selected instance before placing another.",
+          "label_derivation": "RULE P for central barred piece at1240, endpoint1499/exit1499.",
+          "merge_check": "Same supporting clearance objective as A barred clearing, using the identical physical-goal interface.",
+          "objective": "Move central barred piece leftward to open the center corridor.",
+          "rationale": "1240 wrist shows tool near its edge;1450 survey and1499 show it left of its initial position with D still foreground-left.",
+          "segment_id": "b_bar_clear",
+          "split_check": "Do not merge with D transfer; temporary clearing pose is not the piece's later final pose.",
+          "start": 1220,
+          "stop": 1520,
+          "supervised_start": 1240,
+          "supervised_stop": 1500,
+          "supervision_exclusions": [],
+          "training_condition": "Target central/right barred piece, not upper-left barred; achieved pose1499 and exit1499.",
+          "trajectory_id": "episode_2026091922062101",
+          "uncertainty": "Clearance intention is inferred; track identity must distinguish the two barred pieces."
+        },
+        {
+          "boundary_evidence_indices": [
+            1480,
+            1499,
+            1500,
+            1949,
+            1950,
+            1969
+          ],
+          "condition_evidence_indices": [
+            1500,
+            1720,
+            1949
+          ],
+          "deployment_condition_source": "HLA selects D-like instance for a staging or layout pose chosen from current occupancy.",
+          "label_derivation": "RULE P for foreground-left D-like, endpoint1949 and exit1949.",
+          "merge_check": "Same inner-hole transport structure as A D stage despite different execution order.",
+          "objective": "Push D-like through the cleared region to upper-right.",
+          "rationale": "1720 wrist clearly shows rod in D opening;1900/1949 show upper-right D and departing tool. This happens before O/R in B.",
+          "segment_id": "b_d_stage",
+          "split_check": "End before O-like movement; do not impose A's manipulation order or final D yaw.",
+          "start": 1480,
+          "stop": 1970,
+          "supervised_start": 1500,
+          "supervised_stop": 1950,
+          "supervision_exclusions": [],
+          "training_condition": "D-shaped piece initially foreground-left; achieved staging pose1949 and tool exit1949.",
+          "trajectory_id": "episode_2026091922062101",
+          "uncertainty": "Large tool occlusion is partly resolved by wrist; endpoint is an achieved local pose, not verified intent."
+        },
+        {
+          "boundary_evidence_indices": [
+            1930,
+            1949,
+            1950,
+            2849,
+            2850,
+            2869
+          ],
+          "condition_evidence_indices": [
+            1950,
+            2400,
+            2849
+          ],
+          "deployment_condition_source": "HLA selects ring instance and supplies its spatial goal independently of character order.",
+          "label_derivation": "RULE P for ring above central barred at1950, endpoint2849/exit2849.",
+          "merge_check": "Same ring/other-piece relocation objective; symmetry-aware contour goals make it trainable with A ring examples.",
+          "objective": "Turn/translate ring down into a slot above the foreground wedge and refine it.",
+          "rationale": "2150/2400 survey show progressive ring movement;2700 and2849 show achieved pose and tool exit. Keep fine adjustments.",
+          "segment_id": "b_ring_move",
+          "split_check": "Separate from long R manipulation; internal ring reapproaches stay in this sequence.",
+          "start": 1930,
+          "stop": 2870,
+          "supervised_start": 1950,
+          "supervised_stop": 2850,
+          "supervision_exclusions": [],
+          "training_condition": "Selected oval ring near D at1950; achieved footprint2849, no forced canonical angle if symmetric.",
+          "trajectory_id": "episode_2026091922062101",
+          "uncertainty": "Shape symmetry and top-surface parallax limit exact angular labels; no verified O class is supplied."
+        },
+        {
+          "boundary_evidence_indices": [
+            2830,
+            2849,
+            2850,
+            4680,
+            4699,
+            4700,
+            4719
+          ],
+          "condition_evidence_indices": [
+            2850,
+            3000,
+            3900,
+            4000,
+            4120,
+            4160,
+            4250,
+            4300,
+            4699
+          ],
+          "deployment_condition_source": "HLA selects the R-like instance or a novel irregular shape and supplies a local slot goal; internal reset decisions are autonomous.",
+          "label_derivation": "RULE P for left R-like, achieved footprint4699 and exit4699. Recontact/posture modes inferred with uncertainty from tool/object motion, not force labels.",
+          "merge_check": "Combines with both A R invocations via explicit current/goal geometry; no splitting into disconnected retries or false successes.",
+          "objective": "Relocate and align R-like above O-like with repeated contact acquisition and a lift/reconfiguration reset.",
+          "rationale": "3000 shows hole-neighborhood approach,3900 transport,4000-4250 reset,4300 new approach;4650-4669 still contain final R adjustments, so boundary was refined to4700 after4680/4699 inspection. Reuse reset4000-4250 for tool_position.",
+          "segment_id": "b_r_move",
+          "split_check": "Keep reset and resumed correction under the same target/goal; stop only when tool departs toward D, not at the coarse motion-bin boundary or the earlier4650 candidate.",
+          "start": 2830,
+          "stop": 4720,
+          "supervised_start": 2850,
+          "supervised_stop": 4700,
+          "supervision_exclusions": [],
+          "training_condition": "R-like piece initially on left of central barred; fixed achieved goal4699 with exit4699 and protected neighbors.",
+          "trajectory_id": "episode_2026091922062101",
+          "uncertainty": "Contact and friction are unobserved; high joint reconfiguration is real but not diagnosed as controller failure. All retained subject to decoder/safety audit."
+        },
+        {
+          "boundary_evidence_indices": [
+            4680,
+            4699,
+            4700,
+            4949,
+            4950,
+            4969
+          ],
+          "condition_evidence_indices": [
+            4700,
+            4949
+          ],
+          "deployment_condition_source": "HLA requests orientation/position refinement on the upper D-like instance.",
+          "label_derivation": "RULE P for D-like above R, endpoint4949 and exit4949.",
+          "merge_check": "Same fine correction problem as A D alignment and gross D moves, expressed by smaller goal error.",
+          "objective": "Turn D-like to align with the developing column.",
+          "rationale": "4700 begins approach after final R adjustment;4750 survey shows rod near D;4949 shows changed D orientation and lifted departure toward L.",
+          "segment_id": "b_d_align",
+          "split_check": "Short independent revisit, not continuation of earlier B D stage; L work receives a new instance condition.",
+          "start": 4680,
+          "stop": 4970,
+          "supervised_start": 4700,
+          "supervised_stop": 4950,
+          "supervision_exclusions": [],
+          "training_condition": "Target D-like upper-right; achieved footprint4949 and tool exit4949.",
+          "trajectory_id": "episode_2026091922062101",
+          "uncertainty": "No original orientation target supplied; endpoint rigid registration is an inferred training label."
+        },
+        {
+          "boundary_evidence_indices": [
+            4930,
+            4949,
+            4950,
+            6149,
+            6150,
+            6169
+          ],
+          "condition_evidence_indices": [
+            4950,
+            5200,
+            5500,
+            5750,
+            6149
+          ],
+          "deployment_condition_source": "HLA supplies a slot footprint for the tracked L-like/concave instance; policy handles side selection and retries.",
+          "label_derivation": "RULE P for upper L-like, endpoint6149 and exit6149. Do not treat early descent at5050 as universally noncontact; it remains object-policy supervision.",
+          "merge_check": "Same long contact-switching problem as A L move with fewer reorientations and a different initial location.",
+          "objective": "Reorient, transport and refine L-like between R-like and D-like.",
+          "rationale": "5200 shows L partly moved,5500 off-center turn,5750 and6000 correction,6149 final pose with tool departing. All intermediate contacts retained.",
+          "segment_id": "b_l_move",
+          "split_check": "No cuts at pauses or reversals; end at change to upper-left barred instance.",
+          "start": 4930,
+          "stop": 6170,
+          "supervised_start": 4950,
+          "supervised_stop": 6150,
+          "supervision_exclusions": [],
+          "training_condition": "Target two-arm L-like initially above ring/R; fixed hindsight goal6149 and exit6149.",
+          "trajectory_id": "episode_2026091922062101",
+          "uncertainty": "L semantic identity and success remain unverified; thin/concave contact feasibility on novel shapes needs separate tests."
+        },
+        {
+          "boundary_evidence_indices": [
+            6130,
+            6149,
+            6150,
+            6909,
+            6910,
+            6929
+          ],
+          "condition_evidence_indices": [
+            6150,
+            6500,
+            6909
+          ],
+          "deployment_condition_source": "HLA selects upper-left barred instance and an intermediate/slot footprint with neighbor protection.",
+          "label_derivation": "RULE P for upper-left barred piece, endpoint6909 and exit6909.",
+          "merge_check": "Adds late-order barred transport to the same group as A upper-bar transport, with different surrounding occupancy.",
+          "objective": "Rotate and translate upper-left barred piece downward toward foreground-left.",
+          "rationale": "6150 starts free approach,6500 shows changed orientation and lifted tool,6750 survey shows downward movement,6909 shows foreground placement and departure.",
+          "segment_id": "b_upper_bar_move",
+          "split_check": "Separate next central barred correction; later revisit to this foreground piece is another local-goal call.",
+          "start": 6130,
+          "stop": 6930,
+          "supervised_start": 6150,
+          "supervised_stop": 6910,
+          "supervision_exclusions": [],
+          "training_condition": "Target originally upper-left barred piece, not central barred; achieved staging footprint6909 and exit6909.",
+          "trajectory_id": "episode_2026091922062101",
+          "uncertainty": "Similar silhouettes require instance persistence across orientation changes; no letter label is assumed."
+        },
+        {
+          "boundary_evidence_indices": [
+            6890,
+            6909,
+            6910,
+            7369,
+            7370,
+            7389
+          ],
+          "condition_evidence_indices": [
+            6910,
+            7369
+          ],
+          "deployment_condition_source": "HLA revisits the central barred piece with its intended side-layout footprint.",
+          "label_derivation": "RULE P for central barred piece left of R/O at6910, endpoint7369/exit7369.",
+          "merge_check": "Repeated invocation of B clearance instance with a new explicit goal, compatible with A barred alignment.",
+          "objective": "Move/rotate central barred piece upward beside the column.",
+          "rationale": "6950/7200 survey shows central barred contact and motion;7369 shows its achieved placement and rod approaching foreground barred piece.",
+          "segment_id": "b_bar_align",
+          "split_check": "Exit waypoint explains clearance toward next piece without authorizing its push; new target condition begins7370.",
+          "start": 6890,
+          "stop": 7390,
+          "supervised_start": 6910,
+          "supervised_stop": 7370,
+          "supervision_exclusions": [],
+          "training_condition": "Target same central barred instance as b_bar_clear; endpoint7369 and exit7369.",
+          "trajectory_id": "episode_2026091922062101",
+          "uncertainty": "No semantic success inferred from apparent lettering; pose fitting must not swap barred instance identities."
+        },
+        {
+          "boundary_evidence_indices": [
+            7350,
+            7369,
+            7370,
+            7729
+          ],
+          "condition_evidence_indices": [
+            7370,
+            7729
+          ],
+          "deployment_condition_source": "HLA selects foreground barred instance, requests its last local footprint and a safe stopped exit pose.",
+          "label_derivation": "RULE P at7729; actual zero command at7729 supports hold but not an N+1 state or verified task completion.",
+          "merge_check": "Same final refinement/withdrawal behavior as A foreground barred revisit, not an episode-specific terminal policy.",
+          "objective": "Refine foreground barred placement, withdraw and hold.",
+          "rationale": "7370 approach,7450/7650 survey shows movement,7670 wrist and7729 show terminal rod/piece relation and lift. Keep final hold; no suffix beyond source.",
+          "segment_id": "b_upper_bar_align",
+          "split_check": "Retain terminal actions as part of safe completion of a local call; do not train a word-success classifier on episode end.",
+          "start": 7350,
+          "stop": 7730,
+          "supervised_start": 7370,
+          "supervised_stop": 7730,
+          "supervision_exclusions": [],
+          "training_condition": "Target foreground barred piece from b_upper_bar_move; achieved footprint7729 and stopped tool endpoint7729.",
+          "trajectory_id": "episode_2026091922062101",
+          "uncertainty": "Final scene/word success unannotated and partly occluded; HLA must independently verify requested layout and identities."
+        }
+      ],
+      "skill_id": "piece_relocation",
+      "subgoal": "Move one explicitly selected flat physical instance to a caller-specified local footprint/pose, including temporary clearance, staged placement, repeated contact changes, fine alignment and safe handoff."
+    }
+  ],
+  "task_interpretation": "Build designs and exact source-preserving cuts for a reusable push-only library, not policies or robot execution. Inspected images show a rigid rod-like tool installed on the robot, not demonstrated grasping; missing gripper feedback is not used. Both episodes manipulate seven-looking flat wooden/cardboard-colored letter pieces on a table. Shape aliases include wedge W/M-like, O-like ring, R-like, D-like, L-like and two visually similar barred pieces. Character identities, target words and success are visual hypotheses only. Endpoint arrangements resemble lettering but cannot be promoted to verified requests or success annotations. Required deployment includes entirely unseen identities AND physical shapes, new words/layouts and new arrangements. The architecture explicitly separates open-world semantics, distinct-instance inventory, measured geometry, metric layout planning, local manipulation and sequencing. The current deliverable ends at dataset/heuristic/catalog publication and declares all later executable/perception/controller dependencies.",
+  "unobserved_cases": "No demonstrated grasping, stacked/tipped pieces, retrieval off-table, robust jam extraction, intentional multi-object pushing, changes in tool/material/friction, autonomous letter recognition, impossible-inventory rejection or successful manipulation of entirely unseen physical shapes. These are not fabricated as trained policies. Required novel-identity/shape/word functionality is addressed by geometry-only manipulation and open-world semantic/layout components plus independent combined-transfer testing, but is not certified by these two recordings. Broad recognition weights, annotated held-out novel shapes and actual-controller verification are deployment-blocking assets. If recognition cannot disambiguate H/I-like or W/M-like orientation, request clarification once at the semantic level or return PERCEPTION_UNCERTAIN; do not substitute a human choosing every contact. Repeated-character requests require separate detected instances; absent inventory returns INFEASIBLE_REQUEST before motion. Unknown shape holes/thickness require conservative geometry validation, not use of a known-font template. No physical reconstruction from unverified raw depth, timestamp realignment, fabricated terminal observation or silent replacement of missing commands is authorized."
+}

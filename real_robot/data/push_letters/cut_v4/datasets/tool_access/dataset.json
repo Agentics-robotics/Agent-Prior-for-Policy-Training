@@ -1,0 +1,191 @@
+{
+  "heuristics": [
+    {
+      "action_decoding": "Use shared D. Predict a seven-joint residual around a collision-checked, q-conditioned waypoint velocity proposal; supervise ORIGINAL finite action.dq and auxiliary recorded v/w separately. Output only the resulting bounded joint-velocity proposal to the verified controller adapter. Nominal path planning is a prior, not a replacement label. Missing dq rows cannot train the residual as zero. Treat all translation/rotation/controller units as commissioning gates.",
+      "applicability": "Tool free or safely disengageable, reachable caller T_base_ee waypoint, reliable obstacle/tool tracking and commissioned robot collision geometry. Includes approaching a boundary/concavity from above, not deliberately displacing a piece. With no clear corridor return BLOCKED rather than sweeping through letters.",
+      "augmentation": "Photometric illumination/texture and rod/scene occlusion augmentations with visibility masks; passive re-expression of all geometric positions, goal, tool pose and vector labels in a common planar frame. Do not move raw q or rotate joint command vectors as if Cartesian. Real spatial transformations require checked IK/collision recomputation and are not assumed available. Do not add an obstacle to an existing action trajectory without checking its swept path.",
+      "evidence": [
+        {
+          "indices": [
+            0,
+            599,
+            600,
+            6150,
+            6339
+          ],
+          "trajectory_id": "episode_2026091922002701"
+        },
+        {
+          "indices": [
+            0,
+            419,
+            420,
+            2750,
+            2939
+          ],
+          "trajectory_id": "episode_2026091922062101"
+        }
+      ],
+      "goal_conditioning": "Tool goal T_base_ee, clearance/contact-access mode, optional selected instance and intended boundary region, protected-instance set and safety limits. Training endpoint poses are explicit G/E-style hindsight arguments, not online inputs from future robot states.",
+      "handoff": {
+        "entry_conditions": "Valid calibration/controller, free or known disengageable tip, finite robot state, valid tool waypoint and current obstacle tracks.",
+        "exit_conditions": "Waypoint position/orientation within uncertainty-aware tolerance with a safe approach corridor and low velocity, or report reached-waypoint-but-not-settled if the training boundary was in motion. Policy does not declare object placement.",
+        "failure_signatures": "Unexpected component motion, rising torque residual, tip inside an unapproved occupied region, no safe path, stale tracking or repeated command clipping.",
+        "overlap_role": "Initial context and 15-row buffers initialize scene and short history. Two transfers overlap object-policy release/access supervision under explicit tool goals, not object-motion goals.",
+        "successor_readiness": "Return tip pose, target boundary accessibility, obstacle covariance and any remaining contact; relocate or align may start only after verifying entry. Otherwise agent selects another waypoint or safe stop."
+      },
+      "heuristic_id": "clearance_phase_prior",
+      "input_preprocessing": "P/S plus current signed-distance obstacle raster from visible instance masks, rod projection and commissioned tool swept volume. Fuse q/T_base_ee with endpoint-relative pose, height relative to verified plane where available, current image-space obstacle distance and last 0.5 s of commands/state. Class labels are not inputs. Train a small recurrent phase network (depart, traverse, descend, settle) with q-conditioned command residual; latent phases may use weak height/motion cues, not purported contact truth. If metric obstacle conversion is unavailable, image clearance remains a cue but robot execution is blocked until a conservative collision envelope is verified.",
+      "limitations": "Sparse examples, no independent active search or collision recovery demonstrations. A low tip projected onto a piece does not establish contact. Planning success cannot certify cable/arm clearance without acquired tool/robot geometry.",
+      "pipeline_implications": "Implement and validate swept-volume checker, waypoint proposer, residual target derivation and hysteretic entry/exit monitor. Count contact-contaminated access rows after dense tracking; keep their parent object supervision. No autonomous robot movement is authorized by this plan.",
+      "policy_contract": {
+        "caller_arguments": "policy_id=access_clearance_v1; goal_tool_pose T_base_ee, mode=approach|depart|transfer, protected_instance_ids, optional target instance/boundary region, tolerance/time budget/safety profile.",
+        "input_output_contract": "Group tool_access. Causal RGB/state/history through P/S; propose finite seven-joint velocity through D. Own obstacle avoidance, approach phase and stopping, not character assignment or letter displacement.",
+        "memory_and_handoff": "Reset phase state on new call; initialize with up to 0.5 s available history and validity masks; preserve tracker IDs across calls. Return actual pose/clearance, never assume next object is contacted.",
+        "selection_cues": "Choose before another policy when tip is high, on wrong side, obstructed, or a previous push finished in contact. Prefer this over arbitrary long motion from an alignment policy.",
+        "status_and_progress": "Report RUNNING phase, waypoint error, clearance margin, uncertainty; READY only after stable safe entry. BLOCKED/LOST_TRACK/SAFETY_STOP include responsible obstacle/measurement."
+      },
+      "policy_id": "access_clearance_v1",
+      "rationale": "Both episodes approach from a similar high robot start and later traverse at low height between pieces. Tool-goal relative geometry plus clearance costs should transfer these motions without memorizing a particular next letter. This remains a hypothesis pending held-out starts and obstacle layouts.",
+      "statement": "Learn a goal-relative, obstacle-aware tool-access policy with a phase/hysteresis prior and a kinematic command residual."
+    }
+  ],
+  "name": "Tool access, disengagement and clearance positioning",
+  "plan_hash": "acfa27afe6425ced9da3e05c1cc41ac55d20ec36ea5ca7cc107523446255bc93",
+  "schema": "real_robot.cut_dataset.v2",
+  "segments": [
+    {
+      "boundary_evidence_indices": [
+        0,
+        599,
+        600,
+        614
+      ],
+      "condition_evidence_indices": [
+        0,
+        599
+      ],
+      "deployment_condition_source": "Caller supplies a reachable tool waypoint from the current selected piece's observed boundary and collision-checked approach plan.",
+      "directory": "real_robot/data/push_letters/cut_v4/datasets/tool_access/segments/0000",
+      "label_derivation": "Tool goal is recorded T_base_ee at599; auxiliary access-region referent is zigzag cutout below the rod in third599. D uses finite action.dq only; startup null dq is masked, finite v/w and scene history remain.",
+      "merge_check": "Same tool endpoint/clearance objective as B initial and later transfers, despite longer startup waiting.",
+      "objective": "Approach the first zigzag piece from high initial pose without assigning a word.",
+      "rationale": "0 shows all pieces and high TCP;599/600 show rod poised over the zigzag, with base EE z about0.085m, preceding the push contact. Following15 rows are context only.",
+      "records": 615,
+      "records_sha256": "b41bccb636cf2c8159148b9dd5b5fc5e42598e2f0401857ddf44688a7262b0f8",
+      "samples_sha256": "8838f641101951cc7f19e0b667cfefe125aa3c732e625efb836d762b387a4304",
+      "segment_id": "a_initial_access",
+      "split_check": "End before the object-moving cycle; retain startup pauses and approach under tool goal. Do not split the descent into fixed numerical bins.",
+      "start": 0,
+      "stop": 615,
+      "supervised_start": 0,
+      "supervised_stop": 600,
+      "supervision_exclusions": [],
+      "training_condition": "mode=approach; tool_goal=pose599; no semantic letter input; protect all physical pieces.",
+      "trajectory_id": "episode_2026091922002701",
+      "uncertainty": "Actual contact onset and true tip offset not measured; initial null joint commands are not zeros."
+    },
+    {
+      "boundary_evidence_indices": [
+        0,
+        419,
+        420,
+        434
+      ],
+      "condition_evidence_indices": [
+        0,
+        419
+      ],
+      "deployment_condition_source": "Current target boundary and caller tool waypoint, not recorded scene/word.",
+      "directory": "real_robot/data/push_letters/cut_v4/datasets/tool_access/segments/0001",
+      "label_derivation": "Tool goal T_base_ee419; zigzag piece is front-right in third0 and beneath rod in wrist419. Null joint command components are masked under D.",
+      "merge_check": "Same high-to-low access objective, different initial arrangement and approach path.",
+      "objective": "Bring tool from home-like start to access the front zigzag piece.",
+      "rationale": "Third419/420 is arm-occluded but paired wrist419/420 shows the piece and rod; state419 is downward command.434 follows contact-like torque increase and is context only.",
+      "records": 435,
+      "records_sha256": "fc3bf1bae5129a3c22958048d2890831655f4ed72e3c1c68924f9ddb17521da9",
+      "samples_sha256": "633e9661a7dfdeefccd50fe6116446f9c082c547143393593d5e7a31f687e0f2",
+      "segment_id": "b_initial_access",
+      "split_check": "Cut at access-to-object handoff; following context is not tool-only action supervision.",
+      "start": 0,
+      "stop": 435,
+      "supervised_start": 0,
+      "supervised_stop": 420,
+      "supervision_exclusions": [],
+      "training_condition": "mode=approach; tool_goal=pose419; current scene obstacle masks.",
+      "trajectory_id": "episode_2026091922062101",
+      "uncertainty": "Projected overlap is not verified force contact; wrist resolves target identity geometrically."
+    },
+    {
+      "boundary_evidence_indices": [
+        6135,
+        6150,
+        6199,
+        6200,
+        6339,
+        6354
+      ],
+      "condition_evidence_indices": [
+        6150,
+        6339
+      ],
+      "deployment_condition_source": "Agent chooses next access waypoint using current L-like boundary/obstacles.",
+      "directory": "real_robot/data/push_letters/cut_v4/datasets/tool_access/segments/0002",
+      "label_derivation": "Tool waypoint T_base_ee6339; no object goal; D original command labels. Protect the stationary D-like and R-like pieces along the route.",
+      "merge_check": "Common transfer objective rather than D/L spelling-specific behavior.",
+      "objective": "Transfer away from D-like alignment toward the L-like piece, ending above its boundary.",
+      "rationale": "6150 shows departure near the right column;6339 shows rod above L-like piece without an observed relocation.15-row buffers bracket the corridor.",
+      "records": 220,
+      "records_sha256": "b55473e3be4e8b3800e092f1a787a37189fc106793c53052c843d14fff5b8e09",
+      "samples_sha256": "5597a8bc0cf83e3e9540d61c2fe0ed72fb5af2a2f696271a101b74b5e382ced6",
+      "segment_id": "a_transfer_to_l",
+      "split_check": "Reused subset spanning parent D-alignment/L-relocation handoff; not extend into L push at6400.",
+      "start": 6135,
+      "stop": 6355,
+      "supervised_start": 6150,
+      "supervised_stop": 6340,
+      "supervision_exclusions": [],
+      "training_condition": "mode=transfer; tool_goal=pose6339; protect all pieces; no intended object motion.",
+      "trajectory_id": "episode_2026091922002701",
+      "uncertainty": "Dense tracking must verify object stationarity; access loss is ineligible where actual displacement occurs, while parent object support remains."
+    },
+    {
+      "boundary_evidence_indices": [
+        2735,
+        2750,
+        2819,
+        2820,
+        2939,
+        2954
+      ],
+      "condition_evidence_indices": [
+        2750,
+        2939
+      ],
+      "deployment_condition_source": "Current scene and agent-selected next approach waypoint.",
+      "directory": "real_robot/data/push_letters/cut_v4/datasets/tool_access/segments/0003",
+      "label_derivation": "Tool waypoint T_base_ee2939; all pieces treated as stationary obstacles for this access example; original finite commands under D.",
+      "merge_check": "Same depart/traverse/approach responsibility as A transfer, different direction and clutter.",
+      "objective": "Depart ring placement and approach R-like piece without moving either.",
+      "rationale": "2750 tip is released above ring;2939 is above R-like piece before contact at later3000. Parent goals explicitly condition their exit/access motions.",
+      "records": 220,
+      "records_sha256": "61a99f7d0cc39ffaafa6812ec7f79382d43e45842f4e25296eefe5fbff47e2a3",
+      "samples_sha256": "cde0d487015569950bc1ad13789163183854639899190642e6c071b880f74b87",
+      "segment_id": "b_transfer_to_r",
+      "split_check": "Use only visually supported free-transfer corridor, not entire R relocation.",
+      "start": 2735,
+      "stop": 2955,
+      "supervised_start": 2750,
+      "supervised_stop": 2940,
+      "supervision_exclusions": [],
+      "training_condition": "mode=transfer; tool_goal=pose2939; protect all pieces.",
+      "trajectory_id": "episode_2026091922062101",
+      "uncertainty": "No measured contact label; audit stationarity before using collision-free auxiliary targets."
+    }
+  ],
+  "sequence_semantics": "Bag of independent original sequences; overlapping reuse allowed; never concatenate across cuts.",
+  "skill_id": "tool_access",
+  "source_manifest": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/real_robot/runs/push_letters/cut_v4/source_manifest.json",
+  "source_manifest_sha256": "e2c03c99f07c63f65c105929e994d34e1215974fc4b4f244f1dffb35b80ef7d1",
+  "subgoal": "Reach a caller-specified safe tool access/clearance pose without intentional piece displacement."
+}

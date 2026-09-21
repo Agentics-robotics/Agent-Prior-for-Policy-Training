@@ -1,0 +1,75 @@
+{
+  "archive_sha256": "53db8f837c014b6568c151946ee10634d60daeeb01eaa5940b30271be72eaccd",
+  "relocated_root": "/tmp/push-v2-interface-v5lht1ch/push_v2_bundle",
+  "status": "passed",
+  "returncode": 0,
+  "stdout": "{\"root\": \"/tmp/push-v2-interface-v5lht1ch/push_v2_bundle\", \"models\": [{\"policy_id\": \"contour_push\", \"ready\": {\"status\": \"ready\", \"policy_id\": \"contour_push\", \"device\": {\"physical_gpu\": 2, \"uuid\": \"GPU-7a6705f2-1132-637d-000e-c94d37e2f0a2\", \"logical_gpu\": 0, \"minor\": 1}, \"checkpoint_sha256\": \"4a4eef06cc3a834d474cb9d717558f206af716682640cf612bf1128f2bab8bd1\", \"hardware_io\": false}, \"instances\": 6, \"goal_preview_shape\": [360, 640], \"goal_reexpression_status\": \"goal_reexpressed\", \"act_status\": \"running\", \"finite_candidate\": true, \"unverified_controller_refused\": true, \"logs\": \"/tmp/push-contour_push-n_rjv661\"}, {\"policy_id\": \"visual_push\", \"ready\": {\"status\": \"ready\", \"policy_id\": \"visual_push\", \"device\": {\"physical_gpu\": 2, \"uuid\": \"GPU-7a6705f2-1132-637d-000e-c94d37e2f0a2\", \"logical_gpu\": 0, \"minor\": 1}, \"checkpoint_sha256\": \"aadaace674450f20e33ac9ccec6cabde4811948e56262baef779e9287bac737e\", \"hardware_io\": false}, \"instances\": 6, \"goal_preview_shape\": [360, 640], \"goal_reexpression_status\": \"goal_reexpressed\", \"act_status\": \"running\", \"finite_candidate\": true, \"unverified_controller_refused\": true, \"logs\": \"/tmp/push-visual_push-mnfjs5ih\"}], \"robot_actions_executed\": 0}\n",
+  "stderr": "",
+  "paired_input": {
+    "trajectory": "episode_2026091922002701",
+    "sample_index": 300
+  },
+  "fixture_goal": "Unchanged current foreground, interface exercise only",
+  "training_runs_present": false,
+  "original_data_reader_present": false,
+  "API_calls": 0,
+  "candidate_optimizer_updates": 0,
+  "performance_evaluation": false,
+  "robot_actions_executed": 0,
+  "result": {
+    "root": "/tmp/push-v2-interface-v5lht1ch/push_v2_bundle",
+    "models": [
+      {
+        "policy_id": "contour_push",
+        "ready": {
+          "status": "ready",
+          "policy_id": "contour_push",
+          "device": {
+            "physical_gpu": 2,
+            "uuid": "GPU-7a6705f2-1132-637d-000e-c94d37e2f0a2",
+            "logical_gpu": 0,
+            "minor": 1
+          },
+          "checkpoint_sha256": "4a4eef06cc3a834d474cb9d717558f206af716682640cf612bf1128f2bab8bd1",
+          "hardware_io": false
+        },
+        "instances": 6,
+        "goal_preview_shape": [
+          360,
+          640
+        ],
+        "goal_reexpression_status": "goal_reexpressed",
+        "act_status": "running",
+        "finite_candidate": true,
+        "unverified_controller_refused": true,
+        "logs": "/tmp/push-contour_push-n_rjv661"
+      },
+      {
+        "policy_id": "visual_push",
+        "ready": {
+          "status": "ready",
+          "policy_id": "visual_push",
+          "device": {
+            "physical_gpu": 2,
+            "uuid": "GPU-7a6705f2-1132-637d-000e-c94d37e2f0a2",
+            "logical_gpu": 0,
+            "minor": 1
+          },
+          "checkpoint_sha256": "aadaace674450f20e33ac9ccec6cabde4811948e56262baef779e9287bac737e",
+          "hardware_io": false
+        },
+        "instances": 6,
+        "goal_preview_shape": [
+          360,
+          640
+        ],
+        "goal_reexpression_status": "goal_reexpressed",
+        "act_status": "running",
+        "finite_candidate": true,
+        "unverified_controller_refused": true,
+        "logs": "/tmp/push-visual_push-mnfjs5ih"
+      }
+    ],
+    "robot_actions_executed": 0
+  }
+}

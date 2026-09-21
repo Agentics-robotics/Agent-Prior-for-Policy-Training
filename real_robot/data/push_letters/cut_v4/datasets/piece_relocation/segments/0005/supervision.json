@@ -1,0 +1,30 @@
+{
+  "boundary_evidence_indices": [
+    4265,
+    4279,
+    4280,
+    4669,
+    4670,
+    4684
+  ],
+  "condition_evidence_indices": [
+    4280,
+    4350,
+    4669
+  ],
+  "deployment_condition_source": "Caller chooses upper H-like physical instance, not the other flanged piece.",
+  "label_derivation": "G seed4280 upper H-like cutout under rod; goal4669 same piece at front-left beside zigzag/ring. E4669 above D-like access region; verify clear height. D labels.",
+  "merge_check": "Relocation to temporary/front slot, sharing contact geometry mechanisms with B H-like transport.",
+  "objective": "Transport H-like piece from rear-central cluster to front-left staging.",
+  "rationale": "4350 wrist shows concave boundary contact;4669 H-like piece is front-left and tool over next D-like piece without its intended movement yet.",
+  "segment_id": "a_hlike_stage",
+  "split_check": "E-conditioned departure retained, but subsequent D-like movement belongs to next sequence.",
+  "start": 4265,
+  "stop": 4685,
+  "supervised_start": 4280,
+  "supervised_stop": 4670,
+  "supervision_exclusions": [],
+  "training_condition": "instance=upper_hlike_at4280; footprint4669; E4669; protect other flanged instance.",
+  "trajectory_id": "episode_2026091922002701",
+  "uncertainty": "End image projects rod into D hole, but EE is elevated; clearance requires calibration, not image overlap alone."
+}

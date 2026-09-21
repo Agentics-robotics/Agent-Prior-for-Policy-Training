@@ -1,0 +1,35 @@
+{
+  "boundary_evidence_indices": [
+    6100,
+    6119,
+    6120,
+    8149,
+    8150,
+    8169
+  ],
+  "condition_evidence_indices": [
+    6120,
+    6500,
+    6800,
+    7100,
+    7400,
+    7800,
+    8050,
+    8149
+  ],
+  "deployment_condition_source": "HLA selects L-like or a novel concave instance and supplies a footprint goal; policy chooses multiple contacts causally.",
+  "label_derivation": "RULE P for upper-left L-like, achieved footprint8149 and exit8149; preserve all intermediate reversals rather than label them failures or independent completed goals.",
+  "merge_check": "Combines with B L movement as long multi-stroke examples of the same one-piece goal problem; no L-specific policy.",
+  "objective": "Repeatedly recontact, turn and transport L-like into the gap between R-like and D-like.",
+  "rationale": "6500,6800,7100,7400 show different L poses/contact sides;7800/8050 show transport/final refinement;8149 shows completed local placement and exit toward barred piece. Early6120-6250 also supports tool_position.",
+  "segment_id": "a_l_move",
+  "split_check": "Do not split at every pause or unsuccessful rotation: selected instance and final local purpose remain constant. Split when another barred piece becomes active.",
+  "start": 6100,
+  "stop": 8170,
+  "supervised_start": 6120,
+  "supervised_stop": 8150,
+  "supervision_exclusions": [],
+  "training_condition": "Selected two-arm L-like piece initially upper-left; fixed hindsight footprint8149, explicit exit waypoint8149; mode/history distinguish resets from pushes.",
+  "trajectory_id": "episode_2026091922002701",
+  "uncertainty": "Long nonmonotonic progress is observed; whether individual turns were failed attempts or intentional intermediate contacts is unresolved. All remain useful action evidence."
+}

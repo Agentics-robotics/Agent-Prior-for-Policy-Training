@@ -1,0 +1,29 @@
+{
+  "boundary_evidence_indices": [
+    6135,
+    6150,
+    6199,
+    6200,
+    6339,
+    6354
+  ],
+  "condition_evidence_indices": [
+    6150,
+    6339
+  ],
+  "deployment_condition_source": "Agent chooses next access waypoint using current L-like boundary/obstacles.",
+  "label_derivation": "Tool waypoint T_base_ee6339; no object goal; D original command labels. Protect the stationary D-like and R-like pieces along the route.",
+  "merge_check": "Common transfer objective rather than D/L spelling-specific behavior.",
+  "objective": "Transfer away from D-like alignment toward the L-like piece, ending above its boundary.",
+  "rationale": "6150 shows departure near the right column;6339 shows rod above L-like piece without an observed relocation.15-row buffers bracket the corridor.",
+  "segment_id": "a_transfer_to_l",
+  "split_check": "Reused subset spanning parent D-alignment/L-relocation handoff; not extend into L push at6400.",
+  "start": 6135,
+  "stop": 6355,
+  "supervised_start": 6150,
+  "supervised_stop": 6340,
+  "supervision_exclusions": [],
+  "training_condition": "mode=transfer; tool_goal=pose6339; protect all pieces; no intended object motion.",
+  "trajectory_id": "episode_2026091922002701",
+  "uncertainty": "Dense tracking must verify object stationarity; access loss is ineligible where actual displacement occurs, while parent object support remains."
+}

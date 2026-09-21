@@ -1,0 +1,68 @@
+[
+  {
+    "applicability": "Noncontact tool approach from home or between strokes, and guarded extraction/reposition when an escape direction is visibly free. Applicable only with verified controller/robot/tool calibration and a collision-feasible waypoint. Not a pushing policy and not a guarantee of extraction from a jammed hole.",
+    "contract": {
+      "caller_arguments": "policy_id=tool_waypoint_v1; goal_tcp_base pose, arrival_mode, optional terminal_twist, clearance_m, protected_instance_ids, tolerance_m/rad, speed_cap, timeout_s. Dataset responsibility: tool_position.",
+      "input_output_contract": "Causal observations processed by C plus caller arguments -> one verified-interface command via D and a status object. Internally chooses feasible clearance path and speed residual; caller does not supply each low-level move.",
+      "memory_and_handoff": "Reset on new call; initialize last-command memory from actual controller state and up to 12 live frames. Interrupted call returns current pose/velocity; do not carry unvalidated recurrent state into a piece call.",
+      "selection_cues": "Choose for initial descent, contact-side change or retract-to-inspect without intentionally moving a piece. Choose a piece policy instead if the goal requires object motion.",
+      "status_and_progress": "Report waypoint distance, clearance minimum/uncertainty, phase lift/traverse/descend/hold, controller validity, object-motion alarm and READY/BLOCKED states using the global status vocabulary."
+    },
+    "dataset_group_id": "tool_position",
+    "handoff": {
+      "entry_conditions": "Current tool/robot pose valid; target waypoint reachable; free corridor or conservative lift corridor checked; no unresolved contact/jam. Missing gripper feedback is expected, not an error indicating an open gripper.",
+      "exit_conditions": "Waypoint crossed within caller tolerance and correct clearance/arrival mode, with valid current tool pose and a verified next command handoff. For stop, additionally small measured motion and actual stop command; do not infer this at a moving segment boundary.",
+      "failure_signatures": "Unexpected piece motion during noncontact travel, tool/obstacle overlap, table approach outside height uncertainty, joint-limit/singularity alarm, tau_ext excursion, stale camera tracking or infeasible waypoint.",
+      "overlap_role": "A6120-6250 and B4000-4250 explicitly teach the same free reposition actions also embedded in a piece call. Context-only suffix may show the following contact but does not authorize pushing loss.",
+      "successor_readiness": "Return achieved tool pose, velocity, visible candidate contacts and confidence. A piece policy can start from a precontact waypoint; an HLA inspection can follow a safe hold."
+    },
+    "heuristic_id": "waypoint_clearance_residual",
+    "limitations": "Four waypoint sequences only, two are reused subranges. Does not establish arbitrary crowded-scene navigation or autonomous escape from wedging. Calibration and controller mismatch can dominate the residual model. Near-contact moves must slow/stop when height or tool-radius uncertainty exceeds clearance.",
+    "mechanism": "Learn a compact clearance-aware waypoint residual policy around deterministic collision-checked tool motion.",
+    "policy_id": "tool_waypoint_v1"
+  },
+  {
+    "applicability": "Flat, trackable, rigid pieces with an accessible boundary, including holes/concavities large enough for the verified rod and uncertainty margin. Works on geometry regardless of character identity; intended for novel shapes but no novel-shape success is demonstrated. Reject stacked/tipped pieces, unreachable targets, ambiguous protected contacts or contact candidates with excessive uncertainty.",
+    "contract": {
+      "caller_arguments": "policy_id=piece_contact_graph_v1; instance_id; goal_SE2_W or goal_footprint_W; semantic_orientation_constraint if required; protected_instance_ids; tolerances; optional exit_tool_base pose/arrival twist; clearance/speed limits; timeout/retry budget. Dataset responsibility: piece_relocation.",
+      "input_output_contract": "Current causal dual-view/robot scene representation and caller goal -> bounded command via D, progress/error, uncertainty and phase/contact candidate. Policy selects approach side and strokes internally; HLA supplies the physical objective, not human-selected pushes.",
+      "memory_and_handoff": "New instance/goal resets mode and response memory; warm-start with12 valid observations and actual last command. Preserve only validated tracker identity/geometry across calls. A tool reset pauses the object policy and resumes with new observations, recomputed candidates and the same goal.",
+      "selection_cues": "Prefer when metric local contours and rod geometry are confident and contact-model uncertainty is low. For symmetric objects or unreliable canonical pose but good dense masks, consider piece_goal_field_v1. Neither alternative bypasses shared perception or controller safety gates.",
+      "status_and_progress": "Report positional/angular or contour error with symmetry flag, active boundary ID, contact confidence, approach/contact/reset/exit phase, predicted versus observed progress, retry count, protected-piece motion and readiness. Never report a verified character/word solely from manipulation completion."
+    },
+    "dataset_group_id": "piece_relocation",
+    "handoff": {
+      "entry_conditions": "Valid selected-instance track and current contour/height uncertainty; tool in reachable free space or at a plausible boundary; collision-free candidate contact or a feasible reset path. If tool starts high, internal approach or an explicit tool call is required.",
+      "exit_conditions": "Current target geometry satisfies caller tolerance for several fresh observations, protected pieces checked, and requested exit waypoint attained. Return local-goal reached separately from word success. If object goal is reached but exit clearance is unsafe, report NEEDS_REPOSITION instead of pushing another object.",
+      "failure_signatures": "Object fails to move under repeated contact, unexpected rotation, contact candidate changes identity, rod enters an inadequately sized hole, neighbor displacement, uncertain pose, rising tau_ext, joint-limit alarm, or persistent lack of goal-error reduction. B4120-4200-like high redundant joint motion triggers a guarded reset/replan, not imitation of unsafe joint magnitudes.",
+      "overlap_role": "Each invocation contains approach, repeated strokes and clearance supervision; neighboring-object buffers only initialize/audit. Explicit tool overlaps permit an external reposition call without losing the object goal.",
+      "successor_readiness": "Return achieved footprint and covariance, changed neighbors, tool pose/velocity and proposed safe next contact/exit status. HLA decides whether to refine this piece, clear another, or advance to the next slot."
+    },
+    "heuristic_id": "boundary_mechanics_residual",
+    "limitations": "A quasi-static local response is only approximate for nonconvex pieces, sliding, corner pivots and uncertain friction. Existing data have few materials/shapes and no calibrated forces; tau_ext cannot identify friction or exact contact alone. Tool tilt, inner-hole contacts and occlusion require uncertainty-aware candidates. This design must not assume all unseen letters have the same mass distribution or font.",
+    "mechanism": "Learn boundary-relative contact decisions and local response residuals inside a deterministic, receding-horizon piece-to-pose controller.",
+    "policy_id": "piece_contact_graph_v1"
+  },
+  {
+    "applicability": "Same flat-piece deployment domain as the contact-graph alternative, particularly when a dense target/obstacle mask is reliable but a unique canonical angle or local contact-mechanics fit is uncertain. Goal raster must represent the actual currently observed unseen shape, not a learned glyph template. Cannot operate through complete occlusion or unverified plane/rod geometry.",
+    "contract": {
+      "caller_arguments": "policy_id=piece_goal_field_v1; same physical instance/goal/protection/exit/tolerance/budget arguments as piece_contact_graph_v1. Dataset responsibility: piece_relocation. A goal mask may be supplied directly only with its calibrated W mapping and instance identity.",
+      "input_output_contract": "Causal robot observations and current/goal metric maps -> one bounded command via D and status/progress maps. Internal responsibilities include mode inference, corrective servo and contact-reset proposal; HLA retains target choice and overall sequencing.",
+      "memory_and_handoff": "Reset recurrent servo on new goal/instance; use up to12 prior live frames with validity masks. After a tool-policy call rebuild maps and initialize history from actual commands, never carry a memorized segment index.",
+      "selection_cues": "Prefer for a well-segmented shape with ambiguous orientation or lower confidence in the mechanics model, and for small contour alignment after gross placement. If masks/correspondence are unreliable, stop rather than choosing it as an ungrounded fallback.",
+      "status_and_progress": "Return contour error, semantic-orientation validity, predicted local progress/uncertainty, phase, contact-proximity confidence, collision-projection magnitude, changed neighbors and termination/failure vocabulary from the global contract."
+    },
+    "dataset_group_id": "piece_relocation",
+    "handoff": {
+      "entry_conditions": "Valid persistent target mask, current-goal correspondence, calibrated W warp and rod/obstacle channels. Geometric safety projection must find an admissible action; start high via approach mode or tool_waypoint_v1.",
+      "exit_conditions": "Confidence-weighted contour-distance/overlap and position/orientation constraints meet caller tolerance over fresh observations; protected-instance motion checked and requested tool exit satisfied. Reached mask goal is a local physical result, not a recognition result.",
+      "failure_signatures": "Mask swaps, unstable correspondence, error reduction stalls or reverses repeatedly, target disappears, predicted action crosses unsafe concavity/neighbor, tool moves but object does not, or controller/torque watchdog alarms.",
+      "overlap_role": "All approach, correction and recontact actions remain supervised with mode/history; prefix/suffix observations supply initialization and label audit only. The two tool overlaps can be executed by a separate call while keeping the same goal field.",
+      "successor_readiness": "Return current footprint/uncertainty, contour-error map, last phase/command and safe-to-handoff flag; HLA may retry, choose the mechanics alternative, reposition the tool or move a blocker."
+    },
+    "heuristic_id": "causal_goal_field_servo",
+    "limitations": "Dense image-space/plane-space servo is less explicitly grounded in friction than the mechanics prior and can propose ineffective contacts on unfamiliar concavities. Geometry safety projection does not prove task progress. Incorrect masks or plane thickness can corrupt both alternatives. New letters and combined novel-word/novel-shape tests remain required.",
+    "mechanism": "Learn a causal, geometry-only goal-field servo with mode-aware resets and deterministic collision projection, avoiding alphabet-specific poses.",
+    "policy_id": "piece_goal_field_v1"
+  }
+]

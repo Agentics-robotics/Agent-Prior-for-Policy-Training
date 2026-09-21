@@ -1,0 +1,30 @@
+{
+  "boundary_evidence_indices": [
+    5180,
+    5199,
+    5200,
+    5669,
+    5670,
+    5689
+  ],
+  "condition_evidence_indices": [
+    5200,
+    5450,
+    5669
+  ],
+  "deployment_condition_source": "HLA revisits a staged instance and supplies a new local footprint goal from the current layout.",
+  "label_derivation": "RULE P for upper R-like piece, endpoint5669; D-like is tracked separately even where nearby.",
+  "merge_check": "Same instance as a_r_stage, different invocation/goal; combine in training via current geometry and goal, never by temporal concatenation.",
+  "objective": "Rotate/translate staged R-like into the column above O-like.",
+  "rationale": "5200 begins near staged R,5450 shows off-center turning close to D,5669 shows R near its achieved column pose.",
+  "segment_id": "a_r_layout",
+  "split_check": "End before D orientation work; retain local corrections and close-neighbor evidence.",
+  "start": 5180,
+  "stop": 5690,
+  "supervised_start": 5200,
+  "supervised_stop": 5670,
+  "supervision_exclusions": [],
+  "training_condition": "Target R-like adjacent to D at5200; achieved footprint5669 and tool exit5669; not inferred word conditioning.",
+  "trajectory_id": "episode_2026091922002701",
+  "uncertainty": "Close R/D proximity can cause coupled motion; neighbor displacement is a monitored outcome, not an authorized second target."
+}

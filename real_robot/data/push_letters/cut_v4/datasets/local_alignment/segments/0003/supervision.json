@@ -1,0 +1,29 @@
+{
+  "boundary_evidence_indices": [
+    4695,
+    4709,
+    4710,
+    4909,
+    4910,
+    4924
+  ],
+  "condition_evidence_indices": [
+    4710,
+    4909
+  ],
+  "deployment_condition_source": "Agent requests a correction to the already staged D-like piece.",
+  "label_derivation": "G seed4710 rear-right D-like piece; goal4909 reoriented above column; E4909; D labels.",
+  "merge_check": "Same staged-object fine alignment as A, shorter and different preceding actions.",
+  "objective": "Correct D-like orientation/position after R-like placement.",
+  "rationale": "4710 tool approaches;4909 D-like piece straightened and tip departs toward L-like piece.",
+  "segment_id": "b_dlike_align",
+  "split_check": "Keep separate from D staging1500-1910; interleaving is explicit.",
+  "start": 4695,
+  "stop": 4925,
+  "supervised_start": 4710,
+  "supervised_stop": 4910,
+  "supervision_exclusions": [],
+  "training_condition": "instance=dlike_at4710; footprint4909; E4909; protect column.",
+  "trajectory_id": "episode_2026091922062101",
+  "uncertainty": "No metric precision/success annotation supplied."
+}

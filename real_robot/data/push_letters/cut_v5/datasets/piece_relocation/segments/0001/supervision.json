@@ -1,0 +1,30 @@
+{
+  "boundary_evidence_indices": [
+    1720,
+    1739,
+    1740,
+    1989,
+    1990,
+    2009
+  ],
+  "condition_evidence_indices": [
+    1740,
+    1950,
+    1989
+  ],
+  "deployment_condition_source": "HLA supplies a temporary clearing pose for the currently obstructing barred-piece instance.",
+  "label_derivation": "RULE P for the barred piece initially between upper barred and O-like, with goal/exit at1989.",
+  "merge_check": "Clearing a blocker and spelling placement differ only in local geometric goal, so share the same policy.",
+  "objective": "Shift the middle barred piece leftward to open the O-like approach corridor.",
+  "rationale": "1740 enters from wedge clearance;1950/1989 show the middle barred piece shifted while O-like remains. Pre/post20 rows are context only.",
+  "segment_id": "a_bar_clear",
+  "split_check": "Separate this supporting displacement from both wedge and O-like movement rather than hiding it as an approach accident.",
+  "start": 1720,
+  "stop": 2010,
+  "supervised_start": 1740,
+  "supervised_stop": 1990,
+  "supervision_exclusions": [],
+  "training_condition": "Target middle barred piece visible near R/D/O, not the upper barred piece; achieved pose1989; explicit temporary-clearance goal.",
+  "trajectory_id": "episode_2026091922002701",
+  "uncertainty": "Interpretation as deliberate clearance is inferred from sequence; no intention annotation or canonical I/H label exists."
+}

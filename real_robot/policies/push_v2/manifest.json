@@ -1,0 +1,55 @@
+{
+  "api_contract": "push_training_v2",
+  "cut_plan_hash": "51e620df25f6ced540cde6ae85b5bd8a33a7a4e089018eb56f07c56cc80484a2",
+  "policies": {
+    "contour_push": {
+      "bytes": 15420725,
+      "exact_final_ema_tensor_equality": true,
+      "file": "contour_push.pt",
+      "optimizer_steps": 20000,
+      "original_bytes": 61721909,
+      "original_checkpoint_sha256": "3a302b5d48f9babc9fe408467f1b016b8a725d435792c4c78d6e1814615d9d52",
+      "sha256": "4a4eef06cc3a834d474cb9d717558f206af716682640cf612bf1128f2bab8bd1",
+      "tensor_count": 58,
+      "trainable_parameters": 3846158,
+      "training_examples": 6314
+    },
+    "visual_push": {
+      "bytes": 17374623,
+      "exact_final_ema_tensor_equality": true,
+      "file": "visual_push.pt",
+      "optimizer_steps": 20000,
+      "original_bytes": 69537947,
+      "original_checkpoint_sha256": "12521fe255968266711c396a9b23e8430d728db5a89f1f3a16a3a240444112ee",
+      "sha256": "aadaace674450f20e33ac9ccec6cabde4811948e56262baef779e9287bac737e",
+      "tensor_count": 100,
+      "trainable_parameters": 4331285,
+      "training_examples": 6314
+    }
+  },
+  "schema": "real_robot.push_deployment.v1",
+  "scientific_source": "Exact bytes of API design_00 submission; no developer edits",
+  "selection": "Final EMA at 20000 updates, as in original inference loader",
+  "source_hashes": {
+    "CALLING.md": "15124ad4a532b3d6256dc4d15b11ebda5ddca045700444d23f11eecf5807458a",
+    "HANDOFF.json": "1f38f641627080b7447ec2819230313afb25b5d337daa04a0f41d688400591e4",
+    "POLICY_CATALOG.md": "314c21f132c0166da3b97c5d26409fddb062157c7e980ce9aeada9320a02a821",
+    "PRIOR.md": "916e387963b53e49ede083c04672f917748c67801787e9802f17637ee7bfb0c5",
+    "contour_push_PRIOR.md": "53440bb6798f571afddc3b79cfad974cdbf5ad0656b3866da04e97e71695f4ac",
+    "contour_push_USAGE.md": "9226edca7af38b0a1887526df909e86ba3323b7d4bdbac6cdca65caf7fcd8ff2",
+    "data_pipeline.py": "128e45e65ec614d166139916d022fc1af1f764ca48add54d0d4e751b0260693f",
+    "geometry.py": "50ff37381f128ebc9f6fb4aba4e10c2c457b8ad2972f46291bcc8d0ebe0535cb",
+    "networks.py": "1742c6a57cf0be5ea694f1e6237ae970ace9dc3741a86b7b192d1f114a3cf611",
+    "package.json": "a8cb9fb0a55b6be0ee2161a7fa3ac47b9ec7a4c58316da72a67508055fbd2fd5",
+    "perception.py": "1f299a0b7e10cff7915f9496c3aee94a6f68462769b09f0e5818d1a5a97b3686",
+    "policy.py": "4768e20de0864fc41a322f6428dd97efb7728bfe67d6aba55e24110ce5b0af09",
+    "runtime.py": "5cbbb206a1a6e2b4aabcac83288c99a60afc721ac231c34e882666ad7befc8ae",
+    "visual_push_PRIOR.md": "5140d0b3684b413f31ba70c6c8b27bcc3e1e556a645bb8a38e06cba1e347eb45",
+    "visual_push_USAGE.md": "ed8fcd1adce577a4a1f0751ffd9db85f473ae5087da547d8f7a627cc5aa3015b"
+  },
+  "source_package_hash": "7b109fef60fc83744aaa2b73302e87b7fc7995df3a8da327aac275794c605b5a",
+  "training_summary": {
+    "file": "TRAINING.md",
+    "sha256": "c779e037fa56315d6ee9458fda13fcc3b08b8618f4da04d8162c35d05f8434de"
+  }
+}

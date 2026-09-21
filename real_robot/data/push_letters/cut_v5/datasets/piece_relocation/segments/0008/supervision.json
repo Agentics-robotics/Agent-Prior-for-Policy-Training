@@ -1,0 +1,30 @@
+{
+  "boundary_evidence_indices": [
+    5650,
+    5669,
+    5670,
+    6119,
+    6120,
+    6139
+  ],
+  "condition_evidence_indices": [
+    5670,
+    5900,
+    6119
+  ],
+  "deployment_condition_source": "HLA requests a pose refinement on the current D-like track.",
+  "label_derivation": "RULE P for upper D-like, goal/exit6119.",
+  "merge_check": "Fine yaw/translation correction shares the same learned contact variables as gross D transport; tolerance/goal error expresses scale.",
+  "objective": "Rotate and refine D-like at the top of the emerging column.",
+  "rationale": "5670 D remains oblique;5900 shows contact after rotation;6119 shows aligned D and departing tool.",
+  "segment_id": "a_d_align",
+  "split_check": "End before L work; final tool transit is retained under explicit exit waypoint, with20-row context.",
+  "start": 5650,
+  "stop": 6140,
+  "supervised_start": 5670,
+  "supervised_stop": 6120,
+  "supervision_exclusions": [],
+  "training_condition": "Target D-like above R-like; local achieved pose6119, not the full episode arrangement.",
+  "trajectory_id": "episode_2026091922002701",
+  "uncertainty": "No externally specified orientation or placement tolerance is recorded; endpoint relabeling is hindsight supervision only."
+}

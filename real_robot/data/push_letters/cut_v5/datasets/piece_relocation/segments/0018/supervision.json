@@ -1,0 +1,32 @@
+{
+  "boundary_evidence_indices": [
+    4930,
+    4949,
+    4950,
+    6149,
+    6150,
+    6169
+  ],
+  "condition_evidence_indices": [
+    4950,
+    5200,
+    5500,
+    5750,
+    6149
+  ],
+  "deployment_condition_source": "HLA supplies a slot footprint for the tracked L-like/concave instance; policy handles side selection and retries.",
+  "label_derivation": "RULE P for upper L-like, endpoint6149 and exit6149. Do not treat early descent at5050 as universally noncontact; it remains object-policy supervision.",
+  "merge_check": "Same long contact-switching problem as A L move with fewer reorientations and a different initial location.",
+  "objective": "Reorient, transport and refine L-like between R-like and D-like.",
+  "rationale": "5200 shows L partly moved,5500 off-center turn,5750 and6000 correction,6149 final pose with tool departing. All intermediate contacts retained.",
+  "segment_id": "b_l_move",
+  "split_check": "No cuts at pauses or reversals; end at change to upper-left barred instance.",
+  "start": 4930,
+  "stop": 6170,
+  "supervised_start": 4950,
+  "supervised_stop": 6150,
+  "supervision_exclusions": [],
+  "training_condition": "Target two-arm L-like initially above ring/R; fixed hindsight goal6149 and exit6149.",
+  "trajectory_id": "episode_2026091922062101",
+  "uncertainty": "L semantic identity and success remain unverified; thin/concave contact feasibility on novel shapes needs separate tests."
+}

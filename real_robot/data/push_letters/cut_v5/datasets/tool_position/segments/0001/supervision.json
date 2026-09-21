@@ -1,0 +1,28 @@
+{
+  "boundary_evidence_indices": [
+    0,
+    360,
+    379,
+    380,
+    399
+  ],
+  "condition_evidence_indices": [
+    0,
+    379
+  ],
+  "deployment_condition_source": "HLA geometry planner supplies a precontact waypoint for the current inventory arrangement.",
+  "label_derivation": "RULE T at 379; q/dq are measured state, not generated labels.",
+  "merge_check": "Adds a different lateral approach direction and scene arrangement to the same tool objective.",
+  "objective": "Initialize and descend toward the foreground wedge-shaped piece.",
+  "rationale": "B379/380 rod is near the wedge but TCP remains about 0.097/0.095 m, before the later low pushing phase. [380,400) is context-only descent continuation.",
+  "segment_id": "b_initial_tool",
+  "split_check": "Cut at precontact approach, not episode time fraction; next policy performs remaining descent and object motion.",
+  "start": 0,
+  "stop": 400,
+  "supervised_start": 0,
+  "supervised_stop": 380,
+  "supervision_exclusions": [],
+  "training_condition": "tool waypoint at B379; pass-through terminal twist; protect every piece.",
+  "trajectory_id": "episode_2026091922062101",
+  "uncertainty": "Third-view occlusion resolved in part by wrist380; exact contact time is not labeled."
+}

@@ -1,0 +1,27 @@
+{
+  "boundary_evidence_indices": [
+    7350,
+    7369,
+    7370,
+    7729
+  ],
+  "condition_evidence_indices": [
+    7370,
+    7729
+  ],
+  "deployment_condition_source": "HLA selects foreground barred instance, requests its last local footprint and a safe stopped exit pose.",
+  "label_derivation": "RULE P at7729; actual zero command at7729 supports hold but not an N+1 state or verified task completion.",
+  "merge_check": "Same final refinement/withdrawal behavior as A foreground barred revisit, not an episode-specific terminal policy.",
+  "objective": "Refine foreground barred placement, withdraw and hold.",
+  "rationale": "7370 approach,7450/7650 survey shows movement,7670 wrist and7729 show terminal rod/piece relation and lift. Keep final hold; no suffix beyond source.",
+  "segment_id": "b_upper_bar_align",
+  "split_check": "Retain terminal actions as part of safe completion of a local call; do not train a word-success classifier on episode end.",
+  "start": 7350,
+  "stop": 7730,
+  "supervised_start": 7370,
+  "supervised_stop": 7730,
+  "supervision_exclusions": [],
+  "training_condition": "Target foreground barred piece from b_upper_bar_move; achieved footprint7729 and stopped tool endpoint7729.",
+  "trajectory_id": "episode_2026091922062101",
+  "uncertainty": "Final scene/word success unannotated and partly occluded; HLA must independently verify requested layout and identities."
+}

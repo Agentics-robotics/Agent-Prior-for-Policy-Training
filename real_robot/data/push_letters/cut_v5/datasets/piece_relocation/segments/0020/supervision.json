@@ -1,0 +1,29 @@
+{
+  "boundary_evidence_indices": [
+    6890,
+    6909,
+    6910,
+    7369,
+    7370,
+    7389
+  ],
+  "condition_evidence_indices": [
+    6910,
+    7369
+  ],
+  "deployment_condition_source": "HLA revisits the central barred piece with its intended side-layout footprint.",
+  "label_derivation": "RULE P for central barred piece left of R/O at6910, endpoint7369/exit7369.",
+  "merge_check": "Repeated invocation of B clearance instance with a new explicit goal, compatible with A barred alignment.",
+  "objective": "Move/rotate central barred piece upward beside the column.",
+  "rationale": "6950/7200 survey shows central barred contact and motion;7369 shows its achieved placement and rod approaching foreground barred piece.",
+  "segment_id": "b_bar_align",
+  "split_check": "Exit waypoint explains clearance toward next piece without authorizing its push; new target condition begins7370.",
+  "start": 6890,
+  "stop": 7390,
+  "supervised_start": 6910,
+  "supervised_stop": 7370,
+  "supervision_exclusions": [],
+  "training_condition": "Target same central barred instance as b_bar_clear; endpoint7369 and exit7369.",
+  "trajectory_id": "episode_2026091922062101",
+  "uncertainty": "No semantic success inferred from apparent lettering; pose fitting must not swap barred instance identities."
+}

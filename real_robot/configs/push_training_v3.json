@@ -1,0 +1,46 @@
+{
+  "schema": "real_robot.train_config.v3",
+  "config_path": "real_robot/configs/push_training_v3.json",
+  "run": "real_robot/runs/push_letters/training_v3",
+  "cut_config": "real_robot/configs/push_cut_v5.json",
+  "cut_output": "real_robot/data/push_letters/cut_v5",
+  "cut_run": "real_robot/runs/push_letters/cut_v5",
+  "prompt": "real_robot/prompts/implement_policies_v3.md",
+  "interface": "real_robot/policy_training_v3/INTERFACE.md",
+  "task_specification": "real_robot/task_specifications/push_letters.md",
+  "model": "gpt-6-astra",
+  "reasoning_effort": "xhigh",
+  "service_tier": "default",
+  "request_timeout_seconds": 1200,
+  "execution_guard_usd": 100,
+  "max_api_calls": 128,
+  "max_tool_calls": 240,
+  "max_output_tokens": 32000,
+  "policies": [
+    "tool_waypoint_v1",
+    "piece_contact_graph_v1",
+    "piece_goal_field_v1"
+  ],
+  "devices": [
+    4,
+    5,
+    7
+  ],
+  "training": {
+    "updates": 20000,
+    "seed": 0,
+    "optimizer": "AdamW",
+    "ema_decay": 0.999,
+    "checkpoint_every": 2000,
+    "log_every": 100,
+    "parameter_limit": 64000000,
+    "max_cache_bytes": 64000000000
+  },
+  "authorization": "User 2026-09-21 explicitly requests API-owned implementation and training based on the completed cut_v5 three-policy design, encourages Diffusion Policy, and permits other policy families with reasons. Persistent official OpenAI payload/destination authorization is recorded in real_robot/authorizations/openai_data_processing_20260921.json.",
+  "scope": "Implement and independently train all three frozen cut_v5 priors and complete causal preprocessing/goal/action/calling interfaces. Encourage diffusion with documented alternatives. Preserve all previous cuts, training and deployments. No new cuts, performance search, physical robot execution or Flip egg.",
+  "policy_datasets": {
+    "tool_waypoint_v1": "tool_position",
+    "piece_contact_graph_v1": "piece_relocation",
+    "piece_goal_field_v1": "piece_relocation"
+  }
+}

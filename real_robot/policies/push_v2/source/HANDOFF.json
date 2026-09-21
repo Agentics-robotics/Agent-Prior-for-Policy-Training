@@ -1,0 +1,143 @@
+{
+  "schema": "cut_v3.policy_handoff.v1",
+  "entry_documents": {"catalog":"POLICY_CATALOG.md","shared_prior":"PRIOR.md","shared_calling":"CALLING.md"},
+  "shared_rules": {
+    "alternative_policies": "No ranking, mandatory sequence, blending or motor-weight sharing. Each independently learns the same instance-to-placement responsibility from the same two episodes.",
+    "actual_actuation": "Disabled: no hardware I/O. An enabled decoder result is only a command-format artifact relying on externally verified controller/safety attestations.",
+    "goal_preservation": "Save the fixed rendered foreground in the original undistorted third chart before cancellation. Refresh automatic inventory and confirm the same physical referent. reexpress_goal(new_template, old_foreground) computes a new template-relative clockwise angle for the same intended absolute center/silhouette; refuse poor similarity/scale/IoU rather than silently change the objective. Semantic symmetry is an HLA judgment. Refresh protected-instance references.",
+    "identity_refresh": "Required at every new motor invocation, after persistent ambiguity/occlusion, policy switch, scene/chart change or stale template. observe_scene supplies automatic material proposals, not character recognition. Never resolve ambiguity from demonstration order.",
+    "nontransferable_memory": "Motor graph/RGB histories, gated neural state, response-head state, previous candidate outputs and learned normalization are policy-local. Start act with memory=None and the destination model's own checkpoint/spec. Only separately maintained causal scene identity may persist with refreshed uncertainty.",
+    "status_scope": "goal_observed means sustained image foreground/centroid/rotation-modulo-symmetry agreement, not success, contact release, tool clearance, readability or successor readiness. successor_ready is always false. All non-running statuses request an external verified stop.",
+    "perception_adaptation": "No downloaded assets. Broad brown-material connected components on light support and causal appearance/area/motion assignment replace the assumed generic learned segmentation/flow model. Novel silhouette proposal is possible under this material assumption; generic perception and open-alphabet recognition are not claimed.",
+    "unavailable_measurements": ["contact truth","tool/table clearance","visually verified rod-tip geometry","cross-view consistency","recontact events","verified final-word success"],
+    "evaluation_scope": "No preliminary semantic/performance study; fixed independent 20,000-update seed-0 training. Training loss is not robot success. Held-out physical shapes, identities, materials, words/repeats, arrangements/layouts and joint novelty need independent evaluation."
+  },
+  "source_segments": {
+    "episode_2026091922002701": {
+      "a_w":[0,1720],"a_i_stage1":[1720,1920],"a_o":[1920,3220],"a_r_stage":[3220,3600],
+      "a_i_stage2":[3600,4230],"a_h_stage":[4230,4620],"a_d_stage":[4620,4950],"a_r":[4950,5770],
+      "a_d_align":[5770,6140],"a_l":[6140,8050],"a_i_align":[8050,8500],"a_h_align":[8500,9015]
+    },
+    "episode_2026091922062101": {
+      "b_w":[0,1220],"b_i_stage":[1220,1440],"b_d_stage":[1440,1900],"b_o":[1900,2820],
+      "b_r":[2820,4560],"b_d_align":[4560,4840],"b_l":[4840,6080],"b_h_stage":[6080,6900],
+      "b_i_align":[6900,7300],"b_h_align":[7300,7730]
+    }
+  },
+  "policies": {
+    "contour_push": {
+      "responsibility": {"scope":"One selected physical instance to one fixed explicit image placement, including observed approach, pushing, re-contact, corrections, staging and withdrawal.","heuristic_id":"boundary_graph","family":"Independent boundary-message-passing plus causal gated-memory Gaussian-mixture neural policy.","prior":"contour_push_PRIOR.md","usage":"contour_push_USAGE.md","not_responsible":"Letter recognition, multiset allocation, goal/order selection, collision-free high-level planning, successor choice, stop execution or word success."},
+      "selection_cues": {
+        "observable_and_returned":["track_confidence / contour_quality_proxy", "current RGB/foreground continuity available for HLA inspection", "registration_iou and orientation_hypotheses_deg_clockwise", "projected_tcp_uv and tcp_in_image", "center_error_px, foreground_iou, error_trend_px_per_s", "possible_neighbor_displacement_px"],
+        "implemented_checks":"Candidate gate requires observed selected identity confidence >=0.65; geometry is not reconstructed from future masks. Projection validity is returned, not asserted visually verified. No true contour-completeness/contact classifier exists.",
+        "hla_judgment":"Consider when visible outer/inner boundaries and actual instance association are reliable, especially to test shape-conditioned transfer. Tool geometry, reachability, safe travel and completeness require external commissioning/inspection. This is a selection hypothesis, not a measured advantage."
+      },
+      "entry_conditions": {
+        "code":["trained contour model with its own saved normalization/spec", "original paired RGB and finite mandatory measured state", "finite absolute image ages <=0.5 seconds", "matching chart/scene/instance template with age <=10 original samples", "unique automatic current template association", "fixed supported similarity goal and required tolerances/budget", "goal inside image workspace and not overlapping supplied obstacles/protected masks", "current selected confidence >=0.65"],
+        "hla_and_commissioning":["confirm semantic/physical referent and symmetry interpretation", "select an achievable placement and safe travel regime", "check no stacks/flips/fallen piece or unsupported hazards", "obtain verified stop/controller/tool/workspace contract before any actual execution outside this package"],
+        "candidate_scope":"No controller contract is required merely to compute a learned candidate. It is required by decode_action before an enabled command artifact."
+      },
+      "continuation_conditions": {
+        "code":["same exact call signature, policy, chart and template", "increasing original sample index and robot time", "no observation gap >0.5 s", "current selected mask observed with confidence >=0.65", "at least 95 percent of selected foreground inside supplied image workspace", "protected instances visible and below caller displacement threshold", "call duration unexpired"],
+        "available_monitors":"Foreground/centroid/rotation discrepancy, two-second trend, direction changes, possible neighbor shifts and mixture spread; no neural done bit or known contact state.",
+        "hla_judgment":"Assess lack of progress, suspicious geometry, force-residual anomalies, safety and identity. Plateau/direction changes are not automatically diagnosed as contact loss or a need to switch. Do not continue issuing old candidates on a null-action status."
+      },
+      "exit_conditions": {
+        "code":"goal_observed after caller-duration agreement in center, foreground IoU and symmetry-aware angle; timeout; cancel; unavailable/uncertain/blocked reasons. Goal, timeout, cancel and observation-gap exits terminate. Other uncertainty/blocked states may be re-observed while externally stopped under the same call.",
+        "not_success":"All exits are advisories; geometric agreement or episode endpoint is not safe release, word success or validated manipulation success.",
+        "hla_action":"Arrange a verified external stop on non-running status, then decide re-observation, cancellation, goal revision or alternative invocation."
+      },
+      "successor_readiness": {
+        "returned":"successor_ready=false, scene_version, observed track/goal residuals and possible neighbor shifts; tool_clearance_estimate=null and contact_state=null.",
+        "implemented":"No automatic next-instance selection and no clearance-qualified success claim.",
+        "hla_required":["confirm robot is safely stopped and tool can clear/travel safely", "refresh all affected placements and identities", "check requested layout readability and stability independently", "decide successor physical instance, spatial goal and policy", "recheck backend limits/workspace/watchdog and hazards"]
+      },
+      "switch_procedure": {
+        "steps":["Stop/cancel old invocation through externally verified control.", "Save intended fixed image foreground, not a candidate or a demonstration endpoint.", "Refresh automatic scene inventory and HLA physical referent association; refresh protected refs.", "Use reexpress_goal(new_template, old_fixed_foreground); accept only goal_reexpressed and HLA-resolved semantic symmetry. Unsupported scale/shape/perspective needs recalibration/re-planning, not silent retargeting.", "Create new call_id with re-expressed goal and the new template; invoke chosen trained model with memory=None and its own spec."],
+        "potential_alternative":"visual_push may be considered when contour proxy deteriorates yet current physical identity remains uniquely observed in RGB. This is not a trained recovery guarantee or automatic cascade.",
+        "do_not_transfer":"Graph hidden/motor history, response state, old candidate outputs or normalizers. Relative angle must not simply be copied after the physical piece/template has rotated."
+      },
+      "failure_signatures": {
+        "implemented_or_returned":["low/missing association and relative-area proxy", "registration residual or symmetry ambiguity", "invalid calibration/chart/sensor freshness", "goal outside supported chart/workspace or conflicting with supplied protected foreground", "protected disappearance/displacement", "nonfinite learned action", "decoder velocity/acceleration/joint/timing refusal"],
+        "observable_but_hla_interpreted":["centroid error plateaus or reverses", "visible contour merge/swap/fragmentation", "TCP image projection disagrees with actual rod", "tool moves without visible piece progress", "tau_ext residual looks anomalous"],
+        "not_inferred":"No measured contact/clearance/force ground truth, singularity diagnosis, friction estimate or successful recovery classification."
+      },
+      "memory_reset_rules": {
+        "reset":"New instance, placement, template, scene/chart, policy, controls/tolerances or terminated call requires new call_id and memory=None. Signature mismatches refuse rather than transferring hidden state.",
+        "continue":"Changing current observation, contact side or uncertainty for the SAME fixed call may update causal tracking/history, but uncertain status returns no command.",
+        "training":"Eight samples at stride three; padding/masks within each original segment only, no cross-cut hidden state or future fill.",
+        "scene_tracker":"Separate perception inventory memory may persist only with valid causal association; refresh at new invocation, switch or ambiguity."
+      },
+      "observation_dependencies": {
+        "raw":["paired original third and wrist uint8 RGB", "q, measured dq, tau_ext", "T_base_ee and T_base_flange", "gripper missingness", "robot t, sample index, image timestamps/ages", "calibrated camera extrinsics/intrinsics/distortion and TCP"],
+        "derived":"Half-resolution causal material foreground/association, current/goal contours with holes, neighbors/image-boundary roles, unverified projected TCP point, measured state/missing flags and short causal graph history.",
+        "assets":"No downloaded weights, table homography, robot/rod silhouette, depth reconstruction, alphabet recognizer or segmentation labels assumed. Contour motor path does not encode wrist RGB, but shared conversion and wrist-pose features require its camera/state contract."
+      },
+      "training_evidence": {
+        "assigned_segments":["a_w","a_i_stage1","a_o","a_r_stage","a_i_stage2","a_h_stage","a_d_stage","a_r","a_d_align","a_l","a_i_align","a_h_align","b_w","b_i_stage","b_d_stage","b_o","b_r","b_d_align","b_l","b_h_stage","b_i_align","b_h_align"],
+        "ranges":"Exact original [start,stop) intervals are in source_segments; anchor=stop-1, all original 30-row handoff exclusion bands unchanged.",
+        "demonstration_support":"W blocks: elevated approach. A/B W,O,L: transport, boundary changes and re-contact. A-L/A-D-align/A-I-align/B-R/B-D-align: pose corrections. A-D-stage/B-D-stage: inner-hole evidence at A4800/B1800. Staging and later revisit blocks: distinct local achieved placements. B-R retains 4050-4200 posture/re-contact under one goal.",
+        "filtering":"Both policies receive the SAME common eligible cache. Per-segment coverage records missing commands, edge/range exclusions, state/perception failures and goal-registration failure. Assigned motion support is not a claim all failed-perception rows trained.",
+        "not_demonstrated":"Verified recovery strategy, unseen-shape/friction competence, general collision avoidance, semantic word success or calibration of safety/progress thresholds."
+      },
+      "limitations": ["Material-limited perception may merge/swap/fragment unknown pieces; color novelty is not solved.", "Contours are not mass/friction/contact/clearance, and inner holes can jam an unfamiliar tool/piece.", "Similarity image goals and two-pixel foreground raster are not metric/projective precision.", "Two episodes do not establish unseen physical-shape/letter/word/layout generalization.", "No arbitrary homing, grasping, falls/flips/stacks or large-collision recovery.", "Common perception/controller errors mean the two alternatives are not independent safety redundancy."]
+    },
+    "visual_push": {
+      "responsibility": {"scope":"One caller-selected physical piece to one fixed explicit image placement; demonstrated approach, contact changes, transport, alignment, staging and withdrawal remain internal learned choices.","heuristic_id":"dual_view_memory","family":"Independent marked third global/detail, wrist and goal encoders plus causal gated-memory Gaussian-mixture neural policy.","prior":"visual_push_PRIOR.md","usage":"visual_push_USAGE.md","not_responsible":"Character/word interpretation, next-instance/goal selection, task sequencing, safe stop execution, general recovery or certified success."},
+      "selection_cues": {
+        "observable_and_returned":["track_confidence / target-marker quality proxy", "third and wrist RGB and original signed image ages", "registration/foreground residuals and symmetry hypotheses", "causal error trend and direction changes", "mixture native action dispersion", "possible neighbor shifts"],
+        "implemented_checks":"Observed selected association/area confidence >=0.3, required fresh dual-view images and finite state. Missing identity never becomes a fictional predicted complete mask. No calibrated cross-view consistency or visual semantic recognizer is implemented.",
+        "hla_judgment":"Consider when partial boundaries remain uniquely associated and current RGB/wrist response is informative. Any advantage over contours under occlusion is an untested hypothesis, not evidence of broader recovery or blindness tolerance."
+      },
+      "entry_conditions": {
+        "code":["trained visual model and its own normalization/spec", "original current paired third/wrist RGB and finite required state", "image age absolute magnitude <=0.5 s", "matching scene/instance/chart template no more than 10 original rows old", "unique observed current association with confidence >=0.3", "representable fixed similarity goal inside supplied image workspace without explicit protected/obstacle overlap", "valid caller tolerances and budget"],
+        "hla_and_commissioning":["confirm physical and semantic referent and upright ambiguity", "ensure workspace/travel and installed-tool regime are appropriate", "reject unsupported stack/fall/flip/hazard situations", "verify controller/stop/tool/workspace contract before real execution"],
+        "candidate_scope":"Controller verification is deferred to the decoder; lack of that contract does not turn learned candidate computation into an unavailable stub."
+      },
+      "continuation_conditions": {
+        "code":["unchanged exact call signature/policy/chart", "increasing sample/time without >0.5-s gap", "both views present with finite age <=0.5 s", "current selected observed confidence >=0.3", "selected mask inside workspace to >=95 percent", "protected objects remain observed and below displacement tolerance", "duration budget unexpired"],
+        "available_monitors":"Target-marker confidence, foreground/centroid/symmetry residuals, recent trend, possible neighbor displacement and mixture spread. Neural memory is never a substitute for mandatory current observations.",
+        "hla_judgment":"Inspect marker drift/identity, suspicious view disagreement, no-progress/oscillation and actual tool/scene safety. Current code exposes but does not classify these as contact loss, friction or recovery phase."
+      },
+      "exit_conditions": {
+        "code":"Shared causal geometric agreement window can return goal_observed; cancel/timeout/gap terminate. Unavailable/uncertain/blocked returns no command and requests verified external stop. No learned success bit or demonstration-order successor exists.",
+        "not_success":"Image agreement alone does not prove clearance, safe handoff, semantic word correctness or final stability of all objects.",
+        "hla_action":"Stop externally, re-observe and choose re-planning/reassociation/switching only after safety and identity review."
+      },
+      "successor_readiness": {
+        "returned":"successor_ready=false with scene version, current geometry/track residuals and possible neighbor shifts. Clearance/contact/view-consistency are unavailable, not inferred from recurrence.",
+        "implemented":"No automatic successor, no unsafe persistent command when identity is absent, and no geometric-goal-to-safety equivalence.",
+        "hla_required":["verify safe stop and actual tool clearance/travel", "refresh affected scene identities and protected placements", "check whole layout readability/stability separately", "choose next instance/goal/policy rather than follow recording order", "validate current backend and hazard context"]
+      },
+      "switch_procedure": {
+        "steps":["Stop/cancel using verified external control and preserve old fixed goal foreground in the calibrated chart.", "Refresh automatic inventory; HLA confirms the same physical referent, semantic symmetry and protected references.", "Use reexpress_goal against the new template to preserve intended absolute placement; reject poor shape/scale/IoU or unsupported perspective instead of copying a stale relative angle.", "Create a new invocation and use the chosen model's own checkpoint/spec with memory=None."],
+        "potential_alternative":"contour_push can be considered if reliable boundary geometry and association are restored; selection is not a mandatory sequence or empirically validated ranking.",
+        "do_not_transfer":"Visual feature window, gated motor state, response state, candidate outputs, learned normalizers or imagined contact state. Only separately refreshed causal perception identity may persist."
+      },
+      "failure_signatures": {
+        "implemented_or_returned":["missing/low-confidence selected marker", "protected disappearance/displacement", "invalid RGB/state/calibration/freshness", "goal/chart/workspace mismatch", "increasing error/direction changes as diagnostics", "nonfinite candidate", "decoder limit/timing/verification refusal"],
+        "observable_but_hla_interpreted":["target-marker drift or identity swap", "incompatible-looking third/wrist observations", "tool motion without selected-piece response", "large action dispersion or unstable scene appearance", "tau_ext residual anomaly"],
+        "not_inferred":"No automatic calibrated view-consistency score, semantic recognizer, contact/clearance/force measurement or reliable hidden-state confidence under full occlusion."
+      },
+      "memory_reset_rules": {
+        "reset":"Any instance/goal/template/chart/scene/policy/control/tolerance change or terminated call requires a new invocation and memory=None.",
+        "continue":"Only changing current observations/contact side for the SAME fixed goal continues causal memory. Under uncertainty, no old action is repeated by this package.",
+        "training":"Eight causal samples at stride three, within original segment and masks, with nonlatest dropout; no prior-segment warmup or future images.",
+        "scene_tracker":"Keep separate from motor memory. Refresh association after switches, stale templates and persistent uncertainty; no semantic identity inferred from track numbering."
+      },
+      "observation_dependencies": {
+        "raw":["original paired third and wrist RGB uint8", "finite q, measured dq, tau_ext", "EE/flange transforms", "gripper missingness fields", "robot t/sample index and original image timestamps/ages", "per-episode calibrated K/dist/extrinsics and TCP"],
+        "derived":"Causal selected marker, 320x180 global RGB/marker, 160x160 target/tool detail with crop mapping, 256x144 wrist RGB, 160x90 masked goal foreground/RGB, 142 state/missing channels and eight masked history positions.",
+        "assets":"No pretrained visual weights, generic segmentation/flow or alphabet recognizer. No metric plane, depth or verified rod silhouette. Projected TCP is unverified point geometry only."
+      },
+      "training_evidence": {
+        "assigned_segments":["a_w","a_i_stage1","a_o","a_r_stage","a_i_stage2","a_h_stage","a_d_stage","a_r","a_d_align","a_l","a_i_align","a_h_align","b_w","b_i_stage","b_d_stage","b_o","b_r","b_d_align","b_l","b_h_stage","b_i_align","b_h_align"],
+        "ranges":"Exact source_segments above; all cuts, stop-1 anchors, masks and original handoff exclusions unchanged.",
+        "demonstration_support":"W blocks include elevated approach; A/B W,O,L show transport and repeated contacts; A4800/B1800 show inner-hole near-contact appearance. B-R 3900/4050/4200 motivates causal interpretation of contact/posture changes, not a separate proven recovery skill. Staging/revisit blocks preserve distinct local goals; alignment blocks include corrections and withdrawal.",
+        "filtering":"Exactly the same eligible common dataset as contour_push. Coverage records disclose automatic anchor/state/command/perception failures; no statement that a failed derived row was trained.",
+        "not_demonstrated":"Held-out-shape/color/friction transfer, robust occlusion recovery, semantic word success, safe collision recovery, policy-selection benefit or calibrated uncertainty."
+      },
+      "limitations": ["Appearance can overfit familiar brown pieces, stickers, camera, tabletop and visible arrangements.", "Both views share an unprovided generic-perception gap, replaced by material-specific components; full identity loss cannot be repaired by recurrence.", "Reduced practical resolutions/history and full-chart low-resolution goal appearance may lose fine edge/tool detail.", "No metric/projective goal renderer or true contact/clearance/view-consistency signal.", "Two episodes do not establish unseen physical letters, new words/layouts or recovery from stacks/falls/flips.", "No performance ranking, safety redundancy or general-purpose homing/planning claim; no actuation."]
+    }
+  }
+}

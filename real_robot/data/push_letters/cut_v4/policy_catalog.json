@@ -1,0 +1,90 @@
+[
+  {
+    "applicability": "Tool free or safely disengageable, reachable caller T_base_ee waypoint, reliable obstacle/tool tracking and commissioned robot collision geometry. Includes approaching a boundary/concavity from above, not deliberately displacing a piece. With no clear corridor return BLOCKED rather than sweeping through letters.",
+    "contract": {
+      "caller_arguments": "policy_id=access_clearance_v1; goal_tool_pose T_base_ee, mode=approach|depart|transfer, protected_instance_ids, optional target instance/boundary region, tolerance/time budget/safety profile.",
+      "input_output_contract": "Group tool_access. Causal RGB/state/history through P/S; propose finite seven-joint velocity through D. Own obstacle avoidance, approach phase and stopping, not character assignment or letter displacement.",
+      "memory_and_handoff": "Reset phase state on new call; initialize with up to 0.5 s available history and validity masks; preserve tracker IDs across calls. Return actual pose/clearance, never assume next object is contacted.",
+      "selection_cues": "Choose before another policy when tip is high, on wrong side, obstructed, or a previous push finished in contact. Prefer this over arbitrary long motion from an alignment policy.",
+      "status_and_progress": "Report RUNNING phase, waypoint error, clearance margin, uncertainty; READY only after stable safe entry. BLOCKED/LOST_TRACK/SAFETY_STOP include responsible obstacle/measurement."
+    },
+    "dataset_group_id": "tool_access",
+    "handoff": {
+      "entry_conditions": "Valid calibration/controller, free or known disengageable tip, finite robot state, valid tool waypoint and current obstacle tracks.",
+      "exit_conditions": "Waypoint position/orientation within uncertainty-aware tolerance with a safe approach corridor and low velocity, or report reached-waypoint-but-not-settled if the training boundary was in motion. Policy does not declare object placement.",
+      "failure_signatures": "Unexpected component motion, rising torque residual, tip inside an unapproved occupied region, no safe path, stale tracking or repeated command clipping.",
+      "overlap_role": "Initial context and 15-row buffers initialize scene and short history. Two transfers overlap object-policy release/access supervision under explicit tool goals, not object-motion goals.",
+      "successor_readiness": "Return tip pose, target boundary accessibility, obstacle covariance and any remaining contact; relocate or align may start only after verifying entry. Otherwise agent selects another waypoint or safe stop."
+    },
+    "heuristic_id": "clearance_phase_prior",
+    "limitations": "Sparse examples, no independent active search or collision recovery demonstrations. A low tip projected onto a piece does not establish contact. Planning success cannot certify cable/arm clearance without acquired tool/robot geometry.",
+    "mechanism": "Learn a goal-relative, obstacle-aware tool-access policy with a phase/hysteresis prior and a kinematic command residual.",
+    "policy_id": "access_clearance_v1"
+  },
+  {
+    "applicability": "One selected rigid planar instance, reliable current contour/track, feasible local footprint goal and commissioned geometry. Supports outer boundaries, holes and concavities where rod fit/access is verified; can choose recontact and intermediate pushes internally but not switch physical target without a new agent call.",
+    "contract": {
+      "caller_arguments": "policy_id=push_boundary_v1; instance_id, fixed goal footprint and optional verified SE(2), orientation ambiguity set, protected IDs, E, tolerances/time/safety.",
+      "input_output_contract": "Group piece_relocation. Current causal RGB/geometry/proprioception/history -> proposed seven-joint velocities through D plus predicted object response/mode confidence. Own local contact choice, same-piece recontact and departure.",
+      "memory_and_handoff": "Reset goal-specific state on call; carry causal tracker state and past-response uncertainty only. Keep model adaptation local to current tool/material context; reset on shape/material change or track loss.",
+      "selection_cues": "Prefer when contours and table geometry are reliable, especially unseen shape with clear boundary, large translation/turn or deliberate staging. Switch to visual alternative for geometric ambiguity only if semantic identity and safety remain reliable.",
+      "status_and_progress": "Expose contour/SE(2) residual, predicted/observed displacement, ensemble disagreement, active boundary region and stall count. Report LOCAL_GOAL_REACHED, NEED_REPOSITION or BLOCKED with evidence."
+    },
+    "dataset_group_id": "piece_relocation",
+    "handoff": {
+      "entry_conditions": "Selected instance geometrically distinguishable, stable support, safe tip approach available or supplied by access policy, reachable goal and protected-neighbor map.",
+      "exit_conditions": "Observed object footprint/orientation within uncertainty-aware tolerance for five valid observations; optionally E reached safely. Otherwise intermediate progress or NEED_REPOSITION is reported rather than terminal success.",
+      "failure_signatures": "Wrong-piece motion, slip/stall, unexpected rotation, rod trapped in hole/concavity, large model disagreement, lost identity, edge risk or protected-piece displacement.",
+      "overlap_role": "Full same-instance cycles retain approach/recontact/withdrawal supervision.15-row external buffers are history/handoff only. Late L/R portions overlap local_alignment with identical goal provenance.",
+      "successor_readiness": "Return current object footprint, uncertainty and tip/contact state. Agent may call alignment, access, or another staging relocation; completed local placement does not authorize unchecked next motion."
+    },
+    "heuristic_id": "boundary_response_prior",
+    "limitations": "Quasi-static/local response is approximate, not guaranteed for arbitrary fonts, mass, friction, thin branches or multi-object jams. Two recordings provide little dynamics diversity. Calibration/shape visibility can make this policy unavailable; choose visual alternative or stop, not invented contours.",
+    "mechanism": "Learn geometry-shared contact proposals and a short-horizon object-response ensemble for closed-loop single-piece relocation.",
+    "policy_id": "push_boundary_v1"
+  },
+  {
+    "applicability": "Same selected-instance/goal responsibility as push_boundary_v1, useful when partial occlusion or appearance makes hard contour registration unstable but dual-view track identity and safety bounds remain trustworthy. Not a fallback for absent target identity or uncalibrated robot execution.",
+    "contract": {
+      "caller_arguments": "policy_id=push_visual_v1; same instance_id/goal/protected_ids/E/tolerance/time/safety interface as boundary alternative; caller need not choose a contact point.",
+      "input_output_contract": "Group piece_relocation. Causal dual RGB/proprio/history plus current masks and fixed goal raster -> short command proposals through D and diagnostic confidence. Own same-piece pushing/recontact, not word semantics.",
+      "memory_and_handoff": "Initialize from bounded current history; reset action chunk on new goal, track uncertainty or stop; no hidden state copied from boundary policy. Transfer only shared explicit observations/track state.",
+      "selection_cues": "Choose for robust dual-view observations with unreliable hard contour pose, or as an independently validated alternative after a geometric proposal stalls. Do not select solely because a character is unseen.",
+      "status_and_progress": "External geometric/image residual and internal ensemble/chunk uncertainty, camera availability and track confidence. Explicit BLOCKED/LOST_TRACK rather than action completion by elapsed time."
+    },
+    "dataset_group_id": "piece_relocation",
+    "handoff": {
+      "entry_conditions": "Trustworthy selected instance, at least one usable camera view, calibrated safety envelope and feasible goal; history masking handles unavailable second view.",
+      "exit_conditions": "External current-observation goal/clearance monitor, not chunk length or recorded duration, declares completion.",
+      "failure_signatures": "Cross-view identity mismatch, attention on wrong piece, repeated action chunk disagreement/clipping, no visible progress, drift under prolonged occlusion or collision risk.",
+      "overlap_role": "Full relocation cycles teach visual continuation through occlusion/recontact, with external15-row buffers available only causally. Same late overlaps as boundary policy; not extra independent data.",
+      "successor_readiness": "Return goal residual/track confidence and actual tip state; caller decides alignment or access. No hidden spelling progress state is passed."
+    },
+    "heuristic_id": "dual_view_mask_goal_prior",
+    "limitations": "Visual representations may memorize brown material/background and do not establish new-shape manipulation. Different letters can have unseen dynamics even if the encoder recognizes them. Encoder assets and sufficient geometry-diverse data are missing; no claim of end-to-end open-world competence.",
+    "mechanism": "Learn a selected-instance, fixed-goal-mask dual-view temporal command policy with short receding-horizon chunks.",
+    "policy_id": "push_visual_v1"
+  },
+  {
+    "applicability": "Selected piece already staged or near its desired footprint, neighbors should stay fixed, current track/goal residual measurable. Supports recontact and small rotations/translations, not large multi-piece rearrangement or rod entrapment recovery.",
+    "contract": {
+      "caller_arguments": "policy_id=align_local_v1; selected instance_id, fixed goal footprint/optional verified SE(2), orientation alternatives, protected IDs, E, tolerances, maximum corrections/time and safety.",
+      "input_output_contract": "Group local_alignment. Causal local geometry/dual RGB/proprio/history -> short joint velocity proposals through D plus local response/uncertainty diagnostics. Own correction/contact reset/release, not object reassignment.",
+      "memory_and_handoff": "Initialize from current0.5s history; reset adaptation on instance/goal change or track loss; preserve only causal explicit response summaries when resuming same call. End status includes whether tip is still near contact.",
+      "selection_cues": "Choose for late slot/orientation error, revisit after neighbors move, or a coarse policy reaches near-goal but not desired tolerance. Choose relocation for a large move, access for wrong-side tool placement, stop for unreliable identity.",
+      "status_and_progress": "Report local contour/angle error, predicted versus observed stroke response, protected displacement, contact mode, retry count and uncertainty. Terminal status based on current verification, not low imitation loss."
+    },
+    "dataset_group_id": "local_alignment",
+    "handoff": {
+      "entry_conditions": "Reliable near-goal/staged instance and protected-neighbor tracks, safe accessible boundary, verified controller/tool limits. If residual is outside locally trained envelope, recommend relocation.",
+      "exit_conditions": "Current footprint/orientation match and protected pieces unchanged within tolerances for five valid observations; release/clearance or E condition satisfied. A recording endpoint alone is not success.",
+      "failure_signatures": "Oscillation, sign-inconsistent object response, repeated no-progress contact, neighboring piece disturbance, torque anomaly, symmetry ambiguity, lost view or error leaving local envelope.",
+      "overlap_role": "Six independent late revisits plus A late L/B late R overlapping full relocation sequences. Overlap trains agent-invocable local correction instead of forcing entire relocation to repeat; outside buffers are context only.",
+      "successor_readiness": "Return stable local residual/uncertainty, neighbor changes and tool-contact status. Agent may verify layout, move another piece via access, or restage a blocked target."
+    },
+    "heuristic_id": "local_response_trust_prior",
+    "limitations": "Local feedback can still fail on novel shape/friction or ambiguous orientation. No calibrated wrench or slip labels. Demos contain moderate corrections and fast approach portions; not evidence of millimetre precision. Tolerances must respect calibration/perception uncertainty.",
+    "mechanism": "Learn local goal-error correction with contact-mode memory, online observed-response adaptation and a conservative trust region.",
+    "policy_id": "align_local_v1"
+  }
+]

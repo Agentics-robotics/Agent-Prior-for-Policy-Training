@@ -1,0 +1,34 @@
+{
+  "boundary_evidence_indices": [
+    2805,
+    2819,
+    2820,
+    4709,
+    4710,
+    4724
+  ],
+  "condition_evidence_indices": [
+    2820,
+    3600,
+    3900,
+    4050,
+    4200,
+    4650,
+    4709
+  ],
+  "deployment_condition_source": "Caller requests branched physical instance and slot above ring.",
+  "label_derivation": "G seed2820 R-like piece on left; goal4709 above ring. E4709; D labels. Later pose/flow targets for response losses restricted to this sequence and confidence audited.",
+  "merge_check": "Same geometry-to-goal responsibility with nonmonotone retries and tool posture change, not a new semantic stage.",
+  "objective": "Relocate R-like piece and repeatedly correct its pose/contact.",
+  "rationale": "3600 rearward staging within attempt,3900 column entry,4050/4200 lift/posture adjustment,4650 correction,4709 release. Larger measured joint velocities are retained, not called failure without evidence.",
+  "segment_id": "b_branched_move_retry",
+  "split_check": "One target with multiple attempts: preserve history rather than cut at every pause.4050-4710 also trains local alignment under same achieved goal.",
+  "start": 2805,
+  "stop": 4725,
+  "supervised_start": 2820,
+  "supervised_stop": 4710,
+  "supervision_exclusions": [],
+  "training_condition": "instance=branched_at2820; footprint4709; E4709; protect ring/zigzag/D-like neighbors.",
+  "trajectory_id": "episode_2026091922062101",
+  "uncertainty": "No contact-force or operator intent labels; large robot posture change is observed, its cause unresolved."
+}

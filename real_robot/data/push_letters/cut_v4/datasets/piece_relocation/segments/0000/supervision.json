@@ -1,0 +1,30 @@
+{
+  "boundary_evidence_indices": [
+    585,
+    599,
+    600,
+    1749,
+    1750,
+    1764
+  ],
+  "condition_evidence_indices": [
+    600,
+    750,
+    1749
+  ],
+  "deployment_condition_source": "G caller-selected physical zigzag or any other tracked geometry with an explicit local slot.",
+  "label_derivation": "G seed600: zigzag cutout below rod near upper-left cluster; goal1749: same piece at front/right. E=T_base_ee1749. Original D labels.",
+  "merge_check": "Same one-instance relocation objective as B zigzag and other shapes; no character embedding.",
+  "objective": "Relocate and turn zigzag piece out of initial cluster.",
+  "rationale": "750 wrist shows edge contact;1749 shows placed piece and rod departing. Context585-599 is approach history,1750-1764 next-target transition only.",
+  "segment_id": "a_zigzag_move",
+  "split_check": "Keep all turning/translation/recontact in one goal cycle; switch target only after1749.",
+  "start": 585,
+  "stop": 1765,
+  "supervised_start": 600,
+  "supervised_stop": 1750,
+  "supervision_exclusions": [],
+  "training_condition": "instance=zigzag_at600; achieved footprint1749; E1749; other pieces protected.",
+  "trajectory_id": "episode_2026091922002701",
+  "uncertainty": "W/M-like interpretation and desired spelling unverified; goal is achieved placement only."
+}

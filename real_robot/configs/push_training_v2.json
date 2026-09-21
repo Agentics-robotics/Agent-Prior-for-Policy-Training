@@ -1,0 +1,39 @@
+{
+  "schema": "real_robot.train_config.v1",
+  "config_path": "real_robot/configs/push_training_v2.json",
+  "run": "real_robot/runs/push_letters/training_v2",
+  "cut_config": "real_robot/configs/push_cut_v3.json",
+  "cut_output": "real_robot/data/push_letters/cut_v3",
+  "cut_run": "real_robot/runs/push_letters/cut_v3",
+  "prompt": "real_robot/prompts/implement_policies_v2.md",
+  "interface": "real_robot/policy_training/INTERFACE.md",
+  "task_specification": "real_robot/task_specifications/push_letters.md",
+  "model": "gpt-6-astra",
+  "reasoning_effort": "xhigh",
+  "service_tier": "default",
+  "request_timeout_seconds": 1200,
+  "execution_guard_usd": 100,
+  "max_api_calls": 96,
+  "max_tool_calls": 160,
+  "max_output_tokens": 32000,
+  "policies": [
+    "contour_push",
+    "visual_push"
+  ],
+  "devices": [
+    2,
+    3
+  ],
+  "training": {
+    "updates": 20000,
+    "seed": 0,
+    "optimizer": "AdamW",
+    "ema_decay": 0.999,
+    "checkpoint_every": 2000,
+    "log_every": 100,
+    "parameter_limit": 64000000,
+    "max_cache_bytes": 64000000000
+  },
+  "authorization": "User 2026-09-21 requests an additional training_v2 round, explicitly permitting Diffusion Policy or another learned family independently for any subpolicy, and asks for per-policy prior, usage and handoff information. Existing official-API implementation/data-processing authorization persists for this requested additional implementation and local training.",
+  "scope": "New independent API implementation and training of the two frozen cut_v3 priors, with architecture-choice clarification and per-policy prior/usage/handoff documentation. Same cut, data, numerical interface and fixed executor recipe as train_v1; preserve v1. No new cuts, extra candidates, robot execution or Flip egg."
+}

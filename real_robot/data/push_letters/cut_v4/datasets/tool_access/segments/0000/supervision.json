@@ -1,0 +1,27 @@
+{
+  "boundary_evidence_indices": [
+    0,
+    599,
+    600,
+    614
+  ],
+  "condition_evidence_indices": [
+    0,
+    599
+  ],
+  "deployment_condition_source": "Caller supplies a reachable tool waypoint from the current selected piece's observed boundary and collision-checked approach plan.",
+  "label_derivation": "Tool goal is recorded T_base_ee at599; auxiliary access-region referent is zigzag cutout below the rod in third599. D uses finite action.dq only; startup null dq is masked, finite v/w and scene history remain.",
+  "merge_check": "Same tool endpoint/clearance objective as B initial and later transfers, despite longer startup waiting.",
+  "objective": "Approach the first zigzag piece from high initial pose without assigning a word.",
+  "rationale": "0 shows all pieces and high TCP;599/600 show rod poised over the zigzag, with base EE z about0.085m, preceding the push contact. Following15 rows are context only.",
+  "segment_id": "a_initial_access",
+  "split_check": "End before the object-moving cycle; retain startup pauses and approach under tool goal. Do not split the descent into fixed numerical bins.",
+  "start": 0,
+  "stop": 615,
+  "supervised_start": 0,
+  "supervised_stop": 600,
+  "supervision_exclusions": [],
+  "training_condition": "mode=approach; tool_goal=pose599; no semantic letter input; protect all physical pieces.",
+  "trajectory_id": "episode_2026091922002701",
+  "uncertainty": "Actual contact onset and true tip offset not measured; initial null joint commands are not zeros."
+}

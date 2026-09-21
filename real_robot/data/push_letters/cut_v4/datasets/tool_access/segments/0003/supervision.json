@@ -1,0 +1,29 @@
+{
+  "boundary_evidence_indices": [
+    2735,
+    2750,
+    2819,
+    2820,
+    2939,
+    2954
+  ],
+  "condition_evidence_indices": [
+    2750,
+    2939
+  ],
+  "deployment_condition_source": "Current scene and agent-selected next approach waypoint.",
+  "label_derivation": "Tool waypoint T_base_ee2939; all pieces treated as stationary obstacles for this access example; original finite commands under D.",
+  "merge_check": "Same depart/traverse/approach responsibility as A transfer, different direction and clutter.",
+  "objective": "Depart ring placement and approach R-like piece without moving either.",
+  "rationale": "2750 tip is released above ring;2939 is above R-like piece before contact at later3000. Parent goals explicitly condition their exit/access motions.",
+  "segment_id": "b_transfer_to_r",
+  "split_check": "Use only visually supported free-transfer corridor, not entire R relocation.",
+  "start": 2735,
+  "stop": 2955,
+  "supervised_start": 2750,
+  "supervised_stop": 2940,
+  "supervision_exclusions": [],
+  "training_condition": "mode=transfer; tool_goal=pose2939; protect all pieces.",
+  "trajectory_id": "episode_2026091922062101",
+  "uncertainty": "No measured contact label; audit stationarity before using collision-free auxiliary targets."
+}

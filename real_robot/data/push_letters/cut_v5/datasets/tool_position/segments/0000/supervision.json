@@ -1,0 +1,28 @@
+{
+  "boundary_evidence_indices": [
+    0,
+    580,
+    599,
+    600,
+    619
+  ],
+  "condition_evidence_indices": [
+    0,
+    599
+  ],
+  "deployment_condition_source": "HLA chooses a currently feasible precontact TCP waypoint near the selected object; no source endpoint is available online.",
+  "label_derivation": "RULE T with T_base_ee and terminal action at 599. Retain null action dq as missing; finite zero/nonzero v,w remain usable.",
+  "merge_check": "Same waypoint problem as the other three tool intervals despite different height/travel distance.",
+  "objective": "Wait/initialize and descend from home toward the wedge-piece neighborhood without moving a piece.",
+  "rationale": "A0 shows untouched scene and high TCP; 599/600 show rod above the R/W neighborhood before the wedge relocation. [600,620) is continuation context only.",
+  "segment_id": "a_initial_tool",
+  "split_check": "Keep long initial wait but downweight it; split before the object-goal invocation at 600 rather than merging 3D home descent into planar pushing.",
+  "start": 0,
+  "stop": 620,
+  "supervised_start": 0,
+  "supervised_stop": 600,
+  "supervision_exclusions": [],
+  "training_condition": "tool waypoint at A599; pass-through arrival with recorded terminal twist; all pieces protected.",
+  "trajectory_id": "episode_2026091922002701",
+  "uncertainty": "Physical rod-tip offset and tabletop plane need verification; endpoint is not a contact or success annotation."
+}

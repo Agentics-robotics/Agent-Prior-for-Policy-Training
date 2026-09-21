@@ -1,0 +1,96 @@
+{
+  "date": "2026-09-21",
+  "status": "passed",
+  "archive_sha256": "17bf463973b66f1eff72d569908ac92fe9b221799b9bbdaba18f3db6aeb42063",
+  "relocated_root": "/tmp/push-v3-relocated-cwcbw9j7/push_v3_bundle",
+  "returncode": 0,
+  "stdout": "{\"root\": \"/tmp/push-v3-relocated-cwcbw9j7/push_v3_bundle\", \"models\": [{\"policy_id\": \"tool_waypoint_v1\", \"ready\": {\"status\": \"ready\", \"policy_id\": \"tool_waypoint_v1\", \"device\": {\"physical_gpu\": 4, \"uuid\": \"GPU-29557089-826b-ddb5-4d55-d03f2009a879\", \"logical_gpu\": 0, \"minor\": 6}, \"checkpoint_sha256\": \"afcf6fee539273ec465ba21006c44d9b9b0ca847aaf9be161958456891bd5bf6\", \"hardware_io\": false}, \"finite_candidate\": true, \"original_worker_max_action_error\": 0.0, \"stale_input_rejected\": true, \"invalid_goal_rejected\": true, \"interruption_supported\": true, \"decoder_disabled\": true, \"logs\": \"/tmp/push-tool_waypoint_v1-y91pgje3\"}, {\"policy_id\": \"piece_contact_graph_v1\", \"ready\": {\"status\": \"ready\", \"policy_id\": \"piece_contact_graph_v1\", \"device\": {\"physical_gpu\": 4, \"uuid\": \"GPU-29557089-826b-ddb5-4d55-d03f2009a879\", \"logical_gpu\": 0, \"minor\": 6}, \"checkpoint_sha256\": \"02b49afd9c67590b975fa54c977c873ed0b1938dd10250ec8f335bdf9b1330d2\", \"hardware_io\": false}, \"finite_candidate\": true, \"original_worker_max_action_error\": 0.0, \"stale_input_rejected\": true, \"invalid_goal_rejected\": true, \"interruption_supported\": true, \"decoder_disabled\": true, \"logs\": \"/tmp/push-piece_contact_graph_v1-n1140yli\"}, {\"policy_id\": \"piece_goal_field_v1\", \"ready\": {\"status\": \"ready\", \"policy_id\": \"piece_goal_field_v1\", \"device\": {\"physical_gpu\": 4, \"uuid\": \"GPU-29557089-826b-ddb5-4d55-d03f2009a879\", \"logical_gpu\": 0, \"minor\": 6}, \"checkpoint_sha256\": \"bfa7eeadbd51e9d83ee0c43067d886b14ad98190d682e64d955b653064bb2313\", \"hardware_io\": false}, \"finite_candidate\": true, \"original_worker_max_action_error\": 0.0, \"stale_input_rejected\": true, \"invalid_goal_rejected\": true, \"interruption_supported\": true, \"decoder_disabled\": true, \"logs\": \"/tmp/push-piece_goal_field_v1-yaplto4i\"}], \"files_only_cli\": \"{\\\"source_and_weights_verified\\\": true, \\\"policies\\\": [\\\"piece_contact_graph_v1\\\", \\\"piece_goal_field_v1\\\", \\\"tool_waypoint_v1\\\"]}\\n{\\\"status\\\": \\\"passed\\\", \\\"GPU_loaded\\\": false, \\\"observations_evaluated\\\": 0, \\\"hardware_io\\\": false}\\n\", \"robot_actions_executed\": 0}\n",
+  "stderr": "",
+  "files_verified": 42,
+  "training_runs_present": false,
+  "original_data_reader_present": false,
+  "inference_environment_manifest_sha256": "78cd3e21e30cfde9e35bb3d2487072c2655423ad24b5f8f63af562ba840f61cf",
+  "inference_environment_lock_sha256": "a26e045b46e9f99e451464daea71343c1a686f46e7cc08372eb88d7157c69d58",
+  "paired_input": {
+    "trajectory": "episode_2026091922002701",
+    "sample_index": 300
+  },
+  "fixture_goal": "Current TCP/identity footprint; interface exercise only",
+  "API_calls": 0,
+  "candidate_optimizer_updates": 0,
+  "performance_evaluation": false,
+  "robot_actions_executed": 0,
+  "result": {
+    "root": "/tmp/push-v3-relocated-cwcbw9j7/push_v3_bundle",
+    "models": [
+      {
+        "policy_id": "tool_waypoint_v1",
+        "ready": {
+          "status": "ready",
+          "policy_id": "tool_waypoint_v1",
+          "device": {
+            "physical_gpu": 4,
+            "uuid": "GPU-29557089-826b-ddb5-4d55-d03f2009a879",
+            "logical_gpu": 0,
+            "minor": 6
+          },
+          "checkpoint_sha256": "afcf6fee539273ec465ba21006c44d9b9b0ca847aaf9be161958456891bd5bf6",
+          "hardware_io": false
+        },
+        "finite_candidate": true,
+        "original_worker_max_action_error": 0.0,
+        "stale_input_rejected": true,
+        "invalid_goal_rejected": true,
+        "interruption_supported": true,
+        "decoder_disabled": true,
+        "logs": "/tmp/push-tool_waypoint_v1-y91pgje3"
+      },
+      {
+        "policy_id": "piece_contact_graph_v1",
+        "ready": {
+          "status": "ready",
+          "policy_id": "piece_contact_graph_v1",
+          "device": {
+            "physical_gpu": 4,
+            "uuid": "GPU-29557089-826b-ddb5-4d55-d03f2009a879",
+            "logical_gpu": 0,
+            "minor": 6
+          },
+          "checkpoint_sha256": "02b49afd9c67590b975fa54c977c873ed0b1938dd10250ec8f335bdf9b1330d2",
+          "hardware_io": false
+        },
+        "finite_candidate": true,
+        "original_worker_max_action_error": 0.0,
+        "stale_input_rejected": true,
+        "invalid_goal_rejected": true,
+        "interruption_supported": true,
+        "decoder_disabled": true,
+        "logs": "/tmp/push-piece_contact_graph_v1-n1140yli"
+      },
+      {
+        "policy_id": "piece_goal_field_v1",
+        "ready": {
+          "status": "ready",
+          "policy_id": "piece_goal_field_v1",
+          "device": {
+            "physical_gpu": 4,
+            "uuid": "GPU-29557089-826b-ddb5-4d55-d03f2009a879",
+            "logical_gpu": 0,
+            "minor": 6
+          },
+          "checkpoint_sha256": "bfa7eeadbd51e9d83ee0c43067d886b14ad98190d682e64d955b653064bb2313",
+          "hardware_io": false
+        },
+        "finite_candidate": true,
+        "original_worker_max_action_error": 0.0,
+        "stale_input_rejected": true,
+        "invalid_goal_rejected": true,
+        "interruption_supported": true,
+        "decoder_disabled": true,
+        "logs": "/tmp/push-piece_goal_field_v1-yaplto4i"
+      }
+    ],
+    "files_only_cli": "{\"source_and_weights_verified\": true, \"policies\": [\"piece_contact_graph_v1\", \"piece_goal_field_v1\", \"tool_waypoint_v1\"]}\n{\"status\": \"passed\", \"GPU_loaded\": false, \"observations_evaluated\": 0, \"hardware_io\": false}\n",
+    "robot_actions_executed": 0
+  }
+}

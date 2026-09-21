@@ -1,0 +1,27 @@
+{
+  "boundary_evidence_indices": [
+    8465,
+    8479,
+    8480,
+    9014
+  ],
+  "condition_evidence_indices": [
+    8480,
+    9014
+  ],
+  "deployment_condition_source": "Caller selects front-left H-like instance and explicit local correction goal.",
+  "label_derivation": "G seed8480 front-left H-like cutout; achieved footprint9014 inferred with audited occlusion-aware tracking; E9014; D labels include actual terminal zero command.",
+  "merge_check": "Same correction/revisit objective as B final H-like move, not episode-success classification.",
+  "objective": "Reposition front-left H-like piece and release/settle.",
+  "rationale": "8480 rod leaves previous flanged target;9014 H-like piece has shifted back/up and tool is lifted, with finite zero command. No synthetic row9015.",
+  "segment_id": "a_hlike_align_terminal",
+  "split_check": "Terminal range ends at real N=9015; no after-buffer or N+1 observation invented.",
+  "start": 8465,
+  "stop": 9015,
+  "supervised_start": 8480,
+  "supervised_stop": 9015,
+  "supervision_exclusions": [],
+  "training_condition": "instance=front_hlike_at8480; footprint9014; E9014; protect all other placements.",
+  "trajectory_id": "episode_2026091922002701",
+  "uncertainty": "Arm occludes some neighbors; terminal scene not annotated successful. Goal mask requires audited tracking rather than perfect visibility assumption."
+}

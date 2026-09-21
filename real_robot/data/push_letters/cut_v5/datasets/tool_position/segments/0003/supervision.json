@@ -1,0 +1,32 @@
+{
+  "boundary_evidence_indices": [
+    3980,
+    4000,
+    4120,
+    4160,
+    4200,
+    4250,
+    4270
+  ],
+  "condition_evidence_indices": [
+    4000,
+    4120,
+    4160,
+    4250
+  ],
+  "deployment_condition_source": "HLA or the active piece controller requests a visible free recontact/inspection waypoint and verified clearance.",
+  "label_derivation": "RULE T at4250. Retain original commanded dq for follower audit, including high redundant joint motion. Object stability and free-space phase are weak visual labels.",
+  "merge_check": "Adds a lift/reposition/reapproach waypoint sequence; not a new object-moving subtask.",
+  "objective": "Reset tool position around R-like, including lift and arm reconfiguration, without deliberately changing its pose.",
+  "rationale": "4000/4120/4160/4200/4250 show R-like staying near its slot while the rod changes side/height; TCP z rises to about0.134 m in the dense motion survey. Prefix/suffix20 rows context-only.",
+  "segment_id": "b_r_reset_tool",
+  "split_check": "Retain the complete reset instead of discarding the large joint-speed region. Following low recontact around4300 belongs to the R object policy.",
+  "start": 3980,
+  "stop": 4271,
+  "supervised_start": 4000,
+  "supervised_stop": 4251,
+  "supervision_exclusions": [],
+  "training_condition": "tool pose/twist at4250; pass-through, protected R-like and neighbors; conservative clearance.",
+  "trajectory_id": "episode_2026091922062101",
+  "uncertainty": "No contact ground truth; near-contact portions require audited geometry eligibility. Joint reconfiguration is observed, not a verified singularity diagnosis."
+}

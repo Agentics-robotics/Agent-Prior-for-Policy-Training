@@ -1,0 +1,32 @@
+{
+  "boundary_evidence_indices": [
+    6185,
+    6199,
+    6200,
+    8129,
+    8130,
+    8144
+  ],
+  "condition_evidence_indices": [
+    6200,
+    6400,
+    7500,
+    7800,
+    8129
+  ],
+  "deployment_condition_source": "Caller specifies L-like or any selected shape and desired slot/orientation; policy chooses contacts.",
+  "label_derivation": "G seed6200 left-rear L-shaped piece; goal8129 between D-like and branched pieces in right column. E8129; D labels; track through repeated turns rather than identity re-detection.",
+  "merge_check": "Same local pose objective but harder nonconvex turning/recontact; retain variability rather than average it into straight push.",
+  "objective": "Rotate, reposition and translate L-like piece through several attempts into its column slot.",
+  "rationale": "6400 starts contact;7500 wrist shows inside-corner contact;7800 still correcting angle;8129 shows final local placement/release.",
+  "segment_id": "a_corner_move",
+  "split_check": "Long duration is warranted by one physical target/goal and repeated attempts. Late7800-8130 is separately reusable for alignment, not a gap.",
+  "start": 6185,
+  "stop": 8145,
+  "supervised_start": 6200,
+  "supervised_stop": 8130,
+  "supervision_exclusions": [],
+  "training_condition": "instance=corner_at6200; footprint8129; E8129; protect right-column pieces.",
+  "trajectory_id": "episode_2026091922002701",
+  "uncertainty": "Goal inference is achieved pose; no claim every intermediate attempt improved error."
+}

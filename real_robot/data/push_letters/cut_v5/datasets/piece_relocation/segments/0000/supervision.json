@@ -1,0 +1,30 @@
+{
+  "boundary_evidence_indices": [
+    580,
+    599,
+    600,
+    1739,
+    1740,
+    1759
+  ],
+  "condition_evidence_indices": [
+    600,
+    1300,
+    1739
+  ],
+  "deployment_condition_source": "HLA selects a current wedge-shaped physical instance by tracker ID and supplies its requested slot footprint/exit waypoint.",
+  "label_derivation": "RULE P from selected wedge piece at600 to its footprint at1739; exit TCP/twist at1739. 1300 wrist/third views verify the target is the wedge, not adjacent R-like.",
+  "merge_check": "Same rigid planar instance-to-goal problem as B wedge and all other pieces; geometry, not character identity, expresses variation.",
+  "objective": "Extract and rotate/translate the wedge-shaped piece from the upper cluster to the foreground-right area.",
+  "rationale": "650 precedes large motion,1300 shows side contact,1550 and1739 show foreground arrival; keep approach and clearance supervision with20-row context on each end.",
+  "segment_id": "a_wedge_move",
+  "split_check": "End before middle barred-piece manipulation; do not train its later displacement under the wedge ID.",
+  "start": 580,
+  "stop": 1760,
+  "supervised_start": 600,
+  "supervised_stop": 1740,
+  "supervision_exclusions": [],
+  "training_condition": "Selected wedge-shaped W/M-looking piece initially above R-like; achieved footprint at1739 is a local hindsight goal, other instances protected subject to observed incidental-motion audit.",
+  "trajectory_id": "episode_2026091922002701",
+  "uncertainty": "W versus M is a visual orientation interpretation, not a verified semantic label; exact contact onset is weakly inferred."
+}

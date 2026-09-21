@@ -1,0 +1,668 @@
+{
+  "heuristics": [
+    {
+      "action_decoding": "Use D with a geometric contact-motion proposal and q-conditioned kinematic/residual joint decoder trained on finite action.dq. Auxiliary v/w targets retain their original base/EE frames. The learned forward response predicts object displacement, not measured robot dq as action. Execute only the first safe proposal, reobserve and replan at verified cadence; do not apply open-loop recorded joint trajectories.",
+      "applicability": "One selected rigid planar instance, reliable current contour/track, feasible local footprint goal and commissioned geometry. Supports outer boundaries, holes and concavities where rod fit/access is verified; can choose recontact and intermediate pushes internally but not switch physical target without a new agent call.",
+      "augmentation": "Use passive SE(2) coordinate re-expression of contour points, normals, tool state, fixed goal and task-space labels together; q and physical joint command labels remain unchanged and the decoder receives the frame transform. Metric physical translation/rotation augmentations require validated IK and scene/collision regeneration, not naive dq rotation. Photometric changes only affect perception inputs. Do not distort shapes and retain old action/object-response labels: novel-shape dynamics require new evidence or a separately validated simulator, not fake demonstration relabels.",
+      "evidence": [
+        {
+          "indices": [
+            750,
+            2250,
+            3500,
+            4350,
+            5250,
+            6400,
+            7500,
+            7800
+          ],
+          "trajectory_id": "episode_2026091922002701"
+        },
+        {
+          "indices": [
+            600,
+            2400,
+            3600,
+            3900,
+            4200,
+            5400,
+            6600
+          ],
+          "trajectory_id": "episode_2026091922062101"
+        }
+      ],
+      "goal_conditioning": "G instance track, fixed achieved or requested footprint/SE(2), semantic upright cue only if supplied by agent, protected masks, optional E waypoint. Mode proposals use current goal-relative contour error, not a learned W/O/R class embedding.",
+      "handoff": {
+        "entry_conditions": "Selected instance geometrically distinguishable, stable support, safe tip approach available or supplied by access policy, reachable goal and protected-neighbor map.",
+        "exit_conditions": "Observed object footprint/orientation within uncertainty-aware tolerance for five valid observations; optionally E reached safely. Otherwise intermediate progress or NEED_REPOSITION is reported rather than terminal success.",
+        "failure_signatures": "Wrong-piece motion, slip/stall, unexpected rotation, rod trapped in hole/concavity, large model disagreement, lost identity, edge risk or protected-piece displacement.",
+        "overlap_role": "Full same-instance cycles retain approach/recontact/withdrawal supervision.15-row external buffers are history/handoff only. Late L/R portions overlap local_alignment with identical goal provenance.",
+        "successor_readiness": "Return current object footprint, uncertainty and tip/contact state. Agent may call alignment, access, or another staging relocation; completed local placement does not authorize unchecked next motion."
+      },
+      "heuristic_id": "boundary_response_prior",
+      "input_preprocessing": "P/S/G. Sample outer and inner contour points with normals/visibility and instance membership; build a permutation-invariant local graph containing rod boundary, goal contour and nearby obstacles in a common goal-relative table frame when verified, otherwise third-UV with projective uncertainty. An equivariant graph proposal network scores boundary contacts and depart/approach/push modes. A small learned response ensemble predicts observed rigid object delta over short horizons from local geometry, current tool state and ORIGINAL commands. Train response targets only from valid tracked poses at later rows within this segment; they are auxiliary labels, never online inputs. Online update response uncertainty from past executed actions/current visual motion without privileged friction or force labels.",
+      "limitations": "Quasi-static/local response is approximate, not guaranteed for arbitrary fonts, mass, friction, thin branches or multi-object jams. Two recordings provide little dynamics diversity. Calibration/shape visibility can make this policy unavailable; choose visual alternative or stop, not invented contours.",
+      "pipeline_implications": "Implement boundary sampling, topology-preserving holes, equivariant network, contact candidate accessibility, ensemble dynamics, collision-aware short-horizon optimizer and command decoder. Acquire mask/track annotations and tool/plane assets; quantify which staging/retry/contact modes survive preprocessing. Do not replace difficult missing-pose examples with claimed geometric supervision.",
+      "policy_contract": {
+        "caller_arguments": "policy_id=push_boundary_v1; instance_id, fixed goal footprint and optional verified SE(2), orientation ambiguity set, protected IDs, E, tolerances/time/safety.",
+        "input_output_contract": "Group piece_relocation. Current causal RGB/geometry/proprioception/history -> proposed seven-joint velocities through D plus predicted object response/mode confidence. Own local contact choice, same-piece recontact and departure.",
+        "memory_and_handoff": "Reset goal-specific state on call; carry causal tracker state and past-response uncertainty only. Keep model adaptation local to current tool/material context; reset on shape/material change or track loss.",
+        "selection_cues": "Prefer when contours and table geometry are reliable, especially unseen shape with clear boundary, large translation/turn or deliberate staging. Switch to visual alternative for geometric ambiguity only if semantic identity and safety remain reliable.",
+        "status_and_progress": "Expose contour/SE(2) residual, predicted/observed displacement, ensemble disagreement, active boundary region and stall count. Report LOCAL_GOAL_REACHED, NEED_REPOSITION or BLOCKED with evidence."
+      },
+      "policy_id": "push_boundary_v1",
+      "rationale": "The rod pushes different geometries and deliberately changes contact sides; A L-like cycle and B R-like retries show that translation-only centroid control is insufficient. Shared local boundary response and feedback should generalize physical interactions more plausibly than per-character action lookup, but require independent novel-shape testing.",
+      "statement": "Learn geometry-shared contact proposals and a short-horizon object-response ensemble for closed-loop single-piece relocation."
+    },
+    {
+      "action_decoding": "Predict continuous-time short-horizon seven-joint command chunks, trained on finite ORIGINAL action.dq at original source t queries; auxiliary heads predict recorded v/w and near-term visual displacement. At deployment query the first control-time command and use D safety checks. Never substitute measured dq, fabricate missing commands, or blindly replay an entire chunk.",
+      "applicability": "Same selected-instance/goal responsibility as push_boundary_v1, useful when partial occlusion or appearance makes hard contour registration unstable but dual-view track identity and safety bounds remain trustworthy. Not a fallback for absent target identity or uncalibrated robot execution.",
+      "augmentation": "Synchronized color/lighting changes, sticker-text masking, background randomization and explicit camera/patch dropout across a history; apply target/goal mask coordinate warps consistently with image crops and projected tool features. Valid passive view-coordinate changes leave physical q/dq labels intact. No horizontal reflection that changes letter semantics without updating orientation cue; no artificial shape replacement with unchanged action labels.",
+      "evidence": [
+        {
+          "indices": [
+            600,
+            750,
+            1749,
+            2250,
+            4350,
+            7500
+          ],
+          "trajectory_id": "episode_2026091922002701"
+        },
+        {
+          "indices": [
+            419,
+            420,
+            3900,
+            4050,
+            4200,
+            4709
+          ],
+          "trajectory_id": "episode_2026091922062101"
+        }
+      ],
+      "goal_conditioning": "Same G/E public interface. Rasterize desired footprint and orientation cue on current third-view input, with selected-instance mask and track token. Future goal RGB is never an input: training uses only derived goal silhouette/pose, and online render uses caller geometry plus current observed entry shape.",
+      "handoff": {
+        "entry_conditions": "Trustworthy selected instance, at least one usable camera view, calibrated safety envelope and feasible goal; history masking handles unavailable second view.",
+        "exit_conditions": "External current-observation goal/clearance monitor, not chunk length or recorded duration, declares completion.",
+        "failure_signatures": "Cross-view identity mismatch, attention on wrong piece, repeated action chunk disagreement/clipping, no visible progress, drift under prolonged occlusion or collision risk.",
+        "overlap_role": "Full relocation cycles teach visual continuation through occlusion/recontact, with external15-row buffers available only causally. Same late overlaps as boundary policy; not extra independent data.",
+        "successor_readiness": "Return goal residual/track confidence and actual tip state; caller decides alignment or access. No hidden spelling progress state is passed."
+      },
+      "heuristic_id": "dual_view_mask_goal_prior",
+      "input_preprocessing": "P RGB full views plus original-coordinate target/tool crops, per-view validity, q/measured dq/tau/T_base_ee, previous executed commands and time deltas over0.5s. A pretrained visual encoder with a small independently trained temporal goal-cross-attention/action-chunk model uses selected-object and desired-footprint channels. Training-only mask/flow annotations may supervise attention, pose-progress and cross-view consistency; online masks come from causal S. Use camera-dropout training so partial arm occlusion (B419) is not mistaken for target absence. This policy does not require metric object pose as an input, though the common execution safety envelope must still be commissioned.",
+      "limitations": "Visual representations may memorize brown material/background and do not establish new-shape manipulation. Different letters can have unseen dynamics even if the encoder recognizes them. Encoder assets and sufficient geometry-diverse data are missing; no claim of end-to-end open-world competence.",
+      "pipeline_implications": "Acquire compatible visual weights and licenses; implement goal raster/crop mapping, temporal masks and continuous-time chunk labels without re-pairing. Audit goal-channel leakage, sticker dependence and view availability per behavior; train and evaluate independently of boundary policy.",
+      "policy_contract": {
+        "caller_arguments": "policy_id=push_visual_v1; same instance_id/goal/protected_ids/E/tolerance/time/safety interface as boundary alternative; caller need not choose a contact point.",
+        "input_output_contract": "Group piece_relocation. Causal dual RGB/proprio/history plus current masks and fixed goal raster -> short command proposals through D and diagnostic confidence. Own same-piece pushing/recontact, not word semantics.",
+        "memory_and_handoff": "Initialize from bounded current history; reset action chunk on new goal, track uncertainty or stop; no hidden state copied from boundary policy. Transfer only shared explicit observations/track state.",
+        "selection_cues": "Choose for robust dual-view observations with unreliable hard contour pose, or as an independently validated alternative after a geometric proposal stalls. Do not select solely because a character is unseen.",
+        "status_and_progress": "External geometric/image residual and internal ensemble/chunk uncertainty, camera availability and track confidence. Explicit BLOCKED/LOST_TRACK rather than action completion by elapsed time."
+      },
+      "policy_id": "push_visual_v1",
+      "rationale": "Third views are repeatedly obscured by the arm while wrist views show the actual contact boundary. Preserving dual-view temporal evidence offers a substantive alternative to committing to a single accurate contour/pose estimate; generalization to appearance and unseen geometry remains an evaluation hypothesis.",
+      "statement": "Learn a selected-instance, fixed-goal-mask dual-view temporal command policy with short receding-horizon chunks."
+    }
+  ],
+  "name": "Single-piece relocation, staging and same-piece recontact",
+  "plan_hash": "acfa27afe6425ced9da3e05c1cc41ac55d20ec36ea5ca7cc107523446255bc93",
+  "schema": "real_robot.cut_dataset.v2",
+  "segments": [
+    {
+      "boundary_evidence_indices": [
+        585,
+        599,
+        600,
+        1749,
+        1750,
+        1764
+      ],
+      "condition_evidence_indices": [
+        600,
+        750,
+        1749
+      ],
+      "deployment_condition_source": "G caller-selected physical zigzag or any other tracked geometry with an explicit local slot.",
+      "directory": "real_robot/data/push_letters/cut_v4/datasets/piece_relocation/segments/0000",
+      "label_derivation": "G seed600: zigzag cutout below rod near upper-left cluster; goal1749: same piece at front/right. E=T_base_ee1749. Original D labels.",
+      "merge_check": "Same one-instance relocation objective as B zigzag and other shapes; no character embedding.",
+      "objective": "Relocate and turn zigzag piece out of initial cluster.",
+      "rationale": "750 wrist shows edge contact;1749 shows placed piece and rod departing. Context585-599 is approach history,1750-1764 next-target transition only.",
+      "records": 1180,
+      "records_sha256": "f01273335cf6637932672eb1cce64e6e60165a35da0dc5417bd373b08742e139",
+      "samples_sha256": "5b8b2576fa0655f91208dd38a81e3abbd89558375ce6af19383f5774c3be191e",
+      "segment_id": "a_zigzag_move",
+      "split_check": "Keep all turning/translation/recontact in one goal cycle; switch target only after1749.",
+      "start": 585,
+      "stop": 1765,
+      "supervised_start": 600,
+      "supervised_stop": 1750,
+      "supervision_exclusions": [],
+      "training_condition": "instance=zigzag_at600; achieved footprint1749; E1749; other pieces protected.",
+      "trajectory_id": "episode_2026091922002701",
+      "uncertainty": "W/M-like interpretation and desired spelling unverified; goal is achieved placement only."
+    },
+    {
+      "boundary_evidence_indices": [
+        1735,
+        1749,
+        1750,
+        1929,
+        1930,
+        1944
+      ],
+      "condition_evidence_indices": [
+        1750,
+        1929
+      ],
+      "deployment_condition_source": "Agent may request a temporary staging footprint to open space.",
+      "directory": "real_robot/data/push_letters/cut_v4/datasets/piece_relocation/segments/0001",
+      "label_derivation": "G seed1750 central flanged bar immediately above ring, not upper H-like piece; goal1929 after leftward adjustment. E1929; D labels.",
+      "merge_check": "Small staging displacement is still relocation to a supplied local goal, not word completion.",
+      "objective": "Shift central flanged piece to clear access around ring.",
+      "rationale": "1750 rod departs zigzag;1929 central flanged piece is shifted/turned.15-row external context disambiguates target switch.",
+      "records": 210,
+      "records_sha256": "008773f34e5adedef7ae5a93e04331febf04f9e864a0ec9ac13bbf34032eacbc",
+      "samples_sha256": "76804ab92e5ff58a4250bdc42dad1fbe0d2d0640b8fce13cf210d1ad3012accf",
+      "segment_id": "a_flanged_stage_one",
+      "split_check": "Separate from zigzag and ring goals; do not label preceding zigzag action for this instance.",
+      "start": 1735,
+      "stop": 1945,
+      "supervised_start": 1750,
+      "supervised_stop": 1930,
+      "supervision_exclusions": [],
+      "training_condition": "instance=central_flanged_at1750; staging footprint1929; E1929.",
+      "trajectory_id": "episode_2026091922002701",
+      "uncertainty": "Clearance purpose is evidence-based interpretation, not annotated intent."
+    },
+    {
+      "boundary_evidence_indices": [
+        1915,
+        1929,
+        1930,
+        3199,
+        3200,
+        3214
+      ],
+      "condition_evidence_indices": [
+        1930,
+        2250,
+        3000,
+        3199
+      ],
+      "deployment_condition_source": "Caller supplies selected ring-like instance and arbitrary feasible footprint.",
+      "directory": "real_robot/data/push_letters/cut_v4/datasets/piece_relocation/segments/0002",
+      "label_derivation": "G seed1930 lower oval ring; goal3199 right-side ring above zigzag. E3199; D labels. Ring symmetries retain multiple angle hypotheses.",
+      "merge_check": "Same geometry-conditioned pushing with different outer/inner boundaries and starting orientation.",
+      "objective": "Translate/turn ring-like piece into right-side placement with recontact.",
+      "rationale": "2250 wrist supports outer-boundary push;3000 and3199 show aligned ring and rod release.15-row buffers cover entry/next transition.",
+      "records": 1300,
+      "records_sha256": "2f913e16bc198db0c6ce313ed3470887a022374dd87132482d212aaffc7693c2",
+      "samples_sha256": "ae2f969575bc624f113c5f2ae338865eec436aba2865bec37a8cf29eed252e5e",
+      "segment_id": "a_ring_move",
+      "split_check": "Do not split approach, contact-side changes and final correction into separate object IDs.",
+      "start": 1915,
+      "stop": 3215,
+      "supervised_start": 1930,
+      "supervised_stop": 3200,
+      "supervision_exclusions": [],
+      "training_condition": "instance=ring_at1930; footprint3199; E3199; protect zigzag and other pieces.",
+      "trajectory_id": "episode_2026091922002701",
+      "uncertainty": "Oval symmetry means geometric orientation does not uniquely identify semantic upright."
+    },
+    {
+      "boundary_evidence_indices": [
+        3185,
+        3199,
+        3200,
+        3779,
+        3780,
+        3794
+      ],
+      "condition_evidence_indices": [
+        3200,
+        3500,
+        3779
+      ],
+      "deployment_condition_source": "Agent supplies a staging goal from current free-space reasoning.",
+      "directory": "real_robot/data/push_letters/cut_v4/datasets/piece_relocation/segments/0003",
+      "label_derivation": "G seed3200 left R-like branched piece above central flanged bar; goal3779 same piece near rear beside L-like piece. E3779; D labels.",
+      "merge_check": "Staging and later return are distinct invocations of the same reusable local-goal problem.",
+      "objective": "Move R-like piece rearward, including rotation, to a temporary location.",
+      "rationale": "3500 shows turned piece under rod;3779 shows rear placement and tool traversing away. Intermediate proximity to flanged piece is not a target switch.",
+      "records": 610,
+      "records_sha256": "58f29070304eff140e476ae7734f7587d34fe9a6738a885266a50376feb1a5ff",
+      "samples_sha256": "572ce9d78a505dded1489ae750edea3ea064a095208a23e41968efde385b4aa1",
+      "segment_id": "a_branched_stage",
+      "split_check": "Later R return5050 is noncontiguous and separately indexed; do not concatenate.",
+      "start": 3185,
+      "stop": 3795,
+      "supervised_start": 3200,
+      "supervised_stop": 3780,
+      "supervision_exclusions": [],
+      "training_condition": "instance=branched_at3200; staging footprint3779; E3779.",
+      "trajectory_id": "episode_2026091922002701",
+      "uncertainty": "R label is visual mnemonic; exact contact onset unverified."
+    },
+    {
+      "boundary_evidence_indices": [
+        3765,
+        3779,
+        3780,
+        4279,
+        4280,
+        4294
+      ],
+      "condition_evidence_indices": [
+        3780,
+        4279
+      ],
+      "deployment_condition_source": "Current flanged track and temporary agent layout/clearance goal.",
+      "directory": "real_robot/data/push_letters/cut_v4/datasets/piece_relocation/segments/0004",
+      "label_derivation": "G seed3780 central flanged bar left of ring; goal4279 moved up-left. E4279; D labels.",
+      "merge_check": "Revisit of earlier staged piece is a new local-goal call, not new character-specific model.",
+      "objective": "Restage central flanged piece up-left.",
+      "rationale": "Start includes approach; end shows moved piece while tip heads toward the upper H-like piece. E explains departure.",
+      "records": 530,
+      "records_sha256": "c9003454f52ea8bc4f353b004d7b251a4d51b73c9be161ded6a4059a04c283a5",
+      "samples_sha256": "bc6747c0ae018998c9b108ab4a38a54dfc79af1d8913413caff14093cf7d9e4b",
+      "segment_id": "a_flanged_stage_two",
+      "split_check": "Keep same-piece contact corrections; end before upper H-like transport.",
+      "start": 3765,
+      "stop": 4295,
+      "supervised_start": 3780,
+      "supervised_stop": 4280,
+      "supervision_exclusions": [],
+      "training_condition": "instance=central_flanged_at3780; footprint4279; E4279.",
+      "trajectory_id": "episode_2026091922002701",
+      "uncertainty": "Geometric identity must be tracked separately from visually similar H-like piece."
+    },
+    {
+      "boundary_evidence_indices": [
+        4265,
+        4279,
+        4280,
+        4669,
+        4670,
+        4684
+      ],
+      "condition_evidence_indices": [
+        4280,
+        4350,
+        4669
+      ],
+      "deployment_condition_source": "Caller chooses upper H-like physical instance, not the other flanged piece.",
+      "directory": "real_robot/data/push_letters/cut_v4/datasets/piece_relocation/segments/0005",
+      "label_derivation": "G seed4280 upper H-like cutout under rod; goal4669 same piece at front-left beside zigzag/ring. E4669 above D-like access region; verify clear height. D labels.",
+      "merge_check": "Relocation to temporary/front slot, sharing contact geometry mechanisms with B H-like transport.",
+      "objective": "Transport H-like piece from rear-central cluster to front-left staging.",
+      "rationale": "4350 wrist shows concave boundary contact;4669 H-like piece is front-left and tool over next D-like piece without its intended movement yet.",
+      "records": 420,
+      "records_sha256": "54065ca6bd92deb83560e4039898919a98cebaba2795d5711cae5054d42e751e",
+      "samples_sha256": "d1ba2ef9213857603e364fd962b9b5079c860de7f2d411f2f7d9bf9a54580fe4",
+      "segment_id": "a_hlike_stage",
+      "split_check": "E-conditioned departure retained, but subsequent D-like movement belongs to next sequence.",
+      "start": 4265,
+      "stop": 4685,
+      "supervised_start": 4280,
+      "supervised_stop": 4670,
+      "supervision_exclusions": [],
+      "training_condition": "instance=upper_hlike_at4280; footprint4669; E4669; protect other flanged instance.",
+      "trajectory_id": "episode_2026091922002701",
+      "uncertainty": "End image projects rod into D hole, but EE is elevated; clearance requires calibration, not image overlap alone."
+    },
+    {
+      "boundary_evidence_indices": [
+        4655,
+        4669,
+        4670,
+        5049,
+        5050,
+        5064
+      ],
+      "condition_evidence_indices": [
+        4670,
+        5049
+      ],
+      "deployment_condition_source": "Agent requests reachable temporary location for chosen enclosed D-like geometry.",
+      "directory": "real_robot/data/push_letters/cut_v4/datasets/piece_relocation/segments/0006",
+      "label_derivation": "G seed4670 left D-like piece with one large hole; goal5049 at rear-right of branched piece. E5049; D labels.",
+      "merge_check": "Long staging move, same one-piece achieved-goal supervision as B D staging.",
+      "objective": "Move D-like piece from left/front to rear/right staging.",
+      "rationale": "4670 rod descending over D-like region;5049 piece displaced rearward and rod returning toward branched target.",
+      "records": 410,
+      "records_sha256": "c9e7a5915a3378696a5edf4f24e313cfc9b760e0bcb129187beee6f75613a2c4",
+      "samples_sha256": "392cd1fb3b0ee16abf86a97a5fb4c0f91e0a716f67022aca79f851e9bd3d9f40",
+      "segment_id": "a_dlike_stage",
+      "split_check": "Do not merge later D correction5730; intervening R-like move is another call.",
+      "start": 4655,
+      "stop": 5065,
+      "supervised_start": 4670,
+      "supervised_stop": 5050,
+      "supervision_exclusions": [],
+      "training_condition": "instance=dlike_at4670; footprint5049; E5049.",
+      "trajectory_id": "episode_2026091922002701",
+      "uncertainty": "Hole contact possible but no ground-truth contact labels."
+    },
+    {
+      "boundary_evidence_indices": [
+        5035,
+        5049,
+        5050,
+        5729,
+        5730,
+        5744
+      ],
+      "condition_evidence_indices": [
+        5050,
+        5250,
+        5729
+      ],
+      "deployment_condition_source": "Agent chooses staged branched track and new right-column footprint.",
+      "directory": "real_robot/data/push_letters/cut_v4/datasets/piece_relocation/segments/0007",
+      "label_derivation": "G seed5050 rear branched piece left of D-like; goal5729 placed above ring; E5729; D labels.",
+      "merge_check": "Same instance as earlier staging but different goal and surrounding layout; separate temporal sequence.",
+      "objective": "Return/relocate branched piece into column above ring.",
+      "rationale": "5250 shows approach/contact after staging;5729 shows relocated piece and rod moving toward D-like correction.",
+      "records": 710,
+      "records_sha256": "2395c06493acd03122d4f501aadcac6343b8af34b764f2f69b244a09fa125a99",
+      "samples_sha256": "b33da0c7f551ebcff4367bf9fb37c95c22f63131d6f77aed6857600fb373f03f",
+      "segment_id": "a_branched_return",
+      "split_check": "Retain access and recontacts, stop target responsibility before D-like correction.",
+      "start": 5035,
+      "stop": 5745,
+      "supervised_start": 5050,
+      "supervised_stop": 5730,
+      "supervision_exclusions": [],
+      "training_condition": "instance=branched_at5050; footprint5729; E5729; protect ring/zigzag.",
+      "trajectory_id": "episode_2026091922002701",
+      "uncertainty": "Achieved column arrangement is not a verified requested word."
+    },
+    {
+      "boundary_evidence_indices": [
+        6185,
+        6199,
+        6200,
+        8129,
+        8130,
+        8144
+      ],
+      "condition_evidence_indices": [
+        6200,
+        6400,
+        7500,
+        7800,
+        8129
+      ],
+      "deployment_condition_source": "Caller specifies L-like or any selected shape and desired slot/orientation; policy chooses contacts.",
+      "directory": "real_robot/data/push_letters/cut_v4/datasets/piece_relocation/segments/0008",
+      "label_derivation": "G seed6200 left-rear L-shaped piece; goal8129 between D-like and branched pieces in right column. E8129; D labels; track through repeated turns rather than identity re-detection.",
+      "merge_check": "Same local pose objective but harder nonconvex turning/recontact; retain variability rather than average it into straight push.",
+      "objective": "Rotate, reposition and translate L-like piece through several attempts into its column slot.",
+      "rationale": "6400 starts contact;7500 wrist shows inside-corner contact;7800 still correcting angle;8129 shows final local placement/release.",
+      "records": 1960,
+      "records_sha256": "f533e0847936f776901a97a9c03aae97b26c70c6d07b7ae374be029bae43cd43",
+      "samples_sha256": "0161f29540c72a422ac816d98729adb4cbe9da23515057c9e03db8a2c859e4c3",
+      "segment_id": "a_corner_move",
+      "split_check": "Long duration is warranted by one physical target/goal and repeated attempts. Late7800-8130 is separately reusable for alignment, not a gap.",
+      "start": 6185,
+      "stop": 8145,
+      "supervised_start": 6200,
+      "supervised_stop": 8130,
+      "supervision_exclusions": [],
+      "training_condition": "instance=corner_at6200; footprint8129; E8129; protect right-column pieces.",
+      "trajectory_id": "episode_2026091922002701",
+      "uncertainty": "Goal inference is achieved pose; no claim every intermediate attempt improved error."
+    },
+    {
+      "boundary_evidence_indices": [
+        405,
+        419,
+        420,
+        1229,
+        1230,
+        1244
+      ],
+      "condition_evidence_indices": [
+        420,
+        600,
+        1229
+      ],
+      "deployment_condition_source": "Current zigzag track with explicitly supplied staging/final footprint.",
+      "directory": "real_robot/data/push_letters/cut_v4/datasets/piece_relocation/segments/0009",
+      "label_derivation": "G seed420 front zigzag via wrist420; goal1229 farther right and reoriented. E1229; D labels.",
+      "merge_check": "Alternative initial arrangement/rotation of A zigzag objective, not a new skill.",
+      "objective": "Turn and relocate front zigzag piece.",
+      "rationale": "Wrist420 resolves arm occlusion;600 shows turned piece;1229 shows local placement and departure toward flanged piece.",
+      "records": 840,
+      "records_sha256": "deac5865e562ef5610fa797d77b36abc8fdebbb3e8abd56b68364b4c3c15a196",
+      "samples_sha256": "bb206ba166b0bf84c7a306cde7b02ac61e52d9917c00baac21ddcab15e75f993",
+      "segment_id": "b_zigzag_move",
+      "split_check": "Begin after access; keep repeated turning contacts, end before flanged displacement.",
+      "start": 405,
+      "stop": 1245,
+      "supervised_start": 420,
+      "supervised_stop": 1230,
+      "supervision_exclusions": [],
+      "training_condition": "instance=zigzag_at420; footprint1229; E1229.",
+      "trajectory_id": "episode_2026091922062101",
+      "uncertainty": "W/M appearance orientation is not semantic ground truth."
+    },
+    {
+      "boundary_evidence_indices": [
+        1215,
+        1229,
+        1230,
+        1499,
+        1500,
+        1514
+      ],
+      "condition_evidence_indices": [
+        1230,
+        1499
+      ],
+      "deployment_condition_source": "Agent requests clearance/staging goal for the central flanged physical track.",
+      "directory": "real_robot/data/push_letters/cut_v4/datasets/piece_relocation/segments/0010",
+      "label_derivation": "G seed1230 central-right flanged bar, not rear-left H-like piece; goal1499 centrally staged to left of original position. E1499; D labels.",
+      "merge_check": "Matches A clearance/revisit behavior under local geometry goals.",
+      "objective": "Shift central flanged piece out of the planned right column.",
+      "rationale": "1230 tip approaches its right boundary;1499 piece shifted left and rod departing.",
+      "records": 300,
+      "records_sha256": "59b51ae8948b83713af4051b3acc4f8be0a917eb26608c3357241add4b48b9e5",
+      "samples_sha256": "8dc38a03f256d2baf8abb382f149351f2f29cb333df78a1758f6e58d93c021be",
+      "segment_id": "b_flanged_stage",
+      "split_check": "Separate from front zigzag and subsequent D-like staging; retain entry and departure.",
+      "start": 1215,
+      "stop": 1515,
+      "supervised_start": 1230,
+      "supervised_stop": 1500,
+      "supervision_exclusions": [],
+      "training_condition": "instance=central_flanged_at1230; footprint1499; E1499.",
+      "trajectory_id": "episode_2026091922062101",
+      "uncertainty": "Clearance intent inferred; local achieved goal is unambiguous geometrically."
+    },
+    {
+      "boundary_evidence_indices": [
+        1485,
+        1499,
+        1500,
+        1909,
+        1910,
+        1924
+      ],
+      "condition_evidence_indices": [
+        1500,
+        1800,
+        1909
+      ],
+      "deployment_condition_source": "Agent specifies reachable rear staging footprint for D-like instance.",
+      "directory": "real_robot/data/push_letters/cut_v4/datasets/piece_relocation/segments/0011",
+      "label_derivation": "G seed1500 large front-left D-like piece; goal1909 rear-right beside ring; E1909; D labels.",
+      "merge_check": "Same long D-like staging as A, occurs earlier in this episode's order.",
+      "objective": "Move D-like piece rearward before ring relocation.",
+      "rationale": "1800 shows tool within/above displaced piece;1909 shows release and next-target access.",
+      "records": 440,
+      "records_sha256": "686ba16996b105faf0eda8fa6f9c57fe941d2a543052efd1a70e633de5c04c94",
+      "samples_sha256": "8dea3016af51a2a7b11d3a5ef5179715f7100fb68ee3e251f0581e4fe65ad05f",
+      "segment_id": "b_dlike_stage",
+      "split_check": "Do not use later D alignment goal as this segment's goal; staged endpoint is distinct.",
+      "start": 1485,
+      "stop": 1925,
+      "supervised_start": 1500,
+      "supervised_stop": 1910,
+      "supervision_exclusions": [],
+      "training_condition": "instance=dlike_at1500; footprint1909; E1909.",
+      "trajectory_id": "episode_2026091922062101",
+      "uncertainty": "D-like identity mnemonic and hole contact inferred, not provided labels."
+    },
+    {
+      "boundary_evidence_indices": [
+        1895,
+        1909,
+        1910,
+        2819,
+        2820,
+        2834
+      ],
+      "condition_evidence_indices": [
+        1910,
+        2400,
+        2750,
+        2819
+      ],
+      "deployment_condition_source": "Selected ring-like track and explicit slot goal.",
+      "directory": "real_robot/data/push_letters/cut_v4/datasets/piece_relocation/segments/0012",
+      "label_derivation": "G seed1910 oval ring near rear-center; goal2819 above zigzag in right column. E2819; D labels; preserve symmetry alternatives.",
+      "merge_check": "Same ring relocation across a different initial arrangement and preceding order.",
+      "objective": "Move ring downward/right and turn into column.",
+      "rationale": "2400 shows contact;2750 release;2819 transfer begins toward next target, captured by E.",
+      "records": 940,
+      "records_sha256": "7ea101fd845edd4ba93551d087e44b47351fb6d2adf2d3ab858ccec4778c8e27",
+      "samples_sha256": "fc829b1b21d8d401551d8ddd9194f12e115ec684257ca1d4f6597b94d34fd7f5",
+      "segment_id": "b_ring_move",
+      "split_check": "Contact/side changes remain in one sequence; tool-only2750-2940 reuse has different explicit goal.",
+      "start": 1895,
+      "stop": 2835,
+      "supervised_start": 1910,
+      "supervised_stop": 2820,
+      "supervision_exclusions": [],
+      "training_condition": "instance=ring_at1910; footprint2819; E2819.",
+      "trajectory_id": "episode_2026091922062101",
+      "uncertainty": "Symmetry/upright orientation cannot be inferred uniquely from ring geometry."
+    },
+    {
+      "boundary_evidence_indices": [
+        2805,
+        2819,
+        2820,
+        4709,
+        4710,
+        4724
+      ],
+      "condition_evidence_indices": [
+        2820,
+        3600,
+        3900,
+        4050,
+        4200,
+        4650,
+        4709
+      ],
+      "deployment_condition_source": "Caller requests branched physical instance and slot above ring.",
+      "directory": "real_robot/data/push_letters/cut_v4/datasets/piece_relocation/segments/0013",
+      "label_derivation": "G seed2820 R-like piece on left; goal4709 above ring. E4709; D labels. Later pose/flow targets for response losses restricted to this sequence and confidence audited.",
+      "merge_check": "Same geometry-to-goal responsibility with nonmonotone retries and tool posture change, not a new semantic stage.",
+      "objective": "Relocate R-like piece and repeatedly correct its pose/contact.",
+      "rationale": "3600 rearward staging within attempt,3900 column entry,4050/4200 lift/posture adjustment,4650 correction,4709 release. Larger measured joint velocities are retained, not called failure without evidence.",
+      "records": 1920,
+      "records_sha256": "39d8416ddee168d2e96f5ea19f52fb6d468b7d561ccb4542b368b9e23b9aa93d",
+      "samples_sha256": "17ab262e48998e0de912f7907aca60a0aa976d0c35c31338e39d1583591c961f",
+      "segment_id": "b_branched_move_retry",
+      "split_check": "One target with multiple attempts: preserve history rather than cut at every pause.4050-4710 also trains local alignment under same achieved goal.",
+      "start": 2805,
+      "stop": 4725,
+      "supervised_start": 2820,
+      "supervised_stop": 4710,
+      "supervision_exclusions": [],
+      "training_condition": "instance=branched_at2820; footprint4709; E4709; protect ring/zigzag/D-like neighbors.",
+      "trajectory_id": "episode_2026091922062101",
+      "uncertainty": "No contact-force or operator intent labels; large robot posture change is observed, its cause unresolved."
+    },
+    {
+      "boundary_evidence_indices": [
+        4895,
+        4909,
+        4910,
+        6139,
+        6140,
+        6154
+      ],
+      "condition_evidence_indices": [
+        4910,
+        5400,
+        6000,
+        6139
+      ],
+      "deployment_condition_source": "Agent gives target slot and orientation for selected corner-shaped piece.",
+      "directory": "real_robot/data/push_letters/cut_v4/datasets/piece_relocation/segments/0014",
+      "label_derivation": "G seed4910 rear-left L-shaped piece; goal6139 between D-like and branched pieces. E6139; D labels.",
+      "merge_check": "Second nonconvex corner manipulation with a different start/order, shares full relocation objective with A.",
+      "objective": "Translate and rotate corner-shaped piece into column with recontact.",
+      "rationale": "5400 still diagonal under tool,6000 near slot,6139 release toward left H-like piece. Buffers retain approach/handoff context.",
+      "records": 1260,
+      "records_sha256": "9592d98f4a1089282aaddc7c22d970d5b56305f96d1eb5ac88a5cbd477fa729f",
+      "samples_sha256": "06b88543d010b815a020f5acfd7dc119acf4af89ae1a0989f20f799726385d63",
+      "segment_id": "b_corner_move",
+      "split_check": "Keep successive recontacts as one same-piece goal cycle; do not include next H-like displacement.",
+      "start": 4895,
+      "stop": 6155,
+      "supervised_start": 4910,
+      "supervised_stop": 6140,
+      "supervision_exclusions": [],
+      "training_condition": "instance=corner_at4910; footprint6139; E6139; protect neighboring column pieces.",
+      "trajectory_id": "episode_2026091922062101",
+      "uncertainty": "Goal comes from achieved pose, not inferred spelling."
+    },
+    {
+      "boundary_evidence_indices": [
+        6125,
+        6139,
+        6140,
+        6929,
+        6930,
+        6944
+      ],
+      "condition_evidence_indices": [
+        6140,
+        6600,
+        6929
+      ],
+      "deployment_condition_source": "Agent identifies rear-left H-like physical instance and supplied temporary/front goal.",
+      "directory": "real_robot/data/push_letters/cut_v4/datasets/piece_relocation/segments/0015",
+      "label_derivation": "G seed6140 rear-left H-like cutout; goal6929 moved to front-left below central flanged piece. E6929; D labels.",
+      "merge_check": "Relocation/staging responsibility as A upper H-like move, with a later revisit in both episodes.",
+      "objective": "Bring rear H-like piece to front-left staging.",
+      "rationale": "6600 shows contact after access;6929 H-like piece is front-left and rod approaches other flanged instance.",
+      "records": 820,
+      "records_sha256": "6abeeb5db930e5184147914cdced8c4b9379a2fac26f95fe097006d381abedef",
+      "samples_sha256": "dcfd44b7ff3b3e7382bb584cb0dffc2b4484c6b7f1f1c9e0c1513a572b0fb490",
+      "segment_id": "b_hlike_stage",
+      "split_check": "Later7330 H-like adjustment is a separate call after another piece moved; no concatenation.",
+      "start": 6125,
+      "stop": 6945,
+      "supervised_start": 6140,
+      "supervised_stop": 6930,
+      "supervision_exclusions": [],
+      "training_condition": "instance=rear_hlike_at6140; footprint6929; E6929.",
+      "trajectory_id": "episode_2026091922062101",
+      "uncertainty": "Track must not swap the two similar flanged shapes."
+    }
+  ],
+  "sequence_semantics": "Bag of independent original sequences; overlapping reuse allowed; never concatenate across cuts.",
+  "skill_id": "piece_relocation",
+  "source_manifest": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/real_robot/runs/push_letters/cut_v4/source_manifest.json",
+  "source_manifest_sha256": "e2c03c99f07c63f65c105929e994d34e1215974fc4b4f244f1dffb35b80ef7d1",
+  "subgoal": "Move one caller-selected physical piece to a feasible staging or placement footprint, including same-piece recontact and conditioned tool handoff."
+}

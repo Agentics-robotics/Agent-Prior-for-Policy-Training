@@ -1,0 +1,42 @@
+{
+  "schema": "real_robot.policy_package.v3",
+  "policies": {
+    "tool_waypoint_v1": {
+      "heuristic_id": "waypoint_clearance_residual",
+      "batch_size": 32,
+      "learning_rate": 0.0002,
+      "weight_decay": 0.0001,
+      "max_grad_norm": 1.0,
+      "config": {"history_offsets": [11,7,3,0], "state_dim":112,"map_size":64,"hidden_dim":192,"action_horizon":1},
+      "description": "Waypoint-relative, five-mode bounded native-command residual around a deterministic proxy lift/traverse/descend direction; independently trained on four tool_position invocations.",
+      "model_family": "Compact recurrent mixture-of-mode residual behavior cloning with geometric route anchor and heteroscedastic command head.",
+      "diffusion_consideration": "Conditional sequence diffusion could model multiple reconfiguration trajectories, but four waypoint examples do not identify that distribution. A fixed geometric route anchor and small gated residual are more data-efficient and inspectable. The one-step executor is not the reason for choosing a one-step residual."
+    },
+    "piece_contact_graph_v1": {
+      "heuristic_id": "boundary_mechanics_residual",
+      "batch_size": 32,
+      "learning_rate": 0.0002,
+      "weight_decay": 0.0001,
+      "max_grad_norm": 1.0,
+      "config": {"history_offsets":[11,7,3,0],"contour_nodes":32,"neighbors":4,"state_dim":112,"map_size":64,"action_horizon":1},
+      "description": "Outer/inner-boundary message-passing contact selector with proxy one-step response scoring, positive-normal contact proposals, and bounded mode/posture residuals; independently trained on all 22 piece_relocation invocations.",
+      "model_family": "Recurrent contour graph, constrained differentiable contact mixture, learned weak response/uncertainty model and residual behavior cloning.",
+      "diffusion_consideration": "Diffusion over contact modes or short strokes is plausible, but would learn a poorly identified multimodal distribution from two episodes. Deterministic boundary candidates already express the important alternatives. This implementation learns scores, response corrections and low-dimensional residuals instead of a high-dimensional sampled trajectory."
+    },
+    "piece_goal_field_v1": {
+      "heuristic_id": "causal_goal_field_servo",
+      "batch_size": 32,
+      "learning_rate": 0.00015,
+      "weight_decay": 0.0001,
+      "max_grad_norm": 1.0,
+      "config": {"history_offsets":[11,7,3,0],"local_extent_m":0.25,"local_map_size":64,"whole_scene_extent_m":1.0,"hidden_dim":192,"action_horizon":1},
+      "description": "Independent recurrent dense SDF/rigid-correspondence servo with explicit reset/exit/hold gating, geometric route anchor and learned motion auxiliary; does not consume a glyph class or require unique canonical yaw.",
+      "model_family": "Compact convolutional goal-field encoder and GRU mode-conditioned inverse servo with bounded native-command residual and heteroscedastic losses.",
+      "diffusion_consideration": "Goal-conditioned action-sequence diffusion was considered for repeated L/R strokes. With no contact audit and only 22 hindsight invocations, causal closed-loop correction with a short masked recurrent history is a stronger constraint than sampling long multimodal futures. Reset modes preserve nonmonotonic behavior without a monotonic-progress loss."
+    }
+  },
+  "preprocessing": {"source_plan":"frozen cut_v5, unchanged segments", "geometry_resolution":256,"workspace_bounds_W":[-0.2,-0.35,0.8,0.65],"local_map_resolution":64,"local_extent_m":0.25,"history_offsets":[11,7,3,0],"source_rgb":"original paired 1280x720; inverse distortion/plane remap before feature cropping", "source_depth":"archived only, not metric", "cache":"single causal perception pass per source frame, reused segment features, mmap numeric arrays", "action_reference":"exact float64 recorded v,w; null dq not exclusion", "assets":[]},
+  "dependencies": "Python with torch, numpy, cv2, scipy, json, and real_robot.policy_training_v3.public; only declared environment dependencies. No external pretrained weights, shell, network, torchvision, transformers, SAM, kinematics package, or hardware client. Source and all assets used are supplied recording data; no additional asset license is involved.",
+  "adaptations": "No pretrained segmenter, semantic recognizer, audited masks, tabletop/letter-top calibration, rod geometry or recording follower exists in the supplied assets. Implement shape-independent HSV foreground, calibrated dual-view local repair and causal rigid-mask tracking instead. Offline seven initial visual seeds come from inspected episode-zero images, never character embeddings. Workspace is a board-plane proxy with a conservative 30-mm design margin, not an estimated/calibrated standard deviation. Optional caller-supplied verified top-plane frame and fresh external union mask use the same conversion. Endpoint masks and motion are unreviewed weak labels with explicit per-loss confidence; all finite action labels remain, with missing object-goal masks and endpoint tool goals on ambiguous rows. Models use four causal snapshots within twelve records, a native-resolution 64x64 local field plus coarse whole-scene occupancy rather than twelve full 256-square RGB frames. Local graph and dense servo are independently weighted; graph planning is a one-step proxy, not a certified mechanics solver. No physical SE(2) augmentation is used without robot reachability and w-frame verification. Semantic matching/layout is executable only with caller-supplied current semantic hypotheses; absence is explicitly uncertain, never recognized by assertion.",
+  "limitations": "All training data are two episodes in a narrow tool/material/color regime. No performance study, held-out validation, calibrated uncertainty, verified contact, success labels, or demonstrated unseen-shape transfer. Color foreground is not open-world perception and can fail under lighting, overlap, occlusion, new colors and merged components. Holes below the 3.9-mm raster and morphology scale are unreliable. Board-plane and TCP proxies are not tabletop/tip metrology; geometric screens are not arm/rod swept-volume safety or reachability. Semantic upright orientation needs an independent live cue. Command magnitudes/frames and physical speed caps are unverified unless an explicit audited intent mapping is supplied; even then the decoder remains disabled because the recording follower and collision model are absent. Valid act calls return learned offline candidates, not fabricated joint commands or physical readiness."
+}

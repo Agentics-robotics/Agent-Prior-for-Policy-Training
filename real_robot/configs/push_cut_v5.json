@@ -1,0 +1,28 @@
+{
+  "schema": "real_robot.cut_config.v1",
+  "config_path": "real_robot/configs/push_cut_v5.json",
+  "task": "push_letters",
+  "source_root": "/home/storage/tianrunhu/real_robot_data/push_letters",
+  "trajectory_ids": [
+    "episode_2026091922002701",
+    "episode_2026091922062101"
+  ],
+  "output": "real_robot/data/push_letters/cut_v5",
+  "run": "real_robot/runs/push_letters/cut_v5",
+  "prompt": "real_robot/prompts/general_cut_and_prior_v3.md",
+  "task_specification": "real_robot/task_specifications/push_letters.md",
+  "data_contract": "real_robot/DATA_CONTRACT.md",
+  "model": "gpt-6-astra",
+  "reasoning_effort": "xhigh",
+  "service_tier": "default",
+  "preview_width": 640,
+  "preview_height": 360,
+  "max_api_calls": 128,
+  "max_tool_calls": 480,
+  "max_plan_versions": 20,
+  "max_output_tokens": 32000,
+  "request_timeout_seconds": 1200,
+  "execution_guard_usd": 100,
+  "scope": "Small-demonstration motion/representation/interaction priors guide subtask granularity, compatible cuts and reusable groups; retain complete behavior coverage, independent heuristic designs, preprocessing obligations and agent contracts; stop before implementation, training or robot execution",
+  "authorization": "On 2026-09-21, after reviewing the exact small-demonstration prompt addition and another API cut run, the user instructed: 可以，这样来一次试一下，cut编号顺延. Execute independent cut_v5 with the new prompt and the same original Push demonstrations, model gpt-6-astra/xhigh and official OpenAI Responses destination established in this conversation. Preserve all previous versions; no policy implementation, training or robot execution."
+}
