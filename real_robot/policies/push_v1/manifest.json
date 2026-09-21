@@ -1,0 +1,45 @@
+{
+  "cut_plan_hash": "51e620df25f6ced540cde6ae85b5bd8a33a7a4e089018eb56f07c56cc80484a2",
+  "policies": {
+    "contour_push": {
+      "bytes": 14706789,
+      "exact_final_ema_tensor_equality": true,
+      "file": "contour_push.pt",
+      "optimizer_steps": 20000,
+      "original_bytes": 58909693,
+      "original_checkpoint_sha256": "da063b987d6c594038a8f7e24f0b4e2778c9c42a8c381f26729af845a5886326",
+      "sha256": "396822bbccaa7c5247910f7f9ed5aafcf929dcd2f1b03fc23c9efeaad94c4704",
+      "tensor_count": 50,
+      "trainable_parameters": 3671118,
+      "training_examples": 8606
+    },
+    "visual_push": {
+      "bytes": 36319187,
+      "exact_final_ema_tensor_equality": true,
+      "file": "visual_push.pt",
+      "optimizer_steps": 20000,
+      "original_bytes": 145351441,
+      "original_checkpoint_sha256": "56f3044c9444fdaf4495c89a2d3ad13c4dbe8c8d89f8f9c357fcdb3236da8846",
+      "sha256": "7b33d10c41f2706816d9f7c3221b1bc8b4026fd680288ca77c871f301aa39aa4",
+      "tensor_count": 126,
+      "trainable_parameters": 9067629,
+      "training_examples": 8606
+    }
+  },
+  "schema": "real_robot.push_deployment.v1",
+  "scientific_source": "Exact bytes of API design_00 submission; no developer edits",
+  "selection": "Final EMA at 20000 updates, as in original inference loader",
+  "source_hashes": {
+    "CALLING.md": "b282f12e42e84bda596af1296e306caa9444d5848176686bb0e6a90417999186",
+    "PRIOR.md": "6030046f4fe4b2e11eb4310507a71675ff0d7adf0a96383ff2eeb210a0172922",
+    "action_gate.py": "cb1ef09e9bdc6a746871fe16eb01ebd9bb6f28060f443875e8c391104c96c540",
+    "data_pipeline.py": "aed3948621ea6bfa52deb3f40754abb57ff79d7c3f83a7c933b11b3545657095",
+    "goals.py": "ef4cd486d0c069311b0f02fe8395c36f45d0506c5cd0eeb5b3e8ae1f13b39977",
+    "invocation.py": "b95e0591d93564de0f268c21971b56183c3c4afec2e9a53288eed73d0ffde981",
+    "networks.py": "476d0adee736de221f9b7c2ed75feb5756d1723b40719d635eb1adda16b00557",
+    "package.json": "a3d26c90b9ef33ebe7c0207c556dab46ac585688cee62d3113a55a583667e2b1",
+    "perception.py": "ead1ab12bea10d347d0cd71ab44aea8b9c84667b2d7ab614404c8a82eeb21513",
+    "policy.py": "dfd15fcbe6bddaadd28eaf2309ec07807f7f32b8d45e63f6955a2f7f6519a200"
+  },
+  "source_package_hash": "1498f35a0f7627fea65aeef493fad789c89be1f91df7b82589897a11bd6b6be8"
+}

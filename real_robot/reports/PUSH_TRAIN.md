@@ -7,6 +7,11 @@ are retained. Completion is recorded in
 [execution_status.json](../runs/push_letters/train_v1/execution_status.json) and
 the [trained library](../runs/push_letters/train_v1/library.json).
 
+Deployment follow-up (2026-09-21): the same final EMA weights and exact API code
+are now available through a [portable download package](../deployment/README.md),
+with a [relocation check](PUSH_DEPLOYMENT.md). Training artifacts below remain
+unchanged; this adds serialization and a portable host interface only.
+
 ## Scope and ownership
 
 The user authorized implementing and training both frozen cut_v3 priors, without

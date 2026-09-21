@@ -1,5 +1,13 @@
 # Real robot demonstrations
 
+**Portable deployment is ready (2026-09-21).** Use the
+[download/install guide](deployment/README.md). Exact API source is now also
+available in [policies/push_v1/source](policies/push_v1/source/), while the two
+inference-only checkpoints go in `checkpoints/push_v1/`. The complete SCP bundle
+and weights-only archive are under `exports/push_v1/`; neither includes training
+data, caches or API credentials. See the [deployment receipt](reports/PUSH_DEPLOYMENT.md).
+The robot-side adapter remains the user's responsibility. Original runs stay intact.
+
 Current stage: **train_v1 complete**, reviewed on 2026-09-21 (Asia/Singapore).
 The Runtime API has submitted both `contour_push` and `visual_push`,
 including their observation/goal conversions and action decoder, in a ten-file

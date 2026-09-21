@@ -1,5 +1,11 @@
 # Local trained-policy interface
 
+For downloading to another computer, use the newer
+[portable deployment interface](../deployment/README.md). It uses Git-visible
+API source, two inference checkpoints and an independent locked environment.
+The original training-run interface below is retained for provenance and local
+reproduction; it still reads the historical `runs/` package.
+
 This directory is the developer-owned execution interface. Scientific policy and
 conversion code is API-authored and retained under
 [`train_v1/package_00/source`](../runs/push_letters/train_v1/package_00/source/).

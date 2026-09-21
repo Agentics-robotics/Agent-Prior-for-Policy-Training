@@ -4,6 +4,16 @@ Work on dev and preserve Exp1, Exp2, and the external original recordings.
 Use `/home/users/oscar/.pixi/bin/pixi run --manifest-path environments/exp2/pixi.toml --locked`
 for all Python/project commands. Reuse the locked environment without changing it.
 
+Latest deployment authorization (2026-09-21): package the completed Push policies
+for another Linux/NVIDIA GPU computer, with Git-visible exact API source, two
+separate inference checkpoints, a portable local Python interface and SCP/rsync
+download artifacts. The user will adapt the robot-side interface; do not implement
+or operate a robot/network bridge. Preserve the training originals and frozen
+scientific code. A separate minimal locked Pixi inference environment under
+real_robot/deployment is authorized; do not modify the training environment.
+Exporting the exact final EMA weights and required normalization is serialization,
+not a new learned design. No new API call or retraining is needed.
+
 Latest authorization (2026-09-20): the user explicitly requested proceeding
 directly to API implementation and training of BOTH cut_v3 policies,
 contour_push and visual_push, without a separate preliminary validation study.

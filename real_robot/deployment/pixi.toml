@@ -1,0 +1,26 @@
+[workspace]
+name = "real-robot-push-inference"
+version = "1.0.0"
+channels = ["conda-forge"]
+platforms = ["linux-64"]
+
+[dependencies]
+python = "==3.11.16"
+
+[pypi-dependencies]
+torch = "==2.14.0"
+numpy = "==1.26.4"
+scipy = "==1.17.1"
+opencv-python = "==4.11.0.86"
+pillow = "==11.3.0"
+
+[activation.env]
+PYTHONPATH = "$PIXI_PROJECT_ROOT/../..:$PIXI_PROJECT_ROOT/../../src"
+PYTHONNOUSERSITE = "1"
+PYTHONDONTWRITEBYTECODE = "1"
+OMP_NUM_THREADS = "2"
+OPENBLAS_NUM_THREADS = "1"
+MKL_NUM_THREADS = "2"
+
+[tasks]
+check = "python -m real_robot.deployment check"
