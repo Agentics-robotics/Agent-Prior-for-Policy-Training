@@ -1,0 +1,36 @@
+{
+  "boundary_evidence_indices": [
+    1740,
+    1800,
+    3300
+  ],
+  "condition_evidence_indices": [
+    1800,
+    2100,
+    2400,
+    2800,
+    3200
+  ],
+  "decision_indices": [
+    1800,
+    2100,
+    2400,
+    2800
+  ],
+  "deployment_condition_source": "Agent may request neighbor clearance or ring placement, with explicit selected instance and target; selection is driven by current blocked geometry.",
+  "label_derivation": "Common conversion with 1800->2100 for the central serif-bar piece initially just above the ring; 2100->2800, 2400->2800 and 2800->3200 for the ring-shaped piece. Track these separately. 2100 is an approach observation, 2400 an outer-edge interaction, 2800 a different-side correction. 3200/3300 retain achieved ring pose and departure context.",
+  "merge_check": "Do not merge losses as one actor or a single push. Neighbor clearance is a separate caller-conditioned anchor; sharing one buffered sequence preserves clutter context without a separate clearing policy.",
+  "objective": "Select a short clearance push and ring translation/orientation corrections.",
+  "rationale": "1800-2100 changes the neighbor; 2400/2800/3200 show ring displacement and alignment; 3300 shows departure toward the remaining cluster.",
+  "segment_id": "a_ring_and_clearance",
+  "split_check": "Actor changes are explicit in sparse target mapping. Splitting into dense contact/travel skills would train planner-provided motion unnecessarily.",
+  "start": 1740,
+  "stop": 3301,
+  "supervised_start": 1800,
+  "supervised_stop": 3301,
+  "supervision_exclusions": [],
+  "supervision_kind": "sparse",
+  "training_condition": "Per-anchor selected physical instance, causal contour/obstacles and hindsight goal transform; clearance and placement use identical control schema.",
+  "trajectory_id": "episode_2026091922002701",
+  "uncertainty": "Neighbor movement and exact intent are visual inferences. Incidental motion of another track must not be labeled as the selected actor's controllable stroke."
+}

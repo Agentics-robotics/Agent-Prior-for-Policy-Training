@@ -1,0 +1,35 @@
+{
+  "boundary_evidence_indices": [
+    5040,
+    5100,
+    6200
+  ],
+  "condition_evidence_indices": [
+    5100,
+    5500,
+    5530,
+    5850,
+    6200
+  ],
+  "decision_indices": [
+    5100,
+    5500,
+    5850
+  ],
+  "deployment_condition_source": "Agent chooses the open-corner instance and a layout/staging pose; repeated contacts depend on observed response.",
+  "label_derivation": "Common conversion for open-right-angle track5100->5500,5500->5850,5850->6200.5500/5530 wrist and state pair support a corner-contact local stroke;5850 is a different-side correction.6200 is the actual achieved arrangement before bar-piece work.",
+  "merge_check": "Pool with A repeated corner attempts but do not concatenate trajectories. This shorter route is useful diversity, not proof the shape is mastered.",
+  "objective": "Choose corner contacts and successive corrections from a different initial orientation/location.",
+  "rationale": "5100/5500/5850 show changing sides/orientation and6200 shows the piece between other arranged shapes.",
+  "segment_id": "b_open_corner",
+  "split_check": "One sequence retains recontact history; not separate orientation and translation policies because both use contact/direction/distance output.",
+  "start": 5040,
+  "stop": 6201,
+  "supervised_start": 5100,
+  "supervised_stop": 6201,
+  "supervision_exclusions": [],
+  "supervision_kind": "sparse",
+  "training_condition": "Selected open-corner track with full contour/hole-free topology, local obstacle context and hindsight target.",
+  "trajectory_id": "episode_2026091922062101",
+  "uncertainty": "Tip occlusion and unusual concavity contact require reviewed contour/tool geometry; no force or friction labels are available."
+}

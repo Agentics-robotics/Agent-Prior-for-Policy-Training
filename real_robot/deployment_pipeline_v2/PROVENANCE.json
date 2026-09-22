@@ -1,0 +1,16 @@
+{
+  "date": "2026-09-22",
+  "base": "real_robot/deployment_pipeline",
+  "base_hashes": {
+    "README.md": "f0ad6c579576fa4a18a6612c3a618443f72ab02cb97ddc410008d2941c811a0a",
+    "__init__.py": "328700eddb850f5a76c05519c1a03d33d3da4ff375cbc76cc5fe953b5ee5b827",
+    "__main__.py": "c1c26a1db2a6db48377d1356b86af6a5a972d27df061e591f354b79bff5f6292",
+    "bundle.py": "719460dea025f78c165271eb163ba4d1d23f9b60dacd660028cc88249890c877",
+    "common.py": "bb8bb0f2350e428ab8ea43a48eff2df356252b87a8d1e41580f5f49338b32b00",
+    "export.py": "73d8085ae29563931a70b42141b2938e5894a2e6538fc17196f14697a3270815",
+    "gpu.py": "276f373aa9d21ecb4b84cf2aa3a1f8ebd934f68a7cf8e434551956d9c88c15fa",
+    "policy.py": "f0d344c019b0f9053872368399fdf905a264d52c7b49bd923997f06254321845",
+    "worker.py": "b7710a754810a922caeb3e2798fd32415143667b8c7d695a9b49c4d4cee2920e"
+  },
+  "purpose": "Independent Push v6 export/runtime; old export identities retained. Changes are module/bundle/schema names, explicit mandatory asset metadata, and a hash-verified offline example with a CLI that invokes the selected trained checkpoint. The example reuses the independent host-worker test inputs and labels all synthetic commissioning. Scientific source remains exact API submission."
+}

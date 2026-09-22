@@ -1,5 +1,82 @@
 # Real robot demonstrations
 
+**Push v6 training and portable package completed (2026-09-22):** one learned
+contact/direction/short-stroke scorer with 18,497 trainable parameters and frozen
+SAM, 3,000 updates, all 130 retained examples from both recordings used in gradients.
+Nine of 12 learning cuts contribute; 15 rows have contact-only supervision.
+Training-label contact disagreement is 16.403 mm, not robot positioning error or
+evidence of precise imitation. Reload and actual relocated calls match exactly;
+no physical/generalization evaluation. See the [training report](reports/PUSH_TRAINING_V6.md),
+[complete Chinese system explanation](reports/PUSH_V6_SYSTEM_WALKTHROUGH.md),
+[API usage](reports/PUSH_TRAINING_V6_API_USAGE.md), and
+[preprocessing cost comparison](reports/PUSH_TRAINING_V6_PREPROCESSING_COST.md).
+The [complete package](exports/pipeline_v2/pipeline_v2_bundle.tar.gz) includes weights,
+required SAM asset, API calling documents and a runnable real-weight example;
+see [installation](deployment_pipeline_v2/README.md) and
+[relocation evidence](reports/PUSH_V6_DEPLOYMENT.md). Old v5/Flip artifacts remain
+unchanged. No Git push, Drive upload or robot IO was performed.
+
+**Portable Push v5 / Flip egg v1 package (2026-09-22):** after committing/pulling
+the new source, download the [two-weight archive](exports/pipeline_v1/pipeline_v1_weights.tar.gz).
+Push's optional SAM inventory additionally uses the [SAM archive](exports/pipeline_v1/pipeline_v1_sam_assets.tar.gz).
+See [installation and Agent contracts](deployment_pipeline/README.md) and
+[relocated verification](reports/PIPELINE_DEPLOYMENT.md). Both model outputs match
+their original workers exactly in recorded interface fixtures. No robot IO,
+Git push or Drive upload was performed.
+
+**2026-09-22: generic implementation/training workflow.** See
+[pipeline and commands](training_pipeline/README.md),
+[prompt/ownership correction](reports/GENERIC_PROMPT_AND_TRAINING_REVISION.md),
+and [preserved executed prompts](prompts/archive/20260922_before_representation_revision/manifest.json).
+The completed training runs use existing Push cut_v6 and Flip egg cut_v1;
+the separately saved new cut prompt has not been run.
+
+**Flip egg training_v1 completed (2026-09-22):** 278,903 parameters, 2,000 updates,
+10,931 prepared examples with 5,364 assigned to gradient training, checkpoint
+reload error zero and isolated online calls verified. See
+[training report](reports/FLIP_EGG_TRAINING_V1.md) and
+[API calling contract](runs/flip_egg/training_v1/package_00/source/CALLING.md).
+**Push training_v5 completed (2026-09-22):** API-owned recovery replaced unreliable
+contact-point supervision with goal-conditioned planar EE continuation.
+9,641 parameters, 800 updates, selected step 600; 168 prepared examples cover all
+12 original groups, with 74 from A used for training and 94 from B for development.
+Reload and independent process/planar adapter checks passed. Development endpoint
+error is 5.095 mm versus 4.764 mm for the goal-translation baseline; no advantage
+over that baseline or physical/generalization success is established. Initial
+contact selection is deterministic geometry, not learned by this model. See the
+[training report](reports/PUSH_TRAINING_V5.md) and
+[API calling contract](runs/push_letters/training_v5/package_01/source/CALLING.md).
+The rejected 142-label contact package and intermediate 205-example recovery
+remain preserved. Separate API usage: [Push](reports/PUSH_TRAINING_V5_API_USAGE.md),
+[Flip](reports/FLIP_EGG_TRAINING_V1_API_USAGE.md), including failed/recovery calls.
+
+**Push training_v4 is complete (reviewed 2026-09-21).** The single cut_v6
+`shape_push_v1` model predicts a contact point, planar direction and short stroke.
+It has 15,041 parameters and completed the API-selected 500 updates; final EMA
+reload error is zero and the local calling check passed. **Only 4/47 decision
+anchors survived preprocessing, covering 4/12 learning intervals.** This is a
+tiny-data training prototype, with no generalization or robot-performance claim.
+All 77 requests/responses used Astra/xhigh; 18 submitted files have exact API
+authorship, estimated cost USD 16.095949. Actual perception uses chromatic
+geometry, without SAM/Qwen weights. Read the [Chinese training/coverage report](reports/PUSH_TRAINING_V4.md),
+[local calling guide](policy_training_v4/README.md),
+[API policy catalog](runs/push_letters/training_v4/package_00/source/POLICY_CATALOG.md),
+[checkpoint library](runs/push_letters/training_v4/library.json) and
+[completion receipt](runs/push_letters/training_v4/completion_receipt.json).
+Previous cuts, models and the v3 portable export remain preserved.
+
+**Independent Flip egg cut_v1 is complete (2026-09-21).** API selected two
+data groups, one six-dimensional blade-motion policy and one auxiliary scene
+model: 40 segments, all 45,730 rows retained, 32,737 control anchors. All 79
+Astra/xhigh calls and 129 published files passed verification; estimated cost
+USD 12.4355135. See the [Chinese decomposition and IO review](reports/FLIP_EGG_CUT_V1_REVIEW.md)
+and [completion receipt](runs/flip_egg/cut_v1/completion_receipt.json).
+Its [task specification](task_specifications/flip_egg_v1.md),
+[configuration](configs/flip_egg_cut_v1.json), [isolated interface](flip_egg_cut_v1/README.md)
+and [execution status](reports/FLIP_EGG_CUT_V1_STATUS.md) are separate from Push.
+Scope ends at cuts, priors, preprocessing and calling/executor contracts;
+no policy implementation, training or robot execution is included.
+
 **training_v3 portable package is ready (2026-09-21).** The
 [download and installation guide](deployment_v3/README.md) covers Linux/NVIDIA
 inference on another computer. All three exact final EMA checkpoints and API
@@ -163,7 +240,8 @@ At completion of cut_v3, perception, masks, goal conversion, policy code and
 training remained later obligations. The latest authorization above now advances
 the two Push policies into implementation and training; actual controller
 verification, robot execution and generalization evaluation remain future work.
-Flip egg remains future work. New Runtime API calls require `gpt-6-astra/xhigh`.
+Flip egg was outside that Push stage; its separately authorized cut_v1 is
+linked above. New Runtime API calls require `gpt-6-astra/xhigh`.
 
 Deployment includes completely unseen letter identities/physical shapes and
 entirely new words. Actual generalization requires future validation. The API

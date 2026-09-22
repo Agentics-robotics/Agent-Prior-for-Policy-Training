@@ -1,0 +1,52 @@
+{
+  "API_calls": 71,
+  "GPU_compute_included": false,
+  "cost_is_invoice": false,
+  "estimated_usd": 13.4936575,
+  "measured_at": 1790047733.3049424,
+  "model": "gpt-6-astra",
+  "reasoning_effort": "xhigh",
+  "run": "flip_egg_training_v1",
+  "scope": "This training implementation workflow only, including blocked and repaired API revisions; prior cut and historical training costs excluded.",
+  "sessions": [
+    {
+      "calls": 71,
+      "estimated_usd": 13.4936575,
+      "ledger": "real_robot/runs/flip_egg/training_v1/design_00/cost_ledger.json",
+      "ledger_sha256": "dcb6ecab290ebb2f8d12753659feb0b2ed5bf44497428176b7881e85e6f5966f",
+      "pricing_reference": "https://developers.openai.com/api/docs/models/gpt-6-astra",
+      "saved_rates_usd_per_million": {
+        "cache_write": 12.5,
+        "cached": 1.0,
+        "input": 10.0,
+        "output": 50.0
+      },
+      "session": "design_00",
+      "states": {
+        "consumed": 71
+      },
+      "tokens_and_counts": {
+        "cache_write_tokens": 202065,
+        "cached_tokens": 8887265,
+        "input_tokens": 9089543,
+        "output_tokens": 41569,
+        "reasoning_tokens": 7098,
+        "total_tokens": 9131112,
+        "usage_reported_calls": 71
+      },
+      "unresolved_reserved_usd": 0.0
+    }
+  ],
+  "token_accounting": "Cached/cache-write tokens are input subsets; reasoning tokens are an output subset. Do not add these subsets again to total_tokens.",
+  "totals": {
+    "cache_write_tokens": 202065,
+    "cached_tokens": 8887265,
+    "input_tokens": 9089543,
+    "output_tokens": 41569,
+    "reasoning_tokens": 7098,
+    "total_tokens": 9131112,
+    "usage_reported_calls": 71
+  },
+  "unresolved_reserved_usd": 0.0,
+  "workflow_status": "complete"
+}

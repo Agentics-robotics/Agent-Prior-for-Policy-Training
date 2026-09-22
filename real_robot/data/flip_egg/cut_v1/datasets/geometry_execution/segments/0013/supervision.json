@@ -1,0 +1,27 @@
+{
+  "boundary_evidence_indices": [
+    0,
+    600
+  ],
+  "condition_evidence_indices": [
+    0,
+    600
+  ],
+  "decision_indices": [],
+  "deployment_condition_source": "Online object fit and visually confirmed lift.",
+  "label_derivation": "Execution evidence only; retain gripper command/feedback disagreement for adapter review.",
+  "merge_check": "Do not learn gripper semantics from scalar commands.",
+  "objective": "Acquire and lift tool.",
+  "rationale": "600 shows a held tool; command gripper can differ from stable measured width.",
+  "segment_id": "exec_14",
+  "split_check": "Keep full pickup evidence to audit closing behavior.",
+  "start": 0,
+  "stop": 601,
+  "supervised_start": null,
+  "supervised_stop": null,
+  "supervision_exclusions": [],
+  "supervision_kind": "executor_only",
+  "training_condition": "No policy loss.",
+  "trajectory_id": "episode_2026091916463201",
+  "uncertainty": "At 600 gripper command is 0.996078 while measured width remains about 0.03349 m; controller semantics require verification."
+}

@@ -1,0 +1,34 @@
+{
+  "boundary_evidence_indices": [
+    0,
+    9014
+  ],
+  "condition_evidence_indices": [
+    0,
+    500,
+    800,
+    1800,
+    4800,
+    5100,
+    6900,
+    8500,
+    9014
+  ],
+  "decision_indices": [],
+  "deployment_condition_source": "High-level Agent or geometric policy supplies a live explicit robot objective, scene/tool model and constraints; the executor is not conditioned on a recorded index or inferred word.",
+  "label_derivation": "No learned target or per-row imitation loss. Exact raw states/actions/media are execution/context/outcome evidence for adapter calibration checks, motion-domain audit, perception review and event/target derivation within learned cuts. Beginning null command dq is preserved. End is row9014, without fabricated terminal state.",
+  "merge_check": "Do not concatenate with the other episode; independent initialization, elapsed time and physical arrangement. May be referenced by the learned cuts using original source keys only.",
+  "objective": "Retain complete evidence of motions the supplied executor must be able to synthesize/track from geometric objectives and of resulting object changes.",
+  "rationale": "Initial high tool pose and waits, low-table contacts, vertical/transverse reconnects, varied orientations and final held state are all assigned an execution role rather than densely learned.",
+  "segment_id": "a_executor_trace",
+  "split_check": "No split needed for an executor-only responsibility trace; local learned target searches use their own bounded event cuts. Numeric motion bins did not define semantic cuts.",
+  "start": 0,
+  "stop": 9015,
+  "supervised_start": null,
+  "supervised_stop": null,
+  "supervision_exclusions": [],
+  "supervision_kind": "executor_only",
+  "training_condition": "Not a policy-training sequence. Used with original calibration/timing/missingness, no synthetic task-success or object labels.",
+  "trajectory_id": "episode_2026091922002701",
+  "uncertainty": "Recording complete but success unannotated. Calibration/execution binding and physical contact geometry remain unverified."
+}

@@ -1,0 +1,27 @@
+{
+  "boundary_evidence_indices": [
+    0,
+    800
+  ],
+  "condition_evidence_indices": [
+    0,
+    800
+  ],
+  "decision_indices": [],
+  "deployment_condition_source": "Observed tool pose and attachment validation.",
+  "label_derivation": "Execution evidence only.",
+  "merge_check": "Held-tool interaction begins after this acquisition envelope.",
+  "objective": "Acquire and lift tool.",
+  "rationale": "600 is still near the rest; 800 clearly shows tool held above the pan approach area.",
+  "segment_id": "exec_20",
+  "split_check": "Keep variable acquisition duration instead of inheriting another episode's boundary.",
+  "start": 0,
+  "stop": 801,
+  "supervised_start": null,
+  "supervised_stop": null,
+  "supervision_exclusions": [],
+  "supervision_kind": "executor_only",
+  "training_condition": "No policy loss.",
+  "trajectory_id": "episode_2026091916583301",
+  "uncertainty": "Tool attachment and gripper calibration need deployment validation."
+}

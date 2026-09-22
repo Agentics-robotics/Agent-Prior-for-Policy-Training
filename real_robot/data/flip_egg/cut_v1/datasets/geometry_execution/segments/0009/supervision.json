@@ -1,0 +1,27 @@
+{
+  "boundary_evidence_indices": [
+    0,
+    1000
+  ],
+  "condition_evidence_indices": [
+    0,
+    1000
+  ],
+  "decision_indices": [],
+  "deployment_condition_source": "Measured tool pose and lifted-tool validation.",
+  "label_derivation": "Execution evidence only.",
+  "merge_check": "Keep slow acquisition separate from learned contact decisions.",
+  "objective": "Acquire and connect with held tool.",
+  "rationale": "600 is still at the rest; 1000 is visibly lifted above the pan region.",
+  "segment_id": "exec_10",
+  "split_check": "Long acquisition timing is not a policy clock.",
+  "start": 0,
+  "stop": 1001,
+  "supervised_start": null,
+  "supervised_stop": null,
+  "supervision_exclusions": [],
+  "supervision_kind": "executor_only",
+  "training_condition": "No policy loss.",
+  "trajectory_id": "episode_2026091916320101",
+  "uncertainty": "Later human intervention is not executor success evidence."
+}

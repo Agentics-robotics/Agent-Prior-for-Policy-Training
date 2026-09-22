@@ -1,0 +1,117 @@
+{
+  "date": "2026-09-21",
+  "scope": "Read-only review of completed code and existing training logs; no new model evaluation or training",
+  "API_calls": 0,
+  "robot_execution": false,
+  "phase_counts": {
+    "tool_position": {
+      "approach": 445,
+      "contact": 0,
+      "reset": 554,
+      "exit": 0,
+      "hold": 363
+    },
+    "piece_relocation": {
+      "approach": 5171,
+      "contact": 2272,
+      "reset": 1024,
+      "exit": 6342,
+      "hold": 956
+    }
+  },
+  "training_log_metrics": {
+    "piece_contact_graph_v1": {
+      "early_sampled_batch_bc_mean": 0.06546253524720669,
+      "late_sampled_batch_bc_mean": 0.004599541367497295,
+      "early_steps": [
+        100,
+        200,
+        300,
+        400,
+        500,
+        600,
+        700,
+        800,
+        900,
+        1000
+      ],
+      "late_steps": [
+        19100,
+        19200,
+        19300,
+        19400,
+        19500,
+        19600,
+        19700,
+        19800,
+        19900,
+        20000
+      ],
+      "not_a_validation_score": true
+    },
+    "piece_goal_field_v1": {
+      "early_sampled_batch_bc_mean": 0.0680882591754198,
+      "late_sampled_batch_bc_mean": 0.006136998138390482,
+      "early_steps": [
+        100,
+        200,
+        300,
+        400,
+        500,
+        600,
+        700,
+        800,
+        900,
+        1000
+      ],
+      "late_steps": [
+        19100,
+        19200,
+        19300,
+        19400,
+        19500,
+        19600,
+        19700,
+        19800,
+        19900,
+        20000
+      ],
+      "not_a_validation_score": true
+    },
+    "tool_waypoint_v1": {
+      "early_sampled_batch_bc_mean": 0.03437606315128505,
+      "late_sampled_batch_bc_mean": 3.129272681690054e-05,
+      "early_steps": [
+        100,
+        200,
+        300,
+        400,
+        500,
+        600,
+        700,
+        800,
+        900,
+        1000
+      ],
+      "late_steps": [
+        19100,
+        19200,
+        19300,
+        19400,
+        19500,
+        19600,
+        19700,
+        19800,
+        19900,
+        20000
+      ],
+      "not_a_validation_score": true
+    }
+  },
+  "source_hashes": {
+    "real_robot/policies/push_v3/source/geometry.py": "51ec35050cc9503824d88fcef8e2722c6a56541aa6eb8d87f3c0784f638f3203",
+    "real_robot/policies/push_v3/source/networks.py": "48db83904957c7e4f5573b1a60ca155197a44ae24dfdf3a2ae04864119bef5d9",
+    "real_robot/policies/push_v3/source/data_pipeline.py": "10067d5beb3589ebede527f373a5de5e19792c905491908dc51fd8f1b2f66d90",
+    "real_robot/policies/push_v3/source/policy.py": "1d9c4076f70f43e56dce46b184beb3d40f3f7abf4e56987111f5c196b3473469"
+  }
+}

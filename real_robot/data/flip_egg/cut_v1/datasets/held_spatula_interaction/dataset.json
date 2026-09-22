@@ -1,0 +1,775 @@
+{
+  "component_kind": "learned_policy",
+  "execution_contract": "egg_interaction_v1 supplies task-dependent short tool motion to geometry_execution.track_local. Entry requires a retained known spatula, a validated T_ee_blade, identified egg/pan, a task-session initial-face reference and a usable fresh scene observation. It may start in the demonstrated lifted-tool approach envelope or a supported intermediate interaction state; it is not a dropped-tool recovery policy. At 10 Hz return mean motion u[6], uncertainty[6], validity and evidence/status references. u consists of average blade-origin linear velocity in its current local axes (m/s) and a local rotation-vector rate (rad/s), committed for at most 0.10 s. Decode as described in the heuristic and ask the executor to track that geometry; the policy does not issue joint velocity, motor torque or gripper commands. Hold the validated grasp setting. The executor supplies actual arrival/error/constraint feedback; every bounded step is followed by reobservation. A path/timing rejection, grip change, significant scene shift or interruption invalidates the old output. The Agent can request hold, new observation or safe empty-tool retreat. Release and apparent face change are observations, not model-certified success. Additional contact-safe tracking and perception/calibration dependencies are deployment gates, not already supplied abilities.",
+  "heuristics": [
+    {
+      "action_decoding": "Let T_base_B(i)=[R_i,p_i] be the current blade frame, with origin at the centre of the blade's leading edge, x along the blade from handle toward that edge, z the blade-face normal, and y completing a right-handed frame. For u=[v_B,omega_B] and h=0.10 s, p_goal=p_i+R_i v_B h; R_goal=R_i Exp(omega_B h). Convert the blade goal to EE and flange goals using the current validated rigid T_ee_B and T_flange_ee. The supplied executor generates feasible connecting joint motion. This is not a global spatial-twist exponential about the robot base. In contact, demand the corresponding short straight/rotational interpolation with bounded compliance and timing fidelity; reject rather than silently reroute or materially retime. Apply tool/robot speed, displacement, rotation, rim, workspace and force-limit checks from the verified adapter. Out-of-distribution/uncertain goals produce no motion. No gripper action is learned: retain the established tool grasp until the Agent separately commands release in a safe location. If the achieved attachment changes, do not apply the old blade transform.",
+      "applicability": "Same known spatula and receiving pan geometry, grasp compatible with the calibrated tool model, egg object initially in the pan or visibly supported on the blade during a continuing attempt. Covers final free approach, angle and insertion adjustments, withdrawal/reposition within the pan, lifting a supported object, release-producing motions and immediate clearance. Does not assume an obligatory phase clock or a full 180-degree wrist rotation. Exclude autonomous deployment on a dropped/off-table egg, unknown tool, unverified attachment, obstructed workspace, missing calibration or unreliable observations.",
+      "augmentation": "Use photometric brightness/contrast/white-balance and background perturbations consistently across a history; preserve egg-face distinctions rather than randomizing them away. Camera crops/resizes transform masks, keypoints, intrinsics and pixel mappings together. Small planar translation/yaw augmentation is applied jointly to reconstructed scene geometry, caller pan interior, tool/egg geometry and labels, with projective rendering/warping only for features supported on the relevant plane; do not pretend lifted objects lie on the pan plane. A common base-frame rigid coordinate change must transform all camera extrinsics, robot/tool/scene poses and goals together; local blade labels then remain invariant. Do not rotate q/dq numerically as Cartesian vectors: retain them only for pure coordinate relabeling of the same robot state, or omit physical-scene augmentation requiring unavailable IK. No arbitrary scaling of metric tools, mirroring of tool handedness, phase reversal, goal relabeling to arbitrary landing points or temporal speed changes around release. Add calibrated pose/keypoint noise with validity/covariance, camera dropout and history truncation so the model learns abstention rather than substituting privileged poses. Any augmentation producing infeasible geometry is rejected.",
+      "evidence": [
+        {
+          "indices": [
+            600,
+            603,
+            900,
+            1200,
+            1650,
+            1810
+          ],
+          "trajectory_id": "episode_2026091916095801"
+        },
+        {
+          "indices": [
+            650,
+            1400,
+            1700,
+            2579
+          ],
+          "trajectory_id": "episode_2026091916200101"
+        },
+        {
+          "indices": [
+            400,
+            1400,
+            1800,
+            3345
+          ],
+          "trajectory_id": "episode_2026091916295601"
+        },
+        {
+          "indices": [
+            600,
+            2050,
+            2140
+          ],
+          "trajectory_id": "episode_2026091916411901"
+        },
+        {
+          "indices": [
+            1000,
+            1800,
+            2200,
+            2902
+          ],
+          "trajectory_id": "episode_2026091916534901"
+        },
+        {
+          "indices": [
+            400,
+            1520,
+            1550,
+            1580,
+            1610,
+            1833
+          ],
+          "trajectory_id": "episode_2026091916553801"
+        }
+      ],
+      "goal_conditioning": "Input the session's turn_over_in_same_pan goal, selected egg/pan IDs, causal initial-face reference crop [3,64,64], and current permitted pan interior. The initial visible face is the reference, not an absolute food-side class. Do not input future support/phase/success annotations. The desired outcome persists across observed retries. Unsupported arbitrary landing-point commands are rejected at the calling interface.",
+      "handoff": {
+        "entry_conditions": "Executor reports retained known tool; images show consistent tool co-motion, attachment fit passes uncertainty checks, egg/pan are identified and the workspace is cleared. Initialize from recent causal observations, not a stored demonstration pose.",
+        "exit_conditions": "Return bounded local proposals until the Agent observes release, empty-tool clearance and an inspectable resting egg, or until an invalidity/failure requires arbitration. Verified flip completion requires Agent confirmation of opposite-face-up support in the pan; recording termination is not an exit label.",
+        "failure_signatures": "Tool fit changes relative to EE, width departs from validated hold range, no progress over a configured timeout, egg leaves allowed region, pan shifts beyond tracker confidence, support is unobservable, tracking residual exceeds limits, stale image, force/torque limit, human intervention or infeasible motion. These trigger hold/cancel and reobservation, not an untrained recovery action.",
+        "overlap_role": "The full prefix supplies initial-face reference, perception/grasp calibration and causal history without control loss. The handoff row is shared with executor evidence. Final three rows, or longer intervention tails, are targets/outcomes only. Source reuse never supplies future inputs.",
+        "successor_readiness": "Provide the Agent fresh third/wrist images, tool attachment and uncertainty, pan/egg tracks, observed support state with unknown allowed, attempted-release latch and executor status. Empty-tool clearance enables an explicit safe retreat; a still-supported egg may permit continued local interaction. Unknown orientation requires inspection, not automatic retry."
+      },
+      "heuristic_id": "blade_relative_local_motion",
+      "input_preprocessing": "Raw prerequisites: paired third/wrist RGB, T_base_flange, T_base_ee, q[7], measured dq[7], tau_ext[7], gripper_width_m and gripper_position, t/recv_time and image age/time fields. Retain action_json for audit and command-vs-motion checks, not as a causal teacher input; retain raw depth/media but do not use depth metrically without a separate scale/registration validation. Load each episode's own metadata. Inspected metadata for 16095801, 16411901 and 16583301 have the same recorded calibration, TCP translation [0,0,0.24] m and yaw -90 degrees; this TCP is not a measured spatula-tip transform. Recorded calibration reports about 3.63 mm pose consistency and 4.56 px reprojection RMS, not guaranteed contact accuracy. The wrist factory and calibrated K/dist differ: use the calibrated K/dist with its calibrated extrinsic, validate on the actual RGB stream, and never mix pairs. T_base_cam_wrist=T_base_flange*T_flange_cam. Preserve raw sample pairings and timestamps; negative recorded image age or device timestamp reset is not repaired by shifting rows. Accept only freshness/geometry validated inputs and report uncertainty; exposure synchronization has not been established.\nRequired preparation, not existing annotations: manually annotate original training images for pan/egg/tool masks and six known-tool landmarks (leading-edge left/right, blade shoulders left/right, handle end and a distinct handle/shaft landmark) with visibility. Use inspected anchors plus every 60th original image as initial annotation candidates, then add difficult occlusion/insertion/release images after review. This auxiliary annotation set is separate from control-anchor loss, keyed to original source index and episode split. No masks/poses exist yet. Train scene_geometry_aux with class-balanced mask CE+Dice, landmark heatmap loss and visibility BCE; held-out annotations measure its uncertainty. At deployment this model replaces manual labels; the Agent provides initial object selection/ROI, not a future pose. Measure the actual rigid spatula landmark coordinates, collision mesh, jaw geometry, pan radius/interior surface height and table plane before implementation. Fit the known tool by calibrated PnP/multiview reprojection with ambiguity checks. Fit the pan's rim/centre on its measured support plane; do not substitute the old calibration-board plane for the pan surface. Define pan frame P with origin at its fitted centre, z the measured upward normal, x projected base x and y right-handed. Thus pan-handle heading is an obstacle cue, not an artificial required policy orientation. Estimate T_ee_B from visible post-grasp tool observations, lock it while its residuals remain consistent and invalidate on slip. When tool visibility is lost briefly, propagate only with kinematics and increased uncertainty. No future-smoothed pose may be a training input.\nThe egg mask yields image centroid/extents. Only intersect its rays with the pan plane when observed to be pan-supported, or the current blade plane when visibly supported there; otherwise its metric position is unknown, not a fabricated planar point. Keep 2D mask evidence for airborne/occluded cases. Support is a conservative geometric/temporal observation with an unknown value, not a force-contact label. Use both views without assuming exposure-level simultaneity; high reprojection disagreement during motion requests stationary reobservation.\nPolicy tensors: five causal observations, nominal offsets 0,-0.1,-0.2,-0.3,-0.4 s chosen from existing earlier paired rows, with actual time offsets and validity masks. Each has two object-centred, aspect-preserving letterboxed RGB crops [2,3,224,224], semantic probability maps [2,4,224,224], tool landmarks/visibility [2,6,3], proprioception [22]=q7+dq7+tau7+width1, tool pose in P [9]=translation3+continuous rotation6, egg centroid [3] plus metric-valid bit, planar extents[2], pan radius[1], and covariance/visibility blocks explicitly typed in the later loader. Supply camera age[2], crop-to-original transforms and calibration IDs. Gripper_position is retained for diagnostics rather than treated as force. Normalize metric quantities by fixed physical training scales, not per-episode extrema. Estimate torque baseline from causal stationary free-space data or calibrated setup; do not call tau_ext a measured Cartesian wrench. Before the first usable history, pad with invalid entries, not future frames. Shared small CNN spatial pooling plus geometry MLP feeds the GRU; no elapsed-episode clock is an input.",
+      "limitations": "All performance and invariance claims are untested. Raw camera/robot pairing is not verified exposure synchronization, and future measured displacement can reflect controller lag or stiction rather than operator intent. The action w field must not be blindly decoded using teleop rotation_frame=ee: inspected w vectors vary with EE orientation and may already be transformed by track_twist. This design deliberately derives geometric targets from measured transforms instead; later controller binding must still verify units and timing. Tool geometry and masks must be created, and attachment errors directly corrupt blade targets. An auxiliary model trained on this small setup may fail under occlusion or novel appearance. Unknown success labels preclude claiming all demonstrations succeeded or training a trustworthy binary stop classifier from their endings. Generic geometry tracking is not a validated compliant/contact controller; safe contact binding and test data are mandatory. Material, heat, food compliance, alternative tools, arbitrary entry directions and robust failure recovery are not established.",
+      "pipeline_implications": "Target conversion L: for each declared dense anchor i, use only original rows i and i+3 of the same materialized episode, with dt=t[i+3]-t[i]. With the current causal attachment estimate held fixed over this short interval, obtain T_base_B at both robot poses. Label v_B=R_i^T(p[i+3]-p[i])/dt and omega_B=Log(R_i^T R[i+3])/dt. These six rates describe achieved local blade motion, not raw command velocities or contact force. Require finite SE(3), positive dt in an audited nominal range (proposed 0.05-0.20 s), and valid attachment; log rejected labels and reasons without altering raw cuts or substituting zeros. The target row is training-only future evidence. Terminal three-row buffers make the conversion possible at the last normal anchor; special tails cap targets before inspected human intervention. Do not infer stop labels from tiny terminal displacement. Train the actor by mixture negative log likelihood with translation/rotation scales, endpoint Huber/geodesic consistency and weak within-mode temporal regularization; never average incompatible insertion and withdrawal modes. A soft blade-axis/tilt regularizer encourages the observed low-dimensional insertion structure but does not hard-zero lateral motion, roll or yaw. Use episode-balanced sampling and cap static/near-zero windows at 10% of each minibatch; retain their exact rows. Sample adjustment-heavy and release windows rather than discarding unsuccessful-looking approaches. Repeated commands at 30 Hz are not independent 20 Hz decisions. Train with truncated BPTT over 2 s, causal warm-up up to 1 s inside the materialized episode, and random history truncation. Reset memory at original episode boundaries and actual reacquisition/interruption, not at arbitrary phase times. Auxiliary scene annotations are prepared from the same retained media under the same split; manual labels and future outcome audits are never runtime actor inputs. Publish annotation versions, fitted geometry, target validity counts and calibration uncertainty before training. Do not run code or training in this cut stage.",
+      "policy_contract": {
+        "caller_arguments": "session_id; task=turn_over_in_same_pan; egg_track_id; pan_track_id; spatula_template_id; initial_face_reference; allowed_pan_interior; validated T_ee_B; geometry/calibration versions; safety envelope; fresh paired observations; reset/resume flag. No phase chosen from episode time and no supplied future success.",
+        "input_output_contract": "Causal tensors/geometry are specified in input_preprocessing. Return u[6] in current blade axes (m/s and rad/s), predicted spread[6], validity/reason, support/visibility evidence references, proposed horizon<=0.10 s, and current observation ID. The selected Gaussian mode is one consistent motion proposal, not an average of modes. The executor must reject expired or infeasible proposals. No joints, gripper commands, force targets or guaranteed flip flag are returned.",
+        "memory_and_handoff": "Maintain a 128-state GRU and short causal frame buffer within a session; the Agent separately retains the original-face goal and an observed release-attempt latch. Initialize from recent actual observations on entry; missing history is masked. Continuous adjustments reuse state. After interruption, slip, object reassignment or new grasp, clear motion memory and warm up from fresh causal observations, while preserving the original task goal unless the Agent explicitly starts a new task.",
+        "selection_cues": "Use when a known spatula is visibly retained and the egg/pan are observable in the demonstrated workspace; it handles the transition from lifted-tool approach through interaction progress. Use geometry_execution alone for calibrated acquisition and empty-tool free-space moves. Unknown geometry/support, a dropped tool or an off-pan object requests assistance rather than a different untrained phase policy.",
+        "status_and_progress": "At each 10 Hz call provide active or invalid with reason, uncertainty, track visibility and observed support evidence. Executor feedback reports local goal progress. The Agent monitors mask/pose changes, support acquisition, release and settled appearance; no-progress timeout and repeated rejected goals stop the cycle. completed_flip is issued only by the Agent's explicit visual verification against the initial reference, with unknown allowed. The scene model is not a safety-rated human detector."
+      },
+      "policy_id": "egg_interaction_v1",
+      "rationale": "Observed regularity is a rigid gripped spatula with nearly constant gripper feedback, repeated insertion-angle adjustments, supported lifting and a short release event, across changing pan locations/headings. The residual learning problem is what local blade motion to request now, not how to solve arm kinematics or how long an episode should run. Six blade-relative motion coordinates, causal object-centred vision, a pan-relative scene and a held-gripper constraint are an implementable bias that removes predictable robot/camera variation while preserving interaction choices. The episode_2026091916553801 frames 1550/1580/1610 show that the egg can leave the tool and land after a relatively small tool rotation; a hard-coded 180-degree wrist flip would be the wrong prior. Dense feedback is chosen because support and insertion change within an attempt and are not guaranteed by the supplied planner. Sharing phases avoids brittle handoffs and uses adjustments as data. Expected generalization is within the observed geometry/appearance envelope, pending evaluation.",
+      "statement": "Learn one causal, blade-relative short-motion policy for all held-spatula interaction progress; delegate robot motion generation, known-tool acquisition and safety enforcement to explicit executor adapters."
+    }
+  ],
+  "name": "Shared held-spatula interaction with full causal and outcome context",
+  "plan_hash": "2b7859f5749079958fe94c195a109c92af7f4b99bbf1e40976995418ab234f21",
+  "schema": "real_robot.cut_dataset.v3",
+  "segments": [
+    {
+      "boundary_evidence_indices": [
+        0,
+        600,
+        1807,
+        1810
+      ],
+      "condition_evidence_indices": [
+        600,
+        900,
+        1200,
+        1650
+      ],
+      "decision_indices": [],
+      "deployment_condition_source": "Current retained tool, observed egg/pan and session initial-face goal.",
+      "directory": "real_robot/data/flip_egg/cut_v1/datasets/held_spatula_interaction/segments/0000",
+      "label_derivation": "Use conversion L at each anchor i with future original row i+3; [0,600) is initialization/acquisition context and [1808,1811) target/outcome buffer.",
+      "merge_check": "Share with all other held-tool episodes, not acquisition control loss.",
+      "objective": "Approach, insert, lift, release and clear using local tool motion.",
+      "rationale": "600 is lifted tool; later views show blade beside/under egg, supported lift and egg back in pan.",
+      "records": 1811,
+      "records_sha256": "76ba01ab6f529ccdbe402275fb38e4e224cf0e4588a55667c7f2b77ee471410f",
+      "samples_sha256": "451b24d396043998cbe782dda20027001eafb11d4e56b4f8d259a59d4cf9bb5e",
+      "segment_id": "interaction_01",
+      "split_check": "Keep adjustments and release continuous; no artificial phase labels.",
+      "start": 0,
+      "stop": 1811,
+      "supervised_start": 600,
+      "supervised_stop": 1808,
+      "supervision_exclusions": [],
+      "supervision_kind": "dense",
+      "training_condition": "Held-tool control only; causal initial goal from row 0; masks/geometry derived online-equivalently.",
+      "trajectory_id": "episode_2026091916095801",
+      "uncertainty": "Outcome appears changed but no verified task-success label; calibration/contact validity is separately audited."
+    },
+    {
+      "boundary_evidence_indices": [
+        0,
+        600,
+        2056,
+        2059
+      ],
+      "condition_evidence_indices": [
+        600,
+        2056
+      ],
+      "decision_indices": [],
+      "deployment_condition_source": "Retained tool, current images/geometry and persistent flip goal.",
+      "directory": "real_robot/data/flip_egg/cut_v1/datasets/held_spatula_interaction/segments/0001",
+      "label_derivation": "L; prefix [0,600) is context, last three rows are future-target/outcome buffer.",
+      "merge_check": "Same local-output contract across episodes.",
+      "objective": "Feedback-conditioned held-tool interaction.",
+      "rationale": "600 shows held tool; successive inspected views show prolonged alignment then support and release.",
+      "records": 2060,
+      "records_sha256": "12fcf516faac2618d8b4b98684a42e889583e9f4ab3b5998192bbd39c337a72e",
+      "samples_sha256": "7fe426d8690d7be07bf44447648938265e958d0c024e17c59adb07cc98dffda9",
+      "segment_id": "interaction_02",
+      "split_check": "Keep alignment and manipulation in one causal sequence.",
+      "start": 0,
+      "stop": 2060,
+      "supervised_start": 600,
+      "supervised_stop": 2057,
+      "supervision_exclusions": [],
+      "supervision_kind": "dense",
+      "training_condition": "Same tool/pan setup, goal turn_over_in_same_pan.",
+      "trajectory_id": "episode_2026091916151401",
+      "uncertainty": "Final gripper command changes without immediate width change; no learned gripper target."
+    },
+    {
+      "boundary_evidence_indices": [
+        0,
+        600,
+        1908,
+        1911
+      ],
+      "condition_evidence_indices": [
+        600,
+        1908
+      ],
+      "decision_indices": [],
+      "deployment_condition_source": "Observed retained tool and tracked interaction progress.",
+      "directory": "real_robot/data/flip_egg/cut_v1/datasets/held_spatula_interaction/segments/0002",
+      "label_derivation": "L; pre-600 rows context, final three rows target/outcome evidence.",
+      "merge_check": "Pool with equivalent blade-relative decisions.",
+      "objective": "Approach and turn interaction with local feedback.",
+      "rationale": "Held tool at 600, angle adjustment beside egg around 800-1000, later support/lift.",
+      "records": 1912,
+      "records_sha256": "239f18e12e802175cf84892fd296f928fb459f824018ce8c22d2bb89ca4e7c4a",
+      "samples_sha256": "d7dd9e95887e86a4ba2b4b16e8776177388b000b0accd9150b9db6cdc25d0068",
+      "segment_id": "interaction_03",
+      "split_check": "Do not separate tilt corrections from insertion.",
+      "start": 0,
+      "stop": 1912,
+      "supervised_start": 600,
+      "supervised_stop": 1909,
+      "supervision_exclusions": [],
+      "supervision_kind": "dense",
+      "training_condition": "Causal scene/goal conditioning, gripper held.",
+      "trajectory_id": "episode_2026091916165401",
+      "uncertainty": "No precise support/contact labels supplied."
+    },
+    {
+      "boundary_evidence_indices": [
+        0,
+        400,
+        1684,
+        1687
+      ],
+      "condition_evidence_indices": [
+        400,
+        1684
+      ],
+      "decision_indices": [],
+      "deployment_condition_source": "Actual held-tool state, not fixed episode duration.",
+      "directory": "real_robot/data/flip_egg/cut_v1/datasets/held_spatula_interaction/segments/0003",
+      "label_derivation": "L; pre-400 context and final-three target buffer.",
+      "merge_check": "Earlier handoff is a variation of the same interface.",
+      "objective": "Held-tool local approach and manipulation.",
+      "rationale": "Faster acquisition; retain all subsequent insertion adjustments and release.",
+      "records": 1688,
+      "records_sha256": "a5e64c6731707cc21f31ae2c7117688986e23deceee749870c1f70a24ede4342",
+      "samples_sha256": "31e61c6be90665a6c3b8cabe3f2009adc97604a01d9ec734b4c7e1264e4e5d21",
+      "segment_id": "interaction_04",
+      "split_check": "One coherent feedback interaction despite shorter duration.",
+      "start": 0,
+      "stop": 1688,
+      "supervised_start": 400,
+      "supervised_stop": 1685,
+      "supervision_exclusions": [],
+      "supervision_kind": "dense",
+      "training_condition": "Known tool held; goal persists from initial scene.",
+      "trajectory_id": "episode_2026091916183001",
+      "uncertainty": "Visual outcome is evidence, not annotated success."
+    },
+    {
+      "boundary_evidence_indices": [
+        0,
+        650,
+        2576,
+        2579
+      ],
+      "condition_evidence_indices": [
+        650,
+        1400,
+        1700
+      ],
+      "decision_indices": [],
+      "deployment_condition_source": "Current blade/egg relation and recent causal history.",
+      "directory": "real_robot/data/flip_egg/cut_v1/datasets/held_spatula_interaction/segments/0004",
+      "label_derivation": "L; prefix context, final-three target buffer; retain adjustment attempts without success filtering.",
+      "merge_check": "Same physical decision even during renewed insertion.",
+      "objective": "Adjust insertion, establish support and execute release motion.",
+      "rationale": "1400 blade crosses above egg, 1700 returns beside it, later insertion/lift follows.",
+      "records": 2580,
+      "records_sha256": "bed8a6235c7390c1c67dc83ee4e520074882c2620cce71372e9982ccac6f820c",
+      "samples_sha256": "59fb7c4f6db69ab0573cf432265909b564cd1d8492226f9726e292f2c3d91021",
+      "segment_id": "interaction_05",
+      "split_check": "Splitting at the adjustment would hide recovery context and create a false mandatory phase.",
+      "start": 0,
+      "stop": 2580,
+      "supervised_start": 650,
+      "supervised_stop": 2577,
+      "supervision_exclusions": [],
+      "supervision_kind": "dense",
+      "training_condition": "Shared held-tool policy including imperfect approaches.",
+      "trajectory_id": "episode_2026091916200101",
+      "uncertainty": "Exact failed-attempt count and contact state are unannotated."
+    },
+    {
+      "boundary_evidence_indices": [
+        0,
+        600,
+        2098,
+        2101
+      ],
+      "condition_evidence_indices": [
+        600,
+        2098
+      ],
+      "decision_indices": [],
+      "deployment_condition_source": "Tool retention and current tracked egg/pan.",
+      "directory": "real_robot/data/flip_egg/cut_v1/datasets/held_spatula_interaction/segments/0005",
+      "label_derivation": "L; pre-600 context, final-three future buffer.",
+      "merge_check": "Same tool-relative output and goal.",
+      "objective": "Feedback-controlled insertion through release.",
+      "rationale": "Extended support acquisition and changed pan/egg placement are retained.",
+      "records": 2102,
+      "records_sha256": "acf7bdeb6d3fa52ac7164c06ead66ab10dc74be1b9443d7a7e8045139ab5576c",
+      "samples_sha256": "c7eaf2c64bfb7856fb2c62955eead93f6b2d4a52348d223be26ce92a4fe14633",
+      "segment_id": "interaction_06",
+      "split_check": "Keep interaction history through release.",
+      "start": 0,
+      "stop": 2102,
+      "supervised_start": 600,
+      "supervised_stop": 2099,
+      "supervision_exclusions": [],
+      "supervision_kind": "dense",
+      "training_condition": "Known tool held and causal flip goal.",
+      "trajectory_id": "episode_2026091916223301",
+      "uncertainty": "Pan displacement must be tracked online, not assumed zero."
+    },
+    {
+      "boundary_evidence_indices": [
+        0,
+        600,
+        2196,
+        2199
+      ],
+      "condition_evidence_indices": [
+        600,
+        2196
+      ],
+      "decision_indices": [],
+      "deployment_condition_source": "Observed relative blade/egg/pan state.",
+      "directory": "real_robot/data/flip_egg/cut_v1/datasets/held_spatula_interaction/segments/0006",
+      "label_derivation": "L with real i+3 target rows; prefix and final-three context as above.",
+      "merge_check": "Share across changed egg position.",
+      "objective": "Held-tool approach, insertion, lift and release.",
+      "rationale": "Egg initially toward the pan edge; local geometry matters more than episode timing.",
+      "records": 2200,
+      "records_sha256": "170c3989c3ae62189e987e73b778b5c7fd03bc25fcf83b7f1dc204ab3f107a5f",
+      "samples_sha256": "609a1bd6a59d9a345d295dad1d6d316eafa569025731ea6e09f47b5bca057018",
+      "segment_id": "interaction_07",
+      "split_check": "Preserve one continuous manipulation episode.",
+      "start": 0,
+      "stop": 2200,
+      "supervised_start": 600,
+      "supervised_stop": 2197,
+      "supervision_exclusions": [],
+      "supervision_kind": "dense",
+      "training_condition": "Same known-tool task; no future phase input.",
+      "trajectory_id": "episode_2026091916244201",
+      "uncertainty": "Edge placement does not establish arbitrary geometry transfer."
+    },
+    {
+      "boundary_evidence_indices": [
+        0,
+        400,
+        1910,
+        1913
+      ],
+      "condition_evidence_indices": [
+        400,
+        1910
+      ],
+      "decision_indices": [],
+      "deployment_condition_source": "Lifted tool and current object observations.",
+      "directory": "real_robot/data/flip_egg/cut_v1/datasets/held_spatula_interaction/segments/0007",
+      "label_derivation": "L; prefix [0,400) context, final-three buffer.",
+      "merge_check": "Early handoff is within the shared approach envelope.",
+      "objective": "Choose local motions from early lifted-tool state through release.",
+      "rationale": "Larger visible egg extent and different pan placement provide observed variation.",
+      "records": 1914,
+      "records_sha256": "0915d057d00beec044bf4cb62c12ed369eca8bafd4efc4ffddba76d524f00a9d",
+      "samples_sha256": "ae099c5e5d54a3e739f21d2cd2d7055bc85763b3fc5e9aea07c01d165c243f22",
+      "segment_id": "interaction_08",
+      "split_check": "Keep free approach and contact transition observable rather than pretending arrival is contact certainty.",
+      "start": 0,
+      "stop": 1914,
+      "supervised_start": 400,
+      "supervised_stop": 1911,
+      "supervision_exclusions": [],
+      "supervision_kind": "dense",
+      "training_condition": "Causal observation and persistent same-pan flip goal.",
+      "trajectory_id": "episode_2026091916283401",
+      "uncertainty": "Object identity/material not verified from changed appearance."
+    },
+    {
+      "boundary_evidence_indices": [
+        0,
+        400,
+        3342,
+        3345
+      ],
+      "condition_evidence_indices": [
+        400,
+        1400,
+        1800
+      ],
+      "decision_indices": [],
+      "deployment_condition_source": "Causal support/geometry and history, not progress inferred from elapsed time.",
+      "directory": "real_robot/data/flip_egg/cut_v1/datasets/held_spatula_interaction/segments/0008",
+      "label_derivation": "L; preserve long adjustment history; final-three buffer and acquisition prefix carry no control loss.",
+      "merge_check": "No distinct output type justifies a separate retry policy.",
+      "objective": "Repeated local insertion adjustment, lift and release.",
+      "rationale": "Long duration contains substantial blade-angle/support adjustment, not merely longer transit.",
+      "records": 3346,
+      "records_sha256": "c5377ce5ac54b6f47d9b7d03373bdcc8d3fd8efa52a865b851a689ce7c1cd326",
+      "samples_sha256": "6fd033f96d3ed97b1351ea80738c4f16ec5493139d0987027decd3bc2e5371e6",
+      "segment_id": "interaction_09",
+      "split_check": "Do not cut out low-progress spans or merge disjoint attempts as separate successful rollouts.",
+      "start": 0,
+      "stop": 3346,
+      "supervised_start": 400,
+      "supervised_stop": 3343,
+      "supervision_exclusions": [],
+      "supervision_kind": "dense",
+      "training_condition": "Shared policy with episode-balanced weighting, including slow progress.",
+      "trajectory_id": "episode_2026091916295601",
+      "uncertainty": "No ground-truth contact, intent or successful-retry count."
+    },
+    {
+      "boundary_evidence_indices": [
+        0,
+        1000,
+        2580,
+        2583,
+        2772
+      ],
+      "condition_evidence_indices": [
+        1000,
+        2580,
+        2650
+      ],
+      "decision_indices": [],
+      "deployment_condition_source": "Online retained-tool state and task observations before human involvement.",
+      "directory": "real_robot/data/flip_egg/cut_v1/datasets/held_spatula_interaction/segments/0009",
+      "label_derivation": "L through i=2580, last target=2583. [0,1000) is context; [2581,2773) is target/outcome/intervention evidence only. No target is drawn from the human-touch frames at 2650 onward.",
+      "merge_check": "Same interaction model; human-assisted tail must not enter autonomous control loss.",
+      "objective": "Manipulate and release before intervention.",
+      "rationale": "At 2550-2600 egg is in pan and tool is clear; at 2650 a person touches the egg/pan.",
+      "records": 2773,
+      "records_sha256": "fc160240d63a5ac3d0b4881b97e499df55b3103e2adf1b88dd0ab604f58e2fd8",
+      "samples_sha256": "8f71e532b994ff4a69f002f23b9f117d5631556e3bbe928413242dcf582f4964",
+      "segment_id": "interaction_10",
+      "split_check": "Keep original tail for audit, but cap supervision conservatively instead of treating assistance as a robot retry.",
+      "start": 0,
+      "stop": 2773,
+      "supervised_start": 1000,
+      "supervised_stop": 2581,
+      "supervision_exclusions": [],
+      "supervision_kind": "dense",
+      "training_condition": "Autonomous-target interval ends before observed intervention; outcome remains unverified.",
+      "trajectory_id": "episode_2026091916320101",
+      "uncertainty": "Human tail cannot establish the robot-only final outcome; exact intervention onset is not a trained label."
+    },
+    {
+      "boundary_evidence_indices": [
+        0,
+        600,
+        2895,
+        2898
+      ],
+      "condition_evidence_indices": [
+        600,
+        2895
+      ],
+      "decision_indices": [],
+      "deployment_condition_source": "Current observed geometry and causal adjustment history.",
+      "directory": "real_robot/data/flip_egg/cut_v1/datasets/held_spatula_interaction/segments/0010",
+      "label_derivation": "L; prefix context and final-three target buffer.",
+      "merge_check": "Extended corrections remain the same local-output problem.",
+      "objective": "Held-tool adjustments and release.",
+      "rationale": "Blade revisits different egg-relative positions before support and lift.",
+      "records": 2899,
+      "records_sha256": "83c23e1e61ca21d6b3e5cc7b395cf26883a3d23738db2f3e6d324a5ff8298ae1",
+      "samples_sha256": "a4c5100777e645597ba03c535ae573e27c93535d0d98f82e3e26fd7ea29ed4e5",
+      "segment_id": "interaction_11",
+      "split_check": "Avoid artificially selecting only late successful-looking motion.",
+      "start": 0,
+      "stop": 2899,
+      "supervised_start": 600,
+      "supervised_stop": 2896,
+      "supervision_exclusions": [],
+      "supervision_kind": "dense",
+      "training_condition": "Known tool and persistent same-pan goal.",
+      "trajectory_id": "episode_2026091916335001",
+      "uncertainty": "Appearance change is not an annotated success label."
+    },
+    {
+      "boundary_evidence_indices": [
+        0,
+        600,
+        2050,
+        2053,
+        2140
+      ],
+      "condition_evidence_indices": [
+        600,
+        2050,
+        2140
+      ],
+      "decision_indices": [],
+      "deployment_condition_source": "Observed held tool and front-handle pan layout; cleared workspace before intervention.",
+      "directory": "real_robot/data/flip_egg/cut_v1/datasets/held_spatula_interaction/segments/0011",
+      "label_derivation": "L through 2050, target 2053. Prefix is context; [2051,2141) is target/outcome/intervention evidence only.",
+      "merge_check": "Share policy across pan headings; exclude human pan repositioning from control loss.",
+      "objective": "Interact and release in the changed layout.",
+      "rationale": "At 2050/2053 egg rests in pan; at 2100/2140 a human repositions the pan.",
+      "records": 2141,
+      "records_sha256": "c00bff9d226588cf341db3abe02256aefa5b50483222cf90e0c10562cef84d85",
+      "samples_sha256": "fdcb11a525ab3a54e5663322c0be5f48fe86d192a4890b243f434dadaff00c58",
+      "segment_id": "interaction_12",
+      "split_check": "Keep tail for audit without training robot recovery from human motion.",
+      "start": 0,
+      "stop": 2141,
+      "supervised_start": 600,
+      "supervised_stop": 2051,
+      "supervision_exclusions": [],
+      "supervision_kind": "dense",
+      "training_condition": "Held-tool interaction before the human-intervention tail.",
+      "trajectory_id": "episode_2026091916411901",
+      "uncertainty": "Do not use final pan pose or final appearance as autonomous success ground truth."
+    },
+    {
+      "boundary_evidence_indices": [
+        0,
+        600,
+        2175,
+        2178
+      ],
+      "condition_evidence_indices": [
+        600,
+        2175
+      ],
+      "decision_indices": [],
+      "deployment_condition_source": "Current tool/egg/pan observations in moved-pan layout.",
+      "directory": "real_robot/data/flip_egg/cut_v1/datasets/held_spatula_interaction/segments/0012",
+      "label_derivation": "L; pre-600 context, final-three target/outcome buffer.",
+      "merge_check": "Same local coordinates despite changed global pan location.",
+      "objective": "Approach and manipulate with geometry-conditioned feedback.",
+      "rationale": "Pan position and handle heading differ; pan also moves during interaction.",
+      "records": 2179,
+      "records_sha256": "b5aa88f861fa4ba25adb904e82214664ea0a68b091771182cbcc7d984e6193a4",
+      "samples_sha256": "31ba4079f2f09bcf34062eced9bb03275b6ab6d0ce40dd66ce40310f86266042",
+      "segment_id": "interaction_13",
+      "split_check": "Keep pan-motion context with local action supervision.",
+      "start": 0,
+      "stop": 2179,
+      "supervised_start": 600,
+      "supervised_stop": 2176,
+      "supervision_exclusions": [],
+      "supervision_kind": "dense",
+      "training_condition": "Tracked rather than fixed pan frame.",
+      "trajectory_id": "episode_2026091916445601",
+      "uncertainty": "No assumption that the pan is rigidly anchored to the table."
+    },
+    {
+      "boundary_evidence_indices": [
+        0,
+        600,
+        2250,
+        2253,
+        2360
+      ],
+      "condition_evidence_indices": [
+        600,
+        2250,
+        2360
+      ],
+      "decision_indices": [],
+      "deployment_condition_source": "Retained tool and observed task state before assistance.",
+      "directory": "real_robot/data/flip_egg/cut_v1/datasets/held_spatula_interaction/segments/0013",
+      "label_derivation": "L through 2250 with target 2253; [2251,2361) is outcome/intervention context, never control loss.",
+      "merge_check": "Do not merge human touching the tool into learned manipulation.",
+      "objective": "Held-tool interaction through release and initial clearance.",
+      "rationale": "2250/2253 show egg resting and empty tool clear; final frame shows a human at the spatula.",
+      "records": 2361,
+      "records_sha256": "b9700c561673cf273b9d7f5820b4a08f3e95ff916f0e13b6171a8413b23c8e94",
+      "samples_sha256": "91be8f98156993ab6c2b67b72f4f226ec1a5507cf4210034506c6500188569b7",
+      "segment_id": "interaction_14",
+      "split_check": "Retain the intervention for failure/handoff audit, not as another autonomous phase.",
+      "start": 0,
+      "stop": 2361,
+      "supervised_start": 600,
+      "supervised_stop": 2251,
+      "supervision_exclusions": [],
+      "supervision_kind": "dense",
+      "training_condition": "Same-pan goal with fixed grasp setting and monitored attachment.",
+      "trajectory_id": "episode_2026091916463201",
+      "uncertainty": "Do not derive attachment or success labels from the human-affected final frames."
+    },
+    {
+      "boundary_evidence_indices": [
+        0,
+        900,
+        2000,
+        2003
+      ],
+      "condition_evidence_indices": [
+        900,
+        2000
+      ],
+      "decision_indices": [],
+      "deployment_condition_source": "Actual retained-tool arrival, not a shared start index.",
+      "directory": "real_robot/data/flip_egg/cut_v1/datasets/held_spatula_interaction/segments/0014",
+      "label_derivation": "L; prefix [0,900) context and final-three target buffer.",
+      "merge_check": "Variable pickup duration does not justify a new interaction model.",
+      "objective": "Held-tool approach through release.",
+      "rationale": "900 is the inspected lifted-tool approach; later egg support/lift and release are retained.",
+      "records": 2004,
+      "records_sha256": "cc59e01c04fdf0cb6bb772112fab5a5964b3351d4f494670432429419fe67a7e",
+      "samples_sha256": "0db0d293d3d82d9531b52eaabd7a8815666c5cb32baf6bfa7d94ac95775f029c",
+      "segment_id": "interaction_15",
+      "split_check": "Keep local continuous interaction; prefix remains available for goal/geometry initialization.",
+      "start": 0,
+      "stop": 2004,
+      "supervised_start": 900,
+      "supervised_stop": 2001,
+      "supervision_exclusions": [],
+      "supervision_kind": "dense",
+      "training_condition": "Same geometry-conditioned task after slow pickup.",
+      "trajectory_id": "episode_2026091916480201",
+      "uncertainty": "Final tool near dish is not a demonstrated verified tool-placement/release skill."
+    },
+    {
+      "boundary_evidence_indices": [
+        0,
+        600,
+        2395,
+        2398
+      ],
+      "condition_evidence_indices": [
+        600,
+        2395
+      ],
+      "decision_indices": [],
+      "deployment_condition_source": "Current central-pan layout and held-tool state.",
+      "directory": "real_robot/data/flip_egg/cut_v1/datasets/held_spatula_interaction/segments/0015",
+      "label_derivation": "L; prefix context, final-three target buffer.",
+      "merge_check": "Share across pan translations/headings.",
+      "objective": "Held-tool feedback interaction.",
+      "rationale": "Different pan layout with prolonged blade alignment before support.",
+      "records": 2399,
+      "records_sha256": "e72eb18d3c1e4ed69ee46280c93b3cd301dfb708aee3990e77617dc1bfc95185",
+      "samples_sha256": "6111898595d6bd95d1155794a8372ca5d78b84b463a9ff354039e98a724dd28c",
+      "segment_id": "interaction_16",
+      "split_check": "Keep alignment and insertion corrections causal.",
+      "start": 0,
+      "stop": 2399,
+      "supervised_start": 600,
+      "supervised_stop": 2396,
+      "supervision_exclusions": [],
+      "supervision_kind": "dense",
+      "training_condition": "Known-tool, same-pan flip goal; no episode-time conditioning.",
+      "trajectory_id": "episode_2026091916505401",
+      "uncertainty": "Held-out layout performance is unknown."
+    },
+    {
+      "boundary_evidence_indices": [
+        0,
+        600,
+        2007,
+        2010
+      ],
+      "condition_evidence_indices": [
+        600,
+        2007
+      ],
+      "decision_indices": [],
+      "deployment_condition_source": "Tool retention and causal observed egg support.",
+      "directory": "real_robot/data/flip_egg/cut_v1/datasets/held_spatula_interaction/segments/0016",
+      "label_derivation": "L; prefix and final-three buffers carry no control loss.",
+      "merge_check": "Same policy for shorter/longer attempts.",
+      "objective": "Local tool interaction and clearance.",
+      "rationale": "Egg is visibly back in pan by the inspected 1800 view; subsequent clearance remains useful.",
+      "records": 2011,
+      "records_sha256": "dc589550e46833df706637bb438963232816102c1e3f3d1b461ba3dc6e56b2da",
+      "samples_sha256": "0451d50912c2cd4b883034a573225b0f3c5bdc0b39a941b2b1d4e5a0d18b85c4",
+      "segment_id": "interaction_17",
+      "split_check": "No need to split off an independent clearance policy; planner can take over once the Agent verifies empty tool.",
+      "start": 0,
+      "stop": 2011,
+      "supervised_start": 600,
+      "supervised_stop": 2008,
+      "supervision_exclusions": [],
+      "supervision_kind": "dense",
+      "training_condition": "Persistent initial-face goal and tracked pan.",
+      "trajectory_id": "episode_2026091916522501",
+      "uncertainty": "Apparent end-state is not a verified success annotation."
+    },
+    {
+      "boundary_evidence_indices": [
+        0,
+        1000,
+        2899,
+        2902
+      ],
+      "condition_evidence_indices": [
+        1000,
+        1800,
+        2200
+      ],
+      "decision_indices": [],
+      "deployment_condition_source": "Observed blade/egg relation after a variable-duration acquisition.",
+      "directory": "real_robot/data/flip_egg/cut_v1/datasets/held_spatula_interaction/segments/0017",
+      "label_derivation": "L; long prefix is context only, final-three target buffer. Preserve recorded camera timestamp reset without realignment.",
+      "merge_check": "Readjustment at 1800 and later insertion at 2200 belong to the shared decision problem.",
+      "objective": "Repeated adjustment and release-producing local motion.",
+      "rationale": "Contains early idle time plus substantial held-tool readjustment, which must not become an episode clock.",
+      "records": 2903,
+      "records_sha256": "d37aa8e1cba6177dc49145b2d40bfca652b01484e928795341d9ec8998d8ca70",
+      "samples_sha256": "89c0623db8bac365ca0739b74fcb28668a759ffcfe9a4476e3765277ef998d5b",
+      "segment_id": "interaction_18",
+      "split_check": "Do not split retries or remove pauses solely to make a monotonic phase sequence.",
+      "start": 0,
+      "stop": 2903,
+      "supervised_start": 1000,
+      "supervised_stop": 2900,
+      "supervision_exclusions": [],
+      "supervision_kind": "dense",
+      "training_condition": "Causal same-pan task and image freshness validity.",
+      "trajectory_id": "episode_2026091916534901",
+      "uncertainty": "Third-camera device timestamps change scale/reset near the tail; sample pairings remain original."
+    },
+    {
+      "boundary_evidence_indices": [
+        0,
+        400,
+        1830,
+        1833
+      ],
+      "condition_evidence_indices": [
+        400,
+        1550,
+        1580,
+        1610
+      ],
+      "decision_indices": [],
+      "deployment_condition_source": "Retained tool with current observed support/release evidence.",
+      "directory": "real_robot/data/flip_egg/cut_v1/datasets/held_spatula_interaction/segments/0018",
+      "label_derivation": "L; prefix context and final-three future buffer. Release views are outcome evidence, not privileged phase input.",
+      "merge_check": "Same six-coordinate output spans lift and release; no 180-degree wrist-flip primitive is imposed.",
+      "objective": "Held-tool approach, support and release with immediate feedback.",
+      "rationale": "1550 shows egg on blade, 1580 an airborne/tilted egg, 1610 egg resting in pan; this motivates local release timing rather than fixed tool rotation.",
+      "records": 1834,
+      "records_sha256": "049bd67f0c2febad95b2b0d73b88895d04c4ad18cd8c2db56962cec80d14248b",
+      "samples_sha256": "1dd6d3cf07d41b73f1dae92952ca754b7f991beb3e947e8c348d5401b82c9831",
+      "segment_id": "interaction_19",
+      "split_check": "Preserve the supported-to-airborne-to-pan transition without discontinuous phase cuts.",
+      "start": 0,
+      "stop": 1834,
+      "supervised_start": 400,
+      "supervised_stop": 1831,
+      "supervision_exclusions": [],
+      "supervision_kind": "dense",
+      "training_condition": "Goal is opposite initial face in pan, not merely an empty spatula.",
+      "trajectory_id": "episode_2026091916553801",
+      "uncertainty": "Physical flip inference is visually supported but not a supplied verified success label; dynamics/material unmeasured."
+    },
+    {
+      "boundary_evidence_indices": [
+        0,
+        800,
+        2609,
+        2612
+      ],
+      "condition_evidence_indices": [
+        800,
+        2609
+      ],
+      "decision_indices": [],
+      "deployment_condition_source": "Current lifted tool, egg/pan tracks and original-face goal.",
+      "directory": "real_robot/data/flip_egg/cut_v1/datasets/held_spatula_interaction/segments/0019",
+      "label_derivation": "L; [0,800) is context, final-three rows target/outcome buffer.",
+      "merge_check": "Pool repeated insertion/tilt structure with the other episodes.",
+      "objective": "Held-tool interaction through release and clearance.",
+      "rationale": "800 clearly held tool; later views show insertion, support and empty-tool/egg-in-pan outcome.",
+      "records": 2613,
+      "records_sha256": "36be42dfd5ed94715ebf82d8864e055de7ad4077306c44c9bb26e59302f2203c",
+      "samples_sha256": "e697976fbcbe5f27e7b7bbf0007f229254a8aa3e9110860d1b1aaf94380cf91c",
+      "segment_id": "interaction_20",
+      "split_check": "Keep continuous progress and adjustments; do not force other episodes' phase timing.",
+      "start": 0,
+      "stop": 2613,
+      "supervised_start": 800,
+      "supervised_stop": 2610,
+      "supervision_exclusions": [],
+      "supervision_kind": "dense",
+      "training_condition": "Known-tool task with causal image/geometry inputs.",
+      "trajectory_id": "episode_2026091916583301",
+      "uncertainty": "No verified episode success or material labels; final clearance is not tool placement."
+    }
+  ],
+  "sequence_semantics": "Bag of independent original sequences; overlapping reuse allowed; never concatenate across cuts.",
+  "skill_id": "held_spatula_interaction",
+  "source_manifest": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/real_robot/runs/flip_egg/cut_v1/source_manifest.json",
+  "source_manifest_sha256": "f0fa20f69603f5c4b5a55c3163994ccbe3d36d9f4d4c712f25feee4541ab00f7",
+  "subgoal": "Given a retained spatula and the current egg/pan state, choose short tool motions that establish support, turn/release the egg into the pan, and expose the outcome for verification."
+}

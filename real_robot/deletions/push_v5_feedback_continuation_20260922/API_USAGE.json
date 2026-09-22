@@ -1,0 +1,54 @@
+{
+  "API_calls": 25,
+  "GPU_compute_included": false,
+  "cost_is_invoice": false,
+  "estimated_usd": 4.699118000000001,
+  "measured_at": 1790050286.5610669,
+  "model": "gpt-6-astra",
+  "reasoning_effort": "xhigh",
+  "run": "cancelled_push_v5_feedback_continuation",
+  "scope": "User-cancelled/deleted feedback continuation. Separate sunk cost; NOT the fresh Push v6.",
+  "sessions": [
+    {
+      "calls": 25,
+      "estimated_usd": 4.699118000000001,
+      "ledger": "real_robot/runs/push_letters/training_v6/design_00/cost_ledger.json",
+      "ledger_sha256": "8ddf8ae96cd2dec4b49f406cc59a0a450337ca26f63ff4b3003cff942a0d85a0",
+      "pricing_reference": "https://developers.openai.com/api/docs/models/gpt-6-astra",
+      "saved_rates_usd_per_million": {
+        "cache_write": 12.5,
+        "cached": 1.0,
+        "input": 10.0,
+        "output": 50.0
+      },
+      "session": "design_00",
+      "states": {
+        "consumed": 24,
+        "received": 1
+      },
+      "tokens_and_counts": {
+        "cache_write_tokens": 110080,
+        "cached_tokens": 2047818,
+        "input_tokens": 2157973,
+        "output_tokens": 25491,
+        "reasoning_tokens": 1758,
+        "total_tokens": 2183464,
+        "usage_reported_calls": 25
+      },
+      "unresolved_reserved_usd": 0.0
+    }
+  ],
+  "token_accounting": "Cached/cache-write tokens are input subsets; reasoning tokens are an output subset. Do not add these subsets again to total_tokens.",
+  "totals": {
+    "cache_write_tokens": 110080,
+    "cached_tokens": 2047818,
+    "input_tokens": 2157973,
+    "output_tokens": 25491,
+    "reasoning_tokens": 1758,
+    "total_tokens": 2183464,
+    "usage_reported_calls": 25
+  },
+  "unresolved_reserved_usd": 0.0,
+  "workflow_status": "cancelled_by_user",
+  "deleted_original_run": "real_robot/runs/push_letters/training_v6"
+}

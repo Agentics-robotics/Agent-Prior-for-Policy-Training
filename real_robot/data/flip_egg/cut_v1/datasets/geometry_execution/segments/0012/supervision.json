@@ -1,0 +1,27 @@
+{
+  "boundary_evidence_indices": [
+    0,
+    600
+  ],
+  "condition_evidence_indices": [
+    0,
+    600
+  ],
+  "decision_indices": [],
+  "deployment_condition_source": "Known-tool pose and retention check.",
+  "label_derivation": "Execution evidence only.",
+  "merge_check": "Different pan location affects scene constraints, not policy count.",
+  "objective": "Acquire and lift tool.",
+  "rationale": "600 is a lifted spatula state before insertion.",
+  "segment_id": "exec_13",
+  "split_check": "Preserve approach/closure/lift.",
+  "start": 0,
+  "stop": 601,
+  "supervised_start": null,
+  "supervised_stop": null,
+  "supervision_exclusions": [],
+  "supervision_kind": "executor_only",
+  "training_condition": "No policy loss.",
+  "trajectory_id": "episode_2026091916445601",
+  "uncertainty": "Calibrated tool and pan meshes remain required."
+}

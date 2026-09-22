@@ -1,0 +1,56 @@
+{
+  "API_calls": 0,
+  "archive_sha256": "fa3808ecc717d817294cd7b6b77ee3a38dfc97e2fadf5437c77fde6f07131e38",
+  "candidate_optimizer_updates": 0,
+  "date": "2026-09-22",
+  "environment_lock_sha256": "5fb79a9771bb9927dd7199334ce1aad4ed8cc1a162b7bc6b94d95c427a9dfba2",
+  "files_verified": 47,
+  "passed": true,
+  "relocated_root": "/tmp/push-v6-relocated-3zix7kha/pipeline_v2_bundle",
+  "result": {
+    "CLI_example_matches_worker": true,
+    "CLI_example_timing": {
+      "observed_geometry_call_seconds": 0.08636820793617517,
+      "observed_load_seconds": 9.092136992025189,
+      "timing_scope": "One offline example, includes IPC; excludes raw RGB perception and physical execution"
+    },
+    "executor_objectives_identical": true,
+    "hardware_io": false,
+    "logs": "/tmp/push-shape_push_v1-jyrilqxd",
+    "original_worker_output_errors": {
+      "contact_point_m": 0.0,
+      "direction_unit": 0.0,
+      "stroke_length_m": 0.0
+    },
+    "passed": true,
+    "ready": {
+      "checkpoint_sha256": "53b94470126d53bf61bf218ee0a168d828c2d95854bfb31605237f5eff0b134c",
+      "device": {
+        "logical_gpu": 0,
+        "minor": 6,
+        "physical_gpu": 4,
+        "uuid": "GPU-29557089-826b-ddb5-4d55-d03f2009a879"
+      },
+      "hardware_io": false,
+      "policy_id": "shape_push_v1",
+      "status": "ready"
+    },
+    "required_assets_loaded": [
+      "sam2.1_hiera_small.pt"
+    ],
+    "root": "/tmp/push-v6-relocated-3zix7kha/pipeline_v2_bundle",
+    "statuses": [
+      "proposed",
+      "proposed",
+      "stale_scene",
+      "interrupted",
+      "needs_view"
+    ]
+  },
+  "returncode": 0,
+  "robot_actions_executed": 0,
+  "stderr": "",
+  "stdout": "{\"passed\": true, \"root\": \"/tmp/push-v6-relocated-3zix7kha/pipeline_v2_bundle\", \"original_worker_output_errors\": {\"contact_point_m\": 0.0, \"direction_unit\": 0.0, \"stroke_length_m\": 0.0}, \"statuses\": [\"proposed\", \"proposed\", \"stale_scene\", \"interrupted\", \"needs_view\"], \"executor_objectives_identical\": true, \"required_assets_loaded\": [\"sam2.1_hiera_small.pt\"], \"ready\": {\"status\": \"ready\", \"policy_id\": \"shape_push_v1\", \"device\": {\"physical_gpu\": 4, \"uuid\": \"GPU-29557089-826b-ddb5-4d55-d03f2009a879\", \"logical_gpu\": 0, \"minor\": 6}, \"checkpoint_sha256\": \"53b94470126d53bf61bf218ee0a168d828c2d95854bfb31605237f5eff0b134c\", \"hardware_io\": false}, \"logs\": \"/tmp/push-shape_push_v1-jyrilqxd\", \"hardware_io\": false, \"CLI_example_matches_worker\": true, \"CLI_example_timing\": {\"observed_load_seconds\": 9.092136992025189, \"observed_geometry_call_seconds\": 0.08636820793617517, \"timing_scope\": \"One offline example, includes IPC; excludes raw RGB perception and physical execution\"}}\n",
+  "synthetic_executor_flags": true,
+  "training_data_bundled": false
+}

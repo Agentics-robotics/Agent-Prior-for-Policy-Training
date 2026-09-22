@@ -1,0 +1,41 @@
+{
+  "authorization": "User 2026-09-21: ok\uff0c\u8c03\u7528APi\u6267\u884c\u6a21\u578b\u4e66\u5199\u548c\u8bad\u7ec3\u5427\uff0c\u662f\u4e0d\u662f\u8fd8\u9700\u8981\u5904\u7406\u6570\u636ehh. Implement and train the frozen cut_v6 shape_push_v1 design, including necessary actual data processing and local callable policy/executor interface; persistent official OpenAI data permission applies. Preserve older artifacts and concurrent Flip egg work.",
+  "config_path": "real_robot/configs/push_training_v4.json",
+  "cut_config": "real_robot/configs/push_cut_v6_with_example.json",
+  "cut_output": "real_robot/data/push_letters/cut_v6",
+  "cut_run": "real_robot/runs/push_letters/cut_v6_with_example",
+  "devices": [
+    4
+  ],
+  "environment_manifest": "real_robot/training_v4_environment/pixi.toml",
+  "execution_guard_usd": 100,
+  "interface": "real_robot/policy_training_v4/INTERFACE.md",
+  "max_api_calls": 160,
+  "max_output_tokens": 32000,
+  "max_tool_calls": 320,
+  "model": "gpt-6-astra",
+  "policies": [
+    "shape_push_v1"
+  ],
+  "policy_datasets": {
+    "shape_push_v1": "shape_push_decisions"
+  },
+  "prompt": "real_robot/prompts/implement_policies_v4.md",
+  "reasoning_effort": "xhigh",
+  "request_timeout_seconds": 1200,
+  "run": "real_robot/runs/push_letters/training_v4",
+  "schema": "real_robot.train_config.v4",
+  "scope": "API-owned cut_v6 preprocessing, geometric decision targets, model and agent interface implementation, then actual independent neural training; keep executor-only evidence out of supervised samples. No physical robot execution, new cuts or unrelated Flip egg work.",
+  "service_tier": "default",
+  "task_specification": "real_robot/task_specifications/push_letters_v2.md",
+  "training": {
+    "checkpoint_every": 2000,
+    "ema_decay": 0.999,
+    "log_every": 100,
+    "max_cache_bytes": 64000000000,
+    "max_updates": 20000,
+    "optimizer": "AdamW",
+    "parameter_limit": 64000000,
+    "seed": 0
+  }
+}

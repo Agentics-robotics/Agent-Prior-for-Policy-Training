@@ -1,0 +1,68 @@
+{
+  "API_calls": 0,
+  "archive_sha256": "b97465909d86624588e92e4d2409fe599e738446680e9f5251ae9067595ab339",
+  "candidate_optimizer_updates": 0,
+  "date": "2026-09-22",
+  "environment_lock_sha256": "5fb79a9771bb9927dd7199334ce1aad4ed8cc1a162b7bc6b94d95c427a9dfba2",
+  "files_verified": 62,
+  "passed": true,
+  "relocated_root": "/tmp/pipeline-relocated-sm389hya/pipeline_v1_bundle",
+  "result": {
+    "hardware_io": false,
+    "models": [
+      {
+        "SAM_geometry_verified": false,
+        "SAM_inventory_proposals": 9,
+        "bundle": "push_v5",
+        "interruption_passed": true,
+        "logs": "/tmp/push-shape_push_v1-_c0o7dd7",
+        "original_worker_max_output_error": 0.0,
+        "ready": {
+          "checkpoint_sha256": "1d3548688c8d6d420f34e64bbc3df33239a7e8e73cb87f44aa6babbcfc7d8404",
+          "device": {
+            "logical_gpu": 0,
+            "minor": 6,
+            "physical_gpu": 4,
+            "uuid": "GPU-29557089-826b-ddb5-4d55-d03f2009a879"
+          },
+          "hardware_io": false,
+          "policy_id": "shape_push_v1",
+          "status": "ready"
+        },
+        "unbound_executor_result": {
+          "status": "blocked_uncommissioned"
+        }
+      },
+      {
+        "bundle": "flip_egg_v1",
+        "interruption_passed": true,
+        "logs": "/tmp/push-egg_interaction_v1-ohlccwzo",
+        "original_worker_max_output_error": 0.0,
+        "ready": {
+          "checkpoint_sha256": "d321f83e57a697c03edf7dc0a9504855eb5b090bceaa825184016160b6ce0787",
+          "device": {
+            "logical_gpu": 0,
+            "minor": 6,
+            "physical_gpu": 4,
+            "uuid": "GPU-29557089-826b-ddb5-4d55-d03f2009a879"
+          },
+          "hardware_io": false,
+          "policy_id": "egg_interaction_v1",
+          "status": "ready"
+        },
+        "unbound_executor_result": {
+          "operation": "reject",
+          "reason": "Unverified physical execution prerequisite"
+        }
+      }
+    ],
+    "passed": true,
+    "root": "/tmp/pipeline-relocated-sm389hya/pipeline_v1_bundle"
+  },
+  "returncode": 0,
+  "robot_actions_executed": 0,
+  "stderr": "",
+  "stdout": "{\"passed\": true, \"root\": \"/tmp/pipeline-relocated-sm389hya/pipeline_v1_bundle\", \"models\": [{\"bundle\": \"push_v5\", \"original_worker_max_output_error\": 0.0, \"interruption_passed\": true, \"unbound_executor_result\": {\"status\": \"blocked_uncommissioned\"}, \"ready\": {\"status\": \"ready\", \"policy_id\": \"shape_push_v1\", \"device\": {\"physical_gpu\": 4, \"uuid\": \"GPU-29557089-826b-ddb5-4d55-d03f2009a879\", \"logical_gpu\": 0, \"minor\": 6}, \"checkpoint_sha256\": \"1d3548688c8d6d420f34e64bbc3df33239a7e8e73cb87f44aa6babbcfc7d8404\", \"hardware_io\": false}, \"logs\": \"/tmp/push-shape_push_v1-_c0o7dd7\", \"SAM_inventory_proposals\": 9, \"SAM_geometry_verified\": false}, {\"bundle\": \"flip_egg_v1\", \"original_worker_max_output_error\": 0.0, \"interruption_passed\": true, \"unbound_executor_result\": {\"operation\": \"reject\", \"reason\": \"Unverified physical execution prerequisite\"}, \"ready\": {\"status\": \"ready\", \"policy_id\": \"egg_interaction_v1\", \"device\": {\"physical_gpu\": 4, \"uuid\": \"GPU-29557089-826b-ddb5-4d55-d03f2009a879\", \"logical_gpu\": 0, \"minor\": 6}, \"checkpoint_sha256\": \"d321f83e57a697c03edf7dc0a9504855eb5b090bceaa825184016160b6ce0787\", \"hardware_io\": false}, \"logs\": \"/tmp/push-egg_interaction_v1-ohlccwzo\"}], \"hardware_io\": false}\n",
+  "synthetic_authorization_flags": true,
+  "training_data_bundled": false
+}

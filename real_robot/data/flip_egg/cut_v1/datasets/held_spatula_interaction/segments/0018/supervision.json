@@ -1,0 +1,31 @@
+{
+  "boundary_evidence_indices": [
+    0,
+    400,
+    1830,
+    1833
+  ],
+  "condition_evidence_indices": [
+    400,
+    1550,
+    1580,
+    1610
+  ],
+  "decision_indices": [],
+  "deployment_condition_source": "Retained tool with current observed support/release evidence.",
+  "label_derivation": "L; prefix context and final-three future buffer. Release views are outcome evidence, not privileged phase input.",
+  "merge_check": "Same six-coordinate output spans lift and release; no 180-degree wrist-flip primitive is imposed.",
+  "objective": "Held-tool approach, support and release with immediate feedback.",
+  "rationale": "1550 shows egg on blade, 1580 an airborne/tilted egg, 1610 egg resting in pan; this motivates local release timing rather than fixed tool rotation.",
+  "segment_id": "interaction_19",
+  "split_check": "Preserve the supported-to-airborne-to-pan transition without discontinuous phase cuts.",
+  "start": 0,
+  "stop": 1834,
+  "supervised_start": 400,
+  "supervised_stop": 1831,
+  "supervision_exclusions": [],
+  "supervision_kind": "dense",
+  "training_condition": "Goal is opposite initial face in pan, not merely an empty spatula.",
+  "trajectory_id": "episode_2026091916553801",
+  "uncertainty": "Physical flip inference is visually supported but not a supplied verified success label; dynamics/material unmeasured."
+}

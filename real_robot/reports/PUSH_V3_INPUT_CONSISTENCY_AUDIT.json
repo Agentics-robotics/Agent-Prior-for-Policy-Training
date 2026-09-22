@@ -1,0 +1,511 @@
+{
+  "date": "2026-09-21",
+  "scope": "Read-only input audit; architecture instantiated on CPU for parameter counting; no model inference or optimizer updates",
+  "parameter_counts_by_module": {
+    "tool_waypoint_v1": {
+      "state_encoder": 58752,
+      "map_encoder": 375808,
+      "memory_cell": 332928,
+      "core": 1148928,
+      "response_head": 67206,
+      "phase_head": 2565,
+      "residual_head": 15390,
+      "speed_head": 513,
+      "uncertainty_head": 3078
+    },
+    "piece_contact_graph_v1": {
+      "state_encoder": 58752,
+      "map_encoder": 375808,
+      "memory_cell": 332928,
+      "core": 1148928,
+      "node_encoder": 10944,
+      "message": 37088,
+      "contact_score": 78081,
+      "response_head": 79494,
+      "phase_head": 3045,
+      "residual_head": 18270,
+      "speed_head": 609,
+      "uncertainty_head": 3654
+    },
+    "piece_goal_field_v1": {
+      "state_encoder": 58752,
+      "map_encoder": 375808,
+      "memory_cell": 332928,
+      "core": 1148928,
+      "response_head": 67206,
+      "phase_head": 2565,
+      "residual_head": 15390,
+      "speed_head": 513,
+      "uncertainty_head": 3078
+    }
+  },
+  "episode_record_timing": {
+    "episode_2026091922002701": {
+      "median_record_interval_s": 0.03334200382232666,
+      "median_11_record_interval_s": 0.3666837215423584
+    },
+    "episode_2026091922062101": {
+      "median_record_interval_s": 0.03331780433654785,
+      "median_11_record_interval_s": 0.36669397354125977
+    }
+  },
+  "segment_endpoints": [
+    {
+      "segment": "a_initial_tool",
+      "group": "tool_position",
+      "start": 0,
+      "end": 599,
+      "endpoint_action_nonzero": true,
+      "terminal_native_action": [
+        0.01789915966386555,
+        -0.01638655462184874,
+        -0.009831932773109243,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "entry_endpoint_translation_distance_m": 0.36186496722108535
+    },
+    {
+      "segment": "b_initial_tool",
+      "group": "tool_position",
+      "start": 0,
+      "end": 379,
+      "endpoint_action_nonzero": true,
+      "terminal_native_action": [
+        0.021428571428571425,
+        0.02798319327731092,
+        -0.04764705882352942,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "entry_endpoint_translation_distance_m": 0.4214317568474343
+    },
+    {
+      "segment": "a_l_approach_tool",
+      "group": "tool_position",
+      "start": 6120,
+      "end": 6250,
+      "endpoint_action_nonzero": true,
+      "terminal_native_action": [
+        0.0380672268907563,
+        -0.010840336134453784,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "entry_endpoint_translation_distance_m": 0.2769768716262738
+    },
+    {
+      "segment": "b_r_reset_tool",
+      "group": "tool_position",
+      "start": 4000,
+      "end": 4250,
+      "endpoint_action_nonzero": true,
+      "terminal_native_action": [
+        0.00882352941176471,
+        -0.0,
+        -0.029495798319327724,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "entry_endpoint_translation_distance_m": 0.12474684481139786
+    },
+    {
+      "segment": "a_wedge_move",
+      "group": "piece_relocation",
+      "start": 600,
+      "end": 1739,
+      "endpoint_action_nonzero": true,
+      "terminal_native_action": [
+        0.0,
+        -0.044621848739495804,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "entry_endpoint_translation_distance_m": 0.2649904691239803
+    },
+    {
+      "segment": "a_bar_clear",
+      "group": "piece_relocation",
+      "start": 1740,
+      "end": 1989,
+      "endpoint_action_nonzero": true,
+      "terminal_native_action": [
+        0.020420168067226897,
+        0.025462184873949575,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "entry_endpoint_translation_distance_m": 0.15677098339670625
+    },
+    {
+      "segment": "a_ring_move",
+      "group": "piece_relocation",
+      "start": 1990,
+      "end": 3219,
+      "endpoint_action_nonzero": true,
+      "terminal_native_action": [
+        0.025966386554621853,
+        -0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "entry_endpoint_translation_distance_m": 0.1052822908405961
+    },
+    {
+      "segment": "a_r_stage",
+      "group": "piece_relocation",
+      "start": 3220,
+      "end": 3699,
+      "endpoint_action_nonzero": true,
+      "terminal_native_action": [
+        0.0027731092436974777,
+        0.045126050420168054,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "entry_endpoint_translation_distance_m": 0.25564233211585047
+    },
+    {
+      "segment": "a_bar_stage",
+      "group": "piece_relocation",
+      "start": 3700,
+      "end": 4299,
+      "endpoint_action_nonzero": true,
+      "terminal_native_action": [
+        0.0,
+        -0.0,
+        -0.02394957983193277,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "entry_endpoint_translation_distance_m": 0.12140873155313218
+    },
+    {
+      "segment": "a_upper_bar_move",
+      "group": "piece_relocation",
+      "start": 4300,
+      "end": 4639,
+      "endpoint_action_nonzero": true,
+      "terminal_native_action": [
+        0.03705882352941176,
+        -0.03201680672268907,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "entry_endpoint_translation_distance_m": 0.2863182260368883
+    },
+    {
+      "segment": "a_d_stage",
+      "group": "piece_relocation",
+      "start": 4640,
+      "end": 5199,
+      "endpoint_action_nonzero": true,
+      "terminal_native_action": [
+        -0.028991596638655463,
+        -0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "entry_endpoint_translation_distance_m": 0.35282895043430956
+    },
+    {
+      "segment": "a_r_layout",
+      "group": "piece_relocation",
+      "start": 5200,
+      "end": 5669,
+      "endpoint_action_nonzero": true,
+      "terminal_native_action": [
+        0.0,
+        -0.04764705882352942,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "entry_endpoint_translation_distance_m": 0.26938969132731433
+    },
+    {
+      "segment": "a_d_align",
+      "group": "piece_relocation",
+      "start": 5670,
+      "end": 6119,
+      "endpoint_action_nonzero": true,
+      "terminal_native_action": [
+        0.08092436974789916,
+        0.02294117647058824,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "entry_endpoint_translation_distance_m": 0.06157120550627271
+    },
+    {
+      "segment": "a_l_move",
+      "group": "piece_relocation",
+      "start": 6120,
+      "end": 8149,
+      "endpoint_action_nonzero": true,
+      "terminal_native_action": [
+        0.054201680672268916,
+        0.04865546218487394,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "entry_endpoint_translation_distance_m": 0.23876485227270802
+    },
+    {
+      "segment": "a_bar_align",
+      "group": "piece_relocation",
+      "start": 8150,
+      "end": 8509,
+      "endpoint_action_nonzero": true,
+      "terminal_native_action": [
+        0.002268907563025213,
+        0.0864705882352941,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "entry_endpoint_translation_distance_m": 0.1292727355031259
+    },
+    {
+      "segment": "a_upper_bar_align",
+      "group": "piece_relocation",
+      "start": 8510,
+      "end": 9014,
+      "endpoint_action_nonzero": false,
+      "terminal_native_action": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "entry_endpoint_translation_distance_m": 0.044936538869482186
+    },
+    {
+      "segment": "b_wedge_move",
+      "group": "piece_relocation",
+      "start": 380,
+      "end": 1239,
+      "endpoint_action_nonzero": true,
+      "terminal_native_action": [
+        0.0,
+        -0.0007563025210084026,
+        -0.0017647058823529425,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "entry_endpoint_translation_distance_m": 0.24553646762715656
+    },
+    {
+      "segment": "b_bar_clear",
+      "group": "piece_relocation",
+      "start": 1240,
+      "end": 1499,
+      "endpoint_action_nonzero": true,
+      "terminal_native_action": [
+        0.03957983193277311,
+        0.02294117647058824,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "entry_endpoint_translation_distance_m": 0.19188199269576972
+    },
+    {
+      "segment": "b_d_stage",
+      "group": "piece_relocation",
+      "start": 1500,
+      "end": 1949,
+      "endpoint_action_nonzero": true,
+      "terminal_native_action": [
+        0.020420168067226897,
+        0.03302521008403361,
+        -0.004285714285714288,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "entry_endpoint_translation_distance_m": 0.35332363269000566
+    },
+    {
+      "segment": "b_ring_move",
+      "group": "piece_relocation",
+      "start": 1950,
+      "end": 2849,
+      "endpoint_action_nonzero": true,
+      "terminal_native_action": [
+        0.06781512605042016,
+        -0.0,
+        0.003277310924369748,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "entry_endpoint_translation_distance_m": 0.13100286578456066
+    },
+    {
+      "segment": "b_r_move",
+      "group": "piece_relocation",
+      "start": 2850,
+      "end": 4699,
+      "endpoint_action_nonzero": true,
+      "terminal_native_action": [
+        0.0,
+        -0.04361344537815126,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "entry_endpoint_translation_distance_m": 0.07715314030796774
+    },
+    {
+      "segment": "b_d_align",
+      "group": "piece_relocation",
+      "start": 4700,
+      "end": 4949,
+      "endpoint_action_nonzero": true,
+      "terminal_native_action": [
+        0.014873949579831935,
+        -0.0,
+        -0.040588235294117654,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "entry_endpoint_translation_distance_m": 0.2315352257998288
+    },
+    {
+      "segment": "b_l_move",
+      "group": "piece_relocation",
+      "start": 4950,
+      "end": 6149,
+      "endpoint_action_nonzero": true,
+      "terminal_native_action": [
+        0.040588235294117654,
+        -0.024957983193277314,
+        0.002268907563025213,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "entry_endpoint_translation_distance_m": 0.1904626331610664
+    },
+    {
+      "segment": "b_upper_bar_move",
+      "group": "piece_relocation",
+      "start": 6150,
+      "end": 6909,
+      "endpoint_action_nonzero": true,
+      "terminal_native_action": [
+        -0.07184873949579831,
+        -0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "entry_endpoint_translation_distance_m": 0.18445978708431743
+    },
+    {
+      "segment": "b_bar_align",
+      "group": "piece_relocation",
+      "start": 6910,
+      "end": 7369,
+      "endpoint_action_nonzero": true,
+      "terminal_native_action": [
+        0.02798319327731092,
+        0.006806722689075634,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "entry_endpoint_translation_distance_m": 0.043104779524925356
+    },
+    {
+      "segment": "b_upper_bar_align",
+      "group": "piece_relocation",
+      "start": 7370,
+      "end": 7729,
+      "endpoint_action_nonzero": false,
+      "terminal_native_action": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "entry_endpoint_translation_distance_m": 0.07405033984340238
+    }
+  ],
+  "example": {
+    "segment": "a_l_move",
+    "current_row": 7134,
+    "entry_TCP_base_m": [
+      0.41434234380722046,
+      -0.10366608947515488,
+      0.06085219979286194
+    ],
+    "endpoint_TCP_base_m": [
+      0.6446566581726074,
+      -0.041059594601392746,
+      0.06751538813114166
+    ],
+    "current_TCP_base_m": [
+      0.7612141370773315,
+      -0.13924460113048553,
+      0.0586053803563118
+    ],
+    "training_TCP_goal_error_base_m": [
+      -0.11655747890472412,
+      0.09818500652909279,
+      0.008910007774829865
+    ],
+    "default_online_TCP_goal_error_base_m_if_called_at_segment_start": [
+      -0.3468717932701111,
+      0.03557851165533066,
+      0.0022468194365501404
+    ],
+    "training_history_age_s": [
+      0.3667137622833252,
+      0.23349785804748535,
+      0.10008120536804199,
+      0.0
+    ]
+  },
+  "source_hashes": {
+    "real_robot/policies/push_v3/source/networks.py": "48db83904957c7e4f5573b1a60ca155197a44ae24dfdf3a2ae04864119bef5d9",
+    "real_robot/policies/push_v3/source/geometry.py": "51ec35050cc9503824d88fcef8e2722c6a56541aa6eb8d87f3c0784f638f3203",
+    "real_robot/policies/push_v3/source/data_pipeline.py": "10067d5beb3589ebede527f373a5de5e19792c905491908dc51fd8f1b2f66d90",
+    "real_robot/policies/push_v3/source/policy.py": "1d9c4076f70f43e56dce46b184beb3d40f3f7abf4e56987111f5c196b3473469"
+  }
+}

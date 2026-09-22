@@ -1,0 +1,29 @@
+{
+  "boundary_evidence_indices": [
+    0,
+    600,
+    2056,
+    2059
+  ],
+  "condition_evidence_indices": [
+    600,
+    2056
+  ],
+  "decision_indices": [],
+  "deployment_condition_source": "Retained tool, current images/geometry and persistent flip goal.",
+  "label_derivation": "L; prefix [0,600) is context, last three rows are future-target/outcome buffer.",
+  "merge_check": "Same local-output contract across episodes.",
+  "objective": "Feedback-conditioned held-tool interaction.",
+  "rationale": "600 shows held tool; successive inspected views show prolonged alignment then support and release.",
+  "segment_id": "interaction_02",
+  "split_check": "Keep alignment and manipulation in one causal sequence.",
+  "start": 0,
+  "stop": 2060,
+  "supervised_start": 600,
+  "supervised_stop": 2057,
+  "supervision_exclusions": [],
+  "supervision_kind": "dense",
+  "training_condition": "Same tool/pan setup, goal turn_over_in_same_pan.",
+  "trajectory_id": "episode_2026091916151401",
+  "uncertainty": "Final gripper command changes without immediate width change; no learned gripper target."
+}

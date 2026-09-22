@@ -1,0 +1,29 @@
+{
+  "boundary_evidence_indices": [
+    0,
+    900,
+    2000,
+    2003
+  ],
+  "condition_evidence_indices": [
+    900,
+    2000
+  ],
+  "decision_indices": [],
+  "deployment_condition_source": "Actual retained-tool arrival, not a shared start index.",
+  "label_derivation": "L; prefix [0,900) context and final-three target buffer.",
+  "merge_check": "Variable pickup duration does not justify a new interaction model.",
+  "objective": "Held-tool approach through release.",
+  "rationale": "900 is the inspected lifted-tool approach; later egg support/lift and release are retained.",
+  "segment_id": "interaction_15",
+  "split_check": "Keep local continuous interaction; prefix remains available for goal/geometry initialization.",
+  "start": 0,
+  "stop": 2004,
+  "supervised_start": 900,
+  "supervised_stop": 2001,
+  "supervision_exclusions": [],
+  "supervision_kind": "dense",
+  "training_condition": "Same geometry-conditioned task after slow pickup.",
+  "trajectory_id": "episode_2026091916480201",
+  "uncertainty": "Final tool near dish is not a demonstrated verified tool-placement/release skill."
+}

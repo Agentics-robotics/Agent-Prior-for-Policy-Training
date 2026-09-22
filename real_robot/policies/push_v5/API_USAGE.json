@@ -1,0 +1,79 @@
+{
+  "API_calls": 100,
+  "GPU_compute_included": false,
+  "cost_is_invoice": false,
+  "estimated_usd": 16.283451,
+  "measured_at": 1790047732.9472034,
+  "model": "gpt-6-astra",
+  "reasoning_effort": "xhigh",
+  "run": "push_training_v5",
+  "scope": "This training implementation workflow only, including blocked and repaired API revisions; prior cut and historical training costs excluded.",
+  "sessions": [
+    {
+      "calls": 49,
+      "estimated_usd": 8.252552999999999,
+      "ledger": "real_robot/runs/push_letters/training_v5/design_00/cost_ledger.json",
+      "ledger_sha256": "c1cbbff5304fe6ad6e061accd3c8a41e2ce89bc4b358b0e705f145d8fbb2b213",
+      "pricing_reference": "https://developers.openai.com/api/docs/models/gpt-6-astra",
+      "saved_rates_usd_per_million": {
+        "cache_write": 12.5,
+        "cached": 1.0,
+        "input": 10.0,
+        "output": 50.0
+      },
+      "session": "design_00",
+      "states": {
+        "consumed": 49
+      },
+      "tokens_and_counts": {
+        "cache_write_tokens": 152282,
+        "cached_tokens": 4274608,
+        "input_tokens": 4427037,
+        "output_tokens": 41459,
+        "reasoning_tokens": 12446,
+        "total_tokens": 4468496,
+        "usage_reported_calls": 49
+      },
+      "unresolved_reserved_usd": 0.0
+    },
+    {
+      "calls": 51,
+      "estimated_usd": 8.030897999999999,
+      "ledger": "real_robot/runs/push_letters/training_v5/design_01/cost_ledger.json",
+      "ledger_sha256": "564e6c1d7cee3fe207a8745d93bf9660fa225b3cb990058a8984979817ad2a6d",
+      "pricing_reference": "https://developers.openai.com/api/docs/models/gpt-6-astra",
+      "saved_rates_usd_per_million": {
+        "cache_write": 12.5,
+        "cached": 1.0,
+        "input": 10.0,
+        "output": 50.0
+      },
+      "session": "design_01",
+      "states": {
+        "consumed": 51
+      },
+      "tokens_and_counts": {
+        "cache_write_tokens": 127824,
+        "cached_tokens": 4445618,
+        "input_tokens": 4573595,
+        "output_tokens": 39719,
+        "reasoning_tokens": 13355,
+        "total_tokens": 4613314,
+        "usage_reported_calls": 51
+      },
+      "unresolved_reserved_usd": 0.0
+    }
+  ],
+  "token_accounting": "Cached/cache-write tokens are input subsets; reasoning tokens are an output subset. Do not add these subsets again to total_tokens.",
+  "totals": {
+    "cache_write_tokens": 280106,
+    "cached_tokens": 8720226,
+    "input_tokens": 9000632,
+    "output_tokens": 81178,
+    "reasoning_tokens": 25801,
+    "total_tokens": 9081810,
+    "usage_reported_calls": 100
+  },
+  "unresolved_reserved_usd": 0.0,
+  "workflow_status": "complete"
+}

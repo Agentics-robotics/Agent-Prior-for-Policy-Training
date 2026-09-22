@@ -1,0 +1,81 @@
+{
+  "common_implementation_prompt": true,
+  "fixture_tests": "11 passed; isolated CPU preparation/training/online worker",
+  "formal_training_runs": 0,
+  "network_calls": 0,
+  "passed": true,
+  "preserved_cut_runs": [
+    "push_cut_v6_with_example",
+    "flip_egg_cut_v1"
+  ],
+  "preserved_old_training_files": 16,
+  "robot_execution": false,
+  "runs": {
+    "flip_egg_training_v1": {
+      "capture_network_calls": 0,
+      "captured_request": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/real_robot/runs/pipeline_verification/1790044300693109249/flip_egg_training_v1/design_00/_session/api/0001.request.json",
+      "documents": {
+        "config_path": {
+          "path": "real_robot/configs/flip_egg_training_v1.json",
+          "sha256": "13e789b21b4865f4a68663948243dcd8bc7692d1e9e2eea5b7f19066251be058"
+        },
+        "interface": {
+          "path": "real_robot/training_pipeline/INTERFACE.md",
+          "sha256": "2410347b807604150956f78bb71f76f2dd83b583aa00a91436d6d9a5415436c3"
+        },
+        "prompt": {
+          "path": "real_robot/prompts/implement_and_train.md",
+          "sha256": "665b551e8e04482fd464c423681671c7f02bf62a807db4ea1d4e0e42fdac7048"
+        },
+        "task_specification": {
+          "path": "real_robot/task_specifications/flip_egg_training.md",
+          "sha256": "a6f94d4c4906d2f20973954c3d3393263b0cf82a02715e764757e297e9b5530c"
+        }
+      },
+      "media_verification": "Full source media hashes are checked at workflow launch",
+      "model": "gpt-6-astra",
+      "network_calls": 0,
+      "passed": true,
+      "prior_plan_hash": "2b7859f5749079958fe94c195a109c92af7f4b99bbf1e40976995418ab234f21",
+      "reasoning_effort": "xhigh",
+      "robot_execution": false,
+      "source_episodes": 20,
+      "source_manifest_sha256": "f0fa20f69603f5c4b5a55c3163994ccbe3d36d9f4d4c712f25feee4541ab00f7",
+      "source_rows": 45730,
+      "training_runs": 0
+    },
+    "push_training_v5": {
+      "capture_network_calls": 0,
+      "captured_request": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/real_robot/runs/pipeline_verification/1790044300693109249/push_training_v5/design_00/_session/api/0001.request.json",
+      "documents": {
+        "config_path": {
+          "path": "real_robot/configs/push_training_v5.json",
+          "sha256": "e8afa3f2403737c1c0b9309344b477638805c6af4c382e9ec38d15fb679f79b5"
+        },
+        "interface": {
+          "path": "real_robot/training_pipeline/INTERFACE.md",
+          "sha256": "2410347b807604150956f78bb71f76f2dd83b583aa00a91436d6d9a5415436c3"
+        },
+        "prompt": {
+          "path": "real_robot/prompts/implement_and_train.md",
+          "sha256": "665b551e8e04482fd464c423681671c7f02bf62a807db4ea1d4e0e42fdac7048"
+        },
+        "task_specification": {
+          "path": "real_robot/task_specifications/push_letters_training.md",
+          "sha256": "cee115b3cec95dcca1b76390f05598ec01d28c94f2977e9d12539105c8262034"
+        }
+      },
+      "media_verification": "Full source media hashes are checked at workflow launch",
+      "model": "gpt-6-astra",
+      "network_calls": 0,
+      "passed": true,
+      "prior_plan_hash": "43dd1bec9bdefcb4b278654b1f18312ab02afc1be95705d124b7b9758c4f371b",
+      "reasoning_effort": "xhigh",
+      "robot_execution": false,
+      "source_episodes": 2,
+      "source_manifest_sha256": "e2c03c99f07c63f65c105929e994d34e1215974fc4b4f244f1dffb35b80ef7d1",
+      "source_rows": 16745,
+      "training_runs": 0
+    }
+  }
+}

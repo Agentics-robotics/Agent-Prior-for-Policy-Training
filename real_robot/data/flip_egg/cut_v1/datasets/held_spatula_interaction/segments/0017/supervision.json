@@ -1,0 +1,30 @@
+{
+  "boundary_evidence_indices": [
+    0,
+    1000,
+    2899,
+    2902
+  ],
+  "condition_evidence_indices": [
+    1000,
+    1800,
+    2200
+  ],
+  "decision_indices": [],
+  "deployment_condition_source": "Observed blade/egg relation after a variable-duration acquisition.",
+  "label_derivation": "L; long prefix is context only, final-three target buffer. Preserve recorded camera timestamp reset without realignment.",
+  "merge_check": "Readjustment at 1800 and later insertion at 2200 belong to the shared decision problem.",
+  "objective": "Repeated adjustment and release-producing local motion.",
+  "rationale": "Contains early idle time plus substantial held-tool readjustment, which must not become an episode clock.",
+  "segment_id": "interaction_18",
+  "split_check": "Do not split retries or remove pauses solely to make a monotonic phase sequence.",
+  "start": 0,
+  "stop": 2903,
+  "supervised_start": 1000,
+  "supervised_stop": 2900,
+  "supervision_exclusions": [],
+  "supervision_kind": "dense",
+  "training_condition": "Causal same-pan task and image freshness validity.",
+  "trajectory_id": "episode_2026091916534901",
+  "uncertainty": "Third-camera device timestamps change scale/reset near the tail; sample pairings remain original."
+}

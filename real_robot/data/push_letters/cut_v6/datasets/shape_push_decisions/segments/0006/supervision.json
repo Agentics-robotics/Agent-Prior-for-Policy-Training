@@ -1,0 +1,35 @@
+{
+  "boundary_evidence_indices": [
+    240,
+    300,
+    1450
+  ],
+  "condition_evidence_indices": [
+    300,
+    650,
+    1000,
+    1300
+  ],
+  "decision_indices": [
+    300,
+    650,
+    1000,
+    1300
+  ],
+  "deployment_condition_source": "Current scene/slot assignment chooses zigzag instance or a blocking bar for clearance. Initial arrangement differs from A; no fixed initial pose assumed.",
+  "label_derivation": "Common conversion: zigzag piece 300->650, 650->1000, 1000->1300; central-right serif-bar piece 1300->1450. Wrist 1000 disambiguates an outer contact despite third-view arm occlusion. 300 is pre-contact; 650/1000 are local contacts and changed orientations.",
+  "merge_check": "Share with A zigzag and clearance decisions at model level; keep this source sequence separate and in a single episode split.",
+  "objective": "Turn/place the zigzag piece from a different initial arrangement and clear a neighbor.",
+  "rationale": "300 shows approach from above; 650/1000 show alternate-side turning; 1300/1450 show the neighbor shifted while the zigzag piece remains lower-right.",
+  "segment_id": "b_zigzag_and_clearance",
+  "split_check": "The actor switch at1300 is explicitly conditioned, not a dense sequence-level actor label. Pre-approach and in-contact cases use the same geometric primitive.",
+  "start": 240,
+  "stop": 1451,
+  "supervised_start": 300,
+  "supervised_stop": 1451,
+  "supervision_exclusions": [],
+  "supervision_kind": "sparse",
+  "training_condition": "Per-anchor physical track, causal current geometry, tool/obstacles and hindsight target transform.",
+  "trajectory_id": "episode_2026091922062101",
+  "uncertainty": "No verified semantic identity or intent; third view is strongly occluded at1000. Use wrist/rigid tracking and mask unreliable targets."
+}

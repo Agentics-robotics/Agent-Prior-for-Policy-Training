@@ -1,0 +1,39 @@
+{
+  "authorization": "User 2026-09-22 cancelled and explicitly deleted the extra correction round based on completed v5 feedback. Instead, rerun the original Push v5 implementation/training workflow from the same existing cut, naming the fresh run Push v6. The only scientific task-instruction change is a generic request to use as much valid data as possible for training and deliver the final model. No v5 training results, split review or cancelled-round scientific content is supplied to this API. API owns preprocessing, model, sampling and training choices. Preserve original v5 and Flip v1 and their cuts/prompts/exports. Astra/xhigh; standing official OpenAI data permission; no new cut or robot execution.",
+  "config_path": "real_robot/configs/push_training_v6.json",
+  "cut_config": "real_robot/configs/push_cut_v6_with_example.json",
+  "cut_output": "real_robot/data/push_letters/cut_v6",
+  "cut_run": "real_robot/runs/push_letters/cut_v6_with_example",
+  "devices": [
+    4
+  ],
+  "environment_manifest": "real_robot/training_v4_environment/pixi.toml",
+  "execution_guard_usd": 100,
+  "interface": "real_robot/training_pipeline/INTERFACE.md",
+  "max_api_calls": 200,
+  "max_output_tokens": 32000,
+  "max_tool_calls": 480,
+  "model": "gpt-6-astra",
+  "prompt": "real_robot/prompts/implement_and_train_final_fit.md",
+  "reasoning_effort": "xhigh",
+  "request_timeout_seconds": 1200,
+  "run": "real_robot/runs/push_letters/training_v6",
+  "schema": "real_robot.train_config.pipeline.v1",
+  "scope": "Fresh execution of original Push v5 workflow from cut_v6, with generic maximal-valid-data and final-model instruction. Not a continuation using prior v5 results.",
+  "service_tier": "default",
+  "task_specification": "real_robot/task_specifications/push_letters_training.md",
+  "training": {
+    "checkpoint_every": 2000,
+    "log_every": 100,
+    "max_cache_bytes": 64000000000,
+    "max_updates": 20000,
+    "parameter_limit": 64000000,
+    "max_policies": 64
+  },
+  "max_preprocessing_checks": 12,
+  "max_implementation_revisions": 3,
+  "max_job_seconds": 21600,
+  "previous_execution_evidence": [
+    "real_robot/reports/PUSH_TRAINING_V4_PROMPT_AUDIT.md"
+  ]
+}

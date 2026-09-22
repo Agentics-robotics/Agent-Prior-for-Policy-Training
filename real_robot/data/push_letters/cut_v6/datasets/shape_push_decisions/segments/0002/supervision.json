@@ -1,0 +1,35 @@
+{
+  "boundary_evidence_indices": [
+    3240,
+    3300,
+    5100
+  ],
+  "condition_evidence_indices": [
+    3500,
+    3700,
+    4300,
+    4800,
+    4810
+  ],
+  "decision_indices": [
+    3500,
+    4300,
+    4800
+  ],
+  "deployment_condition_source": "Current scene dependency graph selects a staging/placement objective for one track. No memorized R/H/D sequence.",
+  "label_derivation": "Common conversion: legged bowl/R-like piece 3500->3700; upper bar/H-like piece 4300->4800; rectangular-loop/D-like piece 4800->5100. At 4800/4810 the wrist view shows the tool inside the loop; derive inner-boundary contact, not an outer-edge proxy. 3300 is retained transit/uncertain switching context without an action anchor.",
+  "merge_check": "Keep this irregular cluster-reorganization interval together for obstacle and collateral-motion evidence. Do not infer one global word goal or merge actor identities; they are selected separately at anchors.",
+  "objective": "Share staging, neighbor relocation and accessible internal-boundary pushing decisions.",
+  "rationale": "3500/3700 show temporary placement of the legged piece; 4300/4800 show bar relocation and interior-loop contact; 5100 shows loop moved to a different part of the table.",
+  "segment_id": "a_cluster_reorganization",
+  "split_check": "Three anchors represent physically different choices with the same output. Splitting by outer/inner contact into trained specialists would waste the common geometric prior; preserve loop type as input.",
+  "start": 3240,
+  "stop": 5101,
+  "supervised_start": 3300,
+  "supervised_stop": 5101,
+  "supervision_exclusions": [],
+  "supervision_kind": "sparse",
+  "training_condition": "Anchor-specific track and hindsight pose, with full clutter contours and protected objects. Accessible hole geometry is measured, not keyed to D identity.",
+  "trajectory_id": "episode_2026091922002701",
+  "uncertainty": "3500 contact partly occluded; masks/tracks need review. Actual inter-object contact must be treated as outcome evidence or invalid primitive target, not silently safe."
+}

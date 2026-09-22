@@ -1,0 +1,34 @@
+{
+  "boundary_evidence_indices": [
+    8190,
+    8250,
+    9014
+  ],
+  "condition_evidence_indices": [
+    8250,
+    8500,
+    8800,
+    9014
+  ],
+  "decision_indices": [
+    8250,
+    8500,
+    8800
+  ],
+  "deployment_condition_source": "Agent selects remaining unmatched/incorrectly placed bar instance and requests its own explicit slot/orientation; final verification is external.",
+  "label_derivation": "Common conversion: central/upper serif-bar track 8250->8500; lower bar track 8500->8800 and 8800->9014. Distinguish two physical instances despite potentially confusing H/I-like rotations. Last index is a real observation only; do not require 9015 or generate a terminal action target.",
+  "merge_check": "Do not append a fabricated success/stop example. This short finishing interval shares shape policy with earlier coarse bar movements.",
+  "objective": "Final bar-piece pose adjustments and measured outcome evidence.",
+  "rationale": "8250/8500 show the upper bar repositioned; 8800/9014 show the lower one adjusted while the other pieces remain arranged.",
+  "segment_id": "a_bar_finish",
+  "split_check": "Keep both instance-conditioned finishing choices together with outcome; not enough independent evidence for a fine-alignment specialist or success classifier.",
+  "start": 8190,
+  "stop": 9015,
+  "supervised_start": 8250,
+  "supervised_stop": 9015,
+  "supervision_exclusions": [],
+  "supervision_kind": "sparse",
+  "training_condition": "Caller-selected bar track with hindsight geometric goal; no use of inferred final phrase.",
+  "trajectory_id": "episode_2026091922002701",
+  "uncertainty": "Episode endpoint is not task success; bar semantic labels/uprightness remain ambiguous until annotation. Final pose may be partially occluded."
+}

@@ -1,0 +1,9 @@
+# egg_interaction_v1 prior
+
+Starting design: supplied blade_relative_local_motion, three-component six-coordinate Gaussian head, small two-view CNN and128-unit GRU, one continuous held-tool policy, no learned gripper. Original cut/prior preserved verbatim by preparation and bounds in ORIGINAL_CUT.json. See PRIOR.md for evidence and full rationale.
+
+Implemented adaptation: use the measured recorded EE rather than an unmeasured blade leading-edge frame. Two-view RGB encoder is jointly trained as the required perception, replacing the proposed unlabelled U-Net/PnP semantic service. No metric egg/pan/blade state is fabricated. For fixed retained tool, EE motion specifies robot-driven rigid tool motion, while images convey contact/support relationships. This preserves all6 degrees of freedom, but forfeits explicit metric object-frame invariance; gripper geometry/slip/collision remain external validated prerequisites.
+
+Train achieved rates from i+3 at actual dt, not raw action_json command or measured dq. Five causal slots, source initial row0 goal scene, finite memory and same online preprocessing. Three modes handle corrections versus continuation without averaging directions. NLL+.2 responsibility-weighted Huber, fixed physical scales, episode-balanced sampling, static cap and angular-event weighting. 20 independent recordings, not10900 independent successes. No episode clock, privileged phase, end-of-episode success label, blade tilt constraint or fictitious depth.
+
+Diffusion is not selected: one short6-vector with only20 demonstrations favors the smaller original mixture prior and bounded deterministic mode selection. All learned components are optimized jointly; no pretrained assets. Offline generalization claims must follow measured episode-disjoint imitation metrics and future physical tests, not the architecture choice.

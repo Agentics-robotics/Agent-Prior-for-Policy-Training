@@ -1,0 +1,61 @@
+{
+  "assets": {
+    "sam2.1_hiera_small.pt": {
+      "bytes": 184416285,
+      "required_for": "API build_model initializes frozen SAM; required even for geometry-only act",
+      "required_for_load": true,
+      "sha256": "6d1aa6f30de5c92224f8172114de081d104bbd23dd9dc5c58996f0cad5dc4d38"
+    }
+  },
+  "bundle": "push_v6",
+  "cut_plan_hash": "43dd1bec9bdefcb4b278654b1f18312ab02afc1be95705d124b7b9758c4f371b",
+  "examples": {
+    "interface": {
+      "file": "examples/interface.json",
+      "sha256": "ab1d44dc7c7c400927d9e6bfb86ca9bf960d1ba1ee7a2147cfabea12933c70a7"
+    }
+  },
+  "policies": {
+    "shape_push_v1": {
+      "bytes": 184498471,
+      "exact_selected_tensor_equality": true,
+      "file": "shape_push_v1.pt",
+      "optimizer_steps": 3000,
+      "original_checkpoint_sha256": "80584e08bd99580bc7b438bf3a2db517386f45a86bf5a27d507ff4bf0f940313",
+      "parameters": 18497,
+      "selected_step": 3000,
+      "sha256": "53b94470126d53bf61bf218ee0a168d828c2d95854bfb31605237f5eff0b134c"
+    }
+  },
+  "robot_execution": false,
+  "runtime_hashes": {
+    "real_robot/training_pipeline/__init__.py": "c1ecf1b9e3bb41281ff55a842c4210ef8ff8040b27520696192302e8b092c228",
+    "real_robot/training_pipeline/public.py": "11cf935e664185f4740c582d2f8bdde3c31daf5d138b09897b6e92fe983dc01f",
+    "real_robot/training_pipeline/security.py": "b428e371c8c29e8c57ee69a5a57efb0e3a4c6915b8e895234c60078737a7fbb0",
+    "src/appl/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/appl/gpu.py": "18f31b1275a2a8d67a7ac0047b2f67f9b7b5279969962ef41b6b3bca8a547a1d",
+    "src/appl/io.py": "8d552f621646f9f9fae18316e9a3596a078320579a451336aca37c2a6f1542f8",
+    "src/appl/kernel.py": "d7a08e00b9b0c2726ee1b93af7709f3c131fb692aa4dd11e209188dad51b449f"
+  },
+  "schema": "real_robot.pipeline_deployment.v2",
+  "scientific_source": "Exact API submission bytes",
+  "source_hashes": {
+    "CALLING.md": "e9f77e383ebaf8fc73ca5f63f13b4c64e403cfd4017f940815521b23be642d81",
+    "FINAL_QUALITY.md": "df97b1b8ea05137d96d7cd31d0050bd425dd10279047940edb6073d63ddb9ea2",
+    "HANDOFF.json": "b5908832f409b1d3ff4a36b436a1f30af1daf314fa60c44034d4a2f8483ef67a",
+    "POLICY_CATALOG.md": "e3f919a63bf3d6bbe857cbb7bca46c0ccd83cbcb01735307e8a45cccdd6bb788",
+    "PRIOR.md": "8e9778f2d980480d9abe4c024b7353f253a5853ea0b8012a6b9cf25b14ca87cf",
+    "calibration.py": "2db90b576e381c27471b7f0be0507780f2728f0fb9bda67fb40ab530588273a4",
+    "geometry.py": "851937b07ea804ada57531f44d5b6cbaae26d3937637a4c4bf62e1b85dafa6be",
+    "online.py": "cc2d22458d1b7c6cc10d2211fe0e8f1f387d01ac405fe05b6886015e1bc8b529",
+    "package.json": "6b421df3f7be77b69d166c8e92f3d07ee0e357a844c9237ed5a1b2ae99186156",
+    "perception.py": "51e1ddf62fa86a56a5229d97c534ed486bb78c68a420c84a44fccd5c0b1c7b1a",
+    "policy.py": "98ae03fd58575840f77a83e7d777a01a49b5174f4263b860106bd8dc48ee43c6",
+    "preparation.py": "6ee9356c7b3979f3cfebc8a231db4b7f7744610bfd0bd2005ab8577ee291ee6c",
+    "quality.py": "ef5d0f3c37abf47a6b2907310324db3039d983d6b5aa39f58ea0ab29c96f0931",
+    "shape_push_v1_PRIOR.md": "482bfd374e0fd57d723858e5896d4f07539e72925db9998027be0604510d6d0e",
+    "shape_push_v1_USAGE.md": "f2bf2ed956fdfecc17b2024066f2d29be2136f65eec39058609c8658c2059470",
+    "tracking.py": "6478704bc623d3ddf8d6ed8354f4e3c121f755253dc661046266fc4a9b0a724f"
+  },
+  "source_package_hash": "6483209318f7f2eaf3b81b39cbf7c3dfc4890d69ed8917e771477841e0a0a80b"
+}

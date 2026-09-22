@@ -1,0 +1,38 @@
+{
+  "boundary_evidence_indices": [
+    2790,
+    2850,
+    4550
+  ],
+  "condition_evidence_indices": [
+    2850,
+    3250,
+    3600,
+    3900,
+    3930,
+    4200
+  ],
+  "decision_indices": [
+    2850,
+    3250,
+    3600,
+    3900,
+    4200
+  ],
+  "deployment_condition_source": "Agent-selected legged instance with explicit target, requesting correction when measured orientation/position error remains.",
+  "label_derivation": "Common conversion for the same legged bowl track:2850->3600,3250->3600,3600->3900,3900->4200,4200->4550. 2850 is pre-approach;3250/3600/3900 are local interactions;4200 is a lifted reapproach after an orientation change.3900/3930 provide a short outer-boundary stroke witness. Motion summaries report large joint-rate transients in this area; never imitate them as desired dq or infer object contact solely from them.",
+  "merge_check": "Keep the move and its correction/reapproach together. Splitting the high-rate transition into a motor skill would train a capability the supplied controller already owns and could reward an unsafe transient.",
+  "objective": "Move and rotate a legged/concave piece, then reobserve and correct.",
+  "rationale": "3250 at its starting side,3600 translated/turned,3900 beside the ring,4200 tool lifted and4550 after another alignment show multiple contacts rather than one path.",
+  "segment_id": "b_legged_recontacts",
+  "split_check": "Five explicit decisions share one model; pauses and transient robot posture changes remain context/executor evidence, not densely supervised control.",
+  "start": 2790,
+  "stop": 4551,
+  "supervised_start": 2850,
+  "supervised_stop": 4551,
+  "supervision_exclusions": [],
+  "supervision_kind": "sparse",
+  "training_condition": "Persistent selected track, current contour/goal error and obstacles, causal history with no future pose input.",
+  "trajectory_id": "episode_2026091922062101",
+  "uncertainty": "Unexplained joint-rate spike is retained for integration audit, not labeled failure or successful force control. Contact/primitive compatibility near lift requires review."
+}

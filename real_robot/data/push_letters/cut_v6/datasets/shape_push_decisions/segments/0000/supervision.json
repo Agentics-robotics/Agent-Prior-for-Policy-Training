@@ -1,0 +1,35 @@
+{
+  "boundary_evidence_indices": [
+    400,
+    500,
+    1800
+  ],
+  "condition_evidence_indices": [
+    500,
+    800,
+    1100,
+    1600
+  ],
+  "decision_indices": [
+    500,
+    800,
+    1100,
+    1600
+  ],
+  "deployment_condition_source": "Agent-selected physical zigzag-shaped instance and explicit target pose from current request/staging plan; never select it because its recorded turn was first.",
+  "label_derivation": "Apply the common target conversion. Actor is the zigzag W/M-like piece initially near the upper-left cluster. Anchor -> future goal witness: 500->1100, 800->1100, 1100->1600, 1600->1800. 500 is pre-contact approach context; 800/1100/1600 cover changed contacts/poses. Retained 700/800/830 and 1600/1800 images/states support contact and relocation inference. Future witnesses are achieved poses only, not desired recorded spelling.",
+  "merge_check": "Could share one longer raw sequence with next event, but ring/neighbor interventions would obscure goal derivation and overweight travel. Share model weights and source split, not word-level labels.",
+  "objective": "Choose contacts for initial turning, translation and correction of the zigzag piece.",
+  "rationale": "500 shows approach above the unchanged inventory; 800/1100 show reoriented first piece; 1600 shows it displaced to the lower-right; 1800 is following-object context/outcome.",
+  "segment_id": "a_zigzag",
+  "split_check": "Do not split each robot pause/contact into an independent policy. Sparse anchors distinguish pre-approach from local corrections while context retains the whole relocation.",
+  "start": 400,
+  "stop": 1801,
+  "supervised_start": 500,
+  "supervised_stop": 1801,
+  "supervision_exclusions": [],
+  "supervision_kind": "sparse",
+  "training_condition": "Current actor geometry and per-anchor hindsight SE(2) goal, obstacles/tool geometry and causal history. No character/word input.",
+  "trajectory_id": "episode_2026091922002701",
+  "uncertainty": "W/M orientation and exact contact onset are unannotated; tool pose/metric labels require review. 1800 is an outcome, not annotated success."
+}

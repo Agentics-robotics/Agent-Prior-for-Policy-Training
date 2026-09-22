@@ -1,0 +1,153 @@
+{
+  "API_accounting": {
+    "API_calls": 92,
+    "cost_is_invoice": false,
+    "estimated_usd": 19.638871500000004,
+    "model": "gpt-6-astra",
+    "reasoning_effort": "xhigh",
+    "unknown_reserved_usd": 0
+  },
+  "checked": 1790058485.2688844,
+  "generalization_evaluation": false,
+  "models": {
+    "shape_push_v1": {
+      "calling_check": {
+        "cases": [
+          {
+            "decision": true,
+            "name": "real_contour_synthetic_executor",
+            "status": "proposed"
+          },
+          {
+            "decision": false,
+            "name": "missing_scene",
+            "status": "needs_view"
+          },
+          {
+            "decision": false,
+            "name": "stale_revision",
+            "status": "stale_scene"
+          },
+          {
+            "decision": false,
+            "name": "interruption_resets",
+            "status": "interrupted"
+          },
+          {
+            "decision": false,
+            "name": "uncommissioned_geometry",
+            "status": "calibration_required"
+          },
+          {
+            "decision": false,
+            "name": "stable_geometric_goal",
+            "status": "already_at_goal"
+          },
+          {
+            "decision": false,
+            "name": "unsupported_tolerance",
+            "status": "unsupported_precision"
+          },
+          {
+            "decision": false,
+            "name": "incomplete_scene_refused",
+            "status": "needs_view"
+          },
+          {
+            "decision": false,
+            "name": "real_rgb_generic_grid_proposals_fixture_calibration",
+            "status": "associate_instances"
+          }
+        ],
+        "hardware_io": false,
+        "passed": true,
+        "performance_evaluation": false
+      },
+      "checkpoint": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/real_robot/runs/push_letters/training_v6/package_00/training/shape_push_v1/last.pt",
+      "checkpoint_sha256": "80584e08bd99580bc7b438bf3a2db517386f45a86bf5a27d507ff4bf0f940313",
+      "device": {
+        "logical_gpu": 0,
+        "minor": 6,
+        "physical_gpu": 4,
+        "uuid": "GPU-29557089-826b-ddb5-4d55-d03f2009a879"
+      },
+      "elapsed_seconds": 34.04951747204177,
+      "final_weights_sha256": "249390abd9cbafd5d72ea403da2c1b8e284d18202a768477e3aa23a1e8e60389",
+      "finite_gradient_checks": [
+        {
+          "l2_norm": 0.1612595170736313,
+          "step": 1
+        },
+        {
+          "l2_norm": 0.14912189543247223,
+          "step": 2
+        },
+        {
+          "l2_norm": 0.1340799480676651,
+          "step": 3
+        }
+      ],
+      "initial_weights_sha256": "8b3b895ef9c904b16c8798ca533f55e2c78b6967dcf80272957bcf3a6c2e1d68",
+      "neural_training_verified": true,
+      "optimizer_class": "AdamW",
+      "optimizer_steps": 3000,
+      "performance_evaluation": false,
+      "policy_id": "shape_push_v1",
+      "reload_max_prediction_error": 0.0,
+      "robot_execution": false,
+      "sample_exposures": 47986,
+      "selected_step": 3000,
+      "source_hashes": {
+        "CALLING.md": "e9f77e383ebaf8fc73ca5f63f13b4c64e403cfd4017f940815521b23be642d81",
+        "FINAL_QUALITY.md": "df97b1b8ea05137d96d7cd31d0050bd425dd10279047940edb6073d63ddb9ea2",
+        "HANDOFF.json": "b5908832f409b1d3ff4a36b436a1f30af1daf314fa60c44034d4a2f8483ef67a",
+        "POLICY_CATALOG.md": "e3f919a63bf3d6bbe857cbb7bca46c0ccd83cbcb01735307e8a45cccdd6bb788",
+        "PRIOR.md": "8e9778f2d980480d9abe4c024b7353f253a5853ea0b8012a6b9cf25b14ca87cf",
+        "calibration.py": "2db90b576e381c27471b7f0be0507780f2728f0fb9bda67fb40ab530588273a4",
+        "geometry.py": "851937b07ea804ada57531f44d5b6cbaae26d3937637a4c4bf62e1b85dafa6be",
+        "online.py": "cc2d22458d1b7c6cc10d2211fe0e8f1f387d01ac405fe05b6886015e1bc8b529",
+        "package.json": "6b421df3f7be77b69d166c8e92f3d07ee0e357a844c9237ed5a1b2ae99186156",
+        "perception.py": "51e1ddf62fa86a56a5229d97c534ed486bb78c68a420c84a44fccd5c0b1c7b1a",
+        "policy.py": "98ae03fd58575840f77a83e7d777a01a49b5174f4263b860106bd8dc48ee43c6",
+        "preparation.py": "6ee9356c7b3979f3cfebc8a231db4b7f7744610bfd0bd2005ab8577ee291ee6c",
+        "quality.py": "ef5d0f3c37abf47a6b2907310324db3039d983d6b5aa39f58ea0ab29c96f0931",
+        "shape_push_v1_PRIOR.md": "482bfd374e0fd57d723858e5896d4f07539e72925db9998027be0604510d6d0e",
+        "shape_push_v1_USAGE.md": "f2bf2ed956fdfecc17b2024066f2d29be2136f65eec39058609c8658c2059470",
+        "tracking.py": "6478704bc623d3ddf8d6ed8354f4e3c121f755253dc661046266fc4a9b0a724f"
+      },
+      "trainable_parameters": 18497,
+      "training_examples": 130,
+      "weight_l2_change": 13.879963182091483
+    }
+  },
+  "num_examples": 130,
+  "old_cut_prompts_and_plans_unchanged": true,
+  "old_training_v4_source_and_checkpoint_unchanged": true,
+  "passed": true,
+  "physical_robot_execution": false,
+  "policy_examples": {
+    "shape_push_v1": 130
+  },
+  "revision": 0,
+  "run": "push_training_v6",
+  "source_coverage": {
+    "episode_2026091922002701": {
+      "declared_use_rows": {
+        "context": 9015,
+        "excluded": 0,
+        "supervision": 8615
+      },
+      "original_rows": 9015,
+      "unique_supervised_anchors": 43
+    },
+    "episode_2026091922062101": {
+      "declared_use_rows": {
+        "context": 7730,
+        "excluded": 0,
+        "supervision": 7490
+      },
+      "original_rows": 7730,
+      "unique_supervised_anchors": 87
+    }
+  }
+}

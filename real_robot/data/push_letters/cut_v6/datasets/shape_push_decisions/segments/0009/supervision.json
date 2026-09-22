@@ -1,0 +1,32 @@
+{
+  "boundary_evidence_indices": [
+    4490,
+    4550,
+    5100
+  ],
+  "condition_evidence_indices": [
+    4550,
+    4800,
+    5100
+  ],
+  "decision_indices": [
+    4550,
+    4800
+  ],
+  "deployment_condition_source": "Explicit loop-piece target pose from layout or correction request, not a fixed order after R-like manipulation.",
+  "label_derivation": "Common conversion for rectangular-loop track4550->5100 and4800->5100.4550 is before approach;4800 is contact/correction;5100 supplies achieved loop pose while the tool has transitioned toward another piece.",
+  "merge_check": "Keep separate from following open-corner segment so future targets cannot accidentally register the wrong object. Shared boundary is outcome here, next decision there.",
+  "objective": "Reorient/reposition the previously moved rectangular-loop piece.",
+  "rationale": "4550 shows angled loop and raised tool;4800 shows lower contact and corrected orientation;5100 retains the loop outcome.",
+  "segment_id": "b_loop_finish",
+  "split_check": "Two anchors are sufficient for pre-arrival/local variants; splitting further would remove their useful outcome context.",
+  "start": 4490,
+  "stop": 5101,
+  "supervised_start": 4550,
+  "supervised_stop": 5101,
+  "supervision_exclusions": [],
+  "supervision_kind": "sparse",
+  "training_condition": "Rectangular-loop track, measured contour and per-anchor hindsight spatial target with nearby arranged pieces protected.",
+  "trajectory_id": "episode_2026091922062101",
+  "uncertainty": "Fine yaw/position target may be limited by mask/calibration uncertainty; the shaped hole does not itself prove contact."
+}

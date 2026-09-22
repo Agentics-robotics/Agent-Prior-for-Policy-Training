@@ -1,0 +1,27 @@
+{
+  "boundary_evidence_indices": [
+    0,
+    600
+  ],
+  "condition_evidence_indices": [
+    0,
+    600
+  ],
+  "decision_indices": [],
+  "deployment_condition_source": "Fitted tool pose, empty hand and retention test.",
+  "label_derivation": "Execution evidence only.",
+  "merge_check": "Do not train pickup velocities from this group.",
+  "objective": "Acquire and lift tool.",
+  "rationale": "Held tool at 600 with stable narrow gripper feedback.",
+  "segment_id": "exec_06",
+  "split_check": "Keep pickup chain intact.",
+  "start": 0,
+  "stop": 601,
+  "supervised_start": null,
+  "supervised_stop": null,
+  "supervision_exclusions": [],
+  "supervision_kind": "executor_only",
+  "training_condition": "No policy loss.",
+  "trajectory_id": "episode_2026091916223301",
+  "uncertainty": "Retention requires visual co-motion, not width alone."
+}

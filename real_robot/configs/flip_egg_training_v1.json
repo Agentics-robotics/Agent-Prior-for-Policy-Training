@@ -1,0 +1,37 @@
+{
+  "authorization": "User 2026-09-22 explicitly authorizes formal Runtime API implementation, necessary data preparation and training for both latest existing cuts (Push cut_v6 and Flip egg cut_v1), using a common task-independent pipeline. Do not run a new cut with the newly saved general prompt. Scientific implementation decisions remain API-owned; generic interface repairs are authorized. Standing official OpenAI data permission applies. No physical robot execution.",
+  "config_path": "real_robot/configs/flip_egg_training_v1.json",
+  "cut_config": "real_robot/configs/flip_egg_cut_v1.json",
+  "cut_output": "real_robot/data/flip_egg/cut_v1",
+  "cut_run": "real_robot/runs/flip_egg/cut_v1",
+  "devices": [
+    4
+  ],
+  "environment_manifest": "real_robot/training_v4_environment/pixi.toml",
+  "execution_guard_usd": 100,
+  "interface": "real_robot/training_pipeline/INTERFACE.md",
+  "max_api_calls": 200,
+  "max_output_tokens": 32000,
+  "max_tool_calls": 480,
+  "model": "gpt-6-astra",
+  "prompt": "real_robot/prompts/implement_and_train.md",
+  "reasoning_effort": "xhigh",
+  "request_timeout_seconds": 1200,
+  "run": "real_robot/runs/flip_egg/training_v1",
+  "schema": "real_robot.train_config.pipeline.v1",
+  "scope": "Implement and train the existing Flip egg cut_v1 API design, including required data processing, auxiliary learned components and Agent calling interfaces; no new cutting stage or robot execution.",
+  "service_tier": "default",
+  "task_specification": "real_robot/task_specifications/flip_egg_training.md",
+  "training": {
+    "checkpoint_every": 2000,
+    "log_every": 100,
+    "max_cache_bytes": 64000000000,
+    "max_updates": 20000,
+    "parameter_limit": 64000000,
+    "max_policies": 64
+  },
+  "max_preprocessing_checks": 12,
+  "max_implementation_revisions": 3,
+  "max_job_seconds": 21600,
+  "previous_execution_evidence": []
+}

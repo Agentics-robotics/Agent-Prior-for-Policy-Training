@@ -1,0 +1,9 @@
+# shape_push_v1 usage
+
+Use CALLING.md with the mandatory amendment FINAL_QUALITY.md. In particular an associated Scene must set `geometry_complete_validated: true` only after actual causal completeness, association and obstacle checks. Otherwise act returns needs_view. A word string, unverified SAM fragment, future frame or offline annotation is not a valid physical-policy input.
+
+Agent selects a persistent physical instance and explicit current-to-desired SE2, prior to approach or at a fresh contact. Supply 96 metric boundary points/normals/loops, protected tracks, workspace, commissioned tool radius/contact height, timestamps/revision and tolerances. Optional complete causal reference shapes support hole recovery and shape validation. Raw RGB first returns generic proposals requiring association, not a push. No human chooses routine moves.
+
+Output is boundary point, outward normal, inward heading and <=20 mm/0.2 diameter/caller-limited tool stroke in base XY meters, with height/uncertainty/revision; it is not a flange command or success probability. executor_request composes commissioned tool-to-flange geometry into objectives only. Full planner collision/inner-hole insertion checking, guarded tracking, arrival revalidation and post-stroke observation remain mandatory.
+
+Reset on instance/reference/objective/calibration change or interruption. Report each measured ticket outcome once; two no-progress events request replan. Only stable independently measured pose error yields already_at_goal. Final task verification is external. Tests include real retained contour with synthetic executor/commissioning fixtures, source RGB generic proposal conversion, missing/stale/interrupted/invalid-precision/uncalibrated/incomplete cases. These checks do not establish semantic recognition, scene-validation accuracy, safe robot execution or unseen-shape success.

@@ -1,0 +1,31 @@
+{
+  "boundary_evidence_indices": [
+    0,
+    600,
+    2050,
+    2053,
+    2140
+  ],
+  "condition_evidence_indices": [
+    600,
+    2050,
+    2140
+  ],
+  "decision_indices": [],
+  "deployment_condition_source": "Observed held tool and front-handle pan layout; cleared workspace before intervention.",
+  "label_derivation": "L through 2050, target 2053. Prefix is context; [2051,2141) is target/outcome/intervention evidence only.",
+  "merge_check": "Share policy across pan headings; exclude human pan repositioning from control loss.",
+  "objective": "Interact and release in the changed layout.",
+  "rationale": "At 2050/2053 egg rests in pan; at 2100/2140 a human repositions the pan.",
+  "segment_id": "interaction_12",
+  "split_check": "Keep tail for audit without training robot recovery from human motion.",
+  "start": 0,
+  "stop": 2141,
+  "supervised_start": 600,
+  "supervised_stop": 2051,
+  "supervision_exclusions": [],
+  "supervision_kind": "dense",
+  "training_condition": "Held-tool interaction before the human-intervention tail.",
+  "trajectory_id": "episode_2026091916411901",
+  "uncertainty": "Do not use final pan pose or final appearance as autonomous success ground truth."
+}

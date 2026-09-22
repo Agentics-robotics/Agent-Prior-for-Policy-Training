@@ -1,0 +1,38 @@
+{
+  "boundary_evidence_indices": [
+    6140,
+    6200,
+    7729
+  ],
+  "condition_evidence_indices": [
+    6200,
+    6500,
+    6850,
+    7200,
+    7500,
+    7729
+  ],
+  "decision_indices": [
+    6200,
+    6500,
+    6850,
+    7200,
+    7500
+  ],
+  "deployment_condition_source": "Agent chooses one of two distinct bar instances, gives an explicit target pose and verifies the complete request separately.",
+  "label_derivation": "Common conversion: initially upper-left bar track6200->6850,6500->6850,6850->7200; initially central-right serif-bar track7200->7500; first bar track again7500->7729.6500 is raised reapproach,6850 a translation,7200 another instance correction,7500 final recontact.7729 is a real final observation only; no7730 successor is invented.",
+  "merge_check": "Keep the return to the first bar in the same finishing sequence to preserve history and demonstrate revisiting an instance, rather than hardcoding one pass through a word.",
+  "objective": "Translate, revisit and align remaining bar pieces and retain unannotated final outcome.",
+  "rationale": "6200/6500 show reapproach,6850 moves one bar down,7200 adjusts the other,7500 returns to the first and7729 shows the final observed arrangement.",
+  "segment_id": "b_bar_finish",
+  "split_check": "Do not create a separate terminal/success policy. Two physical tracks remain distinct despite visual rotational ambiguity.",
+  "start": 6140,
+  "stop": 7730,
+  "supervised_start": 6200,
+  "supervised_stop": 7730,
+  "supervision_exclusions": [],
+  "supervision_kind": "sparse",
+  "training_condition": "Per-anchor bar-track selection and hindsight target, same shared shape policy and causal scene history.",
+  "trajectory_id": "episode_2026091922062101",
+  "uncertainty": "H/I-like semantic labels are not verified; final observation does not establish requested-word correctness, exact spacing or success."
+}

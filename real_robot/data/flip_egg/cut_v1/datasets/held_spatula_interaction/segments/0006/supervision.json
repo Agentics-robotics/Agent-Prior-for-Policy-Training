@@ -1,0 +1,29 @@
+{
+  "boundary_evidence_indices": [
+    0,
+    600,
+    2196,
+    2199
+  ],
+  "condition_evidence_indices": [
+    600,
+    2196
+  ],
+  "decision_indices": [],
+  "deployment_condition_source": "Observed relative blade/egg/pan state.",
+  "label_derivation": "L with real i+3 target rows; prefix and final-three context as above.",
+  "merge_check": "Share across changed egg position.",
+  "objective": "Held-tool approach, insertion, lift and release.",
+  "rationale": "Egg initially toward the pan edge; local geometry matters more than episode timing.",
+  "segment_id": "interaction_07",
+  "split_check": "Preserve one continuous manipulation episode.",
+  "start": 0,
+  "stop": 2200,
+  "supervised_start": 600,
+  "supervised_stop": 2197,
+  "supervision_exclusions": [],
+  "supervision_kind": "dense",
+  "training_condition": "Same known-tool task; no future phase input.",
+  "trajectory_id": "episode_2026091916244201",
+  "uncertainty": "Edge placement does not establish arbitrary geometry transfer."
+}

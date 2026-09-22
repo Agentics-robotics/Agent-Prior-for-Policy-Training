@@ -1,0 +1,35 @@
+[workspace]
+name = "real-robot-push-training-v4"
+version = "1.0.0"
+channels = ["conda-forge"]
+platforms = ["linux-64"]
+
+[dependencies]
+python = "==3.11.16"
+
+[pypi-dependencies]
+torch = "==2.14.0"
+torchvision = ">=0.20.1"
+numpy = "==1.26.4"
+scipy = "==1.17.1"
+opencv-python = "==4.11.0.86"
+pillow = "==11.3.0"
+scikit-image = "==0.26.0"
+diffusers = "==0.35.1"
+safetensors = "==0.8.0"
+transformers = ">=4.57,<5"
+accelerate = ">=1,<2"
+qwen-vl-utils = ">=0.0.8"
+sam-2 = { git = "https://github.com/facebookresearch/sam2.git", rev = "2b90b9f5ceec907a1c18123530e92e794ad901a4" }
+jsonschema = "==4.25.1"
+pytest = "==8.4.1"
+
+[activation.env]
+PYTHONPATH = "$PIXI_PROJECT_ROOT/../..:$PIXI_PROJECT_ROOT/../../src"
+PYTHONNOUSERSITE = "1"
+PYTHONDONTWRITEBYTECODE = "1"
+OMP_NUM_THREADS = "2"
+OPENBLAS_NUM_THREADS = "1"
+MKL_NUM_THREADS = "2"
+SAM2_BUILD_CUDA = "0"
+

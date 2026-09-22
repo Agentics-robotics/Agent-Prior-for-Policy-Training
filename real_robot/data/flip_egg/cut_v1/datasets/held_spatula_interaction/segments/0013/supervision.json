@@ -1,0 +1,31 @@
+{
+  "boundary_evidence_indices": [
+    0,
+    600,
+    2250,
+    2253,
+    2360
+  ],
+  "condition_evidence_indices": [
+    600,
+    2250,
+    2360
+  ],
+  "decision_indices": [],
+  "deployment_condition_source": "Retained tool and observed task state before assistance.",
+  "label_derivation": "L through 2250 with target 2253; [2251,2361) is outcome/intervention context, never control loss.",
+  "merge_check": "Do not merge human touching the tool into learned manipulation.",
+  "objective": "Held-tool interaction through release and initial clearance.",
+  "rationale": "2250/2253 show egg resting and empty tool clear; final frame shows a human at the spatula.",
+  "segment_id": "interaction_14",
+  "split_check": "Retain the intervention for failure/handoff audit, not as another autonomous phase.",
+  "start": 0,
+  "stop": 2361,
+  "supervised_start": 600,
+  "supervised_stop": 2251,
+  "supervision_exclusions": [],
+  "supervision_kind": "dense",
+  "training_condition": "Same-pan goal with fixed grasp setting and monitored attachment.",
+  "trajectory_id": "episode_2026091916463201",
+  "uncertainty": "Do not derive attachment or success labels from the human-affected final frames."
+}

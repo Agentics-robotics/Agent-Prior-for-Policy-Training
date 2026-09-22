@@ -1,0 +1,27 @@
+{
+  "boundary_evidence_indices": [
+    0,
+    600
+  ],
+  "condition_evidence_indices": [
+    0,
+    600
+  ],
+  "decision_indices": [],
+  "deployment_condition_source": "Known-tool pose and measured/visual retention.",
+  "label_derivation": "Executor and grasp-template evidence only.",
+  "merge_check": "Keep independent of the held-tool control objective.",
+  "objective": "Acquire and lift tool.",
+  "rationale": "Tool held at 600; insertion adjustments occur later.",
+  "segment_id": "exec_03",
+  "split_check": "No benefit from separate approach and closure datasets.",
+  "start": 0,
+  "stop": 601,
+  "supervised_start": null,
+  "supervised_stop": null,
+  "supervision_exclusions": [],
+  "supervision_kind": "executor_only",
+  "training_condition": "No policy loss.",
+  "trajectory_id": "episode_2026091916165401",
+  "uncertainty": "Width about 0.034 m does not prove force or secure grasp."
+}

@@ -1,0 +1,31 @@
+{
+  "boundary_evidence_indices": [
+    0,
+    1000,
+    2580,
+    2583,
+    2772
+  ],
+  "condition_evidence_indices": [
+    1000,
+    2580,
+    2650
+  ],
+  "decision_indices": [],
+  "deployment_condition_source": "Online retained-tool state and task observations before human involvement.",
+  "label_derivation": "L through i=2580, last target=2583. [0,1000) is context; [2581,2773) is target/outcome/intervention evidence only. No target is drawn from the human-touch frames at 2650 onward.",
+  "merge_check": "Same interaction model; human-assisted tail must not enter autonomous control loss.",
+  "objective": "Manipulate and release before intervention.",
+  "rationale": "At 2550-2600 egg is in pan and tool is clear; at 2650 a person touches the egg/pan.",
+  "segment_id": "interaction_10",
+  "split_check": "Keep original tail for audit, but cap supervision conservatively instead of treating assistance as a robot retry.",
+  "start": 0,
+  "stop": 2773,
+  "supervised_start": 1000,
+  "supervised_stop": 2581,
+  "supervision_exclusions": [],
+  "supervision_kind": "dense",
+  "training_condition": "Autonomous-target interval ends before observed intervention; outcome remains unverified.",
+  "trajectory_id": "episode_2026091916320101",
+  "uncertainty": "Human tail cannot establish the robot-only final outcome; exact intervention onset is not a trained label."
+}

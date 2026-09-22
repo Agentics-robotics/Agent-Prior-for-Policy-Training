@@ -1,0 +1,129 @@
+{
+  "actual_identity": {
+    "all_astra": true,
+    "all_xhigh": true
+  },
+  "actual_saved_request_count": 77,
+  "all_actual_instructions_match_prompt": true,
+  "asset_requests": {
+    "request_asset": 0,
+    "request_model": 0
+  },
+  "final_source_and_checkpoint_unchanged": true,
+  "first_recorded_exclusion_reasons": {
+    "API overlay review: shadow-filled notches produce a rectangle rather than full bar; symmetry/goal yaw unreliable": 1,
+    "API overlay review: tool occlusion truncates bar contour; reject despite numerical match": 1,
+    "Actor motion not distinguishable from registration noise: possible approach/occlusion motion, not a supported short interaction": 1,
+    "Actor/goal segmentation unavailable or occluded": 4,
+    "Contact not corroborated on same actor at prefix endpoint": 2,
+    "Goal topology mismatch or rigid residual exceeds 10 mm": 19,
+    "No supported first contact: RGB/tool/actor association or height gate failed": 14,
+    "Prefix motion below 4 mm; pause/tilt/lift unsupported": 1
+  },
+  "geometry_gate": {
+    "combined_failures": 19,
+    "residual_over_10mm": 17,
+    "residual_within_10mm_but_topology_mismatch": [
+      {
+        "index": 5100,
+        "rms_m": 0.00932842966678378,
+        "trajectory_id": "episode_2026091922002701"
+      },
+      {
+        "index": 3600,
+        "rms_m": 0.006215490328635678,
+        "trajectory_id": "episode_2026091922062101"
+      }
+    ]
+  },
+  "interpretation_limit": "Recorded exclusions are pipeline decisions, not proof of irrecoverable recordings. No count of recoverable new labels has been validated.",
+  "new_runtime_api_calls": 0,
+  "new_training_updates": 0,
+  "post_review_excluded": [
+    {
+      "index": 5600,
+      "reason": "Actor motion not distinguishable from registration noise: possible approach/occlusion motion, not a supported short interaction",
+      "trajectory_id": "episode_2026091922002701"
+    },
+    {
+      "index": 6500,
+      "reason": "API overlay review: shadow-filled notches produce a rectangle rather than full bar; symmetry/goal yaw unreliable",
+      "trajectory_id": "episode_2026091922062101"
+    },
+    {
+      "index": 7500,
+      "reason": "API overlay review: tool occlusion truncates bar contour; reject despite numerical match",
+      "trajectory_id": "episode_2026091922062101"
+    }
+  ],
+  "recorded_state_availability": {
+    "episode_2026091922002701": {
+      "T_base_ee": {
+        "fully_finite_rows": 9015,
+        "shape": [
+          9015,
+          4,
+          4
+        ]
+      },
+      "T_base_flange": {
+        "fully_finite_rows": 9015,
+        "shape": [
+          9015,
+          4,
+          4
+        ]
+      },
+      "q": {
+        "fully_finite_rows": 9015,
+        "shape": [
+          9015,
+          7
+        ]
+      }
+    },
+    "episode_2026091922062101": {
+      "T_base_ee": {
+        "fully_finite_rows": 7730,
+        "shape": [
+          7730,
+          4,
+          4
+        ]
+      },
+      "T_base_flange": {
+        "fully_finite_rows": 7730,
+        "shape": [
+          7730,
+          4,
+          4
+        ]
+      },
+      "q": {
+        "fully_finite_rows": 7730,
+        "shape": [
+          7730,
+          7
+        ]
+      }
+    }
+  },
+  "review_date": "2026-09-22",
+  "scope": "Developer read-only prompt/interface/label-audit review; not new scientific labels or a recovery experiment",
+  "stages": {
+    "passed_pipeline_before_overlay_review": 7,
+    "raw_rows": 16745,
+    "retained_final": 4,
+    "selected_frozen_anchors": 47,
+    "unselected_as_direct_supervision": 16698
+  },
+  "verified_sources": {
+    "real_robot/policy_training_v4/INTERFACE.md": "e2cd08af60ce1ea47d1d9c2426233129e48cfcc1bf374ed51e44dc4936bb1ba6",
+    "real_robot/policy_training_v4/engine.py": "c132d040119d138d51657da814c4c34f2c77f0f3dd7ee913383f1895539f1b0f",
+    "real_robot/prompts/implement_policies_v4.md": "a329991d39fe0e1cb400e5981b494b23cf9204734991e11f78a5f508a255a855",
+    "real_robot/runs/push_letters/training_v4/package_00/prepared/evidence/final_anchor_audit.json": "57748845b95b35a90790321d2c919e49d582942cc916de5cb4fc47af670f1e68",
+    "real_robot/runs/push_letters/training_v4/package_00/source/geometry.py": "05a485c042b708cebc08a4306405804203d890c19743677dd132ff4476ef8db2",
+    "real_robot/runs/push_letters/training_v4/package_00/source/preparation.py": "0b57f64c66c64249a28434a0b84eba774f682442c8f525bdfa10633e23609d19",
+    "real_robot/runs/push_letters/training_v4/package_00/source/review.py": "3a0d0ecbe92d9a7a341262b5da25632529a7e3b838a6c53daf71c5b9bb3e4db2"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "authorization": "On 2026-09-21 the user instructed: \u6240\u4ee5\u4ecd\u65e7\u662f\u4e00\u4e2a\u901a\u7528\u52a0\u4e00\u4e2aspecific\u5bf9\u5427\uff0c\u73b0\u5728\u8ba9api\u505a\u4e00\u8f6e\u65b0cut\u5427\uff0c\u6b64\u5916\u6211\u4eec\u5f31\u5316heuristic\u9700\u8981\u662f\u591a\u4e2a\uff0c\u770b\u770b\u5b83\u662f\u63d0\u4f9b\u51e0\u4e2apolicy? Execute independent cut_v6 using the general prompt and Push specification, supplied planner capability, no prescribed contact-point solution or policy count. Standing official OpenAI data authorization applies. Preserve all earlier versions. Latest steering: \u52a0\u4e0a\u8fd9\u79cd\u5427\uff0c\u5c31\u662f\u4e3e\u4f8b\u5b50\u8bf4\u6bd4\u5982contact point\uff0c\u8d85\u7edd\u4e0d\u7ecf\u610f. Add only a brief contact-point example to the generic output possibilities; no fixed output schema or policy count. Initial attempt explicitly interrupted and retained separately.",
+  "config_path": "real_robot/configs/push_cut_v6_with_example.json",
+  "data_contract": "real_robot/cutting_v6/DATA_CONTRACT.md",
+  "execution_guard_usd": 100,
+  "max_api_calls": 128,
+  "max_output_tokens": 32000,
+  "max_plan_versions": 20,
+  "max_tool_calls": 480,
+  "model": "gpt-6-astra",
+  "output": "real_robot/data/push_letters/cut_v6",
+  "preview_height": 360,
+  "preview_width": 640,
+  "prompt": "real_robot/prompts/general_cut_and_prior_v5.md",
+  "reasoning_effort": "xhigh",
+  "request_timeout_seconds": 1200,
+  "run": "real_robot/runs/push_letters/cut_v6_with_example",
+  "schema": "real_robot.cut_config.v1",
+  "scope": "Planner-supported system responsibility, learned output and policy count chosen by Runtime API; dense/sparse decision supervision and executor evidence; no implementation, training or robot execution",
+  "service_tier": "default",
+  "source_root": "/home/storage/tianrunhu/real_robot_data/push_letters",
+  "task": "push_letters",
+  "task_specification": "real_robot/task_specifications/push_letters_v2.md",
+  "trajectory_ids": [
+    "episode_2026091922002701",
+    "episode_2026091922062101"
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "boundary_evidence_indices": [
+    0,
+    600,
+    1807,
+    1810
+  ],
+  "condition_evidence_indices": [
+    600,
+    900,
+    1200,
+    1650
+  ],
+  "decision_indices": [],
+  "deployment_condition_source": "Current retained tool, observed egg/pan and session initial-face goal.",
+  "label_derivation": "Use conversion L at each anchor i with future original row i+3; [0,600) is initialization/acquisition context and [1808,1811) target/outcome buffer.",
+  "merge_check": "Share with all other held-tool episodes, not acquisition control loss.",
+  "objective": "Approach, insert, lift, release and clear using local tool motion.",
+  "rationale": "600 is lifted tool; later views show blade beside/under egg, supported lift and egg back in pan.",
+  "segment_id": "interaction_01",
+  "split_check": "Keep adjustments and release continuous; no artificial phase labels.",
+  "start": 0,
+  "stop": 1811,
+  "supervised_start": 600,
+  "supervised_stop": 1808,
+  "supervision_exclusions": [],
+  "supervision_kind": "dense",
+  "training_condition": "Held-tool control only; causal initial goal from row 0; masks/geometry derived online-equivalently.",
+  "trajectory_id": "episode_2026091916095801",
+  "uncertainty": "Outcome appears changed but no verified task-success label; calibration/contact validity is separately audited."
+}

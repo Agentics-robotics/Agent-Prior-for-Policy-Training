@@ -1,0 +1,155 @@
+{
+  "API_accounting": {
+    "API_calls": 100,
+    "cost_is_invoice": false,
+    "estimated_usd": 16.283451,
+    "model": "gpt-6-astra",
+    "reasoning_effort": "xhigh",
+    "unknown_reserved_usd": 0
+  },
+  "checked": 1790047731.464738,
+  "generalization_evaluation": false,
+  "models": {
+    "shape_push_v1": {
+      "calling_check": {
+        "cases": [
+          {
+            "decision": true,
+            "name": "synthetic_continuation",
+            "status": "proposed_continuation"
+          },
+          {
+            "decision": true,
+            "name": "deterministic_contact_initializer",
+            "status": "proposed_prepare"
+          },
+          {
+            "decision": false,
+            "name": "missing_observation",
+            "status": "missing_input"
+          },
+          {
+            "decision": false,
+            "name": "stale_scene",
+            "status": "stale_scene"
+          },
+          {
+            "decision": false,
+            "name": "interruption_reset",
+            "status": "interrupted"
+          },
+          {
+            "decision": false,
+            "name": "calibration_required",
+            "status": "needs_calibration_or_view"
+          },
+          {
+            "decision": false,
+            "name": "observed_goal_not_success",
+            "status": "at_goal_observation_not_task_success"
+          },
+          {
+            "decision": false,
+            "name": "guard_feedback",
+            "status": "executor_replan"
+          },
+          {
+            "decision": true,
+            "name": "real_source_geometry_hindsight_goal_850",
+            "status": "proposed_continuation"
+          }
+        ],
+        "hardware_io": false,
+        "passed": true,
+        "performance_evaluation": false
+      },
+      "checkpoint": "/home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/real_robot/runs/push_letters/training_v5/package_01/training/shape_push_v1/last.pt",
+      "checkpoint_sha256": "68d3a72d860fb7c3f88db26de1f658d53a207e38a78f5a7b3cefbccec36d7ebb",
+      "device": {
+        "logical_gpu": 0,
+        "minor": 6,
+        "physical_gpu": 4,
+        "uuid": "GPU-29557089-826b-ddb5-4d55-d03f2009a879"
+      },
+      "elapsed_seconds": 6.501121303997934,
+      "final_weights_sha256": "5cda6477d3d7ad324de9062277a46961aa8b85cbdb968924e8ed92c0645a5207",
+      "finite_gradient_checks": [
+        {
+          "l2_norm": 4.615029335021973,
+          "step": 1
+        },
+        {
+          "l2_norm": 4.880446434020996,
+          "step": 2
+        },
+        {
+          "l2_norm": 4.7479658126831055,
+          "step": 3
+        }
+      ],
+      "initial_weights_sha256": "67c26626f5f310fe7573b9535a784463c9a429f3240e96125b35a8a603d2d6ed",
+      "neural_training_verified": true,
+      "optimizer_class": "AdamW",
+      "optimizer_steps": 800,
+      "performance_evaluation": false,
+      "policy_id": "shape_push_v1",
+      "reload_max_prediction_error": 0.0,
+      "robot_execution": false,
+      "sample_exposures": 25600,
+      "selected_step": 600,
+      "source_hashes": {
+        "CALLING.md": "03f5508e456a85891ff8a30bb1a7e564c0c3da01f6f4975ddfd194a2f8f9e04f",
+        "HANDOFF.json": "31d6a413bafe08dca82076ed99ebe6a75586bee0ae7d9b3464077db2050dc7f6",
+        "ORIGINAL_CUT_PRIOR.md": "94a2c9bfe98ead728e2e9f51c60e2c15e6c705258535e2a4e4f78285eb0c5152",
+        "POLICY_CATALOG.md": "2b51fb7957af5f11708fc227b2a22210131c4669b51482f87ad5c0639ccf0c4c",
+        "PREVIOUS_ASSESSMENT.md": "0a51ed6f42115c19dfd03c9a08ac5c31901a47f539e2814665c32978bdbe075f",
+        "PRIOR.md": "b7afa1d8ec36c3bb2d0412dbf9db7049d5b0ad6f0b816bdfb55f3ce36d75a766",
+        "RECOVERY_REVIEW.md": "54a0d3f9a6dc364cef41f74f93cd2157ee9ff6a12163759d76d84ad918d4e4a3",
+        "adapter.py": "2dbf6f0da0cffec1cf133f61bff01ffb64115de47e55bb4384abddd79a8dc4b2",
+        "annotations.json": "125ab589c2447b63528040e27fc3647b89f57f149878576b6b1d1c2723053c4c",
+        "flow_geometry.py": "a40b291e19685858ed320cf860ca94ebd4a32ab6b6b0572618683b82cd3237df",
+        "flow_preparation.py": "2213ec3c1cd0841d9cc379f6800ef03ea86a24214cc3abe8810a0d492419cd83",
+        "geometry.py": "87e61663d48c67e4e9da7a437c3746293c573098439b69c015a64c7bc2aa6145",
+        "package.json": "1f21ea7e3246acf9a5fc306c13ecfbcbd12a9162a76c765d777bb486d89a45db",
+        "policy.py": "ca956559574f27aa1eb6d75ca08dc5176dbaa95ef7b41075a8a43e24f4591cfd",
+        "preparation.py": "9006f9a2019ab698dcd49dcf7cda98f77b485b177a77f805598b34bfefe6194c",
+        "recovery.py": "0228a6cb58e8577cbb1e5e8a605953b795544fdda6b38b2f15adfece2fd99a3d",
+        "shape_push_v1_PRIOR.md": "72c9da10f2f224aca6c1bffbbd1db02753cb162da4455adfe087647f04ee0dab",
+        "shape_push_v1_USAGE.md": "90d8fd18dc62235124d0ca8af411746f45326c2fdd66309651f49fc09093b329"
+      },
+      "trainable_parameters": 9641,
+      "training_examples": 168,
+      "weight_l2_change": 6.196184680591148
+    }
+  },
+  "num_examples": 168,
+  "old_cut_prompts_and_plans_unchanged": true,
+  "old_training_v4_source_and_checkpoint_unchanged": true,
+  "passed": true,
+  "physical_robot_execution": false,
+  "policy_examples": {
+    "shape_push_v1": 168
+  },
+  "revision": 1,
+  "run": "push_training_v5",
+  "source_coverage": {
+    "episode_2026091922002701": {
+      "declared_use_rows": {
+        "context": 9015,
+        "excluded": 0,
+        "supervision": 9015
+      },
+      "original_rows": 9015,
+      "unique_supervised_anchors": 74
+    },
+    "episode_2026091922062101": {
+      "declared_use_rows": {
+        "context": 7730,
+        "excluded": 0,
+        "supervision": 7730
+      },
+      "original_rows": 7730,
+      "unique_supervised_anchors": 94
+    }
+  }
+}

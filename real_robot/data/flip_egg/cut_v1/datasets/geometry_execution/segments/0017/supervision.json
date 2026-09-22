@@ -1,0 +1,27 @@
+{
+  "boundary_evidence_indices": [
+    0,
+    1000
+  ],
+  "condition_evidence_indices": [
+    0,
+    1000
+  ],
+  "decision_indices": [],
+  "deployment_condition_source": "Known tool geometry and retained-tool check.",
+  "label_derivation": "Execution evidence only.",
+  "merge_check": "Initial idle time does not become learned task timing.",
+  "objective": "Acquire and lift tool.",
+  "rationale": "400 still shows no gripper at the tool; 1000 is lifted. This is not a fixed-duration stage.",
+  "segment_id": "exec_18",
+  "split_check": "Keep initial idle, approach and lift as context/execution evidence.",
+  "start": 0,
+  "stop": 1001,
+  "supervised_start": null,
+  "supervised_stop": null,
+  "supervision_exclusions": [],
+  "supervision_kind": "executor_only",
+  "training_condition": "No policy loss.",
+  "trajectory_id": "episode_2026091916534901",
+  "uncertainty": "Camera device timestamps later reset; retain pairings rather than shifting samples."
+}

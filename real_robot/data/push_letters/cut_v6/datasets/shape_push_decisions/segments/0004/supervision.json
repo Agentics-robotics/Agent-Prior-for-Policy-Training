@@ -1,0 +1,41 @@
+{
+  "boundary_evidence_indices": [
+    6140,
+    6200,
+    8250
+  ],
+  "condition_evidence_indices": [
+    6200,
+    6700,
+    6900,
+    6930,
+    7200,
+    7600,
+    7800,
+    8000
+  ],
+  "decision_indices": [
+    6200,
+    6700,
+    6900,
+    7200,
+    7600,
+    7800
+  ],
+  "deployment_condition_source": "Agent-selected open-corner instance and explicit spatial pose. Recontact chosen after measured error/slip, not elapsed recording phase.",
+  "label_derivation": "Common conversion for the same open-right-angle/L-like track: 6200->6700, 6700->6900, 6900->7200, 7200->7600, 7600->7800, 7800->8250. Each f is an achieved intermediate pose, including turns that need subsequent corrections, not a label of monotonic progress toward an inferred word. 6900/6930 show local motion with changing tool rotation; restrict the fitted primitive to a valid short prefix or flag it unsupported.",
+  "merge_check": "Keep repeated attempts on the same instance together; otherwise nearly identical before/after shapes would leak across splits and retries could be mistaken for different skills.",
+  "objective": "Choose successive contacts around an open corner for rotation, translation and reattempts.",
+  "rationale": "6700,6900,7200 and7600 show substantial orientation changes/reapproaches before 7800/8000/8250 placement near other pieces. This is evidence against a single long open-loop push.",
+  "segment_id": "a_open_corner_retries",
+  "split_check": "Six sparse choices distinguish repeated interactions; do not split on every sign change or learn a fixed six-stage script. An online retry may occur at any location.",
+  "start": 6140,
+  "stop": 8251,
+  "supervised_start": 6200,
+  "supervised_stop": 8251,
+  "supervision_exclusions": [],
+  "supervision_kind": "sparse",
+  "training_condition": "One persistent physical track, per-anchor geometry/goal and optional causal prior response, including inner-concavity accessibility and neighboring pieces.",
+  "trajectory_id": "episode_2026091922002701",
+  "uncertainty": "Contact surfaces are partly occluded, tilt changes are significant, and some intermediate outcomes are not aligned. They are not all asserted successful demonstrations."
+}

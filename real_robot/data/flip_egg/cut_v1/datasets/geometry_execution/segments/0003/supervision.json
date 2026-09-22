@@ -1,0 +1,27 @@
+{
+  "boundary_evidence_indices": [
+    0,
+    400
+  ],
+  "condition_evidence_indices": [
+    0,
+    400
+  ],
+  "decision_indices": [],
+  "deployment_condition_source": "Observed free tool and gripper; verified lift.",
+  "label_derivation": "Execution evidence only.",
+  "merge_check": "Distinct from interaction supervision.",
+  "objective": "Acquire spatula.",
+  "rationale": "Earlier pickup than other episodes; 400 is already visibly lifted.",
+  "segment_id": "exec_04",
+  "split_check": "Keep the faster pickup intact rather than using fixed-duration cuts.",
+  "start": 0,
+  "stop": 401,
+  "supervised_start": null,
+  "supervised_stop": null,
+  "supervision_exclusions": [],
+  "supervision_kind": "executor_only",
+  "training_condition": "No policy loss.",
+  "trajectory_id": "episode_2026091916183001",
+  "uncertainty": "Row 0 already contains a nonzero recorded command; not a fabricated reset."
+}

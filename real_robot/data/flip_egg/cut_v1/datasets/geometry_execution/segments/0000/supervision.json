@@ -1,0 +1,27 @@
+{
+  "boundary_evidence_indices": [
+    0,
+    600
+  ],
+  "condition_evidence_indices": [
+    0,
+    600
+  ],
+  "decision_indices": [],
+  "deployment_condition_source": "Agent-selected known spatula on support; online fitted tool pose and empty gripper, followed by visible retained-tool test.",
+  "label_derivation": "No policy labels. Retain original state/command/media chain for grasp-template fitting, gripper calibration and executor outcome checks.",
+  "merge_check": "Do not merge executor-only acquisition with the learned interaction loss.",
+  "objective": "Acquire and lift the spatula with explicit geometric goals.",
+  "rationale": "Tool rests on a small dish initially; at 600 it is lifted and held, before egg insertion.",
+  "segment_id": "exec_01",
+  "split_check": "Keep approach, close and visible lift outcome in one execution sequence.",
+  "start": 0,
+  "stop": 601,
+  "supervised_start": null,
+  "supervised_stop": null,
+  "supervision_exclusions": [],
+  "supervision_kind": "executor_only",
+  "training_condition": "Execution evidence only; no control loss.",
+  "trajectory_id": "episode_2026091916095801",
+  "uncertainty": "Exact grasp contact and physical width calibration are unverified."
+}

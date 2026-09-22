@@ -1,0 +1,33 @@
+{
+  "boundary_evidence_indices": [
+    5040,
+    5100,
+    6200
+  ],
+  "condition_evidence_indices": [
+    5100,
+    5600,
+    6000
+  ],
+  "decision_indices": [
+    5100,
+    5600,
+    6000
+  ],
+  "deployment_condition_source": "Agent requests measured goal pose for the legged or rectangular-loop track according to current layout; correction is triggered by residual pose error.",
+  "label_derivation": "Common conversion: legged piece 5100->5600 and 5600->6000; rectangular-loop piece 6000->6200. 5100 has an elevated external-torque pattern relative to nearby observations; it is not a force label, and contact/occlusion/primitive fit require review rather than cloning that force response.",
+  "merge_check": "Related placement/correction data share one sequence and model. The 5100 shared boundary is an outcome in the preceding segment and a decision only here.",
+  "objective": "Select placement and fine recontact corrections near already arranged pieces.",
+  "rationale": "5100 begins another legged-piece contact, 5600 is near the ring, 6000/6200 show rectangular-loop orientation/position correction before leaving for the open-corner piece.",
+  "segment_id": "a_legged_and_loop_finish",
+  "split_check": "No new correction policy; local goal errors and observed feedback explain the change. A contact that fails the stroke assumptions gets a validity mask, not a fabricated label.",
+  "start": 5040,
+  "stop": 6201,
+  "supervised_start": 5100,
+  "supervised_stop": 6201,
+  "supervision_exclusions": [],
+  "supervision_kind": "sparse",
+  "training_condition": "Current selected shape, nearby protected arrangements, caller-equivalent hindsight target and short causal history.",
+  "trajectory_id": "episode_2026091922002701",
+  "uncertainty": "No force calibration or success label. Small loop adjustment may be near pose-estimation noise; mask uncertain displacement/goal components."
+}

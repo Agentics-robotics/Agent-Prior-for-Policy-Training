@@ -1,0 +1,32 @@
+{
+  "cancelled_at": 1790050231.3288484,
+  "user_requested": true,
+  "reason": "User cancelled this additional correction round and requested a fresh original Push v5 workflow with only a generic maximum-data/final-model prompt amendment.",
+  "original_launcher": {
+    "automatic_retry": false,
+    "config": "real_robot/configs/push_training_v6.json",
+    "model": "gpt-6-astra",
+    "pid": 3997428,
+    "reasoning_effort": "xhigh",
+    "started": 1790049617.4669878
+  },
+  "transport_retry": false,
+  "preserve_all_artifacts": true,
+  "command": "/home/users/oscar/.pixi/bin/pixi run --manifest-path /home/users/oscar/agent_learning/Agent-Prior-for-Policy-Training/real_robot/training_v4_environment/pixi.toml --locked --no-install python -u -m real_robot.training_pipeline run --config real_robot/configs/push_training_v6.json ",
+  "process_group": 3997428,
+  "signal": "SIGTERM",
+  "workflow_before_cancellation": {
+    "feedback": null,
+    "remaining_execution_guard_usd": 100.0,
+    "revision": 0,
+    "status": "API_design"
+  },
+  "sessions": {
+    "design_00": {
+      "api_states": {
+        "consumed": 24,
+        "received": 1
+      }
+    }
+  }
+}

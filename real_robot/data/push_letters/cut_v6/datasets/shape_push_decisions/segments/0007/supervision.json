@@ -1,0 +1,37 @@
+{
+  "boundary_evidence_indices": [
+    1390,
+    1450,
+    2850
+  ],
+  "condition_evidence_indices": [
+    1450,
+    1700,
+    1950,
+    2300,
+    2600
+  ],
+  "decision_indices": [
+    1450,
+    1700,
+    1950,
+    2300,
+    2600
+  ],
+  "deployment_condition_source": "Agent assigns explicit staging/slot poses for the rectangular-loop or ring track, and selects contacts using measured geometry.",
+  "label_derivation": "Common conversion: rectangular-loop track 1450->1950 and1700->1950; ring track1950->2300,2300->2600,2600->2850. 1450 is prior to connecting motion;1700 wrist shows contact inside the rectangular loop.1950 is a pre-ring-contact observation after relocation of the other track.",
+  "merge_check": "Retain both related interactions as actor-conditioned anchors with clutter context. Do not infer one continuous action through the switch or a common object identity.",
+  "objective": "Interior-boundary relocation and ring orientation/placement from a new route.",
+  "rationale": "1700 visibly pushes inside a hole;1950 shows loop relocated;2300/2600/2850 show ring rotations and translation near the zigzag piece.",
+  "segment_id": "b_loop_and_ring",
+  "split_check": "Interior and exterior contact geometry differ but candidate representation covers both; no separate learned insertion/travel policy is required.",
+  "start": 1390,
+  "stop": 2851,
+  "supervised_start": 1450,
+  "supervised_stop": 2851,
+  "supervision_exclusions": [],
+  "supervision_kind": "sparse",
+  "training_condition": "Selected track at each anchor with per-anchor hindsight pose, measured holes, tool envelope and surrounding geometry.",
+  "trajectory_id": "episode_2026091922062101",
+  "uncertainty": "Loop insertion clearance and actual tool contact height are unverified. Reject label/execution if calibration uncertainty prevents a safe fit."
+}

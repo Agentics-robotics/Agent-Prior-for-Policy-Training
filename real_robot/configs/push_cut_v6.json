@@ -1,0 +1,28 @@
+{
+  "schema": "real_robot.cut_config.v1",
+  "config_path": "real_robot/configs/push_cut_v6.json",
+  "task": "push_letters",
+  "source_root": "/home/storage/tianrunhu/real_robot_data/push_letters",
+  "trajectory_ids": [
+    "episode_2026091922002701",
+    "episode_2026091922062101"
+  ],
+  "output": "real_robot/data/push_letters/cut_v6",
+  "run": "real_robot/runs/push_letters/cut_v6",
+  "prompt": "real_robot/prompts/general_cut_and_prior_v4.md",
+  "task_specification": "real_robot/task_specifications/push_letters_v2.md",
+  "data_contract": "real_robot/cutting_v6/DATA_CONTRACT.md",
+  "model": "gpt-6-astra",
+  "reasoning_effort": "xhigh",
+  "service_tier": "default",
+  "preview_width": 640,
+  "preview_height": 360,
+  "max_api_calls": 128,
+  "max_tool_calls": 480,
+  "max_plan_versions": 20,
+  "max_output_tokens": 32000,
+  "request_timeout_seconds": 1200,
+  "execution_guard_usd": 100,
+  "scope": "Planner-supported system responsibility, learned output and policy count chosen by Runtime API; dense/sparse decision supervision and executor evidence; no implementation, training or robot execution",
+  "authorization": "On 2026-09-21 the user instructed: 所以仍旧是一个通用加一个specific对吧，现在让api做一轮新cut吧，此外我们弱化heuristic需要是多个，看看它是提供几个policy? Execute independent cut_v6 using the general prompt and Push specification, supplied planner capability, no prescribed contact-point solution or policy count. Standing official OpenAI data authorization applies. Preserve all earlier versions."
+}

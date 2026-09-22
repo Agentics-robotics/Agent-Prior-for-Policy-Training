@@ -1,0 +1,29 @@
+{
+  "boundary_evidence_indices": [
+    0,
+    400,
+    1910,
+    1913
+  ],
+  "condition_evidence_indices": [
+    400,
+    1910
+  ],
+  "decision_indices": [],
+  "deployment_condition_source": "Lifted tool and current object observations.",
+  "label_derivation": "L; prefix [0,400) context, final-three buffer.",
+  "merge_check": "Early handoff is within the shared approach envelope.",
+  "objective": "Choose local motions from early lifted-tool state through release.",
+  "rationale": "Larger visible egg extent and different pan placement provide observed variation.",
+  "segment_id": "interaction_08",
+  "split_check": "Keep free approach and contact transition observable rather than pretending arrival is contact certainty.",
+  "start": 0,
+  "stop": 1914,
+  "supervised_start": 400,
+  "supervised_stop": 1911,
+  "supervision_exclusions": [],
+  "supervision_kind": "dense",
+  "training_condition": "Causal observation and persistent same-pan flip goal.",
+  "trajectory_id": "episode_2026091916283401",
+  "uncertainty": "Object identity/material not verified from changed appearance."
+}
