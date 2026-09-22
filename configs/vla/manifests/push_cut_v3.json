@@ -1,0 +1,559 @@
+{
+ "version": 1,
+ "created": "2026-09-20T23:15:53",
+ "raw_root": "/home/storage/tianrunhu/real_robot_data",
+ "instruction_source": "cut:/home/storage/oscar/cut_v3",
+ "notes": "22 cut segments from /home/storage/oscar/cut_v3 -> 22 supervised intervals; prompts from vla_pi05.cut_import.PROMPTS; goal coords=on; val=['b_d_stage', 'b_i_align']",
+ "segments": [
+  {
+   "episode": "push_letters/episode_2026091922002701",
+   "start": 0,
+   "end": 1690,
+   "instruction": "push the W-shaped zigzag piece from the upper middle to the lower-right word row, goal at x47 y78",
+   "split": "train",
+   "task": "push_letters",
+   "id": "a_w",
+   "meta": {
+    "cut_segment_id": "a_w",
+    "cut_interval": [
+     0,
+     1720
+    ],
+    "goal_box_1280x720": [
+     500,
+     490,
+     695,
+     640
+    ],
+    "objective": "Approach, reorient and transport the initially upper-middle zigzag piece to the lower-right staging/word-row position.",
+    "training_condition": "Selected episode-local zigzag/W-like instance; fixed achieved placement G(1719). No word/class token is a policy input.",
+    "cut_dataset": "instance_relocation"
+   }
+  },
+  {
+   "episode": "push_letters/episode_2026091922002701",
+   "start": 1750,
+   "end": 1890,
+   "instruction": "stage the I-shaped bar piece next to the O a short way aside, goal at x29 y52",
+   "split": "train",
+   "task": "push_letters",
+   "id": "a_i_stage1",
+   "meta": {
+    "cut_segment_id": "a_i_stage1",
+    "cut_interval": [
+     1720,
+     1920
+    ],
+    "goal_box_1280x720": [
+     275,
+     310,
+     465,
+     432
+    ],
+    "objective": "Briefly displace/reorient the lower crossbar piece away from its initial position before approaching O.",
+    "training_condition": "Lower crossbar/I-like instance, local staging placement G(1919).",
+    "cut_dataset": "instance_relocation"
+   }
+  },
+  {
+   "episode": "push_letters/episode_2026091922002701",
+   "start": 1950,
+   "end": 3190,
+   "instruction": "push the O-shaped ring piece to the right and set it above the W, goal at x46 y59",
+   "split": "train",
+   "task": "push_letters",
+   "id": "a_o",
+   "meta": {
+    "cut_segment_id": "a_o",
+    "cut_interval": [
+     1920,
+     3220
+    ],
+    "goal_box_1280x720": [
+     505,
+     365,
+     680,
+     490
+    ],
+    "objective": "Approach the annular piece from its left/lower side, push rightward and align it above the moved zigzag piece.",
+    "training_condition": "Annular/O-like instance; achieved placement G(3219).",
+    "cut_dataset": "instance_relocation"
+   }
+  },
+  {
+   "episode": "push_letters/episode_2026091922002701",
+   "start": 3250,
+   "end": 3570,
+   "instruction": "stage the R-shaped piece upward near the H, goal at x37 y26",
+   "split": "train",
+   "task": "push_letters",
+   "id": "a_r_stage",
+   "meta": {
+    "cut_segment_id": "a_r_stage",
+    "cut_interval": [
+     3220,
+     3600
+    ],
+    "goal_box_1280x720": [
+     405,
+     135,
+     545,
+     245
+    ],
+    "objective": "Move and rotate the R-like piece upward to a temporary location near the upper crossbar piece.",
+    "training_condition": "R-like instance, temporary placement G(3599), not the final R row slot.",
+    "cut_dataset": "instance_relocation"
+   }
+  },
+  {
+   "episode": "push_letters/episode_2026091922002701",
+   "start": 3630,
+   "end": 4200,
+   "instruction": "stage the I-shaped bar piece further up and left to clear space around the H, goal at x26 y44",
+   "split": "train",
+   "task": "push_letters",
+   "id": "a_i_stage2",
+   "meta": {
+    "cut_segment_id": "a_i_stage2",
+    "cut_interval": [
+     3600,
+     4230
+    ],
+    "goal_box_1280x720": [
+     250,
+     245,
+     425,
+     385
+    ],
+    "objective": "Re-approach and move the lower crossbar piece further left/up, opening space around the upper crossbar piece.",
+    "training_condition": "Lower crossbar/I-like instance; second local staging placement G(4229).",
+    "cut_dataset": "instance_relocation"
+   }
+  },
+  {
+   "episode": "push_letters/episode_2026091922002701",
+   "start": 4260,
+   "end": 4590,
+   "instruction": "stage the H-shaped piece down at the lower left, goal at x27 y74",
+   "split": "train",
+   "task": "push_letters",
+   "id": "a_h_stage",
+   "meta": {
+    "cut_segment_id": "a_h_stage",
+    "cut_interval": [
+     4230,
+     4620
+    ],
+    "goal_box_1280x720": [
+     250,
+     462,
+     448,
+     605
+    ],
+    "objective": "Push the upper crossbar piece down to the lower-left area and reorient it.",
+    "training_condition": "Upper crossbar/H-like instance; temporary lower-left placement G(4619).",
+    "cut_dataset": "instance_relocation"
+   }
+  },
+  {
+   "episode": "push_letters/episode_2026091922002701",
+   "start": 4650,
+   "end": 4920,
+   "instruction": "stage the D-shaped piece up at the upper right, goal at x46 y28",
+   "split": "train",
+   "task": "push_letters",
+   "id": "a_d_stage",
+   "meta": {
+    "cut_segment_id": "a_d_stage",
+    "cut_interval": [
+     4620,
+     4950
+    ],
+    "goal_box_1280x720": [
+     528,
+     150,
+     645,
+     260
+    ],
+    "objective": "Engage the D-like piece, including its inner opening, and transport it upward/right to a temporary upper location.",
+    "training_condition": "D-like instance; staging placement G(4949).",
+    "cut_dataset": "instance_relocation"
+   }
+  },
+  {
+   "episode": "push_letters/episode_2026091922002701",
+   "start": 4980,
+   "end": 5740,
+   "instruction": "push the staged R-shaped piece into the row above the O, goal at x44 y44",
+   "split": "train",
+   "task": "push_letters",
+   "id": "a_r",
+   "meta": {
+    "cut_segment_id": "a_r",
+    "cut_interval": [
+     4950,
+     5770
+    ],
+    "goal_box_1280x720": [
+     490,
+     263,
+     642,
+     370
+    ],
+    "objective": "Re-contact staged R, rotate and transport it into the column/row above O, retaining contact-side corrections.",
+    "training_condition": "R-like instance; later achieved placement G(5769), distinct from G(3599).",
+    "cut_dataset": "instance_relocation"
+   }
+  },
+  {
+   "episode": "push_letters/episode_2026091922002701",
+   "start": 5800,
+   "end": 6110,
+   "instruction": "align the D-shaped piece at the top of the word column, goal at x44 y24",
+   "split": "train",
+   "task": "push_letters",
+   "id": "a_d_align",
+   "meta": {
+    "cut_segment_id": "a_d_align",
+    "cut_interval": [
+     5770,
+     6140
+    ],
+    "goal_box_1280x720": [
+     500,
+     135,
+     635,
+     217
+    ],
+    "objective": "Correct staged D's orientation and position at the upper end of the developing arrangement.",
+    "training_condition": "D-like instance; alignment placement G(6139).",
+    "cut_dataset": "instance_relocation"
+   }
+  },
+  {
+   "episode": "push_letters/episode_2026091922002701",
+   "start": 6170,
+   "end": 8020,
+   "instruction": "push the L-shaped piece into the gap between the R and the D, goal at x44 y33",
+   "split": "train",
+   "task": "push_letters",
+   "id": "a_l",
+   "meta": {
+    "cut_segment_id": "a_l",
+    "cut_interval": [
+     6140,
+     8050
+    ],
+    "goal_box_1280x720": [
+     490,
+     190,
+     635,
+     284
+    ],
+    "objective": "Repeatedly reorient/re-contact the L-shaped piece, then move it between the R and D placements.",
+    "training_condition": "L-shaped instance; achieved placement G(8049).",
+    "cut_dataset": "instance_relocation"
+   }
+  },
+  {
+   "episode": "push_letters/episode_2026091922002701",
+   "start": 8080,
+   "end": 8470,
+   "instruction": "push the staged I-shaped bar piece to the left of the R and L, goal at x31 y40",
+   "split": "train",
+   "task": "push_letters",
+   "id": "a_i_align",
+   "meta": {
+    "cut_segment_id": "a_i_align",
+    "cut_interval": [
+     8050,
+     8500
+    ],
+    "goal_box_1280x720": [
+     315,
+     238,
+     477,
+     343
+    ],
+    "objective": "Move and align the staged I-like piece to the left of the R/L area.",
+    "training_condition": "Lower crossbar/I-like instance; later placement G(8499).",
+    "cut_dataset": "instance_relocation"
+   }
+  },
+  {
+   "episode": "push_letters/episode_2026091922002701",
+   "start": 8530,
+   "end": 9015,
+   "instruction": "push the staged H-shaped piece up and align it next to the I, goal at x30 y55",
+   "split": "train",
+   "task": "push_letters",
+   "id": "a_h_align",
+   "meta": {
+    "cut_segment_id": "a_h_align",
+    "cut_interval": [
+     8500,
+     9015
+    ],
+    "goal_box_1280x720": [
+     290,
+     333,
+     470,
+     452
+    ],
+    "objective": "Re-approach the staged H-like piece from below, push it upward and align near the I-like piece, then stop/withdraw.",
+    "training_condition": "Upper crossbar/H-like instance; final recorded local placement G(9014), without success label.",
+    "cut_dataset": "instance_relocation"
+   }
+  },
+  {
+   "episode": "push_letters/episode_2026091922062101",
+   "start": 0,
+   "end": 1190,
+   "instruction": "push the W-shaped zigzag piece from the bottom to the lower-right word row, goal at x55 y79",
+   "split": "train",
+   "task": "push_letters",
+   "id": "b_w",
+   "meta": {
+    "cut_segment_id": "b_w",
+    "cut_interval": [
+     0,
+     1220
+    ],
+    "goal_box_1280x720": [
+     598,
+     492,
+     805,
+     651
+    ],
+    "objective": "Descend, re-contact, rotate and shift the zigzag piece to the lower-right arrangement position.",
+    "training_condition": "B episode zigzag/W-like instance; achieved placement G(1219).",
+    "cut_dataset": "instance_relocation"
+   }
+  },
+  {
+   "episode": "push_letters/episode_2026091922062101",
+   "start": 1250,
+   "end": 1410,
+   "instruction": "stage the central I-shaped bar piece a short way to the left, goal at x38 y52",
+   "split": "train",
+   "task": "push_letters",
+   "id": "b_i_stage",
+   "meta": {
+    "cut_segment_id": "b_i_stage",
+    "cut_interval": [
+     1220,
+     1440
+    ],
+    "goal_box_1280x720": [
+     408,
+     312,
+     571,
+     430
+    ],
+    "objective": "Move the central crossbar piece leftward and reorient it to a local staging location.",
+    "training_condition": "Central crossbar/I-like instance; local placement G(1439).",
+    "cut_dataset": "instance_relocation"
+   }
+  },
+  {
+   "episode": "push_letters/episode_2026091922062101",
+   "start": 1470,
+   "end": 1870,
+   "instruction": "stage the D-shaped piece from the lower left up to the upper right, goal at x51 y28",
+   "split": "val",
+   "task": "push_letters",
+   "id": "b_d_stage",
+   "meta": {
+    "cut_segment_id": "b_d_stage",
+    "cut_interval": [
+     1440,
+     1900
+    ],
+    "goal_box_1280x720": [
+     590,
+     148,
+     713,
+     252
+    ],
+    "objective": "Engage D's opening and transport the piece from lower-left to the upper-right temporary location.",
+    "training_condition": "D-like instance; staging placement G(1899).",
+    "cut_dataset": "instance_relocation"
+   }
+  },
+  {
+   "episode": "push_letters/episode_2026091922062101",
+   "start": 1930,
+   "end": 2790,
+   "instruction": "push the O-shaped ring piece down and set it above the W, goal at x53 y59",
+   "split": "train",
+   "task": "push_letters",
+   "id": "b_o",
+   "meta": {
+    "cut_segment_id": "b_o",
+    "cut_interval": [
+     1900,
+     2820
+    ],
+    "goal_box_1280x720": [
+     592,
+     363,
+     762,
+     490
+    ],
+    "objective": "Rotate and move the annular piece downward to a placement above the zigzag piece.",
+    "training_condition": "Annular/O-like instance; achieved placement G(2819).",
+    "cut_dataset": "instance_relocation"
+   }
+  },
+  {
+   "episode": "push_letters/episode_2026091922062101",
+   "start": 2850,
+   "end": 4530,
+   "instruction": "push the R-shaped piece into the row above the O, goal at x52 y44",
+   "split": "train",
+   "task": "push_letters",
+   "id": "b_r",
+   "meta": {
+    "cut_segment_id": "b_r",
+    "cut_interval": [
+     2820,
+     4560
+    ],
+    "goal_box_1280x720": [
+     580,
+     258,
+     740,
+     370
+    ],
+    "objective": "Transport and rotate R toward the row above O, including tool withdrawal, posture adjustment and re-contact corrections.",
+    "training_condition": "R-like instance; achieved placement G(4559), constant through its correction/re-contact.",
+    "cut_dataset": "instance_relocation"
+   }
+  },
+  {
+   "episode": "push_letters/episode_2026091922062101",
+   "start": 4590,
+   "end": 4810,
+   "instruction": "align the D-shaped piece at the top of the word column, goal at x51 y23",
+   "split": "train",
+   "task": "push_letters",
+   "id": "b_d_align",
+   "meta": {
+    "cut_segment_id": "b_d_align",
+    "cut_interval": [
+     4560,
+     4840
+    ],
+    "goal_box_1280x720": [
+     587,
+     123,
+     716,
+     206
+    ],
+    "objective": "Correct D's orientation and small position at the upper end of the arrangement.",
+    "training_condition": "D-like instance; alignment placement G(4839).",
+    "cut_dataset": "instance_relocation"
+   }
+  },
+  {
+   "episode": "push_letters/episode_2026091922062101",
+   "start": 4870,
+   "end": 6050,
+   "instruction": "push the L-shaped piece into the gap between the R and the D, goal at x51 y32",
+   "split": "train",
+   "task": "push_letters",
+   "id": "b_l",
+   "meta": {
+    "cut_segment_id": "b_l",
+    "cut_interval": [
+     4840,
+     6080
+    ],
+    "goal_box_1280x720": [
+     580,
+     186,
+     726,
+     278
+    ],
+    "objective": "Re-contact and transport L into the gap between R and D, with final position/orientation corrections.",
+    "training_condition": "L-shaped instance; achieved placement G(6079).",
+    "cut_dataset": "instance_relocation"
+   }
+  },
+  {
+   "episode": "push_letters/episode_2026091922062101",
+   "start": 6110,
+   "end": 6870,
+   "instruction": "stage the upper-left H-shaped piece down at the lower left, goal at x24 y64",
+   "split": "train",
+   "task": "push_letters",
+   "id": "b_h_stage",
+   "meta": {
+    "cut_segment_id": "b_h_stage",
+    "cut_interval": [
+     6080,
+     6900
+    ],
+    "goal_box_1280x720": [
+     201,
+     387,
+     415,
+     529
+    ],
+    "objective": "Rotate and move the upper-left crossbar piece downward to a lower-left staging location.",
+    "training_condition": "Upper-left crossbar/H-like instance; temporary placement G(6899).",
+    "cut_dataset": "instance_relocation"
+   }
+  },
+  {
+   "episode": "push_letters/episode_2026091922062101",
+   "start": 6930,
+   "end": 7270,
+   "instruction": "push the staged I-shaped bar piece up to the left of the R and L, goal at x35 y39",
+   "split": "val",
+   "task": "push_letters",
+   "id": "b_i_align",
+   "meta": {
+    "cut_segment_id": "b_i_align",
+    "cut_interval": [
+     6900,
+     7300
+    ],
+    "goal_box_1280x720": [
+     368,
+     232,
+     529,
+     333
+    ],
+    "objective": "Re-contact I, translate/reorient it upward and align to the left of the R/L area.",
+    "training_condition": "Central crossbar/I-like instance; later placement G(7299).",
+    "cut_dataset": "instance_relocation"
+   }
+  },
+  {
+   "episode": "push_letters/episode_2026091922062101",
+   "start": 7330,
+   "end": 7730,
+   "instruction": "push the staged H-shaped piece right and up next to the I, goal at x34 y60",
+   "split": "train",
+   "task": "push_letters",
+   "id": "b_h_align",
+   "meta": {
+    "cut_segment_id": "b_h_align",
+    "cut_interval": [
+     7300,
+     7730
+    ],
+    "goal_box_1280x720": [
+     352,
+     370,
+     529,
+     493
+    ],
+    "objective": "Re-approach staged H and adjust it right/up near I, then stop/withdraw.",
+    "training_condition": "Upper-left-origin crossbar/H-like instance; last recorded local placement G(7729), without success label.",
+    "cut_dataset": "instance_relocation"
+   }
+  }
+ ]
+}
